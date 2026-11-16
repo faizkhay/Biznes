@@ -70,7 +70,7 @@ export default function SiteFooter() {
           </p>
           <a href={builder.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-ink-subtle underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
             <span>
-              A Digital Experience by <strong className="font-semibold text-ink">Khay Digital</strong>
+              A Digital Experience by <strong className="body-4 text-ink">Khay Digital</strong>
             </span>
           </a>
         </div>

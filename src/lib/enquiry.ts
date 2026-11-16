@@ -9,9 +9,13 @@
  */
 import { BUSINESSES } from "@/data/businesses";
 
-/** What the enquiry is about: a business by its slug, the visitor's own idea, or not sure yet. */
+/**
+ * What the enquiry is about: a business by its slug, the visitor's own idea, or not sure yet. Only a
+ * real business still on the rail can be asked about: a sample is not for sale, so neither the form
+ * nor the endpoint offers it (the second design review found the form still listing all five).
+ */
 export const OPEN_TOPICS = ["own-idea", "unsure"] as const;
-export const TOPICS: readonly string[] = [...BUSINESSES.filter((b) => b.status !== "sold").map((b) => b.slug), ...OPEN_TOPICS];
+export const TOPICS: readonly string[] = [...BUSINESSES.filter((b) => b.status !== "sold" && !b.sample).map((b) => b.slug), ...OPEN_TOPICS];
 export type Topic = string;
 
 /** Each topic as the visitor reads it in the form, and as the business reads it in the enquiry. */

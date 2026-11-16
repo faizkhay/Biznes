@@ -193,6 +193,12 @@
   line-height: var(--text-base--line-height);
   font-weight: 400;
 }
+@utility body-4 {
+  /* A name set a little heavier inside small print: the credit's "Khay Digital". */
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+}
 @utility body-6 {
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
@@ -207,6 +213,12 @@
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 600;
+}
+@utility caption-1 {
+  /* A field's error, said in words under the field. */
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
 }
 @utility caption-2 {
   font-size: var(--text-sm);
@@ -350,9 +362,10 @@
     padding: 0.75rem 1.5rem;
     transition: transform 240ms var(--ease-out);
   }
+  /* The ring keeps the page's ink: it is drawn 3px outside the pill, so it sits on paper, where the
+     yellow measured 1.65:1 and ink measures 16.78:1. */
   .skip-link:focus-visible {
     transform: none;
-    outline-color: var(--palette-primary);
   }
 
   /* ---------- The tag (signature) ----------
@@ -362,8 +375,16 @@
      drawn in three parts, because it crosses three grounds: the page, the tag, and the page again
      where it shows through the hole. A string that stopped at the tag's edge, with the hole below it
      holding nothing, was what the design review of 16 November 2026 called decoration. */
+  /* --hang is the string's real length: the full --string on a desk, a little over half of it on a
+     phone, where a long string would push the first tag out of the first screen. */
   .hang {
-    padding-top: var(--string, 2rem);
+    --hang: calc(var(--string, 2rem) * 0.55);
+    padding-top: var(--hang);
+  }
+  @media (width >= 64rem) {
+    .hang {
+      --hang: var(--string, 2rem);
+    }
   }
   .tag {
     position: relative;
@@ -371,7 +392,7 @@
     aspect-ratio: 3 / 4;
     flex-direction: column;
     border-radius: 1rem;
-    transform-origin: 50% calc(-1 * var(--string, 2rem)); /* it swings from where the string meets the rail */
+    transform-origin: 50% calc(-1 * var(--hang, 2rem)); /* it swings from where the string meets the rail */
     transition: transform 520ms var(--ease-out);
   }
   /* From the rail to the tag's top edge, over the page. */
@@ -381,7 +402,7 @@
     left: calc(50% - 0.5px);
     bottom: 100%;
     width: 1px;
-    height: var(--string, 2rem);
+    height: var(--hang, 2rem);
     background: color-mix(in srgb, var(--palette-ink) 55%, transparent);
   }
   /* From the tag's top edge to the hole, over the tag's own ground, in its own ink. */
@@ -624,7 +645,8 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
   opacity: 1;
 }
 
-/* The phone menu's links arrive in reading order, each rising 24px, 60ms apart, within 400ms. */
+/* The phone menu's links arrive in reading order, each rising 24px over 200ms, 50ms apart: five
+   items finish within 400ms. (An earlier 340ms at 60ms apart ran to 580ms.) */
 @keyframes menu-in {
   from {
     opacity: 0;
@@ -632,8 +654,8 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
   }
 }
 html.can-animate .menu-sheet [data-menu-item] {
-  animation: menu-in 340ms var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 60ms);
+  animation: menu-in 200ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 50ms);
 }
 
 /* ---------- Reduced motion: the still path ----------

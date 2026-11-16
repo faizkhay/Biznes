@@ -97,7 +97,7 @@ export default function EnquiryForm() {
 
   const FieldError = ({ field }: { field: keyof EnquiryErrors }) =>
     errors[field] ? (
-      <p id={`${field}-error`} className="body-6 mt-2 flex items-start gap-2 font-medium">
+      <p id={`${field}-error`} className="caption-1 mt-2 flex items-start gap-2">
         <Alert className="mt-0.5 size-4 flex-none" />
         {ERROR_TEXT[field][errors[field]!]}
       </p>
@@ -105,6 +105,13 @@ export default function EnquiryForm() {
 
   return (
     <form ref={form} onSubmit={onSubmit} noValidate className="grid gap-6">
+      {/* The form is sent by script. Without script it says so, and gives the routes that still work. */}
+      <noscript>
+        <p className="body-3 rounded-2xl border border-ink p-6">
+          This form needs JavaScript, which is switched off in your browser. Please call or WhatsApp {contact.phone}, or email{" "}
+          {contact.email}.
+        </p>
+      </noscript>
       {state === "failed" && (
         <div ref={failed} tabIndex={-1} role="alert" className="rounded-2xl border border-ink p-6 outline-none">
           <p className="body-1 flex items-start gap-2">

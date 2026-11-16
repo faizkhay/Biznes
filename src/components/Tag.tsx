@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { type Business, STATUS_LABEL } from "@/data/businesses";
 import { site } from "@/data/site";
 import { brandVars } from "@/lib/brand";
-import { formatPrice, wherePhrase } from "@/lib/format";
+import { formatPrice, listPlaces } from "@/lib/format";
 import Wordmark from "./Wordmark";
 
 /** How far each tag hangs below the rail, in rem, so the row has a rhythm. */
@@ -18,7 +18,8 @@ const SWINGS = [4, -3, 3.5, -4, 3, -3.5];
  *
  * The name is real text under the tag, so the lettering on the tag is decoration to a screen reader.
  * A sample wears "Sample" on the tag itself, where it survives a screenshot, and its price is set
- * quieter than a real one's, so a placeholder never reads as an offer.
+ * quieter than a real one's, so a placeholder never reads as an offer. On a phone the strings are
+ * shorter (globals.css, .hang), so the first tag is whole in the first screen.
  */
 export default function Tag({ business: b, index }: { business: Business; index: number }) {
   const hang = {
@@ -45,12 +46,12 @@ export default function Tag({ business: b, index }: { business: Business; index:
             {b.name}
           </h3>
           <p className="caption-2 text-ink-subtle">{b.sector}</p>
-          <p className="caption-2 text-ink-subtle">{wherePhrase(b.places)}</p>
+          <p className="caption-2 text-ink-subtle">{listPlaces(b.places)}</p>
+          {/* A real price is set as tag writing. A sample's is set quietly, in the caption's own type:
+              the tag above it says Sample, and the line over the rail says what that means. */}
           {site.showPrices &&
             (b.sample ? (
-              <p className="caption-2 mt-2 text-ink-subtle">
-                <span className="tabular">{formatPrice(b.price)}</span>, a placeholder
-              </p>
+              <p className="caption-2 tabular mt-2 text-ink-subtle">{formatPrice(b.price)}</p>
             ) : (
               <p className="title-4 mt-2">{formatPrice(b.price)}</p>
             ))}

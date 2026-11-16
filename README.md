@@ -197,18 +197,22 @@ Run on 16 November 2026 against `next start` on port 3100, after the design revi
   page errors. The stitched pages are in `review/screens`, and were read.
 - `npm run reveals`, with motion on: every reveal fired on every page at both sizes.
 - `npm run a11y`: axe-core against WCAG 2.2 A/AA, every page kind at both sizes, clean.
-- `npm run behaviour`: 24 of 24. The skip link is first in the tab order; the phone menu opens as a
+- `npm run behaviour`: 28 of 28. The skip link is first in the tab order; the phone menu opens as a
   dialog, makes the page behind inert, takes focus, closes on Escape and returns focus to its
-  button; a business link arrives at the form with that business chosen; errors are said on their
-  fields and the first takes focus; with no route the form says the request has not arrived and
-  gives the phone and email; the endpoint refuses what the form refuses (422), answers a filled
-  honeypot with a quiet success and answers 503 with no route; without script every heading and
-  reveal is visible and the six tags are links; before launch pages carry `noindex`, `robots.txt`
-  closes the site, and the sitemap and `llms.txt` list LePalatier and no sample. The states it met
-  are saved in `review/screens/states`.
-- The design review by a fresh agent answered "fix", with eight points. `STORY.md`, "The design
-  review", says what was done about each: seven resolved, one partly (LePalatier's price is the
-  owner's to confirm).
+  button; a business link arrives at the form with that business chosen; the form offers no sample;
+  errors are said on their fields and the first takes focus; with no route the form says the request
+  has not arrived and gives the phone and email; the endpoint refuses what the form refuses (422),
+  refuses a sample, answers a filled honeypot with a quiet success, answers 503 with no route and
+  limits the sixth request (429); without script every heading and reveal is visible, the six tags
+  are links and the form says how else to reach us; before launch pages carry `noindex`,
+  `robots.txt` closes the site, and the sitemap and `llms.txt` list LePalatier and no sample. The
+  states it met are saved in `review/screens/states`. Restart the server between runs: the
+  endpoint's limit is per connection, per ten minutes.
+- `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
+- The design review by a fresh agent answered "fix", with eight points; its verdict pass on the
+  fixes found seven resolved and one partly (LePalatier's price is the owner's to confirm), and five
+  small new things, all since fixed. Its word for the build with those done: ship. `STORY.md`,
+  "The design review" and "The verdict pass", has each point and what was done.
 - Not yet run: a keyboard pass by hand on a real device; a screen reader; Lighthouse; any phone
   hardware; hover and pressed states were written and read in code, not captured. No old addresses
   exist to redirect.
@@ -216,7 +220,9 @@ Run on 16 November 2026 against `next start` on port 3100, after the design revi
 ## Known gaps
 
 1. English only. French and Kreol are not built; the routes are not yet under a language folder.
-2. The kit's dev-only foundations page was not built.
+2. The kit's dev-only foundations page was not built. What `DESIGN.md` found in the build and left
+   as it is (a tag hangs on paper only; a few states have no design or no instance; some roles are
+   declared and unused) is listed under its "Known Gaps".
 3. The link preview card is one card for every page; a business has no card of its own.
 4. There is no security policy for content (CSP) yet; the other security headers are set in
    `next.config.ts`.

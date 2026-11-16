@@ -160,3 +160,24 @@ Also from the review: disabled states for the quiet button, chips and fields; a 
 pill when on that page; step numbers moved out of Geist Mono; the capture script no longer hides a
 strip under the sticky header; the open menu, the form's refusal and the page without script are
 saved in `review/screens/states`.
+
+### The verdict pass, 16 November 2026
+
+The same reviewer read the recaptured pages: seven of the eight resolved, the fifth partial and the
+owner's to close (LePalatier's price). It answered "fix" once more, for five small things the batch
+had left or broken, and said that with them done the build ships with no further full review:
+
+1. The 404's hook had lost its string. It has one again.
+2. The open menu was captured mid-entrance. It is now captured at rest, with every page and both
+   routes in view.
+3. The form still offered the five samples. Neither the form nor the endpoint offers a sample now.
+4. "MUR 280,000, a placeholder" broke mid-phrase in narrow columns. A sample's price is now the
+   figure alone on the rail, and two short lines in the catalogue.
+5. The phone's first screen showed less of the rail. The note is one sentence, the lede is shorter,
+   and the strings are shorter on a phone, so LePalatier's whole tag is in the first screen.
+
+From the agent that recorded `DESIGN.md`: the skip link's ring now takes the page's ink (the yellow
+measured 1.65:1 on paper); the phone menu's links arrive within 400ms; without script the form says
+how else to reach us; a field's error and the credit's name each take a named text style; the ring's
+numbers stay above 12px on a 360px screen. What it found and was left as it is, is in `DESIGN.md`,
+"Known Gaps".

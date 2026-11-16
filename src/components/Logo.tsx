@@ -7,7 +7,7 @@ export default function Logo({ className }: { className?: string }) {
         <rect x="5" y="2" width="14" height="20" rx="3.5" fill="var(--palette-primary)" />
         <circle cx="12" cy="6.5" r="1.75" fill="var(--color-paper)" />
       </svg>
-      <span className="body-1 tracking-tight">
+      <span className="body-1">
         biznes<span className="text-ink-subtle">.mu</span>
       </span>
     </span>

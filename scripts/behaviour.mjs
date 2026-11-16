@@ -36,6 +36,8 @@ const ok = (name, pass, extra = "") => {
   ok("menu opens as a dialog", (await p.locator("#menu-sheet").getAttribute("role")) === "dialog");
   ok("page behind is inert", await p.evaluate(() => document.getElementById("main").hasAttribute("inert") && document.getElementById("site-footer").hasAttribute("inert")));
   ok("focus moves into the menu", await p.evaluate(() => document.getElementById("menu-sheet").contains(document.activeElement)));
+  await p.waitForTimeout(900); // the links arrive in sequence; capture the menu at rest
+  ok("the menu names the form's route once, as Enquire", (await p.locator("#menu-sheet a", { hasText: "Enquire" }).count()) === 1);
   await p.screenshot({ path: OUT + "/menu-open.png" });
   await p.keyboard.press("Escape");
   await p.waitForTimeout(200);
@@ -50,6 +52,8 @@ const ok = (name, pass, extra = "") => {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   await p.goto(O + "/enquire?business=lepalatier", { waitUntil: "networkidle" });
   ok("a business link arrives chosen", (await p.locator("#topic").inputValue()) === "lepalatier");
+  const options = await p.locator("#topic option").allTextContents();
+  ok("the form offers no sample business", !options.some((o) => /Lakrem|Souffle|Bouk|Larout|Kazprop/.test(o)), options.join(" | "));
   await p.getByRole("button", { name: "Send a request" }).click();
   ok("name error is said on its field", (await p.locator("#name-error").textContent())?.includes("Tell us your name"));
   ok("first wrong field takes focus", await p.evaluate(() => document.activeElement?.id === "name"));
@@ -77,8 +81,11 @@ const ok = (name, pass, extra = "") => {
   ok("a filled honeypot gets a quiet success", s2 === 200 && j2.ok === true);
   const [s3, j3] = await post({ topic: "lepalatier", name: "Test", phone: "+230 5555 0000", reply: "whatsapp" });
   ok("no route in production answers 503", s3 === 503 && j3.error === "unconfigured");
-  const [s4] = await post({ topic: "not-a-business", name: "Test", phone: "+230 5555 0000" });
-  ok("an unknown business is refused", s4 === 422);
+  const [s4] = await post({ topic: "lakrem", name: "Test", phone: "+230 5555 0000" });
+  ok("a sample business is refused by the endpoint too", s4 === 422);
+  // The form's own submission above was the first request from this connection; this is the sixth.
+  const [s5] = await post({ topic: "lepalatier", name: "Test", phone: "+230 5555 0000" });
+  ok("the sixth request inside ten minutes is limited (429)", s5 === 429);
 }
 
 // 4. Without script
@@ -89,6 +96,9 @@ const ok = (name, pass, extra = "") => {
   const hidden = await p.evaluate(() => [...document.querySelectorAll("[data-reveal], h1, h2, .tagline-reveal [data-word]")].filter((el) => getComputedStyle(el).opacity !== "1").length);
   ok("without script every reveal and heading is visible", hidden === 0);
   ok("without script the six tags are links", (await p.locator('ul[aria-label="Businesses for sale"] a').count()) === 6);
+  await p.goto(O + "/enquire", { waitUntil: "load" });
+  const note = await p.locator("form noscript").count();
+  ok("without script the form says how else to reach us", note === 1 && (await p.content()).includes("This form needs JavaScript"));
   await p.screenshot({ path: OUT + "/noscript.png" });
   await ctx.close();
 }

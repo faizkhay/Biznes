@@ -7,7 +7,8 @@ import { INCLUDED } from "@/data/pack";
  *
  * The strings leave the lower arc of the loop and fan out to tags spaced evenly across the drawing,
  * the way keys fan from a ring held up by one finger. Coordinates are worked out with trigonometry
- * and rounded, so the server and the browser print the same digits.
+ * and rounded, so the server and the browser print the same digits. The numbers are set at 13 units,
+ * so they stay above 12px when the drawing is scaled down on a 360px screen.
  */
 export default function Ring({ className }: { className?: string }) {
   const n = INCLUDED.length;
@@ -39,7 +40,7 @@ export default function Ring({ className }: { className?: string }) {
             y={t.y + 37}
             textAnchor="middle"
             fontFamily="var(--font-mono)"
-            fontSize="12"
+            fontSize="13"
             fontWeight="500"
             fill="var(--palette-on-primary)"
           >

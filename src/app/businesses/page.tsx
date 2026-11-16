@@ -62,9 +62,10 @@ export default function Businesses() {
                 <span className="col-start-2 self-start lg:col-start-auto lg:self-center">
                   {site.showPrices &&
                     (b.sample ? (
-                      <span className="caption-2 block text-ink-subtle">
-                        <span className="tabular">{formatPrice(b.price)}</span>, a placeholder
-                      </span>
+                      <>
+                        <span className="caption-2 tabular block text-ink-subtle">{formatPrice(b.price)}</span>
+                        <span className="caption-2 block whitespace-nowrap text-ink-subtle">Placeholder price</span>
+                      </>
                     ) : (
                       <span className="title-4 block">{formatPrice(b.price)}</span>
                     ))}
