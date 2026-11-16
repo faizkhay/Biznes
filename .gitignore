@@ -6,3 +6,6 @@ next-env.d.ts
 .env*.local
 .DS_Store
 contrast.json
+
+# The viewport slices are working files; the stitched pages in review/screens are the evidence.
+review/screens/slices/
