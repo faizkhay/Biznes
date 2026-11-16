@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import Faq from "@/components/Faq";
-import Included from "@/components/Included";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
-import Ring from "@/components/Ring";
 import Steps from "@/components/Steps";
-import Yours from "@/components/Yours";
 import { pageGraph } from "@/lib/structured";
 
 const title = "How it works";
-const description = "How buying a ready-to-launch business on biznes.mu works: the four steps, what every business comes with, and what stays with you.";
+const description = "How buying a ready-to-launch business on biznes.mu works: the four steps from the rail to opening day, and the questions people ask.";
 
 export const metadata: Metadata = {
   title,
@@ -19,8 +16,11 @@ export const metadata: Metadata = {
 };
 
 /**
- * The sale told in the order the buyer lives it, then what comes with every business, the honest
- * half, and the questions people ask. The same data as the home page, at reading length.
+ * The sale told in the order the buyer lives it, then the questions people ask. What every business
+ * comes with and what stays with the buyer are told on the home page and on each business's own
+ * page, so they are not said a third time here: the first design review found this page repeating
+ * the home page word for word. As the owner answers what a buyer asks next (how payment is taken,
+ * what holds a business, how long the handover takes), each answer joins FAQS in src/data/pack.ts.
  */
 export default function HowItWorks() {
   return (
@@ -38,25 +38,7 @@ export default function HowItWorks() {
         <Steps detailed />
       </section>
 
-      <section className="bg-paper-subtle" aria-labelledby="included-heading">
-        <div className="shell section-y grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <div className="lg:sticky lg:top-24 lg:self-start">
-            <Reveal className="reveal-mask">
-              <h2 id="included-heading" className="heading-2">
-                What every business comes with
-              </h2>
-            </Reveal>
-            <Reveal delay={150}>
-              <Ring className="mt-10 w-full max-w-80" />
-            </Reveal>
-          </div>
-          <Included />
-        </div>
-      </section>
-
-      <Yours />
-
-      <section aria-labelledby="faq-heading">
+      <section className="bg-paper-subtle" aria-labelledby="faq-heading">
         <div className="shell section-y grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal className="reveal-mask lg:sticky lg:top-24 lg:self-start">
             <h2 id="faq-heading" className="heading-2">

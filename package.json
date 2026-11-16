@@ -16,7 +16,8 @@
     "tokens": "node scripts/check-tokens.mjs",
     "contrast": "node scripts/contrast.mjs --json scripts/contrast.pairs.json",
     "design": "node scripts/check-design.mjs && npx --yes @google/design.md@0.4.0 lint DESIGN.md",
-    "og": "node scripts/og.mjs"
+    "og": "node scripts/og.mjs",
+    "behaviour": "node scripts/behaviour.mjs"
   },
   "dependencies": {
     "geist": "^1.5.1",

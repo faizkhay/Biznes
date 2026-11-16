@@ -28,14 +28,12 @@ export default function Ring({ className }: { className?: string }) {
 
   return (
     <svg viewBox="0 0 320 262" className={className} fill="none" aria-hidden focusable="false">
-      {tags.map((t) => (
-        <path key={`s${t.label}`} d={`M${t.fromX} ${t.fromY}L${t.x} ${t.y + 9}`} stroke="var(--color-line-strong)" strokeWidth="1" />
-      ))}
-      <circle className="ring-path" cx={cx} cy={cy} r={r} pathLength={1} stroke="var(--color-ink)" strokeWidth="1.5" />
+      {/* Tags first, then their holes, then the strings on top, so each string is seen to run down the
+          face of its tag and through the hole to its centre. */}
       {tags.map((t) => (
         <g key={t.label}>
           <rect x={t.x - 19} y={t.y} width="38" height="52" rx="7" fill="var(--palette-primary)" />
-          <circle cx={t.x} cy={t.y + 9} r="2.75" fill="var(--color-paper)" />
+          <circle cx={t.x} cy={t.y + 9} r="3.5" fill="var(--color-paper)" />
           <text
             x={t.x}
             y={t.y + 37}
@@ -49,6 +47,10 @@ export default function Ring({ className }: { className?: string }) {
           </text>
         </g>
       ))}
+      {tags.map((t) => (
+        <path key={`s${t.label}`} d={`M${t.fromX} ${t.fromY}L${t.x} ${t.y + 9}`} stroke="var(--color-line-strong)" strokeWidth="1" />
+      ))}
+      <circle className="ring-path" cx={cx} cy={cy} r={r} pathLength={1} stroke="var(--color-ink)" strokeWidth="1.5" />
     </svg>
   );
 }

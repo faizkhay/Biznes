@@ -39,9 +39,13 @@ sell ready to launch businesses, i will build the brand, branding, website and p
 names, lock social media handles, have a business strategy, people who have the money or can
 undertake these businesses can just buy, i will help with incorporation".
 
-The site exists to turn a visitor into a request about one business: **"Reserve this business"**
-(primary, on each business's page), with **"Send a request"**, **"WhatsApp"** and **"Call us"**
-beside it. A conversion counts when a request arrives, a message is sent or a call is placed.
+The site exists to turn a visitor into a request about one business: **"Ask about this business"**
+(primary, on each business's page), with **"WhatsApp"** and **"Call us"** beside it. "Enquire" is the
+one name for the route to the form from anywhere else, and "Send a request" is the form's own
+button. A conversion counts when a request arrives, a message is sent or a call is placed.
+
+The action is not called "Reserve": nothing yet says what holds a business or for how long, so the
+button says what pressing it does.
 
 ## Positioning
 
@@ -71,8 +75,11 @@ incorporation.
   look and feel, ideally has a spot in the middle of moka, grand baie or tamarin", proposed at
   350k), and five placeholders the owner asked for ("5 other random for now"): Lakrem, Souffle,
   Bouké, Larout, Kazprop. The five are marked "Sample listing" wherever they appear.
-- **Guarantees and terms:** each business is sold once. The brand is the buyer's in full on
-  payment. No income is promised. Nothing else is offered as a guarantee.
+- **Guarantees and terms:** each business is sold once, to one owner (Khay Digital's proposal to the
+  owner in conversation, 16 November 2026, built on and to confirm). The brand is the buyer's in
+  full on payment (Khay Digital's standing rule for a website: KOS, `references/khay.md`; to
+  confirm for this offer). A care plan can follow (Khay Digital's published "Care & Support"
+  service). No income is promised. Nothing else is offered as a guarantee.
 - **Languages:** English at launch. French and Kreol are a listed gap.
 - **Not confirmed, so not stated:** how payment is taken, whether a deposit holds a business, VAT
   on the prices, delivery times, a trademark filing, whether any domain is already held.
@@ -92,7 +99,8 @@ direction. The credit, as on every Khay build: "A Digital Experience by Khay Dig
 | Source | Read | Gave |
 |---|---|---|
 | The owner, in conversation | 15 and 16 November 2026 | The offer, the six things, LePalatier and its proposed price, the request for five samples, carte blanche |
-| https://www.khay.digital/llms.txt | 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email, hours |
+| https://www.khay.digital/llms.txt | 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email, hours, and its "Care & Support" service |
+| KOS, `references/khay.md` | 16 November 2026 | A website is "the client's in full, on payment" |
 | DNS for the `.mu` zone | 16 November 2026 | None of lepalatier.mu, lakrem.mu, souffle.mu, bouke.mu, larout.mu or kazprop.mu resolved; no claim is made on the site |
 
 Absent, and not fabricated: photographs, testimonials, sales figures, a logo for biznes.mu from
@@ -104,7 +112,8 @@ before this build, confirmed prices for the samples.
    colours, not a claim about it.
 2. **Say what is not sold.** Premises, licences, stock, staff and income are named as the buyer's,
    before the ask, because the hardest visitor has been promised too much before.
-3. **One business, one owner, one action.** Each page ends on reserving that business.
+3. **One business, one owner, one action.** Each business's page ends on asking about that
+   business.
 4. **A sample can never pass for an offer.** It is marked on the tag itself and kept out of
    everything a machine reads.
 5. **A phone, in a hurry, decides.** Call and WhatsApp are within reach on every page.

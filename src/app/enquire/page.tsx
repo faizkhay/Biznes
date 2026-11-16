@@ -16,7 +16,10 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: "/enquire" },
 };
 
-/** Every way to ask about a business: the request form, and the quicker routes beside it. */
+/**
+ * Every way to ask about a business: the request form, and the quicker routes beside it. On a phone
+ * the quick routes come first, because a call or a message is one tap and the form is not.
+ */
 export default function Enquire() {
   const { contact } = site;
   return (
@@ -32,7 +35,7 @@ export default function Enquire() {
           <EnquiryForm />
         </section>
 
-        <aside aria-labelledby="direct-heading" className="lg:border-l lg:border-line-strong lg:pl-12">
+        <aside aria-labelledby="direct-heading" className="order-first lg:order-last lg:border-l lg:border-line-strong lg:pl-12">
           <h2 id="direct-heading" className="heading-5">
             Reach us directly
           </h2>

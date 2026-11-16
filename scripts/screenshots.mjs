@@ -51,20 +51,29 @@ for (const [vname, vp] of VIEWPORTS) {
     await page.waitForTimeout(heavy ? 9000 : 1500);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
-    const slices = Math.ceil(height / vp.height);
+    // The header is sticky, so it covers the top of every viewport after the first. Each later slice
+    // therefore advances by the viewport less the header and is clipped below the header, so the
+    // stitched page shows every pixel once and the header once. (The first design review could not
+    // see three strips of the home page that an earlier version hid under the repeated header.)
+    const nav = await page.evaluate(() => {
+      const h = document.querySelector("header");
+      return h && getComputedStyle(h).position === "sticky" ? Math.round(h.getBoundingClientRect().height) : 0;
+    });
+    const step = vp.height - nav;
+    const slices = height <= vp.height ? 1 : 1 + Math.ceil((height - vp.height) / step);
     for (const f of readdirSync(join(out, "slices")).filter((f) => f.startsWith(`${name}-${vname}-`)))
       rmSync(join(out, "slices", f));
     const files = [];
     for (let i = 0; i < slices; i++) {
-      const y = Math.min(i * vp.height, height - vp.height);
+      const want = i * step; // the page offset this slice should start showing at, below the header
+      const y = Math.min(want, height - vp.height);
       await page.evaluate((y) => window.scrollTo(0, y), y);
-      await page.waitForTimeout(heavy && i < 8 ? 2500 : 600);
+      await page.waitForTimeout(600);
       const file = join(out, "slices", `${name}-${vname}-${String(i).padStart(2, "0")}.png`);
-      // The last slice overlaps the one before it; keep only its new part.
-      const clip =
-        i === slices - 1 && i > 0
-          ? { x: 0, y: i * vp.height - y, width: vp.width, height: vp.height - (i * vp.height - y) }
-          : undefined;
+      // Skip the header on every slice after the first, and on the last slice (which cannot scroll a
+      // full step) skip what the slice before it already showed.
+      const top = i === 0 ? 0 : nav + (want - y);
+      const clip = i === 0 ? undefined : { x: 0, y: top, width: vp.width, height: vp.height - top };
       await page.screenshot({ path: file, clip });
       files.push(file);
     }

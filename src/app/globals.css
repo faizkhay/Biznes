@@ -47,6 +47,8 @@
   --color-focus: var(--palette-ink); /* 16.78:1 on paper; night and brand grounds redefine it */
   --color-accent: var(--brand-accent); /* a listing's third colour, for its own marks only */
 
+  /* Geist and Geist Mono: chosen from Elaya's list, because biznes.mu has no face of its own (KOS,
+     references/brand-system.md). Self-hosted through the `geist` package and next/font; SIL OFL 1.1. */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
@@ -293,9 +295,22 @@
     border-color: var(--color-ink);
     background: color-mix(in srgb, var(--color-ink) 6%, transparent);
   }
+  .btn-quiet[disabled],
+  .btn-quiet[aria-disabled="true"] {
+    border-color: var(--color-line);
+    color: var(--color-ink-subtle);
+    background: transparent;
+    cursor: not-allowed;
+    transform: none;
+  }
   .btn-sm {
     min-height: 2.75rem;
     padding: 0.25rem 1rem;
+  }
+  /* The page a pill leads to, when the visitor is already on it: ringed in ink, never by colour alone
+     (the link carries aria-current as well). */
+  .btn[aria-current="page"] {
+    box-shadow: inset 0 0 0 2px var(--color-ink);
   }
   /* The arrow is drawn, never a glyph from a font, and moves 4px when its link is pointed at. */
   .arrow {
@@ -341,13 +356,14 @@
   }
 
   /* ---------- The tag (signature) ----------
-     Every business hangs on the rail as a tag: its own ground, its own lettering, a punched hole and a
-     string. The string is a hairline from the rail to the hole; its length comes from --string. */
-  .tag-string {
-    width: 1px;
-    height: var(--string, 2rem);
-    margin-inline: auto;
-    background: var(--color-line-strong);
+     Every business hangs on the rail as a tag: its own ground, its own lettering, a punched hole and
+     a string. The string belongs to the tag, so the two swing together from the rail: it runs from
+     the rail (--string above the tag) down the tag's face and through the hole to its centre. It is
+     drawn in three parts, because it crosses three grounds: the page, the tag, and the page again
+     where it shows through the hole. A string that stopped at the tag's edge, with the hole below it
+     holding nothing, was what the design review of 16 November 2026 called decoration. */
+  .hang {
+    padding-top: var(--string, 2rem);
   }
   .tag {
     position: relative;
@@ -355,10 +371,31 @@
     aspect-ratio: 3 / 4;
     flex-direction: column;
     border-radius: 1rem;
-    transform-origin: 50% -1rem; /* it swings from where the string meets the rail */
+    transform-origin: 50% calc(-1 * var(--string, 2rem)); /* it swings from where the string meets the rail */
     transition: transform 520ms var(--ease-out);
   }
+  /* From the rail to the tag's top edge, over the page. */
+  .tag::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 0.5px);
+    bottom: 100%;
+    width: 1px;
+    height: var(--string, 2rem);
+    background: color-mix(in srgb, var(--palette-ink) 55%, transparent);
+  }
+  /* From the tag's top edge to the hole, over the tag's own ground, in its own ink. */
+  .tag::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 0.5px);
+    top: 0;
+    width: 1px;
+    height: 0.75rem;
+    background: color-mix(in srgb, var(--brand-ink) 60%, transparent);
+  }
   .tag-hole {
+    position: relative;
     width: 0.875rem;
     height: 0.875rem;
     margin: 0.75rem auto 0;
@@ -366,8 +403,24 @@
     background: var(--palette-paper); /* the page shows through the punched hole */
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand-ink) 30%, transparent);
   }
-  [data-ground="night"] .tag-hole {
-    background: var(--palette-ink);
+  /* Through the hole to its centre, where the string is tied. */
+  .tag-hole::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 0.5px);
+    top: 0;
+    width: 1px;
+    height: 50%;
+    background: color-mix(in srgb, var(--palette-ink) 55%, transparent);
+  }
+  /* A business's tag at full size, at the head of its own page. */
+  .tag-plate {
+    aspect-ratio: 4 / 5;
+  }
+  @media (width >= 40rem) {
+    .tag-plate {
+      aspect-ratio: 5 / 4;
+    }
   }
   a:hover > .tag,
   a:focus-visible > .tag {
@@ -404,7 +457,9 @@
     }
   }
   html.can-animate .rail-hang .tag {
-    animation: tag-settle 1700ms var(--ease-in-out) both;
+    /* `backwards`, not `both`: once it has come to rest the animation lets go, so a pointer can
+       still swing the tag. */
+    animation: tag-settle 1700ms var(--ease-in-out) backwards;
     animation-delay: var(--hang-delay, 0ms);
   }
 
@@ -449,6 +504,12 @@
     border-color: var(--color-ink);
     box-shadow: inset 0 0 0 1px var(--color-ink);
   }
+  .field:disabled {
+    border-color: var(--color-line);
+    background: var(--color-paper-subtle);
+    color: var(--color-ink-subtle);
+    cursor: not-allowed;
+  }
   /* A choice that fits on a line: a radio drawn as a chip. */
   .chip {
     display: inline-flex;
@@ -460,7 +521,8 @@
     cursor: pointer;
     transition:
       background-color 200ms var(--ease-out),
-      border-color 200ms var(--ease-out);
+      border-color 200ms var(--ease-out),
+      transform 120ms var(--ease-out);
   }
   .chip:hover {
     border-color: var(--color-ink);
@@ -469,6 +531,14 @@
     border-color: var(--color-ink);
     background: var(--color-ink);
     color: var(--color-paper);
+  }
+  .chip:active {
+    transform: scale(0.97);
+  }
+  .chip:has(input:disabled) {
+    border-color: var(--color-line);
+    color: var(--color-ink-subtle);
+    cursor: not-allowed;
   }
   .chip:has(input:focus-visible) {
     outline: 2px solid var(--color-focus);

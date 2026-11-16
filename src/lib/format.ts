@@ -6,3 +6,7 @@ export function listPlaces(places: readonly string[]) {
   if (places.length <= 1) return places[0] ?? "";
   return `${places.slice(0, -1).join(", ")} or ${places[places.length - 1]}`;
 }
+
+/** Where a business is meant to open, as a short line: "For Moka or Tamarin", or "Islandwide". */
+export const wherePhrase = (places: readonly string[]) =>
+  places.length === 1 && places[0] === "Islandwide" ? "Islandwide" : `For ${listPlaces(places)}`;

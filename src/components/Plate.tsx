@@ -3,8 +3,9 @@ import { brandVars } from "@/lib/brand";
 import Wordmark from "./Wordmark";
 
 /**
- * A business's tag at full size: its own ground, its lettering, the punched hole, and what is
- * written along its foot. Used at the head of its page; `small` is the plate in a catalogue row.
+ * A business's tag at full size, at the head of its page: hanging by its string from its own short
+ * rail, with its ground, its lettering, the punched hole, and what is written along its foot.
+ * `small` is the plate in a catalogue row, which lies flat in the ledger and has no hole.
  */
 export default function Plate({ business: b, small = false, className }: { business: Business; small?: boolean; className?: string }) {
   if (small) {
@@ -15,14 +16,16 @@ export default function Plate({ business: b, small = false, className }: { busin
     );
   }
   return (
-    <div data-ground="brand" style={brandVars(b)} className={["flex aspect-[4/5] flex-col rounded-2xl sm:aspect-[5/4]", className].filter(Boolean).join(" ")}>
-      <span className="tag-hole" aria-hidden />
-      <div className="flex flex-1 items-center justify-center">
-        <Wordmark slug={b.slug} name={b.name} scale={1.15} />
-      </div>
-      <div className="caption-4 flex items-end justify-between gap-4 px-6 pb-6">
-        <span>No. {b.number}</span>
-        <span>{b.sample ? "Sample listing" : STATUS_LABEL[b.status]}</span>
+    <div className={["hang border-t border-line-strong", className].filter(Boolean).join(" ")}>
+      <div data-ground="brand" style={brandVars(b)} className="tag tag-plate">
+        <span className="tag-hole" aria-hidden />
+        <div className="flex flex-1 items-center justify-center">
+          <Wordmark slug={b.slug} name={b.name} scale={1.15} />
+        </div>
+        <div className="caption-4 flex items-end justify-between gap-4 px-6 pb-6">
+          <span>No. {b.number}</span>
+          <span>{b.sample ? "Sample listing" : STATUS_LABEL[b.status]}</span>
+        </div>
       </div>
     </div>
   );

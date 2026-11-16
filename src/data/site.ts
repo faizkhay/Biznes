@@ -53,11 +53,18 @@ export const NAV = [
   { href: "/how-it-works", label: "How it works" },
 ] as const;
 
-/** One label per intent, the same on every page (voice rule 6). */
+/**
+ * One label per intent, the same on every page (voice rule 6).
+ *
+ * `ask` is what a business's own page offers. It was "Reserve this business" until the design review
+ * of 16 November 2026: nothing yet says what holds a business or for how long, so pressing the
+ * button only sends a request, and the label says so. `enquire` is the one name for the route to the
+ * form, wherever it appears; `send` is the form's own button and nothing else.
+ */
 export const ACTIONS = {
   browse: "See the businesses",
   how: "How it works",
-  reserve: "Reserve this business",
+  ask: "Ask about this business",
   enquire: "Enquire",
   send: "Send a request",
   whatsapp: "WhatsApp",

@@ -6,6 +6,13 @@
 // and purchase domain names, lock social media handles, have a business strategy, people who have
 // the money or can undertake these businesses can just buy, i will help with incorporation".
 // The six items below are that list and nothing more. Anything added later is added here.
+//
+// Three statements here are Khay Digital's, not the owner's words, and are on the README's confirm
+// list: that each business is sold once, to one owner (proposed to the owner in conversation, 16
+// November 2026, and built on); that the brand is the buyer's in full once paid for (Khay Digital's
+// standing rule for a website: KOS, references/khay.md); and that a care plan can follow (Khay
+// Digital's published "Care & Support" service, https://www.khay.digital/llms.txt, read 16 November
+// 2026).
 
 /** What hangs on the ring: the six things every business comes with. */
 export const INCLUDED = [
@@ -42,8 +49,8 @@ export const STEPS = [
     line: "Look through the businesses. Each page shows the brand, what comes with it, what you would bring and the price.",
   },
   {
-    title: "Reserve",
-    line: "Tell us which one. We meet, go through the brand and the strategy with you, and answer what you ask.",
+    title: "Ask",
+    line: "Tell us which one. We go through the brand and the strategy with you, and answer what you ask.",
   },
   {
     title: "Take it over",
@@ -59,7 +66,8 @@ export const STEPS = [
 export const YOURS = {
   heading: "A brand is not a business until someone runs it",
   line: "We prepare everything up to the door. What happens behind it is yours, and we make no promise of income.",
-  ours: ["The name and the identity", "The domain and the social media names", "The website", "The strategy", "Help with incorporation"],
+  /** The same six things as the ring, by their own names, so the two lists can never disagree. */
+  ours: INCLUDED.map((i) => i.title),
   yours: ["Premises, and the lease", "Licences and permits", "Equipment and stock", "The team", "The work, every day"],
 } as const;
 

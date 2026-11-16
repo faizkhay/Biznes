@@ -16,8 +16,14 @@ The image carries every part of the offer. A business is a tag. What comes with 
 ring. The sale is the walk from the rail to opening day. A sold business is a hook with nothing on
 it (the 404 uses this).
 
-The competitor test: put a marketplace for existing businesses into the sentence and it fails,
-because those are many sellers' going concerns, not one maker's finished brands each sold once.
+The competitor test, against the nearest rival. A shop of ready-made brand names (BrandBucket,
+Atom) also shows each brand in its own colours and lettering, priced and sold once, so the rail
+alone is the category's image, not this brand's. What that shop cannot say is what the build now
+puts in front of the rail and under every tag: this is Mauritius; each business is made for a place
+on the island (Moka, Grand Baie or Tamarin); it comes as six things, with a website, a strategy and
+help setting up the company, not as a name; and one maker builds every one. The first design review
+(16 November 2026) made this test; the first draft had tested only the easier rival, a marketplace
+of going concerns.
 
 Things that are this brand's and no one else's, which the build draws on: the word "biznes"
 (Kreol); the `.mu` address; one owner per business; the six things on the ring; Khay Digital as the
@@ -36,7 +42,7 @@ on 16 November 2026, so the plan was written here and built, to be changed in ro
 ## The person, and the action
 
 Told to a person in Mauritius who could run a business and has no brand yet (PRODUCT.md, Users).
-It ends on one action: **Reserve this business**.
+It ends on one action: **Ask about this business**.
 
 ## Chapters
 
@@ -44,17 +50,22 @@ This is a website, not an Original: the chapters are plain sections, and there i
 
 | # | Marker | Where in the world | What the visitor sees and does | Sells | Words | Action |
 |---|---|---|---|---|---|---|
-| 0 | the headline | in front of the rail | "Buy a business that is ready to launch" | what the site is | Khay Digital's, from the owner's description | See the businesses |
-| 1 | No. 01 to 06 | the rail | Six tags on strings, each a link; they stir once as the page opens | the businesses themselves | names, sectors, prices from the data | open a business |
+| 0 | the headline | in front of the rail | "Buy a business / ready to launch", and "In Mauritius" opening the lede | what the site is, and where | Khay Digital's, from the owner's description | See the businesses |
+| 1 | No. 01 to 06 | the rail | Six tags, each hanging by its string through its hole, each a link; they stir once as the page opens | the businesses themselves | names, sectors, places and prices from the data | open a business |
 | 2 | 01 to 06 | the ring | A ring with six small tags, beside the six things in a list | what every business comes with | the owner's list | none |
 | 3 | Step 1 to 4 | from the rail to the door | Four steps hanging from one rail | how a sale runs | Khay Digital's | How it works |
 | 4 | night | behind the door | "A brand is not a business until someone runs it", and two lists | honesty: what is not sold | Khay Digital's | none |
 | 5 | the line | open ground | The tagline, lighting word by word | the idea in one line | Khay Digital's, to confirm | none |
 | 6 | the maker | the workshop | Who builds every business | trust in the maker | Khay Digital's published facts | Visit Khay Digital |
-| end | night | the last page | "Find the one that is yours", every way to reach us | the invitation | | See the businesses |
+| end | night | the last page | The invitation that fits the page just read, then every way to reach us | the invitation | | by page: see below |
 
-A business's own page tells the same story for one tag: the tag at full size, its brand in its own
-colours, what it is, what comes with it beside what the buyer brings, then the one action.
+A business's own page tells the same story for one tag: the tag at full size, hanging from its own
+rail, its brand in its own colours, what it is, what comes with it beside what the buyer brings,
+then the one action.
+
+The closing band at the head of the footer takes its action from the page: a real business's page
+ends on asking about that business; the catalogue ends on the route to the form; Enquire and the
+404 have no band; every other page ends on the businesses.
 
 ## The centrepiece
 
@@ -76,8 +87,8 @@ visible by default and every tag is a link.
 ## After the story
 
 The home page is the story. The catalogue (`/businesses`) is the ledger of the same businesses.
-How it works carries the steps at reading length and the questions. Enquire carries the form and
-the direct routes.
+How it works carries the four steps and the questions, and nothing the home page has already said.
+Enquire carries the form and the direct routes.
 
 ## The tagline moment
 
@@ -90,8 +101,8 @@ the direct routes.
 2. **The rail and the string**: one firm hairline that things hang from: the tags, the header's
    lower edge, the four steps, the footer's rules.
 3. **The ring**: the six things, fanned from one loop.
-4. **Tag writing**: Geist Mono for what is written on a tag (a number, a price, a status), and
-   nowhere else.
+4. **Tag writing**: Geist Mono for what is written on a tag (a number, a price, a status) and for a
+   colour's code, and nowhere else.
 5. **One yellow**: the colour of a price tag, on the one filled action and the platform's own tags.
 
 ## Rounds
@@ -116,3 +127,36 @@ Departures, with reasons:
 - A trademark filing is not listed among what comes with a business. It was Khay Digital's advice,
   not part of the owner's list. Adding it is one entry in `src/data/pack.ts`.
 - The whole site asks not to be indexed until `launched` is set to true.
+
+### The design review, 16 November 2026
+
+A fresh agent reviewed the first build against KOS and answered **fix**, with eight points. What was
+done about each:
+
+1. **A sample could pass for an offer.** The link preview card now marks every sample; a sample row
+   prints no status; a sample's price is set quietly as "a placeholder" on the rail, in the
+   catalogue and on its page; the note about samples now sits above the rail. Resolved.
+2. **One action had four names, and "Reserve" promised a hold nobody has confirmed.** A business's
+   page now offers "Ask about this business"; "Enquire" is the one name for the route to the form;
+   "Send a request" is only the form's button; step 2 is "Ask". Resolved.
+3. **The closing band was the same on every page.** It now takes its action from the page. Resolved.
+4. **On a phone the quick routes were out of reach.** WhatsApp sits in the phone header; the direct
+   routes come before the form; a business's page offers "Call us"; catalogue rows show the place.
+   Resolved.
+5. **Claims with no recorded source.** "We meet" is gone. "Sold once", "yours in full once you have
+   paid" and the care plan now carry their sources in `src/data/pack.ts` and `PRODUCT.md`, and are
+   on the confirm list. The night chapter lists all six things. LePalatier's price is still shown as
+   the owner proposed it, with its confirmation and VAT a launch blocker on the confirm list.
+   Partly resolved: the price is the owner's to confirm.
+6. **How it works repeated the home page.** It now carries the steps and the questions only.
+   Resolved; it grows as the owner answers what a buyer asks next.
+7. **The punched hole held nothing.** Every string now runs down its tag and through the hole; the
+   ring's strings end in their holes; a business's own tag hangs from a rail. Resolved.
+8. **The first view failed the nearer competitor test.** Mauritius opens the lede, each tag's
+   caption names its place, the heading breaks where the thought breaks, and the test above is
+   rewritten against the nearer rival. Resolved.
+
+Also from the review: disabled states for the quiet button, chips and fields; a ring on the Enquire
+pill when on that page; step numbers moved out of Geist Mono; the capture script no longer hides a
+strip under the sticky header; the open menu, the form's refusal and the page without script are
+saved in `review/screens/states`.

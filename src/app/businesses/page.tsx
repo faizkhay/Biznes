@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import SampleMark from "@/components/SampleMark";
 import { BUSINESSES, STATUS_LABEL } from "@/data/businesses";
 import { site } from "@/data/site";
-import { formatPrice, listPlaces } from "@/lib/format";
+import { formatPrice, wherePhrase } from "@/lib/format";
 import { pageGraph } from "@/lib/structured";
 
 const title = "Businesses for sale";
@@ -53,14 +53,22 @@ export default function Businesses() {
                     {b.name}
                   </span>
                   <span className="caption-2 block text-ink-subtle">{b.sector}</span>
+                  {/* On a phone the place sits under the sector; on a desk it has its own column. */}
+                  <span className="caption-2 block text-ink-subtle lg:hidden">{wherePhrase(b.places)}</span>
                   {b.sample && <SampleMark className="mt-2" />}
                 </span>
-                <span className="caption-2 hidden text-ink-subtle lg:block">
-                  {b.places.length === 1 && b.places[0] === "Islandwide" ? "Islandwide" : `For ${listPlaces(b.places)}`}
-                </span>
+                <span className="caption-2 hidden text-ink-subtle lg:block">{wherePhrase(b.places)}</span>
+                {/* A sample has no status and no offer: its price is a quiet placeholder. */}
                 <span className="col-start-2 self-start lg:col-start-auto lg:self-center">
-                  {site.showPrices && <span className="title-4 block">{formatPrice(b.price)}</span>}
-                  <span className="caption-2 block text-ink-subtle lg:hidden">{STATUS_LABEL[b.status]}</span>
+                  {site.showPrices &&
+                    (b.sample ? (
+                      <span className="caption-2 block text-ink-subtle">
+                        <span className="tabular">{formatPrice(b.price)}</span>, a placeholder
+                      </span>
+                    ) : (
+                      <span className="title-4 block">{formatPrice(b.price)}</span>
+                    ))}
+                  {!b.sample && <span className="caption-2 block text-ink-subtle">{STATUS_LABEL[b.status]}</span>}
                 </span>
                 <Arrow className="hidden lg:block" />
               </Link>
@@ -68,7 +76,8 @@ export default function Businesses() {
           ))}
         </ul>
         <p className="caption-2 measure mt-6 text-ink-subtle">
-          Prices are in Mauritian rupees, for the whole business as described on its page.
+          Prices are in Mauritian rupees, for the whole business as described on its page. Rows marked Sample listing are placeholders
+          and are not for sale.
         </p>
       </div>
     </>

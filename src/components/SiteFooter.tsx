@@ -1,36 +1,21 @@
 import Link from "next/link";
 import { ACTIONS, NAV, site } from "@/data/site";
-import { Arrow, Chat, Mail, Phone } from "./Icons";
+import ClosingBand from "./ClosingBand";
+import { Chat, Mail, Phone } from "./Icons";
 import Logo from "./Logo";
 
 /**
- * The footer is the last page of the story: night, the one invitation again, then every way to
- * reach us with the numbers written out, and the credit.
+ * The footer is the last page of the story: night, the invitation that fits the page just read
+ * (ClosingBand), then every way to reach us with the numbers written out, and the credit.
  */
 export default function SiteFooter() {
   const { contact, builder } = site;
   return (
     <footer id="site-footer" data-ground="night">
       <div className="shell section-y">
-        <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-end">
-          <div>
-            <h2 className="heading-2 measure-hero">Find the one that is yours</h2>
-            <p className="title-2 measure mt-4 text-ink-subtle">Each business is sold once, to one owner.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 lg:justify-end">
-            <Link href="/businesses" className="btn btn-filled button-md">
-              {ACTIONS.browse}
-            </Link>
-            <Link href="/enquire" className="arrow-link button-md">
-              {ACTIONS.send}
-              <Arrow />
-            </Link>
-          </div>
-        </div>
+        <ClosingBand />
 
-        <div className="rail mt-16" aria-hidden />
-
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.6fr_1fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.6fr_1fr]">
           <div>
             <Logo />
             <p className="body-3 measure mt-4 text-ink-subtle">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Arrow, ArrowBack, Chat } from "@/components/Icons";
+import { Arrow, ArrowBack, Chat, Phone } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import Plate from "@/components/Plate";
 import Reveal from "@/components/Reveal";
@@ -12,7 +12,7 @@ import { BUSINESSES, SAMPLE_NOTE, STATUS_LABEL, getBusiness, wordmarkFor } from 
 import { INCLUDED } from "@/data/pack";
 import { ACTIONS, site } from "@/data/site";
 import { brandVars } from "@/lib/brand";
-import { formatPrice, listPlaces } from "@/lib/format";
+import { formatPrice, wherePhrase } from "@/lib/format";
 import { businessOffer, pageGraph } from "@/lib/structured";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -37,16 +37,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /**
  * One business. Its tag at full size beside its name and price, then its brand in its own colours,
- * what it is, what comes with it beside what the buyer brings, and the one action: reserve it.
+ * what it is, what comes with it beside what the buyer brings, and the one action: ask about it.
+ * The action is offered again in the footer's closing band (components/ClosingBand.tsx).
  */
 export default async function BusinessPage({ params }: Props) {
   const b = getBusiness((await params).slug);
   if (!b) notFound();
 
   const mark = wordmarkFor(b.slug);
-  const where = b.places.length === 1 && b.places[0] === "Islandwide" ? "Islandwide" : `For ${listPlaces(b.places)}`;
-  const reserveHref = `/enquire?business=${b.slug}`;
-  const canReserve = b.status === "available" && !b.sample;
+  const where = wherePhrase(b.places);
+  const askHref = `/enquire?business=${b.slug}`;
+  // Only a real business that is still on the rail can be asked about; a sample offers the way back.
+  const canAsk = b.status === "available" && !b.sample;
   const next = BUSINESSES[(BUSINESSES.indexOf(b) + 1) % BUSINESSES.length];
 
   return (
@@ -64,7 +66,7 @@ export default async function BusinessPage({ params }: Props) {
         })}
       />
 
-      <header className="shell grid gap-x-20 gap-y-10 pb-16 pt-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:pb-24 lg:pt-12">
+      <header className="shell grid gap-x-20 gap-y-10 pb-16 pt-8 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:pb-24 lg:pt-12">
         <div>
           <Link href="/businesses" className="caption-2 -ml-1 inline-flex min-h-11 items-center gap-2 text-ink-subtle underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
             <ArrowBack className="size-4" />
@@ -81,27 +83,37 @@ export default async function BusinessPage({ params }: Props) {
           <p className="title-2 measure mt-6">{b.line}</p>
           {b.sample && <p className="body-6 measure mt-4 rounded-xl border border-line-strong p-4">{SAMPLE_NOTE}</p>}
 
-          {site.showPrices && (
-            <p className="mt-8 flex flex-wrap items-baseline gap-x-3">
-              <span className="heading-3 tabular">{formatPrice(b.price)}</span>
-              <span className="caption-2 text-ink-subtle">for the whole business, sold once</span>
-            </p>
-          )}
+          {/* A real price is an offer, set large. A sample's is a placeholder, and reads as one. */}
+          {site.showPrices &&
+            (b.sample ? (
+              <p className="caption-2 mt-6 text-ink-subtle">
+                <span className="tabular">{formatPrice(b.price)}</span>, a placeholder price
+              </p>
+            ) : (
+              <p className="mt-8 flex flex-wrap items-baseline gap-x-3">
+                <span className="heading-3 tabular">{formatPrice(b.price)}</span>
+                <span className="caption-2 text-ink-subtle">for the whole business, sold once</span>
+              </p>
+            ))}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {canReserve ? (
-              <Link href={reserveHref} className="btn btn-filled button-md">
-                {ACTIONS.reserve}
-              </Link>
+            {canAsk ? (
+              <>
+                <Link href={askHref} className="btn btn-filled button-md">
+                  {ACTIONS.ask}
+                </Link>
+                <a href={site.contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-quiet button-md">
+                  <Chat className="size-5" />
+                  {ACTIONS.whatsapp}
+                </a>
+                <a href={site.contact.phoneHref} className="btn btn-quiet button-md">
+                  <Phone className="size-5" />
+                  {ACTIONS.call}
+                </a>
+              </>
             ) : (
               <Link href="/businesses" className="btn btn-filled button-md">
                 {ACTIONS.browse}
               </Link>
-            )}
-            {canReserve && (
-              <a href={site.contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-quiet button-md">
-                <Chat className="size-5" />
-                {ACTIONS.whatsapp}
-              </a>
             )}
           </div>
         </div>
@@ -207,32 +219,11 @@ export default async function BusinessPage({ params }: Props) {
         </div>
       </section>
 
-      {/* The one action, again, once the page has been read */}
-      {canReserve && (
-        <section className="bg-paper-subtle" aria-labelledby="reserve-heading">
-          <div className="shell flex flex-wrap items-center justify-between gap-x-12 gap-y-6 py-16">
-            <div>
-              <h2 id="reserve-heading" className="heading-3">
-                {b.name} will have one owner
-              </h2>
-              {site.showPrices && (
-                <p className="title-2 mt-2 text-ink-subtle">
-                  <span className="tabular text-ink">{formatPrice(b.price)}</span> for the whole business, sold once.
-                </p>
-              )}
-            </div>
-            <Link href={reserveHref} className="btn btn-filled button-md">
-              {ACTIONS.reserve}
-            </Link>
-          </div>
-        </section>
-      )}
-
       {/* The next tag on the rail */}
       <nav aria-label="More businesses" className="border-t border-line-strong">
         <Link href={`/businesses/${next.slug}`} className="shell group flex min-h-24 items-center justify-between gap-6 py-6 no-underline">
           <span>
-            <span className="caption-4 block text-ink-subtle">Next on the rail, No. {next.number}</span>
+            <span className="caption-2 block text-ink-subtle">Next on the rail</span>
             <span className="heading-5 block underline decoration-transparent transition-colors duration-300 ease-out group-hover:decoration-current">
               {next.name}
             </span>

@@ -93,20 +93,27 @@ export default function SiteHeader() {
           </Link>
         </nav>
 
-        <button
-          ref={button}
-          type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center rounded-full md:hidden"
-          aria-expanded={open}
-          aria-controls="menu-sheet"
-          aria-label={open ? "Close the menu" : "Open the menu"}
-          onClick={() => (open ? close() : setOpen(true))}
-        >
-          <span className="relative block h-3 w-6" aria-hidden>
-            <span className={`absolute inset-x-0 top-0 h-0.5 rounded-full bg-ink transition-transform duration-300 ease-out ${open ? "translate-y-[5px] rotate-45" : ""}`} />
-            <span className={`absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-ink transition-transform duration-300 ease-out ${open ? "-translate-y-[5px] -rotate-45" : ""}`} />
-          </span>
-        </button>
+        {/* On a phone the quickest route sits beside the menu button, so it is one tap from any page. */}
+        <div className="flex items-center gap-2 md:hidden">
+          <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-quiet button-sm">
+            <Chat className="size-4" />
+            {ACTIONS.whatsapp}
+          </a>
+          <button
+            ref={button}
+            type="button"
+            className="-mr-2 inline-flex size-11 items-center justify-center rounded-full"
+            aria-expanded={open}
+            aria-controls="menu-sheet"
+            aria-label={open ? "Close the menu" : "Open the menu"}
+            onClick={() => (open ? close() : setOpen(true))}
+          >
+            <span className="relative block h-3 w-6" aria-hidden>
+              <span className={`absolute inset-x-0 top-0 h-0.5 rounded-full bg-ink transition-transform duration-300 ease-out ${open ? "translate-y-[5px] rotate-45" : ""}`} />
+              <span className={`absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-ink transition-transform duration-300 ease-out ${open ? "-translate-y-[5px] -rotate-45" : ""}`} />
+            </span>
+          </button>
+        </div>
       </div>
 
       {open && (

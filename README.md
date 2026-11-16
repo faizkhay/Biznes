@@ -9,7 +9,7 @@ published facts. The design, the identity of biznes.mu, each listing's look and 
 made under the owner's carte blanche on 16 November 2026.
 
 The home page is the rail. Every business hangs ready on one rail, as a tag in its own colours and
-lettering, each on its own string and each a link to its page. Below the rail: the six things every
+lettering, each by its own string and each a link to its page. Below the rail: the six things every
 business comes with, fanned from one ring; the sale in four steps; what stays with the buyer, said
 plainly on night; the line said large; and who builds them.
 
@@ -53,6 +53,7 @@ Other scripts:
 | `npm run copy`, `npm run tokens` | The house style and the token checks |
 | `npm run contrast` | Measures every colour pair in `scripts/contrast.pairs.json` |
 | `npm run screenshots`, `npm run reveals`, `npm run a11y` | The checks against a production server on port 3100 |
+| `npm run behaviour` | The phone menu, the form end to end, the endpoint, the page without script and the machine-facing files, against the same server |
 
 ## Deploying
 
@@ -117,8 +118,9 @@ only raster is `public/og.png`, a capture of the site's own card; its sidecar sa
 1. **The five samples.** Lakrem, Souffle, Bouké, Larout and Kazprop are placeholders: their names,
    looks and prices are invented for this build and marked "Sample listing". Replace each with a
    real business or remove it, then set `launched` to `true`.
-2. **LePalatier's price.** MUR 350,000 is the figure proposed in conversation. The site shows it.
-   Confirm it, and whether VAT applies; nothing on the site mentions VAT.
+2. **LePalatier's price. A launch blocker.** MUR 350,000 is the figure proposed in conversation, and
+   the site shows it as the price. Confirm it and say whether VAT applies before `launched` is set;
+   nothing on the site mentions VAT. Until then `showPrices` hides every price in one switch.
 3. **LePalatier's look.** Bordeaux, ivory and brass, in Cormorant Garamond, is Khay Digital's first
    direction. Confirm it or replace it; the page says "already made".
 4. **The domains.** None of `lepalatier.mu`, `lakrem.mu`, `souffle.mu`, `bouke.mu`, `larout.mu` or
@@ -133,15 +135,22 @@ only raster is `public/og.png`, a capture of the site's own card; its sidecar sa
    Choose the webhook or Resend.
 8. **The contact routes.** The phone, WhatsApp, email and hours are Khay Digital's own. Confirm they
    are right for biznes.mu, or give its own.
-9. **How a business is paid for and held.** The site says only "once you have paid". Whether a
-   deposit holds a business, and how payment is taken, is not stated.
+9. **How a business is paid for and held, and how long the handover takes.** The site says only
+   "once you have paid". Whether a deposit holds a business, how payment is taken and how long
+   the handover takes are what a buyer asks next; each answer belongs in `FAQS`. Until something
+   holds a business, its action is "Ask about this business", not "Reserve".
 10. **Help with incorporation.** The site promises help. Whether offering it as a paid service needs
     its own registration was not confirmed; a company secretary or accountant can answer.
 11. **The tagline.** "The business is ready / All it needs is its owner" was written by Khay
     Digital. Confirm it or give the line.
 12. **The privacy notice.** It is new and describes only what this site does. Approve it.
 13. **Analytics.** There are none. If a provider is chosen, the privacy notice must say so.
-14. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
+14. **Sold once, yours once paid, and the care plan.** The site says each business is sold once, to
+    one owner; that the brand is the buyer's in full once paid for; and that a Khay Digital care
+    plan can follow. The first was proposed to the owner in conversation and built on; the second
+    is Khay Digital's rule for a website; the third is its published service. Confirm all three as
+    terms of this offer.
+15. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
     on the samples' pages. A native reading should confirm each before any becomes a real listing.
 
 ## The brand
@@ -170,7 +179,7 @@ contrast: `DESIGN.md`.
 | `/` | The rail, the ring, the steps, the honest half, the line, the maker |
 | `/businesses` | The catalogue, as a ledger |
 | `/businesses/[slug]` | One business: its tag, its brand, what it is, what comes with it, what the buyer brings |
-| `/how-it-works` | The four steps, the six things, the honest half, the questions |
+| `/how-it-works` | The four steps and the questions |
 | `/enquire` | The request form and the direct routes |
 | `/privacy` | The privacy notice |
 | `/api/enquiry` | The form's endpoint |
@@ -179,27 +188,30 @@ Plus `sitemap.xml`, `robots.txt`, `llms.txt`, the icon and the 404.
 
 ## Verification
 
-Run on 16 November 2026 against `next start` on port 3100.
+Run on 16 November 2026 against `next start` on port 3100, after the design review's fixes.
 
 - TypeScript strict and the production build: clean. Every page prerendered except `/api/enquiry`.
 - `npm run copy` and `npm run tokens`: 0 fail, 0 warn.
 - `npm run contrast`: every pair passes for its role (the table is in `DESIGN.md`).
-- Eight page kinds captured at 1440 x 900 and 390 x 844: no horizontal overflow, no page errors.
-  The captures are in `review/screens`, and were read.
+- `npm run screenshots`: eight page kinds at 1440 x 900 and 390 x 844, no horizontal overflow, no
+  page errors. The stitched pages are in `review/screens`, and were read.
 - `npm run reveals`, with motion on: every reveal fired on every page at both sizes.
-- axe-core against WCAG 2.2 A/AA on every page kind at both sizes: clean.
-- By Playwright: the skip link is first in the tab order; the phone menu opens as a dialog, makes
-  the page behind inert, takes focus, closes on Escape and returns focus to its button.
-- The form end to end: a business link arrives chosen; errors are said on their fields and the
-  first takes focus; with no route the form says the request has not arrived and gives the phone and
-  email; the endpoint refuses what the form refuses (422), answers a filled honeypot with a quiet
-  success, answers 503 with no route, and limits a sixth request (429).
-- Without script: every heading and every reveal is visible, and the six tags are links.
-- Before launch: pages carry `noindex`, `robots.txt` closes the site, and the sitemap and `llms.txt`
-  list LePalatier and no sample.
-- A design review by a fresh agent: see "Known gaps" for what it left open.
-- Not yet run: a keyboard pass by hand on a real device; Lighthouse; any phone hardware; a screen
-  reader. No old addresses exist to redirect.
+- `npm run a11y`: axe-core against WCAG 2.2 A/AA, every page kind at both sizes, clean.
+- `npm run behaviour`: 24 of 24. The skip link is first in the tab order; the phone menu opens as a
+  dialog, makes the page behind inert, takes focus, closes on Escape and returns focus to its
+  button; a business link arrives at the form with that business chosen; errors are said on their
+  fields and the first takes focus; with no route the form says the request has not arrived and
+  gives the phone and email; the endpoint refuses what the form refuses (422), answers a filled
+  honeypot with a quiet success and answers 503 with no route; without script every heading and
+  reveal is visible and the six tags are links; before launch pages carry `noindex`, `robots.txt`
+  closes the site, and the sitemap and `llms.txt` list LePalatier and no sample. The states it met
+  are saved in `review/screens/states`.
+- The design review by a fresh agent answered "fix", with eight points. `STORY.md`, "The design
+  review", says what was done about each: seven resolved, one partly (LePalatier's price is the
+  owner's to confirm).
+- Not yet run: a keyboard pass by hand on a real device; a screen reader; Lighthouse; any phone
+  hardware; hover and pressed states were written and read in code, not captured. No old addresses
+  exist to redirect.
 
 ## Known gaps
 

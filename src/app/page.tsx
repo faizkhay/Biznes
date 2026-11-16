@@ -36,15 +36,18 @@ export default function Home() {
       {/* The rail */}
       <section aria-labelledby="hero-heading">
         {/* On a wide screen the heading stands left and the lede and actions sit beside its last line,
-            so the rail comes into the first view. Each column keeps the hero's 680px measure. */}
-        <div className="shell grid gap-x-16 gap-y-6 pb-12 pt-16 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:pb-16 lg:pt-24">
+            so the rail comes into the first view. Each column keeps the hero's 680px measure. The
+            heading breaks where the thought breaks. */}
+        <div className="shell grid gap-x-16 gap-y-6 pb-10 pt-16 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:pb-12 lg:pt-24">
           <h1 id="hero-heading" className="heading-1 measure-hero">
-            Buy a business that is ready to launch
+            Buy a business
+            <br />
+            ready to launch
           </h1>
           <div>
             <p className="title-2 measure-hero text-ink-subtle">
-              Each one comes with its name, its brand, its website and its strategy, built by {site.builder.name} in Mauritius. Each is
-              sold once, to one owner.
+              In Mauritius, built by {site.builder.name}. Each one comes with its name, its brand, its website and its strategy, for a
+              place on the island. Each is sold once, to one owner.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link href="/businesses" className="btn btn-filled button-md">
@@ -58,12 +61,14 @@ export default function Home() {
           </div>
         </div>
         <div className="shell">
-          <Rail businesses={forSale} label="Businesses for sale" />
+          {/* Said before the rail, not after it: a visitor reads this before any sample. */}
           {hasSamples && (
-            <p className="caption-2 measure pb-12 text-ink-subtle">
-              Tags marked Sample show how a business is presented here. Their names, looks and prices are placeholders.
+            <p className="caption-2 measure pb-6 text-ink-subtle">
+              Tags marked Sample show how a business is presented here. Their names, looks and prices are placeholders, and they are
+              not for sale.
             </p>
           )}
+          <Rail businesses={forSale} label="Businesses for sale" />
         </div>
       </section>
 
