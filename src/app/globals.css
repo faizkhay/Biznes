@@ -1,0 +1,601 @@
+/* biznes.mu, design tokens.
+   Tailwind CSS v4, no tailwind.config. Colour comes in two layers (KOS, after Elaya's
+   ai-design-skills): the palette holds the values, each with where it came from and its measured
+   contrast; the roles are what components use, each an alias of a palette value. Both are recorded
+   in DESIGN.md.
+
+   biznes.mu is a new brand with no earlier material to sample, so its palette was chosen for this
+   build by Khay Digital (the owner gave carte blanche, 16 November 2026) and is recorded as chosen:
+   paper and ink, with one yellow, the colour of a price tag. Ratios are WCAG 2.x, floored. */
+@import "tailwindcss";
+
+:root {
+  --palette-paper: #f5f2ea; /* chosen: a warm paper, so six brands' colours can sit on it */
+  --palette-paper-quiet: #ece7db; /* derived from paper: a step darker, for a quieter panel */
+  --palette-ink: #131209; /* Elaya's ladder, the warm dark; on paper 16.78:1, on paper-quiet 15.22:1 */
+  --palette-ink-muted: #5c584b; /* derived from ink toward paper; on paper 6.35:1, on paper-quiet 5.76:1 */
+  --palette-ink-muted-night: #b4ae9c; /* derived from paper toward ink, for night; on ink 8.47:1 */
+  --palette-primary: #e6b93f; /* chosen: tag yellow, saturation 77%; carries ink at 10.17:1 */
+  --palette-primary-dark: #d6a62b; /* derived from primary: the fill on hover and press; carries ink at 8.36:1 */
+  --palette-on-primary: #131209; /* ink, the words on the yellow */
+
+  --gutter: clamp(1.5rem, 5vw, 5rem); /* 24px on a phone, 72px at 1440, 80px beyond */
+  --nav-h: 72px;
+  /* The tagline moment's muted words: ink at 0.5 on paper measures 3.44:1, above the 3:1 that large
+     text needs, so a visitor who stops with the line half lit can still read it. */
+  --tagline-muted: 0.5;
+  /* A listing's own colours arrive inline from the data (--brand-ground, --brand-ink,
+     --brand-accent); these are the fallbacks, the platform's own tag. */
+  --brand-ground: var(--palette-primary);
+  --brand-ink: var(--palette-ink);
+  --brand-accent: var(--palette-ink);
+}
+
+/* The roles. Tailwind's own colours are off, so only a role paints. */
+@theme {
+  --color-*: initial;
+  --color-paper: var(--palette-paper);
+  --color-paper-subtle: var(--palette-paper-quiet);
+  --color-ink: var(--palette-ink);
+  --color-ink-subtle: var(--palette-ink-muted);
+  --color-action: var(--palette-primary);
+  --color-action-hover: var(--palette-primary-dark);
+  --color-action-pressed: var(--palette-primary-dark);
+  --color-on-action: var(--palette-on-primary);
+  --color-line: color-mix(in srgb, var(--palette-ink) 14%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-ink) 55%, transparent); /* a field's edge: 4.01:1 on paper */
+  --color-focus: var(--palette-ink); /* 16.78:1 on paper; night and brand grounds redefine it */
+  --color-accent: var(--brand-accent); /* a listing's third colour, for its own marks only */
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Grounds are scopes that redefine roles, never palette values. */
+[data-ground="night"] {
+  --color-paper: var(--palette-ink);
+  --color-paper-subtle: color-mix(in srgb, var(--palette-paper) 7%, var(--palette-ink));
+  --color-ink: var(--palette-paper);
+  --color-ink-subtle: var(--palette-ink-muted-night);
+  --color-line: color-mix(in srgb, var(--palette-paper) 16%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-paper) 55%, transparent); /* 5.64:1 on ink */
+  --color-focus: var(--palette-primary); /* 10.17:1 on ink */
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+/* A listing's own ground: its tag, its plate. Every word on it takes the brand's own ink. */
+[data-ground="brand"] {
+  --color-paper: var(--brand-ground);
+  --color-ink: var(--brand-ink);
+  --color-ink-subtle: var(--brand-ink);
+  --color-line: color-mix(in srgb, var(--brand-ink) 24%, transparent);
+  --color-focus: var(--brand-ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: var(--nav-h);
+  }
+  body {
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+  ::selection {
+    background: var(--palette-primary);
+    color: var(--palette-on-primary);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd,
+  blockquote {
+    text-wrap: pretty;
+  }
+  a {
+    text-underline-offset: 0.22em;
+  }
+  input,
+  textarea,
+  select {
+    caret-color: var(--color-ink);
+  }
+}
+
+/* ---------- Text styles ----------
+   Named as in DESIGN.md. Every size is a step of Tailwind's type scale; a fluid style runs between
+   two steps and takes the line height of the step it ends on. Geist speaks everything; Geist Mono
+   speaks only what is written on a tag: a number, a price, a status. */
+@utility heading-1 {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-4xl), 1.414rem + 3.429vw, var(--text-7xl)); /* 36 to 72px */
+  line-height: var(--text-7xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+@utility heading-2 {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 1.45714rem + 1.71429vw, var(--text-5xl)); /* 30 to 48px */
+  line-height: var(--text-5xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+@utility heading-3 {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 1.22143rem + 1.14286vw, var(--text-4xl)); /* 24 to 36px */
+  line-height: var(--text-4xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+@utility heading-5 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+@utility title-1 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+@utility title-2 {
+  /* The lede. Regular, not the table's medium: Geist at 18px reads as running text. */
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 400;
+}
+@utility title-3 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 500;
+}
+@utility title-4 {
+  /* Tag data at reading size: a price in a row, a place. */
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+@utility body-1 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 600;
+}
+@utility body-3 {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 400;
+}
+@utility body-6 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 400;
+}
+@utility button-md {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-weight: 600;
+}
+@utility button-sm {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+}
+@utility caption-2 {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 400;
+}
+@utility caption-3 {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 600;
+}
+@utility caption-4 {
+  /* What is written on a tag: its number, its status. */
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------- Layout ---------- */
+@utility shell {
+  width: 100%;
+  max-width: calc(80rem + 2 * var(--gutter)); /* content at most 1280px */
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@utility section-y {
+  padding-block: clamp(4rem, 10vw, 8rem); /* 64px on a phone, 128px on a desk */
+}
+@utility measure {
+  max-width: 62ch;
+}
+@utility measure-hero {
+  max-width: 42.5rem; /* 680px: the hero heading and its lede */
+}
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Component classes live in the components layer, so a utility on the same element always wins
+   (w-full, justify-between on a .btn). Left unlayered, they would beat every utility: the mistake
+   Windrush made with its border colours. */
+@layer components {
+  /* ---------- Buttons ----------
+     A full pill for anything pressed, at least 48px tall. One filled per group; the rest are quiet. */
+  .btn {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 240ms var(--ease-out),
+      border-color 240ms var(--ease-out),
+      transform 120ms var(--ease-out);
+  }
+  .btn:active {
+    transform: scale(0.96);
+  }
+  .btn-filled {
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+  .btn-filled:hover {
+    background: var(--color-action-hover);
+  }
+  .btn-filled[disabled],
+  .btn-filled[aria-disabled="true"] {
+    background: var(--color-paper-subtle);
+    color: var(--color-ink-subtle);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-quiet {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-ink);
+  }
+  .btn-quiet:hover {
+    border-color: var(--color-ink);
+    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+  }
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.25rem 1rem;
+  }
+  /* The arrow is drawn, never a glyph from a font, and moves 4px when its link is pointed at. */
+  .arrow {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    transition: transform 280ms var(--ease-out);
+  }
+  a:hover > .arrow,
+  .btn:hover > .arrow {
+    transform: translateX(4px);
+  }
+  /* The second path in a group: words with a drawn arrow, underlined on hover. */
+  .arrow-link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 240ms var(--ease-out);
+  }
+  .arrow-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* The skip link: first in the tab order, a pill that slides in on focus. */
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    transform: translateY(-300%);
+    border-radius: 9999px;
+    background: var(--palette-ink);
+    color: var(--palette-paper);
+    padding: 0.75rem 1.5rem;
+    transition: transform 240ms var(--ease-out);
+  }
+  .skip-link:focus-visible {
+    transform: none;
+    outline-color: var(--palette-primary);
+  }
+
+  /* ---------- The tag (signature) ----------
+     Every business hangs on the rail as a tag: its own ground, its own lettering, a punched hole and a
+     string. The string is a hairline from the rail to the hole; its length comes from --string. */
+  .tag-string {
+    width: 1px;
+    height: var(--string, 2rem);
+    margin-inline: auto;
+    background: var(--color-line-strong);
+  }
+  .tag {
+    position: relative;
+    display: flex;
+    aspect-ratio: 3 / 4;
+    flex-direction: column;
+    border-radius: 1rem;
+    transform-origin: 50% -1rem; /* it swings from where the string meets the rail */
+    transition: transform 520ms var(--ease-out);
+  }
+  .tag-hole {
+    width: 0.875rem;
+    height: 0.875rem;
+    margin: 0.75rem auto 0;
+    border-radius: 9999px;
+    background: var(--palette-paper); /* the page shows through the punched hole */
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand-ink) 30%, transparent);
+  }
+  [data-ground="night"] .tag-hole {
+    background: var(--palette-ink);
+  }
+  a:hover > .tag,
+  a:focus-visible > .tag {
+    transform: rotate(-2.5deg);
+  }
+  a:active > .tag {
+    transform: rotate(-2.5deg) scale(0.98);
+  }
+
+  /* The rail the tags hang from, and every rule drawn like it. */
+  .rail {
+    height: 1px;
+    background: var(--color-line-strong);
+  }
+
+  /* The tags stir once when the page opens, as if the door had just let some air in: each swings out
+     a few degrees and comes to rest. It starts and ends at rest, so nothing jumps when script arrives.
+     One authored moment, under two seconds, and only where motion is welcome. */
+  @keyframes tag-settle {
+    0% {
+      transform: rotate(0deg);
+    }
+    22% {
+      transform: rotate(var(--swing, 4deg));
+    }
+    52% {
+      transform: rotate(calc(var(--swing, 4deg) * -0.45));
+    }
+    78% {
+      transform: rotate(calc(var(--swing, 4deg) * 0.18));
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  html.can-animate .rail-hang .tag {
+    animation: tag-settle 1700ms var(--ease-in-out) both;
+    animation-delay: var(--hang-delay, 0ms);
+  }
+
+  /* ---------- The ring ----------
+     What comes with a business hangs on one ring. The ring draws itself once as it enters the screen. */
+  .ring-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  html.can-animate [data-reveal] .ring-path {
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1600ms var(--ease-in-out);
+  }
+  html.can-animate [data-reveal="in"] .ring-path {
+    stroke-dashoffset: 0;
+  }
+
+  /* ---------- Fields ---------- */
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 0.75rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 0.75rem 1rem;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    transition:
+      border-color 200ms var(--ease-out),
+      box-shadow 200ms var(--ease-out);
+  }
+  .field:hover {
+    border-color: var(--color-ink);
+  }
+  .field:focus-visible {
+    border-color: var(--color-ink);
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-ink);
+  }
+  /* A choice that fits on a line: a radio drawn as a chip. */
+  .chip {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition:
+      background-color 200ms var(--ease-out),
+      border-color 200ms var(--ease-out);
+  }
+  .chip:hover {
+    border-color: var(--color-ink);
+  }
+  .chip:has(input:checked) {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .chip:has(input:focus-visible) {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  /* Questions: native details, with a drawn plus that turns into a minus. */
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq .faq-mark {
+    transition: transform 320ms var(--ease-out);
+  }
+  .faq[open] .faq-mark {
+    transform: rotate(45deg);
+  }
+}
+
+/* ---------- Reveals: visible by default ----------
+   Only once script has marked the page able to animate does a [data-reveal] start hidden; without
+   script, under reduced motion and for crawlers every word reads. */
+html.can-animate [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 800ms var(--ease-out),
+    transform 900ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.can-animate [data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+}
+html.can-animate [data-reveal]:focus-within {
+  opacity: 1;
+  transform: none;
+}
+/* A headline that rises out of a mask. The clip sits on the children, never on the observed
+   wrapper: Chrome reports a fully clipped element as intersecting nothing. */
+html.can-animate [data-reveal].reveal-mask {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+html.can-animate [data-reveal].reveal-mask > * {
+  padding-block: 0.4em;
+  margin-block: -0.4em;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 0.45em, 0);
+  transition:
+    clip-path 1100ms var(--ease-out),
+    transform 1100ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.can-animate [data-reveal="in"].reveal-mask > * {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+/* A plate (a brand's colours at full size) settles from a slight zoom, the way a lens settles. */
+html.can-animate [data-reveal].reveal-plate {
+  opacity: 1;
+  transform: scale(0.96);
+  transition: transform 1400ms var(--ease-out);
+}
+html.can-animate [data-reveal="in"].reveal-plate {
+  transform: none;
+}
+
+/* The tagline moment: every word is full ink by default; only a page able to animate mutes them,
+   never below 3:1, until the line crosses the screen. */
+.tagline-line {
+  display: block;
+}
+html.can-animate .tagline-reveal [data-word] {
+  opacity: var(--tagline-muted);
+  transition: opacity 500ms var(--ease-out);
+}
+html.can-animate .tagline-reveal [data-word][data-lit] {
+  opacity: 1;
+}
+
+/* The phone menu's links arrive in reading order, each rising 24px, 60ms apart, within 400ms. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+html.can-animate .menu-sheet [data-menu-item] {
+  animation: menu-in 340ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ---------- Reduced motion: the still path ----------
+   Each movement has its still state above (tags hang still, the ring is drawn, words are lit); this
+   block is the safety net. Delays are zeroed as well as durations, or staggered things pop in late. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  html.can-animate [data-reveal],
+  html.can-animate [data-reveal].reveal-mask > *,
+  html.can-animate [data-reveal].reveal-plate {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+  html.can-animate [data-reveal] .ring-path {
+    stroke-dashoffset: 0;
+  }
+  html.can-animate .tagline-reveal [data-word] {
+    opacity: 1;
+  }
+  a:hover > .tag,
+  a:focus-visible > .tag,
+  a:active > .tag {
+    transform: none;
+  }
+}
