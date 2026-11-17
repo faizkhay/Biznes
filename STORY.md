@@ -327,5 +327,15 @@ Also: the way into the walk shows only on a wide desk, where the foot of the fir
 road; the room stop frames the first shop alone, so its card cuts no sample's tag; the footer's roof
 line takes the colour of the ground above it on a business's page too.
 
-The reviewer's reading of these last three fixes is recorded in
+The second verdict pass scored all three resolved, the first seven still resolved, and nothing
+material broken by the batch. It noted two trades, both minor: below 1200px nothing at the foot of
+the first screen says the page scrolls, and on a short screen the street is smaller than in the
+mock-up, the price of keeping its pavement. One untidiness stays: at the address stop on a desk a
+sliver of the wall screen shows round the card.
+
+The reviewer's word is still "fix", and it names an open record, not an open fault on the page: the
+eighth point closes only when the owner, told that the first screen was judged by eye against the
+mock-up and never proven by measurement (51 per cent where the tool asks for 72), either accepts
+that on the record or asks for a raster proof. Until then impeccable's plates and hero phases stand
+open in `.impeccable/build/state.json`. The whole review is in
 `.impeccable/review/finish-review.md`.

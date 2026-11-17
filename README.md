@@ -180,6 +180,12 @@ from, and 2.75 for the sky.
     postcard.
 16. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
     on the samples' pages. A native reading should confirm each before any becomes a real listing.
+17. **The first screen against the mock-up.** It was judged by eye, by an independent reviewer,
+    and measures 51 per cent where impeccable asks for 72, because the street is drawn live and the
+    mock-up is a painting. Say whether that stands, or whether a painted first screen is wanted
+    instead. Until then impeccable's build record stays open (`.impeccable/build/state.json`).
+18. **The 3D on real hardware.** It has only run on a software renderer. Open the site on a
+    mid-range phone and a laptop before launch, and say how it moves.
 
 ## The brand
 
@@ -257,10 +263,13 @@ machine has no GPU, so the 3D drew on a software renderer: correct, and slow.
   the street, because the owner chose live 3D.
 - Every raster the site ships carries a record of where it came from: 20 of 20 across `public` and
   `assets`.
-- An independent design review answered "fix" with eight points, and its verdict pass on the fixes
-  scored seven resolved and one partial (the build record, which only the owner's word can close),
-  with three regressions the batch had introduced, all since fixed. `STORY.md`, "The design review"
-  and "The verdict pass", 17 November 2026, has each point and what was done.
+- An independent design review answered "fix" with eight points. Two verdict passes later, seven
+  are resolved, the three regressions the first batch introduced are resolved, and nothing on the
+  page is open. The eighth point is the build record, and the reviewer's word stays "fix" until the
+  owner closes it: the first screen was judged by eye against the mock-up, never proven by
+  measurement, and the owner either accepts that on the record or asks for a raster proof.
+  `STORY.md`, "The design review" and "The verdict pass", 17 November 2026, has each point and
+  what was done; the review itself is `.impeccable/review/finish-review.md`.
 - `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
 - Not yet run: any real GPU, phone or tablet; frame rate on a device; a keyboard pass by hand on a
   real device; a screen reader; Lighthouse. Hover and pressed states were read in code and, for

@@ -99,7 +99,13 @@
       "forced": null
     }
   },
-  "finish": null,
+  "finish": {
+    "disposition": "fix",
+    "at": "2026-11-17T08:59:41.097Z",
+    "phaseAtFinish": "plates",
+    "artifactInputsSha256": "8849ca43b7c9d9cd744d62313029a553e915581a4998a5be8e358c53764aefa2",
+    "artifactSha256": "fea640a5750106ffbcd2c02ab7091f976a643d787a4f91c5b735087ca414cb0f"
+  },
   "plates": {
     "sky": {
       "id": "sky",
