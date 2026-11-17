@@ -1,0 +1,7 @@
+{
+  "file": "/img/plates/counter-1024.webp",
+  "is": "A painted close view of a bound document lying on a counter in a lit room. A generated illustration, not a photograph. The document's cover is blank: what the site shows on it is set over it in code.",
+  "made": "scripts/prepare-plates.mjs, from assets/plates/counter.webp, resized to 1024 x 680, WebP quality 80",
+  "generator": "Higgsfield, model gpt_image_2_6, high quality, 17 November 2026, job aa11c069-f8d4-4b7f-be34-a0d051f4a396, with the first business's own plate as its reference",
+  "prompt": "Paint a close-up illustration plate in exactly the painted style, colours and warm light of the reference image, showing a detail of the same room: the top of the white counter that stands along the right wall, seen from standing height, looking down at it at a gentle angle.\n\nLying flat on the counter, squarely facing the viewer, is ONE closed document: a bound report with a plain dark bordeaux-red cover and a thin brass band near its top edge. It is seen clearly, as a tall rectangle in gentle perspective, and takes up about a third of the image. Its cover is completely BLANK: no title, no lettering, no logo, no emblem.\n\nBehind the counter, the smooth cream plaster wall, softly lit from above. Nothing else on the counter: no pens, no cups, no plants, no people. The document sits right of centre, leaving the left third of the image calm (counter top and wall only). No lettering, numbers or logos anywhere in the image."
+}

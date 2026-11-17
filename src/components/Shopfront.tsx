@@ -1,19 +1,30 @@
-import { useId, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import { type Business, wordmarkFor } from "@/data/businesses";
+import { OWN_PLATE, PAINTED, TERRACE } from "@/data/plates";
+import DrawnShopfront from "./DrawnShopfront";
+import { ShopPlate } from "./stage/Plates";
+
+/** The lit room a real business's shutter rises over, where it has been painted. */
+const ROOMS: Record<string, string> = { lepalatier: "/img/plates/room.webp" };
 
 /**
- * A business as it stands on the street, drawn front-on: a tin roof with its lambrequin, a wall in
- * the business's own colour, its sign with its own lettering under two lamps, and a roller shutter
- * over a lit, empty room. It is the catalogue's picture of a business, and it stands in for the 3D
- * street wherever WebGL is not available, so the two are drawn from the same data and the same
- * measured colours (globals.css, "The street's own materials").
+ * A business as it stands on the street: its shopfront, painted.
  *
- * The shutter is one group inside a clipped opening. A link around the shopfront raises it on hover
- * and on focus (globals.css, .shopfront); `open` raises it for good. The name is real text beside
- * the picture, so the drawing is decoration to a screen reader unless `label` asks otherwise.
+ * Each of the six listings has a shopfront on the painted terrace (assets/plates/terrace.webp, cut
+ * per shop by scripts/prepare-plates.mjs). The painting's sign board is blank: the listing's own
+ * lettering is set on it here, the same outline its page draws, so the picture and the data cannot
+ * disagree. A sample wears its tag on its shutter.
  *
- * Every measurement is in the drawing's own units (240 by 250). Nothing here is text a visitor
- * needs: the sign's lettering is the business's wordmark, an outline.
+ * A real business's shutter is its own painted shutter, cut out and laid back in place, so a link
+ * around the shopfront can roll it up on hover and on focus (globals.css, .shopfront) over the lit
+ * room. A sample's shutter does not move: it is not for sale, and it stays shut and tagged.
+ *
+ * `open` shows the business with its shutter up: the one with a plate of its own (its room painted,
+ * its website on the wall) is shown on that plate. A listing with no painted shopfront is drawn in
+ * code instead (DrawnShopfront), so a new one can go on the street the day it joins the data.
+ *
+ * The name is real text beside the picture, so this is decoration to a screen reader unless
+ * `label` asks otherwise. Everything is placed in fractions of the picture, so it holds at any size.
  */
 export default function Shopfront({
   business: b,
@@ -23,94 +34,91 @@ export default function Shopfront({
   className,
 }: {
   business: Business;
-  /** The shop stands in a row with others: its wall runs to both edges, so neighbours touch. */
-  terrace?: boolean;
   /** The shutter is up and the room is lit. */
   open?: boolean;
-  /** True where no text nearby names the business, so the drawing must. */
+  /** True where no text nearby names the business, so the picture must. */
   label?: boolean;
+  /** The shop stands in a row with others, wall to wall. */
+  terrace?: boolean;
   className?: string;
 }) {
-  const id = useId();
-  const mark = wordmarkFor(b.slug);
-  // The lettering sits inside the board with room to breathe: at most 136 wide and 22 tall.
-  const scale = Math.min(136 / mark.w, 22 / mark.h);
-  const mw = Math.round(mark.w * scale * 100) / 100;
-  const mh = Math.round(mark.h * scale * 100) / 100;
-  const colours = { "--wall": b.brand.wall, "--board": b.brand.ground, "--letter": b.brand.ink, "--trim": b.brand.accent } as CSSProperties;
+  const k = PAINTED.indexOf(b.slug);
+  if (k < 0) return <DrawnShopfront business={b} open={open} label={label} terrace={terrace} className={className} />;
+  if (open && b.slug === OWN_PLATE) return <ShopPlate business={b} fluid label={label} className={["rounded-2xl", className].filter(Boolean).join(" ")} />;
 
-  return (
-    <svg
-      viewBox="0 0 240 250"
-      className={["shopfront block h-auto w-full", className].filter(Boolean).join(" ")}
-      style={colours}
-      data-open={open}
-      focusable="false"
+  const shop = TERRACE.shops[k];
+  const W = shop.width;
+  const H = TERRACE.height;
+  const [bx, by, bw, bh] = shop.board;
+  const [sx, sy, sw, sh] = shop.shutter;
+  const pc = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
+  /** A rectangle of the terrace, as fractions of this shop's own picture. */
+  const part = (left: number, top: number, width: number, height: number): CSSProperties => ({
+    left: pc(left - shop.left, W),
+    top: pc(top - TERRACE.top, H),
+    width: pc(width, W),
+    height: pc(height, H),
+  });
+  const src = (scale: number) => `/img/shops/${b.slug}-${Math.round(W * scale)}.webp`;
+  const mark = wordmarkFor(b.slug);
+  const moves = !b.sample;
+
+  const picture = (
+    <div
+      className={["shopfront shopfront-painted", terrace ? className : undefined].filter(Boolean).join(" ")}
+      style={{ aspectRatio: `${W} / ${H}` }}
+      data-open={open && moves}
       {...(label ? { role: "img", "aria-label": `${b.name}'s shopfront` } : { "aria-hidden": true })}
     >
-      <defs>
-        <clipPath id={`${id}-opening`}>
-          <rect x="44" y="118" width="152" height="108" />
-        </clipPath>
-        {/* The ribs of a tin roof, and the slats of a shutter: one stroke each, repeated. */}
-        <pattern id={`${id}-ribs`} width="8" height="40" patternUnits="userSpaceOnUse">
-          <rect width="8" height="40" fill="var(--palette-tin)" />
-          <rect x="5.5" width="2.5" height="40" fill="var(--palette-tin-shade)" />
-        </pattern>
-        <pattern id={`${id}-slats`} width="152" height="7" patternUnits="userSpaceOnUse">
-          <rect width="152" height="7" fill="var(--palette-steel)" />
-          <rect y="5.5" width="152" height="1.5" fill="var(--palette-steel-deep)" />
-        </pattern>
-        {/* The lambrequin: the cut fringe under a creole roof. One tooth, repeated. */}
-        <pattern id={`${id}-fringe`} width="12" height="14" patternUnits="userSpaceOnUse">
-          <path d="M0 0h12v6a6 6 0 0 1-12 0z" fill="var(--palette-limewash)" />
-          <circle cx="6" cy="6" r="1.6" fill="var(--wall)" />
-        </pattern>
-      </defs>
-
-      {/* The roof and its fringe */}
-      <rect x="0" y="4" width="240" height="38" fill={`url(#${id}-ribs)`} />
-      <rect x="0" y="2" width="240" height="4" fill="var(--palette-limewash)" />
-
-      {/* The wall, its two pilasters and its plinth */}
-      <rect x={terrace ? 0 : 6} y="42" width={terrace ? 240 : 228} height="196" fill="var(--wall)" />
-      <rect x="0" y="42" width="240" height="14" fill={`url(#${id}-fringe)`} />
-      <g fill="none" stroke="var(--palette-limewash)" strokeOpacity="0.45" strokeWidth="1.5">
-        <rect x="12" y="66" width="18" height="160" />
-        <rect x="210" y="66" width="18" height="160" />
-      </g>
-
-      {/* The sign: a board in the brand's ground, a thin frame in its trim, its own lettering */}
-      <rect x="40" y="64" width="160" height="42" rx="2" fill="var(--board)" />
-      <rect x="43.5" y="67.5" width="153" height="35" rx="1" fill="none" stroke="var(--trim)" strokeWidth="1.25" />
-      <svg x={120 - mw / 2} y={85 - mh / 2} width={mw} height={mh} viewBox={`0 0 ${mark.w} ${mark.h}`}>
-        <path d={mark.d} fill="var(--letter)" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src(1)}
+        srcSet={`${src(0.5)} ${Math.round(W * 0.5)}w, ${src(1)} ${W}w`}
+        sizes={terrace ? "(min-width: 75rem) 17vw, (min-width: 40rem) 14rem, 64vw" : "(min-width: 64rem) 30vw, 46vw"}
+        width={W}
+        height={H}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+      />
+      {moves && (
+        <div className="shopfront-doorway" style={part(sx, sy, sw, sh)}>
+          <div className="shopfront-room" style={ROOMS[b.slug] ? { backgroundImage: `url(${ROOMS[b.slug]})` } : undefined} />
+          <div
+            className="shutter"
+            style={{
+              backgroundImage: `url(${src(1)})`,
+              backgroundSize: `${((W / sw) * 100).toFixed(3)}% ${((H / sh) * 100).toFixed(3)}%`,
+              backgroundPosition: `${(((sx - shop.left) / (W - sw)) * 100).toFixed(3)}% ${(((sy - TERRACE.top) / (H - sh)) * 100).toFixed(3)}%`,
+            }}
+          />
+        </div>
+      )}
+      <svg
+        viewBox={`0 0 ${mark.w} ${mark.h}`}
+        preserveAspectRatio="xMidYMid meet"
+        style={{ position: "absolute", ...part(bx + bw * 0.13, by + bh * 0.22, bw * 0.74, bh * 0.56) }}
+        aria-hidden
+        focusable="false"
+      >
+        <path d={mark.d} fill={b.brand.ink} />
       </svg>
-      {/* Two lamps over the sign */}
-      {[78, 162].map((x) => (
-        <g key={x}>
-          <path d={`M${x} 50v6`} stroke="var(--trim)" strokeWidth="1.5" strokeLinecap="round" />
-          <path d={`M${x - 6} 62l3 -6h6l3 6z`} fill="var(--trim)" />
-          <circle cx={x} cy="62.5" r="2" fill="var(--palette-saffron)" />
-        </g>
-      ))}
-
-      {/* The room behind the shutter: lit, and empty */}
-      <g clipPath={`url(#${id}-opening)`}>
-        <rect x="44" y="118" width="152" height="108" fill="var(--palette-lamplight-wall)" />
-        <path d="M44 226l22 -26h108l22 26z" fill="var(--palette-lamplight)" />
-        <path d="M66 118v82M174 118v82" stroke="var(--palette-lamplight)" strokeWidth="1" />
-        {/* The shutter: slats, a bottom rail and its handle */}
-        <g className="shutter" style={{ transformBox: "fill-box" }}>
-          <rect x="44" y="118" width="152" height="108" fill={`url(#${id}-slats)`} />
-          <rect x="44" y="219" width="152" height="7" fill="var(--palette-steel-deep)" />
-          <rect x="112" y="213" width="16" height="3" rx="1.5" fill="var(--palette-limewash)" fillOpacity="0.7" />
-        </g>
-      </g>
-      {/* The shutter's housing, and the kerb */}
-      <rect x="40" y="110" width="160" height="9" fill="var(--wall)" />
-      <rect x="40" y="110" width="160" height="9" fill="var(--palette-ink)" fillOpacity="0.28" />
-      <rect x="0" y="236" width="240" height="14" fill="var(--palette-pavement)" />
-    </svg>
+      {b.sample && (
+        <span className="plate-tag" style={{ ...part(sx + sw / 2 - 96, sy + sh * 0.42 - 35, 192, 70), fontSize: `${((50 / W) * 100).toFixed(3)}cqw` }}>
+          Sample
+        </span>
+      )}
+    </div>
+  );
+  // In the terrace each shop keeps its own width, so the six stand as one painting. By itself a shop
+  // is shown in a frame of one shape, so a row of cards lines up: the two end shops, which are
+  // wider by their end pilaster, are trimmed on their outer side.
+  if (terrace) return picture;
+  const end = k === 0 ? "flex-end" : k === PAINTED.length - 1 ? "flex-start" : "center";
+  return (
+    <div className={["shopfront-frame", className].filter(Boolean).join(" ")} style={{ justifyContent: end }}>
+      {picture}
+    </div>
   );
 }

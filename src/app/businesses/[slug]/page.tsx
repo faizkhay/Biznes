@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import Lambrequin from "@/components/Lambrequin";
 import Reveal from "@/components/Reveal";
 import Shopfront from "@/components/Shopfront";
+import { OWN_PLATE } from "@/data/plates";
 import Wordmark from "@/components/Wordmark";
 import { BUSINESSES, SAMPLE_NOTE, STATUS_LABEL, getBusiness, wordmarkFor } from "@/data/businesses";
 import { INCLUDED } from "@/data/pack";
@@ -128,9 +129,9 @@ export default async function BusinessPage({ params }: Props) {
             )}
           </div>
         </div>
-        {/* Its shopfront, shutter up: the room behind it is lit, and empty. */}
+        {/* Its shopfront. A real business's stands open on its own painted plate; a sample's stays shut and tagged. */}
         <Reveal className="reveal-shop mx-auto w-full max-w-xl">
-          <Shopfront business={b} open label />
+          <Shopfront business={b} open label className={b.slug === OWN_PLATE ? undefined : "mx-auto max-w-80"} />
         </Reveal>
       </header>
 

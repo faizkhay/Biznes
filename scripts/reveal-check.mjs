@@ -38,9 +38,7 @@ for (const [vname, vp] of VIEWPORTS) {
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y <= height; y += Math.round(vp.height * 0.5)) {
       await page.evaluate((y) => window.scrollTo(0, y), y);
-      // The home page draws its street on a CPU renderer here, so a frame is slow and an observer
-      // can miss a section that passes in a quarter of a second. Give that page longer per step.
-      await page.waitForTimeout(name === "home" ? 700 : 250);
+await page.waitForTimeout(250);
     }
     await page.waitForTimeout(1800);
     const problems = await page.evaluate(() => {

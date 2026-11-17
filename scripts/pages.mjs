@@ -7,7 +7,7 @@ import { join } from "node:path";
 
 export const PAGES = [
   ["home", "/"],
-  ["home-plain", "/?no3d"],
+  ["home-plain", "/?plain"],
   ["businesses", "/businesses"],
   ["listing", "/businesses/lepalatier"],
   ["listing-sample", "/businesses/souffle"],
@@ -37,5 +37,5 @@ export function browserPath() {
   return undefined;
 }
 
-/** Software WebGL, so the 3D draws on a server with no GPU (slowly). */
-export const GL_ARGS = ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"];
+/** No special arguments: nothing on this site needs WebGL. Kept so the kit's scripts read unchanged. */
+export const GL_ARGS = [];

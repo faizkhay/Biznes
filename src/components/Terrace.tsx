@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type Business, STATUS_LABEL } from "@/data/businesses";
 import { site } from "@/data/site";
 import { formatPrice, listPlaces } from "@/lib/format";
+import { PAINTED, TERRACE } from "@/data/plates";
 import Shopfront from "./Shopfront";
 import { EmptyStreet } from "./ShopCard";
 
@@ -16,9 +17,12 @@ import { EmptyStreet } from "./ShopCard";
  */
 export default function Terrace({ businesses, label }: { businesses: Business[]; label: string }) {
   if (!businesses.length) return <EmptyStreet />;
+  // Each shop's column is as wide as its shopfront on the painted terrace, so the six pictures are
+  // the same height and stand together as the one painting they were cut from.
+  const columns = businesses.map((b) => `${TERRACE.shops[PAINTED.indexOf(b.slug)]?.width ?? 610}fr`).join(" ");
   return (
     <div className="terrace">
-      <ul aria-label={label} className="terrace-row">
+      <ul aria-label={label} className="terrace-row" style={{ gridTemplateColumns: columns }}>
         {businesses.map((b) => (
           <li key={b.slug} className="terrace-shop">
             <Link href={`/businesses/${b.slug}`} className="group block no-underline">

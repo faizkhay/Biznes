@@ -1,5 +1,5 @@
 // What a sweep does not see: the phone menu as a dialog, the request form end to end, the endpoint,
-// the page without script, the walk live and plain, and the files a machine reads. Saves the states it meets (the open menu,
+// the page without script, the painted walk live and plain, and the files a machine reads. Saves the states it meets (the open menu,
 // the filled form, the form's refusal, the page without script) to review/screens/states.
 //
 //   npm run build && npx next start -p 3100 &
@@ -105,26 +105,31 @@ const ok = (name, pass, extra = "") => {
   await ctx.close();
 }
 
-// 5. The walk: the street in 3D where it can run, and the plain sections where it cannot
+// 5. The walk: the painted stage where script runs, and the plain sections where it does not
 {
   const errors = [];
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   p.on("pageerror", (e) => errors.push(String(e)));
   await p.goto(O + "/", { waitUntil: "load" });
   const live = await p.waitForSelector('.walk[data-mode="live"]', { timeout: 60000 }).then(() => true, () => false);
-  ok("where WebGL runs, the walk goes live", live);
-  // The canvas arrives with three.js, a moment after the walk knows it will run.
-  await p.waitForSelector(".walk-stage canvas", { timeout: 60000 }).catch(() => undefined);
-  ok("the live stage has one canvas", (await p.locator(".walk-stage canvas").count()) === 1);
+  ok("where script runs, the walk goes live", live);
+  await p.waitForSelector(".stage-live .stage-layer", { timeout: 60000 }).catch(() => undefined);
+  ok("the live stage holds its plates", (await p.locator(".stage-live .stage-layer").count()) >= 1);
   const at = () => p.evaluate(() => [...document.querySelectorAll(".walk-stop")].findIndex((a) => a.getAttribute("aria-current") === "step"));
   ok("the walk starts at its first stop", (await at()) === 0);
+  // Every sign on the street carries its listing's own lettering, and every sample its tag.
+  const street = await p.evaluate(() => {
+    const plate = document.querySelector(".stage-layer-street");
+    return { signs: plate?.querySelectorAll(".plate-wall svg").length ?? 0, tags: plate?.querySelectorAll(".plate-tag").length ?? 0 };
+  });
+  ok("the painted street carries six signs and five sample tags", street.signs === 6 && street.tags === 5, JSON.stringify(street));
   await p.evaluate(() => {
     const el = document.querySelector(".walk");
     window.scrollTo({ top: el.getBoundingClientRect().top + scrollY + el.offsetHeight - innerHeight, behavior: "instant" });
   });
   // The stage must never be empty: a visitor who jumps (a stop's mark, the End key) lands while the
-  // canvas is still arriving, and the still must hold until the canvas has drawn. Sampled every
-  // 400ms for four seconds: the street's side of the stage is never one flat colour.
+  // plates are still arriving, and the still must hold until they have. Sampled every 400ms for
+  // four seconds: the terrace's side of the stage is never one flat colour.
   let emptyAt = -1;
   for (let i = 0; i < 10; i++) {
     await p.waitForTimeout(400);
@@ -133,15 +138,15 @@ const ok = (name, pass, extra = "") => {
   }
   ok("after a jump to the walk's end the stage is never empty", emptyAt < 0, emptyAt < 0 ? "" : `flat at sample ${emptyAt}`);
   ok("scrolling to the walk's end reaches its last stop", (await at()) === 7);
-  await p.waitForTimeout(2500);
+  await p.waitForTimeout(1200);
   await p.screenshot({ path: OUT + "/walk-last-stop.png" });
-  ok("the 3D threw nothing", errors.length === 0, errors.slice(0, 2).join(" | "));
+  ok("the stage threw nothing", errors.length === 0, errors.slice(0, 2).join(" | "));
   await p.close();
 
   const q = await b.newPage({ viewport: { width: 1440, height: 900 } });
-  await q.goto(O + "/?no3d", { waitUntil: "load" });
+  await q.goto(O + "/?plain", { waitUntil: "load" });
   await q.waitForTimeout(2500);
-  ok("with ?no3d the walk stays plain", (await q.locator('.walk[data-mode="plain"]').count()) === 1 && (await q.locator(".walk-stage canvas").count()) === 0);
+  ok("with ?plain the walk stays plain", (await q.locator('.walk[data-mode="plain"]').count()) === 1 && (await q.locator(".stage-live").count()) === 0);
   ok("plain, every stop shows its still and its words", (await q.locator(".walk-still img:visible").count()) === 7 && (await q.locator(".walk-card h2:visible").count()) === 7);
   await q.close();
 
@@ -150,24 +155,27 @@ const ok = (name, pass, extra = "") => {
   const rerrors = [];
   r.on("pageerror", (e) => rerrors.push(String(e)));
   await r.goto(O + "/", { waitUntil: "load" });
-  await r.waitForTimeout(4000);
+  await r.waitForTimeout(3000);
   const h1 = await r.locator("h1").evaluate((el) => getComputedStyle(el).opacity === "1" && el.getBoundingClientRect().top < innerHeight);
   ok("with reduced motion on a phone the headline is on the first screen and nothing throws", h1 && rerrors.length === 0, rerrors.slice(0, 2).join(" | "));
   await r.screenshot({ path: OUT + "/reduced-motion-phone.png" });
   await ctx.close();
 }
 
-// 6. The drawn shopfront, with motion on: an open one stays open, and pointing raises a shutter
+// 6. The painted shopfront, with motion on: an open one stays open, and pointing raises a real business's shutter
 {
   const flat = (t) => t === "none" || t === "matrix(1, 0, 0, 1, 0, 0)";
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   await p.goto(O + "/businesses/lepalatier?still", { waitUntil: "networkidle" });
-  await p.waitForTimeout(1800);
-  const open = await p.evaluate(() => {
-    const el = document.querySelector('.shopfront[data-open="true"] .shutter');
-    return el ? getComputedStyle(el).transform : "none";
-  });
-  ok("a business's own shopfront keeps its shutter up once it has arrived", !flat(open), open);
+  ok(
+    "a real business's own page shows its shop open, on its own painted plate",
+    (await p.locator('header .plate .plate-picture[src*="lepalatier"]').count()) === 1 && (await p.locator("header .plate .plate-doorway").count()) === 0,
+  );
+  await p.goto(O + "/businesses/souffle?still", { waitUntil: "networkidle" });
+  ok(
+    "a sample's page shows its shopfront shut and tagged, with no shutter to raise",
+    (await p.locator("header .shopfront-painted .plate-tag").count()) === 1 && (await p.locator("header .shopfront-painted .shutter").count()) === 0,
+  );
   await p.goto(O + "/businesses?still", { waitUntil: "networkidle" });
   const link = p.locator('ul[aria-label="Businesses for sale"] a').first();
   await link.scrollIntoViewIfNeeded();

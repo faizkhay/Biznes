@@ -1,17 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Business } from "@/data/businesses";
 import { ACTIONS, site } from "@/data/site";
 import { STOPS } from "@/data/walk";
+import { walk } from "@/lib/walk";
 import { Arrow } from "./Icons";
-import Stage from "./Stage";
-import { busy, stage } from "./three/stage";
-
-// three.js is downloaded only by the page that has the street, and only in the browser.
-const Street = dynamic(() => import("./three/Street"), { ssr: false });
+import PaintedStage from "./stage/PaintedStage";
+import { ROOFLINE_AT_REST } from "./stage/roofline";
 
 const still = (id: string, frame: "desk" | "phone") => `/img/walk/${id}-${frame}.webp`;
 
@@ -21,10 +18,10 @@ const still = (id: string, frame: "desk" | "phone") => `/img/walk/${id}-${frame}
  * does not.
  *
  * The page is whole before any of this runs. As prerendered, every stop is a plain section: a still
- * of the street at that stop (a capture of this site's own 3D) and its words. Only when the browser
- * can run the canvas does the section become a stage: the street pins under the header, the stills
- * step aside, the words scroll over it a screen at a time, and the scroll walks the camera. Without
- * WebGL, without script, or with ?no3d, the plain sections stay.
+ * of the painted street at that stop and its words. Where script runs, the section becomes a stage:
+ * the paintings pin under the header, the stills step aside, the words scroll over the stage a
+ * screen at a time, and the scroll moves through the paintings (components/stage). Without script,
+ * or with ?plain, the plain sections stay.
  *
  * The scroll position is read from one passive listener, at most once a frame, and only while the
  * walk is near the screen.
@@ -45,9 +42,9 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
       const rect = el.getBoundingClientRect();
       const span = rect.height - (window.innerHeight - nav);
       const p = span > 0 ? Math.min(1, Math.max(0, (nav - rect.top) / span)) : 0;
-      if (Math.abs(p - stage.progress) > 1e-5) {
-        stage.progress = p;
-        busy(900);
+      if (Math.abs(p - walk.progress) > 1e-5) {
+        walk.progress = p;
+        walk.onChange?.();
       }
       setCurrent(Math.round(p * (STOPS.length - 1)));
     };
@@ -72,17 +69,14 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
   return (
     <section ref={section} className="walk" data-mode={live ? "live" : "plain"} aria-label="What comes with a business">
       <div className="walk-stage">
-        <Stage
-          photo={still("street", "desk")}
-          photoNarrow={still("street", "phone")}
-          photoAlt={`A street of ${businesses.length} finished shopfronts at dusk, each painted its own colour with a lit sign. The nearest, ${first.name}, has its shutter half raised, with a lit room behind it.`}
-          photoSize={[1600, 920]}
-          priority
+        <PaintedStage
+          businesses={businesses}
+          still={still("street", "desk")}
+          stillNarrow={still("street", "phone")}
+          stillAlt={`A painted street of ${businesses.length} shopfronts at dusk, each in its own colour under a tin roof, its sign lit by two lamps. The nearest, ${first.name}, has its shutter raised over a lit, empty room.`}
+          stillSize={[1600, 920]}
           onLive={setLive}
-          className="h-full w-full"
-        >
-          {({ running, narrow }) => <Street running={running} narrow={narrow} businesses={businesses} />}
-        </Stage>
+        />
         {/* The stops, as a column of marks at the stage's edge: where the walk is, and a way to jump
               along it. Only where the stage is live, and only on a wide screen. */}
         {live && (
@@ -108,17 +102,21 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
         {STOPS.map((stop, i) =>
           i === 0 ? (
             <li key={stop.id} id={`walk-${stop.id}`} className="walk-chapter walk-hero">
-              <div className="shell flex h-full flex-col justify-start pb-10 pt-8">
+              <div className="walk-words-first shell relative h-full pb-10 pt-8">
+                {/* On a wide screen the words keep above the painted roofline: this float fills
+                    their column and carries the roofline as its shape, so each line ends before the
+                    roofs. The stage sets the shape from the real boxes; this is the house desk's. */}
+                <div className="walk-roofline" style={{ shapeOutside: ROOFLINE_AT_REST }} aria-hidden />
                 {/* The heading breaks where the thought breaks, and nowhere else. */}
                 <h1 className="heading-1">
                   Buy a business
                   <br />
                   ready to open
                 </h1>
-                <p className="title-1 mt-6 max-w-md">
+                <p className="title-1 mt-6 story:max-w-xl">
                   In Mauritius, built by {site.builder.name}. {site.lede}
                 </p>
-                <div className="pointer-events-auto mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                <p className="walk-actions pointer-events-auto mt-6">
                   <Link href="/businesses" className="btn btn-filled button-md">
                     {ACTIONS.browse}
                   </Link>
@@ -126,11 +124,11 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
                     {ACTIONS.how}
                     <Arrow />
                   </Link>
-                </div>
+                </p>
                 {/* Where the street is live the next section is eight screens away, so the first
                     screen says the page moves: a quiet way into the walk, at its foot. */}
                 {live && (
-                  <a href="#walk-sign" className="walk-cue pointer-events-auto button-sm mt-auto">
+                  <a href="#walk-sign" className="walk-cue pointer-events-auto button-sm">
                     Walk the street
                     <Arrow className="rotate-90" />
                   </a>
@@ -138,7 +136,7 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
               </div>
             </li>
           ) : (
-            <li key={stop.id} id={`walk-${stop.id}`} className="walk-chapter">
+            <li key={stop.id} id={`walk-${stop.id}`} className={i === STOPS.length - 1 ? "walk-chapter walk-chapter-last" : "walk-chapter"}>
               <picture className="walk-still">
                 <source media="(max-width: 899px)" srcSet={still(stop.id, "phone")} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}

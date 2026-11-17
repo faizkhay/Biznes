@@ -12,7 +12,6 @@ const security = [
 
 const config: NextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["three"],
   // A tool page (one ending .dev.tsx) is a page only under `next dev`.
   pageExtensions: process.env.NODE_ENV === "development" ? ["dev.tsx", "tsx", "ts"] : ["tsx", "ts"],
   async headers() {

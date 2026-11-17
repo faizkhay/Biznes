@@ -33,6 +33,8 @@
   --palette-lamplight: #f18f38; /* the lit room's floor */
   --palette-lamplight-wall: #e0842c; /* the lit room's walls */
   --palette-pavement: #3d3644; /* the kerb */
+  --palette-roomlight: #fdc27b; /* sampled: the lit room's wall on the first shop's painted plate. A room's light where no room is painted */
+  --palette-tar: #1e2c4f; /* sampled: the road along the foot of the painted street. The ground under the terrace on the stage */
 
   --gutter: clamp(1.5rem, 5vw, 5rem); /* 24px on a phone, 72px at 1440, 80px beyond */
   --nav-h: 72px;
@@ -452,8 +454,9 @@
   }
 
   /* ---------- The shopfront (signature) ----------
-     A business as it stands on the street: drawn in SVG (components/Shopfront.tsx). Its shutter is
-     one group inside a clipped opening; rolling it up is one transform. */
+     A business as it stands on the street: painted (components/Shopfront.tsx), or drawn in SVG where
+     no painting exists yet (DrawnShopfront.tsx). Either way its shutter is one piece inside a
+     clipped doorway, and rolling it up is one transform. */
   .shopfront .shutter {
     transition: transform 900ms var(--ease-roll);
   }
@@ -467,6 +470,43 @@
   }
   .shopfront {
     transition: transform 160ms var(--ease-out);
+  }
+  .shopfront-painted {
+    position: relative;
+    container-type: inline-size;
+  }
+  /* One shop by itself: a frame of one shape for every shop, the picture at the frame's height. */
+  .shopfront-frame {
+    display: flex;
+    aspect-ratio: 600 / 1175;
+    overflow: hidden;
+  }
+  .shopfront-frame > .shopfront-painted {
+    flex: none;
+    height: 100%;
+  }
+  /* A hair wider than its box, so two shops standing wall to wall never show a seam between them. */
+  .shopfront-painted > img {
+    display: block;
+    width: calc(100% + 0.5px);
+    max-width: none;
+    height: 100%;
+    user-select: none;
+  }
+  .shopfront-doorway {
+    position: absolute;
+    overflow: hidden;
+  }
+  /* The room behind a shutter: the business's own painted room, or plain lamplight where none is painted. */
+  .shopfront-room {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 85% at 50% 10%, var(--palette-roomlight), var(--palette-lamplight) 110%) center / cover;
+  }
+  .shopfront-painted .shutter {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
   }
 
   /* ---------- Fields ---------- */
@@ -570,18 +610,179 @@
     scrollbar-color: var(--palette-saffron) transparent;
     scrollbar-width: thin;
   }
+  /* Six columns, each as wide as its shop on the painted terrace (set inline), so the six pictures
+     stand at one height as the one painting they were cut from. */
   .terrace-row {
     display: grid;
-    grid-auto-columns: minmax(13.5rem, 1fr);
-    grid-auto-flow: column;
+    min-width: 80rem;
   }
   .terrace-shop {
     scroll-snap-align: start;
   }
   @media (width < 40rem) {
     .terrace-row {
-      grid-auto-columns: 64vw;
+      min-width: 384vw;
     }
+  }
+
+  /* ---------- The painted stage ----------
+     The walk's pictures are paintings (components/stage). A plate is one painting at its own size
+     in pixels, with the listings' lettering laid over it in those same pixels; the stage moves and
+     scales each plate as one thing, with a 2D transform, so nothing on it is ever drawn soft. */
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .stage-still,
+  .stage-still img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .stage-still img {
+    object-fit: cover;
+  }
+  .stage-live {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transition: opacity 700ms var(--ease-out);
+  }
+  .stage-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+  }
+  /* The terrace's sky: drawn to the stage's width down to the roofs, so its afterglow stands behind them. */
+  .stage-sky {
+    position: absolute;
+    inset: 0 0 auto;
+    overflow: hidden;
+  }
+  .stage-sky img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  .stage-road {
+    position: absolute;
+    inset: auto 0 0;
+    background: var(--palette-tar);
+  }
+  /* On a phone the street stands at the foot of the screen and its sky runs up into the stage's own
+     ground: the plate's top edge is feathered, so no line shows where the painting ends. */
+  @media (width < 56.25rem) {
+    .stage-layer-street {
+      /* A mask reads only how opaque its colour is, so any solid role will do. */
+      mask-image: linear-gradient(to bottom, transparent 0, var(--palette-ink) 7%);
+    }
+  }
+  .plate {
+    position: relative;
+    overflow: hidden;
+    /* What is lettered on a plate is sized from the plate's own width, wherever it is drawn. */
+    container-type: inline-size;
+  }
+  .plate-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+  /* A lamp coming on: a bloom of light over a painted lamp, added to the painting, that rises as the
+     street arrives and settles a little lower. One movement, once; under reduced motion it is
+     simply lit. */
+  .plate-glow {
+    position: absolute;
+    display: block;
+    border-radius: 9999px;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-roomlight) 85%, transparent), transparent);
+    mix-blend-mode: screen;
+    opacity: 0.4;
+    animation: lamp-on 1100ms var(--ease-out) backwards;
+    pointer-events: none;
+  }
+  /* A wall seen at an angle: what is laid on it is carried there by one projective transform. */
+  .plate-wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+  }
+  /* A sample's tag, hung on its shutter. */
+  .plate-tag {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border-radius: 0.14em;
+    background: var(--palette-limewash);
+    color: var(--palette-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  /* A town, lettered on the painted enamel plaque. */
+  .plate-plaque {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    color: var(--palette-limewash);
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .plate-screen,
+  .plate-paper,
+  .plate-doorway {
+    position: absolute;
+  }
+  .plate-screen i,
+  .plate-paper i {
+    position: absolute;
+    display: block;
+  }
+  .plate-paper i {
+    background: var(--palette-ink);
+  }
+  .plate-paper .plate-seal {
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    background: var(--palette-saffron);
+  }
+  /* A document's cover: what it is, lettered in the sign face in the business's own ink. */
+  .plate-cover span {
+    position: absolute;
+    right: 0;
+    left: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .plate-cover i {
+    position: absolute;
+    display: block;
+  }
+  /* The doorway clips the shutter, which rolls up inside it. */
+  .plate-doorway {
+    overflow: hidden;
+  }
+  .plate-shutter {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 
   /* ---------- The walk (the home page's story) ----------
@@ -608,6 +809,33 @@
   .walk-hero {
     margin-top: calc(-1 * var(--walk-h));
     height: var(--walk-h);
+  }
+  /* The first words keep above the painted roofline. A float fills their column and carries the
+     roofline as its shape (components/stage/roofline.ts), so every line ends before the roofs: the
+     words stand in the sky on a screen of any shape. On a phone the street is under the words, and
+     nothing needs shaping. */
+  .walk-roofline {
+    display: none;
+  }
+  .walk-actions > * {
+    vertical-align: middle;
+  }
+  .walk-actions > * + * {
+    margin-left: 1.5rem;
+  }
+  @media (width >= 56.25rem) {
+    .walk-roofline {
+      display: block;
+      float: right;
+      width: 100%;
+      height: 100%;
+      shape-margin: 1.5rem;
+    }
+  }
+  .walk-words-first .walk-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: var(--gutter);
   }
   /* Plain: a stop is a section, its still on one side and its words on the other. */
   .walk[data-mode="plain"] .walk-chapter:not(.walk-hero) {
@@ -699,6 +927,11 @@
     .walk[data-mode="live"] .walk-chapter:not(.walk-hero) {
       align-items: center;
       padding-bottom: 0;
+    }
+    /* The last stop shows the whole terrace along the foot of the screen, so its words stand above it. */
+    .walk[data-mode="live"] .walk-chapter-last:not(.walk-hero) {
+      align-items: flex-start;
+      padding-top: 2.5rem;
     }
   }
   /* The stops: a short column of marks at the stage's edge; the current one is longer and saffron.
@@ -855,6 +1088,17 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
 
 /* The phone menu's links arrive in reading order, each rising 24px over 200ms, 50ms apart: five
    items finish within 400ms. */
+@keyframes lamp-on {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
 @keyframes menu-in {
   from {
     opacity: 0;
@@ -892,5 +1136,53 @@ html.can-animate .menu-sheet [data-menu-item] {
   }
   html.can-animate .tagline-reveal [data-word] {
     opacity: 1;
+  }
+}
+
+/* ---------- The first words, and the screen's shape ----------
+   Outside the layers on purpose: a text style is a utility, and a rule in the components layer
+   cannot outrank it. Beside the shaped float (.walk-roofline) the headline simply fills its lines,
+   and its size answers to the screen's height as well as its width: 96px on the house desk (1440
+   by 900), 76px at 768 high, 68px at 1024 wide. `--fit` is the stage's last resort: if the words
+   still do not stand clear of the roofs on some odd screen, it steps the headline down until they
+   do (components/stage/PaintedStage.tsx). */
+@media (width >= 56.25rem) {
+  .walk-words-first .heading-1 {
+    font-size: calc(clamp(var(--text-5xl), min(6.67vw, 15.15svh - 2.525rem), var(--text-8xl)) * var(--fit, 1));
+    text-wrap: wrap;
+  }
+}
+/* A short desk: the words draw together. */
+@media (width >= 56.25rem) and (height < 50rem) {
+  .walk-words-first {
+    padding-top: 1.5rem;
+  }
+  .walk-words-first .title-1 {
+    margin-top: 1rem;
+  }
+  .walk-words-first .walk-actions {
+    margin-top: 1rem;
+  }
+}
+/* A narrow desk, or a very short one: the one filled action stands alone (the route to "How it
+   works" is in the header), and the lede is set a size smaller. */
+@media (width >= 56.25rem) and (width < 80rem), (width >= 56.25rem) and (height < 46rem) {
+  .walk-words-first .title-1 {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .walk-words-first .walk-actions .arrow-link {
+    display: none;
+  }
+}
+/* The stage's own word that the second route has no room (PaintedStage.tsx). */
+.walk-words-first[data-tight] .walk-actions .arrow-link {
+  display: none;
+}
+/* A very wide screen shows the street larger and less of its sky, and the roofs reach in under a
+   centred column: there the first words stand at the screen's left edge, where the sky is. */
+@media (width >= 56.25rem) and (min-aspect-ratio: 2 / 1) {
+  .walk-words-first {
+    max-width: none;
   }
 }
