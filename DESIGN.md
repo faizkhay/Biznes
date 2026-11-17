@@ -1,10 +1,10 @@
 ---
 version: alpha
 name: "biznes.mu, the website"
-description: "The street: every business is a finished shopfront on one Mauritian shop street at blue hour. The palette is sampled from the mock-up the owner approved: dusk blue, limewash and one saffron, which fills the one action and one whole wall."
+description: "The street: every business is a finished shopfront on one painted Mauritian shop street at blue hour. The palette is sampled from the mock-up the owner approved: dusk blue, limewash and one saffron, which fills the one action and one whole wall."
 # On Google Labs' DESIGN.md format (npx @google/design.md lint DESIGN.md), from the KOS template.
 # Every colour and typeface cites a Source ID (Overview, Sources). 'sampled' means measured from the
-# approved mock-up; 'derived' means worked out from a sampled value, with the direction and the
+# approved mock-up or, for roomlight, from a painted plate; 'derived' means worked out from a sampled value, with the direction and the
 # reason. Each key is the code's --palette-* name, except primary, primary-dark and on-primary, which
 # the format asks for: they are --palette-saffron, --palette-saffron-deep and --palette-ink.
 # The line-* values are the code's own color-mix() expressions with the variable written out.
@@ -28,13 +28,14 @@ colors:
   line-on-saffron: "color-mix(in srgb, #0a1639 22%, transparent)"       # derived: ink at 22%, the hairline on saffron
   line-on-limewash: "color-mix(in srgb, #0a1639 16%, transparent)"      # derived: ink at 16%, the hairline on limewash
   line-strong-on-light: "color-mix(in srgb, #0a1639 55%, transparent)"  # derived: ink at 55%, an edge; 3.58:1 on saffron, 3.93:1 on limewash
-  tin: "#4a6eac"                          # S2 a tin roof where the sky lights it; region median. The drawn shopfront's roof
+  tin: "#4a6eac"                          # S2 a tin roof where the sky lights it; region median. The drawn stand-in's roof
   tin-shade: "#3a5a94"                    # derived from tin: darker, the grooves between its ribs
   steel: "#655366"                        # S2 a roller shutter; region median
   steel-deep: "#574c64"                   # S2 a closed shutter in shade; region median. The gaps between the slats, the bottom rail
   lamplight: "#f18f38"                    # S2 the lit room's floor; region median
   lamplight-wall: "#e0842c"               # S2 the lit room's wall; region median
   pavement: "#3d3644"                     # S2 the pavement; region median. The kerb under a drawn shopfront
+  roomlight: "#fdc27b"                    # S9 the lit room's wall on the first shop's painted plate; sampled. A lamp's bloom and a doorway's lamplight, never text
   ground-lepalatier: "#4a1626"            # S6, content: LePalatier's sign board, "Bordeaux"; a first direction, to confirm
   ground-lepalatier-ink: "#f3e9d8"        # S6, content: its lettering, "Ivory"; 12.17:1 on its board
   ground-lepalatier-accent: "#c6a15b"     # S6, content: its trim, "Brass"; the sign's frame and its lamps
@@ -79,6 +80,9 @@ typography:                               # named as the text styles in src/app/
   caption-1: { fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif", fontSize: 0.875rem, fontWeight: 500, lineHeight: 1.43 }
   caption-2: { fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif", fontSize: 0.875rem, fontWeight: 400, lineHeight: 1.43 }
   caption-4: { fontFamily: "Barlow Condensed, Arial Narrow, sans-serif", fontSize: 0.875rem, fontWeight: 600, lineHeight: 1.43, letterSpacing: "0.08em", fontFeature: "'tnum', 'lnum'" }
+  # Not named styles: heading-1 and title-1 as the home page's first screen sets them from 900px wide (Typography, "The first words on a wide screen"). fontSize is the maximum, before the fit.
+  heading-1-wide: { fontFamily: "Barlow Condensed, Arial Narrow, sans-serif", fontSize: 8rem, fontWeight: 700, lineHeight: 0.9, letterSpacing: "0.005em" }
+  title-1-wide: { fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif", fontSize: 1.5rem, fontWeight: 500, lineHeight: 1.4 }
 rounded: { stop-name: 0.25rem, plaque: 0.375rem, field: 0.75rem, panel: 1rem, pill: 9999px }   # steps of Tailwind's radius scale: rounded-sm, rounded-md, rounded-xl, rounded-2xl, rounded-full
 spacing: { gutter: 5rem, section: 8rem, shell: 80rem, measure: 62ch, measure-hero: 42.5rem, nav: 72px, walk-card: 26rem }   # the page rhythm, each at its maximum; inside components only the thirteen steps
 components:                               # only: backgroundColor textColor typography rounded padding size height width. States are sibling keys.
@@ -108,6 +112,8 @@ components:                               # only: backgroundColor textColor typo
   credit: { backgroundColor: "{colors.dusk-deep}", textColor: "{colors.haze}", typography: "{typography.caption-2}", height: 2.75rem }
   credit-name: { backgroundColor: "{colors.dusk-deep}", textColor: "{colors.limewash}", typography: "{typography.body-4}" }
   hero-heading: { backgroundColor: "{colors.dusk}", textColor: "{colors.limewash}", typography: "{typography.heading-1}" }
+  hero-heading-wide: { backgroundColor: "{colors.dusk}", textColor: "{colors.limewash}", typography: "{typography.heading-1-wide}" }
+  hero-lede-wide: { backgroundColor: "{colors.dusk}", textColor: "{colors.limewash}", typography: "{typography.title-1-wide}", width: 36rem }
   hero-shade: { backgroundColor: "{colors.coral}" }
   section-heading: { backgroundColor: "{colors.dusk}", textColor: "{colors.limewash}", typography: "{typography.heading-2}" }
   section-heading-on-limewash: { backgroundColor: "{colors.limewash}", textColor: "{colors.ink}", typography: "{typography.heading-2}" }
@@ -136,9 +142,12 @@ components:                               # only: backgroundColor textColor typo
   walk-cue: { backgroundColor: "{colors.dusk-deep}", textColor: "{colors.limewash}", typography: "{typography.button-sm}", rounded: "{rounded.pill}", padding: "0.5rem 1rem", height: 2.75rem }
   walk-cue-hover: { backgroundColor: "{colors.enamel}", textColor: "{colors.limewash}" }
   walk-stop-name: { backgroundColor: "{colors.enamel}", textColor: "{colors.limewash}", typography: "{typography.caption-4}", rounded: "{rounded.stop-name}", padding: "0.125rem 0.5rem" }
-  walk-stops: { backgroundColor: "{colors.dusk-deep}", rounded: "{rounded.field}", padding: "0.375rem 0.25rem", width: 2.75rem }
-  walk-stop-mark: { backgroundColor: "{colors.line-strong}", rounded: "{rounded.pill}", width: 0.75rem, height: 0.1875rem }
-  walk-stop-mark-current: { backgroundColor: "{colors.primary}", rounded: "{rounded.pill}", width: 1.75rem, height: 0.1875rem }
+  walk-stops: { backgroundColor: "{colors.dusk-deep}", rounded: "{rounded.pill}", padding: "0 0.75rem", height: 2.75rem }
+  walk-stop-mark: { backgroundColor: "{colors.line-strong}", rounded: "{rounded.pill}", width: 0.1875rem, height: 0.75rem }
+  walk-stop-mark-current: { backgroundColor: "{colors.primary}", rounded: "{rounded.pill}", width: 0.1875rem, height: 1.5rem }
+  # Set over a painting: a sample's tag, and the light the site adds. The lettering on a painted plaque is limewash on paint, which no token holds.
+  plate-tag: { backgroundColor: "{colors.limewash}", textColor: "{colors.ink}" }
+  lamp-bloom: { backgroundColor: "{colors.roomlight}", rounded: "{rounded.pill}" }
   current-page-line: { backgroundColor: "{colors.primary}", height: 2px }
   selection: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
   focus-ring: { backgroundColor: "{colors.primary}", width: 2px }
@@ -149,7 +158,7 @@ components:                               # only: backgroundColor textColor typo
   divider-on-saffron: { backgroundColor: "{colors.line-on-saffron}", height: 1px }
   divider-on-limewash: { backgroundColor: "{colors.line-on-limewash}", height: 1px }
   divider-strong-on-light: { backgroundColor: "{colors.line-strong-on-light}", height: 1px }
-  # The drawn shopfront's own materials: fills in an SVG, never text.
+  # The drawn stand-in's own materials: fills in an SVG, never text.
   shopfront-roof: { backgroundColor: "{colors.tin}" }
   shopfront-roof-groove: { backgroundColor: "{colors.tin-shade}" }
   shopfront-shutter: { backgroundColor: "{colors.steel}" }
@@ -180,15 +189,16 @@ components:                               # only: backgroundColor textColor typo
 
 # Design System: biznes.mu, the website
 
-<!-- Recorded on 17 November 2026 from faizkhay/Biznes, and reconciled at 09:05 UTC with the final
-tree: commit 0ca61e9 with the last fixes in the working tree, served by the production build of
-08:45 UTC. Every measurement below marked "live" was taken from that build. It replaces the record
-of the first build ("the rail"), none of which survives. Read from src/app/globals.css,
-src/components, src/app, src/data and the captures in review/screens (pages retaken 08:50 to 08:52
-UTC, states 08:55 to 08:56 UTC). Where the build and this file differ, the build wins and the
-difference goes to Known Gaps. Checks: `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0
-errors and 0 warnings; `node scripts/check-design.mjs` passes; contrast measured 17 November 2026
-with `npm run contrast`. The machine-readable sidecar is `.impeccable/design.json`. -->
+<!-- Recorded on 17 November 2026 from faizkhay/Biznes: the painted street, at commit 5495eee with
+the fixes that followed its finish review in the working tree, as served by the production build
+of 12:54 UTC. It replaces the record of the 3D street, which the owner rejected the same day;
+nothing of the 3D survives in the code, and three.js and React Three Fiber are uninstalled. Read
+from src/app/globals.css, src/components, src/app, src/data, scripts and assets/plates. Every
+measurement below marked "live" was taken from that build, read-only, between 12:55 and 13:10
+UTC. Where the build and this file differ, the build wins and the difference goes to Known Gaps.
+Checks: `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0 errors and 0 warnings; `node
+scripts/check-design.mjs` passes; contrast measured 17 November 2026 with `npm run contrast`. The
+machine-readable sidecar is `.impeccable/design.json`. -->
 
 ## Overview
 
@@ -196,21 +206,26 @@ with `npm run contrast`. The machine-readable sidecar is `.impeccable/design.jso
 
 biznes.mu sells finished businesses in Mauritius, each built by Khay Digital and sold once, to one
 owner. Every business is a finished shopfront on one street at blue hour: its sign painted and lit,
-its shutter down. The home page opens on that street in 3D and the scroll walks one shop,
-LePalatier, in eight stops: the street, the sign, the address, behind the shutter, the counter, the
-wall, the room, the whole street. Three beats: the street at dusk, behind the shutter, yours to
-open. Then the street as one terrace, the sale in four steps, the line said large, and the
-questions. A business's own page ends on one action: Ask about this business. Sold, it leaves the
-street.
+its shutter down. The street is painted. Five plates, generated illustrations in the style of
+the mock-up the owner approved, were each painted with every board, plaque, screen and
+paper left blank. What is true is set over the paint in code, from the data: a listing's own
+lettering on its board, its town or its number on its plaque, "Sample" on a sample's shutter.
+
+The home page opens on that street and the scroll walks one shop, LePalatier, in eight stops: the
+street, the sign, the address, behind the shutter, the counter, the wall, the room, the whole
+street. Three beats: the street at dusk, behind the shutter, yours to open. Then the street as one
+terrace, the sale in four steps, the line said large, and the questions. A business's own page ends
+on one action: Ask about this business. Sold, it leaves the street.
 
 The mood is a shop street after work, when the signs come on: saturated walls on a deep blue
 ground, lettering painted large, warm light where a room is open. One idea per block. Sections sit
-64 to 128px apart, running text is held to 62ch, and a hero heading with its lede to 680px. Nothing
-in the palette or the type was invented: the interface's colours were measured from the mock-up the
-owner approved on 17 November 2026 (S1), the drawn shopfront's materials are region medians of the
-same picture (S2), and Barlow Condensed was matched to its lettering by measurement (S3). What is
-derived says what it was derived from. Each listing's own colours and lettering are Khay Digital's
-direction (S6) and are content, not the platform's palette.
+64 to 128px apart, running text is held to 62ch, and a heading with its lede to 680px. Nothing in
+the palette or the type was invented: the interface's colours were measured from the mock-up the
+owner approved on 17 November 2026 (S1), the drawn stand-in's materials are region medians of the
+same picture (S2), two values were sampled from the plates themselves (S8, S9), and Barlow
+Condensed was matched to the mock-up's lettering by measurement (S3). What is derived says what it
+was derived from. Each listing's own colours and lettering are Khay Digital's direction (S6) and
+are content, not the platform's palette.
 
 **Key Characteristics:**
 
@@ -220,75 +235,101 @@ direction (S6) and are content, not the platform's palette.
   one whole wall; on that wall the action turns `ink` #0a1639.
 - Barlow Condensed in capitals (`heading-1` to `heading-5`, `title-4`, `caption-4`) speaks whatever
   is painted on a sign; Geist carries every sentence.
-- The shopfront is the one picture of a business: a tin roof, a pierced fringe, a sign with the
-  listing's own lettering, a roller shutter over a lit room. It is drawn the same in SVG and in 3D.
+- The shopfront is the one picture of a business, and it is a painting: a tin roof, white
+  fretwork, two lamps over a sign board, a roller shutter. Its lettering is the listing's own
+  outline, set on the blank board in code.
+- The first words stand in the painted sky. They are shaped to the roofline, and their sentences
+  are held above the afterglow, where white would not read.
 - The plaque, `enamel` #0b2b8e with a limewash rim (`rounded.plaque`, 6px), names what is fixed: a
   number, a status, a town. The walk's card is the same plaque at the size of a notice.
 - The lambrequin, a row of pierced scallops 16px tall, hangs where one ground meets the next.
 - Anything pressed is a full pill at least 48px tall (`button-primary`, `button-quiet`), 44px for
   the small button, a chip and the walk's cue.
-- The interface is flat; depth lives in the street, which is live 3D where it can run and a still
-  of itself where it cannot.
+- The interface is flat; depth lives in the paintings. The stage moves each plate with one 2D
+  transform, travels within a painting and dissolves on a push between two, and a still of itself
+  stands wherever script does not run.
 
 **Refusals:**
 
-- No blur and no scrim over the street. Whatever sits over the live canvas is solid: the header in
-  `dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop
-  marks stand on in `dusk-deep`.
+- No 3D. The owner rejected the rendered street on 17 November 2026 (S13). Nothing on the site is
+  WebGL or a canvas, and no model, shader or 3D library is loaded.
+- No lettering inside a painting. Every board, plaque, screen and paper is painted blank, so a
+  picture can never say something the data does not.
+- No blur and no scrim over the stage. Whatever sits over a painting is solid: the header in
+  `dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop marks
+  stand on in `dusk-deep`. The first words take the sky itself and are kept where it is dark.
 - No boxed listing card and no cream catalogue. The direction contract refused both, and the first
   build was the second: a business is shown as its shopfront, with its facts on the ground beneath.
 - No photograph, testimonial or sales figure. None exists yet (PRODUCT.md, "Evidence on Hand"), and
-  nothing is invented.
-- No downloaded model in the street and no stock picture. Every shop is boxes and planes built in
-  code; the one image is the generated sky.
+  nothing is invented. The shopfronts are illustrations: each file's record says so, and so does
+  the legal line in every page's footer.
 - No colour as the only signal. A sample, a status, an error and the current page are said in words
   or drawn as a mark.
 - No soft shadow, glow or gradient in the interface. The only shadow is the sign painter's hard
-  coral shade, which is lettering; light belongs to the street.
+  coral shade, which is lettering. Light belongs to the street: a lamp's bloom and a doorway's
+  lamplight are the only gradients, and both lie on a picture.
 
 **Sources** <!-- add a row before using any new asset -->
 
 | ID | Asset | From, version | Gave |
 |---|---|---|---|
-| S1 | The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` (2688 by 1520) | Generated 17 November 2026 with Higgsfield, model `gpt_image_2_6`, its prompt beside it; approved by the owner the same day. Measured by impeccable comp-spec into `.impeccable/build/spec.json`, 12 regions | The first screen's composition; `dusk`, `dusk-deep`, `primary`, `limewash`, `ink`, `coral`, `enamel`; LePalatier's wall |
-| S2 | The same mock-up, by region median | `scripts/sample-comp.mjs`, 15 regions, 17 November 2026 | The drawn shopfront's materials: `tin`, `steel`, `steel-deep`, `lamplight`, `lamplight-wall`, `pavement` |
+| S1 | The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` (2688 by 1520) | Generated 17 November 2026 with Higgsfield, model `gpt_image_2_6`, its prompt beside it; approved by the owner the same day. Measured by impeccable comp-spec into `.impeccable/build/spec.json`, 12 regions | The first screen's composition; `dusk`, `dusk-deep`, `primary`, `limewash`, `ink`, `coral`, `enamel`; LePalatier's wall; the measure of the first words on a wide screen |
+| S2 | The same mock-up, by region median | `scripts/sample-comp.mjs`, 15 regions, 17 November 2026 | The drawn stand-in's materials: `tin`, `steel`, `steel-deep`, `lamplight`, `lamplight-wall`, `pavement` |
 | S3 | The mock-up's headline lettering | impeccable font-match (`spec.json`, region `headline`; `.impeccable/build/font-match/headline.png`) | Barlow Condensed at weight 700: a cap height of 138px against the mock-up's 137.9px |
 | S4 | Barlow Condensed, three cuts (600, 700, 700 italic), in `src/fonts` | From `@fontsource/barlow-condensed`; SIL Open Font License 1.1, the licence beside the files; served through next/font | The sign face |
 | S5 | Geist | The `geist` package, 1.9.2; SIL Open Font License 1.1; served through next/font. Carried from the first build, where it came from Elaya's list of faces as KOS keeps it (`references/brand-system.md`) | The face for sentences |
 | S6 | Khay Digital's direction for the listings | 16 and 17 November 2026; `src/data/businesses.ts` | Each listing's sign colours, its trim and the face its lettering is drawn in; the samples' wall colours |
 | S7 | Six open-licence faces | `@fontsource` packages (devDependencies), each under the SIL Open Font License 1.1 | The outlines of the six wordmarks, drawn by `scripts/make-wordmarks.mjs` |
-| S8 | The generated sky, `assets/plates/sky.png` (2688 by 1152) | Higgsfield, model `gpt_image_2_6`, 17 November 2026, with S1 as its colour reference; its prompt beside it | The one image behind the street |
-| S9 | The owner | In conversation, 15 to 17 November 2026 | The offer; carte blanche on creative direction; the choice of "the street", of a 3D centrepiece, of mock-up B and of "3D plus a painted sky" |
+| S8 | The street plate, `assets/plates/street.webp` (3840 by 2160). A generated illustration, not a photograph of a real street | Higgsfield, model `gpt_image_2_6`, high quality, 17 November 2026, job 023f4767-a203-4da5-995f-0af8ba6da66e, with S1 as its reference. Saved as generated; its record says nothing was retouched. Prompt in `street.prompt.txt` | The first two stops of the walk and its last; the roofline the first words are shaped to; the sky colour the stage takes as its ground |
+| S9 | The first business's own plate, `assets/plates/lepalatier.webp` (2880 by 2880): LePalatier front on, its shutter up, its room lit. A generated illustration | The same generator and day, job 22658b5b-c959-4948-8c2b-71a0d8d1210c, with two of the owner's mock-ups as its references. Prompt in `lepalatier.prompt.txt` | Three stops of the walk; the picture at the head of LePalatier's page; the room behind its shutter (`room.webp`); `roomlight` |
+| S10 | The terrace plate, `assets/plates/terrace.webp` (3840 by 1648, on a transparent ground): all six shopfronts front on. A generated illustration | The same generator and day, job 8206df3e-ca03-4542-81ab-1edfbea727ed, with two of the owner's mock-ups as its references. Prompt in `terrace.prompt.txt` | The terrace under the walk, "On the street now", shipped as its painted band (3840 by 1175); one crop for each shop, at two widths (`public/img/shops`), with the slivers of its neighbours' piers covered by the script; the slats of the shutter that rolls (`shutter.webp`) |
+| S11 | The counter plate, `assets/plates/counter.webp` (2048 by 1360): a bound document on a counter. A generated illustration | The same generator and day, job aa11c069-f8d4-4b7f-be34-a0d051f4a396, with S9 as its reference. Prompt in `counter.prompt.txt` | The stop at the counter |
+| S12 | The certificate plate, `assets/plates/certificate.webp` (2048 by 1360): a framed paper on a plastered wall. A generated illustration | The same generator and day, job 1ee2c137-0454-4403-9285-c00f6946efce, with S9 as its reference. Prompt in `certificate.prompt.txt` | The stop at the wall |
+| S13 | The owner | In conversation, 15 to 17 November 2026 | The offer; carte blanche on creative direction; the choice of "the street" and of mock-up B; on 17 November, the rejection of the 3D street and the request for a better look that keeps Khay's standards (STORY.md has the words) |
 
 ## Colors
 
-The palette is sampled, not chosen: the mock-up the owner approved (S1) gave the dusk, the saffron,
-the limewash, the ink, the coral and the enamel blue, and region medians of the same picture (S2) gave
-the drawn shopfront's materials.
+The palette is sampled, not chosen. The mock-up the owner approved (S1) gave the dusk, the saffron,
+the limewash, the ink, the coral and the enamel blue; region medians of the same picture (S2) gave
+the drawn stand-in's materials; and one value was sampled from a painted plate (S9).
 
 ### Palette
 
 | Name | Token | Value | Role: where used, and where never | Source |
 |---|---|---|---|---|
-| Dusk | `dusk` | #0e328f | The page's ground; a field's fill; the fog the far shops fade into. The action's fill on limewash | S1: the sky behind the headline, 53% of the mock-up (comp-spec, the picture's first colour) |
+| Dusk | `dusk` | #0e328f | The page's ground; a field's fill; the ground behind the stage until a picture arrives. The action's fill on limewash | S1: the sky behind the headline, 53% of the mock-up (comp-spec, the picture's first colour) |
 | Deep Dusk | `dusk-deep` | #082478 | The header, the footer, the phone menu, the walk's cue, the strip the stop marks stand on; the fill of a disabled action; the browser's theme colour and the icon's ground | S1: the navigation band (92% of that region) |
 | Saffron | `primary` | #f8c618 | Fills only: the one filled action, the focus ring, the current page's line and dot, the current stop's mark, the selection, the scrollbar, the mark, and the ground of one whole section. Never words on limewash (1.49:1) | S1: the pill buttons (the navigation band's second colour) |
 | Saffron, pressed | `primary-dark` | #e3b30d | The filled action on hover and press | derived from `primary`: darker, still carrying ink at 9.03:1 |
-| Ink | `ink`, `on-primary` | #0a1639 | Words on saffron and on limewash; the action's fill on the saffron section | S1: the dark text on the Enquire pill |
-| Limewash | `limewash` | #f7f7f8 | Words on dusk, on deep dusk and on enamel; the ground of reading sections; white paint (a fringe, a plaque's rim) | S1: the white of the lettering (regions `nav-how` and `how-link`) |
+| Ink | `ink`, `on-primary` | #0a1639 | Words on saffron and on limewash; the action's fill on the saffron section; the word on a sample's tag | S1: the dark text on the Enquire pill |
+| Limewash | `limewash` | #f7f7f8 | Words on dusk, on deep dusk and on enamel; the ground of reading sections; white paint (a fringe, a plaque's rim, a sample's tag, a town or a number lettered on a painted plaque) | S1: the white of the lettering (regions `nav-how` and `how-link`) |
 | Muted Ink | `ink-muted` | #515972 | Secondary words on limewash only | derived from `ink` toward `limewash`: 6.49:1 |
 | Ink on Saffron | `ink-on-saffron` | #3e3d32 | Secondary words on the saffron section only | derived from `ink` toward `primary`: 6.81:1 |
 | Haze | `haze` | #b6c0db | Secondary words on dusk and deep dusk. Never on limewash or saffron | derived from `limewash` toward `dusk`: 6.17:1 and 7.53:1 |
 | Coral | `coral` | #f14949 | The hard shade under the hero's capitals and under the tagline. Never words, never a fill | S1: the shade under the headline (22% of that region) |
-| Enamel | `enamel` | #0b2b8e | A plaque's plate; the walk's card; a stop's name; the cue on hover | S1: the second blue of the mock-up's sky (19% of that region). The painted plaque itself measures #052592 |
+| Enamel | `enamel` | #0b2b8e | A plaque's plate; the walk's card; a stop's name; the cue on hover | S1: the second blue of the mock-up's sky (19% of that region). The mock-up's painted plaque measures #052592, and the plates' painted plaques #011d9f and #01279c |
 | Hairline | `line` | limewash at 20% | The line between rows on dusk and deep dusk; the default border colour | derived |
 | Edge | `line-strong` | limewash at 55% | A field's edge, a chip's, a quiet button's; the line that opens a list; a resting stop mark; the 404's dashed plot | derived, for 3:1 as a mark |
 | Hairline on Saffron | `line-on-saffron` | ink at 22% | The line between rows on the saffron section | derived |
 | Hairline on Limewash | `line-on-limewash` | ink at 16% | The line between rows and a paint's edge on limewash | derived |
 | Edge on Light | `line-strong-on-light` | ink at 55% | The line that opens a list on saffron and on limewash | derived, for 3:1 as a mark |
 
-The drawn shopfront's materials colour an SVG and are never text. Each is a region median of the
-mock-up (S2), named by the region `scripts/sample-comp.mjs` prints.
+One value was sampled from a painted plate, for the light the site adds to a painting in flat
+colour. It is never text or a ground for words.
+
+| Name | Token | Value | Where | Source |
+|---|---|---|---|---|
+| Roomlight | `roomlight` | #fdc27b | A lamp's bloom on the street plate, at 85%, screened over the paint; the head of the light in a doorway where no room is painted | S9: "the lit room's wall on the first shop's painted plate" (`globals.css`) |
+
+One more sampled colour is written outside the palette: `STREET_SKY`, #012993, in
+`src/data/plates.ts`, "the sky along the street plate's top edge". It is the stage's ground wherever
+a plate ends, and on a phone it is the sky the first words stand on. This record measured that
+edge on the master at #012a92.
+
+The drawn stand-in's materials colour an SVG and are never text. Each is a region median of the
+mock-up (S2), named by the region `scripts/sample-comp.mjs` prints. All six listings are painted
+today, so no stand-in is drawn on any page, and of these seven only `pavement` reaches one, as the
+404's kerb.
 
 | Name | Token | Value | Where | Source |
 |---|---|---|---|---|
@@ -296,16 +337,19 @@ mock-up (S2), named by the region `scripts/sample-comp.mjs` prints.
 | Tin Shade | `tin-shade` | #3a5a94 | The grooves between the ribs | derived from `tin`: darker |
 | Steel | `steel` | #655366 | A drawn shutter's slats | S2: "shutter steel (LePalatier, raised part)" |
 | Steel Deep | `steel-deep` | #574c64 | The gaps between the slats; the shutter's bottom rail | S2: "shutter steel (closed, lakrem)" |
-| Lamplight | `lamplight` | #f18f38 | The lit room's floor and the lines of its corners | S2: "room floor" |
-| Lamplight Wall | `lamplight-wall` | #e0842c | The lit room's walls | S2: "room wall, lit" |
+| Lamplight | `lamplight` | #f18f38 | A drawn room's floor and the lines of its corners; the foot of the light in a doorway where no room is painted | S2: "room floor" |
+| Lamplight Wall | `lamplight-wall` | #e0842c | A drawn room's walls | S2: "room wall, lit" |
 | Pavement | `pavement` | #3d3644 | The kerb under a drawn shopfront and under the 404's empty plot | S2: "pavement" |
 
 ### Listings' own colours
 
-These are content: each listing's identity, read from `src/data/businesses.ts`. A shopfront paints
-its wall in `wall`, its sign board in `ground`, its lettering in `ink` and its sign's frame and
-lamps in `accent`. They are not the platform's palette and no platform component may borrow them.
-Each board is modelled with its lettering, so the pair is checked.
+These are content: each listing's identity, read from `src/data/businesses.ts`. On a painting the
+wall, the board and the trim are paint. Each plate's prompt names these colours in words, and
+lamplight lies across them, so a painted board is not its flat value (Contrast, "Paint under
+lettering"). The code sets only the lettering there, in the listing's `ink`. The flat values colour
+the two sign plates and the four paints on a listing's own page, the rule on the strategy's cover
+(`accent`) and the drawn stand-in. They are not the platform's palette and no platform component
+may borrow them. Each board is modelled with its lettering, so the flat pair is checked.
 
 | Listing | Wall | Board | Lettering | Trim | As the data names them | Standing |
 |---|---|---|---|---|---|---|
@@ -361,9 +405,9 @@ mark that says "you are here", and one whole wall. It is never words on limewash
 1.49:1, and on its own wall the action turns ink.
 
 **The Own Sign Rule.** A listing's colours stay on its own shopfront, its sign plates and its
-paints, and every word on a board takes that listing's lettering colour through
-`[data-ground="brand"]`. The platform must not compete with what it sells, and each board is one
-measured pair.
+paints, and every word on a board takes that listing's lettering colour: through
+`[data-ground="brand"]` on a sign plate, and as the outline's fill on a painted board. The platform
+must not compete with what it sells, and each board is one measured pair.
 
 **The Roles Not Values Rule.** A ground changes roles inside a scope; a `--palette-*` value is
 never redefined. A corrected sample then changes the palette and nothing else.
@@ -416,44 +460,98 @@ chip's row reads as its words on its own fill: the form sits on dusk, so a chose
 with dusk words.
 
 Measured for this record on 17 November 2026 with `node scripts/contrast.mjs`, outside the pairs
-list. "Live" means sampled from the production build's own canvas (the build of 08:45 UTC) with the
-words hidden, as the lightest 8px block behind the words themselves.
+list, in three groups.
+
+**The first words on the painted sky.** "Live" means sampled from the production build of 12:54
+UTC with motion on and the words hidden, as the lightest 8px block behind each line of the words
+themselves.
 
 | Text or mark | On | Ratio | Body text (4.5) | Large text, marks (3) | Where |
 |---|---|---|---|---|---|
-| `limewash` #f7f7f8 | #263ba7 | 8.65:1 | pass | pass | live, 1440 by 900: the lightest sky behind the headline |
-| `limewash` #f7f7f8 | #4d47b9 | 6.72:1 | pass | pass | live, 1440 by 900: behind the lede |
-| `limewash` #f7f7f8 | #5b4cbd | 6.10:1 | pass | pass | live, 1440 by 900: behind "How it works" |
-| `limewash` #f7f7f8 | #1c36a1 | 9.37:1 | pass | pass | live, 1920 by 1080: behind the headline |
-| `limewash` #f7f7f8 | #3941b0 | 7.67:1 | pass | pass | live, 1920 by 1080: behind the lede |
-| `limewash` #f7f7f8 | #3f44b4 | 7.27:1 | pass | pass | live, 1920 by 1080: behind "How it works" |
-| `limewash` #f7f7f8 | #3540b0 | 7.80:1 | pass | pass | live, 1366 by 768: behind the headline |
-| `limewash` #f7f7f8 | #6a4ebe | 5.69:1 | pass | pass | live, 1366 by 768: behind the lede |
-| `limewash` #f7f7f8 | #8554bf | 4.88:1 | pass | pass | live, 1366 by 768: behind "How it works" |
-| `limewash` #f7f7f8 | #3842b1 | 7.59:1 | pass | pass | live, 1280 by 720: behind the headline |
-| `limewash` #f7f7f8 | #7150be | 5.45:1 | pass | pass | live, 1280 by 720: behind the lede |
-| `limewash` #f7f7f8 | #8a57bf | 4.67:1 | pass | pass | live, 1280 by 720: behind "How it works", on the sky's violet |
-| `limewash` #f7f7f8 | #153299 | 10.06:1 | pass | pass | live, 1024 by 768: behind the headline |
-| `limewash` #f7f7f8 | #3a42b1 | 7.56:1 | pass | pass | live, 1024 by 768: behind the lede |
-| `limewash` #f7f7f8 | #4946b7 | 6.89:1 | pass | pass | live, 1024 by 768: behind "How it works" |
-| `limewash` #f7f7f8 | #092b89 | 11.41:1 | pass | pass | live, 768 by 1024: behind the headline |
-| `limewash` #f7f7f8 | #06288a | 11.68:1 | pass | pass | live, 768 by 1024: behind the lede and behind "How it works" |
-| `limewash` #f7f7f8 | #012385 | 12.41:1 | pass | pass | live, 390 by 844: behind the headline |
-| `limewash` #f7f7f8 | #0d2b8c | 11.26:1 | pass | pass | live, 390 by 844: behind the lede |
-| `limewash` #f7f7f8 | #18359d | 9.63:1 | pass | pass | live, 390 by 844: behind "How it works" |
-| `limewash` #f7f7f8 | #00217f | 12.87:1 | pass | pass | live, 375 by 667 and 360 by 640: behind the headline |
-| `limewash` #f7f7f8 | #0a298b | 11.51:1 | pass | pass | live, 375 by 667: behind the lede |
-| `limewash` #f7f7f8 | #3540ae | 7.85:1 | pass | pass | live, 375 by 667: behind "How it works" |
-| `limewash` #f7f7f8 | #0b2a8a | 11.45:1 | pass | pass | live, 360 by 640: behind the lede |
-| `limewash` #f7f7f8 | #3e42b3 | 7.44:1 | pass | pass | live, 360 by 640: behind "How it works" |
-| `primary` #f8c618 | #5b4cbd | 4.07:1 | fail | pass | live, 1440 by 900: the focus ring round "How it works" |
-| `primary` #f8c618 | #8a57bf | 3.11:1 | fail | pass | live, 1280 by 720: the focus ring round "How it works" |
+| `limewash` #f7f7f8 | #0c3cb1 | 8.53:1 | pass | pass | live, 1440 by 900: the lightest sky behind the headline |
+| `limewash` #f7f7f8 | #1b47be | 7.28:1 | pass | pass | live, 1440 by 900: behind the lede |
+| `limewash` #f7f7f8 | #274fc8 | 6.45:1 | pass | pass | live, 1440 by 900: behind "How it works" |
+| `limewash` #f7f7f8 | #0e3fb7 | 8.12:1 | pass | pass | live, 1920 by 1080: behind the headline |
+| `limewash` #f7f7f8 | #1c48be | 7.21:1 | pass | pass | live, 1920 by 1080: behind the lede |
+| `limewash` #f7f7f8 | #254ec8 | 6.53:1 | pass | pass | live, 1920 by 1080: behind "How it works" |
+| `limewash` #f7f7f8 | #0f3db2 | 8.41:1 | pass | pass | live, 1536 by 864: behind the headline |
+| `limewash` #f7f7f8 | #2249c0 | 7.05:1 | pass | pass | live, 1536 by 864: behind the lede |
+| `limewash` #f7f7f8 | #2f51ca | 6.22:1 | pass | pass | live, 1536 by 864: behind "How it works" |
+| `limewash` #f7f7f8 | #1642b9 | 7.80:1 | pass | pass | live, 1366 by 768: behind the headline |
+| `limewash` #f7f7f8 | #304fc7 | 6.39:1 | pass | pass | live, 1366 by 768: behind the lede; the second route has stepped aside |
+| `limewash` #f7f7f8 | #1241b7 | 7.95:1 | pass | pass | live, 1280 by 720: behind the headline |
+| `limewash` #f7f7f8 | #2c4ec4 | 6.55:1 | pass | pass | live, 1280 by 720: behind the lede; the second route has stepped aside |
+| `limewash` #f7f7f8 | #0738ad | 9.00:1 | pass | pass | live, 1024 by 768: behind the headline |
+| `limewash` #f7f7f8 | #1341b6 | 7.97:1 | pass | pass | live, 1024 by 768: behind the lede |
+| `limewash` #f7f7f8 | #2a4fc9 | 6.40:1 | pass | pass | live, 1024 by 768: behind "How it works" |
+| `limewash` #f7f7f8 | #294cc4 | 6.70:1 | pass | pass | live, 2560 by 1080: behind the headline |
+| `limewash` #f7f7f8 | #3e56cb | 5.77:1 | pass | pass | live, 2560 by 1080: behind the lede, the lowest of the eleven sizes; the second route has stepped aside |
+| `limewash` #f7f7f8 | #012993 | 11.27:1 | pass | pass | live, 768 by 1024 and 390 by 844: behind every line, on the stage's own ground; at 375 by 667 and 360 by 640, behind the headline and the lede |
+| `limewash` #f7f7f8 | #0a3aae | 8.79:1 | pass | pass | live, 375 by 667: behind "How it works" |
+| `limewash` #f7f7f8 | #0d3eb6 | 8.23:1 | pass | pass | live, 360 by 640: behind "How it works" |
+| `primary` #f8c618 | #3050ca | 4.18:1 | fail | pass | live, 1440 by 900: the focus ring round "How it works" |
+| `primary` #f8c618 | #2950cb | 4.21:1 | fail | pass | live, 1920 by 1080: the same ring |
+| `primary` #f8c618 | #3554cc | 3.97:1 | fail | pass | live, 1536 by 864: the same ring |
+| `primary` #f8c618 | #3553cb | 4.02:1 | fail | pass | live, 1024 by 768: the same ring |
+| `primary` #f8c618 | #012993 | 7.51:1 | pass | pass | live, 390 by 844: the same ring, on the stage's own ground |
+| `primary` #f8c618 | #103fb7 | 5.41:1 | pass | pass | live, 375 by 667: the same ring |
+| `primary` #f8c618 | #a78f9d | 1.85:1 | fail | fail | live, 360 by 640: the same ring where its lower right corner crosses a roof's fretwork |
+| `coral` #f14949 | #0c3cb1 | 2.52:1 | fail | fail | live, 1440 by 900: the shade under the headline at the sky's lightest. A shade, not words |
+| `coral` #f14949 | #012993 | 3.32:1 | fail | pass | live, 390 by 844: the shade under the headline |
+| `limewash` #f7f7f8 | #4759cc | 5.49:1 | pass | pass | the street plate's master: the lightest 16px block of sky above the floor |
+| `limewash` #f7f7f8 | #f38a90 | 2.21:1 | fail | fail | the same master, below the floor: the far street lamp's own glow. No word is set there |
+
+**Paint under lettering.** Sampled on the masters in `assets/plates`, inside the box the code sets
+each thing in, in blocks of 6 to 16px. "Median" is the median block. The second row for a board is
+the block that gives the lowest ratio: where a lamp's pool falls on a dark board, or where a light
+board is darkest.
+
+| Text or mark | On | Ratio | Body text (4.5) | Large text, marks (3) | Where |
+|---|---|---|---|---|---|
+| `ground-lepalatier-ink` #f3e9d8 | #89141a | 8.01:1 | pass | pass | the terrace and LePalatier's crop: its board, median |
+| `ground-lepalatier-ink` #f3e9d8 | #d2310f | 4.17:1 | fail | pass | the same board, lit |
+| `ground-lakrem-ink` #a61e3c | #f6c082 | 4.44:1 | fail | pass | the terrace: Lakrem's board, median |
+| `ground-lakrem-ink` #a61e3c | #eab479 | 3.93:1 | fail | pass | the same board at its darkest |
+| `ground-souffle-ink` #2e3b33 | #bbbc71 | 5.89:1 | pass | pass | the terrace: Souffle's board, median |
+| `ground-souffle-ink` #2e3b33 | #a5b170 | 5.09:1 | pass | pass | the same board at its darkest |
+| `ground-bouke-ink` #f4cfc9 | #586025 | 4.69:1 | pass | pass | the terrace: Bouké's board, median |
+| `ground-bouke-ink` #f4cfc9 | #a4871b | 2.41:1 | fail | fail | the same board, lit |
+| `ground-larout-ink` #f7e9cc | #10776a | 4.51:1 | pass | pass | the terrace: Larout's board, median |
+| `ground-larout-ink` #f7e9cc | #5e9964 | 2.81:1 | fail | fail | the same board, lit |
+| `ground-kazprop-ink` #1b46c2 | #bacad1 | 4.61:1 | pass | pass | the terrace: Kazprop's board, median |
+| `ground-kazprop-ink` #1b46c2 | #9cbbcf | 3.85:1 | fail | pass | the same board at its darkest |
+| `ground-lepalatier-ink` #f3e9d8 | #9c0f20 | 6.97:1 | pass | pass | the street plate: LePalatier's board, median |
+| `ground-lepalatier-ink` #f3e9d8 | #e53921 | 3.53:1 | fail | pass | the same board, lit |
+| `ground-lakrem-ink` #a61e3c | #fecd7f | 4.96:1 | pass | pass | the street plate: Lakrem's board, median |
+| `ground-lakrem-ink` #a61e3c | #f4b878 | 4.16:1 | fail | pass | the same board at its darkest |
+| `ground-souffle-ink` #2e3b33 | #b2cd86 | 6.68:1 | pass | pass | the street plate: Souffle's board, median |
+| `ground-souffle-ink` #2e3b33 | #8eb680 | 5.11:1 | pass | pass | the same board at its darkest |
+| `ground-bouke-ink` #f4cfc9 | #0e4830 | 7.35:1 | pass | pass | the street plate: Bouké's board, median |
+| `ground-bouke-ink` #f4cfc9 | #385928 | 5.56:1 | pass | pass | the same board, lit |
+| `ground-larout-ink` #f7e9cc | #015a72 | 6.45:1 | pass | pass | the street plate: Larout's board, median |
+| `ground-larout-ink` #f7e9cc | #047274 | 4.77:1 | pass | pass | the same board, lit |
+| `ground-kazprop-ink` #1b46c2 | #84c5eb | 4.13:1 | fail | pass | the street plate: Kazprop's board, median |
+| `ground-kazprop-ink` #1b46c2 | #6dbbeb | 3.68:1 | fail | pass | the same board at its darkest |
+| `ground-lepalatier-ink` #f3e9d8 | #54041e | 12.35:1 | pass | pass | LePalatier's own plate: its board, median |
+| `ground-lepalatier-ink` #f3e9d8 | #9b131c | 6.97:1 | pass | pass | the same board, lit |
+| `limewash` #f7f7f8 | #011d9f | 11.69:1 | pass | pass | LePalatier's own plate: the town on its painted plaque, median |
+| `limewash` #f7f7f8 | #01279c | 11.07:1 | pass | pass | the street plate: the town on the nearest shop's painted plaque, median |
+| `ground-lepalatier-ink` #f3e9d8 | #8a0c1e | 8.11:1 | pass | pass | the counter plate: the lettering and "Business strategy" on the cover, median |
+| `ground-lepalatier-ink` #f3e9d8 | #991421 | 7.04:1 | pass | pass | the same cover at its lightest |
+| `limewash` #f7f7f8 | #01197b | 13.75:1 | pass | pass | the terrace and a shop's crop: a number on its small painted plaque, median (the six plaques measure #011679 to #011a7d) |
+| `limewash` #f7f7f8 | #032a98 | 10.96:1 | pass | pass | the street plate: a number on a sample's small plaque, the lightest of the five medians |
+| `ground-lepalatier-ink` #f3e9d8 | #71071d | 9.97:1 | pass | pass | LePalatier's own plate: its lettering on the painted screen, median |
+| `ink` #0a1639 | `limewash` #f7f7f8 | 16.52:1 | pass | pass | a sample's tag: its word on its own white |
+
+**The interface's own states.**
+
+| Text or mark | On | Ratio | Body text (4.5) | Large text, marks (3) | Where |
+|---|---|---|---|---|---|
 | `line-strong` rgba(247,247,248,0.55) | `dusk-deep` #082478 | 4.78:1 | pass | pass | a resting stop mark on its strip |
 | `limewash` #f7f7f8 | `dusk-deep` #082478 | 12.78:1 | pass | pass | a stop mark pointed at, on its strip |
 | `primary` #f8c618 | `dusk-deep` #082478 | 8.52:1 | pass | pass | the current stop's mark on its strip |
 | `primary` #f8c618 | `enamel` #0b2b8e | 7.47:1 | pass | pass | the focus ring on the walk's card |
 | `coral` #f14949 | `dusk` #0e328f | 3.09:1 | fail | pass | the shade under the tagline, on dusk |
-| `coral` #f14949 | #263ba7 | 2.55:1 | fail | fail | live, 1440 by 900: the shade under the headline at the sky's lightest. A shade, not words |
 | `enamel` #0b2b8e | `dusk` #0e328f | 1.06:1 | fail | fail | a plaque's plate against the page: told by its limewash rim (10.48:1) |
 | `limewash` #f7f7f8 | #25469a | 8.10:1 | pass | pass | a quiet button hovered on dusk: its 10% wash under its words |
 | `limewash` #f7f7f8 | #203985 | 9.87:1 | pass | pass | a quiet button hovered on deep dusk |
@@ -464,18 +562,22 @@ words hidden, as the lightest 8px block behind the words themselves.
 
 **Gaps (recorded, not rules):**
 
-- The hero's words sit on the live street with no ground of their own. On a short or a narrow
-  stage the camera draws back, so the street is smaller under them and they stand on sky. They
-  pass at the nine sizes sampled, from 360 by 640 to 1920 by 1080; the lowest is 4.67:1, behind
-  "How it works" at 1280 by 720, where the sky is violet. Sizes between the nine were not sampled.
-- The focus ring over the live street was sampled twice (4.07:1 behind "How it works" at 1440 by
-  900, 3.11:1 at 1280 by 720). It is not measured at every width.
+- The first words have no ground of their own: they stand on the painted sky. They are shaped to
+  the roofline and their sentences are held above a floor at 0.55 of the street plate's height,
+  where `src/data/plates.ts` records white at 4.61:1 or better above and as little as 3.09:1 on
+  the pink below. Live, they pass at the eleven sizes sampled, from 360 by 640 to 2560 by 1080;
+  the lowest is 5.77:1, behind the lede at 2560 by 1080. Sizes between the eleven were not sampled.
+- The focus ring round "How it works" stands on the sky: 3.97:1 to 4.21:1 on the four desks
+  sampled, and 1.85:1 at one corner at 360 by 640, where the link sits just above a roof.
+- A listing's lettering on its painted board does not hold the flat pair in the table above: a
+  lamp's pool lies across the board. On the terrace Bouké's lettering falls to 2.41:1 and Larout's
+  to 2.81:1 where the board is lit, and Lakrem's median is 4.44:1; on the street plate Kazprop's
+  median is 4.13:1. A wordmark is a logotype, which WCAG holds to no ratio, and every name is in
+  text beside its shop; the paint was not corrected for it.
 - `line`, `line-on-saffron` and `line-on-limewash` divide rows and edge a paint, so they are held
   to no ratio (1.69:1, 1.57:1 and 1.39:1).
 - A light paint (Ivory, Cream, Sky) on limewash is told by a hairline at 1.39:1 and by its name and
   its code in words beside it.
-- No pair is measured for a listing's lettering on its sign in 3D, where light and tone mapping
-  change both colours (Scene & 3D, "Brand colour under light").
 
 ## Typography
 
@@ -495,11 +597,11 @@ translator read ordinary words. The smallest size set is 14px.
 
 | Token | Face | Weight | Size (fluid) | Line height | Tracking | Case, features | Use |
 |---|---|---|---|---|---|---|---|
-| `heading-1` | Barlow Condensed | 700 italic | clamp(var(--text-5xl), 1.8857rem + 4.5714vw, var(--text-8xl)): 48 to 96px | 1 | 0.005em | capitals; a hard coral shade, 0.058em across and 0.064em down | The home page's headline, and nothing else |
+| `heading-1` | Barlow Condensed | 700 italic | clamp(var(--text-5xl), 1.8857rem + 4.5714vw, var(--text-8xl)): 48 to 96px | 1 | 0.005em | capitals; a hard coral shade, 0.058em across and 0.064em down | The home page's headline, and nothing else. From 900px wide its first screen sets it wider (below) |
 | `heading-2` | Barlow Condensed | 700 | clamp(var(--text-4xl), 1.6929rem + 2.2857vw, var(--text-6xl)): 36 to 60px | 1 | 0.005em | capitals | Every other page's first heading; section headings; the tagline, with `sign-shade`; the closing band; a step's number; a real price at the head of its listing, with tabular figures |
 | `heading-3` | Barlow Condensed | 700 | clamp(var(--text-3xl), 1.7357rem + 0.5714vw, var(--text-4xl)): 30 to 36px | 40/36 (1.11) | 0.01em | capitals | The heading on a walk card; the phone menu's links; "What comes with it" and "What you bring"; the sent panel's heading |
 | `heading-5` | Barlow Condensed | 700 | `text-2xl`, 24px | 32/24 (1.33) | 0.015em | capitals; lower case with no tracking in the mark | A business's name under its shopfront; a step's title; "Reach us directly"; a heading on the privacy page; the next business; the name in the mark |
-| `title-1` | Geist | 500 | `text-xl`, 20px | 28/20 (1.4) | 0 | none | The lede under a page's heading; a question |
+| `title-1` | Geist | 500 | `text-xl`, 20px | 28/20 (1.4) | 0 | none | The lede under a page's heading, the home page's among them (set larger there from 900px, below); a question |
 | `title-2` | Geist | 400 | `text-lg`, 18px | 28/18 (1.56) | 0 | none | A section's lede; a listing's line, its name's note and its idea; the closing band's line |
 | `title-3` | Geist | 500 | `text-base`, 16px | 24/16 (1.5) | 0 | none | Header links; field labels; a paint's name |
 | `title-4` | Barlow Condensed | 600 | `text-xl`, 20px | 28/20 (1.4) | 0.02em | capitals; tabular lining figures | A real listing's price under its shopfront |
@@ -516,9 +618,38 @@ translator read ordinary words. The smallest size set is 14px.
 `sign-shade` is not a text style. It adds the sign painter's hard shade (`text-shadow: 0.05em
 0.055em 0 var(--color-shade)`) to a style, and the tagline is its one use.
 
+**The first words on a wide screen.** From 900px wide, two rules written outside the layers set
+the home page's headline and lede to the approved mock-up's measure (S1: the headline 7.4% of the
+screen's width, set tight, and the lede 1.6%). They are `heading-1` and `title-1` with a size and a
+line height of their own, and they are the one place a named style is overridden. The frontmatter
+holds them as `heading-1-wide` and `title-1-wide`.
+
+| Style, as set there | Size | Line height | Otherwise |
+|---|---|---|---|
+| `heading-1` inside `.walk-words-first` | clamp(var(--text-5xl), min(7.4vw, 16svh), var(--text-9xl)) times `--fit`: 48 to 128px before the fit | 0.9 | As `heading-1`: 700 italic, capitals, 0.005em, the coral shade. It wraps freely (`text-wrap: wrap`) beside the shaped float, with one break set in the markup |
+| `title-1` inside `.walk-words-first` | clamp(var(--text-lg), 1.6vw, var(--text-2xl)): 18 to 24px | 1.4 | As `title-1`: Geist 500. At most 576px wide (`max-w-xl`) |
+
+`--fit` is the stage's word: 1, 0.92, 0.84, 0.76, 0.68, 0.6 or 0.52 (Responsive Behavior). Live,
+with motion on, the headline measured 106.6px at 1440 by 900, 128px at 1920 by 1080, 86.4px at 1536
+by 864, 93px at 1366 by 768, 79.6px at 1280 by 720, 75.8px at 1024 by 768 and 97.3px at 2560 by
+1080. Under 900px it is `heading-1` as written: 48px at 390 and 65.3px at 768.
+
+**Lettering on a plate.** Three more settings of the sign face exist only on the paintings. Each is
+Barlow Condensed 600 in capitals with a line height of 1. Each is sized from the picture it lies
+on, in the plate's own pixels on the stage and in container units on a page, so it grows and
+shrinks with the painting and has no size of its own. None is one of the seventeen named styles.
+
+| Lettering | Class | Tracking | Colour | Size on its plate | As measured live |
+|---|---|---|---|---|---|
+| "Sample" on a shutter | `plate-tag` | 0.04em | `ink` on `limewash`, corners of 0.14em | 96px on a tag 370 by 136 on the street plate, set in the board's own foreshortened plane; 50px on a tag 192 by 70 on a shop's column of the terrace and on its crop | On the first screen the five tags' boxes stand 28.7, 26.4, 17.5, 18 and 15.9px tall at 1440 by 900, and 12.6 to 7px at 390 by 844. On the terrace under the walk the word is 16.7px at 1440 and 19.5px at 390; in the catalogue 35.2px at 1440 and 14.5px at 390; on a sample's own page 28.5px |
+| A town or a number on a painted plaque | `plate-plaque` | 0.06em | `limewash` on the painted enamel | The town: 92px on a wall 400 by 170 on the street plate, 86px on the shop's own plate. A number: 25px on the terrace and on a crop; on the street plate, 0.78 of half its plaque's width | The town's box is 35.3px tall on the first screen at 1440 by 900 and 15.5px at 390 by 844; at the head of LePalatier's page the word is 17px at 1440 and 10.2px at 390. A number is 8.3px on the terrace at 1440 and 9.8px at 390, 17.6px in the catalogue at 1440 and 7.3px at 390, and 14.3px on a sample's own page; on the first screen its box is 7 to 11.5px tall at 1440 and 3.1 to 5px at 390 |
+| "Business strategy" on the document's cover | `plate-cover` | 0.08em | the listing's `ink` | 52px on a cover 600 by 560 | Not measured live |
+
 Each listing's wordmark is artwork, not interface type: vector outlines drawn by
 `scripts/make-wordmarks.mjs` from an open-licence face (S7), so the site loads no typeface for it.
-The same outline is drawn on the flat shopfront, on the sign plates and on the sign in 3D.
+The same outline is set on every painted board (the street plate, the terrace, a shop's crop,
+LePalatier's own plate), on the screen in its room, on the document's cover, on the sign plates
+and on the drawn stand-in.
 
 | Listing | Lettering as drawn | Face (SIL OFL 1.1) | Tracking |
 |---|---|---|---|
@@ -554,51 +685,65 @@ face without a record here.
 The shell holds at most 1280px of content (`spacing.shell`, 80rem) inside a fluid gutter,
 `clamp(1.5rem, 5vw, 5rem)`: 24px at 390, 72px at 1440, 80px from 1600. Sections are spaced by
 `clamp(4rem, 10vw, 8rem)`: 64px on a phone, 128px from 1280. Running text is held to 62ch and a
-hero heading with its lede to 680px (`measure-hero`). The header is 72px tall and stays at the top;
-a link to a part of a page lands under it (`scroll-padding-top`). Inside components, spacing takes
+heading with its lede to 680px (`measure-hero`). The header is 72px tall and stays at the top; a
+link to a part of a page lands under it (`scroll-padding-top`). Inside components, spacing takes
 only the thirteen steps of the scale in class names: `npm run tokens` reports 0 fail and 1 warn,
 the one italic. Three values in `globals.css` sit off those steps (Known Gaps).
 
-- **Story structure:** the home page, in order: the walk, eight stops on dusk; "On the street now",
-  the terrace, on dusk; the four steps on saffron; the tagline on dusk; the questions on limewash;
-  the footer on deep dusk. Then the catalogue (a heading on dusk, six shopfronts on limewash); a
-  business's page (its plaques, name, price and one action beside its shopfront on dusk; its brand
-  on limewash; what it is on dusk; what comes with it beside what the buyer brings on saffron; the
-  next business on limewash); How it works (the four steps on saffron, the questions on limewash);
-  Enquire (the form beside the direct routes, on dusk); Privacy; and the 404, an empty plot. Each
-  page's footer opens with the invitation that fits it.
+- **Story structure:** the home page, in order: the walk, eight stops on the painted street; "On
+  the street now", the terrace, on dusk; the four steps on saffron; the tagline on dusk; the
+  questions on limewash; the footer on deep dusk. Then the catalogue (a heading on dusk, six
+  shopfronts on limewash); a business's page (its plaques, name, price and one action beside its
+  shopfront on dusk; its brand on limewash; what it is on dusk; what comes with it beside what the
+  buyer brings on saffron; the next business on limewash); How it works (the four steps on saffron,
+  the questions on limewash); Enquire (the form beside the direct routes, on dusk); Privacy; and
+  the 404, an empty plot. Each page's footer opens with the invitation that fits it.
 - **The walk:** the stage is as tall as the screen less the header and never under 576px
-  (`max(100svh - 72px, 36rem)`). The headline lies over its first screen. Where the canvas runs the
-  stage pins under the header and each stop is one more screen of scroll, with its words in a card
-  26rem wide: at the foot of the screen under 900px, at the left and centred from 900px. Where it
-  does not run each stop is a section: its still above its words, or beside them (`1.3fr 1fr`) from
-  900px.
-- **Grids:** the terrace is one row of columns at least 216px wide, 64vw each under 640px, and
-  scrolls sideways where it is wider than the screen. The catalogue is 2 shopfronts to a row and 3
-  from 1024px. Two-column sections begin at 1024px: a listing's head `1fr 0.9fr`; a listing's
-  brand, its idea and the questions on How it works `0.85fr 1.15fr`; the home page's questions
-  `0.8fr 1.2fr`; the home page's "On the street now" heading `1.1fr 1fr`; Enquire `1.15fr 0.85fr`;
-  the closing band `1.3fr 1fr`; the footer `1.3fr 0.6fr 1fr`; a privacy row `0.5fr 1fr`. The steps
-  are four columns from 768px. A heading beside a long list stays in view (`sticky`, 112px from the
-  top) from 1024px.
+  (`max(100svh - 72px, 36rem)`). The first words lie over its first screen, inside the shell, 32px
+  from the stage's top. Where script runs the stage pins under the header and each stop is one more
+  screen of scroll, with its words in a card 26rem wide: at the foot of the screen under 900px; at
+  the left and centred from 900px; at the foot for the room, from 900px, where the whole shop is
+  shown; at the top left for the last stop, at every width, whose street runs along the foot. Where
+  script does not run each stop is a section: its still above its words, or beside them (`1.3fr
+  1fr`) from 900px.
+- **The first words:** from 900px a float fills the words' column and carries the painted roofline
+  as its shape, 24px clear of it (`shape-margin`), so every line of the headline, the lede and the
+  actions ends before the roofs. Under 900px the street stands along the foot of the stage with the
+  words above it, and nothing is shaped (Responsive Behavior).
+- **Grids:** the terrace is the painting of all six shopfronts, drawn once and at least 1280px
+  wide, with a row of six columns over it, each as wide as its shop from party wall to party wall
+  (727, 602, 598, 603, 608 and 702 parts); under 640px it is 384vw, about 64vw a shop, and it
+  scrolls sideways wherever it is wider than the screen. The catalogue is 2 shopfronts to a row and
+  3 from 1024px, each in a frame the shape of the widest crop, 561 by 1175. Two-column sections
+  begin at 1024px: a listing's head `1fr 0.9fr`; a listing's brand, its idea and the questions on
+  How it works `0.85fr 1.15fr`; the home page's questions `0.8fr 1.2fr`; the home page's "On the
+  street now" heading `1.1fr 1fr`; Enquire `1.15fr 0.85fr`; the closing band `1.3fr 1fr`; the
+  footer `1.3fr 0.6fr 1fr`; a privacy row `0.5fr 1fr`. The steps are four columns from 768px. A
+  heading beside a long list stays in view (`sticky`, 112px from the top) from 1024px.
 
 ### Named Rules
 
 **The Street First Rule.** The home page opens on the street: the shopfronts are in the first
-screen, under the headline, at 1440 by 900 and at 390 by 844. The businesses are the proof, so they
-come before any claim.
+screen with the headline, beside it on a desk and under it on a phone, at 1440 by 900 and at 390 by
+844. The businesses are the proof, so they come before any claim.
 
 **The Roof Line Rule.** Where one section's ground gives way to another's, a lambrequin in the
 colour of the ground above hangs 16px onto the ground below, and no ruled line divides one section
 from the next. A change of section then reads as a roof line.
 
+**The Words In The Sky Rule.** The first words stand in the painted sky: every line ends before the
+roofline, and every sentence ends above the sky's floor, where white would no longer read. Where
+they do not fit, the second route steps aside and then the headline steps down a size; no frame is
+moved and no scrim is laid for them. One painting then serves a screen of any shape.
+
 ## Elevation & Depth
 
-Depth lives in the street: a perspective camera, lamps, a lit room. The interface over it and below
-it is flat, and separates by ground (dusk, deep dusk, saffron, limewash, a listing's board) and by
-hairline (`line`, `line-strong`). The header stays above the page as a solid band, the phone menu
-opens under it on the same solid ground, the walk's words ride over the pinned stage, and the skip
-link sits over everything.
+Depth lives in the paintings: a street drawn in perspective, lamplight on a wall, a lit room behind
+a shutter. The stage adds only movement to it, a push into a picture and a dissolve to the next.
+The interface over the paintings and below them is flat, and separates by ground (dusk, deep dusk,
+saffron, limewash, a listing's board) and by hairline (`line`, `line-strong`). The header stays
+above the page as a solid band, the phone menu opens under it on the same solid ground, the walk's
+words ride over the pinned stage, and the skip link sits over everything.
 
 ### Shadow Vocabulary
 
@@ -614,56 +759,82 @@ twice, as lettering:
 - **The current page's ring** (`box-shadow: inset 0 0 0 2px var(--color-on-action)`): on a pill that
   leads to the page the visitor is already on, such as the header's Enquire on Enquire.
 - **The sign painter's shade** (`text-shadow: 0.058em 0.064em 0 var(--color-shade)` on `heading-1`;
-  `0.05em 0.055em 0` through `sign-shade`): hard, with no blur. About 6px at the headline's 96px.
+  `0.05em 0.055em 0` through `sign-shade`): hard, with no blur. About 6px across and 7px down at
+  106px, the headline's size at 1440 by 900.
+
+Three gradients exist, and all three belong to a picture, never to the interface:
+
+- **A lamp's bloom** (`.plate-glow`): `radial-gradient(closest-side, roomlight at 85%,
+  transparent)`, screened over the street plate (`mix-blend-mode: screen`) at 0.4, one over each of
+  the eight painted lamps.
+- **A doorway's lamplight** (`.shopfront-room`): `radial-gradient(120% 85% at 50% 10%, roomlight,
+  lamplight 110%)`, behind the shutter of a real business that has no painted room. No instance:
+  the one real business has its room painted.
+- **The street plate's top edge on a phone** (`.stage-layer-street`, under 900px): a mask that
+  runs from clear to solid over the plate's first 7%, so no line shows where the painting ends and
+  the stage's own sky begins.
 
 ### Named Rules
 
 **The Flat Interface Rule.** The interface casts no shadow, fills with no gradient and blurs
 nothing; an inset edge is a line. Depth is said by a change of ground or a hairline, and the only
-light on the page is the street's own.
+light on the page is the street's own: paint, a lamp's bloom, a doorway's lamplight.
 
-**The Solid Over The Street Rule.** Whatever sits over the live street is solid: the header in
-`dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop marks
-stand on in `dusk-deep`. Its words and marks then never depend on what the canvas is showing behind
-them. The hero's words are the one exception, and
-are under Contrast, Gaps.
+**The Solid Over The Street Rule.** Whatever sits over a painting on the stage is solid: the header
+in `dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop marks
+stand on in `dusk-deep`. Its words and marks then never depend on what the stage is showing behind
+them. The first words are the one exception: they take the sky, under The Words In The Sky Rule.
 
 ## Shapes
 
 Five radii, each a step of Tailwind's radius scale:
 
 - **Full pill** (`rounded.pill`): anything pressed that is a control. Buttons, chips, the skip
-  link, the walk's cue, the menu button and the mark's focus shape; a stop's mark is the same shape
-  3px tall.
-- **16px** (`rounded.panel`, `rounded-2xl`): the two sign plates, the panels the form answers with,
-  the empty street's panel, and a stop's still where the walk is plain.
-- **12px** (`rounded.field`, `rounded-xl`): fields, paints, the sample note, the walk's card and
-  the strip the stop marks stand on.
+  link, the walk's cue, the menu button and the mark's focus shape; the strip the stop marks stand
+  on; a stop's mark is the same shape 3px wide.
+- **16px** (`rounded.panel`, `rounded-2xl`): the two sign plates, a real business's own plate at
+  the head of its page, the panels the form answers with, the empty street's panel, and a stop's
+  still where the walk is plain.
+- **12px** (`rounded.field`, `rounded-xl`): fields, paints, the sample note and the walk's card.
 - **6px** (`rounded.plaque`, `rounded-md`): a plaque.
-- **4px** (`rounded.stop-name`, `rounded-sm`): a stop's name beside its mark.
+- **4px** (`rounded.stop-name`, `rounded-sm`): a stop's name over its mark.
 
 Full-width bands are square. No radius is nested by the formula: a control stays a pill wherever it
-sits.
+sits. A sample's tag on a painting has corners of 0.14em, sized with its own lettering.
 
-The shopfront is drawn on a grid of 240 by 250 units. A roof of 8-unit ribs in `tin` and
-`tin-shade` under a limewash strip; a wall in the listing's wall colour; a fringe of scallops 12
-units wide, each pierced by a hole in the wall's colour; two pilasters outlined in limewash at 45%;
-a sign board 160 by 42 in the listing's board colour, framed in its trim, with its lettering fitted
-inside 136 by 22; two lamps in the trim with saffron bulbs; an opening 152 by 108 onto a room in
-`lamplight-wall` and `lamplight`; a shutter of 7-unit slats in `steel` and `steel-deep` with a
-bottom rail and a handle; and a kerb in `pavement`. In a terrace the wall runs to both edges, so
-neighbours touch. The shutter is one group inside a clipped opening: raised, it moves up by 88% of
-its own height.
+The painted shopfront comes from one painting, the terrace (S10), whose painted band is 3840 by
+1175. On the home page that band is drawn once and each shop is a column of it, from party wall to
+party wall (598 to 727 wide), holding only what lies over the paint. By itself a shop is its own
+crop of the band, from the inside of its left pier to the edge of the next (561, 534, 529, 534, 540
+and 538 wide), shown at one height in a frame the shape of the widest, 561 by 1175, so a row of
+cards lines up and a narrower shop ends sooner on the right. Everything set over a shop is placed
+in fractions of its picture: its lettering inside its board, 13% in from each side and 22% from the
+top and the foot; its number on its small plaque; a sample's tag, 192 by 70 of the painting's
+pixels, centred on the shutter 42% of the way down; and, for a real business, a doorway the size of
+its shutter that holds its room and a painted shutter over it.
 
-Drawn small, the shopfront is the mark: on a 24-unit grid, a roof with four scallops and a body in
+LePalatier's own plate (S9) is square, 2880 by 2880. At the head of its page it fills its column,
+at most 576px wide, with 16px corners; on the stage it is drawn in its own pixels and moved whole.
+
+The drawn stand-in (`DrawnShopfront.tsx`) is drawn on a grid of 240 by 250 units. A roof of 8-unit
+ribs in `tin` and `tin-shade` under a limewash strip; a wall in the listing's wall colour; a fringe
+of scallops 12 units wide, each pierced by a hole in the wall's colour; two pilasters outlined in
+limewash at 45%; a sign board 160 by 42 in the listing's board colour, framed in its trim, with its
+lettering fitted inside 136 by 22; two lamps in the trim with saffron bulbs; an opening 152 by 108
+onto a room in `lamplight-wall` and `lamplight`; a shutter of 7-unit slats in `steel` and
+`steel-deep` with a bottom rail and a handle; and a kerb in `pavement`. Its shutter is one group
+inside a clipped opening: raised, it moves up by 88% of its own height. It stands for a listing
+that has no painting, and no page draws it today.
+
+Drawn small, a shopfront is the mark: on a 24-unit grid, a roof with four scallops and a body in
 saffron with a door in deep dusk, 28px wide beside the name. The icon is the same shopfront on a
 deep dusk square with 7-unit corners.
 
 The plaque is an inline plate at least 28px tall, 6px corners, 2px by 10px of padding, with its
 rim. The lambrequin is one SVG pattern, a tile 24 by 16: a 4px band and a half-round below it,
-pierced by a hole 4.5px across. It is the same tooth the drawn shopfronts and the 3D roofs wear.
-The 404 draws an empty plot: the dashed outline of a shopfront that is not there, in `line-strong`,
-on a kerb.
+pierced by a hole 4.5px across. It is the tooth the drawn stand-in wears; the painted roofs wear a
+painted fretwork of their own. The 404 draws an empty plot: the dashed outline of a shopfront that
+is not there, in `line-strong`, on a kerb.
 
 Icons are one drawn set of eight (arrow, back arrow, phone, chat, mail, plus, tick, alert) on a
 24px grid, with 1.5px round strokes in the current colour. Every icon sits beside words and is
@@ -675,9 +846,10 @@ hidden from assistive technology. The walk's cue turns the arrow to point down.
 for the small button, a chip and the walk's cue. One shape then always means "press here"; a plaque
 has corners and is never pressed.
 
-**The Shopfront Rule.** A business is always shown as its shopfront: roof, fringe, sign, shutter,
-in its own colours with its own lettering, the same in SVG, in 3D, in the mark and in the icon. The
-shutter rolling is the brand's one movement.
+**The Shopfront Rule.** A business is always shown as its shopfront: painted where a painting
+exists and drawn where none does, with its own lettering set on its board, the same on the stage,
+on the terrace, in the catalogue and at the head of its page. The shutter rolling is the brand's
+one movement.
 
 **The Plaque Rule.** A plaque names what is fixed about a business or about the walk: a number, a
 status, a town, a stop. It is enamel with a limewash rim, it carries `caption-4` or the card's own
@@ -687,7 +859,7 @@ words, and it is not a button.
 
 Every state the build has is listed. A state the build lacks is named as missing and repeated under
 Known Gaps. A state that is written and has no instance on any page yet is marked "no instance".
-Hover and pressed states were read in code; a shutter's were also measured against the production
+Hover and pressed states were read in code; a shutter's were also measured against a production
 build, and say so.
 
 ### Buttons
@@ -772,8 +944,9 @@ button and nowhere else.
 - **Footer** (deep dusk): a lambrequin in the colour of the ground the page ends on, the closing
   band, a hairline, then the mark with
   the site's line, the pages, and every route to reach us, each with a 20px icon and the number
-  written out; a hairline; the legal line and the credit in `caption-2`, "A Digital Experience by
-  Khay Digital", with the agency's name in `body-4`.
+  written out; a hairline; the legal line, which ends by saying that the shopfronts are
+  illustrations and that a business comes without premises, and the credit, both in `caption-2`:
+  "A Digital Experience by Khay Digital", with the agency's name in `body-4`.
 - **The closing band:** the invitation at the head of the footer, a `heading-2` and a `title-2` line
   beside its actions, chosen by the page just read so it never points at the page it is on. A real,
   available business: "LePalatier will have one owner" with its price, a filled "Ask about this
@@ -787,66 +960,100 @@ button and nowhere else.
 
 ### The shopfront (signature)
 
-A business as it stands on the street (`Shopfront.tsx`), drawn in its own colours with its own
-lettering (Shapes). The name is real text beside it, so the drawing is hidden from assistive
-technology; at the head of a listing, where it stands alone, it is an image named "LePalatier's
-shopfront".
+A business as it stands on the street (`Shopfront.tsx`): a painting, with what is true set over it
+(Shapes). The name is real text beside it, so the picture is hidden from assistive technology; at
+the head of a listing, where it stands alone, it is an image named "Lakrem's shopfront", or, for
+the business with a plate of its own, "LePalatier's shopfront, its shutter up and its room lit".
 
-- **Rest:** the shutter is down.
+It takes one of four forms:
+
+- **A column of the terrace** (the home page): no picture of its own, only what lies over the one
+  painting behind the row.
+- **By itself** (a card in the catalogue, the head of a sample's page): its own crop, in its frame.
+- **On its own plate** (the head of LePalatier's page): the square plate with its room lit, its
+  lettering on the board and on the screen on the back wall, and its first town on the plaque. The
+  certificate's paper is left as painted, blank. Nothing on it moves.
+- **Drawn** (`DrawnShopfront.tsx`): the stand-in for a listing that is not among the six painted.
+  No instance.
+
+A real business's states:
+
+- **Rest:** the shutter is down: a painted shutter laid over its doorway.
 - **Hover and focus-visible** on the link around it: the shutter rolls up by 88% over 900ms on
-  `ease-roll`, onto the lit room, and the name underlines.
+  `ease-roll`, onto its painted room, and the name underlines.
 - **Pressed:** the whole shopfront scales to 0.985 over 160ms.
-- **Open** (`open`, at the head of a listing): the shutter is up for good.
 - **Arriving** (in the catalogue, where motion is welcome): the shop waits with its shutter up and
-  rolls it down as it comes into view; an open one keeps it up.
+  rolls it down as it comes into view.
+- **Open** (`data-open`): the shutter stays up. No instance: the one real business opens onto its
+  own plate instead.
 
-Rest, hover, focus and open were measured against the production build on the terrace, in the
-catalogue and at the head of a listing, with motion on and off; `npm run behaviour` asserts the
-open and the hover states with motion on.
+A sample has no shutter to raise. It stays shut, with "Sample" on a white tag across its slats;
+pointing at it underlines its name, and pressing it scales it as any shop.
+
+Counted on the build of 12:54 UTC: one moving shutter and five tags on the terrace, the same in
+the catalogue, and none on a sample's own page. A real shutter's hover and focus were measured on
+the build of 12:15 UTC (88% up on the terrace and in the catalogue) and read in code after that;
+`npm run behaviour` asserts them.
 
 ### The terrace and the shop card (signature)
 
-- **The terrace** (`Terrace.tsx`, the home page): every business still for sale as one row, wall
-  to wall under one roofline on one kerb, on the page's dusk. Each shop is one link: its shopfront,
-  then, 12px in and 16px below, its plaques ("No. 01", then its status or "Sample"), its name in
-  `heading-5`, its sector and its towns in `caption-2` and `ink-subtle`, and its price. Under 640px
-  each shop is 64vw wide, the row scrolls sideways and snaps to a shop's edge; its scrollbar is thin
-  and saffron.
-- **The shop card** (`ShopCard.tsx`, the catalogue): the same parts as a card in a grid on
-  limewash, each revealed as it arrives.
+- **The terrace** (`Terrace.tsx`, the home page): the painting of all six shopfronts, whole, on the
+  page's dusk, with a row of six columns over it. Each column is one link: over the paint, the
+  listing's lettering, its number and its tag; under it, 12px in and 16px below, its plaques ("No.
+  01", then its status or "Sample"), its name in `heading-5`, its sector and its towns in
+  `caption-2` and `ink-subtle`, and its price. Under 640px the terrace is 384vw wide, scrolls
+  sideways and snaps to a shop's edge; its scrollbar is thin and saffron. A listing that is not
+  among the six painted has no column, and a painted shop whose business is not for sale stands in
+  the picture with its board blank (neither has an instance).
+- **The shop card** (`ShopCard.tsx`, the catalogue): the shop by itself in its frame, then the same
+  facts, as a card in a grid on limewash, each revealed as it arrives.
 - **Price:** a real listing's is `title-4`. A sample's is `caption-2` in `ink-subtle` with tabular
-  figures and the words "a placeholder", so it never reads as an offer.
-- **Empty:** when every business is sold, a panel with 16px corners and a 1px edge in `line-strong`:
-  "Every business on the street has been sold", a line, and a filled Enquire (no instance).
+  figures and the words "a placeholder", so it never reads as an offer; the figure and the note are
+  each kept whole when the line breaks.
+- **Empty:** when no painted business is for sale, a panel with 16px corners and a 1px edge in
+  `line-strong`: "Every business on the street has been sold", a line, and a filled Enquire (no
+  instance).
 
 ### The plaque (signature)
 
 `.plaque` with `caption-4`: `plaque` and `on-plaque`, 6px corners, its rim, at least 28px tall.
 Under a shopfront: the number, then the status (Available, Reserved or Sold) or "Sample". At the
-head of a listing: the number, the status or "Sample", then one plaque for each town. On the street
-in 3D the same plate, painted on a canvas, names the shop's first town on its pier. A plaque cannot
-be pressed.
+head of a listing: the number, the status or "Sample", then one plaque for each town. On a painting
+the plaque is paint and only its words are set: the nearest shop's large plaque, on the street
+plate and on its own plate, carries its first town; each small plaque, on a sample's pier on the
+street plate and on every shop of the terrace and its crop, carries the listing's number, as a
+house's number is. A plaque cannot be pressed.
 
 ### The walk (signature)
 
-- **The first screen:** the street behind the headline (`heading-1`), the lede (`title-1`, at most
-  448px wide), a filled "See the businesses" and an arrow link to How it works. Where the street is
-  live, a cue sits at the foot: "Walk the street" with the arrow turned down, a deep dusk pill 44px
-  tall in `button-sm`, which turns enamel on hover and leads to the second stop. It shows only from
-  1200px wide, where the foot of the first screen is open road; narrower, the street itself fills
-  the foot and the cue is not shown.
+- **The first screen:** the painted street behind the headline (`heading-1`), the lede (`title-1`),
+  a filled "See the businesses" and an arrow link to How it works, which sits 24px after the button
+  or, where the line breaks, under it. Where the stage is live a cue sits 40px from the foot, at
+  the gutter: "Walk the street" with the arrow turned down, a deep dusk pill 44px tall in
+  `button-sm`, which turns enamel on hover and leads to the second stop. It shows only from 1200px
+  wide, where the foot of the first screen is open road.
+- **The stage** (`components/stage/PaintedStage.tsx`): as prerendered, a still of its first view
+  with a description. Where script runs, four plates lie in it as layers, each placed by one 2D
+  transform and an opacity; the first fades in over the still once it has decoded, and the still
+  goes when that fade ends. Its ground is the street plate's own sky.
+- **The plates:** the street (the listings' lettering carried onto six angled boards, the
+  nearest shop's town on its plaque, a number on each sample's plaque, "Sample" on five shutters,
+  and a bloom over each of eight lamps); LePalatier's own (its lettering on the board and on the
+  screen, its town on the plaque, and the shutter that rolls up over the room); the counter (the
+  lettering, a rule in its trim and "Business strategy" carried onto the document's cover); and the
+  certificate, which is left as painted, blank.
 - **The card** (live): a plaque at the size of a notice. Enamel, 12px corners, its rim, 28px of
   padding, at most 26rem wide: the stop's heading in `heading-3` and its line in `body-3`, both in
   `on-plaque`; the last card adds a filled "See the businesses". Where the walk is plain the card
   has no ground, rim or padding and its words take the page's ink.
-- **The stops** (live, from 900px): a column of eight links on its own strip of deep dusk, 8px
-  from the stage's right edge, with 12px corners and 6px by 4px of padding, so a mark keeps its
-  contrast whatever the street shows behind it. Each link is 36px wide and 24px tall. A resting
-  mark is 12px by 3px in `line-strong`; pointed at or focused, it grows to 20px in `ink` and its
-  stop's name shows on a small plaque (4px corners, `caption-4`) that stands outside the column,
-  10px to its left; the current stop's mark is 28px in `action`. Marks change over 320ms, names
-  over 200ms. Each link is named for its stop ("The sign, stop 2 of 8") and carries `aria-current`.
-- **The still** (plain): each stop's capture of the street, 4 by 3 on a phone and 16 by 10 from
+- **The stops** (live, from 900px): a row of eight links on its own strip of deep dusk, a pill 44px
+  tall with 12px of padding at each end, at the foot of the stage, 20px up and one gutter in from
+  the right, where nothing lettered is painted. Each link is 28px wide and 44px tall. A resting
+  mark is 3px by 12px in `line-strong`; pointed at, it grows to 18px in `ink`; pointed at or
+  focused, its stop's name shows on a small plaque (4px corners, `caption-4`) 8px above the strip;
+  the current stop's mark is 24px in `action`. Marks change over 320ms, names over 200ms. Each link
+  is named for its stop ("The sign, stop 2 of 8") and carries `aria-current`.
+- **The still** (plain): each stop's capture of the stage, 4 by 3 on a phone and 16 by 10 from
   900px, with 16px corners and no words of its own.
 
 ### The steps
@@ -896,44 +1103,50 @@ arrow links. A visitor is shown one thing to do at a time.
 or drawn as a mark, with an icon where one helps, and the palette has no error colour. The hardest
 visitor is on a phone in bright light.
 
-**The Sample Rule.** A sample says so wherever it stands: a tag on its shutter in 3D, a plaque
-beside its name, "a placeholder" at its price, a note on its page; the form never offers it. A
-sample must never pass for an offer.
+**The Sample Rule.** A sample says so wherever it stands: a tag on its shutter in every painting, a
+plaque beside its name, "a placeholder" at its price, a note on its page; the form never offers it.
+A sample must never pass for an offer.
+
+**The Shut Sample Rule.** A sample's shutter never moves: it has no shutter to raise, on hover, on
+focus or on its own page, and only a real business opens. What cannot be bought is not shown open.
 
 ## Motion
 
 **Principle:** things roll and switch on. A shutter rolls, a heading comes up the way a shutter
-does, a sign's line lights. Content is visible by default; motion only enhances. Script adds
-`can-animate` to the page only when motion is welcome, and only then does anything start hidden or
-muted.
+does, a lamp comes on, a sign's line lights; the walk pushes into a painting and gives way to the
+next. Content is visible by default; motion only enhances. Script adds `can-animate` to the page
+only when motion is welcome, and only then does anything start hidden or muted.
 
 | Token | Value | Use |
 |---|---|---|
 | `ease-out` | cubic-bezier(0.16, 1, 0.3, 1) | Entrances and state changes |
-| `ease-roll` | cubic-bezier(0.3, 0, 0.1, 1) | The shutter, and a heading rising out of its mask: it starts heavy and settles |
+| `ease-roll` | cubic-bezier(0.3, 0, 0.1, 1) | A shutter on a shopfront, and a heading rising out of its mask: it starts heavy and settles |
 | `dur-press` | 120ms | A button squashing to 0.96; a chip to 0.97 |
 | `dur-press-shop` | 160ms | A shopfront scaling to 0.985 |
 | `dur-state` | 200 to 320ms | Field, chip, a question's colour, a stop's name, the cue 200; button fill and edge, link and arrow link underlines, skip link 240; arrow 280; the current page's line, the menu button 300; the plus, a stop's mark 320 |
 | `dur-menu` | 200ms each, 50ms apart | The phone menu's links |
 | `dur-word` | 500ms | One word of the tagline |
+| `dur-stage` | 700ms | The plates fading in over their still |
 | `dur-reveal` | 800ms opacity, 900ms transform | A reveal |
-| `dur-shutter` | 900ms | A shutter on a drawn shopfront |
+| `dur-shutter` | 900ms | A shutter on a shopfront |
 | `dur-mask` | 1000ms | A masked heading |
-| `dur-stage` | 900ms | The canvas fading in over its still |
+| `dur-lamp` | 1100ms, the first after 500ms, 110ms apart | A lamp coming on |
 
 ### Choreography
 
 | Moment | Trigger | What moves | Duration, delay, stagger | Easing |
 |---|---|---|---|---|
-| The street arrives | The stage is within 200px of the screen, WebGL 2 is there and the framing is known | The still is painted first. The canvas mounts, draws three frames, then fades in over the still; the still is taken away only once that fade has ended | 900ms | `ease-out` |
-| The walk | The scroll, one screen to a stop | The camera travels from one stop's frame to the next, rising 0.3m on the way; the walked shop's shutter goes from a third down (0.34) to rolled up (0.04) between the address and the room behind it; the room's light and the light it throws on the paving follow the shutter | The camera rests for the first and last 22% of the way between two stops and travels through the middle; then it is smoothed toward its target | smoothstep, then an exponential approach (6 per second for the camera, 5 for a shutter) |
-| A shutter by hand, in 3D | A click or a tap on a shop | That shop's shutter rolls up, or back down | About half a second | exponential approach |
-| A shutter on a drawn shopfront | Hover or keyboard focus on its link | The shutter rolls up by 88% | 900ms | `ease-roll` |
-| A shop arrives in the catalogue | Its reveal, where motion is welcome | The shutter stands raised until the card arrives, then rolls down; pointing at the shop raises it again at once, and an open shopfront keeps it up | 900ms; 90ms apart across a row of three | `ease-roll` |
+| The street arrives | Script runs, the page is not `?plain`, and the screen's width is known | The still is painted first. The street plate mounts and decodes, then the stage fades in over the still; the still is taken away only once that fade has ended. The other three plates mount after it, hidden | 700ms | `ease-out` |
+| The lamps come on | The street plate mounts | A bloom over each of the eight painted lamps rises from nothing to 0.85 and settles at 0.4, from the far end of the street to the near | 1100ms each; the first after 500ms, then 110ms apart, so the last has settled by 2.4s. Once | `ease-out` |
+| The walk, within one painting | The scroll, one screen to a stop: from the street to the sign, and from the address to behind the shutter | The plate travels: the point it is held by, where that point stands on the stage and its size all move together, the size evenly in scale so a push does not rush | The stage rests for the first and last 22% of the way between two stops and travels through the middle | smoothstep |
+| The walk, between two paintings | The scroll: the sign to the address, behind the shutter to the counter, the counter to the wall, the wall to the room, the room to the street's end | A dissolve on a push. The painting that leaves grows from 1 to 1.1 times its size and fades out; the one that arrives grows from 0.93 to 1 and fades in. The fade runs through the middle of the travel, from 0.22 to 0.78 of it | The same rest at each end | smoothstep, for the travel and again for the fade |
+| The shutter on the stage | The scroll, between the address and behind the shutter | LePalatier's painted shutter goes from 36% of the way down its doorway to rolled up, as the stage pushes in to the room | With the travel | smoothstep |
+| A shutter on a shopfront | Hover or keyboard focus on a real business's link | The shutter rolls up by 88% | 900ms | `ease-roll` |
+| A shop arrives in the catalogue | Its reveal, where motion is welcome | A real business's shutter stands raised until the card arrives, then rolls down; pointing at the shop raises it again at once. A sample has nothing to roll | 900ms; 90ms apart across a row of three | `ease-roll` |
 | A reveal | 12% of the element is in view, 6% above the foot of the screen; once | It rises 18px and fades in | 800ms opacity, 900ms transform; a second column 120ms later; steps 90ms apart | `ease-out` |
 | A masked heading | Its reveal | Each child comes up out of a clip that opens from the foot | 1000ms | `ease-roll` |
 | The tagline lights | The line crosses the screen, from its top at 85% of the height to its foot at the middle | Each word goes from 0.5 of the ink (3.77:1) to full ink, in reading order; a word lit stays lit, and all are lit by the page's end | 500ms a word | `ease-out` |
-| A stop's mark | The walk reaches a stop; a pointer | The current mark grows to 28px and turns saffron; a mark pointed at grows to 20px and shows its name | 320ms; the name 200ms | `ease-out` |
+| A stop's mark | The walk reaches a stop; a pointer | The current mark grows to 24px and turns saffron; a mark pointed at grows to 18px and shows its name | 320ms; the name 200ms | `ease-out` |
 | The phone menu arrives | The menu opens | Each link, then the two routes, rises 24px and fades in, in reading order | 200ms each, 50ms apart; five items, so the last is in at 400ms. Closing is a cut | `ease-out` |
 | The menu button | The menu opens or closes | Its two strokes turn into the close mark | 300ms | `ease-out` |
 | State changes | Hover, press, focus, open | The fill, the edge, the underline, the arrow's 4px, a button's squash, a chip's, a shopfront's, the plus turning 45 degrees, the current page's line, the skip link sliding in | 120 to 320ms, as in the table above | `ease-out` |
@@ -942,35 +1155,41 @@ muted.
 ### Story map
 
 The stops are data (`src/data/walk.ts`) and are evenly spaced: stop n of 8 sits at (n - 1) / 7 of
-the walk's scroll, one screen apart. The frames are `src/components/three/timeline.ts`. STORY.md
-has the same eight.
+the walk's scroll, one screen apart. Each stop's view is in `src/components/stage/views.ts`, once
+for a desk and once for a phone (under 900px): which plate, the point of it that is held, where
+that point stands on the stage, and how large the plate is drawn, as a multiple of the stage's
+height. STORY.md has the same eight.
 
-| Stop | Scroll | Camera or subject | Shutter | Words |
+| Stop | Scroll | Painting and view: desk; phone | LePalatier's shutter | Words |
 |---|---|---|---|---|
-| 1 The street | 0 | The row at an angle from the pavement, LePalatier large at the right | 0.34 | The headline, the lede, "See the businesses" |
-| 2 The sign | 1/7 | Up at the board, its lettering and its two lamps | 0.34 | "The sign is already painted" |
-| 3 The address | 2/7 | The pier, square on: the town's plaque and the letterbox | 0.34 | "Its address is held for you" |
-| 4 Behind the shutter | 3/7 | The doorway, front on: a screen on the back wall in the brand's colours | 0.04 | "The website is built" |
-| 5 The counter | 4/7 | Inside, over the counter: the plan with its cover up | 0.04 | "The strategy is on the counter" |
-| 6 The wall | 5/7 | Inside, turned to the left wall: a certificate in its frame | 0.04 | "We help you set up the company" |
-| 7 The room | 6/7 | Back on the pavement, front on: the room, lit | 0.04 | "The room is yours to fill" |
-| 8 The whole street | 1 | Further back: the whole row, one room lit | 0.04 | "Every shop here will have one owner", "See the businesses" |
+| 1 The street | 0 | The street plate, held by its lower right corner at the stage's: at the stage's height; at 0.47 of it, along the foot | as painted, two thirds up | The headline, the lede, "See the businesses" |
+| 2 The sign | 1/7 | The same plate, pushed in to the first shop's board: 1.75 times, the board 66% across and 46% down; 1.15 times, the board at the middle, 30% down | as painted | "The sign is already painted" |
+| 3 The address | 2/7 | LePalatier's own plate at its pier, the town's plaque and the letterbox: 2.6 times; 1.9 times | 36% down | "Its address is held for you" |
+| 4 Behind the shutter | 3/7 | The same plate at its doorway, the screen on the back wall: 3 times; 1.9 times | rolled up | "The website is built" |
+| 5 The counter | 4/7 | The counter plate, covering the stage: the document, its cover lettered | not in view | "The strategy is on the counter" |
+| 6 The wall | 5/7 | The certificate plate, covering the stage: the frame, its paper blank | not in view | "We help you set up the company" |
+| 7 The room | 6/7 | LePalatier's own plate at the stage's height: the whole shop, its room lit | rolled up | "The room is yours to fill" |
+| 8 The whole street | 1 | The street plate again, held by its lower left corner at the stage's: 1.6 times; 0.6 times. The five shops still to come, the lamp at the street's end, the afterglow | not in view | "Every shop here will have one owner", "See the businesses" |
 
-The camera holds at each stop for 22% of a screen before it and 22% after, so a visitor who stops
-scrolling has a still picture to read beside.
+The stage holds at each stop for 22% of a screen before it and 22% after, so a visitor who stops
+scrolling has a still picture to read beside. A plate is never drawn smaller than the stage it must
+cover, or pulled off an edge it must reach (the street plate: both sides and the foot; the other
+three: every edge), so a view's numbers are a request that the stage rounds to what covers.
 
 ### Reduced motion and no script
 
 Under `prefers-reduced-motion: reduce`, script does not add `can-animate` and does not start Lenis,
-a block in `globals.css` cuts every duration and delay to nothing, and the street is told
-(`stage.reduced`).
+a block in `globals.css` cuts every duration to a hundredth of a millisecond and every delay to
+nothing, and the stage is told (`walk.reduced`).
 
-| Movement | `prefers-reduced-motion: reduce` | Without script or WebGL |
+| Movement | `prefers-reduced-motion: reduce` | Without script, or with `?plain` |
 |---|---|---|
-| The street arrives | The canvas replaces the still at once | The still stays, with its description; the walk stays plain sections |
-| The walk | The camera cuts from one stop to the next at the halfway point; nothing is smoothed; the shutter cuts | Eight plain sections, seven with a still of the street at that stop |
-| A shutter by hand, in 3D | It cuts between down and up | There is no canvas to touch |
-| A shutter on a drawn shopfront | It cuts up on hover and focus, and down again | It rolls, from CSS alone |
+| The street arrives | The plates replace the still at once | The still stays, with its description; the walk stays plain sections |
+| The lamps come on | Lit from the start, at 0.4 | No plates; the still shows the lamps lit |
+| The walk, within one painting | The stage cuts from one stop's view to the next at the halfway point | Eight plain sections, seven with a still of the stage at that stop |
+| The walk, between two paintings | One painting replaces the other at the halfway point, with no dissolve and no push | The same eight sections |
+| The shutter on the stage | It cuts with the stop | The stills show it where each stop leaves it |
+| A shutter on a shopfront | It cuts up on hover and focus, and down again | It rolls, from CSS alone |
 | A shop arrives in the catalogue | The shutter is down from the start | The shutter is down from the start |
 | A reveal | Shown at once, in its final position | Visible from the start |
 | A masked heading | Shown at once, unclipped | Visible from the start |
@@ -982,7 +1201,8 @@ a block in `globals.css` cuts every duration and delay to nothing, and the stree
 | Smooth scrolling | Off; the browser scrolls | The browser scrolls |
 
 Nothing moves by itself: every movement answers a scroll, a pointer, a key or an arrival, and plays
-once, so nothing needs a pause control. At rest the street draws no frames at all.
+once, so nothing needs a pause control. At rest the stage does no work: it places its plates only
+when the scroll or its own size changes, at most once a frame.
 
 ### Named Rules
 
@@ -990,130 +1210,140 @@ once, so nothing needs a pause control. At rest the street draws no frames at al
 or mute anything, and never below 3:1. A crawler, a visitor without script and a visitor who asked
 for less motion all get the whole page.
 
-**The Shutter Curve Rule.** `ease-roll` belongs to a shutter and to a heading rising out of its
-mask; everything else takes `ease-out`. A roller shutter starts heavy and settles, and that one
-curve is the brand's own.
+**The Shutter Curve Rule.** `ease-roll` belongs to a shutter rolling on a shopfront and to a
+heading rising out of its mask; everything else takes `ease-out`, and the stage follows the scroll.
+A roller shutter starts heavy and settles, and that one curve is the brand's own.
 
-**The Hold Rule.** The camera rests at each stop for the first and last 22% of the way to the next,
+**The Hold Rule.** The stage rests at each stop for the first and last 22% of the way to the next,
 and under reduced motion it cuts. A visitor who stops scrolling then has a still picture to read
 beside.
 
 ## Scene & 3D
 
-- **Stack:** three.js 0.186 (r186) and React Three Fiber 9.7, on the home page only, downloaded in
-  the browser by `next/dynamic`. One canvas. Output sRGB, ACES Filmic tone mapping, exposure 1.08,
-  set once. Antialiased, opaque. No shadow maps and no post-processing.
-- **Renders on demand:** `frameloop` is "demand" on screen and "never" off it. Every frame while
-  something moves (a scroll, a shutter, the camera until every part of it has arrived); nothing at
-  rest; nothing off screen. A moving pointer asks for no frames, because nothing follows it.
-- **Made from:** code. Every shop is boxes and planes from one set of measurements (5m wide, a 4m
-  wall, a 3.2m by 2.7m opening, 22 slats), each standing 0 to 0.5m taller than its neighbour under
-  its own tin roof, painted in its listing's wall colour, with its sign in its board colour, trim
-  and lettering. Every texture but one is painted on a canvas in the browser
-  (`three/textures.ts`): the signs, the plaques, a sample's tag, the slats, the ribs, the fringe,
-  the paving, the tar, the basalt wall, the palms, a lamp's glow, the screen, the plan's cover and
-  the certificate. A sign draws the same outline of its name that the pages draw. No model is
-  downloaded.
-- **The one generated image:** the sky, a painted blue hour (S8), on the inside of a wide drum
-  round the street: 2400 by 1029 on the high tier, 1200 by 514 on the low, cut and graded darker
-  through its upper band to the mock-up's sky by `scripts/prepare-plates.mjs`. It is neither fogged
-  nor tone mapped. Each file has a record beside it with the prompt.
-- **A sample on the street:** a white "Sample" tag rides its shutter and hangs under the housing
-  when the shutter is rolled away, so a sample stays marked whatever is done to its shutter.
-- **What the walked shop holds:** a letterbox in the business's own trim under its plaque, a screen
-  on the back wall drawn in the brand's colours, a counter along the right wall with the plan on
-  it, and a framed certificate on the left wall. The screen and the certificate show shapes, not
-  words; the plan's cover carries the lettering and the words "Business strategy".
-- **Light:** a hemisphere light, a warm afterglow from the horizon's side and a cool fill; fog in
-  `dusk` from 22m to 110m. Each lamp has a painted glow, a sprite that faces the camera, and a
-  painted pool down its wall, both added to what is behind them, on both tiers; a sign's board
-  paints its own lamplight, so pale lettering on a pale board is not washed out. On the high tier
-  every shop also has a point light on its sign and one in its room; the room's rises as its
-  shutter does (0 to 18), and a painted spill on the paving follows it. The street lamp at the far
-  end has its own.
-- **The scene's own palette:** `three/palette.ts`, apart from the CSS tokens on purpose, because
-  light and tone mapping change a colour. It also names the street's ink, paper, seal, palm and
-  fill light. Five of its values are the CSS palette's, written again by hand: `dusk`, `limewash`,
-  `enamel`, `ink` and the seal's saffron.
-- **Brand colour under light** (live, 1440 by 900, a software renderer, region medians):
-  LePalatier's wall, #711425 as a material, renders #48000d in shade and #a90017 between its lamps;
-  its board, #4a1626, renders #4f111d to #52121e; a plaque's enamel, #0b2b8e, renders #001b9c; a
-  shutter renders #4a374f against the mock-up's #574c64 and #655366; the lit room's wall renders
-  #e3a353 against the mock-up's #e0842c.
-- **Camera:** eight stops, each with a frame for a desk and one for a phone (under 900px): where
-  it stands, what it looks at, its field of view, and a shift of the picture's centre so the
-  subject stands clear of the words (to the right on a desk, upward on a phone). The first and last
-  frames were solved against the approved mock-up's layout, at 1440 by 828 and 390 by 772, not
-  placed by eye: the camera stands low (1.05m to 1.65m) and the picture is shifted down, as an
-  architectural photograph is, so walls stay upright. Those four frames carry an anchor, a point
-  on the screen that must not move: the first shop's pier at the right edge, with its paving in
-  frame. One function, `fit`, gives a frame's field of view and its two shifts for a stage of any
-  size. The anchor stays where it was solved to be as the stage gets wider or narrower. Where the
-  stage is shorter than the first frame's words need (780px on a desk, 760px on a phone), or
-  narrower than the shape it was solved at, the camera draws back about the anchor, widening its
-  view by up to 1.6 times, so the street grows smaller under the words and keeps its pavement.
-  See Motion, Story map.
-- **Tiers:** high on a wide screen; low on a narrow one (under 900px), on a device that cannot hold
-  its frame rate, or with `?tier=low`. Low lights the walked shop only and loads the smaller sky.
-  Resolution steps down before the tier does: the pixel ratio starts at up to 1.5 (1.25 narrow) and
-  is stepped between 1 and that ceiling in quarters; three slow windows at a ratio of 1 drop to the
-  low tier.
-- **Budgets:** none is written down. Counted from the code, not from the renderer: 231 drawn
-  objects, none instanced, of which 13 are the lamps' glow sprites (42 for the walked shop, 34 for
-  each sample, 19 for the sky, the ground and the two ends); 13 point lights on the high tier and 3
-  on the low; signs at 1024 by 256, plaques at 512 by 176.
-- **The stills:** `npm run stills` loads the home page with `?debug`, which hands the scene's clock
-  to the script, and captures the stage at every stop with the words hidden: 1600 by 920 for a
-  desk and 780 by 1544 for a phone, as WebP, each with a record that says it is a capture of this
-  site's own 3D and not a model's picture. The first desk frame also makes the link preview card.
-  They are what a visitor sees before the canvas has drawn, and instead of it.
+There is no 3D on this site. The first street was rendered live in three.js, and the owner
+rejected it on 17 November 2026 and asked for a better look (S13); the street is now painted, and
+this section records the painted stage that took the scene's place.
+
+- **Stack:** the page's own elements. Each plate is an `img` with what is true laid over it, in a
+  layer the stage moves with one 2D transform and an opacity. No canvas, no WebGL, no model and no
+  library beyond React: three.js and React Three Fiber are uninstalled, and Lenis is the only
+  motion dependency.
+- **Made from:** five generated paintings (S8 to S12), each made from the approved mock-up or from
+  a plate that came from it, with its prompt and a record beside it; the records say the masters
+  were saved as generated and not retouched. Four lie on the stage: the street, LePalatier's own
+  plate, the counter and the certificate. The fifth, the terrace, is the home page's row of shops
+  and the source of each shop's crop and of the shutter's slats. `npm run plates` cuts what ships:
+  each plate as WebP at two widths, the terrace as its painted band, a crop for each shop at two
+  widths with the slivers of its neighbours' piers covered by a smear of its own wall, the slats of
+  one shutter, and LePalatier's room. Every shipped file has a record naming its generator, its
+  job and its prompt.
+- **Painted blank, lettered in code:** every sign board, plaque, screen and paper was painted
+  empty. `src/data/plates.ts` holds where each blank stands, in its plate's own pixels, measured
+  with `scripts/measure-plates.mjs` (a flood from a point inside the blank, stopped by its painted
+  frame). A board seen at an angle is recorded as its four corners, and its lettering is carried
+  onto them by one projective transform (`src/lib/homography.ts`, written as a `matrix3d`), so the
+  name lies in the board's own perspective. The certificate's paper stays blank, and so would the
+  board of a painted shop with no listing for sale: what the data cannot say is not written.
+- **Placing a plate:** a view names a plate, a point on it, where that point stands on the stage
+  and a size. The stage turns that into a scale and a corner, then holds the plate to the edges it
+  must cover. Progress through the walk picks two neighbouring stops and the way between them; the
+  same arithmetic runs backwards, stops anywhere and jumps.
+- **The stage's ground:** the street plate's own sky, #012993, set in the stage's style from
+  `src/data/plates.ts`. On a phone the street plate stands along the foot and its top 7% is
+  feathered into that ground.
+- **The stills:** `npm run stills` loads the home page with `?debug`, places the stage at each stop
+  exactly (`window.__walk`), waits until every plate has decoded (`window.__stage.ready`), and
+  captures the stage with the words, the header and the stop marks hidden: 1600 by 920 for a desk
+  and 780 by 1544 for a phone, as WebP, each with a record that says it is a capture of this
+  site's own stage. The first desk view also makes the link preview card. They are what a visitor
+  sees before the plates arrive, and instead of them.
 - **Fallbacks:** the page is whole before any of this runs. As prerendered, every stop is a plain
-  section with its still and its words. With `?no3d`, without WebGL 2 or without script, it stays
-  so, and the first screen keeps its still with a description. If the 3D throws, an error boundary
-  keeps the still and the walk turns plain. Under reduced motion the camera cuts and nothing is
-  drawn at rest. A lost context is caught so the browser can restore it.
-- **Accessibility:** the canvas is hidden from assistive technology, and every fact the street
-  shows also exists as text in the stop's card. A shutter in 3D answers a pointer only; it is play
-  and carries nothing a visitor needs.
+  section with its still and its words. With `?plain` or without script it stays so, and the first
+  screen keeps its still with a description. Under reduced motion the stage cuts from stop to
+  stop. A plate that fails to load has no fallback of its own (Known Gaps).
+- **Weight:** none is budgeted in writing. As shipped: the street 219 kB and 748 kB, LePalatier's
+  plate 158 kB and 577 kB, the counter 14 kB and 61 kB, the certificate 11 kB and 49 kB, the
+  shutter 61 kB, the terrace 234 kB and 580 kB, a shop's crop 32 to 37 kB and 83 to 95 kB. The walk
+  loads its four plates at once and the terrace when it nears the screen (Known Gaps).
+- **Accessibility:** the live stage is hidden from assistive technology, and every fact a painting
+  shows also exists as text: in a stop's card, under a shop on the terrace, on a listing's page.
+  The still carries a description where it is the only picture. Nothing on the stage takes a
+  pointer or a key.
 
 ### Named Rules
 
-**The Still First Rule.** A still of the street is painted before the canvas and stays wherever the
-canvas cannot run; the 3D is an addition to a page that is already complete. The stage is never
-empty.
+**The Still First Rule.** A still of the stage is painted before the plates and stays wherever
+they cannot run; the moving stage is an addition to a page that is already complete. The stage is
+never empty.
 
-**The Built In Code Rule.** Every shop is boxes and planes, every texture but the sky is painted on
-a canvas, and nothing is a downloaded model. A new business then costs one entry of data, not one
-asset.
+**The Blank Paint Rule.** A painting is made with every board, plaque, screen and paper blank, and
+what is true is set over the paint in code, from the data: a listing's lettering, its town, its
+number, a sample's tag. A picture can then never say something the data does not, and what the
+data cannot say stays blank.
 
 **The Same Outline Rule.** A listing's lettering is one outline, drawn by `npm run wordmarks`, and
-the flat shopfront, the sign plates and the 3D sign all draw it. A sign and its page cannot
-disagree.
+every painted board, the document's cover, the sign plates and the drawn stand-in all draw it. A
+sign and its page cannot disagree.
+
+**The Illustration Rule.** A generated picture is never passed for premises. Every plate, crop and
+still has a record beside it that names what made it, and the footer of every page says the
+shopfronts are illustrations and that a business comes without premises.
 
 ## Responsive Behavior
 
-Breakpoints are Tailwind's own, 640, 768 and 1024px, and two of this build's: 900px, where the
-walk changes, and 1200px, from which the walk's cue shows. On a stage too short or too narrow for
-the words above the street, the camera draws back and the street grows smaller under them (Scene &
-3D, Camera). The fluid values run from 390 to 1440.
+Breakpoints are Tailwind's own, 640, 768 and 1024px, and two of this build's: 900px (`story`),
+where the walk changes, and 1200px, from which the walk's cue shows. Two more conditions shape the
+first screen from 900px wide: a screen under 800px tall, and a screen at least twice as wide as it
+is tall. No frame of the walk is moved for a screen's shape: one painting is held to the same
+corner at every size, and the words are fitted to what sky it leaves. The fluid values run from 390
+to 1440.
 
-| Name | Width | Layout | Type | Scene tier |
+| Name | Width | Layout | Type | Stage |
 |---|---|---|---|---|
-| Phone | under 640px | One column. The terrace's shops are 64vw each and scroll sideways. The catalogue is two to a row. Gutter 24px, sections 64px. The header holds the mark, WhatsApp and the menu button. The steps run down the page. On Enquire the direct routes come before the form | `heading-1` 48px, `heading-2` 36px, `heading-3` 30px at 390 | low; the phone's frames; the words above the street, a stop's card at the foot; no cue |
-| Small | from 640px | The terrace's shops are at least 216px. A listing's two sign plates sit side by side and its paints four across. The footer has two columns | Fluid | low |
-| Middle | from 768px | The header shows its pages, and its WhatsApp and menu button go. The four steps stand in a row under one line | Fluid | low |
-| Story | from 900px | The walk takes the desk's frames. A stop's card sits at the left, centred; the stop marks appear. Plain, a still sits beside its words | Fluid | high |
-| Wide | from 1024px | The catalogue is three to a row. Sections take two columns. A heading stays beside its list. On Enquire the form leads and the direct routes sit beside it. The footer has three columns | Fluid | high |
-| Desk | 1440px and up | Gutter 72px at 1440 and 80px from 1600. Content stops at 1280px. The terrace's six shops fit without scrolling | `heading-1` 96px, `heading-2` 60px, `heading-3` 36px, and no larger | high |
+| Phone | under 640px | One column. The terrace is 384vw wide and scrolls sideways. The catalogue is two to a row. Gutter 24px, sections 64px. The header holds the mark, WhatsApp and the menu button. The steps run down the page. On Enquire the direct routes come before the form | `heading-1` 48px, `heading-2` 36px, `heading-3` 30px at 390 | The phone's views. The street stands along the foot at 0.47 of the stage's height, its top feathered into the stage's ground, and the first words stand above it. A stop's card sits at the foot, the last stop's at the top. No cue and no stop marks |
+| Small | from 640px | The terrace is at least 1280px wide and scrolls sideways until the screen is. A listing's two sign plates sit side by side and its paints four across. The footer has two columns | Fluid | The phone's views |
+| Middle | from 768px | The header shows its pages, and its WhatsApp and menu button go. The four steps stand in a row under one line | Fluid; `heading-1` 65.3px at 768 | The phone's views |
+| Story | from 900px | The walk takes the desk's views. The first words are shaped to the roofline and fitted. A stop's card sits at the left, centred; the room's at the foot; the last stop's at the top. The stop marks appear. Plain, a still sits beside its words | The first words take the mock-up's measure (Typography) | The desk's views |
+| Wide | from 1024px | The catalogue is three to a row. Sections take two columns. A heading stays beside its list. On Enquire the form leads and the direct routes sit beside it. The footer has three columns | Fluid | The desk's views |
+| Cue | from 1200px | The cue shows at the foot of the first screen | Fluid | The desk's views |
+| Desk | 1440px and up | Gutter 72px at 1440 and 80px from 1600. Content stops at 1280px. The terrace fits without scrolling | The headline 106.6px at 1440 and 128px from 1730 wide on a screen at least 800px tall; `heading-2` 60px, `heading-3` 36px, and no larger | The desk's views |
+
+**Fitting the first words** (from 900px). The stage sets the float's shape from the real boxes,
+then tries a fit of 1, 0.92, 0.84, 0.76, 0.68, 0.6 and 0.52 in turn, each first with the second
+route and then without it (`data-tight`). It stops at the first where every line of the headline,
+the lede and the actions stands inside the float, the lede ends above the sky's floor, and the
+second route, where it is shown, ends above the floor too. While it measures, nothing in the words
+may transition (`data-fitting`), so each size reads back at once. It runs when the stage mounts,
+when the stage is resized and when the fonts have loaded. Live on the build of 12:54 UTC:
+
+| Screen | Fit | Second route | Headline |
+|---|---|---|---|
+| 1920 by 1080 | 1 | shown | 128px |
+| 1440 by 900 | 1 | shown | 106.6px |
+| 1024 by 768 | 1 | shown, under the button | 75.8px |
+| 1536 by 864 | 0.76 | shown | 86.4px |
+| 1366 by 768 | 0.92 | stepped aside | 93px |
+| 1344 by 760, the mock-up's shape | 0.92 | stepped aside | 91.5px |
+| 1280 by 720 | 0.84 | stepped aside | 79.6px |
+| 2560 by 1080 | 0.76 | stepped aside | 97.3px |
+
+The last five gave the same result under reduced motion.
+
+**A short desk** (from 900px wide, under 800px tall): the words start 24px from the stage's top
+where they otherwise start 32px down, and the lede and the actions sit 16px apart where they
+otherwise sit 24px. **A very wide screen** (from 900px wide, at least 2 to 1): the street is drawn
+larger and shows less sky, so the words' column loses its 1280px limit and stands one gutter from
+the screen's left edge, where the sky is; the header keeps its centred column.
 
 **Touch targets:** at least 44px for buttons (48px), the small buttons, chips, fields (48px), the
 menu button, the mark, header links (72px), arrow links (48px), the walk's cue, the back link, the
 footer's links and the credit, a question and the phone menu's links (64px), and the next business
-(96px); exceptions: a stop's mark is 36px wide and 24px tall, on screens from 900px only, and a link
-in a sentence is one line tall. **Collapsing:** the header's pages move into the phone menu under
-768px; the terrace scrolls sideways where it is wider than the screen; the catalogue goes from three
-to two to a row; the steps turn from a row to a column; a stop's card moves from the left of the
-stage to its foot. The captures show no page scrolling sideways at 390px (README, "Verification").
+(96px); exceptions: a stop's link is 44px tall and 28px wide, on screens from 900px only, and a
+link in a sentence is one line tall. **Collapsing:** the header's pages move into the phone menu
+under 768px; the terrace scrolls sideways where it is wider than the screen; the catalogue goes
+from three to two to a row; the steps turn from a row to a column; a stop's card moves from the
+left of the stage to its foot. The probes for this record found no page scrolling sideways at 390px
+on the home page, in the catalogue or on a listing.
 
 ## Do's and Don'ts
 
@@ -1122,77 +1352,88 @@ stage to its foot. The captures show no page scrolling sideways at 390px (README
 - **Do** fill one action in a group with `primary` #f8c618, set its label in `on-primary` #0a1639
   (11.02:1), and put a quiet button or an arrow link beside it
   (The One Saffron Rule, The One Filled Rule).
-- **Do** paint a listing's colours only on its shopfront, its sign plates and its paints, and set
-  every word on a board in that listing's lettering colour through `[data-ground="brand"]`
-  (The Own Sign Rule).
+- **Do** keep a listing's colours on its shopfront, its sign plates and its paints, and set every
+  word on a board in that listing's lettering colour (The Own Sign Rule).
 - **Do** change a ground by redefining roles in a scope, as `[data-ground="saffron"]` does, and
   leave every `--palette-*` value alone (The Roles Not Values Rule).
 - **Do** set a heading, a plaque and a price in Barlow Condensed capitals by `text-transform`, and
   every sentence in Geist (The Painted Sign Rule).
 - **Do** keep the slant for `heading-1` on the home page's first screen, and the coral shade for
   that headline and the tagline (The One Slant Rule).
-- **Do** give every piece of text one of the seventeen named styles (The Named Style Rule).
-- **Do** keep the shopfronts in the first screen of the home page, under the headline
+- **Do** give every piece of interface text one of the seventeen named styles
+  (The Named Style Rule).
+- **Do** keep the shopfronts in the first screen of the home page, with the headline
   (The Street First Rule).
 - **Do** hang a lambrequin in the colour of the ground above it where two grounds meet
   (The Roof Line Rule).
+- **Do** keep the first words above the painted roofline and their sentences above the sky's
+  floor, by shaping and fitting them, and measure them on the sky at the sizes they are shown
+  (The Words In The Sky Rule).
 - **Do** separate one part of a page from the next with a ground or a hairline, and put anything
-  that sits over the live street on a solid ground of its own
+  else that sits over a painting on a solid ground of its own
   (The Flat Interface Rule, The Solid Over The Street Rule).
 - **Do** round anything pressed that is a control to a full pill, at least 48px tall, or 44px for
   the small button, a chip and the cue (The Pill Rule).
 - **Do** show a business as its shopfront, from `Shopfront.tsx` and the data, and name what is
   fixed about it on a plaque in `enamel` #0b2b8e with a limewash rim
   (The Shopfront Rule, The Plaque Rule).
-- **Do** say a status, a sample, an error and the current page in words or as a mark, and mark a
-  sample on its shutter, beside its name and at its price
-  (The Words Not Colour Rule, The Sample Rule).
-- **Do** leave every word visible in the markup, roll a shutter and a masked heading on
-  `ease-roll`, and give each new movement its row under "Reduced motion and no script"
-  (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).
-- **Do** paint a still first, build every shop in code, and draw a sign from the same outline as
-  its page (The Still First Rule, The Built In Code Rule, The Same Outline Rule).
+- **Do** say a status, a sample, an error and the current page in words or as a mark, mark a
+  sample on its shutter, beside its name and at its price, and leave its shutter down
+  (The Words Not Colour Rule, The Sample Rule, The Shut Sample Rule).
+- **Do** leave every word visible in the markup, roll a shopfront's shutter and a masked heading
+  on `ease-roll`, rest the stage at each stop, and give each new movement its row under "Reduced
+  motion and no script" (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).
+- **Do** capture a still of the stage after any change to it, paint a new picture with every
+  board, plaque, screen and paper blank, and set a listing's one outline over the paint from the
+  data (The Still First Rule, The Blank Paint Rule, The Same Outline Rule).
+- **Do** save a generated picture's prompt and its record beside it, and keep the footer's line
+  that says the shopfronts are illustrations (The Illustration Rule).
 
 ### Don't
 
 - **Don't** set words in saffron on limewash or fill a second button in a group: saffron on
   limewash measures 1.49:1 (The One Saffron Rule, The One Filled Rule).
-- **Don't** put the platform's ink, a grey or another listing's colour on a listing's board: only
-  its own pair is measured, from 6.09:1 to 12.17:1 (The Own Sign Rule).
+- **Don't** put the platform's ink, a grey or another listing's colour on a listing's board, or
+  borrow a listing's colour for the platform (The Own Sign Rule).
 - **Don't** redefine a palette value inside a scope, or paint with a raw hex or one of Tailwind's
   colours: those are switched off and paint nothing (The Roles Not Values Rule).
 - **Don't** set a sentence in Barlow Condensed or type capitals into the markup: the capitals are
   `text-transform` (The Painted Sign Rule).
 - **Don't** slant a second heading, shade a third line, or set words in coral: it measures 3.09:1
   on dusk (The One Slant Rule).
-- **Don't** set a loose size or weight, a weight over 700 or text under 12px
+- **Don't** set a loose size or weight, a weight over 700 or interface text under 12px
   (The Named Style Rule).
 - **Don't** open the home page with a claim, a picture of something else or a band of logos ahead
   of the street: the businesses are the proof (The Street First Rule).
 - **Don't** rule a line between two sections or hang a fringe in a colour that is not the ground
   above it (The Roof Line Rule).
+- **Don't** let a line of the first words run onto a roof or a sentence end on the afterglow, and
+  never move a view or lay a scrim to make room for them (The Words In The Sky Rule).
 - **Don't** cast a soft shadow, fill with a gradient or blur a ground in the interface, and never
-  lay a blur or a scrim over the live street (The Flat Interface Rule, The Solid Over The Street
-  Rule).
+  lay a blur or a scrim over a painting (The Flat Interface Rule, The Solid Over The Street Rule).
 - **Don't** square a button or a chip, round a plaque into a pill, or make a plaque a button
   (The Pill Rule, The Plaque Rule).
 - **Don't** show a business as a photograph, a logo tile or a boxed card: it is a shopfront
   (The Shopfront Rule).
-- **Don't** mark a sample, a status or an error by colour alone, add an error colour, or let a
-  sample's price stand without "a placeholder" (The Words Not Colour Rule, The Sample Rule).
+- **Don't** mark a sample, a status or an error by colour alone, add an error colour, let a
+  sample's price stand without "a placeholder", or raise a sample's shutter
+  (The Words Not Colour Rule, The Sample Rule, The Shut Sample Rule).
 - **Don't** start anything hidden without `html.can-animate`, mute the tagline below 0.5 of the
-  ink (3.77:1), loop a movement, or move the camera while a visitor rests at a stop
+  ink (3.77:1), loop a movement, or move the stage while a visitor rests at a stop
   (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).
-- **Don't** download a model, ship a second generated image, leave the stage empty while the
-  canvas arrives, or letter a 3D sign by hand (The Still First Rule, The Built In Code Rule, The
-  Same Outline Rule).
+- **Don't** leave the stage empty while the plates arrive, generate a picture with lettering in
+  it, letter a board by hand or write on a painting what the data does not hold
+  (The Still First Rule, The Blank Paint Rule, The Same Outline Rule).
+- **Don't** ship a generated picture without its record, call a painting a photograph, or let a
+  shopfront pass for premises (The Illustration Rule).
 
 ## Agent Guide
 
 **Quick reference:**
 
 - Ground: `dusk` #0e328f; the header and the footer `dusk-deep` #082478; one wall `primary`
-  #f8c618; reading sections `limewash` #f7f7f8.
+  #f8c618; reading sections `limewash` #f7f7f8; the stage's own ground is the street plate's sky,
+  #012993.
 - Words: `limewash` on dusk, secondary `haze` #b6c0db; `ink` #0a1639 on saffron and limewash,
   secondary `ink-on-saffron` #3e3d32 and `ink-muted` #515972.
 - Action: `primary` #f8c618 with `on-primary` #0a1639; hover and press `primary-dark` #e3b30d. On
@@ -1200,39 +1441,51 @@ stage to its foot. The captures show no page scrolling sideways at 390px (README
 - Lines: an edge `line-strong` (limewash at 55% on dusk, ink at 55% on light); between rows `line`
   (limewash at 20%, ink at 22% on saffron, ink at 16% on limewash).
 - Focus: a 2px outline, 3px out: saffron on dusk and deep dusk, dusk on limewash, ink on saffron.
-- Radius: a pill for anything pressed; 16px for panels and sign plates; 12px for fields, paints
-  and the walk's card; 6px for a plaque.
-- Type: Barlow Condensed capitals for signs (`heading-1` 48 to 96px, italic, shaded; `heading-2` 36
-  to 60px); Geist for sentences, `body-3` at 16px; `caption-4` on a plaque.
+- Radius: a pill for anything pressed and for the stop marks' strip; 16px for panels, sign plates
+  and a business's own plate; 12px for fields, paints and the walk's card; 6px for a plaque.
+- Type: Barlow Condensed capitals for signs (`heading-1` 48 to 96px, italic, shaded, and up to
+  128px on the first screen from 900px wide; `heading-2` 36 to 60px); Geist for sentences, `body-3`
+  at 16px; `caption-4` on a plaque.
 - Page: gutter `clamp(1.5rem, 5vw, 5rem)`; sections `clamp(4rem, 10vw, 8rem)`; content at most
-  1280px; text 62ch; hero 680px; header 72px.
+  1280px; text 62ch; a heading with its lede 680px; header 72px.
 - Motion: `ease-out` cubic-bezier(0.16, 1, 0.3, 1); `ease-roll` cubic-bezier(0.3, 0, 0.1, 1) for a
-  shutter, 900ms; a reveal rises 18px over 800 and 900ms.
+  shopfront's shutter, 900ms; a reveal rises 18px over 800 and 900ms; the stage rests 22% at each
+  end of the way between two stops.
 - Facts are data: `src/data/site.ts`, `src/data/businesses.ts`, `src/data/pack.ts`,
-  `src/data/walk.ts`.
+  `src/data/walk.ts`. Where things stand on a painting is data too: `src/data/plates.ts`, and each
+  stop's view in `src/components/stage/views.ts`.
 
 **Audit before calling a page done:**
 
 1. Grounds, inks and the one filled action per group hold; no stray grey, no second accent, no
    listing's colour off its own shopfront, plates or paints.
-2. Every text pair is in Contrast, floored and passing, or listed under Gaps; anything over the
-   live street stands on a solid ground or has been sampled from 360 to 1920 wide.
+2. Every text pair is in Contrast, floored and passing, or listed under Gaps; anything over a
+   painting stands on a solid ground, or is the first words and has been sampled on the sky from
+   360 to 2560 wide.
 3. Hover, focus-visible and pressed states exist for everything pressable, or the missing one is
    under Known Gaps.
 4. Every movement has its row under "Reduced motion and no script"; the page is whole without
-   script, with `?no3d` and without WebGL.
-5. `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0 errors; `node scripts/check-design.mjs`
-   passes; `npm run tokens`, `npm run copy`, `npm run contrast` and `npm run behaviour` pass; fresh
-   screenshots at 390 and 1440 have been read, and `npm run stills` has been run after any change
-   to the street.
+   script and with `?plain`, and the first words fit the same with motion reduced.
+5. No painting carries a letter that is not set from the data, every sample is tagged and shut, and
+   every generated file has its record beside it.
+6. `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0 errors; `node
+   scripts/check-design.mjs` passes; `npm run tokens`, `npm run copy`, `npm run contrast` and `npm
+   run behaviour` pass; fresh screenshots at 390 and 1440 have been read, and `npm run stills` has
+   been run after any change to the stage or to a plate.
 
 **Prompts:**
 
 - "Add a listing to `src/data/businesses.ts` with a wall, a board, a lettering colour and a trim,
   and its wordmark to `scripts/make-wordmarks.mjs`, in a face under the SIL OFL 1.1. Give the
   lettering at least 4.5:1 on the board with `scripts/contrast.mjs`, add the pair to
-  `scripts/contrast.pairs.json`, add its tokens and its row to DESIGN.md, and run `npm run stills`.
-  Change no component."
+  `scripts/contrast.pairs.json`, and add its tokens and its row to DESIGN.md. It has no painting,
+  so the catalogue and its own page draw it with `DrawnShopfront.tsx` and the terrace leaves it
+  out; say so under Known Gaps until a plate is painted for it. Change no component."
+- "Paint a new plate: write its prompt to `assets/plates/<name>.prompt.txt`, asking for every
+  board, plaque, screen and paper blank and for no lettering anywhere; save the master as
+  generated. Find each blank with `node scripts/measure-plates.mjs <plate> <name:x,y> --draw
+  out.png`, look at the drawn outline, and record the numbers in `src/data/plates.ts`. Run `npm run
+  plates`, then `npm run stills`, and add the plate to Sources with its generator and its job."
 - "Build a section on saffron by setting `data-ground` to `saffron` on it, with a `Lambrequin` at
   its top in the colour of the ground above. Use role classes only (`text-ink`, `text-ink-subtle`,
   `border-line-strong`): the scope turns ink to #0a1639, secondary words to #3e3d32 and the action
@@ -1251,85 +1504,128 @@ Recorded, not rules.
 
 **The build's standing**
 
-- The tree is final, with its last fixes not yet committed. The finish review of 17 November 2026
-  answered "fix" with eight points (`.impeccable/review/finish-review.md`); its fixes are commit
-  0ca61e9, and the fixes to what its verdict pass and this record found are in the working tree.
-  Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail) and
+- The tree is not final. The finish review of the painted street answered "fix" with eight points
+  on 17 November 2026 (`.impeccable/review/finish-review-painted.md`); the fixes made since are in
+  the working tree on commit 5495eee, uncommitted, and this record is of them as built at 12:54
+  UTC. Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail) and
   `npm run contrast` (every pair passes for its role). The captures, the accessibility pass, the
-  reveals and `npm run behaviour` were run by the build and are not repeated here.
-- impeccable's plates and hero pixel gates were not run for the street. The owner chose live 3D
-  over a raster plate, so the tool's `plates` phase stayed open ("plate missing for street") and
-  `hero`, `sections`, `motion` and `responsive` never opened. The mock-up was the composition
-  reference. The measured comparison of the final build is in `.impeccable/review/diff/final`
-  (08:56 UTC): 51% overall (0.507, read by the tool as "contradicted"), structure 0.34, colour
-  0.59, palette match 0.72, detail 0.515; the street region 0.48, the sky 0.53, the headline 0.51.
-  Earlier builds measured 53% before the fixes and 50% part way through them. The first screen has
-  been judged by eye against the mock-up, not proven by measurement.
-- Against the mock-up the build differs by decision or by medium: the street is drawn live, not
-  painted; each sign carries its listing's real lettering; the walked shop's room holds a screen,
-  a counter and a frame; the roofs have no brackets; the next section does not show at the foot of
-  the first screen, where a cue stands in its stead.
-- Hover and pressed states were read in code, not captured. A shutter's rest, hover, focus and
-  open states were measured against the production build, on the terrace, in the catalogue and at
-  the head of a listing.
-- Not run: any real GPU, phone or tablet; frame rate on a device; a keyboard pass by hand on a
-  device; a screen reader; Lighthouse (README, "Verification").
+  reveals and `npm run behaviour` are the build's own and are not repeated here.
+- impeccable's plates gate passes, 2 of 2. Its hero gate is open: the measured comparison of the
+  first screen with the approved mock-up stood at 65.8% before the first words' fit was corrected
+  and stands at 71.7% (0.7171, read by the tool as "drift") at 13:01 UTC, against the 72% the gate
+  asks: structure 0.69, colour 0.58, palette match 0.65, detail 0.79; the street 0.76, the sky
+  0.65, the headline 0.47, the lede 0.43 (`.impeccable/review/diff/final`). The `sections`,
+  `motion`, `responsive` and `review` phases never opened. The 3D builds measured 49.6% to 52.6%.
+- Against the mock-up the build differs by decision: each sign carries its listing's real
+  lettering, the plaques carry a town and numbers, the header is the site's own 72px band, no
+  saffron band shows at the foot of the first screen, and the second route steps aside on some
+  desks.
+- The plates are generated illustrations. Nobody who knows a Mauritian shop street has yet
+  confirmed that the roofs, the fretwork, the plaques, the lamp and the wire read as Mauritius.
+- The paintings do not agree with one another in every detail. The terrace runs LePalatier first
+  from the left and the street has it nearest, at the right; a board is a plain rectangle on the
+  street plate and notch-cornered on the terrace and on LePalatier's own plate. A dissolve passes
+  between two of them.
+- The dissolves and the travels are not captured. The stills and the review's captures show each
+  stop at rest; one dissolve was looked at for this record at its midpoint, on an earlier build,
+  where both paintings show at once.
+- Hover and pressed states were read in code, not captured.
+- Not run: any real phone or tablet; frame rate on a device while the stage moves layers up to
+  3840px wide; a keyboard pass by hand on a device; a screen reader; Lighthouse.
 - English only. French and Kreol are not built, and the routes are not under a language folder.
 - The sample listings' colours and lettering are placeholders, and LePalatier's are a first
   direction to confirm.
 - The kit's dev-only foundations page is not built, so no sheet shows every role, style and step
   bound to the real tokens.
 
-**Where the build differs from what is written**
+**Where the build falls short of what is written**
 
-- A shutter in 3D answers a pointer only. It has no keyboard equivalent and no name, and the
-  cursor is the only cue that it can be raised.
-- Under light the walked shop's wall renders darker and redder than its sample: #48000d in shade
-  against #711425.
+- Weight on a phone. The walk loads its four plates at once: 967 kB at 390 by 844 at 1x, as loaded
+  in the probe (the street at 1920 wide; LePalatier's plate at 2880, the counter and the
+  certificate at 2048, because their `sizes` ask for three to six screens' width; the shutter). By
+  the same arithmetic a 3x phone takes about 1.5 MB, and 2.1 MB once the terrace has loaded. The
+  first three stops' stills also load before the live walk hides them, and the link preview card
+  is a 1 MB PNG.
+- A listing beyond the six painted is drawn by the stand-in in the catalogue and on its own page,
+  is left off the terrace, and has no board on the walk's street.
+- The walk matches a listing to a painted shop by its place in the list, where the terrace matches
+  by name. When a business is sold and leaves the list, every sign on the walk's street moves one
+  shop along, and the walk's own shop, painted as LePalatier's, is lettered for whichever business
+  is then first. No instance: nothing is sold.
+- Lettering on a painting falls under 12px. A sample's tag on the first screen stands 7 to 12.6px
+  tall, box and all, at 390 by 844. A number is 8.3px on the terrace at 1440, 7.3px in the
+  catalogue at 390, and a speck on the first screen (its box 3.1 to 5px tall on a phone, 7 to
+  11.5px at 1440 by 900). The town is 10.2px at the head of LePalatier's page at 390. Each is said
+  again in text beside its shop.
+- A listing's lettering on its lit board falls under its flat pair, to 2.41:1 for Bouké and 2.81:1
+  for Larout on the terrace (Contrast, Gaps).
+- In the catalogue a narrower shop ends short of its frame: up to 22.6px of limewash shows at its
+  right at 1440, and up to 9.3px at 390.
+- Where the second route breaks onto its own line under the button (phones, and 1024 by 768), it
+  keeps the 24px that separate it from the button and so stands 24px in from the button's left
+  edge.
+- At 360 by 640 the second route sits just above a roof, and the corner of its focus ring crosses
+  the fretwork, where saffron measures 1.85:1.
+- At the last stop at 1440 by 900 the card's foot meets the street lamp's head, and a sliver of
+  the first shop shows at the stage's right edge.
+- A plate that fails to load has no fallback: the stage arrives over the still all the same, its
+  lettering on bare ground. Read in code, not provoked.
 - Without script the phone menu does not open, so under 768px the header offers the mark and
   WhatsApp and no pages; the footer carries them. The request form is sent by script: without
   script it shows a notice, and its fields do nothing.
 - Read from the palette and not through a role: the skip link, the selection and the scrollbar,
-  the page's own background, the stage's ground, the walk's cue and the strip under the stop
-  marks, the mark, every fill in the drawn shopfront, the 404's kerb, and each lambrequin's colour,
-  the footer's included.
+  the page's own background, the ground behind the stage, the walk's cue and the strip under the
+  stop marks, the mark, a sample's tag, the lettering on a painted plaque, a lamp's bloom, a
+  doorway's lamplight, every fill in the drawn stand-in, the 404's kerb, and each lambrequin's
+  colour, the footer's included.
+- Written outside the palette: the stage's ground, #012993 (`STREET_SKY`, `src/data/plates.ts`),
+  and the browser's theme colour, #082478 (`src/app/layout.tsx`), which repeats `dusk-deep` by
+  hand.
+- The first words on a wide screen override two named styles against `.walk-words-first`, with no
+  name of their own, and the headline there reaches 128px, above the 96px `heading-1` ends on.
+  The three letterings on a plate are three more settings with no named style.
 - The mark's name is `heading-5` with its capitals and its tracking switched off by two utilities,
   and a paint's code is `caption-2` with capitals added by one: two variants with no name of their
   own.
-- Off the spacing scale in `globals.css`: a plaque's 10px of side padding, the walk card's 28px of
-  padding and the 6px of padding above and below the stop marks.
-- Two radii have more than one use: 12px (fields, paints, the sample note, the walk's card, the
-  strip under the stop marks) and 16px (sign plates, panels, plain stills).
+- Off the spacing scale in `globals.css`: a plaque's 10px of side padding and the walk card's 28px
+  of padding.
+- Two radii have more than one use: 12px (fields, paints, the sample note, the walk's card) and
+  16px (sign plates, a business's own plate, panels, plain stills).
 - States not designed: hover on the mark; pressed on an arrow link, a header link, a question, a
-  stop's mark, the menu button and the cue. `Reserved` and `Sold` have a label and no instance.
+  stop's mark, the menu button and the cue; a stop's mark does not grow under keyboard focus, where
+  only its name and the ring show. `Reserved` and `Sold` have a label and no instance.
 - States written with no instance on any page: a disabled quiet button, a disabled field, a
   disabled chip, the empty street, a filled action on limewash and on saffron, the page with prices
-  switched off.
-- A stop's mark is 36px wide and 24px tall, under the 44px the rest keep.
+  switched off, the drawn stand-in, a painted crop standing open, a doorway's lamplight, and a
+  painted shop left blank because its business is sold.
+- A stop's link is 28px wide, under the 44px the rest keep; it is 44px tall.
 
 **Declared and unused**
 
-- `--palette-amber` #e48627 ("the lamps' light") and `--palette-asphalt` #383141 ("the road") are
-  declared and read by nothing; the street takes its light and its road from `three/palette.ts`.
-- The `caption-3` text style, the `--ease-in-out` curve and the `--breakpoint-story` token are
-  declared and used by nothing. The 900px breakpoint is written out by hand in three media queries
-  and two media strings, and the cue's 1200px in one.
+- `--palette-amber` #e48627 and `--palette-asphalt` #383141 are declared and read by nothing.
+- `tin`, `tin-shade`, `steel`, `steel-deep`, `lamplight` and `lamplight-wall` are read only by the
+  drawn stand-in and, for `lamplight`, by a doorway's lamplight; neither has an instance.
+- The `caption-3` text style and the `--ease-in-out` curve are declared and used by nothing. The
+  `story` breakpoint is used once, as a variant; the same 900px is written out by hand in nine
+  media queries, three media strings and four `sizes` strings, and the cue's 1200px in one.
 - `--brand-wall` and `--brand-accent` are declared, and the second is set on a listing's sign
-  plates, but no rule reads either; a shopfront takes its colours from its own inline variables.
+  plates, but no rule reads either.
 - `paper-subtle` is read only by a disabled filled action and a disabled field, so its values on
   deep dusk, saffron and limewash paint nothing yet. On a listing's board, `line` is defined and
   nothing draws it, and `focus` is not turned because nothing there takes focus.
-- `stage.pointer` is declared and neither written nor read.
 
 **Not yet traced**
 
 - The derived values (`primary-dark`, `ink-muted`, `ink-on-saffron`, `haze`, `tin-shade`) are
   recorded with their direction and their reason. The build does not write down the operation that
   gave each value.
-- The scene's palette (`three/palette.ts`) was set so the rendered street reads as the mock-up.
-  Its values are not each traced to a measurement, and a lamp's painted light and a slat's
-  highlight are still written where they are used, in `three/textures.ts`.
-- The solver that gave the first and last camera frames is not in the repository; `timeline.ts`
-  holds its results only.
+- `roomlight` and the stage's ground are recorded as sampled from a plate; the region and the
+  method that gave each are not in the repository. This record's own sample of the street plate's
+  top edge gave #012a92.
+- The sky's floor, 0.55 of the street plate's height, and its two ratios (4.61:1 above, 3.09:1
+  below) are written in `src/data/plates.ts` without the measurement that gave them. This record's
+  sample of the master found 5.49:1 at the lightest sky above the floor.
+- Each stop's view and the roofline's twelve points were set by hand against the plates. No solver
+  or measurement for them is in the repository.
 - Geist was carried over from the first build. The mock-up's sentences were measured as a sans of
   normal width and were not matched to a face.
