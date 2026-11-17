@@ -5,9 +5,9 @@ import { Arrow } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import Lambrequin from "@/components/Lambrequin";
 import Reveal from "@/components/Reveal";
-import { Street } from "@/components/ShopCard";
 import Steps from "@/components/Steps";
 import TaglineReveal from "@/components/TaglineReveal";
+import Terrace from "@/components/Terrace";
 import Walk from "@/components/Walk";
 import { BUSINESSES } from "@/data/businesses";
 import { TAGLINE } from "@/data/pack";
@@ -37,9 +37,8 @@ export default function Home() {
 
       <Walk businesses={forSale} />
 
-      {/* The street, as a list */}
-      <section id="street" data-ground="limewash" aria-labelledby="street-heading">
-        <Lambrequin className="text-(--palette-dusk)" />
+      {/* The street, as one terrace on the page's own dusk */}
+      <section id="street" aria-labelledby="street-heading">
         <div className="shell section-y">
           <div className="grid gap-x-16 gap-y-4 pb-12 lg:grid-cols-[1.1fr_1fr] lg:items-end">
             <Reveal className="reveal-mask">
@@ -54,13 +53,13 @@ export default function Home() {
               {hasSamples && <p className="caption-1 mt-3">Shops marked Sample are placeholders, not for sale.</p>}
             </Reveal>
           </div>
-          <Street businesses={forSale} label="Businesses for sale" />
+          <Terrace businesses={forSale} label="Businesses for sale" />
         </div>
       </section>
 
       {/* The sale, on a saffron wall */}
       <section data-ground="saffron" aria-labelledby="steps-heading">
-        <Lambrequin className="text-(--palette-limewash)" />
+        <Lambrequin className="text-(--palette-dusk)" />
         <div className="shell section-y">
           <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-4 pb-12">
             <Reveal className="reveal-mask">
@@ -81,12 +80,13 @@ export default function Home() {
       <section aria-label="In one line">
         <Lambrequin className="text-(--palette-saffron)" />
         <div className="shell section-y">
-          <TaglineReveal text={TAGLINE} className="heading-2 measure-hero mx-auto text-center" />
+          <TaglineReveal text={TAGLINE} className="heading-2 sign-shade measure-hero mx-auto text-center" />
         </div>
       </section>
 
       {/* The questions, on limewash: the objections are answered before the last ask */}
       <section data-ground="limewash" aria-labelledby="faq-heading">
+        <Lambrequin className="text-(--palette-dusk)" />
         <div className="shell section-y grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal className="reveal-mask">

@@ -22,11 +22,11 @@ sections, each with a still of the street and its words.
 | The sign | Up at the sign, under its two lamps | The name and the identity |
 | The address | The town plaque and the letterbox on the pier | The domain and the social media names |
 | Behind the shutter | The shutter rolls up on a screen on the back wall | The website |
-| The counter | A folder on a counter | The business strategy |
+| The counter | The plan on a counter, its cover up | The business strategy |
 | The wall | A framed certificate | Help with incorporation |
 | The room | Back on the pavement, the room lit | What stays with the buyer: the room is theirs to fill |
 | The whole street | The street from further back | Each business is sold once |
-| On the street now | Limewash, six shopfronts | The businesses themselves |
+| On the street now | Dusk: one terrace of six shopfronts, wall to wall | The businesses themselves |
 | From the street to opening day | A saffron wall | How a sale runs, in four steps |
 | The line | Dusk | "The sign is painted / The shutter is yours to raise" |
 | Questions people ask | Limewash | Nine answers, and who builds every business |
@@ -189,18 +189,19 @@ approved: every colour was measured from it, and each carries its contrast in `D
 | Token | Value | Where it came from | Use |
 | --- | --- | --- | --- |
 | `dusk` | `#0e328f` | Sampled: the sky behind the headline | The page's ground |
-| `dusk-deep` | `#082478` | Sampled: the navigation band | The header, the footer, a card on the walk |
+| `dusk-deep` | `#082478` | Sampled: the navigation band | The header, the footer |
 | `saffron` | `#f8c618` | Sampled: the pill buttons | The one filled action; the ground of one whole section |
 | `saffron-deep` | `#e3b30d` | Derived from saffron | The action on hover and press |
 | `limewash` | `#f7f7f8` | Sampled: the white lettering | Words on dusk; the ground of reading sections |
 | `ink` | `#0a1639` | Sampled: the dark text on the pills | Words on saffron and on limewash |
 | `haze` | `#b6c0db` | Derived from limewash toward dusk | Secondary words on dusk |
 | `coral` | `#f14949` | Sampled: the shade under the headline | The shade under the hero's capitals. Never words |
-| `enamel` | `#0b2b8e` | Sampled: the street plaque | A plaque's plate |
+| `enamel` | `#0b2b8e` | Sampled: the second blue of the mock-up's sky | A plaque's plate, and a card on the walk |
 
 Barlow Condensed speaks the way a painted sign does: headings, plaques, prices. Geist carries every
 sentence. The signature shapes are the shopfront with its roller shutter, the enamel plaque, and
-the lambrequin, the cut fringe under a tin roof, which edges the saffron section and the footer.
+the lambrequin, the cut fringe under a tin roof, which hangs wherever one ground gives way to the
+next.
 Each listing wears its own wall, sign and lettering, from the data. The design system, with every
 token and its contrast: `DESIGN.md`.
 
@@ -208,7 +209,7 @@ token and its contrast: `DESIGN.md`.
 
 | Route | What |
 | --- | --- |
-| `/` | The walk along the street, the businesses, the steps, the line, the questions |
+| `/` | The walk along the street, the terrace of businesses, the steps, the line, the questions |
 | `/businesses` | The street as a catalogue: six shopfronts |
 | `/businesses/[slug]` | One business: its shopfront with the shutter up, its brand, what it is, what comes with it, what the buyer brings |
 | `/how-it-works` | The four steps and the questions |
@@ -220,8 +221,8 @@ Plus `sitemap.xml`, `robots.txt`, `llms.txt`, the icon and the 404.
 
 ## Verification
 
-Run on 17 November 2026 against `next start` on port 3100. The machine has no GPU, so the 3D drew
-on a software renderer: correct, and slow.
+Run on 17 November 2026 against `next start` on port 3100, after the design review's fixes. The
+machine has no GPU, so the 3D drew on a software renderer: correct, and slow.
 
 - TypeScript strict and the production build: clean. Every page prerendered except `/api/enquiry`.
 - `npm run copy`: 0 fail, 0 warn. `npm run tokens`: 0 fail, 1 warn (the one italic, the headline's
@@ -230,31 +231,39 @@ on a software renderer: correct, and slow.
 - `npm run screenshots`: nine page kinds (the home page live and plain) at 1440 x 900 and
   390 x 844, no horizontal overflow, no page errors. The stitched pages are in `review/screens`,
   and were read.
-- `npm run reveals`, with motion on: every reveal fired on every page at both sizes. On its first
-  run one home page section was missed while the software renderer was busy; the check now gives
-  that page longer per scroll step, and three further runs were clean.
+- `npm run reveals`, with motion on: every reveal fired on every page at both sizes. The home page
+  is given longer per scroll step, because the software renderer is busy there.
 - `npm run a11y`: axe-core against WCAG 2.2 A/AA, every page kind at both sizes, clean.
-- `npm run behaviour`: 37 of 37. As before: the skip link, the phone menu as a dialog, the form end
+- `npm run behaviour`: 40 of 40. As before: the skip link, the phone menu as a dialog, the form end
   to end, the endpoint (422, 503, 429, the honeypot, no samples), the page without script, and the
   machine-facing files before launch. New for the street: where WebGL runs the walk goes live with
-  one canvas, starts at its first stop and reaches its last at the end of the scroll, and the 3D
-  throws nothing; with `?no3d` the walk stays plain, every stop showing its still and its words;
-  without script the walk is eight plain sections; with reduced motion on a phone the headline is
-  on the first screen. The states it met are saved in `review/screens/states`. Restart the server
-  between runs: the endpoint's limit is per connection, per ten minutes.
-- The walk was read at every stop, live, at 1440 x 900 and 390 x 844.
+  one canvas, starts at its first stop and reaches its last at the end of the scroll; after a jump
+  to the walk's end the stage is never empty (sampled for four seconds); the 3D throws nothing;
+  with `?no3d` the walk stays plain, every stop showing its still and its words; without script the
+  walk is eight plain sections; with reduced motion on a phone the headline is on the first screen;
+  and with motion on, a business's own shopfront keeps its shutter up while a shutter in the
+  catalogue rests down and rises when pointed at. The states it met are saved in
+  `review/screens/states`. Restart the server between runs: the endpoint's limit is per connection,
+  per ten minutes.
+- The walk was read at every stop, live, at 1440 x 900 and 390 x 844, and the first screen at
+  1024 x 768, 1280 x 720, 1366 x 768, 1920 x 1080, 375 x 667 and 768 x 1024: the words stand clear
+  of the roofs at each.
 - The first screen was measured against the approved mock-up at the mock-up's own size
-  (`.impeccable/review/diff/final`): 53 per cent overall. The composition, the palette and the
-  words follow it. The difference that remains is the mock-up being a painting and the street
-  being drawn live: flatter light, plainer materials, no brackets under the eaves, and each
-  listing's real lettering on its sign. impeccable's plates and hero gates, which expect a raster
-  for a picture region, were not run for the street.
-- Every raster the site ships carries a record of where it came from (20 of 20).
-- The independent design review of this round, and `DESIGN.md` re-recorded from the build, follow
-  in the next commit. Until then `DESIGN.md` still describes the first build.
+  (`.impeccable/review/diff/final`): 50 per cent overall, where the tool asks for 72. So the first
+  screen was judged against the mock-up by eye, by an independent reviewer, and not proven by
+  measurement. The composition, the palette and the words follow the mock-up; what remains is a
+  painting against a street drawn live, and each listing's real lettering on its sign.
+  impeccable's plates and hero gates, which expect a raster for a picture region, were not run for
+  the street, because the owner chose live 3D.
+- Every raster the site ships carries a record of where it came from: 20 of 20 across `public` and
+  `assets`.
+- An independent design review answered "fix" with eight points; all eight were acted on
+  (`STORY.md`, "The design review, 17 November 2026"). Its verdict on the fixes follows in the
+  next commit.
+- `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
 - Not yet run: any real GPU, phone or tablet; frame rate on a device; a keyboard pass by hand on a
-  real device; a screen reader; Lighthouse. Hover and pressed states were written and read in code,
-  not captured. No old addresses exist to redirect.
+  real device; a screen reader; Lighthouse. Hover and pressed states were read in code and, for
+  the shutter, measured; they were not captured. No old addresses exist to redirect.
 
 ## Known gaps
 

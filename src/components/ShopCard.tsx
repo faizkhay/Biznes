@@ -37,19 +37,22 @@ export default function ShopCard({ business: b, index }: { business: Business; i
   );
 }
 
+/** What the street says when every business on it has been sold. */
+export function EmptyStreet() {
+  return (
+    <div className="rounded-2xl border border-line-strong p-8">
+      <p className="heading-5">Every business on the street has been sold</p>
+      <p className="body-3 measure mt-2 text-ink-subtle">New ones are being built. Ask, and we will tell you what is coming.</p>
+      <Link href="/enquire" className="btn btn-filled button-md mt-6">
+        Enquire
+      </Link>
+    </div>
+  );
+}
+
 /** The street as a list: every business still for sale, or a word about why it is empty. */
 export function Street({ businesses, label }: { businesses: Business[]; label: string }) {
-  if (!businesses.length) {
-    return (
-      <div className="rounded-2xl border border-line-strong p-8">
-        <p className="heading-5">Every business on the street has been sold</p>
-        <p className="body-3 measure mt-2 text-ink-subtle">New ones are being built. Ask, and we will tell you what is coming.</p>
-        <Link href="/enquire" className="btn btn-filled button-md mt-6">
-          Enquire
-        </Link>
-      </div>
-    );
-  }
+  if (!businesses.length) return <EmptyStreet />;
   return (
     <ul aria-label={label} className="grid grid-cols-2 gap-x-4 gap-y-12 sm:gap-x-8 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
       {businesses.map((b, i) => (

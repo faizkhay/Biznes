@@ -67,17 +67,117 @@ export function signTexture(b: Business, mark: Wordmark): Texture {
   return finish(c);
 }
 
-/** One slat of a roller shutter, to repeat down it. */
+/** One slat of a roller shutter, to repeat down it: dark steel with a crisp lit lip and a shaded gap. */
 export function slatTexture(): Texture {
   const [c, g] = canvas(8, 64);
   g.fillStyle = SCENE.steel;
   g.fillRect(0, 0, 8, 64);
-  // A slat catches light along its top edge and falls into shade at the gap below it.
-  g.fillStyle = "rgba(255, 255, 255, 0.16)";
-  g.fillRect(0, 0, 8, 10);
+  // A slat catches light along its top lip and falls into shade at the gap below it.
+  g.fillStyle = "rgba(255, 255, 255, 0.26)";
+  g.fillRect(0, 2, 8, 5);
+  g.fillStyle = "rgba(255, 255, 255, 0.07)";
+  g.fillRect(0, 7, 8, 22);
   g.fillStyle = SCENE.steelDeep;
-  g.fillRect(0, 50, 8, 14);
+  g.fillRect(0, 52, 8, 12);
   return finish(c, true);
+}
+
+/** A small repeatable sequence, so every painted surface comes out the same on every visit. */
+function sequence(seed: number) {
+  let n = seed;
+  return () => {
+    n = (n * 1664525 + 1013904223) % 4294967296;
+    return n / 4294967296;
+  };
+}
+
+/** Light as it falls off from a lamp: warm in the middle, nothing at the edge. Added to what it lies on. */
+export function glowTexture(): Texture {
+  const [c, g] = canvas(128, 128);
+  const pool = g.createRadialGradient(64, 64, 2, 64, 64, 64);
+  pool.addColorStop(0, "rgba(255, 196, 120, 1)");
+  pool.addColorStop(0.35, "rgba(255, 170, 90, 0.5)");
+  pool.addColorStop(1, "rgba(255, 150, 70, 0)");
+  g.fillStyle = pool;
+  g.fillRect(0, 0, 128, 128);
+  return finish(c);
+}
+
+/** Paving: four stone slabs with their joints, to repeat along the pavement. */
+export function pavingTexture(): Texture {
+  const [c, g] = canvas(256, 256);
+  const next = sequence(7);
+  g.fillStyle = SCENE.pavementJoint;
+  g.fillRect(0, 0, 256, 256);
+  for (const [x, y] of [[0, 0], [128, 0], [0, 128], [128, 128]]) {
+    // No two slabs are quite the same grey.
+    g.fillStyle = SCENE.pavement;
+    g.globalAlpha = 0.82 + next() * 0.18;
+    g.fillRect(x + 3, y + 3, 122, 122);
+  }
+  g.globalAlpha = 1;
+  return finish(c, true);
+}
+
+/** Tar: the road's dark ground with a scatter of lighter grit. */
+export function asphaltTexture(): Texture {
+  const [c, g] = canvas(256, 256);
+  const next = sequence(11);
+  g.fillStyle = SCENE.road;
+  g.fillRect(0, 0, 256, 256);
+  g.fillStyle = SCENE.roadFleck;
+  for (let i = 0; i < 900; i++) g.fillRect(next() * 256, next() * 256, 1 + next() * 2, 1 + next() * 2);
+  return finish(c, true);
+}
+
+/** A dry basalt wall: courses of dark blocks of uneven length, with pale mortar between. */
+export function basaltTexture(): Texture {
+  const [c, g] = canvas(256, 128);
+  const next = sequence(23);
+  g.fillStyle = SCENE.mortar;
+  g.fillRect(0, 0, 256, 128);
+  for (let row = 0; row < 4; row++) {
+    let x = -next() * 40;
+    while (x < 256) {
+      const w = 34 + next() * 44;
+      g.fillStyle = next() > 0.5 ? SCENE.basalt : SCENE.basaltDeep;
+      g.fillRect(x + 2, row * 32 + 2, w - 4, 28);
+      x += w;
+    }
+  }
+  return finish(c, true);
+}
+
+/**
+ * The strategy, as the document it is: a cover in the business's own colours with its lettering,
+ * and what it is in the site's sign face. It names what is sold, and claims nothing else.
+ */
+export function planTexture(b: Business, mark: Wordmark): Texture {
+  const [c, g] = canvas(512, 704);
+  g.fillStyle = b.brand.ground;
+  g.fillRect(0, 0, 512, 704);
+  g.strokeStyle = b.brand.accent;
+  g.lineWidth = 6;
+  g.strokeRect(26, 26, 460, 652);
+  const scale = Math.min(340 / mark.w, 70 / mark.h);
+  g.save();
+  g.translate(256 - (mark.w * scale) / 2, 150);
+  g.scale(scale, scale);
+  g.fillStyle = b.brand.ink;
+  g.fill(new Path2D(mark.d));
+  g.restore();
+  g.fillStyle = b.brand.accent;
+  g.fillRect(196, 290, 120, 4);
+  g.fillStyle = b.brand.ink;
+  g.textAlign = "center";
+  g.textBaseline = "middle";
+  g.font = `600 64px ${signFace()}`;
+  g.fillText("BUSINESS", 256, 372);
+  g.fillText("STRATEGY", 256, 444);
+  g.globalAlpha = 0.55;
+  for (const [y, w] of [[556, 220], [584, 170], [612, 196]]) g.fillRect(256 - w / 2, y, w, 6);
+  g.globalAlpha = 1;
+  return finish(c);
 }
 
 /** One rib of corrugated tin, to repeat across a roof. */
@@ -86,7 +186,7 @@ export function ribTexture(): Texture {
   const rib = g.createLinearGradient(0, 0, 64, 0);
   rib.addColorStop(0, SCENE.tinShade);
   rib.addColorStop(0.45, SCENE.tin);
-  rib.addColorStop(0.75, "#a9c0ee");
+  rib.addColorStop(0.75, SCENE.tinLight);
   rib.addColorStop(1, SCENE.tinShade);
   g.fillStyle = rib;
   g.fillRect(0, 0, 64, 8);
@@ -144,7 +244,7 @@ export function tagTexture(text: string): Texture {
   g.beginPath();
   g.roundRect(4, 4, 376, 136, 18);
   g.fill();
-  g.fillStyle = "#0a1639";
+  g.fillStyle = SCENE.ink;
   g.textAlign = "center";
   g.textBaseline = "middle";
   g.font = `600 84px ${signFace()}`;
@@ -185,17 +285,17 @@ export function screenTexture(b: Business, mark: Wordmark): Texture {
 /** The frame on the wall: a certificate drawn as ruled lines and a seal. No words, so no claim. */
 export function certificateTexture(): Texture {
   const [c, g] = canvas(320, 420);
-  g.fillStyle = "#fbf6ea";
+  g.fillStyle = SCENE.paper;
   g.fillRect(0, 0, 320, 420);
-  g.strokeStyle = "#0a1639";
+  g.strokeStyle = SCENE.ink;
   g.lineWidth = 6;
   g.strokeRect(22, 22, 276, 376);
-  g.fillStyle = "#0a1639";
+  g.fillStyle = SCENE.ink;
   g.fillRect(70, 76, 180, 14);
   g.globalAlpha = 0.45;
   for (let y = 130; y < 260; y += 26) g.fillRect(60, y, 200, 8);
   g.globalAlpha = 1;
-  g.fillStyle = "#f8c618";
+  g.fillStyle = SCENE.seal;
   g.beginPath();
   g.arc(160, 320, 36, 0, Math.PI * 2);
   g.fill();
@@ -206,8 +306,8 @@ export function certificateTexture(): Texture {
 export function palmTexture(): Texture {
   const [c, g] = canvas(256, 512);
   g.clearRect(0, 0, 256, 512);
-  g.strokeStyle = "#0b1f63";
-  g.fillStyle = "#0b1f63";
+  g.strokeStyle = SCENE.palm;
+  g.fillStyle = SCENE.palm;
   g.lineCap = "round";
   g.lineWidth = 12;
   g.beginPath();

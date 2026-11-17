@@ -91,7 +91,11 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
               {STOPS.map((stop, i) => (
                 <li key={stop.id}>
                   <a href={`#walk-${stop.id}`} aria-current={i === current ? "step" : undefined} className="walk-stop" aria-label={`${stop.place}, stop ${i + 1} of ${STOPS.length}`}>
-                    <span aria-hidden />
+                    {/* Where this stop is, shown beside its mark when it is pointed at or focused. */}
+                    <span aria-hidden className="walk-stop-name caption-4">
+                      {stop.place}
+                    </span>
+                    <span aria-hidden className="walk-stop-mark" />
                   </a>
                 </li>
               ))}
@@ -123,6 +127,14 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
                     <Arrow />
                   </Link>
                 </div>
+                {/* Where the street is live the next section is eight screens away, so the first
+                    screen says the page moves: a quiet way into the walk, at its foot. */}
+                {live && (
+                  <a href="#walk-sign" className="walk-cue pointer-events-auto button-sm mt-auto">
+                    Walk the street
+                    <Arrow className="rotate-90" />
+                  </a>
+                )}
               </div>
             </li>
           ) : (
@@ -134,8 +146,7 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
               </picture>
               <div className="walk-words">
                 <div className="walk-card pointer-events-auto">
-                  <p className="caption-4 text-ink-subtle">{stop.place}</p>
-                  <h2 className="heading-3 mt-2">{stop.title}</h2>
+                  <h2 className="heading-3">{stop.title}</h2>
                   <p className="body-3 mt-3">{stop.line}</p>
                   {i === STOPS.length - 1 && (
                     <Link href="/businesses" className="btn btn-filled button-md mt-6">

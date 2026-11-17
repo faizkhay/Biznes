@@ -188,6 +188,7 @@ export default async function BusinessPage({ params }: Props) {
 
       {/* What it is, back at dusk */}
       <section aria-labelledby="idea-heading">
+        <Lambrequin className="text-(--palette-limewash)" />
         <div className="shell section-y grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal className="reveal-mask">
             <h2 id="idea-heading" className="heading-2">
@@ -240,6 +241,7 @@ export default async function BusinessPage({ params }: Props) {
 
       {/* The next shop on the street */}
       <nav aria-label="More businesses" data-ground="limewash">
+        <Lambrequin className="text-(--palette-saffron)" />
         <Link href={`/businesses/${next.slug}`} className="shell group flex min-h-24 items-center justify-between gap-6 py-6 no-underline">
           <span>
             <span className="caption-2 block text-ink-subtle">Next on the street</span>

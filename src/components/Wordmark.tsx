@@ -7,7 +7,7 @@ import { wordmarkFor } from "@/data/businesses";
  * Names differ a great deal in shape: SOUFFLE, tracked wide, is nearly eight times as wide as it is
  * tall, and Bouké barely three. Given the same width they would not look the same size, so each is
  * given a width that grows with the square root of its proportions, which keeps the area of ink
- * roughly equal from one tag to the next.
+ * roughly equal from one sign to the next.
  */
 export default function Wordmark({
   slug,

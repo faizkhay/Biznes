@@ -57,11 +57,14 @@ for (const [frame, viewport, scale] of FRAMES) {
       window.scrollTo(0, walk.offsetTop + i * stage.offsetHeight);
     }, i);
     await page.waitForTimeout(250);
-    // Three seconds of stepped time: the camera is exact at once, and a shutter has come to rest.
-    await page.evaluate(() => window.__step(3));
+    // A little over a second of stepped time: the camera is exact at once, and a shutter has come
+    // to rest (24 frames at its rate of closing). Every stepped frame is drawn in full, and on a
+    // CPU renderer a frame of this street takes up to a second, so no more are stepped than a still
+    // needs, and the screenshot is given time to wait for them.
+    await page.evaluate(() => window.__step(1.2));
     await page.waitForTimeout(150);
     const box = await page.locator(".walk-stage").boundingBox();
-    const png = await page.screenshot({ clip: box });
+    const png = await page.screenshot({ clip: box, timeout: 180000 });
     const file = `${out}/${stops[i]}-${frame}.webp`;
     const info = await sharp(png).webp({ quality: 82 }).toFile(file);
     writeFileSync(
@@ -86,8 +89,8 @@ for (const [frame, viewport, scale] of FRAMES) {
       await page.setViewportSize({ width: 1200, height: 702 });
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.waitForTimeout(300);
-      await page.evaluate(() => window.__step(1));
-      await page.screenshot({ path: "public/og.png", clip: { x: 0, y: 72, width: 1200, height: 630 } });
+      await page.evaluate(() => window.__step(0.2));
+      await page.screenshot({ path: "public/og.png", clip: { x: 0, y: 72, width: 1200, height: 630 }, timeout: 180000 });
       writeFileSync(
         "public/og.png.json",
         JSON.stringify({ file: "/og.png", is: "The link preview card: the home page's first screen, captured from this site at 1200 x 630.", made: "scripts/stills.mjs", prompt: ORIGIN }, null, 2) + "\n",

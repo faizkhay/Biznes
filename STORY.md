@@ -52,8 +52,10 @@ business**.
 ## Chapters
 
 The home page opens on a stage: the street in 3D, pinned under the header, with the scroll walking
-the camera from stop to stop. Each stop is a screen of scroll with its words in a card. The stops
-are data (`src/data/walk.ts`); where the camera stands is `src/components/three/timeline.ts`.
+the camera from stop to stop. Each stop is a screen of scroll with its words on an enamel plaque
+the size of a notice. A column of marks at the stage's edge shows where the walk is and jumps along
+it, and a small pill at the foot of the first screen leads into it. The stops are data
+(`src/data/walk.ts`); where the camera stands is `src/components/three/timeline.ts`.
 
 | # | Marker | Where in the world | What the visitor sees and does | Sells | Words | Action |
 |---|---|---|---|---|---|---|
@@ -61,11 +63,11 @@ are data (`src/data/walk.ts`); where the camera stands is `src/components/three/
 | 1 | The sign | up at the sign | The board, its lettering, its two lamps | the name and the identity | the owner's list | none |
 | 2 | The address | the pier | The town's enamel plaque and the letterbox under it | the domain and the social media names | the owner's list | none |
 | 3 | Behind the shutter | the doorway | The shutter rolls all the way up; a screen on the back wall in the brand's colours | the website | the owner's list | none |
-| 4 | The counter | inside | A folder on a counter | the business strategy | the owner's list | none |
-| 5 | The wall | inside | A certificate in a frame | help with incorporation | the owner's list | none |
+| 4 | The counter | inside | The plan on a counter, its cover in the brand's colours: "Business strategy" | the business strategy | the owner's list | none |
+| 5 | The wall | inside | A certificate in a frame on the facing wall | help with incorporation | the owner's list | none |
 | 6 | The room | back on the pavement | The room, lit, with everything else still to come | honesty: what is not sold, and no promise of income | Khay Digital's | none |
 | 7 | The whole street | further back | The row from its far side, one room lit | each business is sold once | Khay Digital's | See the businesses |
-| 8 | On the street now | a limewashed wall | Six shopfronts, each a link; a shutter rolls up when one is pointed at | the businesses themselves | names, sectors, towns and prices from the data | open a business |
+| 8 | On the street now | dusk, the street itself | One terrace: six shopfronts wall to wall under one roofline, each a link, its facts on plaques beneath it; a shutter rolls up when a shop is pointed at; on a phone the terrace scrolls sideways | the businesses themselves | names, sectors, towns and prices from the data | open a business |
 | 9 | From the street to opening day | a saffron wall | Four numbered steps | how a sale runs | Khay Digital's | How it works |
 | 10 | the line | dusk | The tagline, lighting word by word | the idea in one line | Khay Digital's, to confirm | none |
 | 11 | Questions people ask | a limewashed wall | Nine questions, and who builds every business | the objections, answered; trust in the maker | Khay Digital's, with its published facts | Visit Khay Digital |
@@ -87,15 +89,22 @@ outline the pages draw, from `scripts/make-wordmarks.mjs`). Each shop stands a l
 shorter than its neighbour under its own tin roof. Nothing is a downloaded model. The one image
 that is not drawn in code is the sky, a generated painting (`assets/plates/sky.png`).
 
+The street is lit the way a blue-hour street is: every sign has two gooseneck lamps, each with its
+glow and the pool it throws down the wall; a raised shutter lets the room's light out across the
+paving; the far end falls away into the dusk. The light is painted and added to what it falls on,
+so it shows on every device.
+
 The opening and closing frames were solved against the approved mock-up's layout, not placed by
 eye: the camera stands low and the picture is shifted down, as an architectural photograph is, so
-the walls stay upright.
+the walls stay upright. The first shop's pier stays at the right edge on any screen, and on a short
+or narrow screen the street moves down so the words never lie over a roof.
 
 ## Play
 
-Any shutter can be raised or lowered by hand: a tap or a click on a shop rolls it. On the flat
-shopfronts further down, a shutter rolls up when its card is pointed at or focused. Neither carries
-anything a visitor needs.
+Any shutter can be raised or lowered by hand: a tap or a click on a shop rolls it, and a sample's
+tag stays in view whatever is done to its shutter. On the drawn shopfronts, in the terrace and in
+the catalogue, a shutter rolls up when its shop is pointed at or focused. Neither carries anything
+a visitor needs.
 
 ## Reduced motion and no WebGL
 
@@ -107,11 +116,14 @@ instead of travelling, shutters cut, reveals are simply there and the tagline is
 
 Two tiers: a wide screen lights every sign and every room; a narrow screen, a slow device or
 `?tier=low` lights the walked shop only and loads the smaller sky. The canvas draws only when
-something moves, pauses off screen, and steps its resolution down before its frame rate.
+something moves (at rest it draws nothing), pauses off screen, and steps its resolution down before
+its frame rate. The still stays under the canvas until the canvas has finished arriving, so the
+stage is never empty.
 
 ## After the story
 
-The home page is the story. The catalogue (`/businesses`) is the same street as six shopfronts.
+The home page is the story. The catalogue (`/businesses`) is the same businesses as a list to
+compare, on limewash.
 How it works carries the four steps and the questions. Enquire carries the form and the direct
 routes.
 
@@ -126,10 +138,10 @@ routes.
    the logo, the favicon. The shutter rolling up is the brand's one movement.
 2. **The plaque**: a blue enamel street plate with a white rim. It names what is fixed about a
    business: its number, its town, whether it is a sample.
-3. **The lambrequin**: the cut fringe under a creole tin roof. It edges the saffron section and
-   the footer, and hangs from every eave on the street.
-4. **Sign painter's capitals**: Barlow Condensed, and in the headline only, slanted with a hard
-   coral shade.
+3. **The lambrequin**: the cut fringe under a creole tin roof, one pierced scallop repeated. It
+   hangs from every eave on the street, and on the page wherever one ground gives way to the next.
+4. **Sign painter's capitals**: Barlow Condensed. The headline is slanted, the only slant on the
+   site; it and the tagline carry the painter's hard coral shade.
 5. **One saffron**: the colour of the action, and of one whole wall.
 
 ## Rounds
@@ -247,3 +259,50 @@ Departures, with reasons:
 - **Samples are marked on the street itself**: a white "Sample" tag on each sample's shutter, a
   "Sample" plaque beside its name, and its price called a placeholder.
 - The whole site still asks not to be indexed until `launched` is set to true.
+
+### The design review, 17 November 2026
+
+A fresh agent reviewed the build against the owner's brief, the direction contract and the approved
+mock-up, and answered **fix**: the composition held, the finish did not. Its eight points, and what
+was done about each:
+
+1. **No light.** The lamps were unlit cones and nothing glowed. Every sign now has two gooseneck
+   lamps with a glow and a pool down the wall, on every tier; a raised shutter throws the room's
+   light across the paving; the street lamp at the far end is lit.
+2. **Lilac shutters, barely open.** The shutters are dark steel with a lit lip on each slat, and the
+   first shop's shutter is raised past half, so the lit room is the brightest thing on the first
+   screen. The counter moved to the side wall, out of the doorway.
+3. **Dead planes at the edges.** The first screen ends on the first shop's pier at any width. The
+   road is tar and the pavement is stone slabs. The far end has its lamp, its wire to the last roof,
+   a basalt wall and three palms; the near end's wall is basalt too. On a phone the first screen
+   shows three shopfronts. The sky's afterglow now stands on the horizon; it had been under it.
+4. **"On the street now" was the card grid the contract refuses.** It is one terrace on the dusk
+   ground: shop touching shop under one roofline, facts on plaques beneath, scrolling sideways on a
+   phone.
+5. **Three stops did not show their subject.** The strategy is a document with its cover up; the
+   closing view brings the terrace across two thirds of the screen; the address stop frames the
+   pier, its plaque and its letterbox, square on.
+6. **A small label sat above every card's heading.** Removed, live and in the fallback. A stop's
+   name now shows beside its mark when the mark is pointed at or focused.
+7. **An empty stage after a jump to the walk's end.** A real fault: the still was removed on a
+   clock, and on a slow machine the canvas had not finished fading in. The still now goes only when
+   the canvas has arrived, and the behaviour test samples the stage for four seconds after a jump.
+8. **The build record.** impeccable's raster gates stay open for the street: they cannot be passed
+   by a street drawn live, and the tool accepts an override only with the owner's own words
+   downgrading the mock-up, which the owner did not say. The record is left as it is, the surface
+   brief says why, and the first screen is reported as judged by eye, not proven by measurement.
+
+Also from the review's notes: the cards on the walk are enamel plaques with a white rim; the
+headline's shade is thicker and the tagline carries it too; one scallop for every roof line, on the
+page and on the street, and one more at the head of the questions; a quiet pill at the foot of the
+first screen leads into the walk; the room stop no longer cuts a sample's tag.
+
+From the agent that recorded `DESIGN.md`, which measured the build as it wrote: a drawn shopfront
+inside a reveal could not raise its shutter with motion on, so a business's own shopfront ended
+shut (fixed, and now tested); the stop marks measured 1.5:1 over the lit room (they now stand on
+their own strip of deep dusk); the canvas drew thirty frames a second at rest for a scene with
+nothing idle (it now draws nothing at rest); a sample's tag hid when its shutter was raised by hand
+(it now stays); three changes of ground had no roof line and the footer's was always dusk (each
+now hangs from the ground above it); a roof tip reached the words at 1024 x 768 (the street now
+moves down on a narrow or short screen). What it found and was left as it is, is in `DESIGN.md`,
+"Known Gaps".

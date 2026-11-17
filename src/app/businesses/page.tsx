@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
+import Lambrequin from "@/components/Lambrequin";
 import { Street } from "@/components/ShopCard";
 import { BUSINESSES } from "@/data/businesses";
 import { pageGraph } from "@/lib/structured";
@@ -33,6 +34,7 @@ export default function Businesses() {
       </div>
 
       <section data-ground="limewash" aria-label="The street">
+        <Lambrequin className="text-(--palette-dusk)" />
         <div className="shell section-y">
           <Street businesses={forSale} label="Businesses for sale" />
           <p className="caption-2 measure mt-12 text-ink-subtle">Prices are in Mauritian rupees, for the whole business as described on its page.</p>

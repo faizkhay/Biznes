@@ -22,7 +22,9 @@ import { busy, stage } from "./stage";
  *   {!stepping && <Governor max={1.5} start={narrow ? 0.5 : 1} onDpr={setDpr} onFallback={toLowTier} />}
  * with the Canvas's frameloop={stepping ? "never" : running ? "demand" : "never"} and dpr={dpr}.
  *
- * KOS kit. From KYÔ (src/components/three/Pacing.tsx), verbatim but for the import of ./stage.
+ * KOS kit. From KYÔ (src/components/three/Pacing.tsx), with two switches added for this build
+ * (`idle` and `pointer`): the street has nothing that turns by itself and nothing that leans to a
+ * mouse, so at rest it draws nothing and a moving pointer asks for nothing.
  * This Governor replaces the drei PerformanceMonitor one used on earlier builds: with on-demand
  * rendering, PerformanceMonitor measures the deliberately spaced idle frames and steps a fast device
  * down for no reason.
@@ -39,7 +41,19 @@ function frameTime() {
   return typeof t === "number" ? t : performance.now();
 }
 
-export function Driver({ running, stepping }: { running: boolean; stepping: boolean }) {
+export function Driver({
+  running,
+  stepping,
+  idle = true,
+  pointer = true,
+}: {
+  running: boolean;
+  stepping: boolean;
+  /** False where nothing in the scene moves by itself: then nothing is drawn at rest. */
+  idle?: boolean;
+  /** False where nothing in the scene follows the pointer: then a moving mouse asks for no frames. */
+  pointer?: boolean;
+}) {
   const invalidate = useThree((s) => s.invalidate);
   const last = useRef({ progress: stage.progress, drawn: 0, prev: 0, raf: 0 });
 
@@ -54,7 +68,7 @@ export function Driver({ running, stepping }: { running: boolean; stepping: bool
     const move = (e: Event) => {
       // Only a mouse leans anything (a touch only scrolls, Stage.tsx), and with
       // reduced motion not even that: a held glass asks for its own frames.
-      if (e.type === "pointermove" && ((e as PointerEvent).pointerType !== "mouse" || stage.reduced)) return;
+      if (e.type === "pointermove" && (!pointer || (e as PointerEvent).pointerType !== "mouse" || stage.reduced)) return;
       // A scroll that does not move the walk (the menu's sticky glass, the page
       // below the walk) changes nothing in the picture.
       if (e.type === "scroll" && Math.abs(stage.progress - last.current.progress) < 1e-5) return;
@@ -67,7 +81,7 @@ export function Driver({ running, stepping }: { running: boolean; stepping: bool
       window.removeEventListener("pointermove", move);
       window.removeEventListener("scroll", move);
     };
-  }, [running, stepping, invalidate]);
+  }, [running, stepping, invalidate, pointer]);
 
   useEffect(() => () => cancelAnimationFrame(last.current.raf), []);
 
@@ -91,7 +105,7 @@ export function Driver({ running, stepping }: { running: boolean; stepping: bool
     // Reduced motion: nothing turns or drifts by itself (the drinks, the
     // garnish and the ritual all stand still), so nothing is drawn until
     // something asks (a scroll, the pointer, a pour, a swap: busy()).
-    if (stage.reduced) return;
+    if (stage.reduced || !idle) return;
     // Idle: 30 a second. An invalidate() takes effect on the next display
     // refresh, so it is made on the refresh before the one that should be
     // drawn: at 60 Hz every other refresh, at 120 Hz every fourth.

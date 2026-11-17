@@ -11,7 +11,7 @@ import { BUSINESSES } from "@/data/businesses";
 
 /**
  * What the enquiry is about: a business by its slug, the visitor's own idea, or not sure yet. Only a
- * real business still on the rail can be asked about: a sample is not for sale, so neither the form
+ * real business still on the street can be asked about: a sample is not for sale, so neither the form
  * nor the endpoint offers it (the second design review found the form still listing all five).
  */
 export const OPEN_TOPICS = ["own-idea", "unsure"] as const;

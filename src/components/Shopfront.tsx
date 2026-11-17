@@ -19,9 +19,12 @@ export default function Shopfront({
   business: b,
   open = false,
   label = false,
+  terrace = false,
   className,
 }: {
   business: Business;
+  /** The shop stands in a row with others: its wall runs to both edges, so neighbours touch. */
+  terrace?: boolean;
   /** The shutter is up and the room is lit. */
   open?: boolean;
   /** True where no text nearby names the business, so the drawing must. */
@@ -70,7 +73,7 @@ export default function Shopfront({
       <rect x="0" y="2" width="240" height="4" fill="var(--palette-limewash)" />
 
       {/* The wall, its two pilasters and its plinth */}
-      <rect x="6" y="42" width="228" height="196" fill="var(--wall)" />
+      <rect x={terrace ? 0 : 6} y="42" width={terrace ? 240 : 228} height="196" fill="var(--wall)" />
       <rect x="0" y="42" width="240" height="14" fill={`url(#${id}-fringe)`} />
       <g fill="none" stroke="var(--palette-limewash)" strokeOpacity="0.45" strokeWidth="1.5">
         <rect x="12" y="66" width="18" height="160" />

@@ -92,11 +92,19 @@ export default function Stage({
     return () => window.removeEventListener(STAGE_READY, onReady);
   }, []);
 
+  // The photograph goes only once the canvas has finished fading in over it, and never on a clock:
+  // on a slow device the fade can start late, and a photograph removed on time would leave the
+  // stage empty until it did (found by the finish review, 17 November 2026). The check below is
+  // for a browser that never reports the fade's end.
+  const veil = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!ready) return;
-    const t = window.setTimeout(() => setGone(true), 900);
-    return () => window.clearTimeout(t);
-  }, [ready]);
+    if (!ready || gone) return;
+    const t = window.setInterval(() => {
+      const el = veil.current;
+      if (el && parseFloat(getComputedStyle(el).opacity) > 0.99) setGone(true);
+    }, 1500);
+    return () => window.clearInterval(t);
+  }, [ready, gone]);
 
   const report = useRef(onLive);
   report.current = onLive;
@@ -119,14 +127,12 @@ export default function Stage({
   }, []);
 
   const show = webgl === true && sized && near;
-  const covered = ready && webgl === true;
 
   return (
     <div ref={host} className={`relative overflow-hidden ${className}`}>
       {(!gone || webgl !== true) && (
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ opacity: covered ? 0 : 1, transition: "opacity 700ms var(--ease-out)" }}
           aria-hidden={webgl === true ? true : undefined}
         >
           <picture>
@@ -146,8 +152,12 @@ export default function Stage({
       )}
       {show && (
         <div
+          ref={veil}
           className="absolute inset-0"
           style={{ opacity: ready ? 1 : 0, transition: "opacity 900ms var(--ease-out)" }}
+          onTransitionEnd={(e) => {
+            if (ready && e.target === e.currentTarget && e.propertyName === "opacity") setGone(true);
+          }}
           aria-hidden
         >
           <CanvasBoundary onError={() => setWebgl(false)}>{children({ running, narrow })}</CanvasBoundary>

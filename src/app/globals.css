@@ -23,7 +23,7 @@
   --palette-coral: #f14949; /* sampled: the shade under the headline. A shade and a mark only: 3.09:1 on dusk, never words */
   --palette-amber: #e48627; /* sampled: the lamps' light. The stage's light, and nothing in the interface */
   --palette-asphalt: #383141; /* sampled: the road. The stage's ground */
-  --palette-enamel: #0b2b8e; /* sampled: the street plaque. A plaque's plate, carrying limewash at 11.20:1 */
+  --palette-enamel: #0b2b8e; /* sampled: the second blue of the mock-up's sky (the painted plaque itself measures #052592). A plaque's plate, carrying limewash at 11.20:1 */
   /* The street's own materials, each a region median of the same mock-up (scripts/sample-comp.mjs).
      They colour the drawn shopfront; none is ever text. */
   --palette-tin: #4a6eac; /* a tin roof where the sky lights it */
@@ -58,7 +58,7 @@
   --color-action-hover: var(--palette-saffron-deep);
   --color-on-action: var(--palette-ink);
   --color-line: color-mix(in srgb, var(--palette-limewash) 20%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 55%, transparent); /* an edge: 4.25:1 on dusk */
+  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 55%, transparent); /* an edge: 4.21:1 on dusk */
   --color-focus: var(--palette-saffron); /* 6.98:1 on dusk, 8.52:1 on dusk-deep */
   --color-shade: var(--palette-coral); /* the sign painter's shade under the hero's capitals */
   --color-plaque: var(--palette-enamel);
@@ -186,7 +186,11 @@
   font-style: italic;
   text-transform: uppercase;
   letter-spacing: 0.005em;
-  text-shadow: 0.045em 0.05em 0 var(--color-shade);
+  text-shadow: 0.058em 0.064em 0 var(--color-shade);
+}
+@utility sign-shade {
+  /* The sign painter's hard shade, for the one other line that is painted large: the tagline. */
+  text-shadow: 0.05em 0.055em 0 var(--color-shade);
 }
 @utility heading-2 {
   font-family: var(--font-display);
@@ -552,6 +556,34 @@
     transform: rotate(45deg);
   }
 
+  /* ---------- The terrace (the home page's list of businesses) ----------
+     One row of shopfronts, wall to wall, that runs off the screen's edge and scrolls sideways where
+     it is wider than the screen. No gap and no card: a street. */
+  .terrace {
+    margin-inline: calc(-1 * var(--gutter));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-inline: var(--gutter);
+    padding-bottom: 1rem;
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x proximity;
+    scrollbar-color: var(--palette-saffron) transparent;
+    scrollbar-width: thin;
+  }
+  .terrace-row {
+    display: grid;
+    grid-auto-columns: minmax(13.5rem, 1fr);
+    grid-auto-flow: column;
+  }
+  .terrace-shop {
+    scroll-snap-align: start;
+  }
+  @media (width < 40rem) {
+    .terrace-row {
+      grid-auto-columns: 64vw;
+    }
+  }
+
   /* ---------- The walk (the home page's story) ----------
      As prerendered the walk is plain: a first screen with the street's still behind the headline,
      then each stop as a section with its own still and its words. Where the canvas can run
@@ -592,6 +624,8 @@
   }
   .walk[data-mode="plain"] .walk-card {
     background: none;
+    box-shadow: none;
+    color: inherit;
     padding: 0;
   }
   @media (width >= 56.25rem) {
@@ -624,27 +658,61 @@
     max-width: calc(80rem + 0px);
     margin-inline: auto;
   }
-  /* The card is the page's own deep ground, solid: never a blur over a live canvas. */
+  /* The card is a street plaque at the size of a notice: blue enamel with a white rim, solid, so
+     its words never depend on what the canvas is showing behind it. */
   .walk-card {
     max-width: 26rem;
-    border-radius: 1rem;
-    background: var(--palette-dusk-deep);
-    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background: var(--color-plaque);
+    color: var(--color-on-plaque);
+    padding: 1.75rem;
+    box-shadow:
+      inset 0 0 0 4px var(--color-plaque),
+      inset 0 0 0 6px var(--color-on-plaque);
   }
+  /* The way into the walk, at the foot of the first screen: a small solid pill. */
+  .walk-cue {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    border-radius: 9999px;
+    background: var(--palette-dusk-deep);
+    color: var(--palette-limewash);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: background-color 200ms var(--ease-out);
+  }
+  .walk-cue:hover {
+    background: var(--palette-enamel);
+  }
+  /* On a short phone the words fill the first screen and the street shows under them: no cue. */
+  @media (width < 56.25rem) and (height < 43.75rem) {
+    .walk-cue {
+      display: none;
+    }
+  }
+  /* Its arrow is the page's arrow turned to point down; pointed at, it moves the way it points. */
   @media (width >= 56.25rem) {
     .walk[data-mode="live"] .walk-chapter:not(.walk-hero) {
       align-items: center;
       padding-bottom: 0;
     }
   }
-  /* The stops: a short column of marks at the stage's edge; the current one is longer and saffron. */
+  /* The stops: a short column of marks at the stage's edge; the current one is longer and saffron.
+     The column stands on its own strip of deep dusk, so a mark keeps its contrast whatever the
+     street is showing behind it (over the lit room a bare mark measured 1.5:1). */
   .walk-stops {
     position: absolute;
-    right: 0.75rem;
+    right: 0.5rem;
     top: 50%;
     z-index: 2;
     display: none;
     transform: translateY(-50%);
+    border-radius: 0.75rem;
+    background: var(--palette-dusk-deep);
+    padding: 0.375rem 0.25rem;
   }
   @media (width >= 56.25rem) {
     .walk-stops {
@@ -652,13 +720,35 @@
     }
   }
   .walk-stop {
+    position: relative;
     display: flex;
-    width: 2.75rem;
+    width: 2.25rem;
     height: 1.5rem;
     align-items: center;
     justify-content: flex-end;
+    text-decoration: none;
   }
-  .walk-stop span {
+  /* A stop's name: a small plaque that shows beside its mark when it is pointed at or focused. It
+     stands outside the column, so the column stays as narrow as its marks. */
+  .walk-stop-name {
+    position: absolute;
+    right: calc(100% + 0.625rem);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border-radius: 0.25rem;
+    background: var(--color-plaque);
+    color: var(--color-on-plaque);
+    padding: 0.125rem 0.5rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 200ms var(--ease-out);
+  }
+  .walk-stop:hover .walk-stop-name,
+  .walk-stop:focus-visible .walk-stop-name {
+    opacity: 1;
+  }
+  .walk-stop-mark {
     display: block;
     width: 0.75rem;
     height: 0.1875rem;
@@ -668,14 +758,25 @@
       width 320ms var(--ease-out),
       background-color 320ms var(--ease-out);
   }
-  .walk-stop:hover span {
+  .walk-stop:hover .walk-stop-mark {
     width: 1.25rem;
     background: var(--color-ink);
   }
-  .walk-stop[aria-current="step"] span {
+  .walk-stop[aria-current="step"] .walk-stop-mark {
     width: 1.75rem;
     background: var(--color-action);
   }
+}
+
+/* The footer's fringe hangs from whatever ground the page ends on, as every other roof line does. */
+#site-footer {
+  --fringe: var(--palette-dusk);
+}
+main:has(> [data-ground="limewash"]:last-child) + #site-footer {
+  --fringe: var(--palette-limewash);
+}
+main:has(> [data-ground="saffron"]:last-child) + #site-footer {
+  --fringe: var(--palette-saffron);
 }
 
 /* ---------- Reveals: visible by default ----------
@@ -715,7 +816,10 @@ html.can-animate [data-reveal].reveal-mask > * {
 html.can-animate [data-reveal="in"].reveal-mask > * {
   clip-path: inset(0 0 0 0);
 }
-/* A shopfront arriving in view raises its shutter a little, then lets it settle shut. */
+/* A shopfront waits with its shutter up and rolls it down as it comes into view. A shopfront that
+   is meant to stand open keeps it up, and pointing at one, or focusing it, raises it again: these
+   rules sit outside the components layer, so they say so themselves (the layered hover and open
+   rules would lose to them; found while recording DESIGN.md, 17 November 2026). */
 html.can-animate [data-reveal].reveal-shop {
   opacity: 1;
   transform: none;
@@ -724,9 +828,14 @@ html.can-animate [data-reveal].reveal-shop {
 html.can-animate [data-reveal].reveal-shop .shutter {
   transform: translateY(-88%);
 }
-html.can-animate [data-reveal="in"].reveal-shop .shutter {
+html.can-animate [data-reveal="in"].reveal-shop .shopfront:not([data-open="true"]) .shutter {
   transform: none;
   transition-delay: var(--reveal-delay, 0ms);
+}
+html.can-animate [data-reveal="in"].reveal-shop a:hover .shopfront .shutter,
+html.can-animate [data-reveal="in"].reveal-shop a:focus-visible .shopfront .shutter {
+  transform: translateY(-88%);
+  transition-delay: 0ms;
 }
 
 /* The tagline moment: every word is full ink by default; only a page able to animate mutes them,

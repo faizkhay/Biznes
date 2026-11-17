@@ -9,9 +9,10 @@
 // The endpoint allows five requests per connection per ten minutes, so a second run inside that
 // window sees 429 on the endpoint checks; restart the server between runs.
 //
-// Needs: playwright (devDependency). Exits 1 if any check fails.
+// Needs: playwright and sharp (devDependencies). Exits 1 if any check fails.
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import sharp from "sharp";
 import { GL_ARGS, browserPath } from "./pages.mjs";
 
 const O = process.argv[2] ?? "http://localhost:3100";
@@ -121,8 +122,18 @@ const ok = (name, pass, extra = "") => {
     const el = document.querySelector(".walk");
     window.scrollTo({ top: el.getBoundingClientRect().top + scrollY + el.offsetHeight - innerHeight, behavior: "instant" });
   });
-  await p.waitForTimeout(1500);
+  // The stage must never be empty: a visitor who jumps (a stop's mark, the End key) lands while the
+  // canvas is still arriving, and the still must hold until the canvas has drawn. Sampled every
+  // 400ms for four seconds: the street's side of the stage is never one flat colour.
+  let emptyAt = -1;
+  for (let i = 0; i < 10; i++) {
+    await p.waitForTimeout(400);
+    const stats = await sharp(await p.screenshot()).extract({ left: 620, top: 560, width: 780, height: 320 }).stats();
+    if (Math.max(...stats.channels.map((c) => c.stdev)) < 4 && emptyAt < 0) emptyAt = i;
+  }
+  ok("after a jump to the walk's end the stage is never empty", emptyAt < 0, emptyAt < 0 ? "" : `flat at sample ${emptyAt}`);
   ok("scrolling to the walk's end reaches its last stop", (await at()) === 7);
+  await p.waitForTimeout(2500);
   await p.screenshot({ path: OUT + "/walk-last-stop.png" });
   ok("the 3D threw nothing", errors.length === 0, errors.slice(0, 2).join(" | "));
   await p.close();
@@ -146,7 +157,31 @@ const ok = (name, pass, extra = "") => {
   await ctx.close();
 }
 
-// 6. Machine-facing files
+// 6. The drawn shopfront, with motion on: an open one stays open, and pointing raises a shutter
+{
+  const flat = (t) => t === "none" || t === "matrix(1, 0, 0, 1, 0, 0)";
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  await p.goto(O + "/businesses/lepalatier?still", { waitUntil: "networkidle" });
+  await p.waitForTimeout(1800);
+  const open = await p.evaluate(() => {
+    const el = document.querySelector('.shopfront[data-open="true"] .shutter');
+    return el ? getComputedStyle(el).transform : "none";
+  });
+  ok("a business's own shopfront keeps its shutter up once it has arrived", !flat(open), open);
+  await p.goto(O + "/businesses?still", { waitUntil: "networkidle" });
+  const link = p.locator('ul[aria-label="Businesses for sale"] a').first();
+  await link.scrollIntoViewIfNeeded();
+  await p.mouse.move(5, 5);
+  await p.waitForTimeout(1800);
+  const down = await link.locator(".shutter").evaluate((el) => getComputedStyle(el).transform);
+  await link.hover();
+  await p.waitForTimeout(1400);
+  const up = await link.locator(".shutter").evaluate((el) => getComputedStyle(el).transform);
+  ok("in the catalogue a shutter rests down, and rises when its shop is pointed at", flat(down) && !flat(up), `${down} then ${up}`);
+  await p.close();
+}
+
+// 7. Machine-facing files
 {
   const robots = await (await fetch(O + "/robots.txt")).text();
   ok("robots.txt closes the site before launch", /Disallow: \//.test(robots));

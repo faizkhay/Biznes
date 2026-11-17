@@ -1,5 +1,5 @@
 // The businesses for sale. Adding one is one entry here, plus its wordmark in
-// scripts/make-wordmarks.mjs: the home page's rail, the catalogue, its own page, the request form,
+// scripts/make-wordmarks.mjs: the home page's street, the catalogue, its own page, the request form,
 // the sitemap, the structured data and llms.txt all read this list.
 //
 // Sources:
@@ -13,7 +13,7 @@
 //       beside it on the street, and are placeholders like the rest of each sample.
 //
 // `sample: true` marks a listing the owner asked for as a placeholder ("5 other random for now").
-// A sample wears a "Sample listing" mark on its tag and its page, is kept out of the structured
+// A sample wears a "Sample" mark on its shutter, beside its name and on its page, is kept out of the structured
 // data, and must be replaced or removed before launch (README, confirm list). Its name, look and
 // price are placeholders, not offers.
 
@@ -23,7 +23,7 @@ export type Status = "available" | "reserved" | "sold";
 
 export type Business = {
   slug: string;
-  /** The number on its tag, in the order the businesses were made. */
+  /** The number on its plaque, in the order the businesses were made. */
   number: string;
   name: string;
   /** Printed only once the owner confirms the domain is held. */

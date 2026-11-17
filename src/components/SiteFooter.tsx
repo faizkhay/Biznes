@@ -6,7 +6,7 @@ import Lambrequin from "./Lambrequin";
 import Logo from "./Logo";
 
 /**
- * The footer is the last page of the story: night, the invitation that fits the page just read
+ * The footer is the last page of the story: deep dusk, the invitation that fits the page just read
  * (ClosingBand), then every way to reach us with the numbers written out, and the credit.
  */
 export default function SiteFooter() {
@@ -14,7 +14,7 @@ export default function SiteFooter() {
   return (
     <footer id="site-footer" data-ground="deep">
       {/* The footer hangs from the page above it the way a roof hangs over a pavement. */}
-      <Lambrequin className="text-(--palette-dusk)" />
+      <Lambrequin className="text-(--fringe)" />
       <div className="shell section-y">
         <ClosingBand />
 
