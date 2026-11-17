@@ -77,11 +77,11 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
           stillSize={[1600, 920]}
           onLive={setLive}
         />
-        {/* The stops, as a column of marks at the stage's edge: where the walk is, and a way to jump
+        {/* The stops, as a row of marks at the stage's foot: where the walk is, and a way to jump
               along it. Only where the stage is live, and only on a wide screen. */}
         {live && (
           <nav aria-label="Stops on the walk" className="walk-stops">
-            <ol className="flex flex-col gap-1">
+            <ol className="flex">
               {STOPS.map((stop, i) => (
                 <li key={stop.id}>
                   <a href={`#walk-${stop.id}`} aria-current={i === current ? "step" : undefined} className="walk-stop" aria-label={`${stop.place}, stop ${i + 1} of ${STOPS.length}`}>
@@ -136,7 +136,11 @@ export default function Walk({ businesses }: { businesses: Business[] }) {
               </div>
             </li>
           ) : (
-            <li key={stop.id} id={`walk-${stop.id}`} className={i === STOPS.length - 1 ? "walk-chapter walk-chapter-last" : "walk-chapter"}>
+            <li
+              key={stop.id}
+              id={`walk-${stop.id}`}
+              className={["walk-chapter", i === STOPS.length - 1 ? "walk-chapter-last" : "", stop.id === "room" ? "walk-chapter-low" : ""].filter(Boolean).join(" ")}
+            >
               <picture className="walk-still">
                 <source media="(max-width: 899px)" srcSet={still(stop.id, "phone")} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}

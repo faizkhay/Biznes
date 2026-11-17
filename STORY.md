@@ -65,10 +65,10 @@ The stops are data (`src/data/walk.ts`); what the stage shows at each is
 | 2 | The address | the pier | The stage turns to the shop face-on, a second painting, arriving through the first: the town's enamel plaque and the letterbox under it | the domain and the social media names | the owner's list | none |
 | 3 | Behind the shutter | the doorway | The painted shutter rolls all the way up; a screen on the back wall in the brand's colours | the website | the owner's list | none |
 | 4 | The counter | inside, close | A third painting: the plan as a bound document on the counter, the business's lettering and "Business strategy" on its cover | the business strategy | the owner's list | none |
-| 5 | The wall | inside, close | A fourth painting: a certificate in a frame, ruled lines and a seal, no words | help with incorporation | the owner's list | none |
+| 5 | The wall | inside, close | A fourth painting: a frame on the wall, its paper blank, because the company is the owner's to register | help with incorporation | the owner's list | none |
 | 6 | The room | back on the pavement | The shop whole, face-on: the room lit, with everything else still to come | honesty: what is not sold, and no promise of income | Khay Digital's | none |
-| 7 | The whole street | across the road | A fifth painting: all six shopfronts front-on under the dusk sky, every sign lettered, every sample tagged | each business is sold once | Khay Digital's | See the businesses |
-| 8 | On the street now | dusk, the street itself | The same terrace as six painted shopfronts, wall to wall, each a link, its facts on plaques beneath it; LePalatier's shutter rolls up when it is pointed at; on a phone the terrace scrolls sideways | the businesses themselves | names, sectors, towns and prices from the data | open a business |
+| 7 | The whole street | further along the street | Back on the first painting, at its far end: the five shops beyond the first, each lettered, numbered and tagged, the lamp and the afterglow | each business is sold once | Khay Digital's | See the businesses |
+| 8 | On the street now | dusk, the street itself | A fifth painting: the terrace of all six shopfronts front-on, whole, each shop a link with its facts on plaques beneath it; LePalatier's shutter rolls up when it is pointed at; on a phone the terrace scrolls sideways | the businesses themselves | names, sectors, towns and prices from the data | open a business |
 | 9 | From the street to opening day | a saffron wall | Four numbered steps | how a sale runs | Khay Digital's | How it works |
 | 10 | the line | dusk | The tagline, lighting word by word | the idea in one line | Khay Digital's, to confirm | none |
 | 11 | Questions people ask | a limewashed wall | Nine questions, and who builds every business | the objections, answered; trust in the maker | Khay Digital's, with its published facts | Visit Khay Digital |
@@ -85,15 +85,17 @@ ends on asking about that business; the catalogue ends on the route to the form;
 
 ## The centrepiece
 
-The street, painted. Six plates (`assets/plates`), each a generated illustration in the style of
+The street, painted. Five plates (`assets/plates`), each a generated illustration in the style of
 the mock-up the owner approved, with its prompt and its record beside it: the street at an angle,
 the first shop face-on with its shutter up and its room lit, a close view of the plan on the
-counter, a close view of the certificate, the terrace of all six shops, and the sky behind it.
+counter, a close view of the certificate's frame, and the terrace of all six shops.
 
 A painting can say something untrue, so the paintings say nothing. Every sign board, plaque, screen
 and paper was painted blank, and what is true is set over the paint in code, from the data: each
 listing's own lettering on its board (the same outline its page draws, from
-`scripts/make-wordmarks.mjs`), its town on the plaque, a tag on each sample's shutter. On the
+`scripts/make-wordmarks.mjs`), its town or its number on its plaque, a tag on each sample's
+shutter. What the data cannot say stays blank: the certificate's paper, and the screen but for the
+business's name. On the
 angled street each board's four corners were measured (`scripts/measure-plates.mjs`), and the
 lettering is carried onto them by one projective transform, so it lies on the paint as if painted.
 
@@ -375,7 +377,7 @@ approved is a painting, so the street is painted. Khay's standards shaped how:
 - **Light to run.** three.js and React Three Fiber are gone; the stage is five images and one
   transform each.
 
-What was done: six plates generated (18.25 credits, on top of the 11 already spent); the stage
+What was done: five plates generated (18.25 credits, on top of the 11 already spent); the stage
 rebuilt to move through them; the first words set to the mock-up's own measure and shaped to the
 painted roofline; every shopfront on the site (terrace, catalogue, each business's page) replaced
 by its painted one; the lamps switching on as the street arrives; the 3D, its engine and its code
@@ -393,7 +395,43 @@ Departures, with reasons:
   On the street itself the room is empty, as in the mock-up.
 
 Measured against the approved mock-up at its own size, the first screen went from 51 per cent to
-66, and the street itself to 70. impeccable's plates gate, which a street drawn live could not
-pass, passes. Its hero gate asks for 72 and stays open.
+72, and the street itself to 76. impeccable's plates gate, which a street drawn live could not
+pass, passes. Its first-screen gate asks for 72, which is met, and still refuses, because it looks
+for the plate's own file in the page's source and the site ships the plate as WebP cut from it. No
+override was made; the phase stays open.
 
-REVIEW_ROUND2
+### The design review, painted street, 17 November 2026
+
+A fresh agent reviewed the painted build against the owner's words, the direction contract and the
+approved mock-up. On the two questions that mattered it found for the build: the painted first
+screen reproduces the approved picture in medium, composition, light and lettering, and the site is
+honest. It answered **fix** for what stood around the paintings. Its eight points, and what was
+done:
+
+1. **The headline's size was unstable.** One screen size could show it at two sizes. The cause,
+   measured by the agent recording `DESIGN.md`: under reduced motion every transition is cut to a
+   hundredth of a millisecond, not removed, so a size the stage set did not read back in the same
+   moment and the fit measured the step before. Nothing in the words transitions while they are
+   being fitted now, and the fit is the same with motion on and reduced, at eight sizes. The words
+   are also fitted again once the fonts are in.
+2. **The walk's rail lay over the town's plaque.** The rail is now a row of marks at the foot of
+   the stage, where nothing lettered is painted.
+3. **Blank plaques stood on the samples' piers.** Each now carries its listing's number, from the
+   data, as a house carries its number; the first shop's larger plaque keeps its town.
+4. **The line saying the pictures are illustrations was newer than every capture.** Rebuilt, every
+   check run again, every page recaptured.
+5. **A shop cut out for a card held slivers of its neighbours and a cut plaque.** The piers of the
+   painted terrace stand on its party walls, so no straight cut holds a shop and its piers and
+   nothing else. A shop by itself is now cut inside its piers: all its own wall, its plaque whole.
+   The home page's terrace is the painting itself, whole, drawn once. The shutter that rolls up on
+   the first shop's plate lost its bottom rail, whose small painted locks read as smudges.
+6. **Grey bars stood in for content.** The certificate's ruled lines and seal are gone: its paper
+   is blank, as painted. The screen shows the business's lettering and nothing else.
+7. **The terrace filled two screens in a row.** The walk no longer ends on it. Its last stop is the
+   far end of the painted street, and the terrace is the next section.
+8. **The build record.** The first-screen gate was run again, as above.
+
+Also from its notes: the first shop's lettering stands larger on its board; a sample's price keeps
+to two whole lines; the room stop's card stands on the pier's base, clear of the room.
+
+VERDICT_PAINTED

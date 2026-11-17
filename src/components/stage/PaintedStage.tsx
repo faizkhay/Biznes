@@ -2,17 +2,17 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Business } from "@/data/businesses";
-import { PLATES, STREET_SKY, TERRACE, type PlateId } from "@/data/plates";
+import { PLATES, STREET_SKY, type PlateId } from "@/data/plates";
 import useNarrow from "@/lib/useNarrow";
 import { debugMode, travel, walk } from "@/lib/walk";
-import { CertificatePlate, CounterPlate, ShopPlate, StreetPlate, TerracePlate } from "./Plates";
+import { CertificatePlate, CounterPlate, ShopPlate, StreetPlate } from "./Plates";
 import { rooflinePolygon, skyFloor } from "./roofline";
 import { TIMELINE, type View } from "./views";
 
 /**
  * The painted stage: the walk's pictures, moved by the scroll.
  *
- * The street is painted, not rendered. Five plates (src/data/plates.ts) lie in the stage, each a
+ * The street is painted, not rendered. Four plates (src/data/plates.ts) lie in the stage, each a
  * painting at its own size with the listings' lettering set over it (Plates.tsx). The scroll's
  * progress picks two neighbouring stops (views.ts) and the way between them; this places each
  * plate from that, with one 2D transform and an opacity. Within one painting the stage travels;
@@ -36,8 +36,6 @@ const COVERS: Record<PlateId, { sides: boolean; foot: boolean; head: boolean }> 
   lepalatier: { sides: true, foot: true, head: true },
   counter: { sides: true, foot: true, head: true },
   certificate: { sides: true, foot: true, head: true },
-  // The terrace stands free on its transparent ground, over the sky.
-  terrace: { sides: false, foot: false, head: false },
 };
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -98,8 +96,6 @@ export default function PaintedStage({
     layers.current[id] = el;
   };
   const shutter = useRef<HTMLImageElement>(null);
-  const sky = useRef<HTMLDivElement>(null);
-  const road = useRef<HTMLDivElement>(null);
   const forced = useRef<number | null>(null);
   const [live, setLive] = useState(false);
   const [shown, setShown] = useState(false);
@@ -157,21 +153,6 @@ export default function PaintedStage({
     // The shutter on the first shop's own plate: how far down it is, as a part of the doorway.
     const down = TIMELINE[i].shutter + (TIMELINE[i + 1].shutter - TIMELINE[i].shutter) * t;
     if (shutter.current) shutter.current.style.transform = `translateY(${(-(1 - down) * 100).toFixed(2)}%)`;
-
-    // The terrace brings its sky and its road with it: the sky's afterglow stands just behind the
-    // roofs, and the road runs from under the pavement to the foot of the stage.
-    const land = placed.terrace;
-    for (const part of [sky.current, road.current]) {
-      if (!part) continue;
-      part.style.visibility = land && land.o > 0.002 ? "visible" : "hidden";
-      part.style.opacity = String(land?.o ?? 0);
-    }
-    if (land) {
-      const roofs = land.y + (TERRACE.top + 250) * land.s;
-      const foot = land.y + (TERRACE.top + TERRACE.height - 8) * land.s;
-      if (sky.current) sky.current.style.height = `${Math.max(0, roofs).toFixed(1)}px`;
-      if (road.current) road.current.style.top = `${foot.toFixed(1)}px`;
-    }
   }, [narrow]);
 
   /**
@@ -202,6 +183,11 @@ export default function PaintedStage({
       if (lede && lede.getBoundingClientRect().bottom > floor) return false;
       return tight || !link || link.getBoundingClientRect().bottom <= floor;
     };
+    // While it is being fitted nothing in the words may transition. Under reduced motion every
+    // transition is cut to a hundredth of a millisecond, not removed, so a size set here would not
+    // read back until the next frame and each step would measure the one before it (measured by
+    // the agent recording DESIGN.md, 17 November 2026).
+    words.setAttribute("data-fitting", "");
     fitting: for (const fit of [1, 0.92, 0.84, 0.76, 0.68, 0.6, 0.52]) {
       for (const tight of [false, true]) {
         words.style.setProperty("--fit", String(fit));
@@ -209,6 +195,7 @@ export default function PaintedStage({
         if (clear(tight)) break fitting;
       }
     }
+    words.removeAttribute("data-fitting");
   }, [narrow]);
 
   // The walk tells the stage when it has moved; the stage places itself at most once a frame.
@@ -229,6 +216,13 @@ export default function PaintedStage({
       shape();
     });
     if (host.current) ro.observe(host.current);
+    // The first words are measured to be fitted, and a measure taken before the sign face has
+    // loaded is a measure of the fallback: wider letters, more lines, a headline stepped down for
+    // no reason (found by the finish review, 17 November 2026). So they are fitted again once the
+    // fonts are in.
+    let alive = true;
+    document.fonts.ready.then(() => alive && shape());
+    document.fonts.addEventListener("loadingdone", shape);
     frame();
     const w = window as Debug;
     if (debugMode()) {
@@ -238,6 +232,8 @@ export default function PaintedStage({
       };
     }
     return () => {
+      alive = false;
+      document.fonts.removeEventListener("loadingdone", shape);
       walk.onChange = null;
       ro.disconnect();
       cancelAnimationFrame(raf);
@@ -297,11 +293,6 @@ export default function PaintedStage({
             if (shown && e.target === e.currentTarget && e.propertyName === "opacity") setGone(true);
           }}
         >
-          <div ref={sky} className="stage-sky">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/sky-2400.webp" srcSet="/img/sky-1200.webp 1200w, /img/sky-2400.webp 2400w" sizes="100vw" alt="" decoding="async" />
-          </div>
-          <div ref={road} className="stage-road" />
           <div ref={layer("street")} className="stage-layer stage-layer-street">
             <StreetPlate businesses={businesses} />
           </div>
@@ -315,9 +306,6 @@ export default function PaintedStage({
               </div>
               <div ref={layer("certificate")} className="stage-layer" style={{ visibility: "hidden" }}>
                 <CertificatePlate />
-              </div>
-              <div ref={layer("terrace")} className="stage-layer" style={{ visibility: "hidden" }}>
-                <TerracePlate businesses={businesses} />
               </div>
             </>
           )}

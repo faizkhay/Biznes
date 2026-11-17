@@ -14,10 +14,12 @@ better aesthetic please"). It is now painted.
 
 The home page is a street. Every business is a finished shopfront on a Mauritian shop street at
 blue hour: its sign painted and lit, its shutter down, waiting for its one owner. The street is
-six paintings in the style of the approved mock-up, and the scroll moves through them: it walks one
-shopfront, LePalatier, from its sign to the room behind its shutter, in eight stops. Every sign
-board, plaque, screen and paper was painted blank, and what is true is set over the paint in code,
-from the data: each listing's own lettering, its town, a sample's tag. Without script the same
+five paintings in the style of the approved mock-up, and the scroll moves through four of them: it
+walks one shopfront, LePalatier, from its sign to the room behind its shutter, in eight stops. The
+fifth, the whole terrace front-on, is the list of businesses. Every sign board, plaque, screen and
+paper was painted blank, and what is true is set over the paint in code, from the data: each
+listing's own lettering, its town, its number, a sample's tag. What the data cannot say stays
+blank. Without script the same
 eight stops are plain sections, each with a still of the stage and its words.
 
 | Stop or section | Where | What it sells |
@@ -27,10 +29,10 @@ eight stops are plain sections, each with a still of the stage and its words.
 | The address | The town plaque and the letterbox on the pier | The domain and the social media names |
 | Behind the shutter | Facing the shop: its shutter rolls up on a screen on the back wall | The website |
 | The counter | Close on the counter: the plan, a bound document | The business strategy |
-| The wall | Close on the wall: a framed certificate | Help with incorporation |
+| The wall | Close on the wall: a frame, its paper still blank | Help with incorporation |
 | The room | The shop whole, its room lit | What stays with the buyer: the room is theirs to fill |
-| The whole street | All six shopfronts, front-on, under the dusk sky | Each business is sold once |
-| On the street now | Dusk: one terrace of six shopfronts, wall to wall | The businesses themselves |
+| The whole street | Further along the street: the five shops beyond the first, the lamp, the afterglow | Each business is sold once |
+| On the street now | Dusk: the terrace of all six shopfronts, front-on, as one painting | The businesses themselves |
 | From the street to opening day | A saffron wall | How a sale runs, in four steps |
 | The line | Dusk | "The sign is painted / The shutter is yours to raise" |
 | Questions people ask | Limewash | Nine answers, and who builds every business |
@@ -64,7 +66,7 @@ Other scripts:
 | Script | What it does |
 | --- | --- |
 | `npm run wordmarks` | Redraws each listing's lettering as vector outlines into `src/data/wordmarks.ts` |
-| `npm run plates` | Cuts the painted masters (`assets/plates`) into what the site ships: each plate at two widths, one crop per shop from the terrace, the first shop's shutter and room. Writes a record beside every file |
+| `npm run plates` | Cuts the painted masters (`assets/plates`) into what the site ships: each plate at two widths, the terrace's painted band, one crop per shop from it (cut inside its piers), the first shop's shutter and room. Writes a record beside every file |
 | `node scripts/measure-plates.mjs <plate> <name:x,y> ...` | Finds a blank painted board, plaque or paper on a plate from one point inside it and prints its corners, for `src/data/plates.ts` |
 | `npm run stills` | Captures the stage at each of the eight stops, for a desk and a phone, and the link preview card (`public/og.png`). Needs the production server on port 3100. Run it after any change to the stage, the first screen or the list of businesses |
 | `npm run copy`, `npm run tokens` | The house style and the token checks |
@@ -121,7 +123,7 @@ and `llms.txt` pick it up. A business without lettering fails the build.
 The paintings show six shopfronts, one for each listing in `PAINTED` (`src/data/plates.ts`), in
 order. A listing that replaces one of the six takes over that shopfront: change its slug in
 `PAINTED` and in `SHOPS` (`scripts/prepare-plates.mjs`), run `npm run plates` and `npm run stills`,
-and its own lettering is on the sign. Its wall keeps the painted colour, so choose the shop whose
+and its own lettering is on the sign and its number on the plaque. Its wall keeps the painted colour, so choose the shop whose
 colour suits it, or have that shop repainted. A seventh listing has no painted shopfront: it is
 drawn in code instead (`DrawnShopfront.tsx`) wherever one business is shown, and the painted
 street does not show it until the street is repainted.
@@ -135,7 +137,7 @@ the sitemap. To hide every price: set `showPrices` to `false`.
 | --- | --- |
 | The owner, in conversation, 15 to 17 November 2026 | The offer and its six parts, LePalatier (a restaurant and café, for Moka, Grand Baie or Tamarin, proposed at 350k), the request for five samples, carte blanche on creative direction; on 17 November the choice of "the street" and of mock-up B, and then the rejection of the 3D built from it |
 | The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` (generated 17 November 2026; its prompt is beside it) | The composition of the first screen, the palette (every colour was sampled from it by region, `scripts/sample-comp.mjs`) and the measure of the first words |
-| Six painted plates in `assets/plates` (generated 17 November 2026 with the owner's mock-ups as their references; each has its prompt and its record beside it) | Every picture of the street: the street at an angle, the first shop open, the document on the counter, the certificate, the terrace, the sky |
+| Five painted plates in `assets/plates` (generated 17 November 2026 with the owner's mock-ups as their references; each has its prompt and its record beside it) | Every picture of the street: the street at an angle, the first shop open, the document on the counter, the certificate's frame, the terrace |
 | https://www.khay.digital/llms.txt, read 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email and hours |
 | Open-licence typefaces (SIL OFL 1.1), from `@fontsource` | The outlines of the six wordmarks: Cormorant Garamond, Fredoka, Jost, Playfair Display, Barlow Condensed, Outfit |
 | Barlow Condensed (SIL OFL 1.1), in `src/fonts`, and Geist (SIL OFL 1.1), from the `geist` package | The site's own type |
@@ -143,12 +145,15 @@ the sitemap. To hide every price: set `showPrices` to `false`.
 There are no photographs, no testimonials and no figures on the site, because none exist yet. The
 pictures of the street are generated illustrations, not photographs of a real place, and every
 file says so in the record beside it. They were painted with every sign, plaque, screen and paper
-blank: the lettering, the towns and the tags a visitor sees on them are set in code, from the data.
+blank: the lettering, the towns, the numbers and the tags a visitor sees on them are set in code,
+from the data. The certificate's paper is left blank, because the company is the owner's to
+register.
 The stills (`public/img/walk`) and the link preview card (`public/og.png`) are captures of this
 site's own stage.
 
 Image generation cost 29.25 Higgsfield credits in all: 8.25 for the three mock-ups the owner chose
-from, 2.75 for the sky, and 18.25 for the five painted plates (three at 4K, two at 2K).
+from, 18.25 for the five painted plates (three at 4K, two at 2K), and 2.75 for a sky painted for
+the 3D street, which the painted street has no use for and which was removed with it.
 
 ### To confirm with the owner before launch
 
@@ -230,7 +235,7 @@ token and its contrast: `DESIGN.md`.
 
 | Route | What |
 | --- | --- |
-| `/` | The walk through the painted street, the terrace of businesses, the steps, the line, the questions |
+| `/` | The walk through the painted street, the painted terrace of businesses, the steps, the line, the questions |
 | `/businesses` | The street as a catalogue: six painted shopfronts |
 | `/businesses/[slug]` | One business: its painted shopfront (a real one's stands open, a sample's shut and tagged), its brand, what it is, what comes with it, what the buyer brings |
 | `/how-it-works` | The four steps and the questions |
@@ -242,7 +247,8 @@ Plus `sitemap.xml`, `robots.txt`, `llms.txt`, the icon and the 404.
 
 ## Verification
 
-Run on 17 November 2026 against `next start` on port 3100, on the painted build.
+Run on 17 November 2026 against `next start` on port 3100, on the painted build, after the design
+review's fixes.
 
 - TypeScript strict and the production build: clean. Every page prerendered except `/api/enquiry`.
 - `npm run copy`: 0 fail, 0 warn. `npm run tokens`: 0 fail, 1 warn (the one italic, the headline's
@@ -267,40 +273,54 @@ Run on 17 November 2026 against `next start` on port 3100, on the painted build.
   real business's shutter rests down and rises when pointed at. The states it met are saved in
   `review/screens/states`. Restart the server between runs: the endpoint's limit is per
   connection, per ten minutes.
+- The first words' fit was measured at eight sizes with motion on and with reduced motion: the
+  same headline at each. (It had differed: under reduced motion a size set in script did not read
+  back in the same moment, so the fit measured the step before. Found while `DESIGN.md` was being
+  recorded.)
 - The walk was read at every stop, live, at 1440 x 900 and 390 x 844, and the first screen at
   fifteen sizes from 360 x 640 to 3440 x 1440: at each the words stand in the sky, clear of the
   roofs.
 - Against the approved mock-up, at the mock-up's own size (`.impeccable/review/diff/final`): the
-  first screen measures 66 per cent, and the street itself 70, where the 3D measured 51.
-  impeccable's plates gate, which the 3D could not pass, passes (2 of 2). Its hero gate asks for 72
-  and stays open: it marks the header and the lettering as unlike the mock-up's drawing of them.
-- Every raster carries a record of where it came from: 49 of 49 across `public` and `assets`.
+  first screen measures 72 per cent, and the street itself 76, where the 3D measured 51.
+  impeccable's plates gate, which the 3D could not pass, passes. Its first-screen gate asks for 72,
+  which is met, and still refuses: it looks for the plate's own file named in the page's source,
+  and the site ships that plate as WebP cut from it by `npm run plates`. No override was made, so
+  that phase stays open in `.impeccable/build/state.json`.
+- Every raster carries a record of where it came from: 46 of 46 across `public` and `assets`.
 REVIEW_BULLET
 - `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
 - Not yet run: any phone or tablet in the hand; a keyboard pass by hand on a real device; a screen
-  reader; Lighthouse. The dissolve from one painting to the next was watched in a headless
-  browser's captures at rest, not as it moves. Hover and pressed states were read in code and, for
-  the shutter, measured; they were not captured. No old addresses exist to redirect.
+  reader; Lighthouse. The dissolve from one painting to the next was judged from captures at rest,
+  not as it moves. Hover and pressed states were read in code and, for the shutter, measured; they
+  were not captured. No old addresses exist to redirect.
 
 ## Known gaps
 
 1. English only. French and Kreol are not built; the routes are not yet under a language folder.
 2. The paintings are generated illustrations. They follow the approved mock-up, and nothing on
    them is lettered by the generator; but a painting's small details (a bracket, a fretwork tooth)
-   were not drawn by a hand that knows the island.
+   were not drawn by a hand that knows the island. The terrace and the street are two paintings
+   of the same six shops and differ in small things: the first shop stands at the left of one and
+   the right of the other, and a sign board's corners are cut differently.
 3. The home page loads about 2 MB of paintings in all: the street first (730 KB at full size), the
-   others once it has drawn. A phone is served the same files as a desk.
+   others once it has drawn, the terrace as it comes into view. A phone is served the same files
+   as a desk.
 4. The stills and the link preview card do not rebuild themselves: after a change to the stage,
    the first screen or the list of businesses, run `npm run stills`.
 5. The street is painted with six shops. A seventh business is drawn in code where it is shown by
-   itself and is not on the painted street until the street is repainted.
-6. On a very wide screen (21:9) the sky above the roofs is small, and the headline steps down to
-   fit it.
-7. The link preview card is one card for every page; a business has no card of its own.
-8. There is no security policy for content (CSP) yet; the other security headers are set in
-   `next.config.ts`.
-9. The request form has no confirmation email to the visitor.
-10. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
+   itself and is not on the painted street or terrace until they are repainted. A sold business
+   leaves the list, and its shop stands in the paintings with its sign blank.
+6. The piers of the painted terrace stand on its party walls, so a shop shown by itself is cut
+   inside its piers and has none.
+7. On a very wide screen (21:9) the sky above the roofs is small, and the headline steps down to
+   fit it; there the first words stand at the screen's left edge while the header stays centred.
+8. The enquiry form needs script. Without it the page says so and gives the phone, WhatsApp and
+   email.
+9. The link preview card is one card for every page; a business has no card of its own.
+10. There is no security policy for content (CSP) yet; the other security headers are set in
+    `next.config.ts`.
+11. The request form has no confirmation email to the visitor.
+12. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
 
 ---
 

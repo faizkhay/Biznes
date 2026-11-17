@@ -34,7 +34,6 @@
   --palette-lamplight-wall: #e0842c; /* the lit room's walls */
   --palette-pavement: #3d3644; /* the kerb */
   --palette-roomlight: #fdc27b; /* sampled: the lit room's wall on the first shop's painted plate. A room's light where no room is painted */
-  --palette-tar: #1e2c4f; /* sampled: the road along the foot of the painted street. The ground under the terrace on the stage */
 
   --gutter: clamp(1.5rem, 5vw, 5rem); /* 24px on a phone, 72px at 1440, 80px beyond */
   --nav-h: 72px;
@@ -475,23 +474,19 @@
     position: relative;
     container-type: inline-size;
   }
-  /* One shop by itself: a frame of one shape for every shop, the picture at the frame's height. */
+  .shopfront-painted > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+  /* One shop by itself: every shop at one height, in a frame the shape of the widest. */
   .shopfront-frame {
     display: flex;
-    aspect-ratio: 600 / 1175;
-    overflow: hidden;
   }
   .shopfront-frame > .shopfront-painted {
     flex: none;
     height: 100%;
-  }
-  /* A hair wider than its box, so two shops standing wall to wall never show a seam between them. */
-  .shopfront-painted > img {
-    display: block;
-    width: calc(100% + 0.5px);
-    max-width: none;
-    height: 100%;
-    user-select: none;
   }
   .shopfront-doorway {
     position: absolute;
@@ -503,10 +498,11 @@
     inset: 0;
     background: radial-gradient(120% 85% at 50% 10%, var(--palette-roomlight), var(--palette-lamplight) 110%) center / cover;
   }
+  /* The shutter: painted slats, laid over the doorway. */
   .shopfront-painted .shutter {
     position: absolute;
     inset: 0;
-    background-repeat: no-repeat;
+    background: url("/img/plates/shutter.webp") center / 100% 100% no-repeat;
   }
 
   /* ---------- Fields ---------- */
@@ -597,8 +593,10 @@
   }
 
   /* ---------- The terrace (the home page's list of businesses) ----------
-     One row of shopfronts, wall to wall, that runs off the screen's edge and scrolls sideways where
-     it is wider than the screen. No gap and no card: a street. */
+     The painting of all six shopfronts, drawn once, with a row of six columns over it: each column
+     is one shop, from party wall to party wall (its width is set inline from the painting), and
+     holds what lies over the picture and the facts under it. It runs off the screen's edge and
+     scrolls sideways where it is wider than the screen. No gap and no card: a street. */
   .terrace {
     margin-inline: calc(-1 * var(--gutter));
     overflow-x: auto;
@@ -610,17 +608,28 @@
     scrollbar-color: var(--palette-saffron) transparent;
     scrollbar-width: thin;
   }
-  /* Six columns, each as wide as its shop on the painted terrace (set inline), so the six pictures
-     stand at one height as the one painting they were cut from. */
-  .terrace-row {
-    display: grid;
+  .terrace-street {
+    position: relative;
     min-width: 80rem;
+  }
+  .terrace-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    user-select: none;
+  }
+  .terrace-row {
+    position: relative;
+    display: grid;
   }
   .terrace-shop {
     scroll-snap-align: start;
   }
   @media (width < 40rem) {
-    .terrace-row {
+    .terrace-street {
       min-width: 384vw;
     }
   }
@@ -656,23 +665,6 @@
     top: 0;
     left: 0;
     transform-origin: 0 0;
-  }
-  /* The terrace's sky: drawn to the stage's width down to the roofs, so its afterglow stands behind them. */
-  .stage-sky {
-    position: absolute;
-    inset: 0 0 auto;
-    overflow: hidden;
-  }
-  .stage-sky img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-  }
-  .stage-road {
-    position: absolute;
-    inset: auto 0 0;
-    background: var(--palette-tar);
   }
   /* On a phone the street stands at the foot of the screen and its sky runs up into the stage's own
      ground: the plate's top edge is feathered, so no line shows where the painting ends. */
@@ -741,22 +733,8 @@
     text-transform: uppercase;
   }
   .plate-screen,
-  .plate-paper,
   .plate-doorway {
     position: absolute;
-  }
-  .plate-screen i,
-  .plate-paper i {
-    position: absolute;
-    display: block;
-  }
-  .plate-paper i {
-    background: var(--palette-ink);
-  }
-  .plate-paper .plate-seal {
-    aspect-ratio: 1;
-    border-radius: 9999px;
-    background: var(--palette-saffron);
   }
   /* A document's cover: what it is, lettered in the sign face in the business's own ink. */
   .plate-cover span {
@@ -928,25 +906,35 @@
       align-items: center;
       padding-bottom: 0;
     }
-    /* The last stop shows the whole terrace along the foot of the screen, so its words stand above it. */
+    /* The room stop shows the whole shop, so its words stand at the foot, on the pier's base. */
+    .walk[data-mode="live"] .walk-chapter-low:not(.walk-hero) {
+      align-items: flex-end;
+      padding-bottom: 5rem;
+    }
+  }
+  /* The last stop shows the street along the foot of the screen, so its words stand above it. */
+  .walk[data-mode="live"] .walk-chapter-last:not(.walk-hero) {
+    align-items: flex-start;
+    padding-top: 1.5rem;
+  }
+  @media (width >= 56.25rem) {
     .walk[data-mode="live"] .walk-chapter-last:not(.walk-hero) {
-      align-items: flex-start;
       padding-top: 2.5rem;
     }
   }
-  /* The stops: a short column of marks at the stage's edge; the current one is longer and saffron.
-     The column stands on its own strip of deep dusk, so a mark keeps its contrast whatever the
-     street is showing behind it (over the lit room a bare mark measured 1.5:1). */
+  /* The stops: a row of marks at the foot of the stage, on its right; the current one is taller
+     and saffron. It stands at the foot because nothing lettered is painted there (at the stage's
+     edge it lay over the town's plaque), and on its own strip of deep dusk, so a mark keeps its
+     contrast whatever is painted behind it. */
   .walk-stops {
     position: absolute;
-    right: 0.5rem;
-    top: 50%;
+    right: var(--gutter);
+    bottom: 1.25rem;
     z-index: 2;
     display: none;
-    transform: translateY(-50%);
-    border-radius: 0.75rem;
+    border-radius: 9999px;
     background: var(--palette-dusk-deep);
-    padding: 0.375rem 0.25rem;
+    padding-inline: 0.75rem;
   }
   @media (width >= 56.25rem) {
     .walk-stops {
@@ -956,19 +944,18 @@
   .walk-stop {
     position: relative;
     display: flex;
-    width: 2.25rem;
-    height: 1.5rem;
+    width: 1.75rem;
+    height: 2.75rem;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     text-decoration: none;
   }
-  /* A stop's name: a small plaque that shows beside its mark when it is pointed at or focused. It
-     stands outside the column, so the column stays as narrow as its marks. */
+  /* A stop's name: a small plaque that shows over its mark when it is pointed at or focused. */
   .walk-stop-name {
     position: absolute;
-    right: calc(100% + 0.625rem);
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
     pointer-events: none;
     border-radius: 0.25rem;
     background: var(--color-plaque);
@@ -984,20 +971,20 @@
   }
   .walk-stop-mark {
     display: block;
-    width: 0.75rem;
-    height: 0.1875rem;
+    width: 0.1875rem;
+    height: 0.75rem;
     border-radius: 9999px;
     background: var(--color-line-strong);
     transition:
-      width 320ms var(--ease-out),
+      height 320ms var(--ease-out),
       background-color 320ms var(--ease-out);
   }
   .walk-stop:hover .walk-stop-mark {
-    width: 1.25rem;
+    height: 1.125rem;
     background: var(--color-ink);
   }
   .walk-stop[aria-current="step"] .walk-stop-mark {
-    width: 1.75rem;
+    height: 1.5rem;
     background: var(--color-action);
   }
 }
@@ -1168,6 +1155,12 @@ html.can-animate .menu-sheet [data-menu-item] {
   .walk-words-first .walk-actions {
     margin-top: 1rem;
   }
+}
+/* While the stage fits the first words it reads each size back at once, so nothing in them may
+   transition for that moment, however short the transition (PaintedStage.tsx). */
+.walk-words-first[data-fitting],
+.walk-words-first[data-fitting] * {
+  transition: none !important;
 }
 /* The stage's own word that the second route has no room (PaintedStage.tsx). */
 .walk-words-first[data-tight] .walk-actions .arrow-link {

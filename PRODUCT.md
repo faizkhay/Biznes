@@ -111,7 +111,7 @@ on every Khay build: "A Digital Experience by Khay Digital".
 | KOS, `references/khay.md` | 16 November 2026 | A website is "the client's in full, on payment" |
 | DNS for the `.mu` zone | 16 November 2026 | None of lepalatier.mu, lakrem.mu, souffle.mu, bouke.mu, larout.mu or kazprop.mu resolved; no claim is made on the site |
 | The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` | 17 November 2026 | The first screen's composition and the palette, sampled by region |
-| Six painted plates, `assets/plates` | 17 November 2026 | Every picture of the street: generated illustrations in the approved mock-up's style, each with its prompt and its record beside it, each painted with its signs and plaques blank |
+| Five painted plates, `assets/plates` | 17 November 2026 | Every picture of the street: generated illustrations in the approved mock-up's style, each with its prompt and its record beside it, each painted with its signs and plaques blank |
 
 Absent, and not fabricated: photographs, premises, testimonials, sales figures, a logo for
 biznes.mu from before this build, confirmed prices for the samples.

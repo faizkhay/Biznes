@@ -28,7 +28,10 @@ export default function ShopCard({ business: b, index }: { business: Business; i
         <p className="caption-2 text-ink-subtle">{listPlaces(b.places)}</p>
         {site.showPrices &&
           (b.sample ? (
-            <p className="caption-2 tabular mt-2 text-ink-subtle">{formatPrice(b.price)}, a placeholder</p>
+            // Two short lines at most, so the figure never breaks from its unit or the note from itself.
+            <p className="caption-2 tabular mt-2 text-ink-subtle">
+              <span className="whitespace-nowrap">{formatPrice(b.price)},</span> <span className="whitespace-nowrap">a placeholder</span>
+            </p>
           ) : (
             <p className="title-4 mt-2">{formatPrice(b.price)}</p>
           ))}

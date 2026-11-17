@@ -1,10 +1,11 @@
 // What the stage shows at each stop of the walk: which painted plate, which part of it, and where
 // on the screen that part stands.
 //
-// The walk is told over five paintings (src/data/plates.ts). It opens on the street, pushes in to
+// The walk is told over four paintings (src/data/plates.ts). It opens on the street, pushes in to
 // the first shop's sign, then turns to face that shop: its pier, the room behind its shutter, a
 // close view of the document on its counter, a close view of the certificate on its wall, and the
-// room whole. It ends on the whole terrace. Within one painting the stage travels (a push,
+// room whole. It ends back on the street, further along it: the five shops still to come, and the
+// lamp at its end. (The terrace, front-on, is the next section of the page, not a stop.) Within one painting the stage travels (a push,
 // a pan); between two it dissolves while it pushes, so the cut is made on the move.
 //
 // `desk` frames each stop beside a words card on the left of a wide screen; `phone` frames it above
@@ -64,10 +65,11 @@ const KEYS: Record<Stop["id"], Key> = {
     phone: { plate: "lepalatier", focus: [0.5, 0.62], at: [0.5, 0.42], size: 1 },
     shutter: 0,
   },
-  // The last view is the whole terrace, front-on, under the dusk sky.
+  // The last view is the far end of the street: the five shops beyond the first, the lamp and the
+  // afterglow, with the first shop out of the picture on the right.
   all: {
-    desk: { plate: "terrace", focus: [0.5, 0.877], at: [0.5, 0.955], size: 0.96, by: "width" },
-    phone: { plate: "terrace", focus: [0.0104, 0.877], at: [0.03, 0.6], size: 2.35, by: "width" },
+    desk: { plate: "street", focus: [0, 1], at: [0, 1], size: 1.6 },
+    phone: { plate: "street", focus: [0, 1], at: [0, 1], size: 0.6 },
     shutter: 0,
   },
 };

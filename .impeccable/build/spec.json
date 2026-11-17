@@ -717,7 +717,7 @@
         "energy": 43.7878
       },
       "medium": "raster",
-      "plate": "assets/plates/sky.png",
+      "plate": ".impeccable/build/plates/street.png",
       "text": null
     },
     {

@@ -19,9 +19,9 @@ finished business is for sale here, believe it is real because they can see it, 
 each with its own lettering and colours; the six things every business comes with; Khay Digital's
 published facts. No photographs, no testimonials, no figures.
 
-**Constraints:** KOS standards hold (nothing invented, complete without WebGL, without motion and
-without script; WCAG 2.2 AA; the 3D built in code). Samples are always marked. Reserved Khay
-Original vocabulary is not used in copy.
+**Constraints:** KOS standards hold (nothing invented; complete without script and under reduced
+motion; WCAG 2.2 AA; a generated picture is never presented as real). Samples are always marked.
+Reserved Khay Original vocabulary is not used in copy.
 
 ## Direction contract
 
@@ -62,7 +62,8 @@ the same day, in these words: "3d is shit, i need better aesthetic please. be cr
 relfecting khay standards." The 3D was removed and the street is now painted: generated plates in
 the mock-up's own style, with every sign board, plaque, screen and paper painted blank and the
 listings' real lettering set over them in code. impeccable's plates gate passes on the painted
-street (2 of 2). Its hero gate stays open: the first screen measures 66 per cent against the mock-up
-where the gate asks for 72 (`.impeccable/review/diff/final`), with the street region at 70 and the
-header and lettering marked as unlike the mock-up's drawing of them. The palette was sampled from
-the mock-up and every pair measured (`scripts/contrast.pairs.json`).
+street (2 of 2). The first screen measures 72 per cent against the mock-up, the street region 76
+(`.impeccable/review/diff/final`). The hero gate's bar is met and the gate still refuses: it looks
+for the plate's own PNG named in the page's source, and the site ships that plate as WebP cut from
+it. No override was made, so the phase stays open. The palette was sampled from the mock-up and
+every pair measured (`scripts/contrast.pairs.json`).

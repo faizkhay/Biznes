@@ -55,9 +55,16 @@
       "status": "open",
       "openedAt": "2026-11-17T12:12:21.590Z",
       "closedAt": null,
-      "attempts": 0,
+      "attempts": 2,
       "notes": [],
-      "gate": null,
+      "gate": {
+        "ok": false,
+        "reasons": [
+          "plate .impeccable/build/plates/street.png (region sky) is not referenced by any source file this scan can see: the page draws that region in code while the produced plate sits unused. Place the plate (an <img>, a background-image, or an inlined data URI named for it) and recapture. If the plate IS referenced from a file the scan missed (your page is not index.html, or the reference lives in a stylesheet outside the project walk), re-run with --artifact <your page>: its linked stylesheets are followed exactly.",
+          "plate .impeccable/build/plates/street.png (region street) is not referenced by any source file this scan can see: the page draws that region in code while the produced plate sits unused. Place the plate (an <img>, a background-image, or an inlined data URI named for it) and recapture. If the plate IS referenced from a file the scan missed (your page is not index.html, or the reference lives in a stylesheet outside the project walk), re-run with --artifact <your page>: its linked stylesheets are followed exactly."
+        ],
+        "at": "2026-11-17T13:01:28.851Z"
+      },
       "forced": null
     },
     "sections": {
@@ -107,11 +114,11 @@
   "plates": {
     "sky": {
       "id": "sky",
-      "file": "assets/plates/sky.png",
+      "file": ".impeccable/build/plates/street.png",
       "status": "ok",
-      "assetHash": "de62ae783e7508a435d7eaac816680386005802e6b86eb9fc5269ccd8f455aea",
-      "regionHash": "a0a5c5300fa44279e2ab1dba8ddde4073ac1ac8ab9be531718bba2fb75cdabf7",
-      "referenceHash": "86b905a6ac41540442f6d07391208a37ba1e77fd480e2fac4ea106244341dfe1",
+      "assetHash": "1e31b935e0df19c659bbbb1c17f1ccb6ccf00ec04aa942619db10efbf4216e82",
+      "regionHash": "76ba606ec700901c1295447b7ba6ce15c01ea6720db58121a1ecd4537ef30b22",
+      "referenceHash": "0775cb0737b2b9d18aad450ca453b8aad1565ef898c5231c1973d616e6a2a9f1",
       "reference": {
         "policy": "plate-reference-v2",
         "excludedPixels": 629968,
@@ -168,8 +175,8 @@
         "ignoredContainers": []
       },
       "compHash": "6676f913d2c70adde02358096df6b8550e7b4d20deaae1ab881b1f613bf4b384",
-      "size": "2688x1152",
-      "score": 0.4252
+      "size": "3840x2160",
+      "score": 0.5083
     },
     "street": {
       "id": "street",
@@ -177,7 +184,7 @@
       "status": "ok",
       "assetHash": "1e31b935e0df19c659bbbb1c17f1ccb6ccf00ec04aa942619db10efbf4216e82",
       "regionHash": "0233132cb2be881553e8a0a2ba3949965ee42855ba64a435e355e7d02ef184ea",
-      "referenceHash": "86b905a6ac41540442f6d07391208a37ba1e77fd480e2fac4ea106244341dfe1",
+      "referenceHash": "0775cb0737b2b9d18aad450ca453b8aad1565ef898c5231c1973d616e6a2a9f1",
       "reference": {
         "policy": "plate-reference-v2",
         "excludedPixels": 468831,

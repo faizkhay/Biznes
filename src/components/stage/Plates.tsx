@@ -1,6 +1,6 @@
 import type { CSSProperties, Ref } from "react";
 import { type Business, wordmarkFor } from "@/data/businesses";
-import { CERTIFICATE, COUNTER, PLATES, SHOP, STREET, TERRACE, type PlateId, type Rect } from "@/data/plates";
+import { COUNTER, PLATES, SHOP, STREET, type PlateId, type Rect } from "@/data/plates";
 import { into, matrix3d, onto } from "@/lib/homography";
 
 /**
@@ -9,8 +9,9 @@ import { into, matrix3d, onto } from "@/lib/homography";
  * A plate is one painting at its own size in pixels (src/data/plates.ts), and everything laid on
  * it is placed in those same pixels, so the stage can move and scale a plate as one thing. The
  * paintings were made with every board, plaque, screen and paper blank. Here each listing's own
- * lettering goes on its board (the same outline its page draws, in its own ink), its town on its
- * plaque, and a tag on a sample's shutter, so a painting can never say something the data does not.
+ * lettering goes on its board (the same outline its page draws, in its own ink), its town or its
+ * number on its plaque, and a tag on a sample's shutter, so a painting can never say something the
+ * data does not. What the data cannot say is left as painted: blank.
  *
  * Decoration to assistive technology: every name, town and "Sample" is written in the page's own
  * text beside the stage.
@@ -76,9 +77,19 @@ export function StreetPlate({ businesses, plaqueRef }: { businesses: Business[];
         const h = k === 0 ? 172 : 224;
         const t = onto(1000, h, STREET.boards[k]);
         const [x, y] = into(t, STREET.shutters[k]);
+        // A sample's small plaque carries its number. It lies on the same wall as the board, so it
+        // is placed through the board's own transform; its size follows the plaque's on the plate.
+        const [nx, ny, nw] = STREET.numbers[k];
+        const [ux, uy] = k ? into(t, [nx, ny]) : [0, 0];
+        const unit = k ? into(t, [nx + nw / 2, ny])[0] - ux : 0;
         return (
           <div key={b.slug} className="plate-wall" style={{ width: 1000, height: h, transform: matrix3d(t) }}>
-            <Lettering business={b} style={{ left: "10%", top: "19%", width: "80%", height: "62%" }} />
+            <Lettering business={b} style={{ left: "8%", top: "12%", width: "84%", height: "76%" }} />
+            {k > 0 && (
+              <span className="plate-plaque" style={{ left: ux - unit, top: uy - unit * 0.55, width: unit * 2, height: unit * 1.1, fontSize: unit * 0.78 }}>
+                {b.number}
+              </span>
+            )}
             {b.sample && (
               <span className="plate-tag" style={{ left: x - 185, top: y - 68, width: 370, height: 136, fontSize: 96 }}>
                 Sample
@@ -106,8 +117,8 @@ const part = ([left, top, width, height]: Rect): CSSProperties => {
 const scaled = (px: number) => `${((px / PLATES.lepalatier.w) * 100).toFixed(3)}cqw`;
 
 /**
- * The first business, front-on: its lettering on the board, its town on the plaque, its website on
- * the screen, the certificate's lines on its paper, and the shutter that rolls up over the room.
+ * The first business, front-on: its lettering on the board and on the screen, its town on the
+ * plaque, and the shutter that rolls up over the room.
  *
  * On the stage it is drawn at its own size and moved as one thing. With `fluid` it fills the width
  * it is given, for the business's own page; everything on it is placed in fractions of the plate,
@@ -140,22 +151,11 @@ export function ShopPlate({
       <span className="plate-plaque" style={{ ...part(SHOP.plaque), fontSize: scaled(86) }}>
         {b.places[0]}
       </span>
-      {/* The website, as a picture of a page in the business's own colours: shapes, so it claims nothing. */}
+      {/* The website: the screen shows the business's own lettering and nothing else, because the
+          site itself is not built until the business has its owner. The certificate on the wall is
+          left as painted, blank: the company is the owner's to register. */}
       <div className="plate-screen" style={part(SHOP.screen)}>
-        <Lettering business={b} style={{ left: "8%", top: "13%", width: "34%", height: "16%" }} />
-        <i style={{ left: "8%", top: "42%", width: "58%", height: "7%", background: b.brand.ink, opacity: 0.92 }} />
-        <i style={{ left: "8%", top: "54%", width: "42%", height: "7%", background: b.brand.ink, opacity: 0.92 }} />
-        <i style={{ left: "8%", top: "68%", width: "50%", height: "2.6%", background: b.brand.ink, opacity: 0.5 }} />
-        <i style={{ left: "8%", top: "73.5%", width: "44%", height: "2.6%", background: b.brand.ink, opacity: 0.5 }} />
-        <i style={{ left: "8%", top: "82%", width: "22%", height: "10%", background: b.brand.accent, borderRadius: 999 }} />
-      </div>
-      {/* The certificate: ruled lines and a seal. No words, so no claim. */}
-      <div className="plate-paper" style={part(SHOP.paper)}>
-        <i style={{ left: "24%", top: "14%", width: "52%", height: "4%", opacity: 0.85 }} />
-        {[30, 39, 48, 57].map((top) => (
-          <i key={top} style={{ left: "16%", top: `${top}%`, width: "68%", height: "2%", opacity: 0.42 }} />
-        ))}
-        <i className="plate-seal" style={{ left: "39%", top: "70%", width: "22%" }} />
+        <Lettering business={b} style={{ left: "22%", top: "32%", width: "56%", height: "36%" }} />
       </div>
       {/* On the stage the shutter rolls up as the walk reaches the room. On a page the room stands open. */}
       {!fluid && (
@@ -164,30 +164,6 @@ export function ShopPlate({
           <img ref={shutterRef} src="/img/plates/shutter.webp" alt="" width={860} height={634} decoding="async" draggable={false} className="plate-shutter" />
         </div>
       )}
-    </div>
-  );
-}
-
-/** The terrace, front-on: every board lettered, every sample tagged. */
-export function TerracePlate({ businesses }: { businesses: Business[] }) {
-  const p = PLATES.terrace;
-  return (
-    <div className="plate" style={{ width: p.w, height: p.h }}>
-      <Picture id="terrace" sizes="(min-width: 900px) 100vw, 240vw" />
-      {businesses.slice(0, TERRACE.shops.length).map((b, k) => {
-        const shop = TERRACE.shops[k];
-        const [sx, sy, sw, sh] = shop.shutter;
-        return (
-          <div key={b.slug}>
-            <Lettering business={b} style={inset(shop.board, 0.13, 0.22)} />
-            {b.sample && (
-              <span className="plate-tag" style={{ left: sx + sw / 2 - 96, top: sy + sh * 0.42 - 35, width: 192, height: 70, fontSize: 50 }}>
-                Sample
-              </span>
-            )}
-          </div>
-        );
-      })}
     </div>
   );
 }
@@ -213,21 +189,15 @@ export function CounterPlate({ business: b }: { business: Business }) {
   );
 }
 
-/** The certificate, close: ruled lines and a seal on the blank paper. No words, so no claim. */
+/**
+ * The certificate, close: a frame with its paper blank, as painted. Nothing is set on it: the
+ * company is the owner's to register, and until it is there is nothing true to print.
+ */
 export function CertificatePlate() {
   const p = PLATES.certificate;
-  const pc = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
-  const [x, y, w, h] = CERTIFICATE.paper;
   return (
     <div className="plate" style={{ width: p.w, height: p.h }}>
       <Picture id="certificate" sizes="(min-width: 900px) 110vw, 300vw" />
-      <div className="plate-paper" style={{ left: pc(x, p.w), top: pc(y, p.h), width: pc(w, p.w), height: pc(h, p.h) }}>
-        <i style={{ left: "26%", top: "13%", width: "48%", height: "2.2%", opacity: 0.85 }} />
-        {[26, 33, 40, 47, 54].map((top) => (
-          <i key={top} style={{ left: "15%", top: `${top}%`, width: "70%", height: "1%", opacity: 0.4 }} />
-        ))}
-        <i className="plate-seal" style={{ left: "40%", top: "68%", width: "20%" }} />
-      </div>
     </div>
   );
 }
