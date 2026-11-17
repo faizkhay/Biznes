@@ -189,16 +189,16 @@ components:                               # only: backgroundColor textColor typo
 
 # Design System: biznes.mu, the website
 
-<!-- Recorded on 17 November 2026 from faizkhay/Biznes: the painted street, at commit 5495eee with
-the fixes that followed its finish review in the working tree, as served by the production build
-of 12:54 UTC. It replaces the record of the 3D street, which the owner rejected the same day;
-nothing of the 3D survives in the code, and three.js and React Three Fiber are uninstalled. Read
-from src/app/globals.css, src/components, src/app, src/data, scripts and assets/plates. Every
-measurement below marked "live" was taken from that build, read-only, between 12:55 and 13:10
-UTC. Where the build and this file differ, the build wins and the difference goes to Known Gaps.
-Checks: `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0 errors and 0 warnings; `node
-scripts/check-design.mjs` passes; contrast measured 17 November 2026 with `npm run contrast`. The
-machine-readable sidecar is `.impeccable/design.json`. -->
+<!-- Recorded on 17 November 2026 from faizkhay/Biznes at commit 5d2527c (13:04 UTC): the painted
+street, after the fixes that followed its finish review, as served by the production build of
+12:54 UTC, which was made from the same tree. It replaces the record of the 3D street, which
+the owner rejected the same day; nothing of the 3D survives in the code, and three.js and React
+Three Fiber are uninstalled. Read from src/app/globals.css, src/components, src/app, src/data,
+scripts and assets/plates. Every measurement below marked "live" was taken from that build,
+read-only, between 12:55 and 13:00 UTC. Where the build and this file differ, the build wins and
+the difference goes to Known Gaps. Checks: `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives
+0 errors and 0 warnings; `node scripts/check-design.mjs` passes; contrast measured 17 November 2026
+with `npm run contrast`. The machine-readable sidecar is `.impeccable/design.json`. -->
 
 ## Overview
 
@@ -670,9 +670,10 @@ meaning.
 the coral shade belongs to that headline and to the tagline. It is the brand's one italic device,
 set in a face with a true italic, and coral is never words (3.09:1 on dusk).
 
-**The Named Style Rule.** Every piece of text takes one of the seventeen named styles: Geist at
-400, 500 or 600, Barlow Condensed at 600 or 700, nothing under 12px. A size or a weight set loose
-is a decision nobody recorded.
+**The Named Style Rule.** Every piece of interface text takes one of the seventeen named styles:
+Geist at 400, 500 or 600, Barlow Condensed at 600 or 700, nothing under 12px. A size or a weight
+set loose is a decision nobody recorded; the first words on a wide screen and the lettering on a
+plate are the recorded exceptions.
 
 **If a face is unavailable:** Barlow Condensed falls back to the face next/font generates for it,
 the visitor's own Arial with its size adjusted to 80.75% and its ascent and descent overridden,
@@ -895,8 +896,8 @@ button and nowhere else.
 - **Plain link** (`link`): the footer's links, the back link, the credit, a name on a shopfront.
   The underline appears over 240ms on hover. Pressed: 0.75 of its ink.
 - **A whole thing as a link** (a shop on the terrace, a shop in the catalogue, the next business):
-  the name underlines on hover, and an arrow that is a direct child of the link moves 4px. A shop
-  also raises its shutter (The shopfront, below).
+  the name underlines on hover, and an arrow that is a direct child of the link moves 4px. A real
+  business's shop also raises its shutter (The shopfront, below).
 - **Links in a sentence** (the privacy notice, the routes in the failed message): always
   underlined, 0.22em below the baseline. No hover change.
 
@@ -1504,18 +1505,20 @@ Recorded, not rules.
 
 **The build's standing**
 
-- The tree is not final. The finish review of the painted street answered "fix" with eight points
-  on 17 November 2026 (`.impeccable/review/finish-review-painted.md`); the fixes made since are in
-  the working tree on commit 5495eee, uncommitted, and this record is of them as built at 12:54
-  UTC. Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail) and
-  `npm run contrast` (every pair passes for its role). The captures, the accessibility pass, the
-  reveals and `npm run behaviour` are the build's own and are not repeated here.
-- impeccable's plates gate passes, 2 of 2. Its hero gate is open: the measured comparison of the
-  first screen with the approved mock-up stood at 65.8% before the first words' fit was corrected
-  and stands at 71.7% (0.7171, read by the tool as "drift") at 13:01 UTC, against the 72% the gate
-  asks: structure 0.69, colour 0.58, palette match 0.65, detail 0.79; the street 0.76, the sky
-  0.65, the headline 0.47, the lede 0.43 (`.impeccable/review/diff/final`). The `sections`,
-  `motion`, `responsive` and `review` phases never opened. The 3D builds measured 49.6% to 52.6%.
+- The tree is final for this round: commit 5d2527c (13:04 UTC), served by the build of 12:54
+  UTC, which was made from the same tree. The build's own gates are in README.md,
+  "Verification": TypeScript and the build clean, nine page kinds captured at two sizes with no
+  overflow, the reveals, axe clean, `npm run behaviour` 42 of 42, and a record beside 46 of 46
+  rasters. Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail)
+  and `npm run contrast` (every pair passes for its role).
+- impeccable's plates gate passes, 2 of 2. Its hero gate is open. Against the approved mock-up, at
+  the mock-up's own size, the first screen measures 0.7171 (13:01 UTC, read by the tool as
+  "drift"; README.md gives it as 72 per cent, the figure the gate asks): the street 0.76, the sky
+  0.65, the headline 0.47, the lede 0.43 (`.impeccable/review/diff/final`). Before the first
+  words' fit was corrected it measured 0.6583, and the 3D builds 0.4957 to 0.5257. The gate's
+  recorded refusal is not the score: it looks for the plate's own PNG named in the page's source,
+  and the site ships that plate as WebP cut from it. No override was made, so `hero` stays open
+  and `sections`, `motion`, `responsive` and `review` never opened.
 - Against the mock-up the build differs by decision: each sign carries its listing's real
   lettering, the plaques carry a town and numbers, the header is the site's own 72px band, no
   saffron band shows at the foot of the first screen, and the second route steps aside on some
@@ -1568,6 +1571,10 @@ Recorded, not rules.
   the fretwork, where saffron measures 1.85:1.
 - At the last stop at 1440 by 900 the card's foot meets the street lamp's head, and a sliver of
   the first shop shows at the stage's right edge.
+- The sky painted behind LePalatier's own plate is a brighter blue than the page's dusk around it,
+  so at the head of its page the plate reads as a panel set on the ground.
+- On a screen at least twice as wide as it is tall, the first words stand one gutter from the
+  left edge while the header keeps its centred column.
 - A plate that fails to load has no fallback: the stage arrives over the still all the same, its
   lettering on bare ground. Read in code, not provoked.
 - Without script the phone menu does not open, so under 768px the header offers the mark and

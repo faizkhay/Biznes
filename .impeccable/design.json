@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T09:02:23.957Z",
+  "generatedAt": "2026-11-17T13:09:09.529Z",
   "title": "Design System: biznes.mu, the website",
   "extensions": {
     "colorMeta": {
@@ -76,7 +76,7 @@
         "role": "neutral",
         "group": "platform",
         "displayName": "Deep Dusk",
-        "purpose": "The header, the footer, the phone menu, the walk's cue, the strip the stop marks stand on.",
+        "purpose": "The header, the footer, the phone menu, the walk's cue, the pill the stop marks stand on.",
         "canonical": "#082478",
         "tonalRamp": [
           "oklch(15% 0.108 264)",
@@ -93,7 +93,7 @@
         "role": "neutral",
         "group": "platform",
         "displayName": "Limewash",
-        "purpose": "Words on dusk; the ground of reading sections; white paint.",
+        "purpose": "Words on dusk; the ground of reading sections; white paint: a fringe, a rim, a sample's tag, a town or a number on a painted plaque.",
         "canonical": "#f7f7f8",
         "tonalRamp": [
           "oklch(15% 0.001 286)",
@@ -399,7 +399,7 @@
         "role": "material",
         "group": "material",
         "displayName": "Pavement",
-        "purpose": "The kerb under a drawn shopfront.",
+        "purpose": "The kerb under a drawn shopfront and under the 404's empty plot.",
         "canonical": "#3d3644",
         "tonalRamp": [
           "oklch(15% 0.026 308)",
@@ -412,11 +412,28 @@
           "oklch(95% 0.026 308)"
         ]
       },
+      "roomlight": {
+        "role": "material",
+        "group": "material",
+        "displayName": "Roomlight",
+        "purpose": "A lamp's bloom on the street plate; the light in a doorway where no room is painted. Sampled from a painted plate. Never text.",
+        "canonical": "#fdc27b",
+        "tonalRamp": [
+          "oklch(15% 0.039 71)",
+          "oklch(27% 0.059 71)",
+          "oklch(38% 0.081 71)",
+          "oklch(50% 0.107 71)",
+          "oklch(62% 0.111 71)",
+          "oklch(73% 0.111 71)",
+          "oklch(84% 0.111 71)",
+          "oklch(95% 0.035 71)"
+        ]
+      },
       "ground-lepalatier": {
         "role": "content",
         "group": "listing",
         "displayName": "LePalatier: Bordeaux",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#4a1626",
         "tonalRamp": [
           "oklch(15% 0.066 5)",
@@ -433,7 +450,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "LePalatier: Ivory",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#f3e9d8",
         "tonalRamp": [
           "oklch(15% 0.025 81)",
@@ -450,7 +467,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "LePalatier: Brass",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#c6a15b",
         "tonalRamp": [
           "oklch(15% 0.037 82)",
@@ -467,7 +484,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "LePalatier: the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#711425",
         "tonalRamp": [
           "oklch(15% 0.066 17)",
@@ -484,7 +501,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Lakrem (sample): Cream",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#fcefd9",
         "tonalRamp": [
           "oklch(15% 0.032 81)",
@@ -501,7 +518,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Lakrem (sample): Cherry",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#a61e3c",
         "tonalRamp": [
           "oklch(15% 0.066 15)",
@@ -518,7 +535,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Lakrem (sample): Pistachio",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#8fb37a",
         "tonalRamp": [
           "oklch(15% 0.053 134)",
@@ -535,7 +552,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Lakrem (sample): the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#f0a92b",
         "tonalRamp": [
           "oklch(15% 0.037 76)",
@@ -552,7 +569,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Souffle (sample): Pale sage",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#dce2d6",
         "tonalRamp": [
           "oklch(15% 0.017 129)",
@@ -569,7 +586,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Souffle (sample): Deep sage",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#2e3b33",
         "tonalRamp": [
           "oklch(15% 0.022 158)",
@@ -586,7 +603,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Souffle (sample): Clay",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#c28766",
         "tonalRamp": [
           "oklch(15% 0.048 50)",
@@ -603,7 +620,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Souffle (sample): the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#1c9a8f",
         "tonalRamp": [
           "oklch(15% 0.029 186)",
@@ -620,7 +637,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Bouké (sample): Forest",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#1f3a2d",
         "tonalRamp": [
           "oklch(15% 0.037 162)",
@@ -637,7 +654,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Bouké (sample): Blush",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#f4cfc9",
         "tonalRamp": [
           "oklch(15% 0.043 29)",
@@ -654,7 +671,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Bouké (sample): Coral",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#e98a6e",
         "tonalRamp": [
           "oklch(15% 0.061 37)",
@@ -671,7 +688,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Bouké (sample): the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#e8604c",
         "tonalRamp": [
           "oklch(15% 0.069 31)",
@@ -688,7 +705,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Larout (sample): Lagoon",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#0e5f6b",
         "tonalRamp": [
           "oklch(15% 0.029 211)",
@@ -705,7 +722,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Larout (sample): Sand",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#f7e9cc",
         "tonalRamp": [
           "oklch(15% 0.037 85)",
@@ -722,7 +739,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Larout (sample): Amber",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#f2a65a",
         "tonalRamp": [
           "oklch(15% 0.041 64)",
@@ -739,7 +756,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Larout (sample): the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#16808c",
         "tonalRamp": [
           "oklch(15% 0.029 207)",
@@ -756,7 +773,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Kazprop (sample): Sky",
-        "purpose": "Its sign board.",
+        "purpose": "Its sign board: paint on a plate, flat on its sign plates.",
         "canonical": "#ddeafb",
         "tonalRamp": [
           "oklch(15% 0.027 255)",
@@ -773,7 +790,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Kazprop (sample): Cobalt",
-        "purpose": "Its lettering, on its sign board.",
+        "purpose": "Its lettering: the one value the code sets on its painted board.",
         "canonical": "#1b46c2",
         "tonalRamp": [
           "oklch(15% 0.109 265)",
@@ -790,7 +807,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Kazprop (sample): Mint",
-        "purpose": "Its trim: the sign's frame and its lamps.",
+        "purpose": "Its trim: a paint on its page, the rule on its strategy's cover.",
         "canonical": "#7ed6b5",
         "tonalRamp": [
           "oklch(15% 0.034 168)",
@@ -807,7 +824,7 @@
         "role": "content",
         "group": "listing",
         "displayName": "Kazprop (sample): the wall",
-        "purpose": "The colour its shopfront is painted.",
+        "purpose": "The colour its wall is painted; a paint on its page.",
         "canonical": "#5aa9e6",
         "tonalRamp": [
           "oklch(15% 0.043 244)",
@@ -902,6 +919,19 @@
         "purpose": "What is written on a plaque: a number, a status, a town, a stop's name.",
         "textTransform": "uppercase",
         "fontVariantNumeric": "tabular-nums lining-nums"
+      },
+      "heading-1-wide": {
+        "displayName": "Heading 1, first screen from 900px",
+        "purpose": "Not a named style: heading-1 as the home page's first screen sets it from 900px wide, to the mock-up's measure, times the stage's fit.",
+        "fluidSize": "calc(clamp(var(--text-5xl), min(7.4vw, 16svh), var(--text-9xl)) * var(--fit, 1))",
+        "fontStyle": "italic",
+        "textTransform": "uppercase",
+        "textShadow": "0.058em 0.064em 0 var(--color-shade)"
+      },
+      "title-1-wide": {
+        "displayName": "Title 1, first screen from 900px",
+        "purpose": "Not a named style: the home page's lede as its first screen sets it from 900px wide.",
+        "fluidSize": "clamp(var(--text-lg), 1.6vw, var(--text-2xl))"
       }
     },
     "shadows": [
@@ -945,7 +975,7 @@
       {
         "name": "ease-roll",
         "value": "cubic-bezier(0.3, 0, 0.1, 1)",
-        "purpose": "How a roller shutter moves: it starts heavy and settles. The shutter, and a heading rising out of its mask."
+        "purpose": "How a roller shutter moves: it starts heavy and settles. A shutter on a shopfront, and a heading rising out of its mask."
       },
       {
         "name": "dur-press",
@@ -980,7 +1010,7 @@
       {
         "name": "dur-shutter",
         "value": "900ms",
-        "purpose": "A shutter rolling on a drawn shopfront."
+        "purpose": "A shutter rolling on a shopfront."
       },
       {
         "name": "dur-mask",
@@ -989,13 +1019,28 @@
       },
       {
         "name": "dur-stage",
-        "value": "900ms",
-        "purpose": "The canvas fading in over its still."
+        "value": "700ms",
+        "purpose": "The plates fading in over their still."
+      },
+      {
+        "name": "dur-lamp",
+        "value": "1100ms, the first after 500ms, 110ms apart",
+        "purpose": "A lamp coming on over the painted street: from nothing to 0.85, settling at 0.4. Once."
       },
       {
         "name": "walk-hold",
         "value": "0.22",
-        "purpose": "The camera rests at each stop for the first and last 22% of the way to the next."
+        "purpose": "The stage rests at each stop for the first and last 22% of the way to the next."
+      },
+      {
+        "name": "walk-dissolve",
+        "value": "0.22 to 0.78 of the travel",
+        "purpose": "Between two paintings: the one that leaves grows to 1.1 and fades out, the one that arrives grows from 0.93 and fades in."
+      },
+      {
+        "name": "first-words-fit",
+        "value": "1, 0.92, 0.84, 0.76, 0.68, 0.6, 0.52",
+        "purpose": "The steps the stage tries, each with and then without the second route, until the first words stand clear of the roofline and above the sky's floor."
       },
       {
         "name": "tagline-muted",
@@ -1019,6 +1064,10 @@
       {
         "name": "lg",
         "value": "64rem"
+      },
+      {
+        "name": "cue",
+        "value": "75rem"
       }
     ]
   },
@@ -1083,7 +1132,31 @@
       "name": "Shop on the street",
       "kind": "card",
       "refersTo": "sign-lepalatier",
-      "description": "A business as its shopfront, in its own colours with its own lettering, then its plaques, its name, what it is, where and its price. The whole thing is one link; pointing at it rolls the shutter up.",
+      "description": "A business as its painted shopfront: its crop of the terrace, with its own lettering set on the blank board and its number on its plaque, then its plaques, its name, what it is, where and its price. The whole thing is one link; pointing at a real business rolls its painted shutter up over its room. The paint is the site's own images.",
+      "html": "<a class=\"ds-pshop\" href=\"#\"><span class=\"ds-pshop-picture\" style=\"background-image: url(/img/shops/lepalatier-561.webp)\"><span class=\"ds-pshop-doorway\"><span class=\"ds-pshop-room\"></span><span class=\"ds-pshop-shutter\"></span></span><svg class=\"ds-pshop-lettering\" viewBox=\"0 0 399 73.7\" preserveAspectRatio=\"xMidYMid meet\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M16.30 18.20L16.30 18.20L16.30 64Q16.30 66.60 16.85 67.95Q17.40 69.30 18.95 69.75Q20.50 70.20 23.60 70.20L23.60 70.20L32.10 70.20Q38.60 70.20 42.70 66.40Q46.80 62.60 48.10 56.30L48.10 56.30Q48.10 56.20 48.10 56.20L48.10 56.20Q48.20 56 48.70 56L48.70 56Q49.20 56.10 49.20 56.40L49.20 56.40Q48.90 59.30 48.60 63.40Q48.30 67.50 48.30 71L48.30 71Q48.30 72.50 46.80 72.50L46.80 72.50L0.20 72.50Q0 72.50 0 71.90Q0 71.30 0.20 71.30L0.20 71.30Q3.70 71.30 5.45 70.80Q7.20 70.30 7.80 68.80Q8.40 67.30 8.40 64.40L8.40 64.40L8.40 18.10Q8.40 15.20 7.80 13.75Q7.20 12.30 5.45 11.75Q3.70 11.20 0.20 11.20L0.20 11.20Q0 11.20 0 10.60Q0 10 0.20 10L0.20 10Q2.60 10 5.75 10.15Q8.90 10.30 12.30 10.30L12.30 10.30Q15.90 10.30 18.95 10.15Q22 10 24.40 10L24.40 10Q24.60 10 24.60 10.60Q24.60 11.20 24.40 11.20L24.40 11.20Q20.90 11.20 19.20 11.75Q17.50 12.30 16.90 13.80Q16.30 15.30 16.30 18.20ZM74 73.70L74 73.70Q67.80 73.70 63.60 70.95Q59.40 68.20 57.25 63.80Q55.10 59.40 55.10 54.40L55.10 54.40Q55.10 48.40 57.95 43.55Q60.80 38.70 65.70 35.85Q70.60 33 76.60 33L76.60 33Q82.40 33 85.55 35.90Q88.70 38.80 88.70 44.40L88.70 44.40Q88.70 45.70 88.45 46.45Q88.20 47.20 87.50 47.20L87.50 47.20L82.80 47.20L63 47.30Q62.80 48.80 62.80 50.50L62.80 50.50Q62.80 56.20 64.60 60.55Q66.40 64.90 69.90 67.30Q73.40 69.70 78.40 69.70L78.40 69.70Q81.70 69.70 83.85 68.80Q86 67.90 88.30 66.60L88.30 66.60Q88.30 66.60 88.40 66.50L88.40 66.50Q88.60 66.50 88.90 66.80L88.90 66.80Q89.20 67.30 89 67.60L89 67.60Q85.40 70.90 81.70 72.30Q78 73.70 74 73.70ZM63.20 45.80L80.70 45.40Q80.70 40.70 79.10 38.10L79.10 38.10Q77.10 35 73.20 35L73.20 35Q68.30 35 65.60 39.20L65.60 39.20Q63.80 41.90 63.20 45.80L63.20 45.80ZM113.70 18.30L113.70 64Q113.70 67 114.45 68.55Q115.20 70.10 117.60 70.70Q120 71.30 124.80 71.30L124.80 71.30Q125.10 71.30 125.10 71.90Q125.10 72.50 124.80 72.50L124.80 72.50Q121.60 72.50 117.85 72.40Q114.10 72.30 109.70 72.30L109.70 72.30Q106.40 72.30 103.25 72.40Q100.10 72.50 97.60 72.50L97.60 72.50Q97.40 72.50 97.40 71.90Q97.40 71.30 97.60 71.30L97.60 71.30Q101.10 71.30 102.85 70.80Q104.60 70.30 105.15 68.80Q105.70 67.30 105.70 64.40L105.70 64.40L105.70 18.10Q105.70 15.20 105.15 13.75Q104.60 12.30 102.85 11.75Q101.10 11.20 97.60 11.20L97.60 11.20Q97.40 11.20 97.40 10.60Q97.40 10 97.60 10L97.60 10Q100.10 10 103.20 10.15Q106.30 10.30 109.60 10.30L109.60 10.30Q112.20 10.30 115.95 10Q119.70 9.70 123.50 9.70L123.50 9.70Q129.30 9.70 133.95 11.40Q138.60 13.10 141.40 16.70Q144.20 20.30 144.30 26.10L144.30 26.10Q144.30 31.30 142.40 35.10Q140.50 38.90 137.25 41.40Q134 43.90 130.05 45.10Q126.10 46.30 122.30 46.30L122.30 46.30Q121.10 46.30 119.85 46.20Q118.60 46.10 117.50 45.80L117.50 45.80Q117.10 45.70 117.30 45L117.30 45Q117.40 44.50 117.60 44.50L117.60 44.50Q117.60 44.50 117.70 44.50L117.70 44.50Q118.60 44.70 119.55 44.80Q120.50 44.90 121.20 44.90L121.20 44.90Q125 44.90 128.20 43.10Q131.40 41.30 133.40 37.55Q135.40 33.80 135.40 28.20L135.40 28.20Q135.40 22.80 133.55 19.10Q131.70 15.40 128.40 13.40Q125.10 11.40 120.80 11.40L120.80 11.40Q118 11.40 116.45 11.80Q114.90 12.20 114.30 13.70Q113.70 15.20 113.70 18.30L113.70 18.30ZM188.30 68.20L178 73.10Q177.60 73.30 177.10 73.30L177.10 73.30Q175.60 73.30 174.30 71L174.30 71Q173.30 69.50 173 66.90L173 66.90L168.10 70.10Q165.80 71.80 163.85 72.50Q161.90 73.20 159.60 73.20L159.60 73.20Q155.60 73.20 153.55 71.20Q151.50 69.20 151.50 66.20L151.50 66.20Q151.50 63.80 152.80 62.15Q154.10 60.50 156.55 59.20Q159 57.90 162.50 56.60L162.50 56.60L172.90 52.80L172.90 46.30Q172.90 40.10 171.35 37.45Q169.80 34.80 167.10 34.80L167.10 34.80Q164.60 34.80 163.10 36.15Q161.60 37.50 160.95 39.25Q160.30 41 160 42.50L160 42.50Q159.80 44.40 158.85 45.70Q157.90 47 155.70 47L155.70 47Q153.70 47 152.80 46Q151.90 45 151.90 43.80L151.90 43.80Q151.90 41.70 153.85 39.80Q155.80 37.90 158.80 36.30Q161.80 34.70 165.05 33.80Q168.30 32.90 170.90 32.90L170.90 32.90Q175 32.90 177.35 35.55Q179.70 38.20 179.70 43.30L179.70 43.30L179.70 61.70Q179.70 65 180.60 66.60Q181.50 68.20 183.50 68.20L183.50 68.20Q185.20 68.20 187.90 67.10L187.90 67.10Q188 67 188.20 67.10L188.20 67.10Q188.40 67.10 188.60 67.40L188.60 67.40Q188.70 67.80 188.60 68L188.60 68Q188.50 68.10 188.30 68.20L188.30 68.20ZM169.30 67.60L172.90 65.30Q172.90 65 172.90 64.60L172.90 64.60L172.90 54.20L165.10 57.40Q163.60 58 162.35 58.80Q161.10 59.60 160.30 60.75Q159.50 61.90 159.50 63.50L159.50 63.50Q159.50 65.90 161.10 67.45Q162.70 69 165 69L165 69Q165.90 69 166.90 68.70Q167.90 68.40 169.30 67.60L169.30 67.60ZM193.20 72.50L193.20 72.50Q193 72.50 193 71.90Q193 71.30 193.20 71.30L193.20 71.30Q196.90 71.30 198.05 69.95Q199.20 68.60 199.20 64.40L199.20 64.40L199.30 13Q199.30 9.50 198.65 7.90Q198 6.30 196.20 6.30L196.20 6.30Q194.70 6.30 191.90 7.60L191.90 7.60Q191.80 7.70 191.70 7.60L191.70 7.60Q191.40 7.60 191.30 7.20L191.30 7.20Q191.10 6.70 191.20 6.60L191.20 6.60Q191.20 6.50 191.30 6.50L191.30 6.50L204.70 0.10Q204.90 0 205.10 0L205.10 0Q205.40 0 205.85 0.30Q206.30 0.60 206.30 1L206.30 1L206.30 64.40Q206.30 68.50 207.40 69.90Q208.50 71.30 212.20 71.30L212.20 71.30Q212.60 71.30 212.60 71.90Q212.60 72.50 212.20 72.50L212.20 72.50Q210.40 72.50 207.95 72.40Q205.50 72.30 202.70 72.30L202.70 72.30Q200 72.30 197.55 72.40Q195.10 72.50 193.20 72.50ZM258.40 68.20L248.10 73.10Q247.70 73.30 247.20 73.30L247.20 73.30Q245.70 73.30 244.40 71L244.40 71Q243.40 69.50 243.10 66.90L243.10 66.90L238.20 70.10Q235.90 71.80 233.95 72.50Q232 73.20 229.70 73.20L229.70 73.20Q225.70 73.20 223.65 71.20Q221.60 69.20 221.60 66.20L221.60 66.20Q221.60 63.80 222.90 62.15Q224.20 60.50 226.65 59.20Q229.10 57.90 232.60 56.60L232.60 56.60L243 52.80L243 46.30Q243 40.10 241.45 37.45Q239.90 34.80 237.20 34.80L237.20 34.80Q234.70 34.80 233.20 36.15Q231.70 37.50 231.05 39.25Q230.40 41 230.10 42.50L230.10 42.50Q229.90 44.40 228.95 45.70Q228 47 225.80 47L225.80 47Q223.80 47 222.90 46Q222 45 222 43.80L222 43.80Q222 41.70 223.95 39.80Q225.90 37.90 228.90 36.30Q231.90 34.70 235.15 33.80Q238.40 32.90 241 32.90L241 32.90Q245.10 32.90 247.45 35.55Q249.80 38.20 249.80 43.30L249.80 43.30L249.80 61.70Q249.80 65 250.70 66.60Q251.60 68.20 253.60 68.20L253.60 68.20Q255.30 68.20 258 67.10L258 67.10Q258.10 67 258.30 67.10L258.30 67.10Q258.50 67.10 258.70 67.40L258.70 67.40Q258.80 67.80 258.70 68L258.70 68Q258.60 68.10 258.40 68.20L258.40 68.20ZM239.40 67.60L243 65.30Q243 65 243 64.60L243 64.60L243 54.20L235.20 57.40Q233.70 58 232.45 58.80Q231.20 59.60 230.40 60.75Q229.60 61.90 229.60 63.50L229.60 63.50Q229.60 65.90 231.20 67.45Q232.80 69 235.10 69L235.10 69Q236 69 237 68.70Q238 68.40 239.40 67.60L239.40 67.60ZM278.20 73.70L278.20 73.70Q275.80 73.70 273.50 72.95Q271.20 72.20 269.75 70.30Q268.30 68.40 268.30 65.20L268.30 65.20L268.30 42.10Q268.30 39.80 267.90 38.60Q267.50 37.40 266.40 37Q265.30 36.60 263.10 36.60L263.10 36.60Q262.80 36.60 262.80 35.85Q262.80 35.10 263.10 35.10L263.10 35.10Q267.50 35 270.25 32.95Q273 30.90 273.70 27.30L273.70 27.30Q273.80 27 274.50 27Q275.20 27 275.20 27.30L275.20 27.30L275.20 35Q278 34.90 280.80 34.70L280.80 34.70Q284.50 34.40 288.80 34L288.80 34Q289.10 34 289.30 34.70Q289.50 35.40 289.50 36.30L289.50 36.30Q289.50 37.10 289.20 38Q288.90 38.90 288.50 38.80L288.50 38.80Q284.50 37.90 280.80 37.60L280.80 37.60Q278.10 37.40 275.20 37.30L275.20 37.30L275.20 61.80Q275.20 65.90 277.25 67.80Q279.30 69.70 282.90 69.70L282.90 69.70Q285.40 69.70 287.45 68.80Q289.50 67.90 290.80 66.90L290.80 66.90Q291.20 66.60 291.60 67L291.60 67Q291.70 67.30 291.70 67.50L291.70 67.50Q291.70 67.70 291.50 67.80L291.50 67.80Q287.80 70.90 284.70 72.30Q281.60 73.70 278.20 73.70ZM299.20 72.50L299.20 72.50Q298.90 72.50 298.90 71.90Q298.90 71.30 299.20 71.30L299.20 71.30Q302.80 71.30 304 69.95Q305.20 68.60 305.20 64.40L305.20 64.40L305.20 46Q305.20 42.50 304.50 40.90Q303.80 39.30 302 39.30L302 39.30Q301.20 39.30 300.15 39.60Q299.10 39.90 297.70 40.60L297.70 40.60Q297.30 40.70 297.05 40.15Q296.80 39.60 297.20 39.40L297.20 39.40L310.80 33.10Q311.10 33 311.20 33L311.20 33Q311.50 33 311.85 33.30Q312.20 33.60 312.20 34L312.20 34Q312.20 34.90 312.10 37.90Q312 40.90 312 45.80L312 45.80L312 64.40Q312 68.60 313.15 69.95Q314.30 71.30 318 71.30L318 71.30Q318.30 71.30 318.30 71.90Q318.30 72.50 318 72.50L318 72.50Q316.20 72.50 313.75 72.40Q311.30 72.30 308.60 72.30L308.60 72.30Q305.90 72.30 303.50 72.40Q301.10 72.50 299.20 72.50ZM308 21.80L308 21.80Q305.70 21.80 304.35 20.55Q303 19.30 303 17L303 17Q303 14.80 304.35 13.60Q305.70 12.40 308 12.40L308 12.40Q310.20 12.40 311.45 13.60Q312.70 14.80 312.70 17L312.70 17Q312.70 21.80 308 21.80ZM344.70 73.70L344.70 73.70Q338.50 73.70 334.30 70.95Q330.10 68.20 327.95 63.80Q325.80 59.40 325.80 54.40L325.80 54.40Q325.80 48.40 328.65 43.55Q331.50 38.70 336.40 35.85Q341.30 33 347.30 33L347.30 33Q353.10 33 356.25 35.90Q359.40 38.80 359.40 44.40L359.40 44.40Q359.40 45.70 359.15 46.45Q358.90 47.20 358.20 47.20L358.20 47.20L353.50 47.20L333.70 47.30Q333.50 48.80 333.50 50.50L333.50 50.50Q333.50 56.20 335.30 60.55Q337.10 64.90 340.60 67.30Q344.10 69.70 349.10 69.70L349.10 69.70Q352.40 69.70 354.55 68.80Q356.70 67.90 359 66.60L359 66.60Q359 66.60 359.10 66.50L359.10 66.50Q359.30 66.50 359.60 66.80L359.60 66.80Q359.90 67.30 359.70 67.60L359.70 67.60Q356.10 70.90 352.40 72.30Q348.70 73.70 344.70 73.70ZM333.90 45.80L351.40 45.40Q351.40 40.70 349.80 38.10L349.80 38.10Q347.80 35 343.90 35L343.90 35Q339 35 336.30 39.20L336.30 39.20Q334.50 41.90 333.90 45.80L333.90 45.80ZM368.70 72.50L368.70 72.50Q368.40 72.50 368.40 71.90Q368.40 71.30 368.70 71.30L368.70 71.30Q372.30 71.30 373.45 69.95Q374.60 68.60 374.60 64.40L374.60 64.40L374.60 44.90Q374.60 41.70 373.85 40.20Q373.10 38.70 371.30 38.70L371.30 38.70Q370.30 38.70 369 39.05Q367.70 39.40 366 40.10L366 40.10Q365.80 40.20 365.70 40.10L365.70 40.10Q365.50 40.10 365.40 39.70L365.40 39.70Q365.20 39.20 365.50 39L365.50 39L377.80 33.10Q378.20 33 378.40 33L378.40 33Q379.30 33 380.40 35.20L380.40 35.20Q381.40 37.30 381.50 41L381.50 41Q383.50 38.80 385 37.30L385 37.30Q387.50 34.90 389.30 33.95Q391.10 33 392.70 33L392.70 33Q394.80 33 396.90 34.30Q399 35.60 399 37.60L399 37.60Q399 39.10 398 40.15Q397 41.20 395.30 41.20L395.30 41.20Q393.70 41.20 392.75 40.30Q391.80 39.40 390.85 38.55Q389.90 37.70 388.30 37.70L388.30 37.70Q387.50 37.70 386.50 38.20Q385.50 38.70 383.90 40.30L383.90 40.30Q382.90 41.30 381.50 42.90L381.50 42.90L381.50 64.40Q381.50 67.20 382.25 68.70Q383 70.20 385.05 70.75Q387.10 71.30 391 71.30L391 71.30Q391.30 71.30 391.30 71.90Q391.30 72.50 391 72.50L391 72.50Q388.40 72.50 385.10 72.40Q381.80 72.30 378.10 72.30L378.10 72.30Q375.40 72.30 372.95 72.40Q370.50 72.50 368.70 72.50Z\" fill=\"#f3e9d8\"/></svg><span class=\"ds-pshop-number\">01</span></span><span class=\"ds-pshop-facts\"><span class=\"ds-pshop-plaques\"><span class=\"ds-pshop-plaque\">No. 01</span><span class=\"ds-pshop-plaque\">Available</span></span><span class=\"ds-pshop-name\">LePalatier</span><span class=\"ds-pshop-meta\">Restaurant and café</span><span class=\"ds-pshop-meta\">Moka, Grand Baie or Tamarin</span><span class=\"ds-pshop-price\">MUR 350,000</span></span></a>",
+      "css": ".ds-pshop { display: block; width: 15rem; background: var(--palette-limewash, #f7f7f8); color: var(--palette-ink, #0a1639); text-decoration: none; font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, sans-serif); } .ds-pshop-picture { position: relative; display: block; aspect-ratio: 561 / 1175; container-type: inline-size; background: transparent center / 100% 100% no-repeat; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-pshop:active .ds-pshop-picture { transform: scale(0.985); } .ds-pshop-doorway { position: absolute; overflow: hidden; left: 9.626%; top: 52.085%; width: 73.440%; height: 39.319%; } .ds-pshop-room { position: absolute; inset: 0; background: radial-gradient(120% 85% at 50% 10%, var(--palette-roomlight, #fdc27b), var(--palette-lamplight, #f18f38) 110%) center / cover; background-image: url(/img/plates/room.webp); } .ds-pshop-shutter { position: absolute; inset: 0; background: url(/img/plates/shutter.webp) center / 100% 100% no-repeat; transition: transform 900ms cubic-bezier(0.3, 0, 0.1, 1); } .ds-pshop:hover .ds-pshop-shutter, .ds-pshop:focus-visible .ds-pshop-shutter { transform: translateY(-88%); } .ds-pshop-lettering { position: absolute; left: 15.686%; top: 38.441%; width: 65.954%; height: 6.863%; } .ds-pshop-number { position: absolute; display: grid; place-items: center; left: 85.383%; top: 64.426%; width: 12.121%; height: 2.894%; color: var(--palette-limewash, #f7f7f8); font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 4.456cqw; font-weight: 600; line-height: 1; letter-spacing: 0.06em; } .ds-pshop-facts { display: block; padding: 1rem 0 0; } .ds-pshop-plaques { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-pshop-plaque { display: inline-flex; min-height: 1.75rem; align-items: center; gap: 0.5rem; border-radius: 0.375rem; background: var(--color-plaque, #0b2b8e); color: var(--color-on-plaque, #f7f7f8); padding: 0.125rem 0.625rem; box-shadow: inset 0 0 0 1px var(--color-plaque, #0b2b8e), inset 0 0 0 2.5px var(--color-on-plaque, #f7f7f8); font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-variant-numeric: tabular-nums lining-nums; } .ds-pshop-name { display: block; margin-top: 0.75rem; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 1.5rem; line-height: 1.33; font-weight: 700; text-transform: uppercase; letter-spacing: 0.015em; text-decoration: underline; text-underline-offset: 0.22em; text-decoration-color: transparent; transition: text-decoration-color 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-pshop:hover .ds-pshop-name { text-decoration-color: currentColor; } .ds-pshop-meta { display: block; color: var(--palette-ink-muted, #515972); font-size: 0.875rem; line-height: 1.43; font-weight: 400; } .ds-pshop-price { display: block; margin-top: 0.5rem; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 1.25rem; line-height: 1.4; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; font-variant-numeric: tabular-nums lining-nums; } .ds-pshop:focus-visible { outline: 2px solid var(--palette-dusk, #0e328f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sample tag",
+      "kind": "chip",
+      "refersTo": "plate-tag",
+      "description": "What a sample wears across its shutter on every painting: white paint, ink capitals in the sign face, sized with the picture it hangs on. It cannot be pressed, and a sample's shutter never moves.",
+      "html": "<p class=\"ds-tag-ground\"><span class=\"ds-tag\">Sample</span></p>",
+      "css": ".ds-tag-ground { display: inline-grid; place-items: center; margin: 0; width: 12rem; height: 7rem; background: var(--palette-steel-deep, #574c64); font-size: 1.5rem; } .ds-tag { display: grid; place-items: center; box-sizing: border-box; min-width: 3.84em; height: 1.4em; padding-inline: 0.3em; border-radius: 0.14em; background: var(--palette-limewash, #f7f7f8); color: var(--palette-ink, #0a1639); font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-weight: 600; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Stop marks",
+      "kind": "nav",
+      "refersTo": "walk-stops",
+      "description": "Where the walk is, and a way to jump along it: eight ticks on a solid pill of deep dusk at the foot of the stage. The current tick is taller and saffron; a tick pointed at grows and shows its stop's name on a small plaque above.",
+      "html": "<nav class=\"ds-stops\" aria-label=\"Stops on the walk\"><a class=\"ds-stop\" href=\"#\" aria-current=\"step\" aria-label=\"The street, stop 1 of 3\"><span class=\"ds-stop-name\" aria-hidden=\"true\">The street</span><span class=\"ds-stop-mark\" aria-hidden=\"true\"></span></a><a class=\"ds-stop\" href=\"#\" aria-label=\"The sign, stop 2 of 3\"><span class=\"ds-stop-name\" aria-hidden=\"true\">The sign</span><span class=\"ds-stop-mark\" aria-hidden=\"true\"></span></a><a class=\"ds-stop\" href=\"#\" aria-label=\"The address, stop 3 of 3\"><span class=\"ds-stop-name\" aria-hidden=\"true\">The address</span><span class=\"ds-stop-mark\" aria-hidden=\"true\"></span></a></nav>",
+      "css": ".ds-stops { display: inline-flex; margin-top: 2.5rem; border-radius: 9999px; background: var(--palette-dusk-deep, #082478); padding-inline: 0.75rem; } .ds-stop { position: relative; display: flex; width: 1.75rem; height: 2.75rem; align-items: center; justify-content: center; text-decoration: none; } .ds-stop-name { position: absolute; bottom: calc(100% + 0.5rem); left: 50%; transform: translateX(-50%); pointer-events: none; border-radius: 0.25rem; background: var(--color-plaque, #0b2b8e); color: var(--color-on-plaque, #f7f7f8); padding: 0.125rem 0.5rem; white-space: nowrap; opacity: 0; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-stop:hover .ds-stop-name, .ds-stop:focus-visible .ds-stop-name { opacity: 1; } .ds-stop-mark { display: block; width: 0.1875rem; height: 0.75rem; border-radius: 9999px; background: var(--color-line-strong, color-mix(in srgb, #f7f7f8 55%, transparent)); transition: height 320ms cubic-bezier(0.16, 1, 0.3, 1), background-color 320ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-stop:hover .ds-stop-mark { height: 1.125rem; background: var(--color-ink, #f7f7f8); } .ds-stop[aria-current=\"step\"] .ds-stop-mark { height: 1.5rem; background: var(--color-action, #f8c618); } .ds-stop:focus-visible { outline: 2px solid var(--color-focus, #f8c618); outline-offset: 3px; }"
+    },
+    {
+      "name": "Drawn stand-in",
+      "kind": "card",
+      "refersTo": "shopfront-roof",
+      "description": "A shopfront drawn in code, for a listing that has no painting: the same link, facts and rolling shutter as a painted shop. No page draws it today; all six listings are painted.",
       "html": "<a class=\"ds-shop\" href=\"#\"><svg class=\"ds-shopfront\" viewBox=\"0 0 240 250\" aria-hidden=\"true\" focusable=\"false\"><defs><clipPath id=\"ds-shop-opening\"><rect x=\"44\" y=\"118\" width=\"152\" height=\"108\"/></clipPath><pattern id=\"ds-shop-ribs\" width=\"8\" height=\"40\" patternUnits=\"userSpaceOnUse\"><rect width=\"8\" height=\"40\" fill=\"var(--palette-tin, #4a6eac)\"/><rect x=\"5.5\" width=\"2.5\" height=\"40\" fill=\"var(--palette-tin-shade, #3a5a94)\"/></pattern><pattern id=\"ds-shop-slats\" width=\"152\" height=\"7\" patternUnits=\"userSpaceOnUse\"><rect width=\"152\" height=\"7\" fill=\"var(--palette-steel, #655366)\"/><rect y=\"5.5\" width=\"152\" height=\"1.5\" fill=\"var(--palette-steel-deep, #574c64)\"/></pattern><pattern id=\"ds-shop-fringe\" width=\"12\" height=\"14\" patternUnits=\"userSpaceOnUse\"><path d=\"M0 0h12v6a6 6 0 0 1-12 0z\" fill=\"var(--palette-limewash, #f7f7f8)\"/><circle cx=\"6\" cy=\"6\" r=\"1.6\" fill=\"#711425\"/></pattern></defs><rect x=\"0\" y=\"4\" width=\"240\" height=\"38\" fill=\"url(#ds-shop-ribs)\"/><rect x=\"0\" y=\"2\" width=\"240\" height=\"4\" fill=\"var(--palette-limewash, #f7f7f8)\"/><rect x=\"6\" y=\"42\" width=\"228\" height=\"196\" fill=\"#711425\"/><rect x=\"0\" y=\"42\" width=\"240\" height=\"14\" fill=\"url(#ds-shop-fringe)\"/><g fill=\"none\" stroke=\"var(--palette-limewash, #f7f7f8)\" stroke-opacity=\"0.45\" stroke-width=\"1.5\"><rect x=\"12\" y=\"66\" width=\"18\" height=\"160\"/><rect x=\"210\" y=\"66\" width=\"18\" height=\"160\"/></g><rect x=\"40\" y=\"64\" width=\"160\" height=\"42\" rx=\"2\" fill=\"#4a1626\"/><rect x=\"43.5\" y=\"67.5\" width=\"153\" height=\"35\" rx=\"1\" fill=\"none\" stroke=\"#c6a15b\" stroke-width=\"1.25\"/><svg x=\"60.45\" y=\"74\" width=\"119.1\" height=\"22\" viewBox=\"0 0 399 73.7\"><path d=\"M16.30 18.20L16.30 18.20L16.30 64Q16.30 66.60 16.85 67.95Q17.40 69.30 18.95 69.75Q20.50 70.20 23.60 70.20L23.60 70.20L32.10 70.20Q38.60 70.20 42.70 66.40Q46.80 62.60 48.10 56.30L48.10 56.30Q48.10 56.20 48.10 56.20L48.10 56.20Q48.20 56 48.70 56L48.70 56Q49.20 56.10 49.20 56.40L49.20 56.40Q48.90 59.30 48.60 63.40Q48.30 67.50 48.30 71L48.30 71Q48.30 72.50 46.80 72.50L46.80 72.50L0.20 72.50Q0 72.50 0 71.90Q0 71.30 0.20 71.30L0.20 71.30Q3.70 71.30 5.45 70.80Q7.20 70.30 7.80 68.80Q8.40 67.30 8.40 64.40L8.40 64.40L8.40 18.10Q8.40 15.20 7.80 13.75Q7.20 12.30 5.45 11.75Q3.70 11.20 0.20 11.20L0.20 11.20Q0 11.20 0 10.60Q0 10 0.20 10L0.20 10Q2.60 10 5.75 10.15Q8.90 10.30 12.30 10.30L12.30 10.30Q15.90 10.30 18.95 10.15Q22 10 24.40 10L24.40 10Q24.60 10 24.60 10.60Q24.60 11.20 24.40 11.20L24.40 11.20Q20.90 11.20 19.20 11.75Q17.50 12.30 16.90 13.80Q16.30 15.30 16.30 18.20ZM74 73.70L74 73.70Q67.80 73.70 63.60 70.95Q59.40 68.20 57.25 63.80Q55.10 59.40 55.10 54.40L55.10 54.40Q55.10 48.40 57.95 43.55Q60.80 38.70 65.70 35.85Q70.60 33 76.60 33L76.60 33Q82.40 33 85.55 35.90Q88.70 38.80 88.70 44.40L88.70 44.40Q88.70 45.70 88.45 46.45Q88.20 47.20 87.50 47.20L87.50 47.20L82.80 47.20L63 47.30Q62.80 48.80 62.80 50.50L62.80 50.50Q62.80 56.20 64.60 60.55Q66.40 64.90 69.90 67.30Q73.40 69.70 78.40 69.70L78.40 69.70Q81.70 69.70 83.85 68.80Q86 67.90 88.30 66.60L88.30 66.60Q88.30 66.60 88.40 66.50L88.40 66.50Q88.60 66.50 88.90 66.80L88.90 66.80Q89.20 67.30 89 67.60L89 67.60Q85.40 70.90 81.70 72.30Q78 73.70 74 73.70ZM63.20 45.80L80.70 45.40Q80.70 40.70 79.10 38.10L79.10 38.10Q77.10 35 73.20 35L73.20 35Q68.30 35 65.60 39.20L65.60 39.20Q63.80 41.90 63.20 45.80L63.20 45.80ZM113.70 18.30L113.70 64Q113.70 67 114.45 68.55Q115.20 70.10 117.60 70.70Q120 71.30 124.80 71.30L124.80 71.30Q125.10 71.30 125.10 71.90Q125.10 72.50 124.80 72.50L124.80 72.50Q121.60 72.50 117.85 72.40Q114.10 72.30 109.70 72.30L109.70 72.30Q106.40 72.30 103.25 72.40Q100.10 72.50 97.60 72.50L97.60 72.50Q97.40 72.50 97.40 71.90Q97.40 71.30 97.60 71.30L97.60 71.30Q101.10 71.30 102.85 70.80Q104.60 70.30 105.15 68.80Q105.70 67.30 105.70 64.40L105.70 64.40L105.70 18.10Q105.70 15.20 105.15 13.75Q104.60 12.30 102.85 11.75Q101.10 11.20 97.60 11.20L97.60 11.20Q97.40 11.20 97.40 10.60Q97.40 10 97.60 10L97.60 10Q100.10 10 103.20 10.15Q106.30 10.30 109.60 10.30L109.60 10.30Q112.20 10.30 115.95 10Q119.70 9.70 123.50 9.70L123.50 9.70Q129.30 9.70 133.95 11.40Q138.60 13.10 141.40 16.70Q144.20 20.30 144.30 26.10L144.30 26.10Q144.30 31.30 142.40 35.10Q140.50 38.90 137.25 41.40Q134 43.90 130.05 45.10Q126.10 46.30 122.30 46.30L122.30 46.30Q121.10 46.30 119.85 46.20Q118.60 46.10 117.50 45.80L117.50 45.80Q117.10 45.70 117.30 45L117.30 45Q117.40 44.50 117.60 44.50L117.60 44.50Q117.60 44.50 117.70 44.50L117.70 44.50Q118.60 44.70 119.55 44.80Q120.50 44.90 121.20 44.90L121.20 44.90Q125 44.90 128.20 43.10Q131.40 41.30 133.40 37.55Q135.40 33.80 135.40 28.20L135.40 28.20Q135.40 22.80 133.55 19.10Q131.70 15.40 128.40 13.40Q125.10 11.40 120.80 11.40L120.80 11.40Q118 11.40 116.45 11.80Q114.90 12.20 114.30 13.70Q113.70 15.20 113.70 18.30L113.70 18.30ZM188.30 68.20L178 73.10Q177.60 73.30 177.10 73.30L177.10 73.30Q175.60 73.30 174.30 71L174.30 71Q173.30 69.50 173 66.90L173 66.90L168.10 70.10Q165.80 71.80 163.85 72.50Q161.90 73.20 159.60 73.20L159.60 73.20Q155.60 73.20 153.55 71.20Q151.50 69.20 151.50 66.20L151.50 66.20Q151.50 63.80 152.80 62.15Q154.10 60.50 156.55 59.20Q159 57.90 162.50 56.60L162.50 56.60L172.90 52.80L172.90 46.30Q172.90 40.10 171.35 37.45Q169.80 34.80 167.10 34.80L167.10 34.80Q164.60 34.80 163.10 36.15Q161.60 37.50 160.95 39.25Q160.30 41 160 42.50L160 42.50Q159.80 44.40 158.85 45.70Q157.90 47 155.70 47L155.70 47Q153.70 47 152.80 46Q151.90 45 151.90 43.80L151.90 43.80Q151.90 41.70 153.85 39.80Q155.80 37.90 158.80 36.30Q161.80 34.70 165.05 33.80Q168.30 32.90 170.90 32.90L170.90 32.90Q175 32.90 177.35 35.55Q179.70 38.20 179.70 43.30L179.70 43.30L179.70 61.70Q179.70 65 180.60 66.60Q181.50 68.20 183.50 68.20L183.50 68.20Q185.20 68.20 187.90 67.10L187.90 67.10Q188 67 188.20 67.10L188.20 67.10Q188.40 67.10 188.60 67.40L188.60 67.40Q188.70 67.80 188.60 68L188.60 68Q188.50 68.10 188.30 68.20L188.30 68.20ZM169.30 67.60L172.90 65.30Q172.90 65 172.90 64.60L172.90 64.60L172.90 54.20L165.10 57.40Q163.60 58 162.35 58.80Q161.10 59.60 160.30 60.75Q159.50 61.90 159.50 63.50L159.50 63.50Q159.50 65.90 161.10 67.45Q162.70 69 165 69L165 69Q165.90 69 166.90 68.70Q167.90 68.40 169.30 67.60L169.30 67.60ZM193.20 72.50L193.20 72.50Q193 72.50 193 71.90Q193 71.30 193.20 71.30L193.20 71.30Q196.90 71.30 198.05 69.95Q199.20 68.60 199.20 64.40L199.20 64.40L199.30 13Q199.30 9.50 198.65 7.90Q198 6.30 196.20 6.30L196.20 6.30Q194.70 6.30 191.90 7.60L191.90 7.60Q191.80 7.70 191.70 7.60L191.70 7.60Q191.40 7.60 191.30 7.20L191.30 7.20Q191.10 6.70 191.20 6.60L191.20 6.60Q191.20 6.50 191.30 6.50L191.30 6.50L204.70 0.10Q204.90 0 205.10 0L205.10 0Q205.40 0 205.85 0.30Q206.30 0.60 206.30 1L206.30 1L206.30 64.40Q206.30 68.50 207.40 69.90Q208.50 71.30 212.20 71.30L212.20 71.30Q212.60 71.30 212.60 71.90Q212.60 72.50 212.20 72.50L212.20 72.50Q210.40 72.50 207.95 72.40Q205.50 72.30 202.70 72.30L202.70 72.30Q200 72.30 197.55 72.40Q195.10 72.50 193.20 72.50ZM258.40 68.20L248.10 73.10Q247.70 73.30 247.20 73.30L247.20 73.30Q245.70 73.30 244.40 71L244.40 71Q243.40 69.50 243.10 66.90L243.10 66.90L238.20 70.10Q235.90 71.80 233.95 72.50Q232 73.20 229.70 73.20L229.70 73.20Q225.70 73.20 223.65 71.20Q221.60 69.20 221.60 66.20L221.60 66.20Q221.60 63.80 222.90 62.15Q224.20 60.50 226.65 59.20Q229.10 57.90 232.60 56.60L232.60 56.60L243 52.80L243 46.30Q243 40.10 241.45 37.45Q239.90 34.80 237.20 34.80L237.20 34.80Q234.70 34.80 233.20 36.15Q231.70 37.50 231.05 39.25Q230.40 41 230.10 42.50L230.10 42.50Q229.90 44.40 228.95 45.70Q228 47 225.80 47L225.80 47Q223.80 47 222.90 46Q222 45 222 43.80L222 43.80Q222 41.70 223.95 39.80Q225.90 37.90 228.90 36.30Q231.90 34.70 235.15 33.80Q238.40 32.90 241 32.90L241 32.90Q245.10 32.90 247.45 35.55Q249.80 38.20 249.80 43.30L249.80 43.30L249.80 61.70Q249.80 65 250.70 66.60Q251.60 68.20 253.60 68.20L253.60 68.20Q255.30 68.20 258 67.10L258 67.10Q258.10 67 258.30 67.10L258.30 67.10Q258.50 67.10 258.70 67.40L258.70 67.40Q258.80 67.80 258.70 68L258.70 68Q258.60 68.10 258.40 68.20L258.40 68.20ZM239.40 67.60L243 65.30Q243 65 243 64.60L243 64.60L243 54.20L235.20 57.40Q233.70 58 232.45 58.80Q231.20 59.60 230.40 60.75Q229.60 61.90 229.60 63.50L229.60 63.50Q229.60 65.90 231.20 67.45Q232.80 69 235.10 69L235.10 69Q236 69 237 68.70Q238 68.40 239.40 67.60L239.40 67.60ZM278.20 73.70L278.20 73.70Q275.80 73.70 273.50 72.95Q271.20 72.20 269.75 70.30Q268.30 68.40 268.30 65.20L268.30 65.20L268.30 42.10Q268.30 39.80 267.90 38.60Q267.50 37.40 266.40 37Q265.30 36.60 263.10 36.60L263.10 36.60Q262.80 36.60 262.80 35.85Q262.80 35.10 263.10 35.10L263.10 35.10Q267.50 35 270.25 32.95Q273 30.90 273.70 27.30L273.70 27.30Q273.80 27 274.50 27Q275.20 27 275.20 27.30L275.20 27.30L275.20 35Q278 34.90 280.80 34.70L280.80 34.70Q284.50 34.40 288.80 34L288.80 34Q289.10 34 289.30 34.70Q289.50 35.40 289.50 36.30L289.50 36.30Q289.50 37.10 289.20 38Q288.90 38.90 288.50 38.80L288.50 38.80Q284.50 37.90 280.80 37.60L280.80 37.60Q278.10 37.40 275.20 37.30L275.20 37.30L275.20 61.80Q275.20 65.90 277.25 67.80Q279.30 69.70 282.90 69.70L282.90 69.70Q285.40 69.70 287.45 68.80Q289.50 67.90 290.80 66.90L290.80 66.90Q291.20 66.60 291.60 67L291.60 67Q291.70 67.30 291.70 67.50L291.70 67.50Q291.70 67.70 291.50 67.80L291.50 67.80Q287.80 70.90 284.70 72.30Q281.60 73.70 278.20 73.70ZM299.20 72.50L299.20 72.50Q298.90 72.50 298.90 71.90Q298.90 71.30 299.20 71.30L299.20 71.30Q302.80 71.30 304 69.95Q305.20 68.60 305.20 64.40L305.20 64.40L305.20 46Q305.20 42.50 304.50 40.90Q303.80 39.30 302 39.30L302 39.30Q301.20 39.30 300.15 39.60Q299.10 39.90 297.70 40.60L297.70 40.60Q297.30 40.70 297.05 40.15Q296.80 39.60 297.20 39.40L297.20 39.40L310.80 33.10Q311.10 33 311.20 33L311.20 33Q311.50 33 311.85 33.30Q312.20 33.60 312.20 34L312.20 34Q312.20 34.90 312.10 37.90Q312 40.90 312 45.80L312 45.80L312 64.40Q312 68.60 313.15 69.95Q314.30 71.30 318 71.30L318 71.30Q318.30 71.30 318.30 71.90Q318.30 72.50 318 72.50L318 72.50Q316.20 72.50 313.75 72.40Q311.30 72.30 308.60 72.30L308.60 72.30Q305.90 72.30 303.50 72.40Q301.10 72.50 299.20 72.50ZM308 21.80L308 21.80Q305.70 21.80 304.35 20.55Q303 19.30 303 17L303 17Q303 14.80 304.35 13.60Q305.70 12.40 308 12.40L308 12.40Q310.20 12.40 311.45 13.60Q312.70 14.80 312.70 17L312.70 17Q312.70 21.80 308 21.80ZM344.70 73.70L344.70 73.70Q338.50 73.70 334.30 70.95Q330.10 68.20 327.95 63.80Q325.80 59.40 325.80 54.40L325.80 54.40Q325.80 48.40 328.65 43.55Q331.50 38.70 336.40 35.85Q341.30 33 347.30 33L347.30 33Q353.10 33 356.25 35.90Q359.40 38.80 359.40 44.40L359.40 44.40Q359.40 45.70 359.15 46.45Q358.90 47.20 358.20 47.20L358.20 47.20L353.50 47.20L333.70 47.30Q333.50 48.80 333.50 50.50L333.50 50.50Q333.50 56.20 335.30 60.55Q337.10 64.90 340.60 67.30Q344.10 69.70 349.10 69.70L349.10 69.70Q352.40 69.70 354.55 68.80Q356.70 67.90 359 66.60L359 66.60Q359 66.60 359.10 66.50L359.10 66.50Q359.30 66.50 359.60 66.80L359.60 66.80Q359.90 67.30 359.70 67.60L359.70 67.60Q356.10 70.90 352.40 72.30Q348.70 73.70 344.70 73.70ZM333.90 45.80L351.40 45.40Q351.40 40.70 349.80 38.10L349.80 38.10Q347.80 35 343.90 35L343.90 35Q339 35 336.30 39.20L336.30 39.20Q334.50 41.90 333.90 45.80L333.90 45.80ZM368.70 72.50L368.70 72.50Q368.40 72.50 368.40 71.90Q368.40 71.30 368.70 71.30L368.70 71.30Q372.30 71.30 373.45 69.95Q374.60 68.60 374.60 64.40L374.60 64.40L374.60 44.90Q374.60 41.70 373.85 40.20Q373.10 38.70 371.30 38.70L371.30 38.70Q370.30 38.70 369 39.05Q367.70 39.40 366 40.10L366 40.10Q365.80 40.20 365.70 40.10L365.70 40.10Q365.50 40.10 365.40 39.70L365.40 39.70Q365.20 39.20 365.50 39L365.50 39L377.80 33.10Q378.20 33 378.40 33L378.40 33Q379.30 33 380.40 35.20L380.40 35.20Q381.40 37.30 381.50 41L381.50 41Q383.50 38.80 385 37.30L385 37.30Q387.50 34.90 389.30 33.95Q391.10 33 392.70 33L392.70 33Q394.80 33 396.90 34.30Q399 35.60 399 37.60L399 37.60Q399 39.10 398 40.15Q397 41.20 395.30 41.20L395.30 41.20Q393.70 41.20 392.75 40.30Q391.80 39.40 390.85 38.55Q389.90 37.70 388.30 37.70L388.30 37.70Q387.50 37.70 386.50 38.20Q385.50 38.70 383.90 40.30L383.90 40.30Q382.90 41.30 381.50 42.90L381.50 42.90L381.50 64.40Q381.50 67.20 382.25 68.70Q383 70.20 385.05 70.75Q387.10 71.30 391 71.30L391 71.30Q391.30 71.30 391.30 71.90Q391.30 72.50 391 72.50L391 72.50Q388.40 72.50 385.10 72.40Q381.80 72.30 378.10 72.30L378.10 72.30Q375.40 72.30 372.95 72.40Q370.50 72.50 368.70 72.50Z\" fill=\"#f3e9d8\"/></svg><path d=\"M78 50v6M162 50v6\" stroke=\"#c6a15b\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M72 62l3 -6h6l3 6zM156 62l3 -6h6l3 6z\" fill=\"#c6a15b\"/><circle cx=\"78\" cy=\"62.5\" r=\"2\" fill=\"var(--palette-saffron, #f8c618)\"/><circle cx=\"162\" cy=\"62.5\" r=\"2\" fill=\"var(--palette-saffron, #f8c618)\"/><g clip-path=\"url(#ds-shop-opening)\"><rect x=\"44\" y=\"118\" width=\"152\" height=\"108\" fill=\"var(--palette-lamplight-wall, #e0842c)\"/><path d=\"M44 226l22 -26h108l22 26z\" fill=\"var(--palette-lamplight, #f18f38)\"/><path d=\"M66 118v82M174 118v82\" stroke=\"var(--palette-lamplight, #f18f38)\" stroke-width=\"1\"/><g class=\"ds-shutter\"><rect x=\"44\" y=\"118\" width=\"152\" height=\"108\" fill=\"url(#ds-shop-slats)\"/><rect x=\"44\" y=\"219\" width=\"152\" height=\"7\" fill=\"var(--palette-steel-deep, #574c64)\"/><rect x=\"112\" y=\"213\" width=\"16\" height=\"3\" rx=\"1.5\" fill=\"var(--palette-limewash, #f7f7f8)\" fill-opacity=\"0.7\"/></g></g><rect x=\"40\" y=\"110\" width=\"160\" height=\"9\" fill=\"#711425\"/><rect x=\"40\" y=\"110\" width=\"160\" height=\"9\" fill=\"var(--palette-ink, #0a1639)\" fill-opacity=\"0.28\"/><rect x=\"0\" y=\"236\" width=\"240\" height=\"14\" fill=\"var(--palette-pavement, #3d3644)\"/></svg><span class=\"ds-shop-facts\"><span class=\"ds-shop-plaques\"><span class=\"ds-shop-plaque\">No. 01</span><span class=\"ds-shop-plaque\">Available</span></span><span class=\"ds-shop-name\">LePalatier</span><span class=\"ds-shop-meta\">Restaurant and café</span><span class=\"ds-shop-meta\">Moka, Grand Baie or Tamarin</span><span class=\"ds-shop-price\">MUR 350,000</span></span></a>",
       "css": ".ds-shop { display: block; width: 15rem; background: var(--palette-dusk, #0e328f); color: var(--color-ink, #f7f7f8); text-decoration: none; font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, sans-serif); } .ds-shopfront { display: block; width: 100%; height: auto; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-shop:active .ds-shopfront { transform: scale(0.985); } .ds-shutter { transform-box: fill-box; transition: transform 900ms cubic-bezier(0.3, 0, 0.1, 1); } .ds-shop:hover .ds-shutter, .ds-shop:focus-visible .ds-shutter { transform: translateY(-88%); } .ds-shop-facts { display: block; padding: 1rem 0.75rem; } .ds-shop-plaques { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-shop-plaque { display: inline-flex; min-height: 1.75rem; align-items: center; gap: 0.5rem; border-radius: 0.375rem; background: var(--color-plaque, #0b2b8e); color: var(--color-on-plaque, #f7f7f8); padding: 0.125rem 0.625rem; box-shadow: inset 0 0 0 1px var(--color-plaque, #0b2b8e), inset 0 0 0 2.5px var(--color-on-plaque, #f7f7f8); font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 0.875rem; line-height: 1.43; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-variant-numeric: tabular-nums lining-nums; } .ds-shop-name { display: block; margin-top: 0.75rem; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 1.5rem; line-height: 1.33; font-weight: 700; text-transform: uppercase; letter-spacing: 0.015em; text-decoration: underline; text-underline-offset: 0.22em; text-decoration-color: transparent; transition: text-decoration-color 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-shop:hover .ds-shop-name { text-decoration-color: currentColor; } .ds-shop-meta { display: block; color: var(--color-ink-subtle, #b6c0db); font-size: 0.875rem; line-height: 1.43; font-weight: 400; } .ds-shop-price { display: block; margin-top: 0.5rem; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: 1.25rem; line-height: 1.4; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; font-variant-numeric: tabular-nums lining-nums; } .ds-shop:focus-visible { outline: 2px solid var(--color-focus, #f8c618); outline-offset: 3px; }"
     },
@@ -1091,7 +1164,7 @@
       "name": "Walk card",
       "kind": "card",
       "refersTo": "walk-card",
-      "description": "A stop's words over the live street: a plaque at the size of a notice, solid enamel with a limewash rim, so its words never depend on the picture behind.",
+      "description": "A stop's words over the painted stage: a plaque at the size of a notice, solid enamel with a limewash rim, so its words never depend on the painting behind.",
       "html": "<div class=\"ds-walk-card\"><h2>The sign is already painted</h2><p>A name chosen for the business, with its logo, colours and typefaces, ready to print and to post.</p></div>",
       "css": ".ds-walk-card { box-sizing: border-box; max-width: 26rem; border-radius: 0.75rem; background: var(--color-plaque, #0b2b8e); color: var(--color-on-plaque, #f7f7f8); padding: 1.75rem; box-shadow: inset 0 0 0 4px var(--color-plaque, #0b2b8e), inset 0 0 0 6px var(--color-on-plaque, #f7f7f8); } .ds-walk-card h2 { margin: 0; font-family: var(--font-display, \"Barlow Condensed\", \"Arial Narrow\", sans-serif); font-size: clamp(1.875rem, 1.7357rem + 0.5714vw, 2.25rem); line-height: 1.11; font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; text-wrap: balance; } .ds-walk-card p { margin: 0.75rem 0 0; font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, sans-serif); font-size: 1rem; line-height: 1.5; font-weight: 400; text-wrap: pretty; }"
     },
@@ -1106,16 +1179,17 @@
   ],
   "narrative": {
     "northStar": "The street",
-    "overview": "biznes.mu sells finished businesses in Mauritius, each built by Khay Digital and sold once, to one owner. Every business is a finished shopfront on one street at blue hour: its sign painted and lit, its shutter down. The home page opens on that street in 3D and the scroll walks one shop, LePalatier, in eight stops: the street, the sign, the address, behind the shutter, the counter, the wall, the room, the whole street. Three beats: the street at dusk, behind the shutter, yours to open. Then the street as one terrace, the sale in four steps, the line said large, and the questions. A business's own page ends on one action: Ask about this business. Sold, it leaves the street.\n\nThe mood is a shop street after work, when the signs come on: saturated walls on a deep blue ground, lettering painted large, warm light where a room is open. One idea per block. Sections sit 64 to 128px apart, running text is held to 62ch, and a hero heading with its lede to 680px. Nothing in the palette or the type was invented: the interface's colours were measured from the mock-up the owner approved on 17 November 2026 (S1), the drawn shopfront's materials are region medians of the same picture (S2), and Barlow Condensed was matched to its lettering by measurement (S3). What is derived says what it was derived from. Each listing's own colours and lettering are Khay Digital's direction (S6) and are content, not the platform's palette.",
+    "overview": "biznes.mu sells finished businesses in Mauritius, each built by Khay Digital and sold once, to one owner. Every business is a finished shopfront on one street at blue hour: its sign painted and lit, its shutter down. The street is painted. Five plates, generated illustrations in the style of the mock-up the owner approved, were each painted with every board, plaque, screen and paper left blank. What is true is set over the paint in code, from the data: a listing's own lettering on its board, its town or its number on its plaque, \"Sample\" on a sample's shutter.\n\nThe home page opens on that street and the scroll walks one shop, LePalatier, in eight stops: the street, the sign, the address, behind the shutter, the counter, the wall, the room, the whole street. Three beats: the street at dusk, behind the shutter, yours to open. Then the street as one terrace, the sale in four steps, the line said large, and the questions. A business's own page ends on one action: Ask about this business. Sold, it leaves the street.\n\nThe mood is a shop street after work, when the signs come on: saturated walls on a deep blue ground, lettering painted large, warm light where a room is open. One idea per block. Sections sit 64 to 128px apart, running text is held to 62ch, and a heading with its lede to 680px. Nothing in the palette or the type was invented: the interface's colours were measured from the mock-up the owner approved on 17 November 2026 (S1), the drawn stand-in's materials are region medians of the same picture (S2), two values were sampled from the plates themselves (S8, S9), and Barlow Condensed was matched to the mock-up's lettering by measurement (S3). What is derived says what it was derived from. Each listing's own colours and lettering are Khay Digital's direction (S6) and are content, not the platform's palette.",
     "keyCharacteristics": [
       "`dusk` #0e328f is the page's ground and `limewash` #f7f7f8 its words (10.48:1); `dusk-deep` #082478 holds the header and the footer.",
       "`primary` #f8c618, saffron, is the one filled action, the focus ring, the current page's line and one whole wall; on that wall the action turns `ink` #0a1639.",
       "Barlow Condensed in capitals (`heading-1` to `heading-5`, `title-4`, `caption-4`) speaks whatever is painted on a sign; Geist carries every sentence.",
-      "The shopfront is the one picture of a business: a tin roof, a pierced fringe, a sign with the listing's own lettering, a roller shutter over a lit room. It is drawn the same in SVG and in 3D.",
+      "The shopfront is the one picture of a business, and it is a painting: a tin roof, white fretwork, two lamps over a sign board, a roller shutter. Its lettering is the listing's own outline, set on the blank board in code.",
+      "The first words stand in the painted sky. They are shaped to the roofline, and their sentences are held above the afterglow, where white would not read.",
       "The plaque, `enamel` #0b2b8e with a limewash rim (`rounded.plaque`, 6px), names what is fixed: a number, a status, a town. The walk's card is the same plaque at the size of a notice.",
       "The lambrequin, a row of pierced scallops 16px tall, hangs where one ground meets the next.",
       "Anything pressed is a full pill at least 48px tall (`button-primary`, `button-quiet`), 44px for the small button, a chip and the walk's cue.",
-      "The interface is flat; depth lives in the street, which is live 3D where it can run and a still of itself where it cannot."
+      "The interface is flat; depth lives in the paintings. The stage moves each plate with one 2D transform, travels within a painting and dissolves on a push between two, and a still of itself stands wherever script does not run."
     ],
     "rules": [
       {
@@ -1125,7 +1199,7 @@
       },
       {
         "name": "The Own Sign Rule",
-        "body": "A listing's colours stay on its own shopfront, its sign plates and its paints, and every word on a board takes that listing's lettering colour through `[data-ground=\"brand\"]`. The platform must not compete with what it sells, and each board is one measured pair.",
+        "body": "A listing's colours stay on its own shopfront, its sign plates and its paints, and every word on a board takes that listing's lettering colour: through `[data-ground=\"brand\"]` on a sign plate, and as the outline's fill on a painted board. The platform must not compete with what it sells, and each board is one measured pair.",
         "section": "colors"
       },
       {
@@ -1145,12 +1219,12 @@
       },
       {
         "name": "The Named Style Rule",
-        "body": "Every piece of text takes one of the seventeen named styles: Geist at 400, 500 or 600, Barlow Condensed at 600 or 700, nothing under 12px. A size or a weight set loose is a decision nobody recorded.",
+        "body": "Every piece of interface text takes one of the seventeen named styles: Geist at 400, 500 or 600, Barlow Condensed at 600 or 700, nothing under 12px. A size or a weight set loose is a decision nobody recorded; the first words on a wide screen and the lettering on a plate are the recorded exceptions.",
         "section": "typography"
       },
       {
         "name": "The Street First Rule",
-        "body": "The home page opens on the street: the shopfronts are in the first screen, under the headline, at 1440 by 900 and at 390 by 844. The businesses are the proof, so they come before any claim.",
+        "body": "The home page opens on the street: the shopfronts are in the first screen with the headline, beside it on a desk and under it on a phone, at 1440 by 900 and at 390 by 844. The businesses are the proof, so they come before any claim.",
         "section": "layout"
       },
       {
@@ -1159,13 +1233,18 @@
         "section": "layout"
       },
       {
+        "name": "The Words In The Sky Rule",
+        "body": "The first words stand in the painted sky: every line ends before the roofline, and every sentence ends above the sky's floor, where white would no longer read. Where they do not fit, the second route steps aside and then the headline steps down a size; no frame is moved and no scrim is laid for them. One painting then serves a screen of any shape.",
+        "section": "layout"
+      },
+      {
         "name": "The Flat Interface Rule",
-        "body": "The interface casts no shadow, fills with no gradient and blurs nothing; an inset edge is a line. Depth is said by a change of ground or a hairline, and the only light on the page is the street's own.",
+        "body": "The interface casts no shadow, fills with no gradient and blurs nothing; an inset edge is a line. Depth is said by a change of ground or a hairline, and the only light on the page is the street's own: paint, a lamp's bloom, a doorway's lamplight.",
         "section": "elevation"
       },
       {
         "name": "The Solid Over The Street Rule",
-        "body": "Whatever sits over the live street is solid: the header in `dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop marks stand on in `dusk-deep`. Its words and marks then never depend on what the canvas is showing behind them. The hero's words are the one exception, and are under Contrast, Gaps.",
+        "body": "Whatever sits over a painting on the stage is solid: the header in `dusk-deep`, the walk's card and a stop's name in `enamel`, the cue and the strip the stop marks stand on in `dusk-deep`. Its words and marks then never depend on what the stage is showing behind them. The first words are the one exception: they take the sky, under The Words In The Sky Rule.",
         "section": "elevation"
       },
       {
@@ -1175,7 +1254,7 @@
       },
       {
         "name": "The Shopfront Rule",
-        "body": "A business is always shown as its shopfront: roof, fringe, sign, shutter, in its own colours with its own lettering, the same in SVG, in 3D, in the mark and in the icon. The shutter rolling is the brand's one movement.",
+        "body": "A business is always shown as its shopfront: painted where a painting exists and drawn where none does, with its own lettering set on its board, the same on the stage, on the terrace, in the catalogue and at the head of its page. The shutter rolling is the brand's one movement.",
         "section": "shapes"
       },
       {
@@ -1195,7 +1274,12 @@
       },
       {
         "name": "The Sample Rule",
-        "body": "A sample says so wherever it stands: a tag on its shutter in 3D, a plaque beside its name, \"a placeholder\" at its price, a note on its page; the form never offers it. A sample must never pass for an offer.",
+        "body": "A sample says so wherever it stands: a tag on its shutter in every painting, a plaque beside its name, \"a placeholder\" at its price, a note on its page; the form never offers it. A sample must never pass for an offer.",
+        "section": "components"
+      },
+      {
+        "name": "The Shut Sample Rule",
+        "body": "A sample's shutter never moves: it has no shutter to raise, on hover, on focus or on its own page, and only a real business opens. What cannot be bought is not shown open.",
         "section": "components"
       },
       {
@@ -1205,61 +1289,70 @@
       },
       {
         "name": "The Shutter Curve Rule",
-        "body": "`ease-roll` belongs to a shutter and to a heading rising out of its mask; everything else takes `ease-out`. A roller shutter starts heavy and settles, and that one curve is the brand's own.",
+        "body": "`ease-roll` belongs to a shutter rolling on a shopfront and to a heading rising out of its mask; everything else takes `ease-out`, and the stage follows the scroll. A roller shutter starts heavy and settles, and that one curve is the brand's own.",
         "section": "motion"
       },
       {
         "name": "The Hold Rule",
-        "body": "The camera rests at each stop for the first and last 22% of the way to the next, and under reduced motion it cuts. A visitor who stops scrolling then has a still picture to read beside.",
+        "body": "The stage rests at each stop for the first and last 22% of the way to the next, and under reduced motion it cuts. A visitor who stops scrolling then has a still picture to read beside.",
         "section": "motion"
       },
       {
         "name": "The Still First Rule",
-        "body": "A still of the street is painted before the canvas and stays wherever the canvas cannot run; the 3D is an addition to a page that is already complete. The stage is never empty.",
+        "body": "A still of the stage is painted before the plates and stays wherever they cannot run; the moving stage is an addition to a page that is already complete. The stage is never empty.",
         "section": "scene"
       },
       {
-        "name": "The Built In Code Rule",
-        "body": "Every shop is boxes and planes, every texture but the sky is painted on a canvas, and nothing is a downloaded model. A new business then costs one entry of data, not one asset.",
+        "name": "The Blank Paint Rule",
+        "body": "A painting is made with every board, plaque, screen and paper blank, and what is true is set over the paint in code, from the data: a listing's lettering, its town, its number, a sample's tag. A picture can then never say something the data does not, and what the data cannot say stays blank.",
         "section": "scene"
       },
       {
         "name": "The Same Outline Rule",
-        "body": "A listing's lettering is one outline, drawn by `npm run wordmarks`, and the flat shopfront, the sign plates and the 3D sign all draw it. A sign and its page cannot disagree.",
+        "body": "A listing's lettering is one outline, drawn by `npm run wordmarks`, and every painted board, the document's cover, the sign plates and the drawn stand-in all draw it. A sign and its page cannot disagree.",
+        "section": "scene"
+      },
+      {
+        "name": "The Illustration Rule",
+        "body": "A generated picture is never passed for premises. Every plate, crop and still has a record beside it that names what made it, and the footer of every page says the shopfronts are illustrations and that a business comes without premises.",
         "section": "scene"
       }
     ],
     "dos": [
       "Do fill one action in a group with `primary` #f8c618, set its label in `on-primary` #0a1639 (11.02:1), and put a quiet button or an arrow link beside it (The One Saffron Rule, The One Filled Rule).",
-      "Do paint a listing's colours only on its shopfront, its sign plates and its paints, and set every word on a board in that listing's lettering colour through `[data-ground=\"brand\"]` (The Own Sign Rule).",
+      "Do keep a listing's colours on its shopfront, its sign plates and its paints, and set every word on a board in that listing's lettering colour (The Own Sign Rule).",
       "Do change a ground by redefining roles in a scope, as `[data-ground=\"saffron\"]` does, and leave every `--palette-*` value alone (The Roles Not Values Rule).",
       "Do set a heading, a plaque and a price in Barlow Condensed capitals by `text-transform`, and every sentence in Geist (The Painted Sign Rule).",
       "Do keep the slant for `heading-1` on the home page's first screen, and the coral shade for that headline and the tagline (The One Slant Rule).",
-      "Do give every piece of text one of the seventeen named styles (The Named Style Rule).",
-      "Do keep the shopfronts in the first screen of the home page, under the headline (The Street First Rule).",
+      "Do give every piece of interface text one of the seventeen named styles (The Named Style Rule).",
+      "Do keep the shopfronts in the first screen of the home page, with the headline (The Street First Rule).",
       "Do hang a lambrequin in the colour of the ground above it where two grounds meet (The Roof Line Rule).",
-      "Do separate one part of a page from the next with a ground or a hairline, and put anything that sits over the live street on a solid ground of its own (The Flat Interface Rule, The Solid Over The Street Rule).",
+      "Do keep the first words above the painted roofline and their sentences above the sky's floor, by shaping and fitting them, and measure them on the sky at the sizes they are shown (The Words In The Sky Rule).",
+      "Do separate one part of a page from the next with a ground or a hairline, and put anything else that sits over a painting on a solid ground of its own (The Flat Interface Rule, The Solid Over The Street Rule).",
       "Do round anything pressed that is a control to a full pill, at least 48px tall, or 44px for the small button, a chip and the cue (The Pill Rule).",
       "Do show a business as its shopfront, from `Shopfront.tsx` and the data, and name what is fixed about it on a plaque in `enamel` #0b2b8e with a limewash rim (The Shopfront Rule, The Plaque Rule).",
-      "Do say a status, a sample, an error and the current page in words or as a mark, and mark a sample on its shutter, beside its name and at its price (The Words Not Colour Rule, The Sample Rule).",
-      "Do leave every word visible in the markup, roll a shutter and a masked heading on `ease-roll`, and give each new movement its row under \"Reduced motion and no script\" (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).",
-      "Do paint a still first, build every shop in code, and draw a sign from the same outline as its page (The Still First Rule, The Built In Code Rule, The Same Outline Rule)."
+      "Do say a status, a sample, an error and the current page in words or as a mark, mark a sample on its shutter, beside its name and at its price, and leave its shutter down (The Words Not Colour Rule, The Sample Rule, The Shut Sample Rule).",
+      "Do leave every word visible in the markup, roll a shopfront's shutter and a masked heading on `ease-roll`, rest the stage at each stop, and give each new movement its row under \"Reduced motion and no script\" (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).",
+      "Do capture a still of the stage after any change to it, paint a new picture with every board, plaque, screen and paper blank, and set a listing's one outline over the paint from the data (The Still First Rule, The Blank Paint Rule, The Same Outline Rule).",
+      "Do save a generated picture's prompt and its record beside it, and keep the footer's line that says the shopfronts are illustrations (The Illustration Rule)."
     ],
     "donts": [
       "Don't set words in saffron on limewash or fill a second button in a group: saffron on limewash measures 1.49:1 (The One Saffron Rule, The One Filled Rule).",
-      "Don't put the platform's ink, a grey or another listing's colour on a listing's board: only its own pair is measured, from 6.09:1 to 12.17:1 (The Own Sign Rule).",
+      "Don't put the platform's ink, a grey or another listing's colour on a listing's board, or borrow a listing's colour for the platform (The Own Sign Rule).",
       "Don't redefine a palette value inside a scope, or paint with a raw hex or one of Tailwind's colours: those are switched off and paint nothing (The Roles Not Values Rule).",
       "Don't set a sentence in Barlow Condensed or type capitals into the markup: the capitals are `text-transform` (The Painted Sign Rule).",
       "Don't slant a second heading, shade a third line, or set words in coral: it measures 3.09:1 on dusk (The One Slant Rule).",
-      "Don't set a loose size or weight, a weight over 700 or text under 12px (The Named Style Rule).",
+      "Don't set a loose size or weight, a weight over 700 or interface text under 12px (The Named Style Rule).",
       "Don't open the home page with a claim, a picture of something else or a band of logos ahead of the street: the businesses are the proof (The Street First Rule).",
       "Don't rule a line between two sections or hang a fringe in a colour that is not the ground above it (The Roof Line Rule).",
-      "Don't cast a soft shadow, fill with a gradient or blur a ground in the interface, and never lay a blur or a scrim over the live street (The Flat Interface Rule, The Solid Over The Street Rule).",
+      "Don't let a line of the first words run onto a roof or a sentence end on the afterglow, and never move a view or lay a scrim to make room for them (The Words In The Sky Rule).",
+      "Don't cast a soft shadow, fill with a gradient or blur a ground in the interface, and never lay a blur or a scrim over a painting (The Flat Interface Rule, The Solid Over The Street Rule).",
       "Don't square a button or a chip, round a plaque into a pill, or make a plaque a button (The Pill Rule, The Plaque Rule).",
       "Don't show a business as a photograph, a logo tile or a boxed card: it is a shopfront (The Shopfront Rule).",
-      "Don't mark a sample, a status or an error by colour alone, add an error colour, or let a sample's price stand without \"a placeholder\" (The Words Not Colour Rule, The Sample Rule).",
-      "Don't start anything hidden without `html.can-animate`, mute the tagline below 0.5 of the ink (3.77:1), loop a movement, or move the camera while a visitor rests at a stop (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).",
-      "Don't download a model, ship a second generated image, leave the stage empty while the canvas arrives, or letter a 3D sign by hand (The Still First Rule, The Built In Code Rule, The Same Outline Rule)."
+      "Don't mark a sample, a status or an error by colour alone, add an error colour, let a sample's price stand without \"a placeholder\", or raise a sample's shutter (The Words Not Colour Rule, The Sample Rule, The Shut Sample Rule).",
+      "Don't start anything hidden without `html.can-animate`, mute the tagline below 0.5 of the ink (3.77:1), loop a movement, or move the stage while a visitor rests at a stop (The Visible First Rule, The Shutter Curve Rule, The Hold Rule).",
+      "Don't leave the stage empty while the plates arrive, generate a picture with lettering in it, letter a board by hand or write on a painting what the data does not hold (The Still First Rule, The Blank Paint Rule, The Same Outline Rule).",
+      "Don't ship a generated picture without its record, call a painting a photograph, or let a shopfront pass for premises (The Illustration Rule)."
     ]
   }
 }
