@@ -66,8 +66,8 @@ export default function SiteFooter() {
         </div>
 
         <div className="caption-2 mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line pt-6 text-ink-subtle">
-          <p>
-            {site.name} is a {builder.legalName} project. BRN {builder.brn}.
+          <p className="measure">
+            {site.name} is a {builder.legalName} project. BRN {builder.brn}. {site.pictures}
           </p>
           <a href={builder.url} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center text-ink-subtle">
             <span>

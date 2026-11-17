@@ -23,6 +23,12 @@ export const site = {
   launched: false,
   /** One switch hides every price on the site, if the owner prefers to quote in person. */
   showPrices: true,
+  /**
+   * What the footer says about the site's pictures. The street is painted: generated illustrations,
+   * not photographs, and no shop in them exists (README, "Where it came from"). Said on every page
+   * so a painting can never pass for premises.
+   */
+  pictures: "The shopfronts on this site are illustrations. A business comes without premises.",
   locale: "en_MU",
 
   /** The agency that builds every business sold here (K). */

@@ -8,8 +8,9 @@ web
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Lenis for wheel smoothing, and
-React Three Fiber for the home page's street: the Khay Digital house standard. Every page is
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4 and Lenis for wheel smoothing: the
+Khay Digital house standard, without React Three Fiber, because the home page's street is painted,
+not rendered. Every page is
 prerendered; one route handler (`/api/enquiry`) takes the request form. English only at launch, at
 the root.
 
@@ -95,7 +96,9 @@ chose the second from the directions and mock-ups put to them: "the street", wit
 first screen (`.impeccable/mocks/comp-b-perspective.png`). The identity is sampled from that
 mock-up: dusk blue, saffron, limewash, a coral shade and enamel blue; Barlow Condensed for anything
 painted on a sign and Geist for sentences; the shopfront, the plaque and the lambrequin as the
-signature shapes (`DESIGN.md`). Each listing's own identity (lettering, colours) is Khay Digital's
+signature shapes (`DESIGN.md`). Its pictures are painted: generated illustrations in that mock-up's
+style, never presented as photographs or as real premises, with every sign left blank for the
+listing's own lettering. Each listing's own identity (lettering, colours) is Khay Digital's
 first direction. biznes.mu is its own brand; Khay Digital appears as the maker and in the credit, as
 on every Khay build: "A Digital Experience by Khay Digital".
 
@@ -108,10 +111,10 @@ on every Khay build: "A Digital Experience by Khay Digital".
 | KOS, `references/khay.md` | 16 November 2026 | A website is "the client's in full, on payment" |
 | DNS for the `.mu` zone | 16 November 2026 | None of lepalatier.mu, lakrem.mu, souffle.mu, bouke.mu, larout.mu or kazprop.mu resolved; no claim is made on the site |
 | The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` | 17 November 2026 | The first screen's composition and the palette, sampled by region |
-| The generated sky, `assets/plates/sky.png` | 17 November 2026 | The backdrop of the 3D street; its prompt is kept beside it |
+| Six painted plates, `assets/plates` | 17 November 2026 | Every picture of the street: generated illustrations in the approved mock-up's style, each with its prompt and its record beside it, each painted with its signs and plaques blank |
 
-Absent, and not fabricated: photographs, testimonials, sales figures, a logo for biznes.mu from
-before this build, confirmed prices for the samples.
+Absent, and not fabricated: photographs, premises, testimonials, sales figures, a logo for
+biznes.mu from before this build, confirmed prices for the samples.
 
 ## Product Principles
 
@@ -128,7 +131,8 @@ before this build, confirmed prices for the samples.
 ## Accessibility & Inclusion
 
 WCAG 2.2 AA, the Khay standard: keyboard access, visible focus, reduced-motion support, no
-horizontal overflow at 390px, and a page that is whole without script. The 3D street is an
-addition to a page that is already complete: without WebGL, without script or under `?no3d`, every
-stop of the walk is a plain section with a still and its words, and under reduced motion the camera
-cuts instead of travelling.
+horizontal overflow at 390px, and a page that is whole without script. The painted stage is an
+addition to a page that is already complete: without script or under `?plain`, every stop of the
+walk is a plain section with a still and its words, and under reduced motion the stage cuts instead
+of travelling. The paintings are decoration to assistive technology: every name, town and "Sample"
+on them is also in the page's own text.

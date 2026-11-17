@@ -33,7 +33,7 @@ every one; prices in rupees; the towns a business is meant for; the plain split 
 which is built, and the room, which is the buyer's.
 
 Decided with the owner on 17 November 2026: the direction ("the street", from seven put to them),
-a 3D centrepiece with a flat fallback, biznes.mu's own identity with Khay Digital as maker only,
+a scroll-driven centrepiece with a flat fallback, biznes.mu's own identity with Khay Digital as maker only,
 mock-up B ("perspective") as the first screen, and the street built in code with one generated
 image, the sky.
 
@@ -51,31 +51,33 @@ business**.
 
 ## Chapters
 
-The home page opens on a stage: the street in 3D, pinned under the header, with the scroll walking
-the camera from stop to stop. Each stop is a screen of scroll with its words on an enamel plaque
-the size of a notice. A column of marks at the stage's edge shows where the walk is and jumps along
-it, and a small pill at the foot of the first screen leads into it. The stops are data
-(`src/data/walk.ts`); where the camera stands is `src/components/three/timeline.ts`.
+The home page opens on a stage: the painted street, pinned under the header, with the scroll moving
+through the paintings from stop to stop. Each stop is a screen of scroll with its words on an
+enamel plaque the size of a notice. A column of marks at the stage's edge shows where the walk is
+and jumps along it, and on a wide desk a small pill at the foot of the first screen leads into it.
+The stops are data (`src/data/walk.ts`); what the stage shows at each is
+`src/components/stage/views.ts`.
 
 | # | Marker | Where in the world | What the visitor sees and does | Sells | Words | Action |
 |---|---|---|---|---|---|---|
-| 0 | The street | the pavement, looking down the row | Six shopfronts at an angle; LePalatier nearest, its shutter half raised over a lit room; the headline across the sky | what the site is, and where | Khay Digital's, from the owner's description | See the businesses |
-| 1 | The sign | up at the sign | The board, its lettering, its two lamps | the name and the identity | the owner's list | none |
-| 2 | The address | the pier | The town's enamel plaque and the letterbox under it | the domain and the social media names | the owner's list | none |
-| 3 | Behind the shutter | the doorway | The shutter rolls all the way up; a screen on the back wall in the brand's colours | the website | the owner's list | none |
-| 4 | The counter | inside | The plan on a counter, its cover in the brand's colours: "Business strategy" | the business strategy | the owner's list | none |
-| 5 | The wall | inside | A certificate in a frame on the facing wall | help with incorporation | the owner's list | none |
-| 6 | The room | back on the pavement | The room, lit, with everything else still to come | honesty: what is not sold, and no promise of income | Khay Digital's | none |
-| 7 | The whole street | further back | The row from its far side, one room lit | each business is sold once | Khay Digital's | See the businesses |
-| 8 | On the street now | dusk, the street itself | One terrace: six shopfronts wall to wall under one roofline, each a link, its facts on plaques beneath it; a shutter rolls up when a shop is pointed at; on a phone the terrace scrolls sideways | the businesses themselves | names, sectors, towns and prices from the data | open a business |
+| 0 | The street | the pavement, looking down the row | The painted street at an angle: six shopfronts, LePalatier nearest, its shutter raised over a lit, empty room; the headline across the sky, above the roofs; the lamps come on down the street as it arrives | what the site is, and where | Khay Digital's, from the owner's description | See the businesses |
+| 1 | The sign | up at the sign | The stage pushes in on the same painting: the board, its lettering, its two lamps | the name and the identity | the owner's list | none |
+| 2 | The address | the pier | The stage turns to the shop face-on, a second painting, arriving through the first: the town's enamel plaque and the letterbox under it | the domain and the social media names | the owner's list | none |
+| 3 | Behind the shutter | the doorway | The painted shutter rolls all the way up; a screen on the back wall in the brand's colours | the website | the owner's list | none |
+| 4 | The counter | inside, close | A third painting: the plan as a bound document on the counter, the business's lettering and "Business strategy" on its cover | the business strategy | the owner's list | none |
+| 5 | The wall | inside, close | A fourth painting: a certificate in a frame, ruled lines and a seal, no words | help with incorporation | the owner's list | none |
+| 6 | The room | back on the pavement | The shop whole, face-on: the room lit, with everything else still to come | honesty: what is not sold, and no promise of income | Khay Digital's | none |
+| 7 | The whole street | across the road | A fifth painting: all six shopfronts front-on under the dusk sky, every sign lettered, every sample tagged | each business is sold once | Khay Digital's | See the businesses |
+| 8 | On the street now | dusk, the street itself | The same terrace as six painted shopfronts, wall to wall, each a link, its facts on plaques beneath it; LePalatier's shutter rolls up when it is pointed at; on a phone the terrace scrolls sideways | the businesses themselves | names, sectors, towns and prices from the data | open a business |
 | 9 | From the street to opening day | a saffron wall | Four numbered steps | how a sale runs | Khay Digital's | How it works |
 | 10 | the line | dusk | The tagline, lighting word by word | the idea in one line | Khay Digital's, to confirm | none |
 | 11 | Questions people ask | a limewashed wall | Nine questions, and who builds every business | the objections, answered; trust in the maker | Khay Digital's, with its published facts | Visit Khay Digital |
 | end | deep dusk | the last page | The invitation that fits the page just read, then every way to reach us | the invitation | | by page: see below |
 
-A business's own page tells the same story for one shop: its shopfront with the shutter up, its
-plaques (number, status, towns), its brand on limewash with its paints, what it is, what comes with
-it beside what the buyer brings on saffron, the next shop on the street, then the one action.
+A business's own page tells the same story for one shop: its painted shopfront (a real business's
+stands open on its own plate, its room lit; a sample's stays shut and tagged), its plaques (number,
+status, towns), its brand on limewash with its paints, what it is, what comes with it beside what
+the buyer brings on saffron, the next shop on the street, then the one action.
 
 The closing band at the head of the footer takes its action from the page: a real business's page
 ends on asking about that business; the catalogue ends on the route to the form; Enquire and the
@@ -83,42 +85,45 @@ ends on asking about that business; the catalogue ends on the route to the form;
 
 ## The centrepiece
 
-The street, in React Three Fiber, built in code: every shop is a few boxes and planes from the same
-measurements, painted in its business's own colours, with its own lettering on its sign (the same
-outline the pages draw, from `scripts/make-wordmarks.mjs`). Each shop stands a little taller or
-shorter than its neighbour under its own tin roof. Nothing is a downloaded model. The one image
-that is not drawn in code is the sky, a generated painting (`assets/plates/sky.png`).
+The street, painted. Six plates (`assets/plates`), each a generated illustration in the style of
+the mock-up the owner approved, with its prompt and its record beside it: the street at an angle,
+the first shop face-on with its shutter up and its room lit, a close view of the plan on the
+counter, a close view of the certificate, the terrace of all six shops, and the sky behind it.
 
-The street is lit the way a blue-hour street is: every sign has two gooseneck lamps, each with its
-glow and the pool it throws down the wall; a raised shutter lets the room's light out across the
-paving; the far end falls away into the dusk. The light is painted and added to what it falls on,
-so it shows on every device.
+A painting can say something untrue, so the paintings say nothing. Every sign board, plaque, screen
+and paper was painted blank, and what is true is set over the paint in code, from the data: each
+listing's own lettering on its board (the same outline its page draws, from
+`scripts/make-wordmarks.mjs`), its town on the plaque, a tag on each sample's shutter. On the
+angled street each board's four corners were measured (`scripts/measure-plates.mjs`), and the
+lettering is carried onto them by one projective transform, so it lies on the paint as if painted.
 
-The opening and closing frames were solved against the approved mock-up's layout, not placed by
-eye: the camera stands low and the picture is shifted down, as an architectural photograph is, so
-the walls stay upright. The first shop's pier stays at the right edge on any screen, and on a short
-or narrow screen the street moves down so the words never lie over a roof.
+The stage (`src/components/stage`) moves the paintings with the scroll: a push in, a pan, and
+between two paintings a dissolve made on the move. The first shop's shutter is its own painted
+shutter, and it rolls up as the walk reaches the room. Nothing is WebGL.
+
+The first screen follows the approved mock-up: the street fills the screen from its foot and its
+right edge, and the first words are set at the mock-up's own measure in the sky above the roofs. A
+float in the words' column carries the painted roofline as its shape, so no line runs into a roof
+on a screen of any shape, and the sentences end above the afterglow, where white would not read.
 
 ## Play
 
-Any shutter can be raised or lowered by hand: a tap or a click on a shop rolls it, and a sample's
-tag stays in view whatever is done to its shutter. On the drawn shopfronts, in the terrace and in
-the catalogue, a shutter rolls up when its shop is pointed at or focused. Neither carries anything
-a visitor needs.
+On the painted shopfronts, in the terrace and in the catalogue, a real business's shutter rolls up
+over its lit room when its shop is pointed at or focused. A sample's shutter never moves: it is not
+for sale, and it stays shut and tagged. The lamps come on down the street, once, as the page
+arrives. None of it carries anything a visitor needs.
 
-## Reduced motion and no WebGL
+## Reduced motion and no script
 
-The page is whole before the 3D runs. As prerendered, every stop is a plain section: a still of the
-street at that stop (a capture of this site's own 3D, `npm run stills`) and its words. Only where
-the canvas can run does the street pin and the scroll walk it. Without WebGL, without script, or
-with `?no3d`, the plain sections stay. Under reduced motion the camera cuts from stop to stop
-instead of travelling, shutters cut, reveals are simply there and the tagline is fully lit.
+The page is whole before the stage runs. As prerendered, every stop is a plain section: a still of
+the stage at that stop (a capture of this site's own stage, `npm run stills`) and its words. Only
+where script runs does the street pin and the scroll move through it. Without script, or with
+`?plain`, the plain sections stay. Under reduced motion the stage cuts from stop to stop instead of
+travelling, the shutter cuts, the lamps are simply lit, reveals are simply there and the tagline is
+fully lit.
 
-Two tiers: a wide screen lights every sign and every room; a narrow screen, a slow device or
-`?tier=low` lights the walked shop only and loads the smaller sky. The canvas draws only when
-something moves (at rest it draws nothing), pauses off screen, and steps its resolution down before
-its frame rate. The still stays under the canvas until the canvas has finished arriving, so the
-stage is never empty.
+The first painting is shown as soon as it has decoded, over the still, and the still goes only when
+the painting has finished arriving, so the stage is never empty. The other paintings load after it.
 
 ## After the story
 
@@ -134,12 +139,14 @@ routes.
 
 ## Signature details
 
-1. **The shopfront and its shutter**: a roof, a fringe, a sign, a roller shutter. Every business,
-   the logo, the favicon. The shutter rolling up is the brand's one movement.
+1. **The shopfront and its shutter**: a roof, a fringe, a sign, a roller shutter. Every business
+   is painted as one; the logo and the favicon draw it. The shutter rolling up is the brand's one
+   movement.
 2. **The plaque**: a blue enamel street plate with a white rim. It names what is fixed about a
    business: its number, its town, whether it is a sample.
-3. **The lambrequin**: the cut fringe under a creole tin roof, one pierced scallop repeated. It
-   hangs from every eave on the street, and on the page wherever one ground gives way to the next.
+3. **The lambrequin**: the cut fringe under a creole tin roof. It is painted under every eave on
+   the street, and drawn as one pierced scallop on the page wherever one ground gives way to the
+   next.
 4. **Sign painter's capitals**: Barlow Condensed. The headline is slanted, the only slant on the
    site; it and the tagline carry the painter's hard coral shade.
 5. **One saffron**: the colour of the action, and of one whole wall.
@@ -339,3 +346,54 @@ mock-up and never proven by measurement (51 per cent where the tool asks for 72)
 that on the record or asks for a raster proof. Until then impeccable's plates and hero phases stand
 open in `.impeccable/build/state.json`. The whole review is in
 `.impeccable/review/finish-review.md`.
+
+### Round 2, 17 November 2026: the street, painted
+
+The owner's note on the 3D street, in their own words: "3d is shit, i need better aesthetic
+please. be creative while relfecting khay standards."
+
+What was wrong: the street had been built as live 3D in code, lit and textured by hand in a
+browser. It held the mock-up's composition and none of its light: flat planes, plain surfaces, a
+measured likeness to the approved mock-up of about half. Two rounds of review had improved it and
+not changed what it was.
+
+What was decided, with reasons written down because the owner was away: keep the direction and the
+story, which the owner had chosen and not questioned, and replace the medium. The mock-up the owner
+approved is a painting, so the street is painted. Khay's standards shaped how:
+
+- **Nothing invented.** A generated picture cannot be trusted with words, so every plate was
+  painted with its boards, plaques, screens and papers blank, and each listing's real lettering,
+  its town and the samples' tags are set over the paint in code, from the data.
+- **Not presented as real.** The pictures are illustrations, said in every file's record and in
+  the footer of every page, with the fact that matters beside it: a business comes without
+  premises.
+- **Complete without script, and under reduced motion.** The same eight plain sections, with
+  stills of the stage; cuts instead of travel.
+- **Measured, not assumed.** Each blank was located on its plate by measurement; white words on
+  the painted sky were measured before the first screen's words were placed; the first screen was
+  read at fifteen sizes.
+- **Light to run.** three.js and React Three Fiber are gone; the stage is five images and one
+  transform each.
+
+What was done: six plates generated (18.25 credits, on top of the 11 already spent); the stage
+rebuilt to move through them; the first words set to the mock-up's own measure and shaped to the
+painted roofline; every shopfront on the site (terrace, catalogue, each business's page) replaced
+by its painted one; the lamps switching on as the street arrives; the 3D, its engine and its code
+removed.
+
+Departures, with reasons:
+
+- **Six shops are painted, so the street shows six.** A listing beyond them is drawn in code where
+  it is shown by itself, until the street is repainted.
+- **The header is the site's own**, 72px with 44px targets, where the mock-up drew a thinner one.
+- **The first words keep above the roofs.** The mock-up let its lede touch a roof; the build shapes
+  every line to the roofline and steps the headline down where the sky is small.
+- **The room is not empty on the shop's own plate.** As before, a screen, a counter with the plan
+  and a framed certificate give the website, the strategy and the company somewhere to be shown.
+  On the street itself the room is empty, as in the mock-up.
+
+Measured against the approved mock-up at its own size, the first screen went from 51 per cent to
+66, and the street itself to 70. impeccable's plates gate, which a street drawn live could not
+pass, passes. Its hero gate asks for 72 and stays open.
+
+REVIEW_ROUND2

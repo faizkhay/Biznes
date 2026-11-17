@@ -39,23 +39,30 @@ once, walks one shopfront to learn what comes with it, sees the empty room that 
 and asks about one.
 
 **FIRST VIEWPORT.** As the owner approved it (mock-up B, "perspective",
-`.impeccable/mocks/comp-b-perspective.png`): a full-bleed street in 3D at dusk, seen at an angle.
-LePalatier stands large in the foreground on the right, its sign lit and its shutter half raised
-over a lit room; the five samples run away from it to the left, each in its own colour under its own
-tin roof. The headline in sign capitals sits across the sky, upper left, with the lede and the one
-filled action beneath it; each shop's town is an enamel plaque on its pier. On a phone the words
-stand at the top and the street runs along the foot of the screen.
+`.impeccable/mocks/comp-b-perspective.png`): a full-bleed painted street at dusk, seen at an angle.
+LePalatier stands large in the foreground on the right, its sign lit and its shutter raised over a
+lit, empty room; the five samples run away from it to the left, each in its own colour under its own
+tin roof, each with its real lettering on its sign and a "Sample" tag on its shutter. The headline
+in sign capitals sits across the sky, upper left, at the mock-up's own measure, with the lede and
+the one filled action beneath it, all above the roofline; the nearest shop's town is on its enamel
+plaque. On a phone the words stand at the top and the street runs along the foot of the screen.
 
 **FORM.** "The street": shuttered shopfronts with hand-painted signs. Position 1 on the ordered
 list of seven; chosen by the owner on 17 November 2026 over the assigned direction (the quay).
-Seed key 8f9b6c58. Signature interaction: a shutter rolls up as the visitor arrives, and any
-shutter can be raised or lowered by hand. Motion grammar: things roll, swing and switch on.
+Seed key 8f9b6c58. The street is painted (six plates, `assets/plates`), and the scroll moves through
+the paintings. Signature interaction: the first shop's painted shutter rolls up as the walk reaches
+its room, and a real business's shutter rolls up when its shopfront is pointed at. Motion grammar:
+things roll, push in and switch on (the lamps come on down the street as it arrives).
 
 **FINISH.** unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
-**Resolved with the owner on 17 November 2026:** mock-up B is the approved composition; the street
-is built as true 3D in code with one generated image, the sky, behind it ("3D plus a painted sky").
-Because the street is drawn live and is not a raster plate, impeccable's plates and hero pixel gates
-do not apply to it and were not run; the mock-up is the composition and critique reference, and
-`.impeccable/review/diff/final/` holds the measured comparison. The palette was sampled from the
-mock-up and every pair measured (`scripts/contrast.pairs.json`).
+**Resolved with the owner on 17 November 2026:** mock-up B is the approved composition. It was
+first built as true 3D in code with a painted sky ("3D plus a painted sky"). The owner rejected that
+the same day, in these words: "3d is shit, i need better aesthetic please. be creative while
+relfecting khay standards." The 3D was removed and the street is now painted: generated plates in
+the mock-up's own style, with every sign board, plaque, screen and paper painted blank and the
+listings' real lettering set over them in code. impeccable's plates gate passes on the painted
+street (2 of 2). Its hero gate stays open: the first screen measures 66 per cent against the mock-up
+where the gate asks for 72 (`.impeccable/review/diff/final`), with the street region at 70 and the
+header and lettering marked as unlike the mock-up's drawing of them. The palette was sampled from
+the mock-up and every pair measured (`scripts/contrast.pairs.json`).
