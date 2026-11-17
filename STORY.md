@@ -306,3 +306,26 @@ nothing idle (it now draws nothing at rest); a sample's tag hid when its shutter
 now hangs from the ground above it); a roof tip reached the words at 1024 x 768 (the street now
 moves down on a narrow or short screen). What it found and was left as it is, is in `DESIGN.md`,
 "Known Gaps".
+
+### The verdict pass, 17 November 2026
+
+The same reviewer read the recaptured pages and scored the eight: seven resolved, the eighth partial
+(the build record, which only the owner's word can close). It answered "fix" once more, for what the
+batch itself had broken:
+
+1. **Short screens cut the street off at the knees.** To keep the words clear of the roofs, the
+   batch had moved the picture down on a short stage, and the pavement and the lit room went out of
+   frame at 1344 x 760, 1366 x 768, 1024 x 768 and 375 x 667. The camera now draws back about the
+   first shop's corner instead (`fit`, in `timeline.ts`), so the street gets smaller under the words
+   and keeps its pavement at every size.
+2. **The far lamp's glow drew as a streak.** Each glow now turns to face the visitor, so it is round
+   from any side.
+3. **The town plaque was cut by the right edge.** The plaque and the letterbox moved in from the
+   pier's edge, and the corner stays just outside the frame, on a desk and on a phone.
+
+Also: the way into the walk shows only on a wide desk, where the foot of the first screen is open
+road; the room stop frames the first shop alone, so its card cuts no sample's tag; the footer's roof
+line takes the colour of the ground above it on a business's page too.
+
+The reviewer's reading of these last three fixes is recorded in
+`.impeccable/review/finish-review.md`.

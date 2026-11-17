@@ -687,8 +687,9 @@
   .walk-cue:hover {
     background: var(--palette-enamel);
   }
-  /* On a short phone the words fill the first screen and the street shows under them: no cue. */
-  @media (width < 56.25rem) and (height < 43.75rem) {
+  /* Only where the foot of the first screen is open road: a wide desk. On a phone and a narrow
+     desk the street itself fills the foot, and a pill there would sit on a shopfront. */
+  @media (width < 75rem) {
     .walk-cue {
       display: none;
     }
@@ -772,10 +773,11 @@
 #site-footer {
   --fringe: var(--palette-dusk);
 }
-main:has(> [data-ground="limewash"]:last-child) + #site-footer {
+/* A page's last ground is main's last child, or the last child of the article that wraps a listing. */
+main:has(> [data-ground="limewash"]:last-child, > article:last-child > [data-ground="limewash"]:last-child) + #site-footer {
   --fringe: var(--palette-limewash);
 }
-main:has(> [data-ground="saffron"]:last-child) + #site-footer {
+main:has(> [data-ground="saffron"]:last-child, > article:last-child > [data-ground="saffron"]:last-child) + #site-footer {
   --fringe: var(--palette-saffron);
 }
 

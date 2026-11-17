@@ -246,10 +246,10 @@ machine has no GPU, so the 3D drew on a software renderer: correct, and slow.
   `review/screens/states`. Restart the server between runs: the endpoint's limit is per connection,
   per ten minutes.
 - The walk was read at every stop, live, at 1440 x 900 and 390 x 844, and the first screen at
-  1024 x 768, 1280 x 720, 1366 x 768, 1920 x 1080, 375 x 667 and 768 x 1024: the words stand clear
-  of the roofs at each.
+  1024 x 768, 1280 x 720, 1344 x 760, 1366 x 768, 1920 x 1080, 375 x 667 and 768 x 1024: at each
+  the words stand clear of the roofs and the street keeps its pavement.
 - The first screen was measured against the approved mock-up at the mock-up's own size
-  (`.impeccable/review/diff/final`): 50 per cent overall, where the tool asks for 72. So the first
+  (`.impeccable/review/diff/final`): 51 per cent overall, where the tool asks for 72. So the first
   screen was judged against the mock-up by eye, by an independent reviewer, and not proven by
   measurement. The composition, the palette and the words follow the mock-up; what remains is a
   painting against a street drawn live, and each listing's real lettering on its sign.
@@ -257,9 +257,10 @@ machine has no GPU, so the 3D drew on a software renderer: correct, and slow.
   the street, because the owner chose live 3D.
 - Every raster the site ships carries a record of where it came from: 20 of 20 across `public` and
   `assets`.
-- An independent design review answered "fix" with eight points; all eight were acted on
-  (`STORY.md`, "The design review, 17 November 2026"). Its verdict on the fixes follows in the
-  next commit.
+- An independent design review answered "fix" with eight points, and its verdict pass on the fixes
+  scored seven resolved and one partial (the build record, which only the owner's word can close),
+  with three regressions the batch had introduced, all since fixed. `STORY.md`, "The design review"
+  and "The verdict pass", 17 November 2026, has each point and what was done.
 - `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
 - Not yet run: any real GPU, phone or tablet; frame rate on a device; a keyboard pass by hand on a
   real device; a screen reader; Lighthouse. Hover and pressed states were read in code and, for

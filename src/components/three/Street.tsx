@@ -44,7 +44,7 @@ import {
   tagTexture,
   topColour,
 } from "./textures";
-import { HOLD, TIMELINE, shiftX, shiftY, type Frame } from "./timeline";
+import { HOLD, TIMELINE, fit, type Frame } from "./timeline";
 
 /**
  * The street: a row of finished shopfronts at blue hour, built in code.
@@ -420,12 +420,12 @@ function Shop({ business: b, k, painted, lit }: { business: Business; k: number;
             <sphereGeometry args={[0.065, 10, 8]} />
             <meshBasicMaterial color={SCENE.lamp} toneMapped={false} />
           </mesh>
-          {/* The lamp's glow, and the pool it throws down the wall and across the sign. Both are
-              painted light, added to what is behind them, so they show on every tier. */}
-          <mesh position={[0, -0.09, 0.47]}>
-            <planeGeometry args={[0.7, 0.7]} />
-            <meshBasicMaterial map={painted.glow} transparent blending={AdditiveBlending} depthWrite={false} opacity={0.9} toneMapped={false} fog={false} />
-          </mesh>
+          {/* The lamp's glow, and the pool it throws down the wall. Both are painted light, added to
+              what is behind them, so they show on every tier. The glow turns to face the visitor,
+              so it is round from any side. */}
+          <sprite position={[0, -0.09, 0.47]} scale={[0.7, 0.7, 1]}>
+            <spriteMaterial map={painted.glow} transparent blending={AdditiveBlending} depthWrite={false} opacity={0.9} toneMapped={false} fog={false} />
+          </sprite>
           {/* The pool lies on the wall, behind the sign's board: a board paints its own lamplight
               (textures.ts), so pale lettering on a pale board is never washed out. */}
           <mesh position={[0, -0.78, 0.012]}>
@@ -498,8 +498,8 @@ function Shop({ business: b, k, painted, lit }: { business: Business; k: number;
       </mesh>
 
       {/* The plaque that names its town */}
-      <mesh position={[W - 0.47, 1.95, 0.082]}>
-        <planeGeometry args={[0.72, 0.25]} />
+      <mesh position={[W - 0.56, 1.95, 0.082]}>
+        <planeGeometry args={[0.66, 0.23]} />
         <meshBasicMaterial map={painted.plaques[k]} />
       </mesh>
 
@@ -517,11 +517,11 @@ function Fittings({ painted, trim }: { painted: Painted; trim: string }) {
   return (
     <group>
       {/* The letterbox on the pier, under the plaque */}
-      <mesh position={[W - 0.47, 1.5, 0.085]}>
+      <mesh position={[W - 0.56, 1.5, 0.085]}>
         <boxGeometry args={[0.4, 0.1, 0.03]} />
         <meshLambertMaterial color={trim} />
       </mesh>
-      <mesh position={[W - 0.47, 1.5, 0.102]}>
+      <mesh position={[W - 0.56, 1.5, 0.102]}>
         <boxGeometry args={[0.3, 0.025, 0.01]} />
         <meshBasicMaterial color={SCENE.ink} />
       </mesh>
@@ -605,10 +605,9 @@ function StreetEnd({ palm, glow, basalt, x }: { palm: Texture; glow: Texture; ba
         <sphereGeometry args={[0.17, 12, 10]} />
         <meshBasicMaterial color={SCENE.lamp} toneMapped={false} fog={false} />
       </mesh>
-      <mesh position={[-0.85, 5.02, 2.1]}>
-        <planeGeometry args={[2.6, 2.6]} />
-        <meshBasicMaterial map={glow} transparent blending={AdditiveBlending} depthWrite={false} opacity={0.85} toneMapped={false} fog={false} />
-      </mesh>
+      <sprite position={[-0.85, 5.02, 1.9]} scale={[2.6, 2.6, 1]}>
+        <spriteMaterial map={glow} transparent blending={AdditiveBlending} depthWrite={false} opacity={0.85} toneMapped={false} fog={false} />
+      </sprite>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-0.85, 0.16, 1.9]}>
         <planeGeometry args={[6, 5]} />
         <meshBasicMaterial map={glow} transparent blending={AdditiveBlending} depthWrite={false} opacity={0.4} toneMapped={false} />
@@ -672,9 +671,7 @@ function Rig({ narrow, stepping }: { narrow: boolean; stepping: boolean }) {
   const now = useRef({
     pos: new Vector3(...TIMELINE[0][mode].pos),
     look: new Vector3(...TIMELINE[0][mode].look),
-    fov: TIMELINE[0][mode].fov,
-    sx: shiftX(TIMELINE[0][mode], size.width / size.height),
-    sy: shiftY(TIMELINE[0][mode], size.height, size.width / size.height),
+    ...fit(TIMELINE[0][mode], size.width, size.height),
   });
   const want = useMemo(() => ({ pos: new Vector3(), look: new Vector3() }), []);
 
@@ -689,12 +686,12 @@ function Rig({ narrow, stepping }: { narrow: boolean; stepping: boolean }) {
     want.look.set(a.look[0] + (b.look[0] - a.look[0]) * t, a.look[1] + (b.look[1] - a.look[1]) * t, a.look[2] + (b.look[2] - a.look[2]) * t);
     // Between two stops the camera rises a little, so the walk feels walked.
     want.pos.y += Math.sin(Math.PI * t) * 0.3;
-    const fov = a.fov + (b.fov - a.fov) * t;
-    const aspect = size.width / size.height;
-    const ax = shiftX(a, aspect);
-    const sx = ax + (shiftX(b, aspect) - ax) * t;
-    const ay = shiftY(a, size.height, aspect);
-    const sy = ay + (shiftY(b, size.height, aspect) - ay) * t;
+    // Each stop's frame as this stage shows it (timeline.ts, fit), then the way between the two.
+    const fa = fit(a, size.width, size.height);
+    const fb = fit(b, size.width, size.height);
+    const fov = fa.fov + (fb.fov - fa.fov) * t;
+    const sx = fa.sx + (fb.sx - fa.sx) * t;
+    const sy = fa.sy + (fb.sy - fa.sy) * t;
 
     // Smoothed, so a wheel's steps do not show; exact under ?debug and reduced motion.
     const k = stepping || stage.reduced ? 1 : 1 - Math.exp(-Math.min(dt, 0.1) * 6);
