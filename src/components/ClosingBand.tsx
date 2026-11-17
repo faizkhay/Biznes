@@ -41,7 +41,7 @@ export default function ClosingBand() {
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 lg:justify-end">{actions}</div>
       </div>
-      <div className="rail my-12 lg:my-16" aria-hidden />
+      <div className="my-12 border-t border-line lg:my-16" aria-hidden />
     </>
   );
 
@@ -69,7 +69,7 @@ export default function ClosingBand() {
 
   if (pathname === "/businesses") {
     return band(
-      "Seen one that could be yours",
+      "Seen a shop that could be yours",
       "Ask about it, or about a business built around your own idea.",
       <Link href="/enquire" className="btn btn-filled button-md">
         {ACTIONS.enquire}

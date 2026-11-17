@@ -47,7 +47,7 @@ for (const [vname, vp] of VIEWPORTS) {
     await page.goto(origin + path + (path.includes("?") ? "&" : "?") + "still", { waitUntil: "networkidle", timeout: 120000 });
     // Reveal everything that animates in, and give WebGL time on a CPU renderer.
     await page.evaluate(() => document.querySelectorAll("[data-reveal]").forEach((el) => el.setAttribute("data-reveal", "in")));
-    const heavy = false; // no WebGL on this site, so no page needs the long wait
+    const heavy = name === "home"; // the home page's street draws on a CPU renderer here
     await page.waitForTimeout(heavy ? 9000 : 1500);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
@@ -68,7 +68,7 @@ for (const [vname, vp] of VIEWPORTS) {
       const want = i * step; // the page offset this slice should start showing at, below the header
       const y = Math.min(want, height - vp.height);
       await page.evaluate((y) => window.scrollTo(0, y), y);
-      await page.waitForTimeout(600);
+      await page.waitForTimeout(heavy ? 2500 : 600);
       const file = join(out, "slices", `${name}-${vname}-${String(i).padStart(2, "0")}.png`);
       // Skip the header on every slice after the first, and on the last slice (which cannot scroll a
       // full step) skip what the slice before it already showed.

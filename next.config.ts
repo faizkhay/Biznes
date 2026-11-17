@@ -12,7 +12,8 @@ const security = [
 
 const config: NextConfig = {
   reactStrictMode: true,
-  // Tools that draw the link preview card and the foundations sheet are pages only under `next dev`.
+  transpilePackages: ["three"],
+  // A tool page (one ending .dev.tsx) is a page only under `next dev`.
   pageExtensions: process.env.NODE_ENV === "development" ? ["dev.tsx", "tsx", "ts"] : ["tsx", "ts"],
   async headers() {
     return [{ source: "/:path*", headers: security }];

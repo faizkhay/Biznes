@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { CSSProperties } from "react";
 import { Arrow, ArrowBack, Chat, Phone } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import Plate from "@/components/Plate";
+import Lambrequin from "@/components/Lambrequin";
 import Reveal from "@/components/Reveal";
-import SampleMark from "@/components/SampleMark";
+import Shopfront from "@/components/Shopfront";
 import Wordmark from "@/components/Wordmark";
 import { BUSINESSES, SAMPLE_NOTE, STATUS_LABEL, getBusiness, wordmarkFor } from "@/data/businesses";
 import { INCLUDED } from "@/data/pack";
@@ -36,20 +36,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * One business. Its tag at full size beside its name and price, then its brand in its own colours,
- * what it is, what comes with it beside what the buyer brings, and the one action: ask about it.
- * The action is offered again in the footer's closing band (components/ClosingBand.tsx).
+ * One business. Its shopfront at full size, shutter up, beside its name and price; then its brand
+ * on a limewashed wall, what it is, what comes with it beside what the buyer brings, and the one
+ * action: ask about it. The action is offered again in the footer's closing band.
  */
 export default async function BusinessPage({ params }: Props) {
   const b = getBusiness((await params).slug);
   if (!b) notFound();
 
   const mark = wordmarkFor(b.slug);
-  const where = wherePhrase(b.places);
   const askHref = `/enquire?business=${b.slug}`;
-  // Only a real business that is still on the rail can be asked about; a sample offers the way back.
+  // Only a real business still on the street can be asked about; a sample offers the way back.
   const canAsk = b.status === "available" && !b.sample;
   const next = BUSINESSES[(BUSINESSES.indexOf(b) + 1) % BUSINESSES.length];
+  // The four colours a shopfront is painted in, as the brand would name them.
+  const paints: [string, string][] = [
+    [b.brand.colours[0], b.brand.ground],
+    [b.brand.colours[1], b.brand.ink],
+    [b.brand.colours[2], b.brand.accent],
+    ["The wall", b.brand.wall],
+  ];
 
   return (
     <article>
@@ -66,19 +72,24 @@ export default async function BusinessPage({ params }: Props) {
         })}
       />
 
-      <header className="shell grid gap-x-20 gap-y-10 pb-16 pt-8 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:pb-24 lg:pt-12">
+      <header className="shell grid gap-x-20 gap-y-10 pb-16 pt-8 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:pb-24 lg:pt-12">
         <div>
-          <Link href="/businesses" className="caption-2 -ml-1 inline-flex min-h-11 items-center gap-2 text-ink-subtle underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+          <Link href="/businesses" className="caption-2 link -ml-1 inline-flex min-h-11 items-center gap-2 text-ink-subtle">
             <ArrowBack className="size-4" />
             All businesses
           </Link>
-          <p className="caption-4 mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-subtle">
-            <span>No. {b.number}</span>
-            {b.sample ? <SampleMark className="text-ink" /> : <span>{STATUS_LABEL[b.status]}</span>}
+          <p className="mt-4 flex flex-wrap items-center gap-2">
+            <span className="plaque caption-4">No. {b.number}</span>
+            <span className="plaque caption-4">{b.sample ? "Sample" : STATUS_LABEL[b.status]}</span>
+            {b.places.map((place) => (
+              <span key={place} className="plaque caption-4">
+                {place}
+              </span>
+            ))}
           </p>
-          <h1 className="heading-1 mt-3">{b.name}</h1>
-          <p className="title-2 mt-3 text-ink-subtle">
-            {b.sector}. {where}.
+          <h1 className="heading-2 mt-4">{b.name}</h1>
+          <p className="title-1 mt-3 text-ink-subtle">
+            {b.sector}. {wherePhrase(b.places)}.
           </p>
           <p className="title-2 measure mt-6">{b.line}</p>
           {b.sample && <p className="body-6 measure mt-4 rounded-xl border border-line-strong p-4">{SAMPLE_NOTE}</p>}
@@ -91,7 +102,7 @@ export default async function BusinessPage({ params }: Props) {
               </p>
             ) : (
               <p className="mt-8 flex flex-wrap items-baseline gap-x-3">
-                <span className="heading-3 tabular">{formatPrice(b.price)}</span>
+                <span className="heading-2 tabular">{formatPrice(b.price)}</span>
                 <span className="caption-2 text-ink-subtle">for the whole business, sold once</span>
               </p>
             ))}
@@ -117,18 +128,20 @@ export default async function BusinessPage({ params }: Props) {
             )}
           </div>
         </div>
-        <Reveal className="reveal-plate">
-          <Plate business={b} />
+        {/* Its shopfront, shutter up: the room behind it is lit, and empty. */}
+        <Reveal className="reveal-shop mx-auto w-full max-w-xl">
+          <Shopfront business={b} open label />
         </Reveal>
       </header>
 
-      {/* The brand, in its own colours */}
-      <section className="bg-paper-subtle" aria-labelledby="brand-heading">
+      {/* The brand, on a limewashed wall */}
+      <section data-ground="limewash" aria-labelledby="brand-heading">
+        <Lambrequin className="text-(--palette-dusk)" />
         <div className="shell section-y grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <Reveal className="reveal-mask">
               <h2 id="brand-heading" className="heading-2">
-                A brand of its own, already made
+                Its brand, already made
               </h2>
             </Reveal>
             <Reveal delay={120}>
@@ -147,20 +160,25 @@ export default async function BusinessPage({ params }: Props) {
           </div>
 
           <Reveal className="grid gap-4">
-            {/* The lettering reversed: the brand's ink as the ground, its ground as the letters. */}
-            <div
-              data-ground="brand"
-              style={{ ...brandVars(b), "--brand-ground": b.brand.ink, "--brand-ink": b.brand.ground } as CSSProperties}
-              className="flex aspect-[16/7] items-center justify-center rounded-2xl"
-            >
-              <Wordmark slug={b.slug} name={b.name} decorative />
+            {/* The sign as it hangs, then reversed: its lettering as the ground, its ground as the letters. */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div data-ground="brand" style={brandVars(b)} className="flex aspect-[16/9] items-center justify-center rounded-2xl">
+                <Wordmark slug={b.slug} name={b.name} decorative scale={1.25} />
+              </div>
+              <div
+                data-ground="brand"
+                style={{ ...brandVars(b), "--brand-ground": b.brand.ink, "--brand-ink": b.brand.ground } as CSSProperties}
+                className="flex aspect-[16/9] items-center justify-center rounded-2xl"
+              >
+                <Wordmark slug={b.slug} name={b.name} decorative scale={1.25} />
+              </div>
             </div>
-            <ul className="grid grid-cols-3 gap-4" aria-label={`${b.name}'s colours`}>
-              {[b.brand.ground, b.brand.ink, b.brand.accent].map((hex, i) => (
-                <li key={hex}>
+            <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4" aria-label={`${b.name}'s colours`}>
+              {paints.map(([name, hex]) => (
+                <li key={name}>
                   <div className="aspect-[4/3] rounded-xl border border-line" style={{ background: hex }} />
-                  <p className="title-3 mt-3">{b.brand.colours[i]}</p>
-                  <p className="caption-4 uppercase text-ink-subtle">{hex}</p>
+                  <p className="title-3 mt-3">{name}</p>
+                  <p className="caption-2 tabular uppercase text-ink-subtle">{hex}</p>
                 </li>
               ))}
             </ul>
@@ -168,7 +186,7 @@ export default async function BusinessPage({ params }: Props) {
         </div>
       </section>
 
-      {/* What it is */}
+      {/* What it is, back at dusk */}
       <section aria-labelledby="idea-heading">
         <div className="shell section-y grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal className="reveal-mask">
@@ -186,8 +204,9 @@ export default async function BusinessPage({ params }: Props) {
         </div>
       </section>
 
-      {/* What comes with it, beside what you bring */}
-      <section className="border-t border-line-strong" aria-labelledby="with-heading">
+      {/* What comes with it, beside what you bring, on a saffron wall */}
+      <section data-ground="saffron" aria-labelledby="with-heading">
+        <Lambrequin className="text-(--palette-dusk)" />
         <div className="shell section-y grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <h2 id="with-heading" className="heading-3">
@@ -214,19 +233,17 @@ export default async function BusinessPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-            <p className="caption-2 measure mt-4 text-ink-subtle">The price does not cover these, and we make no promise of income.</p>
+            <p className="caption-1 measure mt-4">The price does not cover these, and we make no promise of income.</p>
           </Reveal>
         </div>
       </section>
 
-      {/* The next tag on the rail */}
-      <nav aria-label="More businesses" className="border-t border-line-strong">
+      {/* The next shop on the street */}
+      <nav aria-label="More businesses" data-ground="limewash">
         <Link href={`/businesses/${next.slug}`} className="shell group flex min-h-24 items-center justify-between gap-6 py-6 no-underline">
           <span>
-            <span className="caption-2 block text-ink-subtle">Next on the rail</span>
-            <span className="heading-5 block underline decoration-transparent transition-colors duration-300 ease-out group-hover:decoration-current">
-              {next.name}
-            </span>
+            <span className="caption-2 block text-ink-subtle">Next on the street</span>
+            <span className="heading-5 link block group-hover:decoration-current">{next.name}</span>
           </span>
           <Arrow className="size-6" />
         </Link>

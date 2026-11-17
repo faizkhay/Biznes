@@ -1,0 +1,17 @@
+{
+  "file": "comp-b-perspective.png",
+  "composition": "The street in perspective: LePalatier in the foreground with its shutter half raised, the others receding.",
+  "prompt": "A desktop WEBSITE SCREENSHOT at 16:9: the home page of \"biznes.mu\", a Mauritian website that sells finished, ready-to-open businesses. It is a designed web page interface, not a poster and not a photograph.\n\nLAYOUT:\n1. NAVIGATION BAR, thin, full width, on a deep cobalt dusk-blue ground: at the far left the wordmark \"biznes.mu\" in white sans with a tiny saffron-yellow shopfront glyph before it; at the far right two white text links \"Businesses\" and \"How it works\", then one saffron-yellow pill button with dark text \"Enquire\".\n2. HERO fills the rest of the screen as ONE scene. LEFT 45 percent, over the dusk sky: a headline in very large condensed bold sign-painter CAPITALS, white with a hard offset coral drop shade, on two lines: \"BUY A BUSINESS\" then \"READY TO OPEN\". Under it a short paragraph in a clean white sans: \"In Mauritius, built by Khay Digital. The name, the brand, the domain, the website and the strategy are done. Each business is sold once, to one owner.\" Under that one saffron-yellow pill button with dark text \"See the businesses\" and beside it a white text link \"How it works\" with a small arrow.\n3. RIGHT 55 percent and running behind the text: a THREE-QUARTER PERSPECTIVE view down a street of six small single-storey Mauritian shopfronts at blue hour. In the RIGHT FOREGROUND, large, the first shop: deep bordeaux facade, sign board reading exactly \"LePalatier\" in ivory classical serif lit by two lamps, its roller shutter HALF RAISED with warm golden light spilling from an empty lit room onto the pavement, and a blue enamel street plaque beside the door with white capitals \"MOKA\". The other five shops recede toward the left in perspective, shutters closed, each facade a different saturated colour with its own lit sign reading in order \"lakrem\", \"SOUFFLE\", \"Bouké\", \"LAROUT\", \"kazprop\", each with a small white tag on the shutter reading \"Sample\". Corrugated tin roofs with white scalloped lambrequin fringes, an overhead power line, one street lamp.\n4. At the very bottom edge a thin peek of the next section: a saffron-yellow band.\n\nSTYLE: clean stylised low-poly 3D diorama with crisp geometry, deep cobalt blue-hour sky fading to a thin coral horizon, warm glowing lamps, dark pavement; saturated tropical paint colours (saffron, turquoise, coral, bordeaux, teal); crisp modern interface typography. No people, no cars, no other text, no other logos, no watermark.",
+  "tool": "Higgsfield generate_image_batch",
+  "model": "gpt_image_2_6",
+  "quality": "high",
+  "resolution": "2k",
+  "aspect_ratio": "16:9",
+  "job_id": "855f39c4-7680-47fe-8cb5-214abf6fba48",
+  "generated": "2026-11-17",
+  "surface": "src/app/page.tsx",
+  "direction": "8f9b6c58",
+  "approved": true,
+  "approved_by": "the owner, 17 November 2026, by structured question",
+  "build": "3D plus a painted sky: the street is built as a true 3D scene in code, following this composition and its colours; one generated image for the dusk sky. The owner chose this over painted plates, knowing it \"will look cleaner and more geometric than the painting\"."
+}

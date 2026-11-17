@@ -1,91 +1,137 @@
-/* biznes.mu, design tokens.
+/* biznes.mu, design tokens: the street at blue hour.
    Tailwind CSS v4, no tailwind.config. Colour comes in two layers (KOS, after Elaya's
    ai-design-skills): the palette holds the values, each with where it came from and its measured
    contrast; the roles are what components use, each an alias of a palette value. Both are recorded
    in DESIGN.md.
 
-   biznes.mu is a new brand with no earlier material to sample, so its palette was chosen for this
-   build by Khay Digital (the owner gave carte blanche, 16 November 2026) and is recorded as chosen:
-   paper and ink, with one yellow, the colour of a price tag. Ratios are WCAG 2.x, floored. */
+   The palette is sampled, not chosen. Its source is the mock-up the owner approved on 17 November
+   2026 (.impeccable/mocks/comp-b-perspective.png), measured region by region with impeccable's
+   comp-spec: the sky, the navigation band, the yellow pill, the shade under the headline. Values
+   derived for contrast say what they were derived from. Ratios are WCAG 2.x, floored. */
 @import "tailwindcss";
 
 :root {
-  --palette-paper: #f5f2ea; /* chosen: a warm paper, so six brands' colours can sit on it */
-  --palette-paper-quiet: #ece7db; /* derived from paper: a step darker, for a quieter panel */
-  --palette-ink: #131209; /* Elaya's ladder, the warm dark; on paper 16.78:1, on paper-quiet 15.22:1 */
-  --palette-ink-muted: #5c584b; /* derived from ink toward paper; on paper 6.35:1, on paper-quiet 5.76:1 */
-  --palette-ink-muted-night: #b4ae9c; /* derived from paper toward ink, for night; on ink 8.47:1 */
-  --palette-primary: #e6b93f; /* chosen: tag yellow, saturation 77%; carries ink at 10.17:1 */
-  --palette-primary-dark: #d6a62b; /* derived from primary: the fill on hover and press; carries ink at 8.36:1 */
-  --palette-on-primary: #131209; /* ink, the words on the yellow */
+  --palette-dusk: #0e328f; /* sampled: the sky behind the headline (53% of the mock-up). The page's ground */
+  --palette-dusk-deep: #082478; /* sampled: the navigation band. The header, the footer, quiet panels on dusk */
+  --palette-saffron: #f8c618; /* sampled: the pill buttons. The action on dusk; the ground of one whole section */
+  --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action on hover and press; carries ink at 9.03:1 */
+  --palette-limewash: #f7f7f8; /* sampled: the white of the lettering. Words on dusk (10.48:1); the ground of reading sections */
+  --palette-ink: #0a1639; /* sampled: the dark text on the pills. Words on saffron (11.02:1) and on limewash (16.52:1) */
+  --palette-ink-muted: #515972; /* derived from ink toward limewash: secondary words on limewash, 6.49:1 */
+  --palette-ink-on-saffron: #3e3d32; /* derived from ink toward saffron: secondary words on saffron, 6.81:1 */
+  --palette-haze: #b6c0db; /* derived from limewash toward dusk: secondary words on dusk (6.17:1) and dusk-deep (7.53:1) */
+  --palette-coral: #f14949; /* sampled: the shade under the headline. A shade and a mark only: 3.09:1 on dusk, never words */
+  --palette-amber: #e48627; /* sampled: the lamps' light. The stage's light, and nothing in the interface */
+  --palette-asphalt: #383141; /* sampled: the road. The stage's ground */
+  --palette-enamel: #0b2b8e; /* sampled: the street plaque. A plaque's plate, carrying limewash at 11.20:1 */
+  /* The street's own materials, each a region median of the same mock-up (scripts/sample-comp.mjs).
+     They colour the drawn shopfront; none is ever text. */
+  --palette-tin: #4a6eac; /* a tin roof where the sky lights it */
+  --palette-tin-shade: #3a5a94; /* derived from tin, darker: the grooves between its ribs */
+  --palette-steel: #655366; /* a roller shutter */
+  --palette-steel-deep: #574c64; /* the gaps between its slats */
+  --palette-lamplight: #f18f38; /* the lit room's floor */
+  --palette-lamplight-wall: #e0842c; /* the lit room's walls */
+  --palette-pavement: #3d3644; /* the kerb */
 
   --gutter: clamp(1.5rem, 5vw, 5rem); /* 24px on a phone, 72px at 1440, 80px beyond */
   --nav-h: 72px;
-  /* The tagline moment's muted words: ink at 0.5 on paper measures 3.44:1, above the 3:1 that large
+  /* The tagline moment's muted words: limewash at 0.5 on dusk measures 3.77:1, above the 3:1 large
      text needs, so a visitor who stops with the line half lit can still read it. */
   --tagline-muted: 0.5;
-  /* A listing's own colours arrive inline from the data (--brand-ground, --brand-ink,
-     --brand-accent); these are the fallbacks, the platform's own tag. */
-  --brand-ground: var(--palette-primary);
-  --brand-ink: var(--palette-ink);
-  --brand-accent: var(--palette-ink);
+  /* A listing's own colours arrive inline from the data; these are the fallbacks. */
+  --brand-wall: var(--palette-dusk-deep);
+  --brand-ground: var(--palette-dusk-deep);
+  --brand-ink: var(--palette-limewash);
+  --brand-accent: var(--palette-saffron);
 }
 
-/* The roles. Tailwind's own colours are off, so only a role paints. */
+/* The roles. Tailwind's own colours are off, so only a role paints. The page's default ground is
+   dusk: the street after work, when the signs come on. */
 @theme {
   --color-*: initial;
-  --color-paper: var(--palette-paper);
-  --color-paper-subtle: var(--palette-paper-quiet);
-  --color-ink: var(--palette-ink);
-  --color-ink-subtle: var(--palette-ink-muted);
-  --color-action: var(--palette-primary);
-  --color-action-hover: var(--palette-primary-dark);
-  --color-action-pressed: var(--palette-primary-dark);
-  --color-on-action: var(--palette-on-primary);
-  --color-line: color-mix(in srgb, var(--palette-ink) 14%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-ink) 55%, transparent); /* a field's edge: 4.01:1 on paper */
-  --color-focus: var(--palette-ink); /* 16.78:1 on paper; night and brand grounds redefine it */
-  --color-accent: var(--brand-accent); /* a listing's third colour, for its own marks only */
+  --color-paper: var(--palette-dusk);
+  --color-paper-subtle: var(--palette-dusk-deep);
+  --color-ink: var(--palette-limewash);
+  --color-ink-subtle: var(--palette-haze);
+  --color-action: var(--palette-saffron);
+  --color-action-hover: var(--palette-saffron-deep);
+  --color-on-action: var(--palette-ink);
+  --color-line: color-mix(in srgb, var(--palette-limewash) 20%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 55%, transparent); /* an edge: 4.25:1 on dusk */
+  --color-focus: var(--palette-saffron); /* 6.98:1 on dusk, 8.52:1 on dusk-deep */
+  --color-shade: var(--palette-coral); /* the sign painter's shade under the hero's capitals */
+  --color-plaque: var(--palette-enamel);
+  --color-on-plaque: var(--palette-limewash);
 
-  /* Geist and Geist Mono: chosen from Elaya's list, because biznes.mu has no face of its own (KOS,
-     references/brand-system.md). Self-hosted through the `geist` package and next/font; SIL OFL 1.1. */
+  /* Barlow Condensed speaks the way a painted sign does: the headings, a plaque, a price. It was
+     matched to the mock-up's lettering by measurement (impeccable font-match). Geist carries every
+     sentence. Both are SIL OFL 1.1 and served from this site through next/font. */
+  --font-display: var(--font-sign), "Arial Narrow", sans-serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* How a roller shutter moves: it starts heavy and settles. One curve of the brand's own. */
+  --ease-roll: cubic-bezier(0.3, 0, 0.1, 1);
+
+  --breakpoint-story: 56.25rem; /* 900px: below it the walk's words sit at the foot of the screen */
 }
 
 /* Grounds are scopes that redefine roles, never palette values. */
-[data-ground="night"] {
-  --color-paper: var(--palette-ink);
-  --color-paper-subtle: color-mix(in srgb, var(--palette-paper) 7%, var(--palette-ink));
-  --color-ink: var(--palette-paper);
-  --color-ink-subtle: var(--palette-ink-muted-night);
-  --color-line: color-mix(in srgb, var(--palette-paper) 16%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-paper) 55%, transparent); /* 5.64:1 on ink */
-  --color-focus: var(--palette-primary); /* 10.17:1 on ink */
+[data-ground="deep"] {
+  --color-paper: var(--palette-dusk-deep);
+  --color-paper-subtle: var(--palette-dusk);
   background: var(--color-paper);
   color: var(--color-ink);
 }
-/* A listing's own ground: its tag, its plate. Every word on it takes the brand's own ink. */
+/* A saffron wall: one whole section painted the colour of the action. On it the action turns ink. */
+[data-ground="saffron"] {
+  --color-paper: var(--palette-saffron);
+  --color-paper-subtle: var(--palette-saffron-deep);
+  --color-ink: var(--palette-ink);
+  --color-ink-subtle: var(--palette-ink-on-saffron);
+  --color-action: var(--palette-ink);
+  --color-action-hover: var(--palette-dusk-deep);
+  --color-on-action: var(--palette-limewash);
+  --color-line: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-ink) 55%, transparent); /* 3.58:1 on saffron */
+  --color-focus: var(--palette-ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+/* A limewashed wall: where things are read at length. */
+[data-ground="limewash"] {
+  --color-paper: var(--palette-limewash);
+  --color-paper-subtle: color-mix(in srgb, var(--palette-ink) 6%, var(--palette-limewash));
+  --color-ink: var(--palette-ink);
+  --color-ink-subtle: var(--palette-ink-muted);
+  --color-action: var(--palette-dusk);
+  --color-action-hover: var(--palette-dusk-deep);
+  --color-on-action: var(--palette-limewash);
+  --color-line: color-mix(in srgb, var(--palette-ink) 16%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-ink) 55%, transparent); /* 3.93:1 on limewash */
+  --color-focus: var(--palette-dusk);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+/* A listing's own sign: its board and its lettering. */
 [data-ground="brand"] {
   --color-paper: var(--brand-ground);
   --color-ink: var(--brand-ink);
   --color-ink-subtle: var(--brand-ink);
-  --color-line: color-mix(in srgb, var(--brand-ink) 24%, transparent);
-  --color-focus: var(--brand-ink);
+  --color-line: color-mix(in srgb, var(--brand-ink) 30%, transparent);
   background: var(--color-paper);
   color: var(--color-ink);
 }
 
 @layer base {
   html {
-    background: var(--color-paper);
+    background: var(--palette-dusk);
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: var(--nav-h);
+    scrollbar-color: var(--palette-saffron) var(--palette-dusk-deep);
   }
   body {
     font-family: var(--font-sans);
@@ -98,8 +144,8 @@
     border-color: var(--color-line);
   }
   ::selection {
-    background: var(--palette-primary);
-    color: var(--palette-on-primary);
+    background: var(--palette-saffron);
+    color: var(--palette-ink);
   }
   :focus-visible {
     outline: 2px solid var(--color-focus);
@@ -128,44 +174,51 @@
 
 /* ---------- Text styles ----------
    Named as in DESIGN.md. Every size is a step of Tailwind's type scale; a fluid style runs between
-   two steps and takes the line height of the step it ends on. Geist speaks everything; Geist Mono
-   speaks only what is written on a tag: a number, a price, a status. */
+   two steps and takes the line height of the step it ends on. Headings are set as a sign is
+   painted: condensed capitals. The words underneath stay sentence case; the capitals are
+   text-transform, so a screen reader, a search engine and a translator read ordinary words. */
 @utility heading-1 {
+  /* The hero only: slanted capitals with the sign painter's shade. The brand's one italic device. */
   font-family: var(--font-display);
-  font-size: clamp(var(--text-4xl), 1.414rem + 3.429vw, var(--text-7xl)); /* 36 to 72px */
-  line-height: var(--text-7xl--line-height);
-  font-weight: 600;
-  letter-spacing: -0.035em;
+  font-size: clamp(var(--text-5xl), 1.8857rem + 4.5714vw, var(--text-8xl)); /* 48 to 96px */
+  line-height: var(--text-8xl--line-height);
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  text-shadow: 0.045em 0.05em 0 var(--color-shade);
 }
 @utility heading-2 {
   font-family: var(--font-display);
-  font-size: clamp(var(--text-3xl), 1.45714rem + 1.71429vw, var(--text-5xl)); /* 30 to 48px */
-  line-height: var(--text-5xl--line-height);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-size: clamp(var(--text-4xl), 1.6929rem + 2.2857vw, var(--text-6xl)); /* 36 to 60px */
+  line-height: var(--text-6xl--line-height);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
 }
 @utility heading-3 {
   font-family: var(--font-display);
-  font-size: clamp(var(--text-2xl), 1.22143rem + 1.14286vw, var(--text-4xl)); /* 24 to 36px */
+  font-size: clamp(var(--text-3xl), 1.7357rem + 0.5714vw, var(--text-4xl)); /* 30 to 36px */
   line-height: var(--text-4xl--line-height);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 @utility heading-5 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   line-height: var(--text-2xl--line-height);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
 }
 @utility title-1 {
+  /* The lede under a page's heading. */
   font-size: var(--text-xl);
   line-height: var(--text-xl--line-height);
   font-weight: 500;
-  letter-spacing: -0.01em;
 }
 @utility title-2 {
-  /* The lede. Regular, not the table's medium: Geist at 18px reads as running text. */
   font-size: var(--text-lg);
   line-height: var(--text-lg--line-height);
   font-weight: 400;
@@ -176,11 +229,13 @@
   font-weight: 500;
 }
 @utility title-4 {
-  /* Tag data at reading size: a price in a row, a place. */
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  line-height: var(--text-sm--line-height);
-  font-weight: 500;
+  /* A price, set the way a figure is painted on a sign. */
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 @utility body-1 {
@@ -194,7 +249,6 @@
   font-weight: 400;
 }
 @utility body-4 {
-  /* A name set a little heavier inside small print: the credit's "Khay Digital". */
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 600;
@@ -215,7 +269,6 @@
   font-weight: 600;
 }
 @utility caption-1 {
-  /* A field's error, said in words under the field. */
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 500;
@@ -231,12 +284,13 @@
   font-weight: 600;
 }
 @utility caption-4 {
-  /* What is written on a tag: its number, its status. */
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  line-height: var(--text-xs--line-height);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  /* What is written on a plaque: a town, a number, a status. */
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
@@ -254,15 +308,13 @@
   max-width: 62ch;
 }
 @utility measure-hero {
-  max-width: 42.5rem; /* 680px: the hero heading and its lede */
+  max-width: 42.5rem; /* 680px: a hero heading and its lede */
 }
 @utility tabular {
   font-variant-numeric: tabular-nums lining-nums;
 }
 
-/* Component classes live in the components layer, so a utility on the same element always wins
-   (w-full, justify-between on a .btn). Left unlayered, they would beat every utility: the mistake
-   Windrush made with its border colours. */
+/* Component classes live in the components layer, so a utility on the same element always wins. */
 @layer components {
   /* ---------- Buttons ----------
      A full pill for anything pressed, at least 48px tall. One filled per group; the rest are quiet. */
@@ -280,6 +332,7 @@
     transition:
       background-color 240ms var(--ease-out),
       border-color 240ms var(--ease-out),
+      color 240ms var(--ease-out),
       transform 120ms var(--ease-out);
   }
   .btn:active {
@@ -305,7 +358,7 @@
   }
   .btn-quiet:hover {
     border-color: var(--color-ink);
-    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
   }
   .btn-quiet[disabled],
   .btn-quiet[aria-disabled="true"] {
@@ -319,10 +372,9 @@
     min-height: 2.75rem;
     padding: 0.25rem 1rem;
   }
-  /* The page a pill leads to, when the visitor is already on it: ringed in ink, never by colour alone
-     (the link carries aria-current as well). */
+  /* The page a pill leads to, when the visitor is already on it: ringed, never by colour alone. */
   .btn[aria-current="page"] {
-    box-shadow: inset 0 0 0 2px var(--color-ink);
+    box-shadow: inset 0 0 0 2px var(--color-on-action);
   }
   /* The arrow is drawn, never a glyph from a font, and moves 4px when its link is pointed at. */
   .arrow {
@@ -335,18 +387,29 @@
   .btn:hover > .arrow {
     transform: translateX(4px);
   }
-  /* The second path in a group: words with a drawn arrow, underlined on hover. */
   .arrow-link {
     display: inline-flex;
     min-height: 3rem;
     align-items: center;
     gap: 0.5rem;
     text-decoration: underline;
-    text-decoration-color: transparent;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
     transition: text-decoration-color 240ms var(--ease-out);
   }
   .arrow-link:hover {
     text-decoration-color: currentColor;
+  }
+  /* A plain link: underlined on hover, and it moves its colour no further than its own ink. */
+  .link {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 240ms var(--ease-out);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+  .link:active {
+    opacity: 0.75;
   }
 
   /* The skip link: first in the tab order, a pill that slides in on focus. */
@@ -357,145 +420,49 @@
     z-index: 100;
     transform: translateY(-300%);
     border-radius: 9999px;
-    background: var(--palette-ink);
-    color: var(--palette-paper);
+    background: var(--palette-saffron);
+    color: var(--palette-ink);
     padding: 0.75rem 1.5rem;
     transition: transform 240ms var(--ease-out);
   }
-  /* The ring keeps the page's ink: it is drawn 3px outside the pill, so it sits on paper, where the
-     yellow measured 1.65:1 and ink measures 16.78:1. */
   .skip-link:focus-visible {
     transform: none;
+    outline-color: var(--palette-limewash); /* limewash on the dusk around the pill: 10.48:1 */
   }
 
-  /* ---------- The tag (signature) ----------
-     Every business hangs on the rail as a tag: its own ground, its own lettering, a punched hole and
-     a string. The string belongs to the tag, so the two swing together from the rail: it runs from
-     the rail (--string above the tag) down the tag's face and through the hole to its centre. It is
-     drawn in three parts, because it crosses three grounds: the page, the tag, and the page again
-     where it shows through the hole. A string that stopped at the tag's edge, with the hole below it
-     holding nothing, was what the design review of 16 November 2026 called decoration. */
-  /* --hang is the string's real length: the full --string on a desk, a little over half of it on a
-     phone, where a long string would push the first tag out of the first screen. */
-  .hang {
-    --hang: calc(var(--string, 2rem) * 0.55);
-    padding-top: var(--hang);
-  }
-  @media (width >= 64rem) {
-    .hang {
-      --hang: var(--string, 2rem);
-    }
-  }
-  .tag {
-    position: relative;
-    display: flex;
-    aspect-ratio: 3 / 4;
-    flex-direction: column;
-    border-radius: 1rem;
-    transform-origin: 50% calc(-1 * var(--hang, 2rem)); /* it swings from where the string meets the rail */
-    transition: transform 520ms var(--ease-out);
-  }
-  /* From the rail to the tag's top edge, over the page. */
-  .tag::before {
-    content: "";
-    position: absolute;
-    left: calc(50% - 0.5px);
-    bottom: 100%;
-    width: 1px;
-    height: var(--hang, 2rem);
-    background: color-mix(in srgb, var(--palette-ink) 55%, transparent);
-  }
-  /* From the tag's top edge to the hole, over the tag's own ground, in its own ink. */
-  .tag::after {
-    content: "";
-    position: absolute;
-    left: calc(50% - 0.5px);
-    top: 0;
-    width: 1px;
-    height: 0.75rem;
-    background: color-mix(in srgb, var(--brand-ink) 60%, transparent);
-  }
-  .tag-hole {
-    position: relative;
-    width: 0.875rem;
-    height: 0.875rem;
-    margin: 0.75rem auto 0;
-    border-radius: 9999px;
-    background: var(--palette-paper); /* the page shows through the punched hole */
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand-ink) 30%, transparent);
-  }
-  /* Through the hole to its centre, where the string is tied. */
-  .tag-hole::before {
-    content: "";
-    position: absolute;
-    left: calc(50% - 0.5px);
-    top: 0;
-    width: 1px;
-    height: 50%;
-    background: color-mix(in srgb, var(--palette-ink) 55%, transparent);
-  }
-  /* A business's tag at full size, at the head of its own page. */
-  .tag-plate {
-    aspect-ratio: 4 / 5;
-  }
-  @media (width >= 40rem) {
-    .tag-plate {
-      aspect-ratio: 5 / 4;
-    }
-  }
-  a:hover > .tag,
-  a:focus-visible > .tag {
-    transform: rotate(-2.5deg);
-  }
-  a:active > .tag {
-    transform: rotate(-2.5deg) scale(0.98);
+  /* ---------- The plaque (signature) ----------
+     A blue enamel street plate with a white rim, the kind that names a road. It names what is fixed
+     about a business: its town, its number, whether it is still on the street. */
+  .plaque {
+    display: inline-flex;
+    min-height: 1.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    background: var(--color-plaque);
+    color: var(--color-on-plaque);
+    padding: 0.125rem 0.625rem;
+    box-shadow:
+      inset 0 0 0 1px var(--color-plaque),
+      inset 0 0 0 2.5px var(--color-on-plaque);
   }
 
-  /* The rail the tags hang from, and every rule drawn like it. */
-  .rail {
-    height: 1px;
-    background: var(--color-line-strong);
+  /* ---------- The shopfront (signature) ----------
+     A business as it stands on the street: drawn in SVG (components/Shopfront.tsx). Its shutter is
+     one group inside a clipped opening; rolling it up is one transform. */
+  .shopfront .shutter {
+    transition: transform 900ms var(--ease-roll);
   }
-
-  /* The tags stir once when the page opens, as if the door had just let some air in: each swings out
-     a few degrees and comes to rest. It starts and ends at rest, so nothing jumps when script arrives.
-     One authored moment, under two seconds, and only where motion is welcome. */
-  @keyframes tag-settle {
-    0% {
-      transform: rotate(0deg);
-    }
-    22% {
-      transform: rotate(var(--swing, 4deg));
-    }
-    52% {
-      transform: rotate(calc(var(--swing, 4deg) * -0.45));
-    }
-    78% {
-      transform: rotate(calc(var(--swing, 4deg) * 0.18));
-    }
-    100% {
-      transform: rotate(0deg);
-    }
+  a:hover .shopfront .shutter,
+  a:focus-visible .shopfront .shutter,
+  .shopfront[data-open="true"] .shutter {
+    transform: translateY(-88%);
   }
-  html.can-animate .rail-hang .tag {
-    /* `backwards`, not `both`: once it has come to rest the animation lets go, so a pointer can
-       still swing the tag. */
-    animation: tag-settle 1700ms var(--ease-in-out) backwards;
-    animation-delay: var(--hang-delay, 0ms);
+  a:active .shopfront {
+    transform: scale(0.985);
   }
-
-  /* ---------- The ring ----------
-     What comes with a business hangs on one ring. The ring draws itself once as it enters the screen. */
-  .ring-path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-  }
-  html.can-animate [data-reveal] .ring-path {
-    stroke-dashoffset: 1;
-    transition: stroke-dashoffset 1600ms var(--ease-in-out);
-  }
-  html.can-animate [data-reveal="in"] .ring-path {
-    stroke-dashoffset: 0;
+  .shopfront {
+    transition: transform 160ms var(--ease-out);
   }
 
   /* ---------- Fields ---------- */
@@ -548,13 +515,13 @@
   .chip:hover {
     border-color: var(--color-ink);
   }
+  .chip:active {
+    transform: scale(0.97);
+  }
   .chip:has(input:checked) {
     border-color: var(--color-ink);
     background: var(--color-ink);
     color: var(--color-paper);
-  }
-  .chip:active {
-    transform: scale(0.97);
   }
   .chip:has(input:disabled) {
     border-color: var(--color-line);
@@ -566,19 +533,148 @@
     outline-offset: 3px;
   }
 
-  /* Questions: native details, with a drawn plus that turns into a minus. */
+  /* Questions: native details, with a drawn plus that turns into a cross. */
   .faq summary {
     list-style: none;
     cursor: pointer;
+    transition: color 200ms var(--ease-out);
   }
   .faq summary::-webkit-details-marker {
     display: none;
+  }
+  .faq summary:hover {
+    color: var(--color-action);
   }
   .faq .faq-mark {
     transition: transform 320ms var(--ease-out);
   }
   .faq[open] .faq-mark {
     transform: rotate(45deg);
+  }
+
+  /* ---------- The walk (the home page's story) ----------
+     As prerendered the walk is plain: a first screen with the street's still behind the headline,
+     then each stop as a section with its own still and its words. Where the canvas can run
+     (data-mode="live", set by components/Walk.tsx) the street pins under the header, the stills
+     step aside, and each stop's words scroll over it a screen at a time. */
+  .walk {
+    position: relative;
+    --walk-h: max(calc(100svh - var(--nav-h)), 36rem);
+  }
+  .walk-stage {
+    position: relative;
+    height: var(--walk-h);
+    overflow: hidden;
+    background: var(--palette-dusk);
+  }
+  .walk-chapters {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* The first chapter, the headline, sits over the stage's first screen in both modes. */
+  .walk-hero {
+    margin-top: calc(-1 * var(--walk-h));
+    height: var(--walk-h);
+  }
+  /* Plain: a stop is a section, its still on one side and its words on the other. */
+  .walk[data-mode="plain"] .walk-chapter:not(.walk-hero) {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem var(--gutter);
+    pointer-events: auto;
+  }
+  .walk[data-mode="plain"] .walk-still {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+  .walk[data-mode="plain"] .walk-card {
+    background: none;
+    padding: 0;
+  }
+  @media (width >= 56.25rem) {
+    .walk[data-mode="plain"] .walk-chapter:not(.walk-hero) {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding-block: 3rem;
+    }
+    .walk[data-mode="plain"] .walk-still {
+      aspect-ratio: 16 / 10;
+    }
+  }
+  /* Live: the street pins, and every stop is a screen of scroll with its words in a card. */
+  .walk[data-mode="live"] .walk-stage {
+    position: sticky;
+    top: var(--nav-h);
+  }
+  .walk[data-mode="live"] .walk-still {
+    display: none;
+  }
+  .walk[data-mode="live"] .walk-chapter:not(.walk-hero) {
+    display: flex;
+    height: var(--walk-h);
+    align-items: flex-end;
+    padding: 0 var(--gutter) 1.5rem;
+  }
+  .walk[data-mode="live"] .walk-words {
+    width: 100%;
+    max-width: calc(80rem + 0px);
+    margin-inline: auto;
+  }
+  /* The card is the page's own deep ground, solid: never a blur over a live canvas. */
+  .walk-card {
+    max-width: 26rem;
+    border-radius: 1rem;
+    background: var(--palette-dusk-deep);
+    padding: 1.5rem;
+  }
+  @media (width >= 56.25rem) {
+    .walk[data-mode="live"] .walk-chapter:not(.walk-hero) {
+      align-items: center;
+      padding-bottom: 0;
+    }
+  }
+  /* The stops: a short column of marks at the stage's edge; the current one is longer and saffron. */
+  .walk-stops {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    z-index: 2;
+    display: none;
+    transform: translateY(-50%);
+  }
+  @media (width >= 56.25rem) {
+    .walk-stops {
+      display: block;
+    }
+  }
+  .walk-stop {
+    display: flex;
+    width: 2.75rem;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .walk-stop span {
+    display: block;
+    width: 0.75rem;
+    height: 0.1875rem;
+    border-radius: 9999px;
+    background: var(--color-line-strong);
+    transition:
+      width 320ms var(--ease-out),
+      background-color 320ms var(--ease-out);
+  }
+  .walk-stop:hover span {
+    width: 1.25rem;
+    background: var(--color-ink);
+  }
+  .walk-stop[aria-current="step"] span {
+    width: 1.75rem;
+    background: var(--color-action);
   }
 }
 
@@ -601,8 +697,9 @@ html.can-animate [data-reveal]:focus-within {
   opacity: 1;
   transform: none;
 }
-/* A headline that rises out of a mask. The clip sits on the children, never on the observed
-   wrapper: Chrome reports a fully clipped element as intersecting nothing. */
+/* A heading comes up the way a shutter does: out of a mask, on the shutter's own curve. The clip
+   sits on the children, never on the observed wrapper: Chrome reports a fully clipped element as
+   intersecting nothing. */
 html.can-animate [data-reveal].reveal-mask {
   opacity: 1;
   transform: none;
@@ -611,25 +708,25 @@ html.can-animate [data-reveal].reveal-mask {
 html.can-animate [data-reveal].reveal-mask > * {
   padding-block: 0.4em;
   margin-block: -0.4em;
-  clip-path: inset(0 0 100% 0);
-  transform: translate3d(0, 0.45em, 0);
-  transition:
-    clip-path 1100ms var(--ease-out),
-    transform 1100ms var(--ease-out);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1000ms var(--ease-roll);
   transition-delay: var(--reveal-delay, 0ms);
 }
 html.can-animate [data-reveal="in"].reveal-mask > * {
   clip-path: inset(0 0 0 0);
-  transform: none;
 }
-/* A plate (a brand's colours at full size) settles from a slight zoom, the way a lens settles. */
-html.can-animate [data-reveal].reveal-plate {
+/* A shopfront arriving in view raises its shutter a little, then lets it settle shut. */
+html.can-animate [data-reveal].reveal-shop {
   opacity: 1;
-  transform: scale(0.96);
-  transition: transform 1400ms var(--ease-out);
-}
-html.can-animate [data-reveal="in"].reveal-plate {
   transform: none;
+  transition: none;
+}
+html.can-animate [data-reveal].reveal-shop .shutter {
+  transform: translateY(-88%);
+}
+html.can-animate [data-reveal="in"].reveal-shop .shutter {
+  transform: none;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 /* The tagline moment: every word is full ink by default; only a page able to animate mutes them,
@@ -646,7 +743,7 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
 }
 
 /* The phone menu's links arrive in reading order, each rising 24px over 200ms, 50ms apart: five
-   items finish within 400ms. (An earlier 340ms at 60ms apart ran to 580ms.) */
+   items finish within 400ms. */
 @keyframes menu-in {
   from {
     opacity: 0;
@@ -659,8 +756,9 @@ html.can-animate .menu-sheet [data-menu-item] {
 }
 
 /* ---------- Reduced motion: the still path ----------
-   Each movement has its still state above (tags hang still, the ring is drawn, words are lit); this
-   block is the safety net. Delays are zeroed as well as durations, or staggered things pop in late. */
+   Each movement has its still state above (shutters stay down until asked, headings are simply
+   there, the walk cuts from stop to stop); this block is the safety net. Delays are zeroed as well
+   as durations, or staggered things pop in late. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -673,21 +771,15 @@ html.can-animate .menu-sheet [data-menu-item] {
     scroll-behavior: auto !important;
   }
   html.can-animate [data-reveal],
-  html.can-animate [data-reveal].reveal-mask > *,
-  html.can-animate [data-reveal].reveal-plate {
+  html.can-animate [data-reveal].reveal-mask > * {
     opacity: 1;
     transform: none;
     clip-path: none;
   }
-  html.can-animate [data-reveal] .ring-path {
-    stroke-dashoffset: 0;
+  html.can-animate [data-reveal].reveal-shop .shutter {
+    transform: none;
   }
   html.can-animate .tagline-reveal [data-word] {
     opacity: 1;
-  }
-  a:hover > .tag,
-  a:focus-visible > .tag,
-  a:active > .tag {
-    transform: none;
   }
 }

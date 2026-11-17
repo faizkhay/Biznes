@@ -5,22 +5,31 @@ businesses: each with its name and identity, its domain, its website and its str
 owner. One job: turn a visitor into a request about one business.
 
 The offer, the contact details and LePalatier come from the owner and from Khay Digital's own
-published facts. The design, the identity of biznes.mu, each listing's look and the copy are new,
-made under the owner's carte blanche on 16 November 2026.
+published facts. The design, the identity of biznes.mu, each listing's look and the copy are Khay
+Digital's, made under the owner's carte blanche. This is the second direction: the owner judged the
+first ("the rail", 16 November 2026) not good enough, chose "the street" from the directions put to
+them on 17 November 2026, and approved its mock-up (`.impeccable/mocks/comp-b-perspective.png`).
 
-The home page is the rail. Every business hangs ready on one rail, as a tag in its own colours and
-lettering, each by its own string and each a link to its page. Below the rail: the six things every
-business comes with, fanned from one ring; the sale in four steps; what stays with the buyer, said
-plainly on night; the line said large; and who builds them.
+The home page is a street. Every business is a finished shopfront on a Mauritian shop street at
+blue hour: its sign painted and lit, its shutter down, waiting for its one owner. The street is
+built in 3D, in code, and the scroll walks one shopfront, LePalatier, from its sign to the room
+behind its shutter, in eight stops. Where the 3D cannot run, the same eight stops are plain
+sections, each with a still of the street and its words.
 
-| Chapter | Where | What it sells |
+| Stop or section | Where | What it sells |
 | --- | --- | --- |
-| The rail | Six tags on strings | The businesses themselves |
-| The ring | A ring with six small tags, beside a list | What every business comes with |
-| The steps | Four steps hanging from one rail | How a sale runs |
-| The honest half | Night | What is not sold: premises, licences, stock, staff, income |
-| The line | Open ground | "The business is ready / All it needs is its owner" |
-| The maker | The quiet panel | Khay Digital builds every one |
+| The street | The whole street at an angle, LePalatier's shutter half raised | What the site is, and where |
+| The sign | Up at the sign, under its two lamps | The name and the identity |
+| The address | The town plaque and the letterbox on the pier | The domain and the social media names |
+| Behind the shutter | The shutter rolls up on a screen on the back wall | The website |
+| The counter | A folder on a counter | The business strategy |
+| The wall | A framed certificate | Help with incorporation |
+| The room | Back on the pavement, the room lit | What stays with the buyer: the room is theirs to fill |
+| The whole street | The street from further back | Each business is sold once |
+| On the street now | Limewash, six shopfronts | The businesses themselves |
+| From the street to opening day | A saffron wall | How a sale runs, in four steps |
+| The line | Dusk | "The sign is painted / The shutter is yours to raise" |
+| Questions people ask | Limewash | Nine answers, and who builds every business |
 
 `STORY.md` has the full story; `PRODUCT.md` has the product truth; `DESIGN.md` has the design
 system.
@@ -42,6 +51,9 @@ Node 20 or newer.
 | Query | Effect |
 | --- | --- |
 | `?still` | No smooth scroll, for captures |
+| `?no3d` | The street stays a still picture and the walk stays plain sections |
+| `?tier=low` or `?tier=high` | Forces the 3D's light tier (low lights the walked shop only) |
+| `?debug` | Hands the 3D's clock to a script (`window.__step`), for exact captures |
 | `/enquire?business=<slug>` | The request form arrives with that business chosen |
 
 Other scripts:
@@ -49,11 +61,12 @@ Other scripts:
 | Script | What it does |
 | --- | --- |
 | `npm run wordmarks` | Redraws each listing's lettering as vector outlines into `src/data/wordmarks.ts` |
-| `npm run og` | Captures the link preview card to `public/og.png` (needs `npx next dev -p 3200` running) |
+| `npm run plates` | Cuts the painted sky (`assets/plates/sky.png`) into the two sizes the site ships, graded to the mock-up's sky |
+| `npm run stills` | Captures the street at each of the eight stops, for a desk and a phone, and the link preview card (`public/og.png`). Needs the production server on port 3100. Run it after any change to the 3D or to the first screen |
 | `npm run copy`, `npm run tokens` | The house style and the token checks |
 | `npm run contrast` | Measures every colour pair in `scripts/contrast.pairs.json` |
 | `npm run screenshots`, `npm run reveals`, `npm run a11y` | The checks against a production server on port 3100 |
-| `npm run behaviour` | The phone menu, the form end to end, the endpoint, the page without script and the machine-facing files, against the same server |
+| `npm run behaviour` | The phone menu, the form end to end, the endpoint, the page without script, the walk live and plain, and the machine-facing files, against the same server |
 
 ## Deploying
 
@@ -90,33 +103,44 @@ Everything the owner will want to change is data, not markup.
 | --- | --- |
 | `src/data/site.ts` | The name, the line, the contact routes, the builder's facts, `launched`, `showPrices`, the navigation and the action labels |
 | `src/data/businesses.ts` | The businesses: number, name, sector, places, price, status, the idea, the brand's colours, what the buyer brings |
-| `src/data/pack.ts` | The six things every business comes with, the four steps, the honest half, the tagline, the questions |
+| `src/data/pack.ts` | The six things every business comes with, the four steps, what stays with the buyer, the tagline, the questions |
+| `src/data/walk.ts` | The eight stops of the walk: where the visitor stands, the heading and the line at each |
+| `src/components/three/timeline.ts` | Where the camera stands at each stop, for a desk and for a phone |
 | `src/data/wordmarks.ts` | Generated: each listing's lettering as outlines. Never edited by hand |
 
 To add a business: add an entry to `BUSINESSES` in `src/data/businesses.ts`, add its lettering to
 `MARKS` in `scripts/make-wordmarks.mjs`, run `npm run wordmarks`, and add its two colours to
-`scripts/contrast.pairs.json`. The rail, the catalogue, its page, the form, the sitemap, the
-structured data and `llms.txt` pick it up. A business without lettering fails the build.
+`scripts/contrast.pairs.json`. The street, the catalogue, its page, the form, the sitemap, the
+structured data and `llms.txt` pick it up. A business without lettering fails the build. The 3D
+street draws every business that is for sale, in order; the first is the one the walk goes through.
+After a change to the list, run `npm run stills`.
 
-To mark one sold: set its `status` to `"sold"`. It leaves the rail, the catalogue, the form and the
-sitemap. To hide every price: set `showPrices` to `false`.
+To mark one sold: set its `status` to `"sold"`. It leaves the street, the catalogue, the form and
+the sitemap. To hide every price: set `showPrices` to `false`.
 
 ### Where it came from
 
 | Source | What it gave |
 | --- | --- |
-| The owner, in conversation, 15 and 16 November 2026 | The offer and its six parts, LePalatier (a restaurant and café, for Moka, Grand Baie or Tamarin, proposed at 350k), the request for five samples, carte blanche on creative direction |
+| The owner, in conversation, 15 to 17 November 2026 | The offer and its six parts, LePalatier (a restaurant and café, for Moka, Grand Baie or Tamarin, proposed at 350k), the request for five samples, carte blanche on creative direction, and on 17 November the choice of "the street", of a 3D centrepiece and of mock-up B |
+| The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` (generated 17 November 2026; its prompt is beside it) | The composition of the first screen, and the palette: every colour was sampled from it by region (`scripts/sample-comp.mjs`) |
+| `assets/plates/sky.png` (generated 17 November 2026; its prompt is beside it) | The sky behind the street. The one generated image the site ships |
 | https://www.khay.digital/llms.txt, read 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email and hours |
 | Open-licence typefaces (SIL OFL 1.1), from `@fontsource` | The outlines of the six wordmarks: Cormorant Garamond, Fredoka, Jost, Playfair Display, Barlow Condensed, Outfit |
-| Geist and Geist Mono (SIL OFL 1.1), from the `geist` package | The site's own type |
+| Barlow Condensed (SIL OFL 1.1), in `src/fonts`, and Geist (SIL OFL 1.1), from the `geist` package | The site's own type |
 
 There are no photographs, no testimonials and no figures on the site, because none exist yet. The
-only raster is `public/og.png`, a capture of the site's own card; its sidecar says so.
+street is drawn in code. Its stills (`public/img/walk`) and the link preview card (`public/og.png`)
+are captures of this site's own 3D, and the sky is a generated painting; every raster has a sidecar
+that says which it is.
+
+Image generation cost 11 Higgsfield credits in all: 8.25 for the three mock-ups the owner chose
+from, and 2.75 for the sky.
 
 ### To confirm with the owner before launch
 
 1. **The five samples.** Lakrem, Souffle, Bouké, Larout and Kazprop are placeholders: their names,
-   looks and prices are invented for this build and marked "Sample listing". Replace each with a
+   looks and prices are invented for this build and marked "Sample". Replace each with a
    real business or remove it, then set `launched` to `true`.
 2. **LePalatier's price. A launch blocker.** MUR 350,000 is the figure proposed in conversation, and
    the site shows it as the price. Confirm it and say whether VAT applies before `launched` is set;
@@ -141,7 +165,7 @@ only raster is `public/og.png`, a capture of the site's own card; its sidecar sa
    holds a business, its action is "Ask about this business", not "Reserve".
 10. **Help with incorporation.** The site promises help. Whether offering it as a paid service needs
     its own registration was not confirmed; a company secretary or accountant can answer.
-11. **The tagline.** "The business is ready / All it needs is its owner" was written by Khay
+11. **The tagline.** "The sign is painted / The shutter is yours to raise" was written by Khay
     Digital. Confirm it or give the line.
 12. **The privacy notice.** It is new and describes only what this site does. Approve it.
 13. **Analytics.** There are none. If a provider is chosen, the privacy notice must say so.
@@ -150,35 +174,43 @@ only raster is `public/og.png`, a capture of the site's own card; its sidecar sa
     plan can follow. The first was proposed to the owner in conversation and built on; the second
     is Khay Digital's rule for a website; the third is its published service. Confirm all three as
     terms of this offer.
-15. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
+15. **The street as a picture of Mauritius.** The tin roofs, the cut fringe under them (the
+    lambrequin) and the enamel plaques are drawn from the island's shop streets as Khay Digital knows
+    them, and from the approved mock-up. A local eye should confirm they read as home, not as a
+    postcard.
+16. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
     on the samples' pages. A native reading should confirm each before any becomes a real listing.
 
 ## The brand
 
-biznes.mu had no earlier material to sample, so its identity was chosen for this build and is
-recorded as chosen:
+biznes.mu had no earlier material to sample. Its identity now comes from the mock-up the owner
+approved: every colour was measured from it, and each carries its contrast in `DESIGN.md`.
 
 | Token | Value | Where it came from | Use |
 | --- | --- | --- | --- |
-| `paper` | `#f5f2ea` | Chosen: a warm paper, so six brands' colours can sit on it | The page's ground |
-| `paper-quiet` | `#ece7db` | Derived from paper | A quieter panel |
-| `ink` | `#131209` | Elaya's ladder, the warm dark | Words; the night ground |
-| `ink-muted` | `#5c584b` | Derived from ink | Secondary words |
-| `primary` | `#e6b93f` | Chosen: the yellow of a price tag | The one filled action; the platform's own tags |
-| `primary-dark` | `#d6a62b` | Derived from primary | The action on hover and press |
+| `dusk` | `#0e328f` | Sampled: the sky behind the headline | The page's ground |
+| `dusk-deep` | `#082478` | Sampled: the navigation band | The header, the footer, a card on the walk |
+| `saffron` | `#f8c618` | Sampled: the pill buttons | The one filled action; the ground of one whole section |
+| `saffron-deep` | `#e3b30d` | Derived from saffron | The action on hover and press |
+| `limewash` | `#f7f7f8` | Sampled: the white lettering | Words on dusk; the ground of reading sections |
+| `ink` | `#0a1639` | Sampled: the dark text on the pills | Words on saffron and on limewash |
+| `haze` | `#b6c0db` | Derived from limewash toward dusk | Secondary words on dusk |
+| `coral` | `#f14949` | Sampled: the shade under the headline | The shade under the hero's capitals. Never words |
+| `enamel` | `#0b2b8e` | Sampled: the street plaque | A plaque's plate |
 
-Type is Geist for everything and Geist Mono only for what is written on a tag. The signature shapes
-are the tag with its punched hole, the rail and its strings, and the ring. Each listing wears its
-own two colours and its own lettering, from the data. The design system, with every token and its
-contrast: `DESIGN.md`.
+Barlow Condensed speaks the way a painted sign does: headings, plaques, prices. Geist carries every
+sentence. The signature shapes are the shopfront with its roller shutter, the enamel plaque, and
+the lambrequin, the cut fringe under a tin roof, which edges the saffron section and the footer.
+Each listing wears its own wall, sign and lettering, from the data. The design system, with every
+token and its contrast: `DESIGN.md`.
 
 ## Pages
 
 | Route | What |
 | --- | --- |
-| `/` | The rail, the ring, the steps, the honest half, the line, the maker |
-| `/businesses` | The catalogue, as a ledger |
-| `/businesses/[slug]` | One business: its tag, its brand, what it is, what comes with it, what the buyer brings |
+| `/` | The walk along the street, the businesses, the steps, the line, the questions |
+| `/businesses` | The street as a catalogue: six shopfronts |
+| `/businesses/[slug]` | One business: its shopfront with the shutter up, its brand, what it is, what comes with it, what the buyer brings |
 | `/how-it-works` | The four steps and the questions |
 | `/enquire` | The request form and the direct routes |
 | `/privacy` | The privacy notice |
@@ -188,45 +220,57 @@ Plus `sitemap.xml`, `robots.txt`, `llms.txt`, the icon and the 404.
 
 ## Verification
 
-Run on 16 November 2026 against `next start` on port 3100, after the design review's fixes.
+Run on 17 November 2026 against `next start` on port 3100. The machine has no GPU, so the 3D drew
+on a software renderer: correct, and slow.
 
 - TypeScript strict and the production build: clean. Every page prerendered except `/api/enquiry`.
-- `npm run copy` and `npm run tokens`: 0 fail, 0 warn.
+- `npm run copy`: 0 fail, 0 warn. `npm run tokens`: 0 fail, 1 warn (the one italic, the headline's
+  slant, which is the brand's one italic device and is set in a face with a true italic).
 - `npm run contrast`: every pair passes for its role (the table is in `DESIGN.md`).
-- `npm run screenshots`: eight page kinds at 1440 x 900 and 390 x 844, no horizontal overflow, no
-  page errors. The stitched pages are in `review/screens`, and were read.
-- `npm run reveals`, with motion on: every reveal fired on every page at both sizes.
+- `npm run screenshots`: nine page kinds (the home page live and plain) at 1440 x 900 and
+  390 x 844, no horizontal overflow, no page errors. The stitched pages are in `review/screens`,
+  and were read.
+- `npm run reveals`, with motion on: every reveal fired on every page at both sizes. On its first
+  run one home page section was missed while the software renderer was busy; the check now gives
+  that page longer per scroll step, and three further runs were clean.
 - `npm run a11y`: axe-core against WCAG 2.2 A/AA, every page kind at both sizes, clean.
-- `npm run behaviour`: 28 of 28. The skip link is first in the tab order; the phone menu opens as a
-  dialog, makes the page behind inert, takes focus, closes on Escape and returns focus to its
-  button; a business link arrives at the form with that business chosen; the form offers no sample;
-  errors are said on their fields and the first takes focus; with no route the form says the request
-  has not arrived and gives the phone and email; the endpoint refuses what the form refuses (422),
-  refuses a sample, answers a filled honeypot with a quiet success, answers 503 with no route and
-  limits the sixth request (429); without script every heading and reveal is visible, the six tags
-  are links and the form says how else to reach us; before launch pages carry `noindex`,
-  `robots.txt` closes the site, and the sitemap and `llms.txt` list LePalatier and no sample. The
-  states it met are saved in `review/screens/states`. Restart the server between runs: the
-  endpoint's limit is per connection, per ten minutes.
-- `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
-- The design review by a fresh agent answered "fix", with eight points; its verdict pass on the
-  fixes found seven resolved and one partly (LePalatier's price is the owner's to confirm), and five
-  small new things, all since fixed. Its word for the build with those done: ship. `STORY.md`,
-  "The design review" and "The verdict pass", has each point and what was done.
-- Not yet run: a keyboard pass by hand on a real device; a screen reader; Lighthouse; any phone
-  hardware; hover and pressed states were written and read in code, not captured. No old addresses
-  exist to redirect.
+- `npm run behaviour`: 37 of 37. As before: the skip link, the phone menu as a dialog, the form end
+  to end, the endpoint (422, 503, 429, the honeypot, no samples), the page without script, and the
+  machine-facing files before launch. New for the street: where WebGL runs the walk goes live with
+  one canvas, starts at its first stop and reaches its last at the end of the scroll, and the 3D
+  throws nothing; with `?no3d` the walk stays plain, every stop showing its still and its words;
+  without script the walk is eight plain sections; with reduced motion on a phone the headline is
+  on the first screen. The states it met are saved in `review/screens/states`. Restart the server
+  between runs: the endpoint's limit is per connection, per ten minutes.
+- The walk was read at every stop, live, at 1440 x 900 and 390 x 844.
+- The first screen was measured against the approved mock-up at the mock-up's own size
+  (`.impeccable/review/diff/final`): 53 per cent overall. The composition, the palette and the
+  words follow it. The difference that remains is the mock-up being a painting and the street
+  being drawn live: flatter light, plainer materials, no brackets under the eaves, and each
+  listing's real lettering on its sign. impeccable's plates and hero gates, which expect a raster
+  for a picture region, were not run for the street.
+- Every raster the site ships carries a record of where it came from (20 of 20).
+- The independent design review of this round, and `DESIGN.md` re-recorded from the build, follow
+  in the next commit. Until then `DESIGN.md` still describes the first build.
+- Not yet run: any real GPU, phone or tablet; frame rate on a device; a keyboard pass by hand on a
+  real device; a screen reader; Lighthouse. Hover and pressed states were written and read in code,
+  not captured. No old addresses exist to redirect.
 
 ## Known gaps
 
 1. English only. French and Kreol are not built; the routes are not yet under a language folder.
-2. The kit's dev-only foundations page was not built. What `DESIGN.md` found in the build and left
-   as it is (a tag hangs on paper only; a few states have no design or no instance; some roles are
-   declared and unused) is listed under its "Known Gaps".
-3. The link preview card is one card for every page; a business has no card of its own.
-4. There is no security policy for content (CSP) yet; the other security headers are set in
+2. The 3D has not been seen on real hardware. Its two light tiers and the step-down in resolution
+   are the kit's, proven on other builds, but this street's frame rate on a mid-range phone is
+   unmeasured.
+3. The stills and the link preview card do not rebuild themselves: after a change to the 3D, the
+   first screen or the list of businesses, run `npm run stills`.
+4. The camera's frames were solved for a street of six. A longer street still draws, but its far
+   end stands small in the first view; the frames would want solving again.
+5. The link preview card is one card for every page; a business has no card of its own.
+6. There is no security policy for content (CSP) yet; the other security headers are set in
    `next.config.ts`.
-5. The request form has no confirmation email to the visitor.
+7. The request form has no confirmation email to the visitor.
+8. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
 
 ---
 

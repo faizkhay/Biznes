@@ -8,6 +8,9 @@
 //       proposed price of 350k.
 //   KD  Khay Digital's creative direction for this build (the owner gave carte blanche): each brand's
 //       look, its lettering and its colours. A first direction, to confirm.
+//   C   The mock-up the owner approved on 17 November 2026 (.impeccable/mocks/comp-b-perspective.png):
+//       LePalatier's wall colour is sampled from it (#711425). The samples' walls are chosen to sit
+//       beside it on the street, and are placeholders like the rest of each sample.
 //
 // `sample: true` marks a listing the owner asked for as a placeholder ("5 other random for now").
 // A sample wears a "Sample listing" mark on its tag and its page, is kept out of the structured
@@ -39,8 +42,13 @@ export type Business = {
   idea: string[];
   /** Where the name comes from, when it has a story. */
   nameNote?: string;
-  /** Its own identity. Text set on `ground` uses `ink`; both pairs are measured in DESIGN.md. */
+  /**
+   * Its own identity. `ground` and `ink` are its sign: the lettering in `ink` on a board of
+   * `ground`, a pair measured in DESIGN.md. `wall` is the colour its shopfront is painted, and
+   * `accent` its trim: the sign's frame and its lamps.
+   */
   brand: {
+    wall: string;
     ground: string;
     ink: string;
     accent: string;
@@ -72,7 +80,7 @@ export const BUSINESSES: Business[] = [
       "The kitchen, the menu and the room are yours to shape. The brand is finished and waiting for them.",
     ],
     nameNote: "The name is built on the palate, the part of us that decides what is good.",
-    brand: { ground: "#4a1626", ink: "#f3e9d8", accent: "#c6a15b", colours: ["Bordeaux", "Ivory", "Brass"] },
+    brand: { wall: "#711425", ground: "#4a1626", ink: "#f3e9d8", accent: "#c6a15b", colours: ["Bordeaux", "Ivory", "Brass"] },
     bring: [
       "Premises in Moka, Grand Baie or Tamarin, and the lease",
       "The fit-out, the kitchen and the equipment",
@@ -93,7 +101,7 @@ export const BUSINESSES: Business[] = [
     line: "An ice cream parlour brand, named the Kreol way.",
     idea: ["Lakrem is an ice cream parlour for the coast: a counter, a short list of flavours and a name people already know how to say."],
     nameNote: "Lakrem is Kreol for cream.",
-    brand: { ground: "#fcefd9", ink: "#a61e3c", accent: "#8fb37a", colours: ["Cream", "Cherry", "Pistachio"] },
+    brand: { wall: "#f0a92b", ground: "#fcefd9", ink: "#a61e3c", accent: "#8fb37a", colours: ["Cream", "Cherry", "Pistachio"] },
     bring: ["A shop or a kiosk, and its lease", "Freezers, a counter and equipment", "Food licences and permits", "The recipes and the team"],
   },
   {
@@ -108,7 +116,7 @@ export const BUSINESSES: Business[] = [
     line: "A Pilates and breathwork studio brand, light and unhurried.",
     idea: ["Souffle is a small studio for classes of a few people at a time, with an identity as quiet as the room should be."],
     nameNote: "Souffle is French for breath.",
-    brand: { ground: "#dce2d6", ink: "#2e3b33", accent: "#c28766", colours: ["Pale sage", "Deep sage", "Clay"] },
+    brand: { wall: "#1c9a8f", ground: "#dce2d6", ink: "#2e3b33", accent: "#c28766", colours: ["Pale sage", "Deep sage", "Clay"] },
     bring: ["A studio space, and its lease", "Mats, reformers and equipment", "Qualified instructors", "A class timetable"],
   },
   {
@@ -122,7 +130,7 @@ export const BUSINESSES: Business[] = [
     sample: true,
     line: "A florist and flower delivery brand, named the way the island says bouquet.",
     idea: ["Bouké is a florist that takes orders online and delivers the same day, with a name that sounds like a gift."],
-    brand: { ground: "#1f3a2d", ink: "#f4cfc9", accent: "#e98a6e", colours: ["Forest", "Blush", "Coral"] },
+    brand: { wall: "#e8604c", ground: "#1f3a2d", ink: "#f4cfc9", accent: "#e98a6e", colours: ["Forest", "Blush", "Coral"] },
     bring: ["A workshop or a shop", "Flower suppliers", "A delivery vehicle or a courier", "A florist and the team"],
   },
   {
@@ -137,7 +145,7 @@ export const BUSINESSES: Business[] = [
     line: "A private driver and day tour brand for visitors to the island.",
     idea: ["Larout is a driver and day tour service that takes bookings online: airport transfers, and days out planned around the visitor."],
     nameNote: "Larout is Kreol for the road.",
-    brand: { ground: "#0e5f6b", ink: "#f7e9cc", accent: "#f2a65a", colours: ["Lagoon", "Sand", "Amber"] },
+    brand: { wall: "#16808c", ground: "#0e5f6b", ink: "#f7e9cc", accent: "#f2a65a", colours: ["Lagoon", "Sand", "Amber"] },
     bring: ["Vehicles, or drivers with their own", "Tourism and transport licences", "Insurance", "The routes and the drivers"],
   },
   {
@@ -152,7 +160,7 @@ export const BUSINESSES: Business[] = [
     line: "A home cleaning brand that books by the week.",
     idea: ["Kazprop is a home cleaning service booked online by the week or the month, with a name that says what it does."],
     nameNote: "In Kreol, kaz is a house and prop is clean.",
-    brand: { ground: "#ddeafb", ink: "#1b46c2", accent: "#7ed6b5", colours: ["Sky", "Cobalt", "Mint"] },
+    brand: { wall: "#5aa9e6", ground: "#ddeafb", ink: "#1b46c2", accent: "#7ed6b5", colours: ["Sky", "Cobalt", "Mint"] },
     bring: ["A trained team", "Cleaning equipment and products", "Transport", "Insurance"],
   },
 ];

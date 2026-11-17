@@ -7,6 +7,7 @@ import { join } from "node:path";
 
 export const PAGES = [
   ["home", "/"],
+  ["home-plain", "/?no3d"],
   ["businesses", "/businesses"],
   ["listing", "/businesses/lepalatier"],
   ["listing-sample", "/businesses/souffle"],

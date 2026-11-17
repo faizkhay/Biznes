@@ -1,5 +1,5 @@
 // What a sweep does not see: the phone menu as a dialog, the request form end to end, the endpoint,
-// the page without script, and the files a machine reads. Saves the states it meets (the open menu,
+// the page without script, the walk live and plain, and the files a machine reads. Saves the states it meets (the open menu,
 // the filled form, the form's refusal, the page without script) to review/screens/states.
 //
 //   npm run build && npx next start -p 3100 &
@@ -12,12 +12,12 @@
 // Needs: playwright (devDependency). Exits 1 if any check fails.
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
-import { browserPath } from "./pages.mjs";
+import { GL_ARGS, browserPath } from "./pages.mjs";
 
 const O = process.argv[2] ?? "http://localhost:3100";
 const OUT = "review/screens/states";
 mkdirSync(OUT, { recursive: true });
-const b = await chromium.launch({ executablePath: browserPath() });
+const b = await chromium.launch({ executablePath: browserPath(), args: GL_ARGS });
 let failed = 0;
 const ok = (name, pass, extra = "") => {
   if (!pass) failed++;
@@ -95,7 +95,8 @@ const ok = (name, pass, extra = "") => {
   await p.goto(O + "/", { waitUntil: "load" });
   const hidden = await p.evaluate(() => [...document.querySelectorAll("[data-reveal], h1, h2, .tagline-reveal [data-word]")].filter((el) => getComputedStyle(el).opacity !== "1").length);
   ok("without script every reveal and heading is visible", hidden === 0);
-  ok("without script the six tags are links", (await p.locator('ul[aria-label="Businesses for sale"] a').count()) === 6);
+  ok("without script the six shopfronts are links", (await p.locator('ul[aria-label="Businesses for sale"] a').count()) === 6);
+  ok("without script the walk is eight plain sections, seven with a still", (await p.locator(".walk-chapter").count()) === 8 && (await p.locator(".walk-still img").count()) === 7);
   await p.goto(O + "/enquire", { waitUntil: "load" });
   const note = await p.locator("form noscript").count();
   ok("without script the form says how else to reach us", note === 1 && (await p.content()).includes("This form needs JavaScript"));
@@ -103,7 +104,49 @@ const ok = (name, pass, extra = "") => {
   await ctx.close();
 }
 
-// 5. Machine-facing files
+// 5. The walk: the street in 3D where it can run, and the plain sections where it cannot
+{
+  const errors = [];
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  p.on("pageerror", (e) => errors.push(String(e)));
+  await p.goto(O + "/", { waitUntil: "load" });
+  const live = await p.waitForSelector('.walk[data-mode="live"]', { timeout: 60000 }).then(() => true, () => false);
+  ok("where WebGL runs, the walk goes live", live);
+  // The canvas arrives with three.js, a moment after the walk knows it will run.
+  await p.waitForSelector(".walk-stage canvas", { timeout: 60000 }).catch(() => undefined);
+  ok("the live stage has one canvas", (await p.locator(".walk-stage canvas").count()) === 1);
+  const at = () => p.evaluate(() => [...document.querySelectorAll(".walk-stop")].findIndex((a) => a.getAttribute("aria-current") === "step"));
+  ok("the walk starts at its first stop", (await at()) === 0);
+  await p.evaluate(() => {
+    const el = document.querySelector(".walk");
+    window.scrollTo({ top: el.getBoundingClientRect().top + scrollY + el.offsetHeight - innerHeight, behavior: "instant" });
+  });
+  await p.waitForTimeout(1500);
+  ok("scrolling to the walk's end reaches its last stop", (await at()) === 7);
+  await p.screenshot({ path: OUT + "/walk-last-stop.png" });
+  ok("the 3D threw nothing", errors.length === 0, errors.slice(0, 2).join(" | "));
+  await p.close();
+
+  const q = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  await q.goto(O + "/?no3d", { waitUntil: "load" });
+  await q.waitForTimeout(2500);
+  ok("with ?no3d the walk stays plain", (await q.locator('.walk[data-mode="plain"]').count()) === 1 && (await q.locator(".walk-stage canvas").count()) === 0);
+  ok("plain, every stop shows its still and its words", (await q.locator(".walk-still img:visible").count()) === 7 && (await q.locator(".walk-card h2:visible").count()) === 7);
+  await q.close();
+
+  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  const r = await ctx.newPage();
+  const rerrors = [];
+  r.on("pageerror", (e) => rerrors.push(String(e)));
+  await r.goto(O + "/", { waitUntil: "load" });
+  await r.waitForTimeout(4000);
+  const h1 = await r.locator("h1").evaluate((el) => getComputedStyle(el).opacity === "1" && el.getBoundingClientRect().top < innerHeight);
+  ok("with reduced motion on a phone the headline is on the first screen and nothing throws", h1 && rerrors.length === 0, rerrors.slice(0, 2).join(" | "));
+  await r.screenshot({ path: OUT + "/reduced-motion-phone.png" });
+  await ctx.close();
+}
+
+// 6. Machine-facing files
 {
   const robots = await (await fetch(O + "/robots.txt")).text();
   ok("robots.txt closes the site before launch", /Disallow: \//.test(robots));

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ACTIONS, NAV, site } from "@/data/site";
 import ClosingBand from "./ClosingBand";
 import { Chat, Mail, Phone } from "./Icons";
+import Lambrequin from "./Lambrequin";
 import Logo from "./Logo";
 
 /**
@@ -11,7 +12,9 @@ import Logo from "./Logo";
 export default function SiteFooter() {
   const { contact, builder } = site;
   return (
-    <footer id="site-footer" data-ground="night">
+    <footer id="site-footer" data-ground="deep">
+      {/* The footer hangs from the page above it the way a roof hangs over a pavement. */}
+      <Lambrequin className="text-(--palette-dusk)" />
       <div className="shell section-y">
         <ClosingBand />
 
@@ -27,7 +30,7 @@ export default function SiteFooter() {
             <ul className="grid gap-1">
               {[...NAV, { href: "/enquire", label: ACTIONS.enquire }, { href: "/privacy", label: "Privacy" }].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="body-3 inline-flex min-h-10 items-center underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+                  <Link href={l.href} className="body-3 link inline-flex min-h-11 items-center">
                     {l.label}
                   </Link>
                 </li>
@@ -37,7 +40,7 @@ export default function SiteFooter() {
 
           <ul className="grid gap-1">
             <li>
-              <a href={contact.phoneHref} className="body-3 inline-flex min-h-10 items-center gap-3 underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+              <a href={contact.phoneHref} className="body-3 link inline-flex min-h-11 items-center gap-3">
                 <Phone className="size-5 flex-none" />
                 <span>
                   {ACTIONS.call}: <span className="tabular whitespace-nowrap">{contact.phone}</span>
@@ -45,7 +48,7 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="body-3 inline-flex min-h-10 items-center gap-3 underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+              <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="body-3 link inline-flex min-h-11 items-center gap-3">
                 <Chat className="size-5 flex-none" />
                 <span>
                   {ACTIONS.whatsapp}: <span className="tabular whitespace-nowrap">{contact.phone}</span>
@@ -53,7 +56,7 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${contact.email}`} className="body-3 inline-flex min-h-10 items-center gap-3 underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+              <a href={`mailto:${contact.email}`} className="body-3 link inline-flex min-h-11 items-center gap-3">
                 <Mail className="size-5 flex-none" />
                 <span>{contact.email}</span>
               </a>
@@ -62,13 +65,11 @@ export default function SiteFooter() {
           </ul>
         </div>
 
-        <div className="rail mt-12" aria-hidden />
-
-        <div className="caption-2 mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 text-ink-subtle">
+        <div className="caption-2 mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line pt-6 text-ink-subtle">
           <p>
             {site.name} is a {builder.legalName} project. BRN {builder.brn}.
           </p>
-          <a href={builder.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-8 items-center text-ink-subtle underline decoration-transparent transition-colors duration-300 ease-out hover:decoration-current">
+          <a href={builder.url} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center text-ink-subtle">
             <span>
               A Digital Experience by <strong className="body-4 text-ink">Khay Digital</strong>
             </span>

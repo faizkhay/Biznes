@@ -13,7 +13,7 @@ const BEHIND = ["main", "site-footer"];
 
 /**
  * The header: the mark, the pages, and the quickest way to ask about a business. It stays at the
- * top on solid paper, with the rail as its lower edge.
+ * top as a solid band of the deeper dusk, so it reads over the street without a blur.
  *
  * On a phone the pages move into a sheet that opens under the header. The sheet is a dialog: it
  * takes focus, makes the rest of the page inert, closes on Escape or on its button, and gives
@@ -63,7 +63,7 @@ export default function SiteHeader() {
   const { contact } = site;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line-strong bg-paper">
+    <header data-ground="deep" className="sticky top-0 z-50">
       <div className="shell flex h-(--nav-h) items-center justify-between gap-6">
         <Link href="/" className="-ml-2 inline-flex min-h-11 items-center rounded-full px-2 no-underline" aria-label={`${site.name}, home`}>
           <Logo />
@@ -77,13 +77,13 @@ export default function SiteHeader() {
                 key={l.href}
                 href={l.href}
                 aria-current={current ? "page" : undefined}
-                className="title-3 relative inline-flex h-(--nav-h) items-center no-underline"
+                className="title-3 group relative inline-flex h-(--nav-h) items-center no-underline"
               >
                 {l.label}
-                {/* The current page is marked on the rail itself: a short heavier stroke under its name. */}
+                {/* The current page is underlined in saffron; pointing at another draws the same line under it. */}
                 <span
                   aria-hidden
-                  className={`absolute inset-x-0 -bottom-px h-0.5 origin-left bg-ink transition-transform duration-300 ease-out ${current ? "scale-x-100" : "scale-x-0"}`}
+                  className={`absolute inset-x-0 bottom-4 h-0.5 origin-left bg-action transition-transform duration-300 ease-out group-hover:scale-x-100 ${current ? "scale-x-100" : "scale-x-0"}`}
                 />
               </Link>
             );
@@ -137,7 +137,7 @@ export default function SiteHeader() {
                       onClick={() => close(false)}
                     >
                       {l.label}
-                      {(l.href === "/" ? pathname === "/" : isCurrent(l.href)) && <span aria-hidden className="size-2 rounded-full bg-ink" />}
+                      {(l.href === "/" ? pathname === "/" : isCurrent(l.href)) && <span aria-hidden className="size-2 rounded-full bg-action" />}
                     </Link>
                   </li>
                 ))}

@@ -1,0 +1,7 @@
+{
+  "file": "/img/sky-1200.webp",
+  "is": "A painted blue-hour sky, the backdrop of the 3D street. A generated image, not a photograph of a real place.",
+  "made": "scripts/prepare-plates.mjs, from assets/plates/sky.png, resized to 1200 x 514, graded darker through its upper band to match the mock-up's sky, WebP quality 80",
+  "generator": "Higgsfield, model gpt_image_2_6, 17 November 2026, with the approved mock-up (.impeccable/mocks/comp-b-perspective.png) as its colour reference",
+  "prompt": "Paint ONLY THE SKY from the reference image as a clean, wide, seamless background plate with nothing in front of it. Use the reference solely for its sky colours and painted style: a tropical blue-hour sky, deep saturated cobalt blue at the top, easing down through blue-violet to a thin band of warm coral and pink light along the horizon in the lower fifth of the frame, with a few soft, low, pink-violet clouds near the horizon and a handful of faint small stars high up. Along the very bottom edge, a low, dark, flat silhouette of distant jagged volcanic hills, small and far away, no detail. The horizon is level and sits at about 82 percent of the height. Smooth, clean, stylised digital painting matching the reference, evenly lit, no vignette. Absolutely NO buildings, NO shopfronts, NO roofs, NO street, NO lamp posts, NO power lines, NO palm trees, NO people, NO text, NO letters, NO logos, NO interface elements, NO watermark, NO border."
+}

@@ -51,8 +51,8 @@ export default function Privacy() {
     <>
       <JsonLd data={pageGraph({ path: "/privacy", name: title, description, crumbs: [{ name: title, path: "/privacy" }] })} />
       <div className="shell pb-24 pt-16 lg:pt-24">
-        <h1 className="heading-1 measure-hero">Privacy</h1>
-        <p className="title-2 measure-hero mt-6 text-ink-subtle">What this site collects, what it is used for, and how to have it removed.</p>
+        <h1 className="heading-2 measure-hero">Privacy</h1>
+        <p className="title-1 measure-hero mt-6 text-ink-subtle">What this site collects, what it is used for, and how to have it removed.</p>
         <div className="mt-16 border-t border-line-strong">
           {sections.map((s) => (
             <section key={s.heading} className="grid gap-x-20 gap-y-3 border-b border-line py-8 lg:grid-cols-[0.5fr_1fr]">

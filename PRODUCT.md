@@ -8,8 +8,8 @@ web
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Lenis for wheel smoothing: the Khay
-Digital house standard, without React Three Fiber, because this build has no 3D. Every page is
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Lenis for wheel smoothing, and
+React Three Fiber for the home page's street: the Khay Digital house standard. Every page is
 prerendered; one route handler (`/api/enquiry`) takes the request form. English only at launch, at
 the root.
 
@@ -50,8 +50,8 @@ button says what pressing it does.
 ## Positioning
 
 Each business is built by Khay Digital and sold once, to one owner. "Biznes" is Mauritian Kreol for
-business. No tagline exists yet; the tagline moment's line was written by Khay Digital from the
-offer and is to confirm (`STORY.md`).
+business. No tagline exists yet; the tagline moment's line ("The sign is painted / The shutter is
+yours to raise") was written by Khay Digital from the offer and is to confirm (`STORY.md`).
 
 ## Operating Context
 
@@ -74,7 +74,8 @@ incorporation.
 - **Listings at this build:** LePalatier (the owner's own idea: "a restaurant/cafe, exclusive brand
   look and feel, ideally has a spot in the middle of moka, grand baie or tamarin", proposed at
   350k), and five placeholders the owner asked for ("5 other random for now"): Lakrem, Souffle,
-  Bouké, Larout, Kazprop. The five are marked "Sample listing" wherever they appear.
+  Bouké, Larout, Kazprop. The five are marked "Sample" wherever they appear: on the shutter, beside
+  the name and at the price.
 - **Guarantees and terms:** each business is sold once, to one owner (Khay Digital's proposal to the
   owner in conversation, 16 November 2026, built on and to confirm). The brand is the buyer's in
   full on payment (Khay Digital's standing rule for a website: KOS, `references/khay.md`; to
@@ -89,10 +90,14 @@ incorporation.
 ## Brand Commitments
 
 biznes.mu is a new brand with no earlier material. The owner gave carte blanche on creative
-direction (16 November 2026), so the identity in this build is Khay Digital's first direction and is
-recorded as chosen, not sampled: paper and ink with one yellow, Geist and Geist Mono, the tag as the
-signature shape (`DESIGN.md`). Each listing's own identity (lettering, colours) is also a first
-direction. The credit, as on every Khay build: "A Digital Experience by Khay Digital".
+direction (16 November 2026), judged the first direction not good enough, and on 17 November 2026
+chose the second from the directions and mock-ups put to them: "the street", with mock-up B as its
+first screen (`.impeccable/mocks/comp-b-perspective.png`). The identity is sampled from that
+mock-up: dusk blue, saffron, limewash, a coral shade and enamel blue; Barlow Condensed for anything
+painted on a sign and Geist for sentences; the shopfront, the plaque and the lambrequin as the
+signature shapes (`DESIGN.md`). Each listing's own identity (lettering, colours) is Khay Digital's
+first direction. biznes.mu is its own brand; Khay Digital appears as the maker and in the credit, as
+on every Khay build: "A Digital Experience by Khay Digital".
 
 ## Evidence on Hand
 
@@ -102,24 +107,28 @@ direction. The credit, as on every Khay build: "A Digital Experience by Khay Dig
 | https://www.khay.digital/llms.txt | 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email, hours, and its "Care & Support" service |
 | KOS, `references/khay.md` | 16 November 2026 | A website is "the client's in full, on payment" |
 | DNS for the `.mu` zone | 16 November 2026 | None of lepalatier.mu, lakrem.mu, souffle.mu, bouke.mu, larout.mu or kazprop.mu resolved; no claim is made on the site |
+| The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` | 17 November 2026 | The first screen's composition and the palette, sampled by region |
+| The generated sky, `assets/plates/sky.png` | 17 November 2026 | The backdrop of the 3D street; its prompt is kept beside it |
 
 Absent, and not fabricated: photographs, testimonials, sales figures, a logo for biznes.mu from
 before this build, confirmed prices for the samples.
 
 ## Product Principles
 
-1. **The businesses are the proof.** The first thing a visitor sees is what is for sale, in its own
-   colours, not a claim about it.
+1. **The businesses are the proof.** The first thing a visitor sees is what is for sale: a street
+   of finished shopfronts, each in its own colours, not a claim about them.
 2. **Say what is not sold.** Premises, licences, stock, staff and income are named as the buyer's,
    before the ask, because the hardest visitor has been promised too much before.
 3. **One business, one owner, one action.** Each business's page ends on asking about that
    business.
-4. **A sample can never pass for an offer.** It is marked on the tag itself and kept out of
-   everything a machine reads.
+4. **A sample can never pass for an offer.** It is marked on its shutter, beside its name and at
+   its price, and kept out of everything a machine reads.
 5. **A phone, in a hurry, decides.** Call and WhatsApp are within reach on every page.
 
 ## Accessibility & Inclusion
 
 WCAG 2.2 AA, the Khay standard: keyboard access, visible focus, reduced-motion support, no
-horizontal overflow at 390px, and a page that is whole without script. There is no WebGL on this
-site.
+horizontal overflow at 390px, and a page that is whole without script. The 3D street is an
+addition to a page that is already complete: without WebGL, without script or under `?no3d`, every
+stop of the walk is a plain section with a still and its words, and under reduced motion the camera
+cuts instead of travelling.

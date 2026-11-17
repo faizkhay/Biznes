@@ -1,6 +1,6 @@
 // What every business sold here comes with, how a sale runs, what stays with the buyer, and the
-// questions people ask. One source for the home page, the How it works page, each listing, the
-// structured data and llms.txt.
+// questions people ask. One source for the home page's walk, the How it works page, each listing,
+// the structured data and llms.txt.
 //
 // Source: the owner, in conversation, 16 November 2026: "i will build the brand, branding, website
 // and purchase domain names, lock social media handles, have a business strategy, people who have
@@ -14,7 +14,7 @@
 // Digital's published "Care & Support" service, https://www.khay.digital/llms.txt, read 16 November
 // 2026).
 
-/** What hangs on the ring: the six things every business comes with. */
+/** The six things every business comes with, by their own names. */
 export const INCLUDED = [
   {
     title: "The name and the identity",
@@ -46,7 +46,7 @@ export const INCLUDED = [
 export const STEPS = [
   {
     title: "Choose",
-    line: "Look through the businesses. Each page shows the brand, what comes with it, what you would bring and the price.",
+    line: "Walk the street. Each business's page shows its brand, what comes with it, what you would bring and its price.",
   },
   {
     title: "Ask",
@@ -62,17 +62,17 @@ export const STEPS = [
   },
 ] as const;
 
-/** The honest half: what no brand can supply. Said on the home page and on How it works. */
+/** The honest half: what no brand can supply. */
 export const YOURS = {
-  heading: "A brand is not a business until someone runs it",
-  line: "We prepare everything up to the door. What happens behind it is yours, and we make no promise of income.",
-  /** The same six things as the ring, by their own names, so the two lists can never disagree. */
+  heading: "The room is yours to fill",
+  line: "We build the front. What happens behind the shutter is yours, and we make no promise of income.",
+  /** The same six things, by their own names, so the two lists can never disagree. */
   ours: INCLUDED.map((i) => i.title),
   yours: ["Premises, and the lease", "Licences and permits", "Equipment and stock", "The team", "The work, every day"],
 } as const;
 
 /** The tagline moment. Written by Khay Digital from the offer; to confirm with the owner. */
-export const TAGLINE = "The business is ready\nAll it needs is its owner";
+export const TAGLINE = "The sign is painted\nThe shutter is yours to raise";
 
 /** The questions, as plain question and answer. Also the page's FAQPage data. */
 export const FAQS = [
@@ -82,7 +82,7 @@ export const FAQS = [
   },
   {
     q: "Is each business sold only once?",
-    a: "Yes. Each business has one owner. Once it is sold, it leaves the list.",
+    a: "Yes. Each business has one owner. Once it is sold, it leaves the street.",
   },
   {
     q: "Does the price include premises, equipment or stock?",
@@ -93,8 +93,20 @@ export const FAQS = [
     a: "No. We can promise that the brand is finished and the strategy is written. How the business does depends on how it is run.",
   },
   {
+    q: "Where will the business be?",
+    a: "Each business is made with a place in mind, and its page names the towns. Finding the premises and signing the lease is yours to do.",
+  },
+  {
     q: "Can I change the name or the look after I buy?",
     a: "Yes. Once you have paid, the brand is yours in full, to keep or to change.",
+  },
+  {
+    q: "Who is behind biznes.mu?",
+    a: "Khay Digital Ltd, a Mauritian digital agency founded in June 2020 (BRN C22187903). It designs and builds every business sold here.",
+  },
+  {
+    q: "What does it cost to ask?",
+    a: "Nothing. Asking about a business commits you to nothing.",
   },
   {
     q: "Can you build a business around my own idea?",

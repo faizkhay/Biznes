@@ -26,8 +26,8 @@ export default function Enquire() {
     <>
       <JsonLd data={pageGraph({ type: "ContactPage", path: "/enquire", name: title, description, crumbs: [{ name: title, path: "/enquire" }] })} />
       <div className="shell pb-12 pt-16 lg:pb-16 lg:pt-24">
-        <h1 className="heading-1 measure-hero">Ask about a business</h1>
-        <p className="title-2 measure-hero mt-6 text-ink-subtle">Send a request and we will reply the way you choose. Or reach us directly.</p>
+        <h1 className="heading-2 measure-hero">Ask about a business</h1>
+        <p className="title-1 measure-hero mt-6 text-ink-subtle">Send a request and we will reply the way you choose. Or reach us directly. Asking costs nothing.</p>
       </div>
 
       <div className="shell grid gap-x-20 gap-y-16 pb-24 lg:grid-cols-[1.15fr_0.85fr]">

@@ -1,0 +1,176 @@
+{
+  "tool": "build-phase",
+  "version": 2,
+  "startedAt": "2026-11-17T06:04:00.361Z",
+  "comp": ".impeccable/mocks/comp-b-perspective.png",
+  "direction": "8f9b6c58",
+  "breakpoint": "2688x1520",
+  "artifact": "src/app/page.tsx",
+  "phase": "plates",
+  "phases": {
+    "comps": {
+      "status": "closed",
+      "openedAt": "2026-11-17T06:04:00.361Z",
+      "closedAt": "2026-11-17T06:09:05.757Z",
+      "attempts": 2,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "3 comps, 1 approved",
+        "approved": ".impeccable/mocks/comp-b-perspective.png",
+        "at": "2026-11-17T06:09:05.757Z"
+      },
+      "forced": null
+    },
+    "spec": {
+      "status": "closed",
+      "openedAt": "2026-11-17T06:09:05.815Z",
+      "closedAt": "2026-11-17T06:10:15.967Z",
+      "attempts": 2,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "12 regions, 2 plates, 6 text regions measured",
+        "at": "2026-11-17T06:10:15.967Z"
+      },
+      "forced": null
+    },
+    "plates": {
+      "status": "open",
+      "openedAt": "2026-11-17T06:10:15.967Z",
+      "closedAt": null,
+      "attempts": 3,
+      "notes": [],
+      "gate": {
+        "ok": false,
+        "reasons": [
+          "plate missing for street: expected assets/plates/street.png; produce it from /root/.claude/skills/synced/968ffd36-4f50-4ec7-9521-89a2677e8997_f88f88e8-dfdf-43b3-ba20-b3ddf516a1c4/impeccable/scripts/impeccable comp-spec --crop street with /root/.claude/skills/synced/968ffd36-4f50-4ec7-9521-89a2677e8997_f88f88e8-dfdf-43b3-ba20-b3ddf516a1c4/impeccable/scripts/impeccable generate-image --ref <crop.png> --prompt-file <prompt.txt> --out <plate.png>"
+        ],
+        "summary": "1/2 plates",
+        "at": "2026-11-17T06:12:35.904Z"
+      },
+      "forced": null
+    },
+    "hero": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "sections": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "motion": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "responsive": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "review": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    }
+  },
+  "finish": null,
+  "plates": {
+    "sky": {
+      "id": "sky",
+      "file": "assets/plates/sky.png",
+      "status": "ok",
+      "assetHash": "de62ae783e7508a435d7eaac816680386005802e6b86eb9fc5269ccd8f455aea",
+      "regionHash": "a0a5c5300fa44279e2ab1dba8ddde4073ac1ac8ab9be531718bba2fb75cdabf7",
+      "referenceHash": "66023c519e3478eef89b9f370bb7362750f1b8f4c39652f42dbc044c36c2d377",
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 629968,
+        "totalPixels": 1693125,
+        "remainingPixels": 1063157,
+        "excludedFraction": 0.37207412329272793,
+        "fullyExcluded": false,
+        "regions": [
+          {
+            "id": "headline",
+            "kind": "text",
+            "cropPx": {
+              "x": 83,
+              "y": 55,
+              "w": 1116,
+              "h": 342
+            },
+            "pixels": 381672
+          },
+          {
+            "id": "lede",
+            "kind": "text",
+            "cropPx": {
+              "x": 89,
+              "y": 420,
+              "w": 914,
+              "h": 213
+            },
+            "pixels": 194682
+          },
+          {
+            "id": "cta",
+            "kind": "control",
+            "cropPx": {
+              "x": 86,
+              "y": 660,
+              "w": 433,
+              "h": 88
+            },
+            "pixels": 38104
+          },
+          {
+            "id": "how-link",
+            "kind": "text",
+            "cropPx": {
+              "x": 562,
+              "y": 672,
+              "w": 282,
+              "h": 55
+            },
+            "pixels": 15510
+          }
+        ],
+        "ignoredContainers": []
+      },
+      "compHash": "6676f913d2c70adde02358096df6b8550e7b4d20deaae1ab881b1f613bf4b384",
+      "size": "2688x1152",
+      "score": 0.4252
+    },
+    "street": {
+      "id": "street",
+      "file": "assets/plates/street.png",
+      "status": "missing"
+    }
+  }
+}

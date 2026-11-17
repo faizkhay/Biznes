@@ -1,0 +1,487 @@
+{
+  "tool": "comp-diff",
+  "version": 1,
+  "createdAt": "2026-11-17T07:15:43.142Z",
+  "label": "hero-repro",
+  "comp": ".impeccable/mocks/comp-b-perspective.png",
+  "build": ".impeccable/review/hero-repro.png",
+  "spec": ".impeccable/build/spec.json",
+  "compSize": "2688x1520",
+  "buildSize": "2688x1520",
+  "align": "top",
+  "overall": 0.5257,
+  "verdict": "contradicted",
+  "scores": {
+    "overall": 0.5257,
+    "structure": 0.3597,
+    "color": 0.5428,
+    "colorIntersection": 0.3238,
+    "paletteMatch": 0.6608,
+    "detail": 0.6412,
+    "detailRaw": 0.6673,
+    "detailAdded": 0.0521,
+    "bands": 0.6923
+  },
+  "palette": {
+    "comp": [
+      {
+        "hex": "#0e328f",
+        "coverage": 0.4898
+      },
+      {
+        "hex": "#711425",
+        "coverage": 0.1415
+      },
+      {
+        "hex": "#383141",
+        "coverage": 0.1228
+      },
+      {
+        "hex": "#f8f8f8",
+        "coverage": 0.0931
+      },
+      {
+        "hex": "#e48627",
+        "coverage": 0.0772
+      },
+      {
+        "hex": "#3b51ad",
+        "coverage": 0.0756
+      }
+    ],
+    "build": [
+      {
+        "hex": "#102e90",
+        "coverage": 0.4518
+      },
+      {
+        "hex": "#f8f7f7",
+        "coverage": 0.2468
+      },
+      {
+        "hex": "#805b74",
+        "coverage": 0.0994
+      },
+      {
+        "hex": "#56080c",
+        "coverage": 0.0731
+      },
+      {
+        "hex": "#0f0e28",
+        "coverage": 0.0676
+      },
+      {
+        "hex": "#1c080d",
+        "coverage": 0.0614
+      }
+    ]
+  },
+  "regions": [
+    {
+      "id": "nav",
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 0.072,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.5217,
+        "structure": 0.7785,
+        "color": 0.6858,
+        "colorIntersection": 0.3885,
+        "paletteMatch": 0.8459,
+        "detail": 0.0712,
+        "detailRaw": 0.092,
+        "detailAdded": 0.0417,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 74,
+          "y": 19,
+          "w": 2567,
+          "h": 69
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 2688,
+          "h": 109
+        }
+      }
+    },
+    {
+      "id": "logo",
+      "x": 0.026,
+      "y": 0.012,
+      "w": 0.17,
+      "h": 0.05,
+      "kind": "text",
+      "score": {
+        "overall": 0.3653,
+        "structure": 0.3355,
+        "color": 0.6145,
+        "colorIntersection": 0.3845,
+        "paletteMatch": 0.7384,
+        "detail": 0.0261,
+        "detailRaw": 0.0313,
+        "detailAdded": 0.0104,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 4,
+          "y": 4,
+          "w": 440,
+          "h": 61
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 35,
+          "h": 76
+        }
+      }
+    },
+    {
+      "id": "nav-businesses",
+      "x": 0.708,
+      "y": 0.02,
+      "w": 0.075,
+      "h": 0.032,
+      "kind": "text",
+      "score": {
+        "overall": 0.398,
+        "structure": 0.4807,
+        "color": 0.4696,
+        "colorIntersection": 0.2289,
+        "paletteMatch": 0.5993,
+        "detail": 0.0016,
+        "detailRaw": 0.0016,
+        "detailAdded": 0,
+        "bands": 0.4
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 11,
+          "y": 8,
+          "w": 181,
+          "h": 28
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "nav-how",
+      "x": 0.805,
+      "y": 0.02,
+      "w": 0.087,
+      "h": 0.032,
+      "kind": "text",
+      "score": {
+        "overall": 0.3725,
+        "structure": 0.5113,
+        "color": 0.4658,
+        "colorIntersection": 0.2356,
+        "paletteMatch": 0.5897,
+        "detail": 0.0031,
+        "detailRaw": 0.0031,
+        "detailAdded": 0,
+        "bands": 0
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 10,
+          "y": 8,
+          "w": 213,
+          "h": 28
+        },
+        "build": null
+      }
+    },
+    {
+      "id": "nav-enquire",
+      "x": 0.907,
+      "y": 0.011,
+      "w": 0.077,
+      "h": 0.049,
+      "kind": "control",
+      "score": {
+        "overall": 0.1633,
+        "structure": 0.2447,
+        "color": 0.1338,
+        "colorIntersection": 0.1216,
+        "paletteMatch": 0.1403,
+        "detail": 0.0318,
+        "detailRaw": 0.0578,
+        "detailAdded": 0.0521,
+        "bands": 0.46
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 207,
+          "h": 74
+        },
+        "build": {
+          "x": 126,
+          "y": 38,
+          "w": 81,
+          "h": 36
+        }
+      }
+    },
+    {
+      "id": "headline",
+      "x": 0.031,
+      "y": 0.108,
+      "w": 0.415,
+      "h": 0.225,
+      "kind": "text",
+      "score": {
+        "overall": 0.4061,
+        "structure": 0.143,
+        "color": 0.778,
+        "colorIntersection": 0.5813,
+        "paletteMatch": 0.8838,
+        "detail": 0.5787,
+        "detailRaw": 0.6047,
+        "detailAdded": 0.0521,
+        "bands": 0.5333
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 1116,
+          "h": 342
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 1116,
+          "h": 342
+        }
+      }
+    },
+    {
+      "id": "lede",
+      "x": 0.033,
+      "y": 0.348,
+      "w": 0.34,
+      "h": 0.14,
+      "kind": "text",
+      "score": {
+        "overall": 0.5747,
+        "structure": 0.536,
+        "color": 0.559,
+        "colorIntersection": 0.2819,
+        "paletteMatch": 0.7082,
+        "detail": 0.4728,
+        "detailRaw": 0.5405,
+        "detailAdded": 0.1354,
+        "bands": 0.96
+      },
+      "verdict": "drift",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 9,
+          "w": 909,
+          "h": 204
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 914,
+          "h": 213
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "x": 0.032,
+      "y": 0.506,
+      "w": 0.161,
+      "h": 0.058,
+      "kind": "control",
+      "score": {
+        "overall": 0.4767,
+        "structure": 0.4576,
+        "color": 0.7348,
+        "colorIntersection": 0.4649,
+        "paletteMatch": 0.8801,
+        "detail": 0.0681,
+        "detailRaw": 0.1618,
+        "detailAdded": 0.1875,
+        "bands": 0.297
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 433,
+          "h": 88
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 433,
+          "h": 88
+        }
+      }
+    },
+    {
+      "id": "how-link",
+      "x": 0.209,
+      "y": 0.514,
+      "w": 0.105,
+      "h": 0.036,
+      "kind": "text",
+      "score": {
+        "overall": 0.2972,
+        "structure": 0.3931,
+        "color": 0.4026,
+        "colorIntersection": 0.1142,
+        "paletteMatch": 0.5579,
+        "detail": 0,
+        "detailRaw": 0.0474,
+        "detailAdded": 0.125,
+        "bands": 0
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": {
+          "x": 5,
+          "y": 1,
+          "w": 277,
+          "h": 54
+        },
+        "build": {
+          "x": 0,
+          "y": 8,
+          "w": 281,
+          "h": 47
+        }
+      }
+    },
+    {
+      "id": "sky",
+      "x": 0,
+      "y": 0.072,
+      "w": 0.56,
+      "h": 0.74,
+      "kind": "plate",
+      "score": {
+        "overall": 0.5142,
+        "structure": 0.2832,
+        "color": 0.5902,
+        "colorIntersection": 0.4064,
+        "paletteMatch": 0.6892,
+        "detail": 0.5583,
+        "detailRaw": 0.6104,
+        "detailAdded": 0.1042,
+        "bands": 0.925
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 65,
+          "w": 1505,
+          "h": 1060
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 1505,
+          "h": 1125
+        }
+      }
+    },
+    {
+      "id": "street",
+      "x": 0.125,
+      "y": 0.072,
+      "w": 0.875,
+      "h": 0.908,
+      "kind": "image",
+      "score": {
+        "overall": 0.5533,
+        "structure": 0.3014,
+        "color": 0.5133,
+        "colorIntersection": 0.2986,
+        "paletteMatch": 0.6289,
+        "detail": 0.6714,
+        "detailRaw": 0.7286,
+        "detailAdded": 0.1146,
+        "bands": 0.7916
+      },
+      "verdict": "contradicted",
+      "inkBox": {
+        "comp": {
+          "x": 0,
+          "y": 0,
+          "w": 2352,
+          "h": 1381
+        },
+        "build": {
+          "x": 0,
+          "y": 0,
+          "w": 2352,
+          "h": 1381
+        }
+      }
+    },
+    {
+      "id": "next-peek",
+      "x": 0,
+      "y": 0.982,
+      "w": 1,
+      "h": 0.018,
+      "kind": "chrome",
+      "score": {
+        "overall": 0.4883,
+        "structure": 0.9665,
+        "color": 0,
+        "colorIntersection": 0,
+        "paletteMatch": 0,
+        "detail": 0,
+        "detailRaw": 0,
+        "detailAdded": 0,
+        "bands": 1
+      },
+      "verdict": "missing",
+      "inkBox": {
+        "comp": null,
+        "build": null
+      }
+    }
+  ],
+  "files": {
+    "sideBySide": "/home/user/Biznes/.impeccable/review/diff/final/side-by-side.png",
+    "heatmap": "/home/user/Biznes/.impeccable/review/diff/final/heatmap.png",
+    "regionFiles": [
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/nav.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/logo.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/nav-businesses.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/nav-how.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/nav-enquire.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/headline.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/lede.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/cta.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/how-link.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/sky.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/street.png",
+      "/home/user/Biznes/.impeccable/review/diff/final/regions/next-peek.png"
+    ]
+  }
+}

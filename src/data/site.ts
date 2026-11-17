@@ -14,6 +14,8 @@ export const site = {
   /** One sentence for metadata and machines. */
   description:
     "biznes.mu sells ready-to-launch businesses in Mauritius. Each one comes with its name and identity, its domain, its website and its strategy, built by Khay Digital and sold to one owner.",
+  /** The first screen's lede: where, who by, what is done, and the one term. */
+  lede: "The name, the brand, the domain, the website and the strategy are done. Each business is sold once, to one owner.",
   /**
    * False until the listings are real. While false, pages ask search engines not to index them and
    * robots.txt closes the site, so sample listings can never be found as if they were for sale.
@@ -32,6 +34,8 @@ export const site = {
     founded: "June 2020",
     founder: "Faïz Khayrattee",
     belief: "Anyone can make a website; Khay tells stories.",
+    /** Its published track record (K): the one figure on the site, and it is the agency's own. */
+    projects: "175+",
   },
 
   /**
