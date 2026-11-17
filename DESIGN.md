@@ -180,16 +180,15 @@ components:                               # only: backgroundColor textColor typo
 
 # Design System: biznes.mu, the website
 
-<!-- Recorded on 17 November 2026 from faizkhay/Biznes, and reconciled at 08:45 UTC with the tree as
-it settled after the finish review's fixes: the working tree on commit 82b292f, not yet committed,
-served by the production build of 08:25 UTC. Every measurement below marked "live" was taken from
-that build. It replaces the record of the first build ("the rail"), none of which survives. Read
-from src/app/globals.css, src/components, src/app, src/data and the captures in review/screens
-(pages retaken 08:27 to 08:29 UTC, states 08:33 to 08:34 UTC). Where the build and this file
-differ, the build wins and the difference goes to Known Gaps. Checks:
-`npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0 errors and 0 warnings;
-`node scripts/check-design.mjs` passes; contrast measured 17 November 2026 with `npm run contrast`.
-The machine-readable sidecar is `.impeccable/design.json`. -->
+<!-- Recorded on 17 November 2026 from faizkhay/Biznes, and reconciled at 09:05 UTC with the final
+tree: commit 0ca61e9 with the last fixes in the working tree, served by the production build of
+08:45 UTC. Every measurement below marked "live" was taken from that build. It replaces the record
+of the first build ("the rail"), none of which survives. Read from src/app/globals.css,
+src/components, src/app, src/data and the captures in review/screens (pages retaken 08:50 to 08:52
+UTC, states 08:55 to 08:56 UTC). Where the build and this file differ, the build wins and the
+difference goes to Known Gaps. Checks: `npx --yes @google/design.md@0.4.0 lint DESIGN.md` gives 0
+errors and 0 warnings; `node scripts/check-design.mjs` passes; contrast measured 17 November 2026
+with `npm run contrast`. The machine-readable sidecar is `.impeccable/design.json`. -->
 
 ## Overview
 
@@ -417,43 +416,44 @@ chip's row reads as its words on its own fill: the form sits on dusk, so a chose
 with dusk words.
 
 Measured for this record on 17 November 2026 with `node scripts/contrast.mjs`, outside the pairs
-list. "Live" means sampled from the production build's own canvas (the build of 08:25 UTC) with the
+list. "Live" means sampled from the production build's own canvas (the build of 08:45 UTC) with the
 words hidden, as the lightest 8px block behind the words themselves.
 
 | Text or mark | On | Ratio | Body text (4.5) | Large text, marks (3) | Where |
 |---|---|---|---|---|---|
-| `limewash` #f7f7f8 | #293ca7 | 8.53:1 | pass | pass | live, 1440 by 900: the lightest sky behind the headline |
-| `limewash` #f7f7f8 | #4e47b9 | 6.70:1 | pass | pass | live, 1440 by 900: behind the lede |
+| `limewash` #f7f7f8 | #263ba7 | 8.65:1 | pass | pass | live, 1440 by 900: the lightest sky behind the headline |
+| `limewash` #f7f7f8 | #4d47b9 | 6.72:1 | pass | pass | live, 1440 by 900: behind the lede |
 | `limewash` #f7f7f8 | #5b4cbd | 6.10:1 | pass | pass | live, 1440 by 900: behind "How it works" |
 | `limewash` #f7f7f8 | #1c36a1 | 9.37:1 | pass | pass | live, 1920 by 1080: behind the headline |
-| `limewash` #f7f7f8 | #3a41b1 | 7.62:1 | pass | pass | live, 1920 by 1080: behind the lede |
+| `limewash` #f7f7f8 | #3941b0 | 7.67:1 | pass | pass | live, 1920 by 1080: behind the lede |
 | `limewash` #f7f7f8 | #3f44b4 | 7.27:1 | pass | pass | live, 1920 by 1080: behind "How it works" |
-| `limewash` #f7f7f8 | #2c3daa | 8.32:1 | pass | pass | live, 1366 by 768: behind the headline |
-| `limewash` #f7f7f8 | #5b4abb | 6.24:1 | pass | pass | live, 1366 by 768: behind the lede |
-| `limewash` #f7f7f8 | #694fbd | 5.67:1 | pass | pass | live, 1366 by 768: behind "How it works" |
-| `limewash` #f7f7f8 | #263ba7 | 8.65:1 | pass | pass | live, 1280 by 720: behind the headline |
-| `limewash` #f7f7f8 | #5347b8 | 6.62:1 | pass | pass | live, 1280 by 720: behind the lede |
-| `limewash` #f7f7f8 | #614cba | 6.03:1 | pass | pass | live, 1280 by 720: behind "How it works" |
-| `limewash` #f7f7f8 | #112f92 | 10.62:1 | pass | pass | live, 1024 by 768: behind the headline |
-| `limewash` #f7f7f8 | #243aa6 | 8.79:1 | pass | pass | live, 1024 by 768: behind the lede |
-| `limewash` #f7f7f8 | #2f40ac | 8.00:1 | pass | pass | live, 1024 by 768: behind "How it works" |
-| `limewash` #f7f7f8 | #0a2b8a | 11.36:1 | pass | pass | live, 768 by 1024: behind the headline |
-| `limewash` #f7f7f8 | #06288a | 11.68:1 | pass | pass | live, 768 by 1024: behind the lede; and 360 by 640 |
-| `limewash` #f7f7f8 | #082a8c | 11.40:1 | pass | pass | live, 768 by 1024: behind "How it works" |
+| `limewash` #f7f7f8 | #3540b0 | 7.80:1 | pass | pass | live, 1366 by 768: behind the headline |
+| `limewash` #f7f7f8 | #6a4ebe | 5.69:1 | pass | pass | live, 1366 by 768: behind the lede |
+| `limewash` #f7f7f8 | #8554bf | 4.88:1 | pass | pass | live, 1366 by 768: behind "How it works" |
+| `limewash` #f7f7f8 | #3842b1 | 7.59:1 | pass | pass | live, 1280 by 720: behind the headline |
+| `limewash` #f7f7f8 | #7150be | 5.45:1 | pass | pass | live, 1280 by 720: behind the lede |
+| `limewash` #f7f7f8 | #8a57bf | 4.67:1 | pass | pass | live, 1280 by 720: behind "How it works", on the sky's violet |
+| `limewash` #f7f7f8 | #153299 | 10.06:1 | pass | pass | live, 1024 by 768: behind the headline |
+| `limewash` #f7f7f8 | #3a42b1 | 7.56:1 | pass | pass | live, 1024 by 768: behind the lede |
+| `limewash` #f7f7f8 | #4946b7 | 6.89:1 | pass | pass | live, 1024 by 768: behind "How it works" |
+| `limewash` #f7f7f8 | #092b89 | 11.41:1 | pass | pass | live, 768 by 1024: behind the headline |
+| `limewash` #f7f7f8 | #06288a | 11.68:1 | pass | pass | live, 768 by 1024: behind the lede and behind "How it works" |
 | `limewash` #f7f7f8 | #012385 | 12.41:1 | pass | pass | live, 390 by 844: behind the headline |
 | `limewash` #f7f7f8 | #0d2b8c | 11.26:1 | pass | pass | live, 390 by 844: behind the lede |
 | `limewash` #f7f7f8 | #18359d | 9.63:1 | pass | pass | live, 390 by 844: behind "How it works" |
 | `limewash` #f7f7f8 | #00217f | 12.87:1 | pass | pass | live, 375 by 667 and 360 by 640: behind the headline |
-| `limewash` #f7f7f8 | #06278a | 11.78:1 | pass | pass | live, 375 by 667: behind the lede |
-| `limewash` #f7f7f8 | #17339c | 9.85:1 | pass | pass | live, 375 by 667: behind "How it works" |
-| `limewash` #f7f7f8 | #16339b | 9.90:1 | pass | pass | live, 360 by 640: behind "How it works" |
+| `limewash` #f7f7f8 | #0a298b | 11.51:1 | pass | pass | live, 375 by 667: behind the lede |
+| `limewash` #f7f7f8 | #3540ae | 7.85:1 | pass | pass | live, 375 by 667: behind "How it works" |
+| `limewash` #f7f7f8 | #0b2a8a | 11.45:1 | pass | pass | live, 360 by 640: behind the lede |
+| `limewash` #f7f7f8 | #3e42b3 | 7.44:1 | pass | pass | live, 360 by 640: behind "How it works" |
 | `primary` #f8c618 | #5b4cbd | 4.07:1 | fail | pass | live, 1440 by 900: the focus ring round "How it works" |
+| `primary` #f8c618 | #8a57bf | 3.11:1 | fail | pass | live, 1280 by 720: the focus ring round "How it works" |
 | `line-strong` rgba(247,247,248,0.55) | `dusk-deep` #082478 | 4.78:1 | pass | pass | a resting stop mark on its strip |
 | `limewash` #f7f7f8 | `dusk-deep` #082478 | 12.78:1 | pass | pass | a stop mark pointed at, on its strip |
 | `primary` #f8c618 | `dusk-deep` #082478 | 8.52:1 | pass | pass | the current stop's mark on its strip |
 | `primary` #f8c618 | `enamel` #0b2b8e | 7.47:1 | pass | pass | the focus ring on the walk's card |
 | `coral` #f14949 | `dusk` #0e328f | 3.09:1 | fail | pass | the shade under the tagline, on dusk |
-| `coral` #f14949 | #293ca7 | 2.51:1 | fail | fail | live, 1440 by 900: the shade under the headline at the sky's lightest. A shade, not words |
+| `coral` #f14949 | #263ba7 | 2.55:1 | fail | fail | live, 1440 by 900: the shade under the headline at the sky's lightest. A shade, not words |
 | `enamel` #0b2b8e | `dusk` #0e328f | 1.06:1 | fail | fail | a plaque's plate against the page: told by its limewash rim (10.48:1) |
 | `limewash` #f7f7f8 | #25469a | 8.10:1 | pass | pass | a quiet button hovered on dusk: its 10% wash under its words |
 | `limewash` #f7f7f8 | #203985 | 9.87:1 | pass | pass | a quiet button hovered on deep dusk |
@@ -465,11 +465,11 @@ words hidden, as the lightest 8px block behind the words themselves.
 **Gaps (recorded, not rules):**
 
 - The hero's words sit on the live street with no ground of their own. On a short or a narrow
-  stage the picture moves down to keep the roofs clear of them, and they pass at the nine sizes
-  sampled, from 360 by 640 to 1920 by 1080; the lowest is 5.67:1, behind "How it works" at 1366 by
-  768. Sizes between the nine were not sampled.
-- The focus ring over the live street was sampled once (4.07:1 behind "How it works" at 1440). It
-  is not measured at every width.
+  stage the camera draws back, so the street is smaller under them and they stand on sky. They
+  pass at the nine sizes sampled, from 360 by 640 to 1920 by 1080; the lowest is 4.67:1, behind
+  "How it works" at 1280 by 720, where the sky is violet. Sizes between the nine were not sampled.
+- The focus ring over the live street was sampled twice (4.07:1 behind "How it works" at 1440 by
+  900, 3.11:1 at 1280 by 720). It is not measured at every width.
 - `line`, `line-on-saffron` and `line-on-limewash` divide rows and edge a paint, so they are held
   to no ratio (1.69:1, 1.57:1 and 1.39:1).
 - A light paint (Ivory, Cream, Sky) on limewash is told by a hairline at 1.39:1 and by its name and
@@ -832,8 +832,9 @@ be pressed.
 - **The first screen:** the street behind the headline (`heading-1`), the lede (`title-1`, at most
   448px wide), a filled "See the businesses" and an arrow link to How it works. Where the street is
   live, a cue sits at the foot: "Walk the street" with the arrow turned down, a deep dusk pill 44px
-  tall in `button-sm`, which turns enamel on hover and leads to the second stop. On a short phone
-  (under 900px wide and under 700px tall) the words fill the first screen and the cue is not shown.
+  tall in `button-sm`, which turns enamel on hover and leads to the second stop. It shows only from
+  1200px wide, where the foot of the first screen is open road; narrower, the street itself fills
+  the foot and the cue is not shown.
 - **The card** (live): a plaque at the size of a notice. Enamel, 12px corners, its rim, 28px of
   padding, at most 26rem wide: the stop's heading in `heading-3` and its line in `body-3`, both in
   `on-plaque`; the last card adds a filled "See the businesses". Where the walk is plain the card
@@ -1024,39 +1025,43 @@ beside.
   it, and a framed certificate on the left wall. The screen and the certificate show shapes, not
   words; the plan's cover carries the lettering and the words "Business strategy".
 - **Light:** a hemisphere light, a warm afterglow from the horizon's side and a cool fill; fog in
-  `dusk` from 22m to 110m. Each lamp has a painted glow and a painted pool down its wall, added to
-  what is behind them, on both tiers; a sign's board paints its own lamplight, so pale lettering on
-  a pale board is not washed out. On the high tier every shop also has a point light
-  on its sign and one in its room; the room's rises as its shutter does (0 to 18), and a painted
-  spill on the paving follows it. The street lamp at the far end has its own.
+  `dusk` from 22m to 110m. Each lamp has a painted glow, a sprite that faces the camera, and a
+  painted pool down its wall, both added to what is behind them, on both tiers; a sign's board
+  paints its own lamplight, so pale lettering on a pale board is not washed out. On the high tier
+  every shop also has a point light on its sign and one in its room; the room's rises as its
+  shutter does (0 to 18), and a painted spill on the paving follows it. The street lamp at the far
+  end has its own.
 - **The scene's own palette:** `three/palette.ts`, apart from the CSS tokens on purpose, because
   light and tone mapping change a colour. It also names the street's ink, paper, seal, palm and
   fill light. Five of its values are the CSS palette's, written again by hand: `dusk`, `limewash`,
   `enamel`, `ink` and the seal's saffron.
 - **Brand colour under light** (live, 1440 by 900, a software renderer, region medians):
-  LePalatier's wall, #711425 as a material, renders #47000c in shade and #ac0018 between its lamps;
-  its board, #4a1626, renders #51121f to #551520; a plaque's enamel, #0b2b8e, renders #001b9c; a
-  shutter renders #49384f against the mock-up's #574c64 and #655366; the lit room's wall renders
-  #e2a252 against the mock-up's #e0842c.
+  LePalatier's wall, #711425 as a material, renders #48000d in shade and #a90017 between its lamps;
+  its board, #4a1626, renders #4f111d to #52121e; a plaque's enamel, #0b2b8e, renders #001b9c; a
+  shutter renders #4a374f against the mock-up's #574c64 and #655366; the lit room's wall renders
+  #e3a353 against the mock-up's #e0842c.
 - **Camera:** eight stops, each with a frame for a desk and one for a phone (under 900px): where
   it stands, what it looks at, its field of view, and a shift of the picture's centre so the
   subject stands clear of the words (to the right on a desk, upward on a phone). The first and last
   frames were solved against the approved mock-up's layout, at 1440 by 828 and 390 by 772, not
   placed by eye: the camera stands low (1.05m to 1.65m) and the picture is shifted down, as an
-  architectural photograph is, so walls stay upright. Those four frames carry an anchor, so the
-  first shop's pier stays at the right edge on a wider or narrower screen, and the first frame
-  names the height its words need (780px on a desk, 760px on a phone): on a shorter stage, and on
-  a narrower one, the picture moves further down, so the words do not lie over a roof. See Motion,
-  Story map.
+  architectural photograph is, so walls stay upright. Those four frames carry an anchor, a point
+  on the screen that must not move: the first shop's pier at the right edge, with its paving in
+  frame. One function, `fit`, gives a frame's field of view and its two shifts for a stage of any
+  size. The anchor stays where it was solved to be as the stage gets wider or narrower. Where the
+  stage is shorter than the first frame's words need (780px on a desk, 760px on a phone), or
+  narrower than the shape it was solved at, the camera draws back about the anchor, widening its
+  view by up to 1.6 times, so the street grows smaller under the words and keeps its pavement.
+  See Motion, Story map.
 - **Tiers:** high on a wide screen; low on a narrow one (under 900px), on a device that cannot hold
   its frame rate, or with `?tier=low`. Low lights the walked shop only and loads the smaller sky.
   Resolution steps down before the tier does: the pixel ratio starts at up to 1.5 (1.25 narrow) and
   is stepped between 1 and that ceiling in quarters; three slow windows at a ratio of 1 drop to the
   low tier.
-- **Budgets:** none is written down. Counted from the code, not from the renderer: 231 meshes, none
-  instanced (42 for the walked shop, 34 for each sample, 19 for the sky, the ground and the two
-  ends); 13 point lights on the high tier and 3 on the low; signs at 1024 by 256, plaques at 512 by
-  176.
+- **Budgets:** none is written down. Counted from the code, not from the renderer: 231 drawn
+  objects, none instanced, of which 13 are the lamps' glow sprites (42 for the walked shop, 34 for
+  each sample, 19 for the sky, the ground and the two ends); 13 point lights on the high tier and 3
+  on the low; signs at 1024 by 256, plaques at 512 by 176.
 - **The stills:** `npm run stills` loads the home page with `?debug`, which hands the scene's clock
   to the script, and captures the stage at every stop with the words hidden: 1600 by 920 for a
   desk and 780 by 1544 for a phone, as WebP, each with a record that says it is a capture of this
@@ -1087,12 +1092,14 @@ disagree.
 
 ## Responsive Behavior
 
-Breakpoints are Tailwind's own, 640, 768 and 1024px, and one of this build's, 900px, where the
-walk changes. The fluid values run from 390 to 1440.
+Breakpoints are Tailwind's own, 640, 768 and 1024px, and two of this build's: 900px, where the
+walk changes, and 1200px, from which the walk's cue shows. On a stage too short or too narrow for
+the words above the street, the camera draws back and the street grows smaller under them (Scene &
+3D, Camera). The fluid values run from 390 to 1440.
 
 | Name | Width | Layout | Type | Scene tier |
 |---|---|---|---|---|
-| Phone | under 640px | One column. The terrace's shops are 64vw each and scroll sideways. The catalogue is two to a row. Gutter 24px, sections 64px. The header holds the mark, WhatsApp and the menu button. The steps run down the page. On Enquire the direct routes come before the form | `heading-1` 48px, `heading-2` 36px, `heading-3` 30px at 390 | low; the phone's frames; the words above the street, a stop's card at the foot; no cue under 700px tall |
+| Phone | under 640px | One column. The terrace's shops are 64vw each and scroll sideways. The catalogue is two to a row. Gutter 24px, sections 64px. The header holds the mark, WhatsApp and the menu button. The steps run down the page. On Enquire the direct routes come before the form | `heading-1` 48px, `heading-2` 36px, `heading-3` 30px at 390 | low; the phone's frames; the words above the street, a stop's card at the foot; no cue |
 | Small | from 640px | The terrace's shops are at least 216px. A listing's two sign plates sit side by side and its paints four across. The footer has two columns | Fluid | low |
 | Middle | from 768px | The header shows its pages, and its WhatsApp and menu button go. The four steps stand in a row under one line | Fluid | low |
 | Story | from 900px | The walk takes the desk's frames. A stop's card sits at the left, centred; the stop marks appear. Plain, a still sits beside its words | Fluid | high |
@@ -1244,27 +1251,24 @@ Recorded, not rules.
 
 **The build's standing**
 
-- The tree is settled and not yet committed. The finish review of 17 November 2026 answered "fix"
-  with eight points (`.impeccable/review/finish-review.md`); its fixes, and the fixes to what this
-  record first found, are in the working tree on commit 82b292f. Run again for this record:
-  `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail) and `npm run contrast` (every pair
-  passes for its role). The captures, the accessibility pass, the reveals and `npm run behaviour`
-  were run by the build and are not repeated here.
+- The tree is final, with its last fixes not yet committed. The finish review of 17 November 2026
+  answered "fix" with eight points (`.impeccable/review/finish-review.md`); its fixes are commit
+  0ca61e9, and the fixes to what its verdict pass and this record found are in the working tree.
+  Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail) and
+  `npm run contrast` (every pair passes for its role). The captures, the accessibility pass, the
+  reveals and `npm run behaviour` were run by the build and are not repeated here.
 - impeccable's plates and hero pixel gates were not run for the street. The owner chose live 3D
   over a raster plate, so the tool's `plates` phase stayed open ("plate missing for street") and
   `hero`, `sections`, `motion` and `responsive` never opened. The mock-up was the composition
-  reference. The measured comparison of the settled build is in `.impeccable/review/diff/final`
-  (08:35 UTC): 50% overall (0.4957, read by the tool as "contradicted"), structure 0.32, colour
-  0.59, palette match 0.71, detail 0.54; the street region 0.50, the sky 0.52, the headline 0.44.
-  The build before the fixes measured 53% (0.5257). The first screen has been judged by eye
-  against the mock-up, not proven by measurement.
+  reference. The measured comparison of the final build is in `.impeccable/review/diff/final`
+  (08:56 UTC): 51% overall (0.507, read by the tool as "contradicted"), structure 0.34, colour
+  0.59, palette match 0.72, detail 0.515; the street region 0.48, the sky 0.53, the headline 0.51.
+  Earlier builds measured 53% before the fixes and 50% part way through them. The first screen has
+  been judged by eye against the mock-up, not proven by measurement.
 - Against the mock-up the build differs by decision or by medium: the street is drawn live, not
   painted; each sign carries its listing's real lettering; the walked shop's room holds a screen,
   a counter and a frame; the roofs have no brackets; the next section does not show at the foot of
   the first screen, where a cue stands in its stead.
-- The sixteen stills and the link preview card were made between 08:11 and 08:16 UTC. The source
-  changed after that (08:23 to 08:25 UTC) in ways that, read in code, do not change those frames;
-  they were not remade.
 - Hover and pressed states were read in code, not captured. A shutter's rest, hover, focus and
   open states were measured against the production build, on the terrace, in the catalogue and at
   the head of a listing.
@@ -1278,13 +1282,9 @@ Recorded, not rules.
 
 **Where the build differs from what is written**
 
-- On a listing the footer's fringe is dusk although the page ends on limewash. The rule that
-  colours it looks at the last child of `main`, and a listing's sections sit inside an `article`.
-  Measured against the production build: dusk under the next business's limewash. On every other
-  page the fringe takes the ground the page ends on.
 - A shutter in 3D answers a pointer only. It has no keyboard equivalent and no name, and the
   cursor is the only cue that it can be raised.
-- Under light the walked shop's wall renders darker and redder than its sample: #47000c in shade
+- Under light the walked shop's wall renders darker and redder than its sample: #48000d in shade
   against #711425.
 - Without script the phone menu does not open, so under 768px the header offers the mark and
   WhatsApp and no pages; the footer carries them. The request form is sent by script: without
@@ -1312,8 +1312,8 @@ Recorded, not rules.
 - `--palette-amber` #e48627 ("the lamps' light") and `--palette-asphalt` #383141 ("the road") are
   declared and read by nothing; the street takes its light and its road from `three/palette.ts`.
 - The `caption-3` text style, the `--ease-in-out` curve and the `--breakpoint-story` token are
-  declared and used by nothing. The 900px breakpoint is written out by hand in four media queries
-  and two media strings.
+  declared and used by nothing. The 900px breakpoint is written out by hand in three media queries
+  and two media strings, and the cue's 1200px in one.
 - `--brand-wall` and `--brand-accent` are declared, and the second is set on a listing's sign
   plates, but no rule reads either; a shopfront takes its colours from its own inline variables.
 - `paper-subtle` is read only by a disabled filled action and a disabled field, so its values on

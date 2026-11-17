@@ -289,7 +289,14 @@ machine has no GPU, so the 3D drew on a software renderer: correct, and slow.
 6. There is no security policy for content (CSP) yet; the other security headers are set in
    `next.config.ts`.
 7. The request form has no confirmation email to the visitor.
-8. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
+8. On a short desk the first screen's words stand on the sky's violet. Every size measured passes,
+   but with little margin at two: 4.67:1 behind "How it works" at 1280 x 720, and 4.88:1 at
+   1366 x 768.
+9. The 3D shutters answer a pointer only; a keyboard cannot raise one. They carry nothing a visitor
+   needs, and the drawn shopfronts lower down answer focus.
+10. The script that solved the first and last camera frames is not in the repository; the frames
+    it gave are in `src/components/three/timeline.ts`.
+11. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
 
 ---
 
