@@ -68,7 +68,7 @@ const KEYS: Record<Stop["id"], Key> = {
   // The last view is the far end of the street: the five shops beyond the first, the lamp and the
   // afterglow, with the first shop out of the picture on the right.
   all: {
-    desk: { plate: "street", focus: [0, 1], at: [0, 1], size: 1.6 },
+    desk: { plate: "street", focus: [0, 1], at: [0, 1.06], size: 1.66 },
     phone: { plate: "street", focus: [0, 1], at: [0, 1], size: 0.6 },
     shutter: 0,
   },

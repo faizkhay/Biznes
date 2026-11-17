@@ -1,6 +1,6 @@
 import type { CSSProperties, Ref } from "react";
 import { type Business, wordmarkFor } from "@/data/businesses";
-import { COUNTER, PLATES, SHOP, STREET, type PlateId, type Rect } from "@/data/plates";
+import { COUNTER, PAINTED, PLATES, SHOP, STREET, type PlateId, type Rect } from "@/data/plates";
 import { into, matrix3d, onto } from "@/lib/homography";
 
 /**
@@ -46,23 +46,17 @@ function Lettering({ business: b, style }: { business: Business; style: CSSPrope
   );
 }
 
-const box = ([left, top, width, height]: Rect): CSSProperties => ({ left, top, width, height });
-/** A box inside a rectangle, inset by fractions of its width and height. */
-const inset = ([left, top, width, height]: Rect, x: number, y: number): CSSProperties => ({
-  left: left + width * x,
-  top: top + height * y,
-  width: width * (1 - 2 * x),
-  height: height * (1 - 2 * y),
-});
-
 /**
  * The street. Its boards are seen at an angle, so each one's lettering is carried onto its four
  * measured corners by one projective transform (lib/homography.ts); a sample's tag is placed on
  * the same wall, at the middle of its shutter.
  */
-export function StreetPlate({ businesses, plaqueRef }: { businesses: Business[]; plaqueRef?: Ref<HTMLDivElement> }) {
+export function StreetPlate({ businesses }: { businesses: Business[] }) {
   const p = PLATES.street;
-  const first = businesses[0];
+  // Each painted shop belongs to one listing, by name: a business that is sold leaves its shop with
+  // a blank sign, and the others keep theirs.
+  const shops = PAINTED.slice(0, STREET.boards.length).map((slug) => businesses.find((b) => b.slug === slug));
+  const first = shops[0];
   const plaque = onto(400, 170, STREET.plaque);
   return (
     <div className="plate" style={{ width: p.w, height: p.h }}>
@@ -71,7 +65,8 @@ export function StreetPlate({ businesses, plaqueRef }: { businesses: Business[];
       {STREET.lamps.map(([x, y, r], k) => (
         <i key={x} className="plate-glow" style={{ left: x - r, top: y - r, width: 2 * r, height: 2 * r, animationDelay: `${500 + k * 110}ms` }} />
       ))}
-      {businesses.slice(0, STREET.boards.length).map((b, k) => {
+      {shops.map((b, k) => {
+        if (!b) return null;
         // The nearest board is a long plank; the others are squarer. The numbers set how the
         // lettering is foreshortened, and were chosen so each name reads as painted on its board.
         const h = k === 0 ? 172 : 224;
@@ -98,11 +93,13 @@ export function StreetPlate({ businesses, plaqueRef }: { businesses: Business[];
           </div>
         );
       })}
-      <div ref={plaqueRef} className="plate-wall" style={{ width: 400, height: 170, transform: matrix3d(plaque) }}>
-        <span className="plate-plaque" style={{ inset: 0, fontSize: 92 }}>
-          {first.places[0]}
-        </span>
-      </div>
+      {first && (
+        <div className="plate-wall" style={{ width: 400, height: 170, transform: matrix3d(plaque) }}>
+          <span className="plate-plaque" style={{ inset: 0, fontSize: 92 }}>
+            {first.places[0]}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -131,7 +128,8 @@ export function ShopPlate({
   label = false,
   className,
 }: {
-  business: Business;
+  /** The business whose shop this is. Without one (it has been sold) the plate stands as painted, blank. */
+  business?: Business;
   shutterRef?: Ref<HTMLImageElement>;
   fluid?: boolean;
   /** True where no text nearby names the business, so the picture must. */
@@ -144,19 +142,23 @@ export function ShopPlate({
     <div
       className={["plate", className].filter(Boolean).join(" ")}
       style={fluid ? { width: "100%", aspectRatio: `${p.w} / ${p.h}` } : { width: p.w, height: p.h }}
-      {...(label ? { role: "img", "aria-label": `${b.name}'s shopfront, its shutter up and its room lit` } : {})}
+      {...(label && b ? { role: "img", "aria-label": `${b.name}'s shopfront, its shutter up and its room lit` } : {})}
     >
       <Picture id="lepalatier" sizes={fluid ? "(min-width: 1024px) 45vw, 100vw" : "(min-width: 900px) 300vw, 600vw"} />
-      <Lettering business={b} style={part([bx + bw * 0.2, by + bh * 0.17, bw * 0.6, bh * 0.66])} />
-      <span className="plate-plaque" style={{ ...part(SHOP.plaque), fontSize: scaled(86) }}>
-        {b.places[0]}
-      </span>
+      {b && <Lettering business={b} style={part([bx + bw * 0.2, by + bh * 0.17, bw * 0.6, bh * 0.66])} />}
+      {b && (
+        <span className="plate-plaque" style={{ ...part(SHOP.plaque), fontSize: scaled(86) }}>
+          {b.places[0]}
+        </span>
+      )}
       {/* The website: the screen shows the business's own lettering and nothing else, because the
           site itself is not built until the business has its owner. The certificate on the wall is
           left as painted, blank: the company is the owner's to register. */}
-      <div className="plate-screen" style={part(SHOP.screen)}>
-        <Lettering business={b} style={{ left: "22%", top: "32%", width: "56%", height: "36%" }} />
-      </div>
+      {b && (
+        <div className="plate-screen" style={part(SHOP.screen)}>
+          <Lettering business={b} style={{ left: "22%", top: "32%", width: "56%", height: "36%" }} />
+        </div>
+      )}
       {/* On the stage the shutter rolls up as the walk reaches the room. On a page the room stands open. */}
       {!fluid && (
         <div className="plate-doorway" style={part(SHOP.doorway)}>
@@ -173,18 +175,20 @@ export function ShopPlate({
  * written on it is carried onto the cover's four corners: the business's lettering, and what the
  * document is, in the site's sign face. It names one of the six things, and claims nothing else.
  */
-export function CounterPlate({ business: b }: { business: Business }) {
+export function CounterPlate({ business: b }: { business?: Business }) {
   const p = PLATES.counter;
   const t = onto(600, 560, COUNTER.cover);
   return (
     <div className="plate" style={{ width: p.w, height: p.h }}>
       <Picture id="counter" sizes="(min-width: 900px) 110vw, 300vw" />
-      <div className="plate-wall plate-cover" style={{ width: 600, height: 560, transform: matrix3d(t), color: b.brand.ink }}>
-        <Lettering business={b} style={{ left: "16%", top: "25%", width: "68%", height: "15%" }} />
-        <i style={{ left: "40%", top: "47%", width: "20%", height: "0.8%", background: b.brand.accent }} />
-        <span style={{ top: "53%", fontSize: 52 }}>Business</span>
-        <span style={{ top: "64%", fontSize: 52 }}>strategy</span>
-      </div>
+      {b && (
+        <div className="plate-wall plate-cover" style={{ width: 600, height: 560, transform: matrix3d(t), color: b.brand.ink }}>
+          <Lettering business={b} style={{ left: "16%", top: "25%", width: "68%", height: "15%" }} />
+          <i style={{ left: "40%", top: "47%", width: "20%", height: "0.8%", background: b.brand.accent }} />
+          <span style={{ top: "53%", fontSize: 52 }}>Business</span>
+          <span style={{ top: "64%", fontSize: 52 }}>strategy</span>
+        </div>
+      )}
     </div>
   );
 }

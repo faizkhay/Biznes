@@ -2,16 +2,16 @@
 // street) is walked from its sign to the room behind its shutter, so a visitor sees what comes with
 // a business and what does not.
 //
-// Each stop is one chapter of real markup over the stage, and one keyframe of the camera
-// (components/three/timeline.ts reads `id`). The stops are evenly spaced, so a stop's place in
-// this list is its place in the scroll: move a chapter here and its camera moves with it.
+// Each stop is one chapter of real markup over the stage, and one view of the paintings
+// (components/stage/views.ts reads `id`). The stops are evenly spaced, so a stop's place in this
+// list is its place in the scroll: move a chapter here and its view moves with it.
 //
 // The words are the six things from pack.ts, said where each one lives on a shop. STORY.md has the
 // table.
 import { INCLUDED, YOURS } from "./pack";
 
 export type Stop = {
-  /** Stable name: the camera's keyframe and the chapter's element id. */
+  /** Stable name: the stage's view and the chapter's element id. */
   id: "street" | "sign" | "address" | "website" | "strategy" | "company" | "room" | "all";
   /** Where on the shop the visitor is standing, in a word or two. Read by the contents row. */
   place: string;

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Business } from "@/data/businesses";
-import { PLATES, STREET_SKY, type PlateId } from "@/data/plates";
+import { OWN_PLATE, PLATES, STREET_SKY, type PlateId } from "@/data/plates";
 import useNarrow from "@/lib/useNarrow";
 import { debugMode, travel, walk } from "@/lib/walk";
 import { CertificatePlate, CounterPlate, ShopPlate, StreetPlate } from "./Plates";
@@ -102,6 +102,8 @@ export default function PaintedStage({
   const [rest, setRest] = useState(false);
   const [gone, setGone] = useState(false);
   const { narrow, ready: sized } = useNarrow("(max-width: 899px)");
+  // The shop the walk goes into is one listing's, by name, not whichever is first in the list.
+  const own = businesses.find((b) => b.slug === OWN_PLATE);
 
   const report = useRef(onLive);
   report.current = onLive;
@@ -252,10 +254,19 @@ export default function PaintedStage({
       setShown(true);
       setRest(true);
     };
-    if (img.complete && img.naturalWidth) img.decode().then(done, done);
-    else {
+    // A first painting that cannot be had leaves the stage as it was prerendered: the still stays,
+    // and the walk stays plain sections, each with its own still.
+    const failed = () => {
+      if (!alive) return;
+      setLive(false);
+      report.current?.(false);
+    };
+    if (img.complete) {
+      if (img.naturalWidth) img.decode().then(done, done);
+      else failed();
+    } else {
       img.addEventListener("load", done, { once: true });
-      img.addEventListener("error", done, { once: true });
+      img.addEventListener("error", failed, { once: true });
     }
     return () => {
       alive = false;
@@ -299,10 +310,10 @@ export default function PaintedStage({
           {rest && (
             <>
               <div ref={layer("lepalatier")} className="stage-layer" style={{ visibility: "hidden" }}>
-                <ShopPlate business={businesses[0]} shutterRef={shutter} />
+                <ShopPlate business={own} shutterRef={shutter} />
               </div>
               <div ref={layer("counter")} className="stage-layer" style={{ visibility: "hidden" }}>
-                <CounterPlate business={businesses[0]} />
+                <CounterPlate business={own} />
               </div>
               <div ref={layer("certificate")} className="stage-layer" style={{ visibility: "hidden" }}>
                 <CertificatePlate />

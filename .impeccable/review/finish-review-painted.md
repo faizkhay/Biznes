@@ -85,3 +85,45 @@ Minor, not material:
 ## keep
 
 The painted street as it stands at 1440 x 900: the lit bordeaux shop with its shutter raised, each listing's real wordmark true to its board's perspective, every blank kept blank and every sample marked four ways. Fix around the paintings and the lettering; do not repaint or re-letter them.
+
+---
+
+# Verdict pass, 17 November 2026, on the build of 5d2527c
+
+Scoring only, on the recaptures at the same paths. Check 0 passes: every required capture is present, valid and newer than the build (build 12:54:11, captures 12:55 to 13:04); no file under `src` is newer than the build. The stills under `public/img/walk` were written 7 to 22 seconds after the build and before the captures. Not judgeable from stills, as before: the dissolves, the shutter's travel, hover and focus on the rail. The claim of three cold loads for fix 1 is narration; what is scored is what the captures show.
+
+## verdict
+
+| # | Fix | Score | What the new captures show |
+|---|---|---|---|
+| 1 | Headline scale at the mock-up's size | resolved | `hero-repro.png`: headline ink 38.4% of the width. `size-1344x760.png`, the same viewport at 1x: 38.4%. Mock-up: 40.9%. The two captures that disagreed by a factor of 1.8 now agree. Diff re-run: overall 0.7171 (was 0.6583), street 0.762, sky 0.652, cta 0.638. The tool still labels headline (0.472) and lede (0.428) "contradicted"; read against the mock-up, the headline is the same two lines at the same measure, and what is left is the cut of the face and three lines of lede against four, both recorded as adaptations in the review. |
+| 2 | Rail over the town plaque | resolved | `home-desktop-00.png`: the rail is a row of eight marks at the foot, x 1120 to 1368, y 836 to 880, on pavement. The plaque's whole rim is clear at 1344 x 760, 1366 x 768, 1280 x 720, 1536 x 864, 1440 x 900, 1920 x 1080, 1024 x 768, 920 x 700, 1180 x 820, 2560 x 1080 and 3440 x 1440. `home-desktop-01.png` to `-07.png`: it covers nothing lettered at any stop. |
+| 3 | Blank plaques | resolved | No blank plaque in any capture. `businesses-desktop-01.png`, `-02.png`: 01 to 06, clear. `home-desktop-08.png`: 01 to 06 on the terrace, small and readable. `home-desktop-07.png`: 02, 03, 04 readable, 05 and 06 small. `home-desktop-00.png`: the far three are specks at 1x. That does not fail the check: it is distance, the same numbers are readable where those shops are the subject, and each is repeated in the chip under its shop. |
+| 4 | The illustrations sentence | resolved | `home-desktop-12.png`: "The shopfronts on this site are illustrations. A business comes without premises." in the legal line. At 390 wide it runs to three clean lines in `home-mobile-14.png`, `listing-mobile-06.png`, `businesses-mobile-04.png`, `enquire-mobile-03.png` and `privacy-mobile-03.png`. Source is no newer than the build. |
+| 5 | Shop crops and the shutter | partial | The two named defects are gone: no neighbour's wall at the left and every plaque whole (`businesses-desktop-01.png`, `-02.png`, `listing-sample-desktop-00.png`, the phone cards). `shutter.webp` is slats only; the smudged lock is gone (`home-desktop-02.png`). What the new cut leaves: a stub of the shared roof post standing above the roof at one top corner of five of the six crops, at the left on LePalatier and Lakrem, at the right on Bouké, Larout and Kazprop, none on Souffle (measured in `public/img/shops/*.webp`: 827 to 1,918 opaque pixels above the roof line at that corner). It shows on every catalogue card at both sizes, at a different corner from card to card, and reads as a fragment. |
+| 6 | Grey bars | resolved | `home-desktop-05.png`: the framed paper is blank. `home-desktop-03.png`: the screen carries the wordmark alone. The same in the room stop (`home-desktop-06.png`), on phones (`home-mobile-03.png`, `-05.png`, `-06.png`) and in the listing's picture (`listing-desktop-00.png`). No bar in the walk. |
+| 7 | The terrace twice | resolved | `home-desktop-07.png`: the last stop is the far end of the angled street (five shops, the lamp, the afterglow). `home-desktop-08.png`: the terrace, once, as the next section, drawn whole with all its piers. The same on phones (`home-mobile-07.png`, `-08.png`) and in the plain fallback. |
+| 8 | Close the record | partial | Done: the surface brief's Constraints line is rewritten; DESIGN.md no longer describes a 3D street (lines 194, 255, 1223) and was committed at 13:05:50 as 8e0fe24, with further uncommitted changes to it and to `.impeccable/design.json` when read. Not done: `state.json` has hero open (two attempts, gate refused), sections, motion and responsive never opened, and `state.finish` still holding the 08:59 verdict at phase plates. The refusal on record is the plate's file (`.impeccable/build/plates/street.png` named in no source), not the picture. Declining to force it without the owner's words, and declining to plant a reference, were both right. The record is still open. |
+
+Introduced by the batch, material:
+
+- README.md (line 284 on) and the surface brief (line 65 on) now say the gate's bar of 72 "is met". The measured figure is 0.7171, which is under 0.72 before rounding. DESIGN.md gives 0.7171 correctly. The gate's recorded refusal does not cite the score, so the record does not show whether the tool counts it as met. Under "nothing invented", write the measured figure (71.7 per cent) in both, and say the bar is met only if the gate itself records a pass on it.
+
+No other regression found in the scored areas.
+
+## remaining
+
+1. Fix 5, partial. Produce: the five crops again with the roof-post stub removed, so every crop's roof has two clean top corners (LePalatier, Lakrem, Bouké, Larout, Kazprop; `scripts/prepare-plates.mjs`, the same pass that already covers the capitals). Check: no opaque pixel above the roof line in any file under `public/img/shops`, and no stub on any card in `businesses-desktop.png` or `businesses-mobile.png`.
+2. Fix 8, partial. The hero phase cannot be closed by this session. It closes one of two ways: the owner says in words that the first screen is accepted as built, and the phase is closed as forced with those words quoted; or the plate on record becomes the file the page really ships (`src/data/plates.ts` line 19 names `/img/plates/street` at 1920 and 3840, while `spec.json` and `state.json` name the build PNG), if the tool accepts that file. Then open and close sections, motion and responsive with their evidence, replace `state.finish` with this verdict, and commit DESIGN.md.
+3. The "is met" wording in README.md and the surface brief, above.
+
+Minor, not material:
+
+- `home-desktop-07.png`: the last stop's card ends at y 305 and the street lamp's bracket begins at y 310 beneath it, so the lamp appears to hang from the card.
+- `home-desktop-06.png`: the room stop's card still covers the lower left corner of the floor; the frame, the screen and the counter are now all clear.
+- The rail ends 72px from the right edge at 1440 where "Walk the street" starts 80px from the left.
+- LePalatier's plaque reads 01 on the terrace and its card, and MOKA on the street and on its own plate.
+- At native size the covered slivers at the crops' edges show as short horizontal smears beside the shutter's head and at the base; not visible at card size.
+- Carried from the review and not attempted: the first words against the centred header on ultrawide screens; continuity between the terrace and the street paintings; the plain fallback's phone crop of the address picture; a form post without script.
+
+disposition: fix

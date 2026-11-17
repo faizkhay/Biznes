@@ -21,8 +21,8 @@
   --palette-ink-on-saffron: #3e3d32; /* derived from ink toward saffron: secondary words on saffron, 6.81:1 */
   --palette-haze: #b6c0db; /* derived from limewash toward dusk: secondary words on dusk (6.17:1) and dusk-deep (7.53:1) */
   --palette-coral: #f14949; /* sampled: the shade under the headline. A shade and a mark only: 3.09:1 on dusk, never words */
-  --palette-amber: #e48627; /* sampled: the lamps' light. The stage's light, and nothing in the interface */
-  --palette-asphalt: #383141; /* sampled: the road. The stage's ground */
+  --palette-amber: #e48627; /* sampled: the lamps' light. Kept as the record of the mock-up's lamp; nothing reads it */
+  --palette-asphalt: #383141; /* sampled: the road. Kept as the record of the mock-up's road; nothing reads it */
   --palette-enamel: #0b2b8e; /* sampled: the second blue of the mock-up's sky (the painted plaque itself measures #052592). A plaque's plate, carrying limewash at 11.20:1 */
   /* The street's own materials, each a region median of the same mock-up (scripts/sample-comp.mjs).
      They colour the drawn shopfront; none is ever text. */
@@ -765,7 +765,7 @@
 
   /* ---------- The walk (the home page's story) ----------
      As prerendered the walk is plain: a first screen with the street's still behind the headline,
-     then each stop as a section with its own still and its words. Where the canvas can run
+     then each stop as a section with its own still and its words. Where the stage can run
      (data-mode="live", set by components/Walk.tsx) the street pins under the header, the stills
      step aside, and each stop's words scroll over it a screen at a time. */
   .walk {
@@ -798,8 +798,16 @@
   .walk-actions > * {
     vertical-align: middle;
   }
-  .walk-actions > * + * {
-    margin-left: 1.5rem;
+  /* The space is after each action, not before the second, so a route that wraps under the button
+     starts at the margin. */
+  .walk-actions > * {
+    margin-right: 1.5rem;
+  }
+  /* On a short phone the second route would sit on a roof: it is in the menu. */
+  @media (width < 56.25rem) and (height < 43.75rem) {
+    .walk-actions .arrow-link {
+      display: none;
+    }
   }
   @media (width >= 56.25rem) {
     .walk-roofline {
@@ -865,7 +873,7 @@
     margin-inline: auto;
   }
   /* The card is a street plaque at the size of a notice: blue enamel with a white rim, solid, so
-     its words never depend on what the canvas is showing behind it. */
+     its words never depend on what the stage is showing behind it. */
   .walk-card {
     max-width: 26rem;
     border-radius: 0.75rem;
@@ -928,7 +936,9 @@
      contrast whatever is painted behind it. */
   .walk-stops {
     position: absolute;
-    right: var(--gutter);
+    /* As far from the right edge as the first words are from the left: the gutter, and on a screen
+       wider than the content, the content's own margin. */
+    right: calc(max(0px, (100% - 80rem - 2 * var(--gutter)) / 2) + var(--gutter));
     bottom: 1.25rem;
     z-index: 2;
     display: none;
@@ -1075,6 +1085,13 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
 
 /* The phone menu's links arrive in reading order, each rising 24px over 200ms, 50ms apart: five
    items finish within 400ms. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+/* A lamp coming on: a bloom that rises and settles a little lower (.plate-glow). */
 @keyframes lamp-on {
   0% {
     opacity: 0;
@@ -1084,12 +1101,6 @@ html.can-animate .tagline-reveal [data-word][data-lit] {
   }
   100% {
     opacity: 0.4;
-  }
-}
-@keyframes menu-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
   }
 }
 html.can-animate .menu-sheet [data-menu-item] {

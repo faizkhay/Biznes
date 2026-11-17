@@ -62,8 +62,9 @@ the same day, in these words: "3d is shit, i need better aesthetic please. be cr
 relfecting khay standards." The 3D was removed and the street is now painted: generated plates in
 the mock-up's own style, with every sign board, plaque, screen and paper painted blank and the
 listings' real lettering set over them in code. impeccable's plates gate passes on the painted
-street (2 of 2). The first screen measures 72 per cent against the mock-up, the street region 76
-(`.impeccable/review/diff/final`). The hero gate's bar is met and the gate still refuses: it looks
-for the plate's own PNG named in the page's source, and the site ships that plate as WebP cut from
-it. No override was made, so the phase stays open. The palette was sampled from the mock-up and
-every pair measured (`scripts/contrast.pairs.json`).
+street (2 of 2). The first screen measures 71.7 per cent against the mock-up, the street region
+76.2 (`.impeccable/review/diff/final`), where the hero gate asks 72. The refusal the gate records
+is another matter: it looks for the plate's own PNG named in the page's source, and the site ships
+that plate as WebP cut from it. No override was made, so the phase stays open until the owner says
+the first screen is accepted as built. The palette was sampled from the mock-up and every pair
+measured (`scripts/contrast.pairs.json`).

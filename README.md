@@ -68,7 +68,7 @@ Other scripts:
 | `npm run wordmarks` | Redraws each listing's lettering as vector outlines into `src/data/wordmarks.ts` |
 | `npm run plates` | Cuts the painted masters (`assets/plates`) into what the site ships: each plate at two widths, the terrace's painted band, one crop per shop from it (cut inside its piers), the first shop's shutter and room. Writes a record beside every file |
 | `node scripts/measure-plates.mjs <plate> <name:x,y> ...` | Finds a blank painted board, plaque or paper on a plate from one point inside it and prints its corners, for `src/data/plates.ts` |
-| `npm run stills` | Captures the stage at each of the eight stops, for a desk and a phone, and the link preview card (`public/og.png`). Needs the production server on port 3100. Run it after any change to the stage, the first screen or the list of businesses |
+| `npm run stills` | Captures the stage at each of the eight stops, for a desk and a phone, and the link preview card (`public/og.jpg`). Needs the production server on port 3100. Run it after any change to the stage, the first screen or the list of businesses |
 | `npm run copy`, `npm run tokens` | The house style and the token checks |
 | `npm run contrast` | Measures every colour pair in `scripts/contrast.pairs.json` |
 | `npm run screenshots`, `npm run reveals`, `npm run a11y` | The checks against a production server on port 3100 |
@@ -148,7 +148,7 @@ file says so in the record beside it. They were painted with every sign, plaque,
 blank: the lettering, the towns, the numbers and the tags a visitor sees on them are set in code,
 from the data. The certificate's paper is left blank, because the company is the owner's to
 register.
-The stills (`public/img/walk`) and the link preview card (`public/og.png`) are captures of this
+The stills (`public/img/walk`) and the link preview card (`public/og.jpg`) are captures of this
 site's own stage.
 
 Image generation cost 29.25 Higgsfield credits in all: 8.25 for the three mock-ups the owner chose
@@ -281,13 +281,21 @@ review's fixes.
   fifteen sizes from 360 x 640 to 3440 x 1440: at each the words stand in the sky, clear of the
   roofs.
 - Against the approved mock-up, at the mock-up's own size (`.impeccable/review/diff/final`): the
-  first screen measures 72 per cent, and the street itself 76, where the 3D measured 51.
-  impeccable's plates gate, which the 3D could not pass, passes. Its first-screen gate asks for 72,
-  which is met, and still refuses: it looks for the plate's own file named in the page's source,
-  and the site ships that plate as WebP cut from it by `npm run plates`. No override was made, so
-  that phase stays open in `.impeccable/build/state.json`.
+  first screen measures 71.7 per cent, and the street itself 76.2, where the 3D measured 51.
+  impeccable's plates gate, which the 3D could not pass, passes. Its first-screen gate asks for
+  72, a hair more, and the refusal it records is another matter: it looks for the plate's own file
+  named in the page's source, and the site ships that plate as WebP cut from it by
+  `npm run plates`. No override was made, so that phase stays open in
+  `.impeccable/build/state.json`. It closes on the owner's word: that the first screen is
+  accepted as built.
 - Every raster carries a record of where it came from: 46 of 46 across `public` and `assets`.
-REVIEW_BULLET
+- A fresh agent reviewed the painted build and found for it on the two questions that mattered:
+  it reproduces the approved mock-up in medium, composition, light and lettering, and it is
+  honest. It answered "fix" with eight points. Its verdict pass scored six resolved and two
+  partial; the first of those (a roof post's head left on five shop pictures) is fixed since and
+  measured (no pixel above any roof line), and the second is the build record above, which is the
+  owner's to close. `STORY.md`, "The design review, painted street", has each point; the review
+  is `.impeccable/review/finish-review-painted.md`.
 - `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
 - Not yet run: any phone or tablet in the hand; a keyboard pass by hand on a real device; a screen
   reader; Lighthouse. The dissolve from one painting to the next was judged from captures at rest,
@@ -302,14 +310,16 @@ REVIEW_BULLET
    were not drawn by a hand that knows the island. The terrace and the street are two paintings
    of the same six shops and differ in small things: the first shop stands at the left of one and
    the right of the other, and a sign board's corners are cut differently.
-3. The home page loads about 2 MB of paintings in all: the street first (730 KB at full size), the
-   others once it has drawn, the terrace as it comes into view. A phone is served the same files
-   as a desk.
+3. The home page loads about 2 MB of paintings at their full size: the street first (730 KB), the
+   others once it has drawn, the terrace as it comes into view. A phone at 1x was measured at
+   967 KB for the walk; a phone at 3x takes the full files, because a stop that goes close needs
+   them.
 4. The stills and the link preview card do not rebuild themselves: after a change to the stage,
    the first screen or the list of businesses, run `npm run stills`.
 5. The street is painted with six shops. A seventh business is drawn in code where it is shown by
    itself and is not on the painted street or terrace until they are repainted. A sold business
-   leaves the list, and its shop stands in the paintings with its sign blank.
+   leaves the list, and its shop stands in the paintings with its sign blank; if it is LePalatier,
+   the walk goes into a blank shop until the walk is retold for another business.
 6. The piers of the painted terrace stand on its party walls, so a shop shown by itself is cut
    inside its piers and has none.
 7. On a very wide screen (21:9) the sky above the roofs is small, and the headline steps down to

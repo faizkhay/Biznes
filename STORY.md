@@ -395,10 +395,11 @@ Departures, with reasons:
   On the street itself the room is empty, as in the mock-up.
 
 Measured against the approved mock-up at its own size, the first screen went from 51 per cent to
-72, and the street itself to 76. impeccable's plates gate, which a street drawn live could not
-pass, passes. Its first-screen gate asks for 72, which is met, and still refuses, because it looks
-for the plate's own file in the page's source and the site ships the plate as WebP cut from it. No
-override was made; the phase stays open.
+71.7, and the street itself to 76.2. impeccable's plates gate, which a street drawn live could not
+pass, passes. Its first-screen gate asks for 72, a hair more, and the refusal it records is another
+matter: it looks for the plate's own file in the page's source, and the site ships the plate as
+WebP cut from it. No override was made; the phase stays open until the owner says the first screen
+is accepted as built.
 
 ### The design review, painted street, 17 November 2026
 
@@ -434,4 +435,28 @@ done:
 Also from its notes: the first shop's lettering stands larger on its board; a sample's price keeps
 to two whole lines; the room stop's card stands on the pier's base, clear of the room.
 
-VERDICT_PAINTED
+### The verdict pass, painted street, 17 November 2026
+
+The same reviewer read the recaptured pages and scored the eight: six resolved, two partial.
+
+- **The shop pictures, partial.** The neighbours' slivers and the cut plaques were gone, but the
+  head of a shared roof post stood above the roof at one corner of five of the six. Each picture
+  is now cleared above its own roof line, measured: no pixel above it in any of the six.
+- **The record, partial.** It cannot be closed from here, and the reviewer agreed that neither
+  forcing the gate nor planting a reference for its scanner would have been right. It closes on
+  the owner's word.
+
+It also caught a claim: the documents said the gate's bar of 72 "is met", and the measured figure
+is 71.7. They say 71.7 now.
+
+From the agent that recorded `DESIGN.md`, which measured the build as it wrote, and fixed since:
+the walk matched listings to painted shops by their place in the list, so a sale would have moved
+every sign one shop along (they are matched by name now, and a sold shop's sign stays blank); a
+first painting that failed to load left lettering on bare ground (the stage now stays as
+prerendered); a route that wrapped under the button stood 24px in; on a short phone it sat on a
+roof (it steps aside there); the last stop's card met the street lamp's head; and the link preview
+card weighed a megabyte (it is a 175 KB JPEG).
+
+Recorded and left: the lettering set on the paintings is small on a phone and loses contrast where
+a lamp lights its board (each name, number and "Sample" is also in the page's own text); the
+weight of the paintings on a phone at 3x; the paintings' small disagreements with one another.

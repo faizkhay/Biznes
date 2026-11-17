@@ -1,7 +1,7 @@
 // The walk's stills: a capture of this site's own painted stage at every stop, framed for a desk
 // and for a phone. They are what a visitor sees before the plates have loaded, and instead of the
 // stage without script or with ?plain (components/Walk.tsx), so each is the stage as it really
-// stands, lettering and all. Also writes the link preview card (public/og.png) from the first stop.
+// stands, lettering and all. Also writes the link preview card (public/og.jpg) from the first stop.
 //
 //   npm run build && npx next start -p 3100 &
 //   node scripts/stills.mjs [origin]            (default http://localhost:3100)
@@ -75,12 +75,14 @@ for (const [frame, viewport, scale] of FRAMES) {
       await page.setViewportSize({ width: 1200, height: 702 });
       await page.evaluate(() => window.__walk(0));
       await page.waitForTimeout(350);
-      await page.screenshot({ path: "public/og.png", clip: { x: 0, y: 72, width: 1200, height: 630 } });
+      // A JPEG: the card is a painting, and as a PNG it weighed a megabyte.
+      const card = await page.screenshot({ clip: { x: 0, y: 72, width: 1200, height: 630 } });
+      const cardInfo = await sharp(card).jpeg({ quality: 86, mozjpeg: true }).toFile("public/og.jpg");
       writeFileSync(
-        "public/og.png.json",
-        JSON.stringify({ file: "/og.png", is: "The link preview card: the home page's first screen, captured from this site at 1200 x 630.", made: "scripts/stills.mjs", prompt: ORIGIN }, null, 2) + "\n",
+        "public/og.jpg.json",
+        JSON.stringify({ file: "/og.jpg", is: "The link preview card: the home page's first screen, captured from this site at 1200 x 630.", made: "scripts/stills.mjs", prompt: ORIGIN }, null, 2) + "\n",
       );
-      console.log("public/og.png  1200 x 630");
+      console.log(`public/og.jpg  1200 x 630  ${Math.round(cardInfo.size / 1024)} KB`);
       await page.setViewportSize(viewport);
       await page.addStyleTag({ content: ".walk-chapters { visibility: hidden !important; }" });
     }

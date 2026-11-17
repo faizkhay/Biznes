@@ -1093,7 +1093,7 @@ the screen (Motion).
 ### The link preview card
 
 One card for every page, 1200 by 630: a capture of the home page's first screen, words and all,
-made by `scripts/stills.mjs` and saved to `public/og.png` with a record of where it came from.
+made by `scripts/stills.mjs` and saved to `public/og.jpg` with a record of where it came from.
 
 ### Named Rules
 
@@ -1505,15 +1505,18 @@ Recorded, not rules.
 
 **The build's standing**
 
-- The tree is final for this round: commit 5d2527c (13:04 UTC), served by the build of 12:54
-  UTC, which was made from the same tree. The build's own gates are in README.md,
+- This file records commit 5d2527c (13:04 UTC), measured on the build of 12:54 UTC. The faults
+  that record found were then fixed, and the lines below were brought level by hand with what
+  changed: the walk's shop matched by name, the last stop's view, the space after an action, the
+  second route on a short phone, a first painting that fails to load, the roof line of a shop cut
+  by itself, the link preview card as a JPEG. The build's own gates are in README.md,
   "Verification": TypeScript and the build clean, nine page kinds captured at two sizes with no
   overflow, the reveals, axe clean, `npm run behaviour` 42 of 42, and a record beside 46 of 46
   rasters. Run again for this record: `npm run tokens` (0 fail, 1 warn), `npm run copy` (0 fail)
   and `npm run contrast` (every pair passes for its role).
 - impeccable's plates gate passes, 2 of 2. Its hero gate is open. Against the approved mock-up, at
   the mock-up's own size, the first screen measures 0.7171 (13:01 UTC, read by the tool as
-  "drift"; README.md gives it as 72 per cent, the figure the gate asks): the street 0.76, the sky
+  "drift"; the gate asks 0.72): the street 0.76, the sky
   0.65, the headline 0.47, the lede 0.43 (`.impeccable/review/diff/final`). Before the first
   words' fit was corrected it measured 0.6583, and the 3D builds 0.4957 to 0.5257. The gate's
   recorded refusal is not the score: it looks for the plate's own PNG named in the page's source,
@@ -1547,14 +1550,13 @@ Recorded, not rules.
   in the probe (the street at 1920 wide; LePalatier's plate at 2880, the counter and the
   certificate at 2048, because their `sizes` ask for three to six screens' width; the shutter). By
   the same arithmetic a 3x phone takes about 1.5 MB, and 2.1 MB once the terrace has loaded. The
-  first three stops' stills also load before the live walk hides them, and the link preview card
-  is a 1 MB PNG.
+  first three stops' stills also load before the live walk hides them.
 - A listing beyond the six painted is drawn by the stand-in in the catalogue and on its own page,
-  is left off the terrace, and has no board on the walk's street.
-- The walk matches a listing to a painted shop by its place in the list, where the terrace matches
-  by name. When a business is sold and leaves the list, every sign on the walk's street moves one
-  shop along, and the walk's own shop, painted as LePalatier's, is lettered for whichever business
-  is then first. No instance: nothing is sold.
+  is left off the terrace, and has no board on the walk's street. A business that is sold leaves
+  its painted shop with a blank sign, on the walk's street and on the terrace alike; if it is the
+  one the walk goes into, that shop's own plate stands blank too.
+- A painting after the first that fails to load leaves its stop with lettering on the stage's bare
+  ground. (If the first fails, the stage stays as prerendered: the still, and plain sections.)
 - Lettering on a painting falls under 12px. A sample's tag on the first screen stands 7 to 12.6px
   tall, box and all, at 390 by 844. A number is 8.3px on the terrace at 1440, 7.3px in the
   catalogue at 390, and a speck on the first screen (its box 3.1 to 5px tall on a phone, 7 to
@@ -1564,19 +1566,10 @@ Recorded, not rules.
   for Larout on the terrace (Contrast, Gaps).
 - In the catalogue a narrower shop ends short of its frame: up to 22.6px of limewash shows at its
   right at 1440, and up to 9.3px at 390.
-- Where the second route breaks onto its own line under the button (phones, and 1024 by 768), it
-  keeps the 24px that separate it from the button and so stands 24px in from the button's left
-  edge.
-- At 360 by 640 the second route sits just above a roof, and the corner of its focus ring crosses
-  the fretwork, where saffron measures 1.85:1.
-- At the last stop at 1440 by 900 the card's foot meets the street lamp's head, and a sliver of
-  the first shop shows at the stage's right edge.
 - The sky painted behind LePalatier's own plate is a brighter blue than the page's dusk around it,
   so at the head of its page the plate reads as a panel set on the ground.
 - On a screen at least twice as wide as it is tall, the first words stand one gutter from the
   left edge while the header keeps its centred column.
-- A plate that fails to load has no fallback: the stage arrives over the still all the same, its
-  lettering on bare ground. Read in code, not provoked.
 - Without script the phone menu does not open, so under 768px the header offers the mark and
   WhatsApp and no pages; the footer carries them. The request form is sent by script: without
   script it shows a notice, and its fields do nothing.

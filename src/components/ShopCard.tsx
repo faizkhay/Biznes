@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 import Shopfront from "./Shopfront";
 
 /**
- * A business on the street: its shopfront, drawn in its own colours with its own lettering, then
+ * A business on the street: its painted shopfront, lettered with its own lettering, then
  * what a buyer compares in the page's own type: its name, what it is, where it is meant for, and
  * its price. The whole thing is one link to its page, and pointing at it raises the shutter.
  *

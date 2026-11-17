@@ -166,7 +166,20 @@ for (const [slug, left, width] of SHOPS) {
       cover.push({ input: await sharp(column).resize({ width: w, height, fit: "fill" }).png().toBuffer(), left: x, top });
     }
   }
-  const clean = await sharp(raw).composite(cover).png().toBuffer();
+  const covered = await sharp(raw).composite(cover).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  // The posts between the roofs stand on the party walls too, and a post's head rises above the
+  // roof line: on a shop cut by itself that is a stub at one top corner. Everything above the
+  // roof's own top edge (the first row the roof fills) is cleared, so every roof has two clean corners.
+  const px = covered.data;
+  const opaque = (y) => {
+    let n = 0;
+    for (let x = 0; x < width; x++) if (px[(y * width + x) * 4 + 3] > 128) n++;
+    return n;
+  };
+  let roof = 0;
+  while (roof < TERRACE_HEIGHT && opaque(roof) < width * 0.9) roof++;
+  for (let i = 0; i < roof * width; i++) px[i * 4 + 3] = 0;
+  const clean = await sharp(px, { raw: { width, height: TERRACE_HEIGHT, channels: 4 } }).png().toBuffer();
   for (const scale of [1, 0.5]) {
     const out = `public/img/shops/${slug}-${Math.round(width * scale)}.webp`;
     const info = await sharp(clean)
@@ -176,7 +189,7 @@ for (const [slug, left, width] of SHOPS) {
     sidecar(out, {
       file: out.replace("public", ""),
       is: `One shopfront cut from the painted terrace: the one that stands for the listing "${slug}". A generated illustration, not a photograph of a real place. Its sign board and its plaque are blank: the listing's lettering and its number are set over them in code.`,
-      made: `scripts/prepare-plates.mjs, from assets/plates/terrace.webp, the region ${width} x ${TERRACE_HEIGHT} at ${left}, ${TERRACE_TOP}; the slivers of the neighbouring piers' capitals and bases at its two edges covered with its own wall; resized to ${info.width} x ${info.height}, WebP quality 84`,
+      made: `scripts/prepare-plates.mjs, from assets/plates/terrace.webp, the region ${width} x ${TERRACE_HEIGHT} at ${left}, ${TERRACE_TOP}; the slivers of the neighbouring piers' capitals and bases at its two edges covered with its own wall, and the head of the shared roof post above the roof line cleared; resized to ${info.width} x ${info.height}, WebP quality 84`,
       generator: `${GENERATOR}, ${MASTERS.terrace.generated}`,
       prompt: terracePrompt,
     });
