@@ -5,7 +5,8 @@
 // (views.ts, "street"). On a short or narrow screen that brings the roofs up under the words. No
 // frame is moved for it: the words are shaped instead. A float fills the words' column and is
 // given this roofline as its `shape-outside`, so every line of the headline, the lede and the
-// actions ends before the roofs, and the words sit in the sky whatever the screen's shape.
+// actions ends before the roofs, and the words sit in the sky whatever the screen's shape. The
+// sentences also keep above the afterglow, where white would not read (`skyFloor`).
 //
 // Plain arithmetic, shared by the stage (which measures the real boxes) and the prerendered page
 // (which assumes the house desk, 1440 by 900).
@@ -41,6 +42,13 @@ export function rooflinePolygon(W: number, H: number, box: Box): string {
     ].join(", ") +
     ")"
   );
+}
+
+/** How far down the stage the sky is dark enough for white sentences, in the stage's pixels. */
+export function skyFloor(W: number, H: number): number {
+  const p = PLATES.street;
+  const s = Math.max(H / p.h, W / p.w);
+  return H - p.h * s + STREET.skyFloor * p.h * s;
 }
 
 /**

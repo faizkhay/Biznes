@@ -6,7 +6,7 @@
   "direction": "8f9b6c58",
   "breakpoint": "2688x1520",
   "artifact": "src/app/page.tsx",
-  "phase": "plates",
+  "phase": "hero",
   "phases": {
     "comps": {
       "status": "closed",
@@ -38,24 +38,22 @@
       "forced": null
     },
     "plates": {
-      "status": "open",
+      "status": "closed",
       "openedAt": "2026-11-17T06:10:15.967Z",
-      "closedAt": null,
-      "attempts": 3,
+      "closedAt": "2026-11-17T12:12:21.590Z",
+      "attempts": 5,
       "notes": [],
       "gate": {
-        "ok": false,
-        "reasons": [
-          "plate missing for street: expected assets/plates/street.png; produce it from /root/.claude/skills/synced/968ffd36-4f50-4ec7-9521-89a2677e8997_f88f88e8-dfdf-43b3-ba20-b3ddf516a1c4/impeccable/scripts/impeccable comp-spec --crop street with /root/.claude/skills/synced/968ffd36-4f50-4ec7-9521-89a2677e8997_f88f88e8-dfdf-43b3-ba20-b3ddf516a1c4/impeccable/scripts/impeccable generate-image --ref <crop.png> --prompt-file <prompt.txt> --out <plate.png>"
-        ],
-        "summary": "1/2 plates",
-        "at": "2026-11-17T06:12:35.904Z"
+        "ok": true,
+        "reasons": [],
+        "summary": "2/2 plates",
+        "at": "2026-11-17T12:12:21.590Z"
       },
       "forced": null
     },
     "hero": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-11-17T12:12:21.590Z",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
@@ -113,7 +111,7 @@
       "status": "ok",
       "assetHash": "de62ae783e7508a435d7eaac816680386005802e6b86eb9fc5269ccd8f455aea",
       "regionHash": "a0a5c5300fa44279e2ab1dba8ddde4073ac1ac8ab9be531718bba2fb75cdabf7",
-      "referenceHash": "66023c519e3478eef89b9f370bb7362750f1b8f4c39652f42dbc044c36c2d377",
+      "referenceHash": "86b905a6ac41540442f6d07391208a37ba1e77fd480e2fac4ea106244341dfe1",
       "reference": {
         "policy": "plate-reference-v2",
         "excludedPixels": 629968,
@@ -175,8 +173,69 @@
     },
     "street": {
       "id": "street",
-      "file": "assets/plates/street.png",
-      "status": "missing"
+      "file": ".impeccable/build/plates/street.png",
+      "status": "ok",
+      "assetHash": "1e31b935e0df19c659bbbb1c17f1ccb6ccf00ec04aa942619db10efbf4216e82",
+      "regionHash": "0233132cb2be881553e8a0a2ba3949965ee42855ba64a435e355e7d02ef184ea",
+      "referenceHash": "86b905a6ac41540442f6d07391208a37ba1e77fd480e2fac4ea106244341dfe1",
+      "reference": {
+        "policy": "plate-reference-v2",
+        "excludedPixels": 468831,
+        "totalPixels": 3245760,
+        "remainingPixels": 2776929,
+        "excludedFraction": 0.14444413635019224,
+        "fullyExcluded": false,
+        "regions": [
+          {
+            "id": "headline",
+            "kind": "text",
+            "cropPx": {
+              "x": 0,
+              "y": 55,
+              "w": 863,
+              "h": 342
+            },
+            "pixels": 295146
+          },
+          {
+            "id": "lede",
+            "kind": "text",
+            "cropPx": {
+              "x": 0,
+              "y": 420,
+              "w": 667,
+              "h": 213
+            },
+            "pixels": 142071
+          },
+          {
+            "id": "cta",
+            "kind": "control",
+            "cropPx": {
+              "x": 0,
+              "y": 660,
+              "w": 183,
+              "h": 88
+            },
+            "pixels": 16104
+          },
+          {
+            "id": "how-link",
+            "kind": "text",
+            "cropPx": {
+              "x": 226,
+              "y": 672,
+              "w": 282,
+              "h": 55
+            },
+            "pixels": 15510
+          }
+        ],
+        "ignoredContainers": []
+      },
+      "compHash": "6676f913d2c70adde02358096df6b8550e7b4d20deaae1ab881b1f613bf4b384",
+      "size": "3840x2160",
+      "score": 0.5931
     }
   }
 }

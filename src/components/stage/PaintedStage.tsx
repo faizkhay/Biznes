@@ -6,7 +6,7 @@ import { PLATES, STREET_SKY, TERRACE, type PlateId } from "@/data/plates";
 import useNarrow from "@/lib/useNarrow";
 import { debugMode, travel, walk } from "@/lib/walk";
 import { CertificatePlate, CounterPlate, ShopPlate, StreetPlate, TerracePlate } from "./Plates";
-import { rooflinePolygon } from "./roofline";
+import { rooflinePolygon, skyFloor } from "./roofline";
 import { TIMELINE, type View } from "./views";
 
 /**
@@ -186,17 +186,28 @@ export default function PaintedStage({
     const origin = page.getBoundingClientRect();
     const box = float.getBoundingClientRect();
     float.style.shapeOutside = rooflinePolygon(el.clientWidth, el.clientHeight, { left: box.left - origin.left, top: box.top - origin.top, width: box.width, height: box.height });
-    // A line that finds no room above the roofs is pushed below the float altogether. If that has
-    // happened to any of the words, the second route steps aside (it is in the header too) and the
-    // headline steps down a size, until all of them stand clear.
+    // A line that finds no room above the roofs is pushed below the float altogether, and a
+    // sentence must also end above the afterglow, where white would not read. Until every word
+    // stands clear, the second route steps aside (it is in the header too), then the headline
+    // steps down a size.
     const words = float.parentElement;
-    const parts = words ? [...words.querySelectorAll<HTMLElement>("h1, p")] : [];
-    const tries: [number, boolean][] = [[1, false], [0.88, false], [1, true], [0.88, true], [0.78, true], [0.68, true], [0.58, true]];
-    for (const [fit, tight] of tries) {
-      words?.style.setProperty("--fit", String(fit));
-      words?.toggleAttribute("data-tight", tight);
+    if (!words) return;
+    const parts = [...words.querySelectorAll<HTMLElement>("h1, p")];
+    const lede = words.querySelector<HTMLElement>("p.title-1");
+    const link = words.querySelector<HTMLElement>(".walk-actions .arrow-link");
+    const floor = el.getBoundingClientRect().top + skyFloor(el.clientWidth, el.clientHeight);
+    const clear = (tight: boolean) => {
       const foot = float.getBoundingClientRect().bottom;
-      if (parts.every((part) => part.getBoundingClientRect().bottom <= foot)) break;
+      if (!parts.every((part) => part.getBoundingClientRect().bottom <= foot)) return false;
+      if (lede && lede.getBoundingClientRect().bottom > floor) return false;
+      return tight || !link || link.getBoundingClientRect().bottom <= floor;
+    };
+    fitting: for (const fit of [1, 0.92, 0.84, 0.76, 0.68, 0.6, 0.52]) {
+      for (const tight of [false, true]) {
+        words.style.setProperty("--fit", String(fit));
+        words.toggleAttribute("data-tight", tight);
+        if (clear(tight)) break fitting;
+      }
     }
   }, [narrow]);
 

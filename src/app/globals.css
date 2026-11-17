@@ -1141,15 +1141,20 @@ html.can-animate .menu-sheet [data-menu-item] {
 
 /* ---------- The first words, and the screen's shape ----------
    Outside the layers on purpose: a text style is a utility, and a rule in the components layer
-   cannot outrank it. Beside the shaped float (.walk-roofline) the headline simply fills its lines,
-   and its size answers to the screen's height as well as its width: 96px on the house desk (1440
-   by 900), 76px at 768 high, 68px at 1024 wide. `--fit` is the stage's last resort: if the words
-   still do not stand clear of the roofs on some odd screen, it steps the headline down until they
-   do (components/stage/PaintedStage.tsx). */
+   cannot outrank it. On a wide screen the first words follow the approved mock-up's measure
+   (impeccable comp-spec, at 2688 by 1520): the headline 7.4% of the screen's width, set tight, and
+   the lede 1.6%. Beside the shaped float (.walk-roofline) the headline simply fills its lines.
+   `--fit` is the stage's word: where the sky is too small for the words at that size, it steps
+   the headline down until every line stands clear (components/stage/PaintedStage.tsx). */
 @media (width >= 56.25rem) {
   .walk-words-first .heading-1 {
-    font-size: calc(clamp(var(--text-5xl), min(6.67vw, 15.15svh - 2.525rem), var(--text-8xl)) * var(--fit, 1));
+    font-size: calc(clamp(var(--text-5xl), min(7.4vw, 16svh), var(--text-9xl)) * var(--fit, 1));
+    line-height: 0.9;
     text-wrap: wrap;
+  }
+  .walk-words-first .title-1 {
+    font-size: clamp(var(--text-lg), 1.6vw, var(--text-2xl));
+    line-height: 1.4;
   }
 }
 /* A short desk: the words draw together. */
@@ -1162,17 +1167,6 @@ html.can-animate .menu-sheet [data-menu-item] {
   }
   .walk-words-first .walk-actions {
     margin-top: 1rem;
-  }
-}
-/* A narrow desk, or a very short one: the one filled action stands alone (the route to "How it
-   works" is in the header), and the lede is set a size smaller. */
-@media (width >= 56.25rem) and (width < 80rem), (width >= 56.25rem) and (height < 46rem) {
-  .walk-words-first .title-1 {
-    font-size: var(--text-lg);
-    line-height: var(--text-lg--line-height);
-  }
-  .walk-words-first .walk-actions .arrow-link {
-    display: none;
   }
 }
 /* The stage's own word that the second route has no room (PaintedStage.tsx). */

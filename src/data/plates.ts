@@ -53,15 +53,17 @@ export const STREET = {
   ] as Quad[],
   plaque: [[3534, 1209], [3730, 1201], [3714, 1291], [3518, 1293]] as Quad,
   /**
-   * The floor of the sky, left to right, as fractions of the plate: the home page's first words
-   * keep above it (components/Walk.tsx), so they stand in the sky on a screen of any shape. At the
-   * right it is the roofline, ridge by ridge up to the nearest shop's. At the left it is where the
-   * afterglow begins: white words measure 4.61:1 or better on the sky above 0.55 of the plate's
-   * height, and as little as 3.09:1 on the pink below it.
+   * The roofline, left to right, as fractions of the plate: the palms and the lamp at the far end,
+   * then each roof's ridge up to the nearest shop's. Nothing of the home page's first words is set
+   * on or under it (components/stage/roofline.ts).
    */
   roofline: [
-    [0, 0.55],
-    [0.34, 0.55],
+    [0, 0.7],
+    [0.078, 0.7],
+    [0.088, 0.6],
+    [0.125, 0.6],
+    [0.215, 0.625],
+    [0.295, 0.58],
     [0.38, 0.535],
     [0.415, 0.5],
     [0.5, 0.455],
@@ -69,6 +71,12 @@ export const STREET = {
     [0.775, 0.165],
     [1, 0],
   ] as [number, number][],
+  /**
+   * Where the afterglow begins, as a fraction of the plate's height. White words measure 4.61:1 or
+   * better on the sky above it and as little as 3.09:1 on the pink below, so the first screen's
+   * sentences keep above this line; a filled button, which brings its own ground, need not.
+   */
+  skyFloor: 0.55,
   /**
    * Every lit lamp on the plate, far end first: where its bulb is and how far its light reaches.
    * They switch on one after another as the street arrives (globals.css, .plate-glow).
