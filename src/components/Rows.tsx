@@ -10,7 +10,7 @@ import { SaveButton, ShareButton } from "./Save";
  * One listing in a list: its kind's icon, its name, what it is and where, a line about it, how to
  * reach it, and the two things a visitor can do with it: save it, share it.
  */
-export function ListingRow({ listing: l }: { listing: Listing }) {
+export function ListingRow({ listing: l, note }: { listing: Listing; /** A word more for its line: how far away it is. */ note?: string }) {
   const category = index().categoryById.get(l.cat);
   const where = whereOf(l);
   return (
@@ -24,7 +24,7 @@ export function ListingRow({ listing: l }: { listing: Listing }) {
             {l.name}
           </Link>
         </h3>
-        <p className="body-3 mt-0.5 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where].filter(Boolean).join(" · ")}</p>
+        <p className="body-3 mt-0.5 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where, note].filter(Boolean).join(" · ")}</p>
         {(l.about || l.street) && <p className="body-3 mt-2 line-clamp-2 max-w-prose text-ink-subtle">{l.about ?? l.street}</p>}
         {(l.phone?.length || l.web) && (
           <p className="mt-3 flex flex-wrap gap-2">

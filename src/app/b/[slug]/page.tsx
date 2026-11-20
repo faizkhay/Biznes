@@ -294,9 +294,8 @@ export default async function ListingPage({ params }: Props) {
           </h2>
           <ul className="rows mt-6">
             {near.map(({ o, d }) => (
-              <li key={o.id} className="relative">
-                <ListingRow listing={o} />
-                <span className="data-2 absolute top-5 right-0 text-ink-faint">{distance(d)}</span>
+              <li key={o.id}>
+                <ListingRow listing={o} note={`${distance(d)} away`} />
               </li>
             ))}
           </ul>

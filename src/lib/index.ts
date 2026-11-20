@@ -48,6 +48,9 @@ export type Listing = {
   full: number;
 };
 
+/** Words that mark a description written by whoever broke into a site, not by its owner. */
+const HIJACKED = /\b(casino|jackpots?|slots?|betting|togel|judi|poker|sportsbook)\b/i;
+
 export type Place = { slug: string; name: string; kind: "town" | "area"; n: number; lon?: number; lat?: number; district?: string; region?: string; /** For a neighbourhood: the town most of it lies in. */ within?: string };
 export type Category = { id: string; group: string; label: string; one: string; words: string[]; /** Narrower words: kinds of thing a mixed category may hold. */ hints?: string[]; n: number };
 /** A glossary term. Its meaning is taken from the guide it names. */
@@ -153,6 +156,9 @@ function tidyTitles(guide: Guide): Guide {
 
 function load(): Store {
   const listings = read<Listing[]>("listings.json");
+  // A site that has been broken into describes itself in the intruder's words. The crawler now
+  // leaves those out (crawler/build.mjs); this keeps them off the page for an index made before it did.
+  for (const l of listings) if (l.aboutFrom === "site" && l.about && HIJACKED.test(l.about) && !/casino|gaming|betting/.test(l.cat)) delete l.about;
   const places = read<Place[]>("places.json");
   const { groups, categories } = read<{ groups: Group[]; categories: Category[] }>("categories.json");
   const dir = join(root, "content", "guides");

@@ -9,6 +9,9 @@ import { config } from "./config.mjs";
 import { hostOf, slugify } from "./lib/text.mjs";
 import { CATEGORIES, GROUPS } from "./taxonomy.mjs";
 
+/** Words that mark a description written by whoever broke into a site, not by its owner. */
+export const HIJACKED = /\b(casino|jackpots?|slots?|betting|togel|judi|poker|sportsbook)\b/i;
+
 const drop = (object) => Object.fromEntries(Object.entries(object).filter(([, v]) => v !== undefined && v !== null && v !== "" && !(Array.isArray(v) && !v.length) && !(typeof v === "object" && !Array.isArray(v) && !Object.keys(v).length)));
 
 export function buildIndex({ osm, organisations, web, official, guides }) {
@@ -97,7 +100,9 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
     if (page.status >= 200 && page.status < 400 && page.title && !page.parked) {
       l.site = { title: page.title, checked: page.checked, lang: page.lang || undefined };
       const said = page.declared?.description || page.description;
-      if (!l.about && said && said.length > 40) Object.assign(l, { about: said, aboutFrom: "site" });
+      // A site that has been taken over says so in its description before anywhere else. Words
+      // that sell gambling on the page of a school or a ministry are not the business's own.
+      if (!l.about && said && said.length > 40 && !(HIJACKED.test(said) && !/casino|gaming|betting/.test(l.cat))) Object.assign(l, { about: said, aboutFrom: "site" });
       if (!l.phone.length && page.tel) Object.assign(l, { phone: [page.tel], phoneFrom: "site" });
       for (const [name, address] of Object.entries(page.social ?? {})) l.social[name] ??= address;
       l.src.site = { url: page.url, checked: page.checked };
