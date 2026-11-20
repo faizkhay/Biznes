@@ -1,0 +1,466 @@
+{
+  "slug": "pharmacies-and-medicines-in-mauritius",
+  "shelf": "everyday",
+  "title": "Pharmacies and medicines in Mauritius",
+  "summary": "How pharmacies are licensed and who regulates them, when you need a prescription and what it must contain, what a pharmacist owes you, how medicine prices are controlled, what the public health service provides at no charge, and where to complain. Checked on 20 November 2026.",
+  "audience": "Residents, newcomers and visitors who need a medicine and want to know the rules before they reach the counter.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Where medicines may be sold",
+      "value": "Only in a pharmacy",
+      "detail": "Pharmacy Act, section 17. A doctor may sell medicines only where there is no pharmacy within 5 kilometres.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Who licenses a pharmacy",
+      "value": "The Pharmacy Board",
+      "detail": "The licence is valid for one year. Every pharmacy must have a pharmacist in charge.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Community pharmacies",
+      "value": "380",
+      "detail": "With 45 wholesale pharmacies. The Ministry's figure, on an undated page.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Registered pharmacists",
+      "value": "555",
+      "detail": "Registered with the Pharmacy Council of Mauritius. Same undated page.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Who may write a prescription",
+      "value": "A medical practitioner, a dental surgeon or a veterinary surgeon",
+      "detail": "The Act calls them authorised persons.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Antibiotics",
+      "value": "Sold by retail on prescription only",
+      "detail": "Pharmacy Act, section 32, on therapeutic substances.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Prescription for a dangerous drug",
+      "value": "Must be presented within 7 days of its date",
+      "detail": "Dangerous Drugs Act 2000, section 19. It can be dispensed once only.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "Public health service",
+      "value": "No end-user cost",
+      "detail": "Around 73% of the population uses it, the Ministry says.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Price at the counter",
+      "value": "Not above the retail price affixed to the product",
+      "detail": "Code of Practice for Pharmacists. Mark-ups on pharmaceutical products are capped.",
+      "sources": [
+        "S8",
+        "S12"
+      ]
+    },
+    {
+      "label": "Ambulance",
+      "value": "114",
+      "detail": "The SAMU control room answers 24 hours a day.",
+      "sources": [
+        "S2",
+        "S4"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How do pharmacies work in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Medicines are sold in pharmacies, and nowhere else. The Pharmacy Act says no person may sell a medicine or drug by retail in any place other than a pharmacy. The one exception is a doctor with no pharmacy within 5 kilometres of the place where the patient is seen. A pharmacy needs a licence from the Pharmacy Board and a pharmacist in charge. The Ministry of Health and Wellness counts 380 community pharmacies across the island and 45 wholesale pharmacies.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "You can tell a licensed pharmacy from the outside. The licensee must put up a signboard with his name and the name of the pharmacist in charge, and display the licence inside. The Pharmacy Council tells pharmacists to display their yearly registration certificate for the public to see. A pharmacy may sell only pharmaceutical products, medical and hygiene appliances, toilet preparations and other products that regulations allow.",
+          "sources": [
+            "S1",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who regulates pharmacies and pharmacists?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "The Pharmacy Board controls the manufacture, importation, distribution and sale of medicines, and grants the licences for retail and wholesale pharmacies. Before granting one it looks at the number of pharmacies in the area and the area's needs. The licence is renewed every year.",
+            "The Pharmacy Council of Mauritius, fully in operation since November 2017, regulates the profession. It registers pharmacists, publishes a yearly list of them, sets a Code of Practice and runs disciplinary proceedings. The Ministry gives 555 registered pharmacists.",
+            "The Pharmacy Department of the Ministry oversees pharmacy services in the public and private sectors, with 37 Government Pharmacists and 97 Pharmacy Technicians."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S5",
+            "S6",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Do you need a prescription?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For some medicines, yes. The Pharmacy Act forbids selling a therapeutic substance by retail except on a prescription, and it deals with antibiotics under that heading. The same goes for the poisons listed under the Act. Medicines on two of the Act's schedules may be handed over only by a pharmacist, or in the presence of the pharmacist in charge or of an assistant pharmacist.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A prescription is a written order from a medical practitioner, a dental surgeon or a veterinary surgeon. To be valid under the Act it must:",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "be handwritten, dated and signed by the prescriber, and state the prescriber's address;",
+            "give the name and address of the patient;",
+            "state the total amount to be supplied and the dose to be taken;",
+            "carry the words For Dental Treatment Only if a dental surgeon wrote it."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A prescription is dispensed once, unless it says it may be repeated and at what interval. The pharmacy records the date on it and gives you a true copy with a serial number, the date and the pharmacy's stamp. Each medicine's container must carry a label with the instructions for use. A pharmacist may not refuse to dispense a prescription to a person who offers to pay in cash.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the rules for dangerous drugs?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "They are tighter. Under the Dangerous Drugs Act 2000 a prescription for a dangerous drug must be presented not later than 7 days after its date, and it can be dispensed once only. The pharmacy keeps the original and gives you a stamped copy. A prescriber may not prescribe the drugs in Schedule II of that Act for more than 10 days of treatment, or other Schedule III drugs for more than one month.",
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What should the pharmacist do for you?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Code of Practice for Pharmacists, made by regulations in December 2021, binds every registered pharmacist. Among its rules:",
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the pharmacist thinks the prescriber made an evident error that could endanger you, the law requires him to hold the prescription and check with the prescriber at once.",
+            "If the handwriting is unclear, the pharmacist must try to reach the prescriber. If he cannot, he returns the prescription marked handwriting not clear.",
+            "Medicines are sold as the entire strip, bearing the expiry date and batch number. Anything sold otherwise is labelled with both.",
+            "Where you cannot afford a treatment, the pharmacist substitutes an equivalent generic with your approval and notes it on the prescription. He may also substitute during a shortage.",
+            "Products come with a label or a patient leaflet in English or French.",
+            "What you tell the pharmacist is confidential, and your privacy is protected during any counselling."
+          ],
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How are medicine prices controlled?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Pharmaceutical products are on the list of goods whose mark-up the Ministry of Commerce and Consumer Protection caps. Most goods on that list have one percentage. Medicines have what the list calls a regressive maximum mark-up. Under the Code of Practice a wholesaler supplies products to pharmacies with a price affixed, and a pharmacist may not sell above that affixed retail price.",
+          "sources": [
+            "S12",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Are medicines free in the public health service?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Ministry says the public health system serves around 73% of the population at no end-user cost, and its Customer Charter lists free access to primary health and hospital care, including specialised treatment, as a main function. Care is given in 5 regional hospitals, 2 district hospitals, specialised hospitals, 19 Area Health Centres, 114 Community Health Centres and 6 Mediclinics, a network meant to put primary care within 3 km of people.",
+          "sources": [
+            "S3",
+            "S4",
+            "S13"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Medicines are dispensed there by Pharmacy Technicians at hospital pharmacies, Area Health Centres, Community Health Centres and Mediclinics. The Ministry's medicines list incorporates the essential medicines recommended by the World Health Organization. In an emergency, call the SAMU ambulance service on 114, which answers 24 hours a day, or go to the Accident and Emergency department of a hospital.",
+          "sources": [
+            "S2",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When are pharmacies open at night and on Sundays?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No official source read for this article answers that. The Pharmacy Act sets no opening hours. The Code of Practice only says a pharmacist attends the pharmacy during the hours agreed with its owner. No duty roster published by the Pharmacy Board, the Pharmacy Council or the Ministry was found, so phone the pharmacy before you travel.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where do you complain?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "About a pharmacist's conduct: the Pharmacy Council of Mauritius, 8th Floor, Emmanuel Anquetil Building, Port Louis. Its office is open Monday to Friday from 9 am to 3 pm, on 5912 2664.",
+            "About a pharmacy's licence, or a medicine sold outside a pharmacy: the Pharmacy Board, whose reception answers on 490 4200.",
+            "About a price above the one marked: the Consumer Affairs Unit of the Ministry of Commerce and Consumer Protection, hotline 185.",
+            "About a public hospital or health centre: in person by appointment with the head of the unit, or in writing to the head of the institution or the Regional Health Director.",
+            "About a bad reaction to a medicine: tell your pharmacist, who must report adverse drug reactions to the Ministry's Pharmacovigilance Unit."
+          ],
+          "sources": [
+            "S7",
+            "S1",
+            "S6",
+            "S14",
+            "S4",
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "A breach of the Pharmacy Act is an offence carrying a fine of up to Rs 10,000 and up to 2 years in prison, and a court may cancel or suspend the licence.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Pharmacy Act (Act 60 of 1983), Revised Laws of Mauritius",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/03/PHARMACY-ACT-1983-1.pdf",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Hospital Services, with the Pharmacy Department",
+      "url": "https://health.govmu.org/health/?page_id=5509",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "The Ministry",
+      "url": "https://health.govmu.org/health/?page_id=5444",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Customer Charter",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/03/Customer-Charter-of-Ministry-of-Health-and-Wellness-2020.pdf",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "December 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Welcome: The Pharmacy Council of Mauritius Website",
+      "url": "https://www.pharmacycouncilmu.org/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Overview",
+      "url": "https://www.pharmacycouncilmu.org/overview/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Contact us",
+      "url": "https://www.pharmacycouncilmu.org/contact-us/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Pharmacy Council (Code of Practice) Regulations 2021 (Government Notice No. 325 of 2021)",
+      "url": "https://www.pharmacycouncilmu.org/wp-content/uploads/2023/02/Pharmacy-Council-Code-of-Practice-Regulations-2021.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Pharmacy Council of Mauritius",
+      "published": "29 December 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Annual List of Pharmacists for the year 2026",
+      "url": "https://www.pharmacycouncilmu.org/annual-list-of-pharmacists-for-the-year-2023/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Frequently asked questions",
+      "url": "https://www.pharmacycouncilmu.org/frequently-asked-questions/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "The Dangerous Drugs Act 2000 (Act No. 41 of 2000)",
+      "url": "https://www.pharmacycouncilmu.org/wp-content/uploads/2023/02/DANGEROUS-DRUGS-ACT-2000.pdf",
+      "publisher": "Copy published by the Pharmacy Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "List of Controlled Products (Annex 1): maximum mark-up",
+      "url": "https://commerce.govmu.org/Documents/Departments/Price%20Fixing%20Unit/List%20of%20Controlled%20Products%20(Annex%201).pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Primary Health Care Unit",
+      "url": "https://health.govmu.org/health/?page_id=5527",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Contact Us",
+      "url": "https://commerce.govmu.org/Pages/AboutUs/Contact-Us.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Pharmacies",
+      "url": "/directory/pharmacies",
+      "publisher": "biznes.mu",
+      "what": "Pharmacies listed on this site, by place."
+    },
+    {
+      "title": "Emergency numbers",
+      "url": "/emergency",
+      "publisher": "biznes.mu",
+      "what": "The numbers to call: ambulance, police, fire and the rest."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for newcomers, with the public and private health systems."
+    },
+    {
+      "title": "Prices and consumer rights in Mauritius",
+      "url": "/learn/prices-and-consumer-rights-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to controlled prices and how to complain about a price."
+    },
+    {
+      "title": "Annual List of Pharmacists",
+      "url": "https://www.pharmacycouncilmu.org/annual-list-of-pharmacists-for-the-year-2023/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "what": "Check that a pharmacist is on this year's register."
+    },
+    {
+      "title": "Contact us",
+      "url": "https://www.pharmacycouncilmu.org/contact-us/",
+      "publisher": "Pharmacy Council of Mauritius",
+      "what": "Find the Council's address, hours and the Pharmacy Board's reception number."
+    },
+    {
+      "title": "Hospital Services",
+      "url": "https://health.govmu.org/health/?page_id=5509",
+      "publisher": "Ministry of Health and Wellness",
+      "what": "Read what the public hospitals and the Ministry's Pharmacy Department provide."
+    },
+    {
+      "title": "Customer Charter",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/03/Customer-Charter-of-Ministry-of-Health-and-Wellness-2020.pdf",
+      "publisher": "Ministry of Health and Wellness",
+      "what": "See the hospitals' telephone numbers and how to make a complaint."
+    }
+  ],
+  "unverified": [
+    "Pharmacy opening hours and any duty roster for nights, Sundays and public holidays. No official body was found to publish one.",
+    "Which medicines can be bought without a prescription. The Pharmacy Act's schedules of poisons and of medicines reserved for pharmacists were not read item by item.",
+    "Exactly which medicines the public service gives free and to whom, including visitors and other non-citizens. The Ministry speaks of care at no end-user cost and of free access to care, without a list.",
+    "The dates of the Ministry's figures of 380 community pharmacies, 45 wholesale pharmacies and 555 pharmacists. The page is undated and its other figures are for 2021 and 2022.",
+    "The rates of the regressive maximum mark-up on medicines. The regulations that set them were listed by the Ministry of Commerce but not read.",
+    "How to file a complaint with the Pharmacy Council and how it is handled. The Pharmacy Council Act could not be downloaded from the Council's site, and its question page gives no procedure. The Council's site says its own landline is out of service.",
+    "Whether the copy of the Pharmacy Act on the Ministry's site carries every amendment. Its editorial note says several sections have become obsolete and need review.",
+    "Rules on bringing personal medicines into Mauritius. They were not researched for this article.",
+    "The Pharmacy Council's question page was read through a fetching tool, because the site turned away a direct download."
+  ]
+}

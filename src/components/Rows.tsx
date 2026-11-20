@@ -79,7 +79,7 @@ export function ListingRow({
   );
 }
 
-const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc, Number: Phone, Holiday: Sun } as const;
+const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc, Number: Phone, Holiday: Sun, Page: Out } as const;
 
 /**
  * An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or

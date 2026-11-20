@@ -228,6 +228,8 @@ check("answers: a question about how leads with an article, whatever nouns it ho
 check("answers: a business's own name leads with businesses, not with a passing mention", (await answerTo("MCB")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 await answerTo("ambulance");
 check("answers: a number to call is a button that calls it", (await page.locator('main article.answer a[href="tel:114"]').count()) === 1);
+check("answers: the site knows who makes it", /product of Khay Digital.*\| \/about/s.test(await answerTo("khay digital")), await answerTo("khay digital"));
+check("answers: words that are only partly found are never shown as the answer, and the page says so", (await answerTo("khayzzq digital")) === "" && /holds some of its words/.test(await page.locator('main p[role="status"]').first().innerText()));
 check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 
 // 8a. The menu: a group opens, shows its pages, and closes when one is chosen.

@@ -23,6 +23,7 @@ import { emergency } from "./emergency";
 import { anchorOf, day } from "./format";
 import { holidays, longDay } from "./holidays";
 import { index, whereOf, type Category, type Listing, type Official, type Place, type Site } from "./index";
+import { PAGES } from "@/data/site";
 import { TOOLS } from "./tools";
 
 export type Kind = "listing" | "guide" | "official" | "site";
@@ -35,7 +36,7 @@ export const KINDS: { id: Kind; label: string }[] = [
 
 /** An answer from the guides: a guide, the fact in it that answers, a glossary term, or a tool. */
 export type Lead = {
-  tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday";
+  tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday" | "Page";
   title: string;
   href: string;
   line: string;
@@ -61,6 +62,8 @@ export type Answer = {
   who: boolean;
   /** True when nothing matched as written and close spellings are shown instead. */
   spelling: boolean;
+  /** True when nothing held every word of the question, and what holds any one of them is shown instead. */
+  loose: boolean;
   listings: Listing[];
   leads: Lead[];
   official: Official[];
@@ -199,6 +202,7 @@ function build(): Engine {
     lead("h:all", { name: "Public holidays in Mauritius", alt: "bank holidays calendar jours feries konze piblik", what: Object.keys(dates.years).join(" "), text: "" }, { lead: { tag: "Holiday", title: "Public holidays in Mauritius", href: "/holidays", line: `Every public holiday of ${Object.keys(dates.years).sort().join(" and ")}, with the day of the week it falls on.`, meta: `Checked ${day(dates.checked)}` }, guide: "holidays", weight: 2, whole: true });
   }
   glossary.forEach((t, i) => lead(`t:${i}`, { name: `${t.term} ${t.full ?? ""}`, alt: "", what: "", text: t.meaning }, { lead: { tag: "Glossary", title: t.full ? `${t.term}: ${t.full}` : t.term, href: `/learn/glossary#${anchorOf(t.term)}`, line: t.meaning }, weight: 1.4, whole: true }));
+  PAGES.forEach((page, i) => lead(`p:${i}`, { name: page.title, alt: page.words, what: page.line, text: "" }, { lead: { tag: "Page", title: page.title, href: page.href, line: page.line }, weight: 3, whole: true }));
   TOOLS.forEach((t, i) => lead(`x:${i}`, { name: t.title, alt: "calculator tool", what: t.what, text: "" }, { lead: { tag: "Tool", title: t.title, href: t.href, line: t.what }, weight: 1.3, whole: true }));
 
   official.forEach((o, i) => docs.push({ id: `o:${i}`, kind: "official", name: o.title, alt: o.publisher, what: o.what, where: "", text: o.host ?? "" }));
@@ -404,13 +408,18 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     sites = [];
   }
 
-  // Nothing at all for every word together: show what any of the words finds.
+  // Nothing at all for every word together: show what any of the words finds, and say so. A page
+  // that holds only one of the words has not answered the question, so none is shown as the answer.
+  let loose = false;
   if (!ranked.length && !leads.length && !official.length && !sites.length && text.includes(" ")) {
+    loose = true;
     for (const r of of("listing", text, "OR").slice(0, 200)) {
       const l = byId((r.id as string).slice(2));
       if (l) ranked.push({ l, score: r.score });
     }
-    leads = collect(of("guide", text, "OR").slice(0, 40)).slice(0, 6);
+    leads = collect(of("guide", text, "OR").slice(0, 40))
+      .slice(0, 6)
+      .map((lead) => ({ ...lead, soft: true }));
     official = of("official", text, "OR").slice(0, 20).map((r) => data.official[Number((r.id as string).slice(2))]);
     sites = of("site", text, "OR").slice(0, 20).map((r) => data.sites[Number((r.id as string).slice(2))]);
   }
@@ -466,6 +475,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     near: read.hint && !category && !leads.length ? { href: `/directory/${read.hint.category.id}`, label: read.hint.category.label, n: read.hint.category.n, word: read.hint.word } : undefined,
     who: who || named,
     spelling,
+    loose,
     listings: kind && kind !== "listing" ? [] : ranked.slice(start, start + PAGE_SIZE).map((r) => r.l),
     leads: cut(leads, who ? 2 : 3, "guide"),
     official: cut(official, 4, "official"),

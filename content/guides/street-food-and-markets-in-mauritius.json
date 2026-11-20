@@ -17,7 +17,7 @@
     {
       "label": "Central Flacq fair days",
       "value": "Wednesdays and Sundays",
-      "detail": "The fixed market beside it is open every day. Hours are 6 am to 6 pm, and 6 am to noon on public holidays.",
+      "detail": "The council's fixed market is open every day. Hours are 6 am to 6 pm, and 6 am to noon on public holidays.",
       "sources": [
         "S4",
         "S3"
@@ -95,7 +95,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "You find it at street stalls, in the food kiosks and food courts of the public markets, and at fairs. The Mauritius Tourism Promotion Authority says the island has an incredible street food scene and calls Port Louis one of the best cities in the world for street food. Its first address is the Port Louis Central Market, where kiosks sell samosas, dholl puri, sweet pastries and alouda.",
+          "text": "You find it at street stalls, in the food kiosks and food courts of the public markets, and at fairs. The Mauritius Tourism Promotion Authority says the island has an incredible street food scene and calls Port Louis one of the best cities in the world for street food. It points visitors to the Port Louis Central Market, where kiosks sell samosas, dholl puri, sweet pastries and alouda.",
           "sources": [
             "S1",
             "S16",

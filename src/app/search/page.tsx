@@ -133,6 +133,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               {a.readAs ? ` Read as: ${a.readAs}.` : ""}
               {a.ignored ? ` No listing mentions “${a.ignored}”, so that was left out.` : ""}
               {a.spelling ? " Nothing matched as written, so close spellings are shown." : ""}
+              {a.loose ? ` Nothing here holds all of “${q}”. What follows holds some of its words.` : ""}
             </span>
           </p>
           {total > 0 && <ShareButton title={`${q} on biznes.mu`} label="Share this search" />}

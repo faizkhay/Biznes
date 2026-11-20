@@ -36,6 +36,7 @@ export const PAGES = [
   ["shop", "/shop"],
   ["offline", "/offline"],
   ["holidays", "/holidays"],
+  ["about", "/about"],
   ["missing", "/no-such-page"],
 ];
 

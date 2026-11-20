@@ -1,0 +1,486 @@
+{
+  "slug": "internet-and-mobile-in-mauritius",
+  "shelf": "everyday",
+  "title": "Mobile and internet in Mauritius: operators, SIM cards and coverage",
+  "summary": "The licensed mobile and internet operators, what you need to register a SIM card as a citizen, a resident or a tourist, where number portability stands, the coverage and broadband figures of the regulator and of Statistics Mauritius, and where to complain. Checked on 20 November 2026.",
+  "audience": "Visitors buying a SIM card, newcomers choosing a mobile or home internet service, and residents who want the figures and the complaint route.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Licensed mobile network operators",
+      "value": "Three",
+      "detail": "Cellplus Mobile Communications Ltd, Emtel Ltd and Mahanagar Telephone (Mauritius) Ltd. The regulator's own guidance names the services as my.t, Emtel and Chili.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Mobile subscriptions, 2025",
+      "value": "2,155,400",
+      "detail": "173.6 for every 100 inhabitants. 80.7% were prepaid.",
+      "sources": [
+        "S7",
+        "S4"
+      ]
+    },
+    {
+      "label": "Population covered by a mobile network",
+      "value": "99%",
+      "detail": "Unchanged in 2025. It counts people living in a covered area, whether or not they subscribe.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Internet subscriptions, 2025",
+      "value": "2,241,100",
+      "detail": "1,885,100 on mobile networks and 356,000 on fixed networks. 99.5% were broadband.",
+      "sources": [
+        "S7",
+        "S5"
+      ]
+    },
+    {
+      "label": "Households with internet access",
+      "value": "85.8% in 2024",
+      "detail": "Up from 72.6% in 2020. 88.6% of households had a smartphone.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "SIM registration",
+      "value": "Compulsory, with identity, proof of address and a photograph",
+      "detail": "Under regulations in force since 31 October 2023. The operator takes the photograph when you buy the SIM.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "SIM for a tourist",
+      "value": "Passport or travel document, and proof of address in Mauritius",
+      "detail": "The operator also takes a colour photograph and checks it against the passport.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Keeping your number when you change operator",
+      "value": "Not yet available",
+      "detail": "A licence for a number portability service was created in 2026. The regulator held a workshop on it from 7 to 9 October 2026.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Entry-level home fibre, end of 2025",
+      "value": "Rs 447 a month",
+      "detail": "10 Mbps with a 60 GB allowance, from the main service provider. Rs 970 for 50 Mbps with 1 TB.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Where to complain",
+      "value": "The ICT Authority's online Consumer Complaint System",
+      "detail": "After you have tried to settle the matter with the operator.",
+      "sources": [
+        "S8"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Which mobile operators work in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Three companies hold a Public Land Mobile Network licence from the Information and Communication Technologies Authority, the ICT Authority: Cellplus Mobile Communications Ltd, Emtel Ltd and Mahanagar Telephone (Mauritius) Ltd. In its guidance to the public the regulator calls the three mobile services my.t, Emtel and Chili. All three were granted 5G licences on 17 June 2021.",
+          "sources": [
+            "S1",
+            "S2",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For fixed telephone lines the licensees are Mauritius Telecom Ltd and Emtel Ltd. There were 473,300 fixed lines in 2025, about 38 for every 100 inhabitants, but around 9 local calls in 10 were made from a mobile phone. Nine companies hold an Internet Service Provider licence. They include Mauritius Telecom, Cellplus, Emtel, Mahanagar Telephone (Mauritius), Kaldera, Atcomm Broadband Services and Rogers Capital Technology Services. The ICT Authority publishes the full list of licensees on its website.",
+          "sources": [
+            "S1",
+            "S6",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do you buy and register a SIM card?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You buy it from an operator, which registers it in your name on the spot. Registration is compulsory under the Information and Communication Technologies (Registration of SIM) Regulations 2023. The operator collects and checks your details and takes a colour photograph of you, which it compares with the photograph on your identity card or passport. No photograph, no SIM.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Who you are",
+            "What to bring"
+          ],
+          "rows": [
+            [
+              "Mauritian citizen",
+              "National identity card or passport details, and a recent utility bill or other proof of address"
+            ],
+            [
+              "Non-citizen living in Mauritius",
+              "Passport details, your Unique Identification Number, your residence permit or occupation permit, and a recent utility bill or other proof of address"
+            ],
+            [
+              "Tourist",
+              "Passport or other valid travel document, and proof of your address in Mauritius"
+            ],
+            [
+              "Company or other organisation",
+              "A letter authorising the person who buys, that person's identity card or passport details, the organisation's utility bill or proof of address, and its certificate of incorporation where it has one"
+            ]
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Existing SIM cards had to be registered again between 31 October 2023 and 30 April 2024. Operators were to deactivate any SIM not re-registered by then.",
+            "The guidance set no limit on the number of SIM cards a person could re-register, and re-registration was free.",
+            "A minor could not re-register a SIM. It had to go in the name of a parent or guardian.",
+            "Ownership of a SIM can be transferred. Ask your operator how.",
+            "Giving false or misleading information to register a SIM is an offence, with a fine of up to Rs 50,000 and up to one year in prison."
+          ],
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Can you keep your number when you change operator?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Not yet. Mobile number portability lets a subscriber keep a number when moving to another provider, and the Government's policy is to introduce it. Regulations of 2026 created a new licence for a Mobile Number Portability Service Provider. The ICT Authority intends to license one applicant to run a central system. It held a three-day workshop from 7 to 9 October 2026 to settle the call for applications, covering porting steps, porting time, fees and how mobile banking and one-time passwords keep working when a number moves.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How good is mobile coverage?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Statistics Mauritius reports that 99% of the population lives in an area covered by a mobile network, a figure unchanged from previous years. There were 2,155,400 mobile subscriptions in 2025, or 173.6 for every 100 inhabitants, slightly down from 176.4 in 2024. Four in five were prepaid. In 2024 some 93% of people aged five and over used a mobile phone.",
+          "sources": [
+            "S7",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "You can measure what you get. The ICT Authority offers KaliteNet, a free application and website that tests the quality of your broadband connection anywhere in the Republic. Its results feed a national campaign to assess broadband quality.",
+          "sources": [
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do people get the internet at home?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mostly over the mobile network. Of 2,241,100 internet subscriptions in 2025, 1,885,100 were on mobile networks and 356,000 on fixed networks, which include wireless. Nearly all, 99.5%, were broadband, defined as 256 kilobits per second or faster. In 2024, 85.8% of households had internet access at home, up from 72.6% in 2020.",
+          "sources": [
+            "S7",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Tariff of the main service provider, end of 2025",
+            "Price"
+          ],
+          "rows": [
+            [
+              "Home fibre, entry level: 10 Mbps with a 60 GB allowance",
+              "Rs 447 a month"
+            ],
+            [
+              "Home fibre, standard: 50 Mbps with a 1 TB allowance",
+              "Rs 970 a month"
+            ],
+            [
+              "Fibre for a small or medium enterprise, entry level: 10 Mbps with 150 GB",
+              "Rs 750 a month"
+            ],
+            [
+              "Prepaid mobile, 3-minute local call on the same network",
+              "Rs 3.60"
+            ],
+            [
+              "Prepaid mobile, 3-minute local call to another network",
+              "Rs 10.80"
+            ],
+            [
+              "Fixed line, residential monthly rental",
+              "Rs 90.00"
+            ]
+          ],
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Where an offer has a volume allowance, access stays at the advertised speed until the cap is reached and then drops to a reduced speed. Statistics Mauritius puts the entry-level fibre offer at 0.8% of gross national income per head in 2025.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The ICT Authority also lists free WiFi zones under a project it calls USF. The list is set out by district and includes hospitals, health centres, markets, traffic centres and community centres.",
+          "sources": [
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where do you complain about a mobile or internet service?",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Start with your operator. The ICT Authority expects consumers to use every means open to them under their contract or service level agreement first, and says licensed operators must resolve complaints fairly and in good time.",
+            "If that fails, open an account on the Authority's online Consumer Complaint System with a valid email address and file the complaint there.",
+            "The Authority examines it under the ICT Act 2001. Section 18 of the Act makes it the Authority's function to entertain consumer complaints about any information and communication service and, where necessary, to refer them to the appropriate authorities."
+          ],
+          "sources": [
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The ICT Authority's office is on the 12th floor of The Celicourt, 6 Sir Celicourt Antelme Street, Port Louis. It is open Monday to Friday from 8.30 am to 4 pm, on +230 211 5333. The international dialling code for Mauritius is +230.",
+          "sources": [
+            "S13",
+            "S14",
+            "S15"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Commercial Licensees",
+      "url": "https://www.icta.mu/licences-issued/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "FAQ: Subscriber Identity Module (SIM) Registration and Re-Registration",
+      "url": "https://www.icta.mu/faq/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Mobile Number Portability",
+      "url": "https://www.icta.mu/mobile-number-portability/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Observatory Mobile: Mobile Telephony Services",
+      "url": "https://www.icta.mu/observatory-mobile/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Observatory Internet: Internet Services",
+      "url": "https://www.icta.mu/observatory-internet/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Observatory Fixed Line: Fixed Telephony Services",
+      "url": "https://www.icta.mu/observatory-fixed-line/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "10 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Consumer Complaint: Online Consumer Complaint System",
+      "url": "https://www.icta.mu/consumer-complaint/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Consumer Overview",
+      "url": "https://www.icta.mu/consumer-overview/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Telecom Quality of Service (QoS): About KaliteNet",
+      "url": "https://www.icta.mu/telecom-qos/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "News release: ICT Authority grants 5G licences to mobile operators",
+      "url": "https://www.icta.mu/5g-licences-mobile",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "17 June 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "USF: Free WiFi Locations",
+      "url": "https://www.icta.mu/usf-wifi-zones-location/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Contact Us",
+      "url": "https://www.icta.mu/contact-us/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "ICT Authority: home page",
+      "url": "https://www.icta.mu/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Consumer Complaint System",
+      "url": "https://www.icta.mu/complaint/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "File a complaint about a mobile, telephone or internet service."
+    },
+    {
+      "title": "FAQ on SIM registration",
+      "url": "https://www.icta.mu/faq/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "Check the documents to bring for a SIM card, in English and French."
+    },
+    {
+      "title": "KaliteNet",
+      "url": "https://kalitenet.icta.mu",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "Test the speed and quality of your connection."
+    },
+    {
+      "title": "Free WiFi Locations",
+      "url": "https://www.icta.mu/usf-wifi-zones-location/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "Look up the free WiFi zones in your district."
+    },
+    {
+      "title": "Commercial Licensees",
+      "url": "https://www.icta.mu/licences-issued/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "See every licensed operator and internet service provider."
+    },
+    {
+      "title": "Mobile Number Portability",
+      "url": "https://www.icta.mu/mobile-number-portability/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "Follow the progress of number portability."
+    },
+    {
+      "title": "ICT Statistics",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/ICT/SB_ICT.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Open the yearly reports on mobile, internet and tariffs."
+    },
+    {
+      "title": "Household bills and services",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to electricity, water and the other bills of a home."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for newcomers, for the papers a SIM registration asks for."
+    },
+    {
+      "title": "IT and telecom businesses",
+      "url": "/directory/it-telecom",
+      "publisher": "biznes.mu",
+      "what": "Telecom and IT businesses listed on this site."
+    }
+  ],
+  "unverified": [
+    "Which licensed company sells which service. The regulator's licence list gives company names and its guidance gives the names my.t, Emtel and Chili. No page read links the two lists.",
+    "Prices of SIM cards, prepaid packages and tourist offers. They are set by the operators and were not collected. The tariffs quoted are those Statistics Mauritius reports for the main service provider at the end of 2025.",
+    "4G and 5G coverage as a share of the population, and how far 5G has been rolled out since the licences of June 2021. The reports read name the indicators without giving the figures.",
+    "When number portability will start. The regulator's page describes the October 2026 workshop and a call for applications to follow, with no launch date.",
+    "Whether a tourist SIM expires after a set time, and what counts as proof of address for a tourist. The regulator's guidance does not say.",
+    "The text of the SIM registration regulations of 2023. Only the regulator's questions and answers were read. Two linked pages of that guidance returned an error on 20 November 2026.",
+    "How many free WiFi zones are in service. The regulator's page is a long list by district, with no total and no date.",
+    "How long the ICT Authority takes to handle a complaint, and what it can order an operator to do."
+  ]
+}
