@@ -18,6 +18,7 @@ review/screens/*
 !review/screens/category-mobile.jpg
 !review/screens/guide-*.jpg
 !review/screens/tool-vat-*.jpg
+!review/screens/baz-manzer-*.jpg
 
 # Helpers for one session's checks.
 scripts/_*
