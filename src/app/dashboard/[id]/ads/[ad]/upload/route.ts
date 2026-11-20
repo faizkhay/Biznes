@@ -1,7 +1,8 @@
 import { revalidatePath } from "next/cache";
 import { accountsOn } from "@/lib/accounts/config";
 import { UUID } from "@/lib/accounts/form";
-import { backTo, dropPictures, keepPicture, pictureFrom, receiveForm } from "@/lib/accounts/media";
+import { tooMany } from "@/lib/accounts/limit";
+import { backTo, emptyFolder, keepPicture, dropPictures, pictureFrom, receiveForm } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
 
@@ -17,6 +18,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   if (!accountsOn || !UUID.test(id) || !UUID.test(ad)) return backTo("/dashboard");
   const viewer = await getViewer();
   if (!viewer) return backTo(`/account/sign-in?next=${encodeURIComponent(page)}`);
+  if (await tooMany("upload", 30)) return backTo(`${page}#ad-${ad}`, { problem: "busy", at: ad });
 
   const received = await receiveForm(request);
   if ("problem" in received) return backTo(page, { problem: received.problem, at: ad });
@@ -26,8 +28,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const supabase = await db();
   const { data: row } = await supabase.from("ads").select("artwork").eq("id", ad).eq("business_id", id).maybeSingle();
   if (!row) return backTo(page, { problem: "refused", at: ad });
-  // The old picture goes first: an advertisement's folder holds only a few.
-  if (row.artwork) await dropPictures(supabase, [row.artwork as string]);
+  // What is there goes first, the old picture and anything else in the folder: it holds only a few.
+  await emptyFolder(supabase, `ads/${ad}`, [row.artwork as string]);
   const kept = await keepPicture(supabase, `ads/${ad}`, "art", read.picture);
   if ("problem" in kept) return backTo(`${page}#ad-${ad}`, { problem: kept.problem, at: ad });
   const { error } = await supabase.from("ads").update({ artwork: kept.path }).eq("id", ad).eq("business_id", id);

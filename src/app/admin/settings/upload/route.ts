@@ -1,5 +1,6 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { accountsOn, TAG_SETTINGS } from "@/lib/accounts/config";
+import { tooMany } from "@/lib/accounts/limit";
 import { backTo, dropPictures, keepPicture, pictureFrom, receiveForm } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
@@ -15,6 +16,7 @@ export async function POST(request: Request) {
   const viewer = await getViewer();
   if (!viewer) return backTo(`/account/sign-in?next=${encodeURIComponent(page)}`);
   if (viewer.role !== "superadmin") return backTo("/account");
+  if (await tooMany("upload", 30)) return backTo(`${page}#pictures`, { problem: "busy" });
 
   const received = await receiveForm(request);
   if ("problem" in received) return backTo(`${page}#pictures`, { problem: received.problem });

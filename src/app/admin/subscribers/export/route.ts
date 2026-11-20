@@ -12,7 +12,9 @@ const cell = (value: unknown) => {
   const text = value == null ? "" : String(value);
   // A cell that begins like a formula is kept as text, so a spreadsheet does not run it.
   const safe = /^[=+\-@\t\r]/.test(text) ? `'${text}` : text;
-  return /[",\n\r]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
+  // Every cell is quoted, always. Some spreadsheets split a line on a semicolon and not a comma:
+  // quoted, a cell stays one cell whichever they use, and cannot be cut into one that begins a formula.
+  return `"${safe.replace(/"/g, '""')}"`;
 };
 
 /**
@@ -40,7 +42,7 @@ export async function GET(request: NextRequest) {
   const lines = rows.map((s) => [s.email, s.wants_guide ? "yes" : "", s.wants_magazine ? "yes" : "", s.created_at.slice(0, 10), `${siteUrl}/unsubscribe?token=${s.token}`].map(cell).join(","));
   const name = ["subscribers", want === "guide" || want === "magazine" ? want : "", mauritiusToday()].filter(Boolean).join("-");
   // The byte order mark is what Excel needs to read accents.
-  return new Response(`﻿${HEAD.join(",")}\n${lines.join("\n")}\n`, {
+  return new Response(`\uFEFF${HEAD.map(cell).join(",")}\n${lines.join("\n")}\n`, {
     headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="${name}.csv"`, "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" },
   });
 }

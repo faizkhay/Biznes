@@ -17,6 +17,9 @@
 // It also asks the database a few things as a visitor would, and as a person signed in, over its
 // own API, with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY (the two variables the
 // site itself is given): what the public can and cannot read is checked there, not only on a page.
+// And it needs BIZNES_SITE_PROOF, the word the stack's database asks of a visitor's writes: the
+// site must be built and served with it, and this script given it, as `accounts-stack.sh env` prints.
+// It looks through .next for that word, so run it from the root of the build it is checking.
 //
 // Needs: playwright and @axe-core/playwright (devDependencies), psql.
 import AxeBuilder from "@axe-core/playwright";
@@ -73,6 +76,25 @@ async function rows(path, token) {
 }
 /** As a visitor who is not signed in. */
 const asVisitor = (path) => rows(path, KEY);
+/** The word the site sends with a visitor's writes, when the stack asks for one (scripts/accounts-stack.sh). */
+const PROOF = process.env.BIZNES_SITE_PROOF ?? "";
+/** A function of the database, called over its API as a visitor would call it: with the public key, and with or without the site's word. */
+const call = (name, args, word = "") =>
+  fetch(`${API}/rest/v1/rpc/${name}`, { method: "POST", headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "Content-Type": "application/json", ...(word ? { "x-biznes-proof": word } : {}) }, body: JSON.stringify(args) });
+/** The session token a signed-in page holds. */
+async function tokenOf(page) {
+  const parts = (await page.context().cookies()).filter((c) => c.name === "biznes-auth" || c.name.startsWith("biznes-auth.")).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  let kept = decodeURIComponent(parts.map((c) => c.value).join(""));
+  if (kept.startsWith("base64-")) kept = Buffer.from(kept.slice(7), "base64url").toString("utf8");
+  return JSON.parse(kept).access_token;
+}
+/** How many files the bucket holds under a folder. */
+const kept = (folder) => Number(sql(`select count(*) from storage.objects where bucket_id = 'media' and name like '${folder}/%'`));
+/** Every file under a directory, for looking through what a build would send a browser. */
+function filesUnder(dir) {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => (entry.isDirectory() ? filesUnder(join(dir, entry.name)) : [join(dir, entry.name)]));
+}
 /** As the person signed in on a page: with the token their session cookie holds. */
 async function asPerson(page, path) {
   const parts = (await page.context().cookies()).filter((c) => c.name === "biznes-auth" || c.name.startsWith("biznes-auth.")).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
@@ -130,6 +152,8 @@ const PICTURES = {
   art: picture("art.png", png(960, 540, [30, 27, 75], [244, 114, 182])),
   // Words that call themselves a picture.
   notOne: picture("not-a-picture.jpg", "These are words, not a picture."),
+  // A PNG that calls itself a JPEG: it is kept as what it is.
+  mislabelled: picture("really-a-png.jpg", png(1200, 525, [120, 53, 15], [253, 230, 138])),
 };
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 const audited = [];
@@ -172,6 +196,16 @@ async function go(page, url) {
   await page.waitForLoadState("networkidle", { timeout: 2500 }).catch(() => {});
   return response;
 }
+/**
+ * Open a link from an email as its reader would. A link that carries a token waits on a page of
+ * its own (/auth/continue) until the button there is pressed, so the button is pressed.
+ */
+async function openLink(page, url) {
+  await go(page, url);
+  if (new URL(page.url()).pathname !== "/auth/continue") return;
+  await Promise.all([page.waitForURL((to) => to.pathname !== "/auth/continue", { timeout: 20000 }).catch(() => {}), page.locator("main form button[type=submit]").click()]);
+  await page.waitForLoadState("networkidle", { timeout: 2500 }).catch(() => {});
+}
 const said = async (page) => (await page.locator('main [role="alert"], main [role="status"]').allInnerTexts()).join(" | ");
 const fill = async (page, fields) => {
   for (const [name, value] of Object.entries(fields)) await page.fill(`main [name="${name}"]`, value);
@@ -179,6 +213,14 @@ const fill = async (page, fields) => {
 const press = (page, label) => page.locator("main").getByRole("button", { name: label, exact: true }).first().click();
 /** A part of a page, by the heading that names it. */
 const part = (page, id) => page.locator(`section[aria-labelledby="${id}"]`);
+// The month it is in Mauritius, the ones after it, and a month in words.
+const month = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
+const monthAfter = (m, by = 1) => {
+  const at = Number(m.slice(0, 4)) * 12 + Number(m.slice(5, 7)) - 1 + by;
+  return `${Math.floor(at / 12)}-${String((at % 12) + 1).padStart(2, "0")}`;
+};
+const monthName = (m) => `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][Number(m.slice(5, 7)) - 1]} ${m.slice(0, 4)}`;
+const next = monthAfter(month);
 /** Wait until the form's answer is on the page. */
 const answered = (page) => page.waitForFunction(() => !document.querySelector("main button[disabled]"), null, { timeout: 15000 }).catch(() => {});
 
@@ -300,12 +342,19 @@ const alice = await person();
   await page.waitForSelector('main [role="status"]', { timeout: 20000 }).catch(() => {});
   const hash = sql(`select confirmation_token from auth.users where email = '${ALICE.email}'`);
   const fresh = await person();
+  // A mail program that opens every link before its reader does: it asks for the address, follows
+  // where it leads, and presses nothing. The link must still work for the person afterwards.
+  const scanned = await fetch(`${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`, { redirect: "follow" });
+  check("confirm: a link that is only opened waits on a page with a button, and is not used up", scanned.ok && new URL(scanned.url).pathname === "/auth/continue" && /Confirm and sign in/.test(await scanned.text()) && sql(`select (email_confirmed_at is null)::text from auth.users where email = '${ALICE.email}'`) === "true", scanned.url);
   await go(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`);
+  check("confirm: nobody is signed in until the button is pressed", new URL(fresh.page.url()).pathname === "/auth/continue" && !(await fresh.context.cookies()).some((c) => c.name === "biznes-in"), fresh.page.url());
+  await audit(fresh.page, "confirm-continue");
+  await openLink(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`);
   check("confirm: a token_hash link works in a browser that never asked for it", new URL(fresh.page.url()).pathname === "/dashboard/new", fresh.page.url());
-  await go(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
+  await openLink(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
   await fresh.context.close();
   const again = await person();
-  await go(again.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
+  await openLink(again.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
   check("confirm: a link used twice is refused, with a way on", new URL(again.page.url()).pathname === "/account/sign-in" && /expired|already been used/i.test(await said(again.page)), again.page.url());
   await again.context.close();
 
@@ -864,6 +913,32 @@ const claimedBiz = sql(`select id from public.businesses where listing_id = '${c
   await audit(page, "menu");
   const seen = await asVisitor(`menu_items?select=name,price_mur&business_id=eq.${cakes}&order=name`);
   check("public: a visitor is given the menu of a live food outlet on a paid plan", seen.length === 3 && seen[0].name === "Alouda" && seen[0].price_mur === 60, JSON.stringify(seen).slice(0, 200));
+  // Pictures to go with the business when it is taken out: a cover on its page, and two
+  // advertisements with a picture each, one waiting to be checked and one already approved.
+  await go(page, `${origin}/dashboard/${cakes}/showcase`);
+  await part(page, "cover").locator('input[type="file"]').setInputFiles(PICTURES.mislabelled);
+  await Promise.all([page.waitForURL(/said=cover/, { timeout: 20000 }).catch(() => {}), part(page, "cover").locator('button[type="submit"]', { hasText: "cover" }).click()]);
+  for (const headline of ["Cakes to order", "Napolitaines by the dozen"]) {
+    await go(page, `${origin}/dashboard/${cakes}/ads`);
+    const draft = part(page, "new-ad");
+    await draft.locator('[name="headline"]').fill(headline);
+    await draft.locator('[name="place"]').selectOption("food");
+    await draft.locator("label.chip", { hasText: monthName(monthAfter(month, 2)) }).click();
+    await draft.getByRole("button", { name: "Draft this advertisement" }).click();
+    await page.waitForFunction((h) => [...document.querySelectorAll('main li[id^="ad-"]')].some((li) => li.textContent?.includes(h)), headline, { timeout: 15000 }).catch(() => {});
+    const id = sql(`select id from public.ads where headline = '${headline}'`);
+    await page.locator(`#ad-${id}`).locator('input[type="file"]').setInputFiles(PICTURES.art);
+    await Promise.all([page.waitForURL(new RegExp(`said=picture&at=${id}`), { timeout: 20000 }).catch(() => {}), page.locator(`#ad-${id}`).locator('button[type="submit"]', { hasText: "Add this picture" }).click()]);
+    await page.locator(`#ad-${id}`).getByRole("button", { name: "Send it in" }).click();
+    await page.waitForFunction((id) => /With us to check/.test(document.getElementById(`ad-${id}`)?.textContent ?? ""), id, { timeout: 15000 }).catch(() => {});
+  }
+  const cakeAds = sql(`select string_agg(id::text, ',' order by headline) from public.ads where business_id = '${cakes}'`).split(",");
+  // The second is approved, as an admin would: its picture is then not its owner's to touch.
+  sql(`update public.ads set status = 'approved' where id = '${cakeAds[1]}'`);
+  check("pictures: the business to be taken out has a cover and two advertisements with a picture each", kept(`business/${cakes}`) === 1 && kept(`ads/${cakeAds[0]}`) === 1 && kept(`ads/${cakeAds[1]}`) === 1 && sql(`select string_agg(status, ',' order by headline) from public.ads where business_id = '${cakes}'`) === "submitted,approved", `${kept(`business/${cakes}`)} ${kept(`ads/${cakeAds[0]}`)} ${kept(`ads/${cakeAds[1]}`)}`);
+  check("pictures: a PNG sent as a JPEG is kept as a PNG, by name and by the kind Storage records", sql(`select (name ~ '[.]png$')::text || ',' || (metadata ->> 'mimetype') from storage.objects where bucket_id = 'media' and name like 'business/${cakes}/%'`) === "true,image/png", sql(`select name || ' ' || (metadata ->> 'mimetype') from storage.objects where bucket_id = 'media' and name like 'business/${cakes}/%'`));
+  check("pictures: each file says who uploaded it, which is what the limits count by", sql(`select count(*) from storage.objects where bucket_id = 'media' and name like 'ads/${cakeAds[1]}/%' and owner_id = (select id::text from public.profiles where email = '${CAROL.email}')`) === "1");
+
   sql(`update public.businesses set plan_until = current_date - 1 where id = '${cakes}'`);
   const lapsed = await asVisitor(`menu_items?select=name&business_id=eq.${cakes}`);
   const closed = await go(page, `${origin}/dashboard/${cakes}/menu`);
@@ -877,17 +952,11 @@ const claimedBiz = sql(`select id from public.businesses where listing_id = '${c
   await page.locator('main [name="sure"]').check();
   await Promise.all([page.waitForURL(/\/dashboard\?said=removed/, { timeout: 15000 }).catch(() => {}), press(page, "Remove it for good")]);
   check("owner: and then takes it out for good, with its menu", sql(`select count(*) from public.businesses where id = '${cakes}'`) === "0" && sql(`select count(*) from public.menu_items`) === "0" && /has been taken out/.test(await said(page)), page.url());
+  check("pictures: its pictures went with it: the cover, the picture of the advertisement that was waiting, and the approved one's once its row was gone", kept(`business/${cakes}`) === 0 && kept(`ads/${cakeAds[0]}`) === 0 && kept(`ads/${cakeAds[1]}`) === 0 && sql(`select count(*) from public.ads where business_id = '${cakes}'`) === "0", `${kept(`business/${cakes}`)} ${kept(`ads/${cakeAds[0]}`)} ${kept(`ads/${cakeAds[1]}`)}`);
 }
 
 // ---------------------------------------------------------------------------------------------
 // 6g. An advertisement: drafted by the owner, checked by an admin, paid, and shown in its place.
-const month = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
-const monthAfter = (m, by = 1) => {
-  const at = Number(m.slice(0, 4)) * 12 + Number(m.slice(5, 7)) - 1 + by;
-  return `${Math.floor(at / 12)}-${String((at % 12) + 1).padStart(2, "0")}`;
-};
-const monthName = (m) => `${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][Number(m.slice(5, 7)) - 1]} ${m.slice(0, 4)}`;
-const next = monthAfter(month);
 let adId = "";
 {
   const { page } = alice;
@@ -905,10 +974,11 @@ let adId = "";
   await draft.locator('[name="line"]').fill("Book a chair at Zanzibar Hair Studio, Curepipe.");
   await draft.locator('[name="place"]').selectOption("home");
   await draft.locator("label.chip", { hasText: monthName(next) }).click();
+  await draft.locator("label.chip", { hasText: "Your own website" }).click();
   await draft.getByRole("button", { name: "Draft this advertisement" }).click();
   await page.waitForSelector('main li[id^="ad-"]', { timeout: 15000 }).catch(() => {});
   adId = sql(`select id from public.ads where place = 'home'`);
-  check("ads: drafted, for the place and the month chosen", sql(`select status || '|' || place || '|' || array_to_string(months, ',') || '|' || link_to || '|' || paid from public.ads where id = '${adId}'`) === `draft|home|${next}|page|false`, sql(`select status || '|' || place || '|' || array_to_string(months, ',') from public.ads`));
+  check("ads: drafted, for the place and the month chosen, to lead to the business's own website", sql(`select status || '|' || place || '|' || array_to_string(months, ',') || '|' || link_to || '|' || paid || '|' || link_url from public.ads where id = '${adId}'`) === `draft|home|${next}|website|false|`, sql(`select status || '|' || place || '|' || array_to_string(months, ',') from public.ads`));
   const card = () => page.locator(`#ad-${adId}`);
   check("ads: the draft is shown as it will look, marked Sponsored, with no price invented", /Sponsored/.test(await card().innerText()) && /Price on request/.test(await card().innerText()) && /Draft/.test(await card().innerText()));
   await card().getByRole("button", { name: "Send it in" }).click();
@@ -925,7 +995,7 @@ let adId = "";
   await go(admin, `${origin}/admin/ads`);
   const queue = part(admin, "queue");
   const waiting = await queue.innerText();
-  check("admin ads: it waits in the queue as it will look, with its owner to reach", /Braids from Rs 400 this summer/.test(waiting) && /Sponsored/.test(waiting) && waiting.includes(ALICE.email) && /Price on request/.test(waiting) && /The first screen/.test(waiting), waiting.slice(0, 300));
+  check("admin ads: it waits in the queue as it will look, with its owner to reach and the address it would lead to", /Braids from Rs 400 this summer/.test(waiting) && /Sponsored/.test(waiting) && waiting.includes(ALICE.email) && /Price on request/.test(waiting) && /The first screen/.test(waiting) && /Their own website, zanzibar-hair\.mu/.test(waiting) && (await queue.locator("img.ad-picture").getAttribute("src"))?.includes("?v="), waiting.slice(0, 400));
   await audit(admin, "admin-ads-queue");
   await queue.getByRole("button", { name: "Decline" }).click();
   await admin.waitForSelector('main [name="reason"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
@@ -938,9 +1008,25 @@ let adId = "";
   await card().getByRole("button", { name: "Send it in" }).click();
   await page.waitForFunction((id) => /With us to check/.test(document.getElementById(`ad-${id}`)?.textContent ?? ""), adId, { timeout: 15000 }).catch(() => {});
   await go(admin, `${origin}/admin/ads`);
+  // The admin's page is open on the advertisement as it was sent. Behind it the owner takes it
+  // back, changes its words and sends it in again. Approve, pressed on the old page, must not land.
+  await card().getByRole("button", { name: "Take it back" }).click();
+  await page.waitForFunction((id) => /Draft/.test(document.getElementById(`ad-${id}`)?.querySelector(".tag")?.textContent ?? ""), adId, { timeout: 15000 }).catch(() => {});
+  await card().locator("summary", { hasText: "Change its words" }).click();
+  await card().locator('[name="line"]').fill("Words the admin never saw.");
+  await card().getByRole("button", { name: "Save this advertisement" }).click();
+  await card().locator('form [role="status"]').first().waitFor({ timeout: 15000 }).catch(() => {});
+  await card().getByRole("button", { name: "Send it in" }).click();
+  await page.waitForFunction((id) => /With us to check/.test(document.getElementById(`ad-${id}`)?.textContent ?? ""), adId, { timeout: 15000 }).catch(() => {});
+  check("ads: behind the admin's page, the owner has changed the advertisement and sent it in again", sql(`select status || '|' || line from public.ads where id = '${adId}'`) === "submitted|Words the admin never saw." && !/never saw/.test(await part(admin, "queue").innerText()));
+  await part(admin, "queue").getByRole("button", { name: "Approve" }).click();
+  await admin.waitForSelector('section[aria-labelledby="queue"] [role="alert"]', { timeout: 15000 }).catch(() => {});
+  check("admin ads: Approve on the page as it was is refused: the advertisement has changed, and the admin is asked to look again", /has changed since the page was opened/.test(await part(admin, "queue").innerText()) && sql(`select status from public.ads where id = '${adId}'`) === "submitted", (await part(admin, "queue").innerText()).slice(0, 300));
+  await admin.waitForFunction(() => /never saw/.test(document.querySelector('section[aria-labelledby="queue"]')?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("admin ads: the page is drawn again with the advertisement as it now is", /Words the admin never saw/.test(await part(admin, "queue").innerText()));
   await part(admin, "queue").getByRole("button", { name: "Approve" }).click();
   await admin.waitForFunction(() => /Nothing to check/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
-  check("admin ads: approved, and not yet paid", sql(`select status || '|' || paid || '|' || reason from public.ads where id = '${adId}'`) === "approved|false|" && (await asVisitor("ads?select=id")).length === 0);
+  check("admin ads: approved once it was looked at again, and not yet paid; where it leads is copied onto it", sql(`select status || '|' || paid || '|' || reason || '|' || link_url from public.ads where id = '${adId}'`) === "approved|false||https://zanzibar-hair.mu/" && (await asVisitor("ads?select=id")).length === 0, sql(`select status || '|' || link_url from public.ads where id = '${adId}'`));
   const row = () => part(admin, "all").locator("article", { hasText: "Braids from Rs 400" });
   await row().getByRole("button", { name: /Mark paid/ }).click();
   await admin.waitForFunction(() => /Mark not paid/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
@@ -957,9 +1043,30 @@ let adId = "";
   await go(admin, `${origin}/admin/ads`);
   const home = admin.locator('[data-place="home"]');
   const shown = await home.innerText();
-  check("ads: approved, paid and in its month, it is shown in its place through AdSlot, marked Sponsored", /Sponsored/.test(shown) && /Braids from Rs 400 this summer/.test(shown) && /Zanzibar Hair Studio/.test(shown) && (await home.locator('a[rel~="sponsored"]').getAttribute("href").catch(() => "")) === `/biz/${scratchSlug}` && (await home.locator("img.ad-picture").count()) === 1, shown);
+  check("ads: approved, paid and in its month, it is shown in its place through AdSlot, marked Sponsored", /Sponsored/.test(shown) && /Braids from Rs 400 this summer/.test(shown) && /Zanzibar Hair Studio/.test(shown) && (await home.locator('a[rel~="sponsored"]').getAttribute("href").catch(() => "")) === "https://zanzibar-hair.mu/" && (await home.locator("img.ad-picture").count()) === 1, shown);
+  // The owner changes the business's website after the approval. The advertisement does not follow.
+  await go(page, `${origin}/dashboard/${scratch}`);
+  await page.locator('main [name="website"]').fill("https://somewhere-else.example/");
+  await press(page, "Save the details");
+  await page.waitForFunction(() => /Saved/.test(document.querySelector("main form [role=status]")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  await go(admin, `${origin}/admin/ads`);
+  check("ads: when its owner changes the business's website afterwards, the advertisement still leads where it was approved to lead", sql(`select b.website || '|' || a.link_url from public.ads a join public.businesses b on b.id = a.business_id where a.id = '${adId}'`) === "https://somewhere-else.example/|https://zanzibar-hair.mu/" && (await admin.locator('[data-place="home"] a[rel~="sponsored"]').getAttribute("href").catch(() => "")) === "https://zanzibar-hair.mu/", sql(`select b.website || '|' || a.link_url from public.ads a join public.businesses b on b.id = a.business_id where a.id = '${adId}'`));
   check("ads: the other places stay empty, and the page counts what runs", /Nothing is running here this month/.test(await admin.locator('[data-place="results"]').innerText()) && /1/.test(await admin.locator("main .stat", { hasText: "Running now" }).innerText()));
   await audit(admin, "admin-ads");
+  check("admin ads: the record holds what the admin did, and not each time the owner sent it in or took it back", sql(`select count(*) from public.audit_log where action in ('ad.submitted', 'ad.draft')`) === "0" && sql(`select count(*) from public.audit_log where action = 'ad.approved' and detail ->> 'headline' = 'Braids from Rs 400 this summer'`) === "1", sql(`select string_agg(action, ',' order by id) from public.audit_log where action like 'ad.%'`));
+  // A month that is nothing at all. The database no longer takes one: asked over the API as the
+  // owner, it is dropped. And a row that held one, as a row from before might, does not take the
+  // admin's page down: put there by force, with the two things that now prevent it set aside.
+  const asOwner = { apikey: KEY, Authorization: `Bearer ${await tokenOf(page)}`, "Content-Type": "application/json", Prefer: "return=representation" };
+  const made = await fetch(`${API}/rest/v1/ads`, { method: "POST", headers: asOwner, body: JSON.stringify({ business_id: scratch, headline: "A null among its months", place: "results", months: [monthAfter(month, 3), null] }) });
+  const [nulled] = made.ok ? await made.json() : [];
+  check("ads: a null sent among the months is dropped by the database", made.status === 201 && JSON.stringify(nulled?.months) === JSON.stringify([monthAfter(month, 3)]), `${made.status} ${JSON.stringify(nulled?.months)}`);
+  sql(`alter table public.ads disable trigger ads_10_guard; alter table public.ads drop constraint ads_months_check; update public.ads set status = 'declined', reason = 'Forced, for the check.', months = array['${monthAfter(month, 3)}', null] where id = '${nulled?.id}'`);
+  const withNull = await go(admin, `${origin}/admin/ads`);
+  const ownersToo = await go(page, `${origin}/dashboard/${scratch}/ads`);
+  check("ads: a row that holds a null month, forced in, takes down neither the admin's page nor the owner's", withNull?.status() === 200 && /A null among its months/.test(await part(admin, "all").innerText()) && ownersToo?.status() === 200 && /A null among its months/.test(await page.locator("main").innerText()), `${withNull?.status()} ${ownersToo?.status()}`);
+  sql(`delete from public.ads where id = '${nulled?.id}'; alter table public.ads add constraint ads_months_check check (cardinality(months) between 1 and 12 and private.are_months(months)); alter table public.ads enable trigger ads_10_guard`);
+  await go(admin, `${origin}/admin/ads`);
   const open = await asVisitor("ads?select=headline,place");
   check("public: a visitor is given the advertisement, and only that one", open.length === 1 && open[0].headline === "Braids from Rs 400 this summer", JSON.stringify(open).slice(0, 200));
   await go(page, `${origin}/dashboard/${scratch}/ads`);
@@ -1010,10 +1117,31 @@ let adId = "";
   await join.getByRole("button", { name: "Join the list" }).click();
   await join.locator('[role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
   check("subscribe: joined, for the pocket guide alone, and told what will be sent", sql(`select email || '|' || wants_guide || '|' || wants_magazine from public.subscribers`) === `${CAROL.email}|true|false` && /You are on the list/.test(await join.innerText()) && /the pocket guide to/.test(await join.innerText()), await join.innerText());
-  const joined = API ? await fetch(`${API}/rest/v1/rpc/subscribe`, { method: "POST", headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ address: "Reader@Example.MU", guide: true, magazine: true }) }) : undefined;
-  check("subscribe: a visitor with no account joins through the database's own function, and cannot read the list", joined?.status === 204 && sql(`select count(*) from public.subscribers where email = 'reader@example.mu'`) === "1" && (await asVisitor("subscribers?select=email")).length === 0, joined?.status);
-  const twice = API ? await fetch(`${API}/rest/v1/rpc/subscribe`, { method: "POST", headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ address: CAROL.email, guide: true, magazine: true }) }) : undefined;
-  check("subscribe: joining twice keeps one row, with the newer wishes", twice?.status === 204 && sql(`select count(*) || '|' || bool_and(wants_magazine) from public.subscribers`) === "2|true");
+  await join.locator('[name="email"]').fill("o'neil@reader.mu");
+  await join.getByRole("button", { name: "Join the list" }).click();
+  await page.waitForSelector('main [name="email"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("subscribe: an address with a mark the list does not take is said on its field", (await join.locator('[name="email"][aria-invalid="true"]').count()) === 1 && sql(`select count(*) from public.subscribers`) === "1");
+
+  // Straight to the database's API with the public key, as anyone could. The stack asks for the
+  // site's word (scripts/accounts-stack.sh), so a call without it is refused whatever it asks.
+  const tries = () => Number(sql(`select count(*) from private.subscribe_tries`));
+  const before = tries();
+  const outside = await call("subscribe", { address: "outside@example.mu", guide: true, magazine: true });
+  const wrong = await call("subscribe", { address: "outside@example.mu", guide: true, magazine: true }, "not-the-word");
+  const order = await call("place_order", { lines: [{ id: "plan:go", qty: 1 }], buyer_name: "Out Side", buyer_phone: "+230 5123 0000" });
+  const leave = await call("unsubscribe", { leave_token: "00000000-0000-4000-8000-00000000dead" });
+  check("proof: a call to the API with the public key and no word is refused: joining, leaving and ordering alike", PROOF !== "" && [outside, wrong, order, leave].every((r) => r.status === 401 || r.status === 403) && sql(`select (select count(*) from public.subscribers where email = 'outside@example.mu') + (select count(*) from public.orders where name = 'Out Side')`) === "0" && tries() === before, [outside, wrong, order, leave].map((r) => r.status).join(" "));
+  const built = filesUnder(".next/static").concat(filesUnder(".next/server/app").filter((f) => /\.(html|rsc|body|meta)$/.test(f)));
+  const leaked = built.filter((f) => readFileSync(f).includes(PROOF));
+  check("proof: the word is in no file a browser is sent, script or page made ahead of time", PROOF !== "" && built.length > 50 && leaked.length === 0, `${built.length} files, in ${leaked.slice(0, 3).join(", ")}`);
+  check("proof: nor in a page as served, nor in what the header asks the server", !(await (await fetch(`${origin}/account/sign-in`)).text()).includes(PROOF) && !JSON.stringify(await (await carol.page.request.get(`${origin}/account/me`)).json()).includes(PROOF));
+
+  // With the word, as the site sends it: a new address and one already on the list are answered
+  // alike, and each call is counted once.
+  const joined = await call("subscribe", { address: "Reader@Example.MU", guide: true, magazine: true }, PROOF);
+  check("subscribe: a visitor with no account joins through the database's own function, and cannot read the list", joined.status === 204 && (await joined.text()) === "" && sql(`select count(*) from public.subscribers where email = 'reader@example.mu'`) === "1" && (await asVisitor("subscribers?select=email")).length === 0, joined.status);
+  const twice = await call("subscribe", { address: CAROL.email, guide: true, magazine: true }, PROOF);
+  check("subscribe: an address already on the list is answered exactly as a new one, keeps its one row with the newer wishes, and both calls are counted", twice.status === joined.status && (await twice.text()) === "" && sql(`select count(*) || '|' || bool_and(wants_magazine) from public.subscribers`) === "2|true" && tries() === before + 2, `${twice.status} ${tries() - before}`);
 
   await go(admin, `${origin}/admin/subscribers`);
   const text = await admin.locator("main").innerText();
@@ -1022,7 +1150,9 @@ let adId = "";
   const file = await admin.request.get(`${origin}/admin/subscribers/export?want=guide`);
   const body = await file.text();
   const token = sql(`select token from public.subscribers where email = '${CAROL.email}'`);
-  check("admin subscribers: the list as a file, each row with its own link to leave", file.status() === 200 && /text\/csv/.test(file.headers()["content-type"] ?? "") && /attachment; filename="subscribers-guide-/.test(file.headers()["content-disposition"] ?? "") && body.includes("Email address,Pocket guide,Magazine,Joined,Link to leave the list") && body.includes(`${CAROL.email},yes,yes,`) && body.includes(`/unsubscribe?token=${token}`) && body.trim().split("\n").length === 3, body.slice(0, 300));
+  check("admin subscribers: the list as a file, each row with its own link to leave", file.status() === 200 && /text\/csv/.test(file.headers()["content-type"] ?? "") && /attachment; filename="subscribers-guide-/.test(file.headers()["content-disposition"] ?? "") && body.includes('"Email address","Pocket guide","Magazine","Joined","Link to leave the list"') && body.includes(`"${CAROL.email}","yes","yes",`) && body.includes(`/unsubscribe?token=${token}"`) && body.trim().split("\n").length === 3, body.slice(0, 300));
+  const cells = body.trim().split("\n").flatMap((line) => line.replace(/^\uFEFF/, "").match(/("([^"]|"")*"|[^,]*)(,|$)/g) ?? []).map((c) => c.replace(/,$/, "")).filter((c) => c !== "");
+  check("admin subscribers: every cell of the file is in quotation marks, so a cell stays one cell whatever a spreadsheet splits on", cells.length === 15 && cells.every((c) => /^"([^"]|"")*"$/.test(c)), cells.slice(0, 6).join(" "));
   check("admin subscribers: the file is not there for anyone else", (await visitor.page.request.get(`${origin}/admin/subscribers/export`)).status() === 404 && (await carol.page.request.get(`${origin}/admin/subscribers/export`)).status() === 404 && (await go(carol.page, `${origin}/admin/subscribers`))?.status() === 404);
 
   await go(visitor.page, `${origin}/unsubscribe?token=${token}`);
@@ -1259,6 +1389,30 @@ let adId = "";
   check("owner: is told, with the admin's note, and cannot advertise meanwhile", /Reported closed/.test(await page.locator("main").innerText()) && /Suspended/.test(await page.locator("main").innerText()) && !tabs.includes("Advertising"), tabs.join("|"));
   await go(page, `${origin}/dashboard`);
   check("dashboard: the card says what to do about it", /Write to us to put it right/.test(await page.locator("main article", { hasText: "Zanzibar" }).innerText()));
+
+  // An admin who is not its owner removes pictures: one from a business's page, and an advertisement's.
+  const boss = owner.page;
+  const onPage = () => Number(sql(`select (cover <> '')::int + cardinality(photos) from public.showcases where business_id = '${scratch}'`));
+  const [had, files] = [onPage(), kept(`business/${scratch}`)];
+  await go(boss, `${origin}/admin?q=zanzibar`);
+  const found = part(boss, "every").locator("details", { hasText: "Zanzibar Hair Studio" });
+  await found.locator("summary").click();
+  check("admin: the pictures on a business's page are shown to an admin", (await found.locator("img.thumb").count()) === had && had === 3, `${had} on the page, ${files} files`);
+  await found.getByRole("button", { name: /^Remove\s*: picture 1 of/ }).click();
+  for (let i = 0; i < 40 && onPage() === had; i++) await sleep(250);
+  for (let i = 0; i < 40 && kept(`business/${scratch}`) === files; i++) await sleep(250);
+  check("admin: removes one, from the page and from the bucket, and it is on the record", onPage() === had - 1 && kept(`business/${scratch}`) === files - 1 && sql(`select cover from public.showcases where business_id = '${scratch}'`) === "" && sql(`select count(*) from public.audit_log a join public.profiles p on p.id = a.actor where a.action = 'business.picture_removed' and p.email = '${OWNER.email}'`) === "1", `${onPage()} on the page, ${kept(`business/${scratch}`)} files`);
+  await go(boss, `${origin}/admin/ads`);
+  const braids = part(boss, "all").locator("article", { hasText: "Braids from Rs 400" });
+  await braids.locator("summary", { hasText: "Its picture" }).click();
+  await braids.getByRole("button", { name: /^Remove its picture/ }).click();
+  await boss.waitForSelector('section[aria-labelledby="all"] [name="why"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("admin: taking the picture off an advertisement must say why", (await braids.locator('[name="why"][aria-invalid="true"]').count()) === 1 && kept(`ads/${adId}`) === 1);
+  await braids.locator('[name="why"]').fill("The picture is not yours to use.");
+  await braids.getByRole("button", { name: /^Remove its picture/ }).click();
+  for (let i = 0; i < 40 && kept(`ads/${adId}`) > 0; i++) await sleep(250);
+  check("admin: the picture is removed from the bucket, the advertisement comes down, and its owner is told why", kept(`ads/${adId}`) === 0 && sql(`select status || '|' || artwork || '|' || reason || '|' || link_url from public.ads where id = '${adId}'`) === "declined||The picture is not yours to use.|" && sql(`select count(*) from public.audit_log where action = 'ad.picture_removed'`) === "1", sql(`select status || '|' || artwork || '|' || reason from public.ads where id = '${adId}'`));
+  await audit(boss, "admin-ads-picture-removed");
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1302,7 +1456,7 @@ let adId = "";
   await asker.page.waitForSelector('main form [role="status"]', { timeout: 20000 }).catch(() => {});
   const hash = sql(`select recovery_token from auth.users where email = '${CAROL.email}'`);
   const other = await person();
-  await go(other.page, `${origin}/auth/confirm?token_hash=${hash}&type=recovery&next=/account/update-password`);
+  await openLink(other.page, `${origin}/auth/confirm?token_hash=${hash}&type=recovery&next=/account/update-password`);
   check("reset: a token_hash link opens the page to choose a new password, in another browser", Boolean(hash) && new URL(other.page.url()).pathname === "/account/update-password" && /carol@biznes\.test/.test(await other.page.locator("main").innerText()), other.page.url());
   await asker.context.close();
   await other.context.close();
@@ -1323,6 +1477,32 @@ let adId = "";
   await Promise.all([page.waitForURL(/\/account$/, { timeout: 15000 }).catch(() => {}), page.locator("main button[type=submit]").click()]);
   check("no script: signing in works", new URL(page.url()).pathname === "/account", page.url());
   await context.close();
+}
+
+// ---------------------------------------------------------------------------------------------
+// 10. The upload routes: a form that does not say how large it is, and too many from one connection.
+{
+  const cookie = (await owner.context.cookies()).map((c) => `${c.name}=${c.value}`).join("; ");
+  const unsized = await fetch(`${origin}/admin/settings/upload`, {
+    method: "POST",
+    headers: { origin, cookie, "content-type": "multipart/form-data; boundary=x" },
+    // A body sent as it comes carries no length.
+    body: new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode('--x\r\nContent-Disposition: form-data; name="label"\r\n\r\nNo length\r\n--x--\r\n'));
+        controller.close();
+      },
+    }),
+    duplex: "half",
+    redirect: "manual",
+  });
+  check("upload: a form that does not say how large it is is not read", unsized.status === 303 && /problem=failed/.test(unsized.headers.get("location") ?? ""), `${unsized.status} ${unsized.headers.get("location")}`);
+  const answers = [];
+  for (let i = 0; i < 31; i++) {
+    const sent = await owner.page.request.post(`${origin}/admin/settings/upload`, { headers: { origin }, multipart: { label: "One of many", file: { name: "p.png", mimeType: "image/png", buffer: Buffer.from("not a picture at all") } }, maxRedirects: 0 });
+    answers.push(sent.headers().location ?? "");
+  }
+  check("upload: after thirty in ten minutes from one connection, the next is asked to wait, and nothing was kept", /problem=kind/.test(answers[0]) && /problem=busy/.test(answers[30]) && sql(`select count(*) from public.site_pictures`) === "0", `${answers[0]} ... ${answers[30]}`);
 }
 
 check("no page raised a script error", errors.length === 0, errors.join(" | "));

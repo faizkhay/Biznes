@@ -10,10 +10,10 @@ import { Chevron } from "@/components/Icons";
 import { placePrice } from "@/lib/accounts/ads";
 import { ownBusiness } from "@/lib/accounts/business";
 import { accountsOn, mediaUrl } from "@/lib/accounts/config";
-import { PICTURE_SAYS, type PictureProblem } from "@/lib/accounts/media";
+import { freshUrl, PICTURE_SAYS, type PictureProblem } from "@/lib/accounts/media";
 import { owned } from "@/lib/accounts/owned";
 import { db } from "@/lib/accounts/server";
-import { AD_PLACES, AD_STATE_NAMES, adPlace, adState, monthAfter, monthName, rupees, thisMonth, type Ad } from "@/lib/accounts/types";
+import { AD_PLACES, AD_STATE_NAMES, adPlace, adState, monthAfter, monthName, monthNames, rupees, soundAd, thisMonth, type Ad } from "@/lib/accounts/types";
 import { moveAd, saveAd } from "../../ad-actions";
 
 export const metadata: Metadata = { title: "Advertising", robots: { index: false, follow: false } };
@@ -54,7 +54,7 @@ export default async function AdsPage({ params, searchParams }: { params: Promis
   const { said, problem, at } = await searchParams;
   const supabase = await db();
   const [{ data: rows }, shown] = await Promise.all([supabase.from("ads").select("*").eq("business_id", b.id).order("created_at", { ascending: false }).limit(60), owned()]);
-  const ads = (rows ?? []) as Ad[];
+  const ads = ((rows ?? []) as Ad[]).map(soundAd);
   const month = thisMonth();
   // The six months to come. Never the one that has begun.
   const coming = [1, 2, 3, 4, 5, 6].map((n) => monthAfter(month, n)).map((m) => ({ value: m, label: monthName(m) }));
@@ -62,7 +62,9 @@ export default async function AdsPage({ params, searchParams }: { params: Promis
   const page = shown.byId.get(b.id)?.path ?? "/";
   const links = [{ value: "page", label: "Your page on biznes.mu" }, ...(b.website ? [{ value: "website", label: "Your own website" }] : [])];
   const wrong = problem && problem in PICTURE_SAYS ? PICTURE_SAYS[problem as PictureProblem] : undefined;
-  const preview = (ad: Ad) => ({ headline: ad.headline, line: ad.line, href: ad.link_to === "website" && b.website ? b.website : page, external: ad.link_to === "website" && Boolean(b.website), by: b.name, ...(ad.artwork ? { image: mediaUrl(ad.artwork) } : {}) });
+  /** Where an advertisement leads: once approved, the address it was approved with; until then, the business's own as it is now. */
+  const leadsTo = (ad: Ad) => (ad.status === "approved" ? (ad.link_url ?? "") : ad.link_to === "website" ? b.website : "");
+  const preview = (ad: Ad) => ({ headline: ad.headline, line: ad.line, href: leadsTo(ad) || page, external: Boolean(leadsTo(ad)), by: b.name, ...(ad.artwork ? { image: freshUrl(mediaUrl(ad.artwork), ad.updated_at) } : {}) });
 
   const fields = (ad?: Ad) => (
     <>
@@ -104,11 +106,15 @@ export default async function AdsPage({ params, searchParams }: { params: Promis
                   <dl className="facts body-3 mt-4">
                     <div className="contents">
                       <dt>Months</dt>
-                      <dd>{ad.months.map(monthName).join(", ")}</dd>
+                      <dd>{monthNames(ad.months)}</dd>
                     </div>
                     <div className="contents">
                       <dt>Price</dt>
                       <dd>{costOf(ad)}</dd>
+                    </div>
+                    <div className="contents">
+                      <dt>Leads to</dt>
+                      <dd className="break-all">{leadsTo(ad) || "Your page on biznes.mu"}</dd>
                     </div>
                     <div className="contents">
                       <dt>Where it stands</dt>
@@ -175,7 +181,7 @@ export default async function AdsPage({ params, searchParams }: { params: Promis
                       </ActionForm>
                     </div>
                   )}
-                  {ad.status === "approved" && <p className="caption-1 mt-4 text-ink-faint">An approved advertisement is changed by us. Write to us and we will.</p>}
+                  {ad.status === "approved" && <p className="caption-1 mt-4 text-ink-faint">An approved advertisement is changed by us, and it leads where it led when we approved it. Write to us and we will change it.</p>}
                 </li>
               );
             })}

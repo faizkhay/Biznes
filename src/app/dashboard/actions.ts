@@ -2,9 +2,10 @@
 
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { accountsOn, TAG_OWNED } from "@/lib/accounts/config";
+import { accountsOn, TAG_ADS, TAG_OWNED } from "@/lib/accounts/config";
 import { field, PHONE, SOON, TRY_AGAIN, typed, UUID, type FormState } from "@/lib/accounts/form";
 import { owned } from "@/lib/accounts/owned";
+import { emptyFolder } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
 import { isPaidPlan, isPlan, mobileNumber, type Viewer } from "@/lib/accounts/types";
@@ -119,9 +120,26 @@ export async function removeBusiness(_: FormState, data: FormData): Promise<Form
   if (!UUID.test(id)) return { message: TRY_AGAIN };
   if (data.get("sure") !== "on") return { errors: { sure: "Tick the box to say you are sure." } };
   const supabase = await db();
+  const { data: mine } = await supabase.from("businesses").select("id").eq("id", id).eq("owner_id", viewer.id).maybeSingle();
+  if (!mine) return { message: TRY_AGAIN };
+  // Its pictures go with it. The bucket lets an owner remove a picture while the business or the
+  // advertisement it belongs to is there, so they are removed first: the page's own, then each
+  // advertisement's (one that is waiting to be checked is taken back so the bucket lets go of it).
+  const { data: ads } = await supabase.from("ads").select("id, status, artwork").eq("business_id", id);
+  const adverts = (ads ?? []) as { id: string; status: string; artwork: string }[];
+  await emptyFolder(supabase, `business/${id}`);
+  for (const ad of adverts) {
+    if (ad.status === "submitted") await supabase.from("ads").update({ status: "draft" }).eq("id", ad.id).eq("business_id", id);
+    if (ad.status !== "approved") await emptyFolder(supabase, `ads/${ad.id}`, [ad.artwork]);
+  }
   const { data: gone, error } = await supabase.from("businesses").delete().eq("id", id).eq("owner_id", viewer.id).select("id");
   if (error || !gone?.length) return { message: TRY_AGAIN };
+  // An approved advertisement's picture could not be touched while it was approved. With the
+  // advertisement gone it is its uploader's to remove, and so is anything else left behind.
+  await emptyFolder(supabase, `business/${id}`);
+  for (const ad of adverts) await emptyFolder(supabase, `ads/${ad.id}`, [ad.artwork]);
   updateTag(TAG_OWNED);
+  updateTag(TAG_ADS);
   revalidatePath("/dashboard");
   redirect("/dashboard?said=removed");
 }

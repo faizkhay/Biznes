@@ -12,7 +12,7 @@ import { MEDIA_BUCKET, PICTURE_BYTES, PICTURE_TYPES } from "./config";
 
 export type Picture = { file: File; type: string; ext: string };
 /** Why a picture was not kept. Each has a sentence in PICTURE_SAYS. */
-export type PictureProblem = "none" | "big" | "kind" | "refused" | "failed" | "origin";
+export type PictureProblem = "none" | "big" | "kind" | "refused" | "failed" | "origin" | "busy";
 export const PICTURE_SAYS: Record<PictureProblem, string> = {
   none: "Choose a picture first.",
   big: "That picture is over 3 MB. Save it smaller, or choose another.",
@@ -20,6 +20,7 @@ export const PICTURE_SAYS: Record<PictureProblem, string> = {
   refused: "That picture cannot be kept here. The folder may be full, or this is not yours to change.",
   failed: "The picture could not be kept just now. Try again in a moment.",
   origin: "That did not come from this site. Open the page again and try once more.",
+  busy: "Too many pictures have come from this connection. Wait a few minutes, then try again.",
 };
 
 /**
@@ -44,11 +45,18 @@ export function backTo(path: string, said: Record<string, string> = {}): Respons
   return new Response(null, { status: 303, headers: { Location: `${page}${query ? `${page.includes("?") ? "&" : "?"}${query}` : ""}${anchor ? `#${anchor}` : ""}`, "Cache-Control": "private, no-store" } });
 }
 
-/** The posted form, unless it came from elsewhere or is plainly too large to hold one picture. */
+/**
+ * The posted form, unless it came from elsewhere, does not say how large it is, or is plainly too
+ * large to hold one picture. A browser always says how large a form is; a request that does not
+ * is read by nobody here, however much of it there turns out to be.
+ */
 export async function receiveForm(request: Request): Promise<{ form: FormData } | { problem: "origin" | "big" | "failed" }> {
   if (!sameOrigin(request)) return { problem: "origin" };
+  const said = request.headers.get("content-length");
+  const length = said === null || !/^\d{1,12}$/.test(said.trim()) ? NaN : Number(said);
+  if (!Number.isFinite(length)) return { problem: "failed" };
   // The picture and a few fields: nothing honest is larger than this.
-  if (Number(request.headers.get("content-length") ?? 0) > PICTURE_BYTES + 200_000) return { problem: "big" };
+  if (length > PICTURE_BYTES + 200_000) return { problem: "big" };
   try {
     return { form: await request.formData() };
   } catch {
@@ -72,10 +80,19 @@ export async function pictureFrom(form: FormData, field = "file"): Promise<{ pic
 /** A file name the bucket accepts: a word for what it is, and a few letters that are its own. */
 const fileName = (stem: string, ext: string) => `${stem}-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}.${ext}`;
 
-/** Keep a picture in a folder of the bucket, as the person the client is signed in as. Gives its path there. */
+/**
+ * Keep a picture in a folder of the bucket, as the person the client is signed in as. Gives its path there.
+ *
+ * The kind Storage records for a file is the kind the file itself carries: the library takes it
+ * from a File and passes over the `contentType` option. So the picture is handed on as a new File
+ * whose kind is the one read from its first bytes (pictureFrom), never the one its sender gave it.
+ * The bucket takes JPEG, PNG and WebP only. SVG must never be added to that list: an SVG can carry
+ * script, and these are served from the accounts project's own address.
+ */
 export async function keepPicture(supabase: SupabaseClient, folder: string, stem: string, picture: Picture): Promise<{ path: string } | { problem: "refused" | "failed" }> {
   const path = `${folder}/${fileName(stem, picture.ext)}`;
-  const { error } = await supabase.storage.from(MEDIA_BUCKET).upload(path, picture.file, { contentType: picture.type, cacheControl: "31536000", upsert: false });
+  const file = new File([picture.file], `p.${picture.ext}`, { type: picture.type });
+  const { error } = await supabase.storage.from(MEDIA_BUCKET).upload(path, file, { contentType: picture.type, cacheControl: "31536000", upsert: false });
   if (!error) return { path };
   const refused = /row-level security|Unauthorized|403|mime|exceeded|too large/i.test(`${error.message} ${(error as { statusCode?: string }).statusCode ?? ""}`);
   if (!refused) console.error(`[accounts] a picture could not be kept at ${path}: ${error.message}`);
@@ -84,6 +101,23 @@ export async function keepPicture(supabase: SupabaseClient, folder: string, stem
 
 /** Take pictures out of the bucket. What cannot be removed is left: nothing depends on it. */
 export async function dropPictures(supabase: SupabaseClient, paths: string[]): Promise<void> {
-  const real = paths.filter(Boolean);
+  const real = [...new Set(paths.filter(Boolean))];
   if (real.length) await supabase.storage.from(MEDIA_BUCKET).remove(real);
 }
+
+/**
+ * The pictures in a folder of the bucket ("ads/<id>", "business/<id>"), as far as the person
+ * asking may see them: the paths the bucket's own rules will also let them remove.
+ */
+export async function folderPictures(supabase: SupabaseClient, folder: string): Promise<string[]> {
+  const { data } = await supabase.storage.from(MEDIA_BUCKET).list(folder, { limit: 100 });
+  return (data ?? []).filter((entry) => entry.id).map((entry) => `${folder}/${entry.name}`);
+}
+
+/** Empty a folder of the bucket: every picture there that the person asking may remove. */
+export async function emptyFolder(supabase: SupabaseClient, folder: string, known: string[] = []): Promise<void> {
+  await dropPictures(supabase, [...known, ...(await folderPictures(supabase, folder))]);
+}
+
+/** A picture's address with the moment its record last changed, so a new file under an old name is never shown from a cache. */
+export const freshUrl = (url: string, stamp: string) => `${url}?v=${encodeURIComponent(stamp)}`;

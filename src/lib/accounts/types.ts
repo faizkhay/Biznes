@@ -114,7 +114,9 @@ export function monthAfter(month: string, by = 1): string {
 }
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 /** A month in words: "December 2026". */
-export const monthName = (month: string) => `${MONTH_NAMES[Number(month.slice(5, 7)) - 1] ?? ""} ${month.slice(0, 4)}`.trim();
+export const monthName = (month: unknown) => (typeof month === "string" && /^\d{4}-\d{2}/.test(month) ? `${MONTH_NAMES[Number(month.slice(5, 7)) - 1] ?? ""} ${month.slice(0, 4)}`.trim() : "");
+/** The months of a list, in words, with anything that is not a month left out: "December 2026, January 2027". */
+export const monthNames = (months: unknown) => (Array.isArray(months) ? months.map(monthName).filter(Boolean).join(", ") : "");
 
 /** What a paid plan adds to a business's page, as the database holds it (the pictures as paths in the bucket). */
 export type ShowcaseRow = { business_id: string; tagline: string; hours: string[]; cover: string; photos: string[] };
@@ -163,6 +165,8 @@ export type Ad = {
   headline: string;
   line: string;
   link_to: "page" | "website";
+  /** The business's website as it was when an admin approved the advertisement, when it leads there. */
+  link_url?: string;
   artwork: string;
   place: AdPlaceId;
   months: string[];
@@ -174,11 +178,16 @@ export type Ad = {
   created_at: string;
   updated_at: string;
 };
+/** An advertisement as read from the database, with only what is a month among its months: a page never falls over on a row that holds something else. */
+export const soundAd = (ad: Ad): Ad => ({ ...ad, months: (Array.isArray(ad.months) ? ad.months : []).filter((m): m is string => typeof m === "string" && /^\d{4}-\d{2}$/.test(m)) });
+
 /** The same rule as `ad_state` in the database: approved and paid in a month it names is running; past its last month it has ended. */
 export function adState(ad: Pick<Ad, "status" | "paid" | "months">, month = thisMonth()): AdState {
   if (ad.status !== "approved") return ad.status;
-  if (ad.months.every((m) => m < month)) return "ended";
-  return ad.paid && ad.months.includes(month) ? "running" : "approved";
+  // Only what is a month is read as one.
+  const months = (Array.isArray(ad.months) ? ad.months : []).filter((m): m is string => typeof m === "string");
+  if (months.every((m) => m < month)) return "ended";
+  return ad.paid && months.includes(month) ? "running" : "approved";
 }
 
 export const ORDER_STATUSES = ["placed", "awaiting_payment", "paid", "fulfilled", "cancelled"] as const;

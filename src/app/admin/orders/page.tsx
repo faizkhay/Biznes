@@ -18,6 +18,9 @@ export const metadata: Metadata = { title: "Orders", robots: { index: false, fol
 
 type Logged = { id: number; at: string; actor: string | null; action: string; detail: Record<string, unknown> };
 
+/** How many open orders one page shows. The page says how many more there are. */
+const SHOWN = 300;
+
 /** What can be done with an order from where it stands: the next step first. */
 const STEPS: Record<OrderStatus, { to: OrderStatus; label: string; busy: string; first?: boolean }[]> = {
   placed: [
@@ -50,7 +53,7 @@ export default async function AdminOrdersPage() {
   const supabase = await db();
   const tally = (status: string) => supabase.from("orders").select("id", { count: "exact", head: true }).eq("status", status);
   const [{ data: openRows }, { data: closedRows }, { data: copy }, { data: logRows }, counts] = await Promise.all([
-    supabase.from("orders").select("*").in("status", ["placed", "awaiting_payment", "paid"]).order("created_at").limit(100),
+    supabase.from("orders").select("*").in("status", ["placed", "awaiting_payment", "paid"]).order("created_at").limit(SHOWN),
     supabase.from("orders").select("*").in("status", ["fulfilled", "cancelled"]).order("updated_at", { ascending: false }).limit(50),
     supabase.from("catalogue").select("id, name, price_mur, per, active"),
     supabase.from("audit_log").select("id, at, actor, action, detail").or("action.like.order.*,action.eq.catalogue.set").order("id", { ascending: false }).limit(12),
@@ -72,7 +75,10 @@ export default async function AdminOrdersPage() {
   const { data: actorRows } = actors.length ? await supabase.from("profiles").select("id, name, email").in("id", actors) : { data: [] };
   const who = new Map((actorRows ?? []).map((p) => [p.id as string, (p.name as string) || (p.email as string)]));
   const apart = copy ? unlevel(siteCatalogue(), copy as CatalogueRow[]) : ["The catalogue could not be read"];
-  const n = (status: OrderStatus) => count(counts[ORDER_STATUSES.indexOf(status)]?.count ?? 0);
+  const tallied = (status: OrderStatus) => counts[ORDER_STATUSES.indexOf(status)]?.count ?? 0;
+  const n = (status: OrderStatus) => count(tallied(status));
+  // The open orders this page does not show: the queue is the oldest first, so these are the newest.
+  const behind = Math.max(0, tallied("placed") + tallied("awaiting_payment") + tallied("paid") - open.length);
   const lines = (o: Order) => items.filter((i) => i.order_id === o.id);
 
   return (
@@ -113,6 +119,11 @@ export default async function AdminOrdersPage() {
 
         <section aria-labelledby="queue" className="mt-12 scroll-mt-24">
           <PartHead id="queue" title="To deal with" line="The oldest first. A note you write is shown to the person, on their account, with the order." />
+          {behind > 0 && (
+            <Notice bad className="mt-6">
+              {count(behind)} more open {behind === 1 ? "order waits" : "orders wait"} behind the {count(open.length)} shown here, which are the oldest. Deal with these and the rest come up.
+            </Notice>
+          )}
           {open.length === 0 ? (
             <div className="mt-6">
               <Empty icon={<Cart />} title="No order is waiting">
