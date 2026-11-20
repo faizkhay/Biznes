@@ -39,8 +39,11 @@ export default function BusinessTaxPage() {
           <p className="body-2 note max-w-prose">The estimator takes its rates from the guide to business taxes, and they are not available just now, so it will not guess them. The Mauritius Revenue Authority publishes the rates in force.</p>
         ) : (
           <>
-            {/* The figures in use, in the guide's own words, with the day they were checked. */}
-            <dl className="facts body-3 mb-12 max-w-2xl">
+            <BusinessTaxCalc figures={figures} guide={guide.slug} vat={threshold} cps={cps} />
+
+            <h2 className="heading-3 mt-16">The figures it uses</h2>
+            {/* Below the calculator, so the calculator is the first thing on the screen. The figures in use, in the guide's own words, with the day they were checked. */}
+            <dl className="facts body-3 mt-6 max-w-2xl">
               <dt>{figures.rate.label}</dt>
               <dd>
                 {figures.rate.said}
@@ -60,8 +63,6 @@ export default function BusinessTaxPage() {
                 <Link href={`/learn/${guide.slug}`}>{guide.title}</Link>, checked {day(guide.checked)}. {inForce} The numbers in brackets beside a line are that guide&rsquo;s sources.
               </dd>
             </dl>
-
-            <BusinessTaxCalc figures={figures} guide={guide.slug} vat={threshold} cps={cps} />
 
             {/* The same sums for a visitor without script: a few companies worked out here, from the same figures. */}
             <noscript>

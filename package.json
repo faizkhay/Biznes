@@ -20,7 +20,8 @@
     "leads": "node scripts/leads.mjs",
     "pdf": "node scripts/pdf.mjs",
     "hero": "node scripts/hero-contrast.mjs",
-    "test:rls": "bash scripts/test-rls.sh"
+    "test:rls": "bash scripts/test-rls.sh",
+    "behaviour:tax": "node scripts/behaviour-tax.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

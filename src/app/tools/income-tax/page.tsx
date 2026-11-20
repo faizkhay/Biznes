@@ -32,8 +32,11 @@ export default function IncomeTaxPage() {
           <p className="body-2 note max-w-prose">The calculator takes its bands from the guide to personal income tax, and they are not available just now, so it will not guess them. The Mauritius Revenue Authority publishes the rates in force.</p>
         ) : (
           <>
-            {/* The figures in use, in the guide's own words, with the year they are for and the day they were checked. */}
-            <dl className="facts body-3 mb-12 max-w-2xl">
+            <IncomeTaxCalc figures={figures} guide={guide.slug} />
+
+            <h2 className="heading-3 mt-16">The figures it uses</h2>
+            {/* Below the calculator, so the calculator is the first thing on the screen. The figures in use, in the guide's own words, with the year they are for and the day they were checked. */}
+            <dl className="facts body-3 mt-6 max-w-2xl">
               {figures.year && (
                 <>
                   <dt>{figures.year.label}</dt>
@@ -58,8 +61,6 @@ export default function IncomeTaxPage() {
                 <Link href={`/learn/${guide.slug}`}>{guide.title}</Link>, checked {day(guide.checked)}. The numbers in brackets beside a line are that guide&rsquo;s sources.
               </dd>
             </dl>
-
-            <IncomeTaxCalc figures={figures} guide={guide.slug} />
 
             {/* The same sums for a visitor without script: a few salaries worked out here, from the same figures. */}
             <noscript>
