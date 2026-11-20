@@ -1286,6 +1286,29 @@
     background: var(--color-ink);
     color: var(--color-signal);
   }
+  /* The answer to a question, in the site's own words: the first thing under the search box. */
+  .answer {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--color-paper);
+    border: 1px solid color-mix(in srgb, var(--palette-royal) 22%, transparent);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 1px 2px rgb(10 22 57 / 0.04), 0 12px 32px -10px color-mix(in srgb, var(--palette-royal) 26%, transparent);
+  }
+  .answer .row-title::after {
+    border-radius: var(--radius-xl);
+  }
+  /* Pages on other sites that answer: folded away under the site's own answer. */
+  .elsewhere > summary {
+    display: inline-flex;
+  }
+  .elsewhere > summary svg {
+    transition: transform 200ms var(--ease-out);
+  }
+  .elsewhere[open] > summary svg {
+    transform: rotate(180deg);
+  }
+
   /* A guide's tile is blue, an official page's and a website's are quiet. */
   .listing-icon-guide {
     background: color-mix(in srgb, var(--palette-lagoon) 45%, var(--palette-white));

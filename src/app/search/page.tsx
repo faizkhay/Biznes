@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Pager } from "@/components/Bits";
 import Chart from "@/components/Chart";
 import Filters, { narrowQuery } from "@/components/Filters";
-import { Glass } from "@/components/Icons";
+import { Chevron, Glass } from "@/components/Icons";
 import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
 import SearchBox from "@/components/SearchBox";
@@ -50,7 +50,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const narrow = narrowOf(params);
   const narrowing = Boolean(narrow.phone || narrow.web || narrow.town);
   const a = search(q, { kind, page, narrow });
-  const { meta } = index();
+  const { meta, guides, guideBySlug } = index();
   const total = a.counts.listing + a.counts.guide + a.counts.official + a.counts.site;
   const href = (k?: Kind, n = 1, how: Narrow = narrow) => `/search?q=${encodeURIComponent(q)}${k ? `&kind=${k}` : ""}${narrowQuery(how)}${n > 1 ? `&page=${n}` : ""}`;
   const pagesOf = (k: Kind) => Math.ceil(a.counts[k] / PAGE_SIZE);
@@ -60,21 +60,43 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const says = `A chart of Mauritius with the ${count(a.points.length)} listings that answer this search lit.`;
   const onChart = `On the island: ${count(a.points.length)} of ${count(a.counts.listing)}.`;
 
+  // A question about how is answered first, in the site's own words: the fact or the passage that
+  // answers, large, with the article it is from. The other articles that answer follow it.
+  const answer = !a.who && !kind ? a.leads[0] : undefined;
+  // What to read next: the articles on the same shelf as the one that answered, or the first few.
+  const from = a.leads.map((lead) => (lead.href.startsWith("/learn/") ? guideBySlug.get(lead.href.slice(7).split(/[#?]/)[0]) : undefined)).find(Boolean);
+  const shown = new Set(a.leads.map((lead) => lead.href.split("#")[0]));
+  const more = [...guides.filter((g) => from && (g.shelf ?? "business") === (from.shelf ?? "business")), ...guides.filter((g) => !from || (g.shelf ?? "business") !== (from.shelf ?? "business"))].filter((g) => !shown.has(`/learn/${g.slug}`)).slice(0, 4);
+  const others = answer ? a.leads.slice(1) : a.leads;
   const leads = a.leads.length > 0 && (
     <section aria-labelledby="r-guides" className="mt-8">
       <h2 id="r-guides" className="label-1 pb-3 text-ink-faint">
-        {a.who ? "Also, from the guides" : "From the guides"}
+        {a.who ? "Also, from our articles" : answer ? "The answer, from our articles" : "From our articles"}
       </h2>
-      <ul className="rows">
-        {a.leads.map((lead) => (
-          <li key={lead.href}>
-            <LeadRow lead={lead} />
-          </li>
-        ))}
-      </ul>
+      {answer && (
+        <article className="answer">
+          <p className="body-1">{answer.line}</p>
+          <p className="body-3 mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-subtle">
+            <span className="label-1 tag">{answer.tag === "Guide" ? "Article" : answer.tag}</span>
+            <Link prefetch={false} href={answer.href} className="row-title title-2">
+              {answer.title}
+            </Link>
+            {answer.meta && <span className="caption-1 text-ink-faint">{answer.meta}</span>}
+          </p>
+        </article>
+      )}
+      {others.length > 0 && (
+        <ul className={`rows ${answer ? "mt-3" : ""}`}>
+          {others.map((lead) => (
+            <li key={lead.href}>
+              <LeadRow lead={lead} />
+            </li>
+          ))}
+        </ul>
+      )}
       {!kind && a.counts.guide > a.leads.length && (
         <Link prefetch={false} href={href("guide")} className="body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline">
-          All {count(a.counts.guide)} answers from the guides
+          All {count(a.counts.guide)} answers from our articles
         </Link>
       )}
       {kind === "guide" && <Pager page={page} pages={pagesOf("guide")} href={(n) => href("guide", n)} />}
@@ -197,6 +219,59 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
           {a.who && leads}
 
+          {/* Pages elsewhere: the official pages and the websites that answer. In the first view they
+              are folded away as references, so the site's own answer comes first; each has its own tab. */}
+          {!kind && a.official.length + a.sites.length > 0 ? (
+            <details className="elsewhere mt-10">
+              <summary className="filter body-3">
+                References elsewhere <span className="n data-2">{count(a.counts.official + a.counts.site)}</span> <Chevron />
+              </summary>
+              <div>
+          {a.official.length > 0 && (
+            <section aria-labelledby="r-official" className="mt-6">
+              <h2 id="r-official" className="label-1 pb-3 text-ink-faint">
+                Official pages
+              </h2>
+              <ul className="rows">
+                {a.official.map((o) => (
+                  <li key={o.url}>
+                    <OfficialRow official={o} />
+                  </li>
+                ))}
+              </ul>
+              {!kind && a.counts.official > a.official.length && (
+                <Link prefetch={false} href={href("official")} className="body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline">
+                  All {count(a.counts.official)} official pages that answer
+                </Link>
+              )}
+              {kind === "official" && <Pager page={page} pages={pagesOf("official")} href={(n) => href("official", n)} />}
+            </section>
+          )}
+
+          {a.sites.length > 0 && (
+            <section aria-labelledby="r-sites" className="mt-6">
+              <h2 id="r-sites" className="label-1 pb-3 text-ink-faint">
+                Mauritian websites
+              </h2>
+              <ul className="rows">
+                {a.sites.map((s) => (
+                  <li key={s.host}>
+                    <SiteRow site={s} />
+                  </li>
+                ))}
+              </ul>
+              {!kind && a.counts.site > a.sites.length && (
+                <Link prefetch={false} href={href("site")} className="body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline">
+                  All {count(a.counts.site)} websites that answer
+                </Link>
+              )}
+              {kind === "site" && <Pager page={page} pages={pagesOf("site")} href={(n) => href("site", n)} />}
+            </section>
+          )}
+              </div>
+            </details>
+          ) : (
+            <>
           {a.official.length > 0 && (
             <section aria-labelledby="r-official" className="mt-10">
               <h2 id="r-official" className="label-1 pb-3 text-ink-faint">
@@ -238,7 +313,33 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               {kind === "site" && <Pager page={page} pages={pagesOf("site")} href={(n) => href("site", n)} />}
             </section>
           )}
+            </>
+          )}
         </div>
+
+        {/* With no island to show, the side of the page offers what to read next on the site. */}
+        {!charted && total > 0 && more.length > 0 && (
+          <aside aria-labelledby="r-more" className="mt-12 chart:col-span-4 chart:col-start-9 chart:mt-0">
+            <div className="card sticky top-24">
+              <h2 id="r-more" className="label-1 text-ink-faint">
+                Keep reading
+              </h2>
+              <ul className="mt-2">
+                {more.map((g) => (
+                  <li key={g.slug} className="border-b border-line last:border-b-0">
+                    <Link prefetch={false} href={`/learn/${g.slug}`} className="block py-3 no-underline">
+                      <span className="title-2 block text-link">{g.title}</span>
+                      <span className="caption-1 mt-1 line-clamp-2 block text-ink-subtle">{g.summary}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link prefetch={false} href="/learn" className="body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline">
+                All articles and guides
+              </Link>
+            </div>
+          </aside>
+        )}
 
         {charted && (
           <aside className="hidden chart:col-span-5 chart:block">

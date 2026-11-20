@@ -63,7 +63,7 @@ export function LeadRow({ lead }: { lead: Lead }) {
         <Icon />
       </span>
       <div className="min-w-0">
-        <p className="label-1 text-ink-faint">{lead.tag}</p>
+        <p className="label-1 text-ink-faint">{lead.tag === "Guide" ? "Article" : lead.tag}</p>
         <h3 className="title-1 mt-1">
           <Link prefetch={false} href={lead.href} className="row-title">
             {lead.title}

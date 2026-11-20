@@ -26,7 +26,7 @@ import { TOOLS } from "./tools";
 export type Kind = "listing" | "guide" | "official" | "site";
 export const KINDS: { id: Kind; label: string }[] = [
   { id: "listing", label: "Businesses" },
-  { id: "guide", label: "Guides" },
+  { id: "guide", label: "Articles" },
   { id: "official", label: "Official pages" },
   { id: "site", label: "Websites" },
 ];
