@@ -18,6 +18,7 @@ import { count, day } from "@/lib/format";
 import { index, type Listing } from "@/lib/index";
 import { breadcrumbs, itemList } from "@/lib/schema";
 import { narrowed, narrowOf, PAGE_SIZE } from "@/lib/search";
+import { pageMeta } from "@/lib/meta";
 
 type Params = { food?: string; type?: string; town?: string; phone?: string; web?: string; page?: string };
 
@@ -25,15 +26,9 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const params = await searchParams;
   const narrowing = Object.values(params).some(Boolean);
   const { listings } = food();
-  const description = `${count(listings.length)} places to eat and drink in Mauritius and Rodrigues: restaurants, snacks, cafés, bakeries and bars, by kind of food and by town, with telephone numbers and opening hours where known.`;
-  return {
-    title: `${BAZ.name}: ${BAZ.line.toLowerCase()}`,
-    description,
-    alternates: { canonical: "/baz-manzer" },
-    openGraph: { title: `${BAZ.name}: ${BAZ.line.toLowerCase()}`, description, url: "/baz-manzer" },
-    // A narrowed view is one of thousands: the page itself is the one to index.
-    ...(narrowing ? { robots: { index: false, follow: true } } : {}),
-  };
+  const description = `${count(listings.length)} places to eat and drink in Mauritius: restaurants, snacks, cafés, bakeries and bars, by kind of food and by town, with numbers and hours where known.`;
+  // A narrowed view is one of thousands: the page itself is the one to index.
+  return pageMeta({ title: `${BAZ.name}: ${BAZ.line.toLowerCase()}`, description, path: "/baz-manzer", index: !narrowing, drawn: true });
 }
 
 const chip = "body-3";

@@ -3,19 +3,20 @@ import { PageHead } from "@/components/Bits";
 import { Out } from "@/components/Icons";
 import { count, shortUrl } from "@/lib/format";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Official pages for business in Mauritius",
   description: "The government pages, registers and forms a business in Mauritius needs, by the body that publishes them: registration, tax, licences, permits, support.",
-  alternates: { canonical: "/official" },
-};
+  path: "/official",
+});
 
 export default function OfficialPage() {
   const { official } = index();
   const publishers = [...new Set(official.map((o) => o.publisher))].sort((a, b) => a.localeCompare(b));
   return (
     <>
-      <PageHead title="Official pages" lede={`${count(official.length)} pages, registers and forms from the bodies a business in Mauritius deals with. Each was read when a guide was written; the search finds them by what they are for.`} />
+      <PageHead here="/official" title="Official pages" lede={`${count(official.length)} pages, registers and forms from the bodies a business in Mauritius deals with. Each was read when a guide was written; the search finds them by what they are for.`} />
       <div className="shell">
         {official.length === 0 && <p className="body-2 text-ink-subtle">The list is gathered from the guides, which are being written.</p>}
         {publishers.map((publisher) => (

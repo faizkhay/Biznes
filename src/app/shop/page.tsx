@@ -8,14 +8,10 @@ import { PUBLICATIONS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { freeFor, monthName, offer, products, sponsorPages, sponsorship } from "@/lib/shop";
+import { pageMeta } from "@/lib/meta";
 
-const description = "The biznes.mu Pocket Guide: Mauritius, place by place, as a PDF for your phone. Renewed every month, every fact from an official source, and free in the weeks its sponsors pay for.";
-export const metadata: Metadata = {
-  title: PUBLICATIONS.guide.name,
-  description,
-  alternates: { canonical: "/shop" },
-  openGraph: { title: PUBLICATIONS.guide.name, description, url: "/shop" },
-};
+const description = "Mauritius, place by place, as a PDF for your phone. Renewed every month, every fact from an official source, and free in the weeks its sponsors pay for.";
+export const metadata: Metadata = pageMeta({ title: PUBLICATIONS.guide.name, description, path: "/shop", drawn: true });
 
 /** Parts of a page as a person says them: 0.125 is "an eighth of a page". */
 const share = (pages: number) => (pages >= 1 ? `${count(pages)} ${pages === 1 ? "page" : "pages"}` : pages === 0.5 ? "half a page" : pages === 0.25 ? "a quarter of a page" : pages === 0.125 ? "an eighth of a page" : `${pages} of a page`);
@@ -32,7 +28,7 @@ export default function ShopPage() {
   if (!p) {
     return (
       <>
-        <PageHead title={PUBLICATIONS.guide.name} path={[{ label: PUBLICATIONS.guide.short }]} lede="A guide to Mauritius for your phone, renewed every month." />
+        <PageHead here="/shop" title={PUBLICATIONS.guide.name} path={[{ label: PUBLICATIONS.guide.short }]} lede="A guide to Mauritius for your phone, renewed every month." />
         <div className="shell">
           <p className="body-2 text-ink-subtle">This month&rsquo;s edition is being made. It will be here shortly.</p>
         </div>
@@ -45,7 +41,7 @@ export default function ShopPage() {
   const steps = [...(rules?.free ?? [])].sort((a, b) => a.raised - b.raised);
   return (
     <>
-      <PageHead title={PUBLICATIONS.guide.name} path={[{ label: PUBLICATIONS.guide.short }]} lede="One guide to Mauritius, to keep on your phone and read on the road with no signal. A new edition every month, written the way the rest of biznes.mu is: from official pages, with every source listed at the back." />
+      <PageHead here="/shop" title={PUBLICATIONS.guide.name} path={[{ label: PUBLICATIONS.guide.short }]} lede="One guide to Mauritius, to keep on your phone and read on the road with no signal. A new edition every month, written the way the rest of biznes.mu is: from official pages, with every source listed at the back." />
       <div className="shell">
         <article className="grid items-start gap-x-16 gap-y-8 lg:grid-cols-12">
           <div className="lg:col-span-5">

@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import { IndexItem, PageHead } from "@/components/Bits";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
-  title: "Business directory",
+export const metadata: Metadata = pageMeta({
+  title: "Business directory of Mauritius",
   description: "Every kind of business and service listed in Mauritius, by category: shops, restaurants, hotels, health, banks, garages, trades, offices and public services.",
-  alternates: { canonical: "/directory" },
-};
+  path: "/directory",
+});
 
 export default function DirectoryPage() {
   const { groups, categories, meta } = index();
   return (
     <>
-      <PageHead title="The directory" lede={`${count(meta.listings.all)} businesses and services in ${count(categories.length)} categories. Choose a category, then narrow it to a town.`} />
+      <PageHead here="/directory" title="The directory" lede={`${count(meta.listings.all)} businesses and services in ${count(categories.length)} categories. Choose a category, then narrow it to a town.`} />
       <div className="shell">
         {groups.map((g) => (
           <section key={g.id} aria-labelledby={`g-${g.id}`} className="scroll-mt-8 grid gap-x-12 gap-y-4 border-t border-line py-10 md:grid-cols-12">

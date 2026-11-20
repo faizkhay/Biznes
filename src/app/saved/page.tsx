@@ -3,9 +3,10 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import SavedList from "@/components/SavedList";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 // A shortlist is one visitor's own, or one they were sent: never a page to index.
-export const metadata: Metadata = { title: "Saved", robots: { index: false, follow: true } };
+export const metadata: Metadata = pageMeta({ title: "Saved listings", description: "The listings you have saved on biznes.mu, kept in this browser, or a list someone has sent you.", path: "/saved", index: false });
 
 export default async function SavedPage({ searchParams }: { searchParams: Promise<{ ids?: string }> }) {
   const { byId } = index();

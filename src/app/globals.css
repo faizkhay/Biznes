@@ -2392,6 +2392,14 @@
     transform: rotate(-90deg);
   }
 
+  .map-switch-act {
+    min-height: 2.5rem;
+  }
+  @media (pointer: coarse) {
+    .map-switch-act {
+      min-height: 2.75rem;
+    }
+  }
   /* The street map: opened on request in the island's place (MapSwitch). The frame is the
      island's; the map inside it is MapLibre's, and its own styles come with it. */
   .street {

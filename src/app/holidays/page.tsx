@@ -4,12 +4,14 @@ import { PageHead } from "@/components/Bits";
 import { day } from "@/lib/format";
 import { holidays, longDay, type Holiday } from "@/lib/holidays";
 import { todayInMauritius } from "@/lib/theme";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Public holidays in Mauritius",
   description: "The public holidays of Mauritius, year by year, with the day of the week each falls on. Taken from the official notices in the Government Gazette.",
-  alternates: { canonical: "/holidays" },
-};
+  path: "/holidays",
+  drawn: true,
+});
 
 export default function HolidaysPage() {
   const data = holidays();
@@ -17,7 +19,7 @@ export default function HolidaysPage() {
   if (!data) {
     return (
       <>
-        <PageHead title="Public holidays" path={[{ label: "Public holidays" }]} lede="This page is being checked against the official notice and will be here shortly." />
+        <PageHead here="/holidays" title="Public holidays" path={[{ label: "Public holidays" }]} lede="This page is being checked against the official notice and will be here shortly." />
         <div className="shell" />
       </>
     );
@@ -35,7 +37,7 @@ export default function HolidaysPage() {
   const next = years.flatMap((y) => data.years[y]).find((h) => h.date >= today);
   return (
     <>
-      <PageHead title="Public holidays in Mauritius" path={[{ label: "Public holidays" }]} lede={`Every public holiday, with the day of the week it falls on, taken from the official notices and last checked on ${day(data.checked)}.`}>
+      <PageHead here="/holidays" title="Public holidays in Mauritius" path={[{ label: "Public holidays" }]} lede={`Every public holiday, with the day of the week it falls on, taken from the official notices and last checked on ${day(data.checked)}.`}>
         {next && (
           <p className="mt-6">
             <span className="pill-note body-3">

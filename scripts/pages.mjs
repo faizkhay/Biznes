@@ -37,6 +37,14 @@ export const PAGES = [
   ["offline", "/offline"],
   ["holidays", "/holidays"],
   ["about", "/about"],
+  ["baz-manzer", "/baz-manzer"],
+  ["baz-narrowed", "/baz-manzer?food=chinese&town=port-louis"],
+  ["cart", "/cart"],
+  ["search-answer", "/search?q=cyclone+season"],
+  ["search-who", "/search?q=bank"],
+  ["guide-food", "/learn/mauritian-food"],
+  ["listing-food", "/b/acqua-and-farina-pizzeria-beau-bassin-rose-hill-n14064293374"],
+  ["category-health", "/directory/pharmacies/curepipe"],
   ["missing", "/no-such-page"],
 ];
 

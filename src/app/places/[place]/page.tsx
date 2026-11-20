@@ -4,6 +4,7 @@ import { PageHead } from "@/components/Bits";
 import ListingList from "@/components/ListingList";
 import { count } from "@/lib/format";
 import { index, listingsIn } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ place: string }>; searchParams: Promise<{ page?: string; phone?: string; web?: string }> };
 
@@ -11,7 +12,7 @@ type Props = { params: Promise<{ place: string }>; searchParams: Promise<{ page?
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = index().placeBySlug.get((await params).place);
   if (!p) return {};
-  return { title: `Businesses in ${p.name}`, description: `${count(p.n)} businesses and services listed in ${p.name}, Mauritius: shops, restaurants, health, banks, garages and more.`, alternates: { canonical: `/places/${p.slug}` } };
+  return pageMeta({ title: `Businesses in ${p.name}`, description: `${count(p.n)} businesses and services listed in ${p.name}, Mauritius: shops, restaurants, health, banks, garages and more.`, path: `/places/${p.slug}`, drawn: true });
 }
 
 export default async function PlacePage({ params, searchParams }: Props) {
@@ -30,11 +31,12 @@ export default async function PlacePage({ params, searchParams }: Props) {
   return (
     <>
       <PageHead
+        here={`/places/${p.slug}`}
         path={[{ href: "/places", label: "Places" }, { label: p.name }]}
         title={`Businesses in ${p.name}`}
         lede={`${count(listings.length)} listed${p.district && p.district !== p.name ? ` in ${p.name}, ${p.district} district` : ""}${p.kind === "area" ? `. A neighbourhood${p.within && data.placeBySlug.get(p.within) ? ` of ${data.placeBySlug.get(p.within)!.name}` : ""}, as named on the map` : ""}.`}
       />
-      <ListingList listings={listings} path={`/places/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel="Narrow to a kind of business" says={`A chart of Mauritius with the ${count(listings.length)} listings in ${p.name} lit.`} />
+      <ListingList name={`Businesses in ${p.name}`} listings={listings} path={`/places/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel="Narrow to a kind of business" says={`A chart of Mauritius with the ${count(listings.length)} listings in ${p.name} lit.`} />
     </>
   );
 }

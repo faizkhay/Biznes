@@ -3,9 +3,12 @@ import { chartPoints } from "@/lib/chart";
 import { count } from "@/lib/format";
 import type { Listing } from "@/lib/index";
 import { narrowed, narrowOf, PAGE_SIZE } from "@/lib/search";
+import { itemList } from "@/lib/schema";
 import { Pager } from "./Bits";
 import Chart from "./Chart";
 import Filters, { narrowQuery } from "./Filters";
+import JsonLd from "./JsonLd";
+import MapSwitch from "./MapSwitch";
 import { ListingRow } from "./Rows";
 
 /**
@@ -21,8 +24,11 @@ export default function ListingList({
   narrow,
   narrowLabel,
   says,
+  name,
 }: {
   listings: Listing[];
+  /** What the list is, in words, for the list as machines read it: "Pharmacies in Curepipe". */
+  name?: string;
   path: string;
   params: { page?: string; phone?: string; web?: string };
   narrow?: { href: string; label: string; n: number }[];
@@ -43,6 +49,7 @@ export default function ListingList({
   const onChart = `On the island: ${count(lit.length)} of ${count(listings.length)}.`;
   return (
     <div className="shell grid gap-x-12 chart:grid-cols-12">
+      {name && page === 1 && shown.length > 0 && <JsonLd data={itemList(name, shown)} />}
       <div className="chart:col-span-7">
         {narrow && narrow.length > 0 && (
           <nav aria-label={narrowLabel} className="mb-4">
@@ -80,17 +87,23 @@ export default function ListingList({
         <Pager page={page} pages={pages} href={(n) => query(n)} />
         {/* On a phone the island comes after the list: the first thing a visitor needs is a name and a number. */}
         {lit.length > 0 && (
-          <div className="mt-10 flex items-center gap-4 chart:hidden">
-            <Chart className="chart-strip" lit={lit} zoom says={says} />
-            <p className="caption-1 text-ink-faint">{onChart}</p>
+          <div className="mt-10 chart:hidden">
+            <MapSwitch lit={lit}>
+              <div className="flex items-center gap-4">
+                <Chart className="chart-strip" lit={lit} zoom says={says} />
+                <p className="caption-1 text-ink-faint">{onChart}</p>
+              </div>
+            </MapSwitch>
           </div>
         )}
       </div>
       {lit.length > 0 && (
         <aside className="hidden chart:col-span-5 chart:block">
           <div className="sticky top-24">
-            <Chart className="chart-side" lit={lit} zoom says={says} />
-            <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
+            <MapSwitch lit={lit}>
+              <Chart className="chart-side" lit={lit} zoom says={says} />
+              <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
+            </MapSwitch>
           </div>
         </aside>
       )}

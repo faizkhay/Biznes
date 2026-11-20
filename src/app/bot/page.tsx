@@ -3,19 +3,20 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { site } from "@/data/site";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: `${site.bot.name}, our crawler`,
-  description: `How ${site.bot.name}, the crawler of biznes.mu, behaves: what it reads, how often, how it obeys robots.txt, and how to keep it out or ask for a page to be forgotten.`,
-  alternates: { canonical: site.bot.path },
-};
+  description: `How ${site.bot.name}, the crawler of biznes.mu, behaves: what it reads, how it obeys robots.txt, and how to keep it out or have a page forgotten.`,
+  path: site.bot.path,
+});
 
 export default function BotPage() {
   const { crawler } = index().meta;
   const seconds = crawler.pause / 1000;
   return (
     <>
-      <PageHead title={`${site.bot.name}, our crawler`} lede="If you run a website and found this page from your server's log, this is who visited, what it took, and how to stop it." />
+      <PageHead here="/bot" title={`${site.bot.name}, our crawler`} lede="If you run a website and found this page from your server's log, this is who visited, what it took, and how to stop it." />
       <div className="shell grid gap-12 *:max-w-3xl">
         <section aria-labelledby="does">
           <h2 id="does" className="heading-2">

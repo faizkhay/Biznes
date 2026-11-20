@@ -5,19 +5,21 @@ import { Phone } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { day } from "@/lib/format";
 import { dialHref, emergency } from "@/lib/emergency";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Emergency numbers in Mauritius",
-  description: "The emergency numbers and helplines of Mauritius in one place: police, ambulance, fire, the coast guard, utilities and help lines. Each is taken from an official page, named with the day it was read.",
-  alternates: { canonical: "/emergency" },
-};
+  description: "The emergency numbers and helplines of Mauritius in one place: police, ambulance, fire, coast guard, utilities. Each from an official page, with its date.",
+  path: "/emergency",
+  drawn: true,
+});
 
 export default function EmergencyPage() {
   const data = emergency();
   if (!data) {
     return (
       <>
-        <PageHead title="Emergency numbers" path={[{ label: "Emergency numbers" }]} lede="This page is being checked against the official sources and will be here shortly." />
+        <PageHead here="/emergency" title="Emergency numbers" path={[{ label: "Emergency numbers" }]} lede="This page is being checked against the official sources and will be here shortly." />
         <div className="shell" />
       </>
     );
@@ -42,7 +44,7 @@ export default function EmergencyPage() {
           mainEntity: data.groups.flatMap((g) => g.items.map((i) => ({ "@type": "ContactPoint", name: i.name, telephone: i.number, areaServed: "MU", description: i.what }))),
         }}
       />
-      <PageHead title="Emergency numbers" path={[{ label: "Emergency numbers" }]} lede={`Who to call in Mauritius, in one place. Every number is taken from an official page, named below, and was last checked on ${day(data.checked)}. Tap a number to call it.`} />
+      <PageHead here="/emergency" title="Emergency numbers" path={[{ label: "Emergency numbers" }]} lede={`Who to call in Mauritius, in one place. Every number is taken from an official page, named below, and was last checked on ${day(data.checked)}. Tap a number to call it.`} />
       <div className="shell">
         {/* The first group is the one to find in a hurry: the numbers are the largest thing on the page. */}
         {first && (

@@ -12,10 +12,13 @@ import { food } from "@/lib/food";
 import { count, day } from "@/lib/format";
 import { holidays, longDay } from "@/lib/holidays";
 import { index } from "@/lib/index";
-import { todayInMauritius } from "@/lib/theme";
+import { pageMeta } from "@/lib/meta";
+import { publisher } from "@/lib/schema";
 import { siteUrl } from "@/lib/site-url";
-import { themeNow } from "@/lib/theme";
+import { themeNow, todayInMauritius } from "@/lib/theme";
 import { TOOLS } from "@/lib/tools";
+
+export const metadata = pageMeta({ title: `${site.name} · ${site.line}`, description: site.summary, path: "/", whole: true });
 
 const START_ICON: Record<string, React.ReactNode> = { "/baz-manzer": <Fork />, "/emergency": <Phone />, "/holidays": <Calendar />, "/directory": <Store />, "/learn": <Book />, "/places": <Pin /> };
 const TOOL_ICON: Record<string, React.ReactNode> = { "/tools/verify": <Landmark />, "/tools/vat": <Calc />, "/tools/structures": <GroupIcon group="companies" />, "/learn/glossary": <Book /> };
@@ -52,14 +55,31 @@ export default async function Home() {
   return (
     <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: site.name,
-          url: siteUrl,
-          description: site.description,
-          potentialAction: { "@type": "SearchAction", target: `${siteUrl}/search?q={query}`, "query-input": "required name=query" },
-        }}
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: site.name,
+            url: siteUrl,
+            description: site.description,
+            inLanguage: "en",
+            publisher: publisher(),
+            potentialAction: { "@type": "SearchAction", target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/search?q={query}` }, "query-input": "required name=query" },
+          },
+          // Who is behind the site: the company, as it is registered, and how to reach it.
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: site.builder.legalName,
+            alternateName: site.builder.name,
+            url: site.builder.url,
+            identifier: site.builder.brn,
+            telephone: site.contact.phone,
+            email: site.contact.email,
+            address: { "@type": "PostalAddress", addressCountry: "MU" },
+            brand: { "@type": "Brand", name: site.name, url: siteUrl },
+          },
+        ]}
       />
 
       {/* The first screen: one question, set on the day's picture. */}

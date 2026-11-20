@@ -4,6 +4,7 @@ import { PageHead } from "@/components/Bits";
 import ListingList from "@/components/ListingList";
 import { count } from "@/lib/format";
 import { index, listingsIn } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ cat: string; place: string }>; searchParams: Promise<{ page?: string; phone?: string; web?: string }> };
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = data.placeBySlug.get(place);
   if (!c || !p) return {};
   const n = listingsIn({ cat, place }).length;
-  return { title: `${c.label} in ${p.name}`, description: `${count(n)} ${c.label.toLowerCase()} listed in ${p.name}, Mauritius, with addresses, telephone numbers and opening hours where known.`, alternates: { canonical: `/directory/${c.id}/${p.slug}` } };
+  return pageMeta({ title: `${c.label} in ${p.name}`, description: `${count(n)} ${c.label.toLowerCase()} listed in ${p.name}, Mauritius, with addresses, telephone numbers and opening hours where known.`, path: `/directory/${c.id}/${p.slug}`, drawn: true });
 }
 
 export default async function CategoryPlacePage({ params, searchParams }: Props) {
@@ -38,11 +39,12 @@ export default async function CategoryPlacePage({ params, searchParams }: Props)
   return (
     <>
       <PageHead
+        here={`/directory/${c.id}/${p.slug}`}
         path={[{ href: "/directory", label: "Directory" }, { href: `/directory/${c.id}`, label: c.label }, { label: p.name }]}
         title={`${c.label} in ${p.name}`}
         lede={`${count(listings.length)} listed in ${p.name}${p.district && p.district !== p.name ? `, ${p.district} district` : ""}.`}
       />
-      <ListingList listings={listings} path={`/directory/${c.id}/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel={`Also in ${p.name}`} says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed in ${p.name} lit.`} />
+      <ListingList name={`${c.label} in ${p.name}`} listings={listings} path={`/directory/${c.id}/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel={`Also in ${p.name}`} says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed in ${p.name} lit.`} />
     </>
   );
 }

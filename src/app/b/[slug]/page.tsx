@@ -4,6 +4,7 @@ import BusinessPage from "@/components/BusinessPage";
 import { claimOf } from "@/lib/accounts/owned";
 import { showcaseOf } from "@/lib/accounts/showcase";
 import { index, listingFromSlug, whereOf, type Listing } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,8 +20,7 @@ function describe(l: Listing): string {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const l = listingFromSlug((await params).slug);
   if (!l) return {};
-  const title = `${l.name}${l.place ? `, ${l.place}` : ""}`;
-  return { title, description: describe(l), alternates: { canonical: `/b/${l.slug}` }, openGraph: { title, description: describe(l), url: `/b/${l.slug}` } };
+  return pageMeta({ title: `${l.name}${l.place ? `, ${l.place}` : ""}`, description: describe(l), path: `/b/${l.slug}`, drawn: true });
 }
 
 /** A listing from the open index, with what its owner has added if they have claimed it. */

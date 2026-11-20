@@ -6,12 +6,13 @@ import { PROMISES, site } from "@/data/site";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About biznes.mu and Khay Digital",
   description: "biznes.mu is the search engine for business in Mauritius. It is a product of Khay Digital, a Mauritian digital agency, and was developed by Faiz Khayrattee.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   const { meta, guides } = index();
@@ -27,7 +28,7 @@ export default function AboutPage() {
           mainEntity: { "@type": "Organization", name: builder.legalName, alternateName: builder.name, url: builder.url, telephone: contact.phone, email: contact.email, address: { "@type": "PostalAddress", addressCountry: "MU" } },
         }}
       />
-      <PageHead title={`About ${site.name}`} path={[{ label: "About" }]} lede={`${site.line}: ${count(meta.listings.all)} businesses and services, ${count(guides.length)} articles, the numbers to call and the days that are holidays, in one place.`} />
+      <PageHead here="/about" title={`About ${site.name}`} path={[{ label: "About" }]} lede={`${site.line}: ${count(meta.listings.all)} businesses and services, ${count(guides.length)} articles, the numbers to call and the days that are holidays, in one place.`} />
       <div className="shell grid gap-x-16 gap-y-10 lg:grid-cols-12">
         <div className="prose body-2 lg:col-span-7">
           <h2 className="heading-2">Who makes it</h2>

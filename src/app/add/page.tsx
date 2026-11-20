@@ -6,12 +6,13 @@ import { PLANS, site } from "@/data/site";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { monthName, offer, products } from "@/lib/shop";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Add or correct a listing",
   description: "Add a business to biznes.mu, correct a listing, or have one removed. Free, and answered by a person.",
-  alternates: { canonical: "/add" },
-};
+  path: "/add",
+});
 
 export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string; order?: string }> }) {
   const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored, order: ordered } = await searchParams;

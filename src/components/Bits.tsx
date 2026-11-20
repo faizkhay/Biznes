@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { count } from "@/lib/format";
+import { breadcrumbs } from "@/lib/schema";
+import JsonLd from "./JsonLd";
 
-/** The path to a page: each step a link but the last, which is where you are. */
-export function Crumbs({ path }: { path: { href?: string; label: string }[] }) {
+/**
+ * The path to a page: each step a link but the last, which is where you are. Given the page's own
+ * address (`here`), the same path is also written out for machines, as a BreadcrumbList.
+ */
+export function Crumbs({ path, here }: { path: { href?: string; label: string }[]; here?: string }) {
   return (
     <nav aria-label="You are here">
+      {here && <JsonLd data={breadcrumbs(path, here)} />}
       <ol className="crumbs caption-1">
         {path.map((step, i) => (
           <li key={i} aria-current={step.href ? undefined : "page"}>
@@ -56,10 +62,10 @@ export function IndexItem({ href, label, n }: { href: string; label: string; n: 
  * A page's opening: where it is, what it is, and a sentence about it. Every page has its path, so
  * every title sits at the same height.
  */
-export function PageHead({ path, title, lede, children }: { path?: { href?: string; label: string }[]; title: string; lede?: React.ReactNode; children?: React.ReactNode }) {
+export function PageHead({ path, here, title, lede, children }: { path?: { href?: string; label: string }[]; /** The page's own address, for its path to be written out for machines too. */ here?: string; title: string; lede?: React.ReactNode; children?: React.ReactNode }) {
   return (
     <div className="shell pt-8 pb-10 lg:pt-12">
-      <Crumbs path={[{ href: "/", label: "Home" }, ...(path ?? [{ label: title }])]} />
+      <Crumbs here={here} path={[{ href: "/", label: "Home" }, ...(path ?? [{ label: title }])]} />
       <h1 className="heading-1 mt-4 max-w-4xl">{title}</h1>
       {lede && <p className="body-1 measure mt-4 text-ink-subtle">{lede}</p>}
       {children}

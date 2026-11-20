@@ -4,13 +4,14 @@ import { PageHead } from "@/components/Bits";
 import ListingList from "@/components/ListingList";
 import { count } from "@/lib/format";
 import { index, listingsIn } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ cat: string }>; searchParams: Promise<{ page?: string; phone?: string; web?: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = index().categoryById.get((await params).cat);
   if (!c) return {};
-  return { title: `${c.label} in Mauritius`, description: `${count(c.n)} ${c.label.toLowerCase()} listed across Mauritius and Rodrigues, with addresses, telephone numbers and opening hours where known.`, alternates: { canonical: `/directory/${c.id}` } };
+  return pageMeta({ title: `${c.label} in Mauritius`, description: `${count(c.n)} ${c.label.toLowerCase()} listed across Mauritius and Rodrigues, with addresses, telephone numbers and opening hours where known.`, path: `/directory/${c.id}`, drawn: true });
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
@@ -30,11 +31,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   return (
     <>
       <PageHead
+        here={`/directory/${c.id}`}
         path={[{ href: "/directory", label: "Directory" }, { label: c.label }]}
         title={`${c.label} in Mauritius`}
-        lede={`${count(listings.length)} listed. The fullest listings come first.`}
+        lede={`${count(listings.length)} listed. ${c.group === "health" ? "Those with a telephone number on record come first, then the fullest." : "The fullest listings come first."}`}
       />
-      <ListingList listings={listings} path={`/directory/${c.id}`} params={await searchParams} narrow={narrow} narrowLabel="Narrow to a town" says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed lit.`} />
+      <ListingList name={`${c.label} in Mauritius`} listings={listings} path={`/directory/${c.id}`} params={await searchParams} narrow={narrow} narrowLabel="Narrow to a town" says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed lit.`} />
     </>
   );
 }

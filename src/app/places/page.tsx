@@ -4,13 +4,13 @@ import { PageHead } from "@/components/Bits";
 import TownFinder from "@/components/TownFinder";
 import { count } from "@/lib/format";
 import { index, type Place } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Towns and villages of Mauritius",
   description: "Businesses and services in Mauritius by town and village, district by district, and in Rodrigues. Find a town, then see what is listed there.",
-  alternates: { canonical: "/places" },
-  openGraph: { title: "Towns and villages of Mauritius", url: "/places" },
-};
+  path: "/places",
+});
 
 /**
  * Every town and village with something listed, district by district. A box finds a town as its
@@ -55,7 +55,7 @@ export default function PlacesPage() {
   };
   return (
     <>
-      <PageHead title="Towns and villages" path={[{ label: "Places" }]} lede={`${count(meta.towns)} towns and villages with something listed, district by district.`}>
+      <PageHead here="/places" title="Towns and villages" path={[{ label: "Places" }]} lede={`${count(meta.towns)} towns and villages with something listed, district by district.`}>
         <div className="mt-6 max-w-md">
           <TownFinder target="towns" total={towns.length} />
         </div>

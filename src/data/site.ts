@@ -15,6 +15,8 @@ export const site = {
   /** One sentence for metadata and machines. */
   description:
     "biznes.mu is a search engine for business in Mauritius: a directory of businesses and services across the island, plain guides to starting and running a business with every fact sourced, and the official registers to check one against.",
+  /** The same in under 160 characters, for the description a search engine shows. */
+  summary: "The search engine for business in Mauritius: a directory of businesses across the island, plain articles with every fact sourced, and the numbers to call.",
   /**
    * False until the owner has confirmed the guides and chosen where requests go (README, "To
    * confirm"). While false, pages ask search engines not to index them and robots.txt closes the site.

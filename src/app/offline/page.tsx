@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { PageHead } from "@/components/Bits";
+import { pageMeta } from "@/lib/meta";
 
 // What the service worker shows in place of a page it could not fetch (public/sw.js). It is kept
 // on the device from the first visit, and is never a page to index.
-export const metadata: Metadata = { title: "You are offline", robots: { index: false, follow: false } };
+export const metadata: Metadata = pageMeta({ title: "You are offline", description: "This page of biznes.mu is shown when there is no connection. What was opened before can still be read.", path: "/offline", index: false });
 
 export default function OfflinePage() {
   return (

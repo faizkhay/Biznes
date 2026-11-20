@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import AdSlot from "@/components/account/AdSlot";
 import { Crumbs } from "@/components/Bits";
 import GuideBlocks, { Cites } from "@/components/GuideBlocks";
@@ -14,26 +14,36 @@ import { anchorOf, day, shortUrl } from "@/lib/format";
 import { TOOLS } from "@/lib/tools";
 import { SHELVES } from "@/data/site";
 import { index } from "@/lib/index";
+import { publisher } from "@/lib/schema";
 import { siteUrl } from "@/lib/site-url";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Every article is made ahead. An address that is not an article is made when asked for, and is a
+// 404 or, for an article's name with ".md" after it, the way to that article as Markdown.
 export const generateStaticParams = () => index().guides.map((g) => ({ slug: g.slug }));
-export const dynamicParams = false;
 
 const anchor = anchorOf;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const g = index().guideBySlug.get((await params).slug);
   if (!g) return {};
-  return { title: g.title, description: g.summary.slice(0, 300), alternates: { canonical: `/learn/${g.slug}` } };
+  // The description a search engine shows: the summary's first sentences, kept under 160 characters.
+  const whole = g.summary.slice(0, 160).match(/^.{90,}[.!?](?=\s|$)/)?.[0];
+  const short = g.summary.length <= 160 ? g.summary : (whole ?? `${g.summary.slice(0, 156).replace(/[\s,;:]+\S*$/, "")}...`);
+  return pageMeta({ title: g.title, description: short, path: `/learn/${g.slug}`, article: { modified: g.checked }, markdown: `/learn/md/${g.slug}.md`, drawn: true });
 }
 
 export default async function GuidePage({ params }: Props) {
   const data = index();
-  const g = data.guideBySlug.get((await params).slug);
+  const { slug } = await params;
+  if (slug.endsWith(".md") && data.guideBySlug.has(slug.slice(0, -3))) permanentRedirect(`/learn/md/${slug}`);
+  const g = data.guideBySlug.get(slug);
   if (!g) notFound();
   const at = data.guides.indexOf(g);
+  // The parts whose heading is a question, each with its first paragraph as the answer: what the page says, said again for machines.
+  const asked = g.sections.map((section) => ({ question: section.heading, answer: section.blocks[0]?.type === "p" ? section.blocks[0].text : "" })).filter((qa) => qa.question.trim().endsWith("?") && qa.answer);
   // What follows on: the other articles of the same shelf, in their order from this one, then the
   // rest. And the article's own pointers, split into this site's pages and the official ones.
   const after = [...data.guides.slice(at + 1), ...data.guides.slice(0, at)];
@@ -64,11 +74,23 @@ export default async function GuidePage({ params }: Props) {
           dateModified: g.checked,
           inLanguage: "en",
           url: `${siteUrl}/learn/${g.slug}`,
-          publisher: { "@type": "Organization", name: site.name, url: siteUrl },
+          mainEntityOfPage: `${siteUrl}/learn/${g.slug}`,
+          isAccessibleForFree: true,
+          author: { "@type": "Organization", name: site.name, url: siteUrl },
+          publisher: publisher(),
           citation: g.sources.map((s) => s.url),
         }}
       />
-      <Crumbs path={[{ href: "/learn", label: "Learn" }, { label: g.title }]} />
+      {asked.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: asked.map((qa) => ({ "@type": "Question", name: qa.question, acceptedAnswer: { "@type": "Answer", text: qa.answer } })),
+          }}
+        />
+      )}
+      <Crumbs here={`/learn/${g.slug}`} path={[{ href: "/", label: "Home" }, { href: "/learn", label: "Learn" }, { label: g.title }]} />
       <h1 className="heading-1 mt-4 max-w-4xl">{g.title}</h1>
       <p className="body-1 measure mt-4 text-ink-subtle">{g.summary}</p>
       <p className="caption-1 mt-6 text-ink-faint">

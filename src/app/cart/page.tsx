@@ -4,9 +4,10 @@ import CartView from "@/components/Cart";
 import { PLANS, PUBLICATIONS } from "@/data/site";
 import { count } from "@/lib/format";
 import { products, sponsorship } from "@/lib/shop";
+import { pageMeta } from "@/lib/meta";
 
 // The cart is one visitor's own, kept in their browser: there is nothing in it for a search engine.
-export const metadata: Metadata = { title: "Your cart", description: "What you mean to buy on biznes.mu: the pocket guide, a place in it for your business, or a plan.", robots: { index: false, follow: false }, alternates: { canonical: "/cart" } };
+export const metadata: Metadata = pageMeta({ title: "Your cart", description: "What you mean to buy on biznes.mu: the pocket guide, a place in it for your business, or a plan.", path: "/cart", index: false });
 
 export default function CartPage() {
   const guide = products()[0];

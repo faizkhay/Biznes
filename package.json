@@ -20,6 +20,7 @@
     "leads": "node scripts/leads.mjs",
     "pdf": "node scripts/pdf.mjs",
     "hero": "node scripts/hero-contrast.mjs",
+    "seo": "node scripts/seo.mjs",
     "test:rls": "bash scripts/test-rls.sh"
   },
   "dependencies": {

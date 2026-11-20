@@ -4,12 +4,13 @@ import { PageHead } from "@/components/Bits";
 import VatCalc from "@/components/VatCalc";
 import { count, day } from "@/lib/format";
 import { vatFigures } from "@/lib/figures";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "VAT calculator for Mauritius",
-  description: "Add VAT to a price or take it out at the rate in force in Mauritius, and check a year's turnover against the registration threshold. Figures from the VAT guide, with sources.",
-  alternates: { canonical: "/tools/vat" },
-};
+  description: "Add VAT to a price or take it out at the rate in force in Mauritius, and check a turnover against the registration threshold. Figures with their sources.",
+  path: "/tools/vat",
+});
 
 const money = new Intl.NumberFormat("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -17,7 +18,7 @@ export default function VatPage() {
   const { guide, rate, threshold } = vatFigures();
   return (
     <>
-      <PageHead path={[{ href: "/tools", label: "Tools" }, { label: "VAT calculator" }]} title="VAT calculator" lede="Add VAT to a price or take it out, and check a year's turnover against the registration threshold." />
+      <PageHead here="/tools/vat" path={[{ href: "/tools", label: "Tools" }, { label: "VAT calculator" }]} title="VAT calculator" lede="Add VAT to a price or take it out, and check a year's turnover against the registration threshold." />
       <div className="shell">
         {!guide || !rate ? (
           <p className="body-2 note max-w-prose">The calculator takes its rate from the VAT guide, and that figure is not available just now, so it will not guess one. The Mauritius Revenue Authority publishes the rate in force.</p>

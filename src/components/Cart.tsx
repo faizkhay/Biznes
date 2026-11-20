@@ -27,14 +27,20 @@ export function CartLink() {
 /**
  * Puts one thing in the cart. The page that shows the button builds the item from the data files
  * (its name and its price are never typed here). Until the page's script has loaded nothing is
- * offered, so there is never a button that does nothing; once the thing is in, the button is the
- * way to the cart.
+ * offered, so there is never a button that does nothing, though its room is kept; once the thing
+ * is in, the button is the way to the cart.
  */
 export function AddToCart({ item, quiet = false, small = false }: { item: CartItem; /** A second action beside a filled one. */ quiet?: boolean; small?: boolean }) {
   const ready = useReady();
   const inside = useCart().some((own) => own.id === item.id);
   const shape = `btn ${small ? "btn-sm button-sm" : "button-md"}`;
-  if (!ready) return null;
+  // Its room is kept until the page's script has loaded, so nothing beside it moves when it comes.
+  if (!ready)
+    return (
+      <span className={`${shape} invisible`} aria-hidden>
+        <CartIcon /> Add to cart
+      </span>
+    );
   if (inside)
     return (
       <Link href="/cart" prefetch={false} className={`${shape} btn-quiet`}>

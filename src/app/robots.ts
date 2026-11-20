@@ -11,9 +11,13 @@ export const dynamic = "force-static";
  * addresses as there are questions. The named crawlers share one group with everyone's rules,
  * because a crawler follows only the group that names it.
  *
- * KOS kit. The crawler list is the agency site's, October 2026.
+ * KOS kit. The crawler list was the agency site's of October 2026; it was gone through again on 20
+ * November 2026 for this site: Perplexity-User, Amazonbot and meta-externalagent were added, and
+ * Bytespider is turned away by name.
  */
-const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot"];
+const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "CCBot", "Amazonbot", "meta-externalagent"];
+/** Crawlers the site does not want, named so that the rule for everyone does not let them in. */
+const UNWANTED = ["Bytespider"];
 
 /**
  * The programs that fetch one page to draw its card when a link is pasted into a message or a post.
@@ -22,7 +26,7 @@ const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Cl
  * everyone they showed nothing.
  */
 const PREVIEWERS = ["facebookexternalhit", "Facebot", "Twitterbot", "LinkedInBot", "Slackbot", "Slackbot-LinkExpanding", "WhatsApp", "TelegramBot", "Discordbot", "SkypeUriPreview", "redditbot", "Pinterestbot", "Iframely"];
-const PRIVATE = ["/api/", "/search", "/account", "/dashboard", "/admin", "/auth/"];
+const PRIVATE = ["/api/", "/search", "/saved", "/cart", "/account", "/dashboard", "/admin", "/auth/"];
 
 export default function robots(): MetadataRoute.Robots {
   if (!site.launched)
@@ -34,7 +38,10 @@ export default function robots(): MetadataRoute.Robots {
     };
   return {
     // The account pages are one person's own: nothing in them is for a crawler.
-    rules: [{ userAgent: [...AI_CRAWLERS, ...PREVIEWERS, "*"], allow: "/", disallow: PRIVATE }],
+    rules: [
+      { userAgent: UNWANTED, disallow: "/" },
+      { userAgent: [...AI_CRAWLERS, ...PREVIEWERS, "*"], allow: "/", disallow: PRIVATE },
+    ],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

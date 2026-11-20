@@ -5,12 +5,13 @@ import { ACTIONS, CREDITS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Where the data comes from",
-  description: "The sources of biznes.mu: OpenStreetMap, Wikidata, each business's own website and official pages. Their licences, what is taken from each, what is never taken, and how to correct or remove a listing.",
-  alternates: { canonical: "/data" },
-};
+  description: "The sources of biznes.mu: OpenStreetMap, Wikidata, each business's own website and official pages. How results are ordered, and how to correct a listing.",
+  path: "/data",
+});
 
 export default function DataPage() {
   const { meta, guides, categories } = index();
@@ -18,7 +19,7 @@ export default function DataPage() {
   const health = categories.filter((c) => c.group === "health").map((c) => c.label.toLowerCase());
   return (
     <>
-      <PageHead title="Where the data comes from" lede="Nothing in the index is typed in by hand or made up. Every listing comes from an open source, says which, and can be corrected or removed by the business it describes." />
+      <PageHead here="/data" title="Where the data comes from" lede="Nothing in the index is typed in by hand or made up. Every listing comes from an open source, says which, and can be corrected or removed by the business it describes." />
       <div className="shell grid gap-12">
         <section aria-labelledby="last" className="max-w-3xl">
           <h2 id="last" className="heading-2">

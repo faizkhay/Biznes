@@ -416,7 +416,8 @@ export default function BusinessPage({
                   )}
                 </p>
               )}
-              <p className="biz-acts biz-acts-pair mt-3 empty:hidden">
+              {/* Saving and sharing need the page's script. Their room is kept, so the card does not grow when they come. */}
+              <p className="biz-acts biz-acts-pair mt-3 min-h-11">
                 {/* The shortlist holds listings of the open index, so only those can be saved. */}
                 {l && <SaveButton id={l.id} name={name} words />}
                 <ShareButton title={name} words />

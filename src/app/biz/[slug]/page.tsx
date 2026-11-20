@@ -4,6 +4,7 @@ import BusinessPage from "@/components/BusinessPage";
 import { owned, type Owned } from "@/lib/accounts/owned";
 import { showcaseOf } from "@/lib/accounts/showcase";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [category, town] = [categoryById.get(b.category), placeBySlug.get(b.town)];
   const title = `${b.name}${town ? `, ${town.name}` : ""}`;
   const description = `${b.name}: ${(category?.one ?? "business").toLowerCase()}${town ? ` in ${town.name}` : ""}, Mauritius. ${[b.address, b.phone].filter(Boolean).join(". ")}`.trim();
-  return { title, description, alternates: { canonical: b.path }, openGraph: { title, description, url: b.path } };
+  return pageMeta({ title, description, path: b.path, drawn: true });
 }
 
 /** A business its owner listed, shown on the same page a listing from the index has. */

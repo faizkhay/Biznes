@@ -3,12 +3,13 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { anchorOf } from "@/lib/format";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Glossary of business terms in Mauritius",
   description: "BRN, TAN, CSG, PAYE, GBC and the other names and initials a business in Mauritius meets, each explained in a sentence with the guide that covers it.",
-  alternates: { canonical: "/learn/glossary" },
-};
+  path: "/learn/glossary",
+});
 
 export default function GlossaryPage() {
   const { glossary: list, guideBySlug } = index();
@@ -16,7 +17,7 @@ export default function GlossaryPage() {
   const letters = [...new Set(list.map((t) => letter(t.term)))];
   return (
     <>
-      <PageHead path={[{ href: "/learn", label: "Learn" }, { label: "Glossary" }]} title="Glossary" lede="The names and initials a business in Mauritius meets. Each meaning is taken from one of the guides, which gives its source." />
+      <PageHead here="/learn/glossary" path={[{ href: "/learn", label: "Learn" }, { label: "Glossary" }]} title="Glossary" lede="The names and initials a business in Mauritius meets. Each meaning is taken from one of the guides, which gives its source." />
       <div className="shell">
         {list.length === 0 && <p className="body-2 text-ink-subtle">The glossary is being written.</p>}
         <nav aria-label="Letters" className="mb-8">

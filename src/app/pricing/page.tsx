@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
+import { AddToCart } from "@/components/Cart";
 import { Arrow, GroupIcon, Tick } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { PLANS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "List your business",
-  description: "List a business on biznes.mu: Biznes Free is a basic listing at no cost, Biznes Go is verified and listed with priority, and Biznes Grow takes bookings and sells services online.",
-  alternates: { canonical: "/pricing" },
-};
+  description: "List a business on biznes.mu: Biznes Free at no cost, Biznes Go verified and listed with priority, Biznes Grow with bookings and sales online.",
+  path: "/pricing",
+  drawn: true,
+});
 
 export default function PricingPage() {
   const { meta } = index();
   return (
     <>
-      <PageHead title="List your business" path={[{ label: "List your business" }]} lede={`${count(meta.listings.all)} businesses and services are already here, found on the open map. Yours can be too, free. Two paid plans do more when you want them to.`} />
+      <PageHead here="/pricing" title="List your business" path={[{ label: "List your business" }]} lede={`${count(meta.listings.all)} businesses and services are already here, found on the open map. Yours can be too, free. Two paid plans do more when you want them to.`} />
       <div className="shell">
         <ul className="grid gap-4 lg:grid-cols-3">
           {PLANS.map((p) => {
@@ -50,6 +53,12 @@ export default function PricingPage() {
                         <Arrow />
                       </span>
                     </Link>
+                    {/* A paid plan can also go in the cart, with whatever else is being bought. */}
+                    {p.price > 0 && (
+                      <span className="mt-2 block text-center">
+                        <AddToCart quiet small item={{ id: `plan:${p.id}`, kind: "plan", name: p.name, detail: "By the month, for each business", price: p.price, qty: 1 }} />
+                      </span>
+                    )}
                   </p>
                 </article>
               </li>

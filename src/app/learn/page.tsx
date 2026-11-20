@@ -4,19 +4,20 @@ import { PageHead } from "@/components/Bits";
 import { day } from "@/lib/format";
 import { SHELVES } from "@/data/site";
 import { index } from "@/lib/index";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
-  title: "Articles about Mauritius: the island, business, visiting, moving and living here",
-  description: "Plain guides to starting and running a business in Mauritius: registration, companies, tax, VAT, employing people, licences, trade marks, data protection, investing from abroad. Every fact sourced.",
-  alternates: { canonical: "/learn" },
-};
+export const metadata: Metadata = pageMeta({
+  title: "Articles about Mauritius",
+  description: "Plain articles about Mauritius: the island, doing business, food, visiting, moving and living here. Every figure names the official page it was read on.",
+  path: "/learn",
+});
 
 export default function LearnPage() {
   const { guides } = index();
   const shelves = SHELVES.map((shelf) => ({ ...shelf, guides: guides.filter((g) => (g.shelf ?? "business") === shelf.id) })).filter((shelf) => shelf.guides.length > 0);
   return (
     <>
-      <PageHead title="Articles about Mauritius" path={[{ label: "Learn" }]} lede="Plain articles about Mauritius: the island itself, doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
+      <PageHead here="/learn" title="Articles about Mauritius" path={[{ label: "Learn" }]} lede="Plain articles about Mauritius: the island itself, doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
       <div className="shell">
         {guides.length === 0 && <p className="body-2 text-ink-subtle">The articles are being written.</p>}
         {shelves.length > 1 && (

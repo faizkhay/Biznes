@@ -15,13 +15,14 @@ import { owned } from "@/lib/accounts/owned";
 import { anchorOf, count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { KINDS, narrowOf, PAGE_SIZE, search, type Kind, type Narrow } from "@/lib/search";
+import { pageMeta } from "@/lib/meta";
 
 type Params = { q?: string; kind?: string; page?: string; phone?: string; web?: string; town?: string };
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<Params> }): Promise<Metadata> {
   const { q } = await searchParams;
   // A page of results is never one to index: it is as many pages as there are questions.
-  return { title: q ? `${q.slice(0, 60)}: search` : "Search", robots: { index: false, follow: true } };
+  return pageMeta({ title: q ? `${q.slice(0, 60)}: search` : "Search", description: q ? `What biznes.mu holds for “${q.slice(0, 80)}”: its own pages that answer, then businesses and services in Mauritius.` : "Search biznes.mu for a kind of business and a town, a business by name, or a question about Mauritius.", path: "/search", index: false });
 }
 
 const all = "body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline";
@@ -214,7 +215,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         <div className="chart:col-span-7">
           <SearchBox size="lg" id="search" initial={q} hotkey />
 
-          <div className="mt-4 flex items-start justify-between gap-4">
+          <div className="mt-4 flex min-h-11 items-start justify-between gap-4">
             <p className="body-3 pt-2 text-ink-subtle" role="status">
               {total === 0 ? `Nothing found for “${q}”.` : `${count(total)} ${total === 1 ? "result" : "results"}.`}
               <span className="text-ink-faint">

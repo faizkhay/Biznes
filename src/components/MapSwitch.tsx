@@ -39,13 +39,14 @@ export default function MapSwitch({
     <div className="map-switch">
       <div hidden={open}>{children}</div>
       {open && <StreetMapView lit={lit} focus={focus} />}
-      {ready && (
-        <p className="mt-3">
+      {/* The button's room is kept before the page's script has loaded, so nothing under it moves when it comes. */}
+      <p className="map-switch-act mt-3">
+        {ready && (
           <button type="button" className="btn btn-quiet btn-sm button-sm" onClick={() => setOpen(!open)}>
             <MapIcon /> {open ? "Back to the island" : "Open the street map"}
           </button>
-        </p>
-      )}
+        )}
+      </p>
     </div>
   );
 }

@@ -3,18 +3,19 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
-  title: "Privacy",
+export const metadata: Metadata = pageMeta({
+  title: "Privacy on biznes.mu",
   description: "What biznes.mu keeps about its visitors and about the businesses it lists, and what it does not.",
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   const { contact, builder } = site;
   return (
     <>
-      <PageHead title="Privacy" lede="What this site keeps, and what it does not." />
+      <PageHead here="/privacy" title="Privacy" lede="What this site keeps, and what it does not." />
       <div className="shell">
         <div className="prose body-2">
           <h2 className="heading-3">If you only look</h2>
