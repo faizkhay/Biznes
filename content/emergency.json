@@ -1,0 +1,773 @@
+{
+  "checked": "2026-11-20",
+  "groups": [
+    {
+      "id": "emergency",
+      "label": "Emergencies",
+      "items": [
+        {
+          "name": "Police emergency",
+          "number": "999",
+          "also": [
+            "112"
+          ],
+          "what": "Call it in any emergency that needs the police.",
+          "hours": null,
+          "sources": [
+            2,
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "name": "SAMU ambulance",
+          "number": "114",
+          "also": [],
+          "what": "Call it for a medical emergency, when someone needs an ambulance and treatment on the way to hospital.",
+          "hours": "24 hours",
+          "sources": [
+            5,
+            1
+          ]
+        },
+        {
+          "name": "Fire and Rescue Service",
+          "number": "115",
+          "also": [
+            "995"
+          ],
+          "what": "Call it if there is a fire or another emergency that needs the fire and rescue service.",
+          "hours": "24 hours",
+          "sources": [
+            6,
+            7,
+            8,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "police",
+      "label": "Police, when it is not an emergency",
+      "items": [
+        {
+          "name": "Police hotline (Crime Stoppers)",
+          "number": "148",
+          "also": [],
+          "what": "Call it to give the police information about a crime without giving your name.",
+          "hours": null,
+          "sources": [
+            2,
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Police Information and Operations Room",
+          "number": "+230 468 0034",
+          "also": [
+            "+230 468 0035"
+          ],
+          "what": "Call it to reach the police information and operations room when the matter is not an emergency.",
+          "hours": null,
+          "sources": [
+            2,
+            3,
+            10
+          ]
+        },
+        {
+          "name": "Police exchange",
+          "number": "+230 208 1212",
+          "also": [],
+          "what": "Call it to reach police headquarters at Line Barracks in Port Louis.",
+          "hours": null,
+          "sources": [
+            3,
+            10
+          ]
+        },
+        {
+          "name": "Police de l'Environnement hotline",
+          "number": "+230 210 5151",
+          "also": [
+            "+230 210 5252"
+          ],
+          "what": "Call it to make a complaint under the environmental laws, which this police unit enforces.",
+          "hours": null,
+          "sources": [
+            27,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "label": "Health",
+      "items": [
+        {
+          "name": "Ministry of Health and Wellness hotline",
+          "number": "8924",
+          "also": [],
+          "what": "Call it for information from the Ministry of Health and Wellness, for example about a public health advisory.",
+          "hours": null,
+          "sources": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "label": "Fire and rescue",
+      "items": [
+        {
+          "name": "Fire hazard reporting line",
+          "number": "154",
+          "also": [],
+          "what": "Call it to report a hazard to the control room of the Fire and Rescue Service.",
+          "hours": null,
+          "sources": [
+            6
+          ]
+        },
+        {
+          "name": "Fire and Rescue Service head office",
+          "number": "+230 212 0214",
+          "also": [
+            "+230 212 0215"
+          ],
+          "what": "Call it for fire service matters that are not an emergency.",
+          "hours": null,
+          "sources": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sea",
+      "label": "At sea",
+      "items": [
+        {
+          "name": "National Coast Guard hotline",
+          "number": "177",
+          "also": [],
+          "what": "Call it to reach the National Coast Guard, which describes this line in its own leaflet as the hotline for reporting crime at sea.",
+          "hours": null,
+          "sources": [
+            2,
+            10
+          ]
+        },
+        {
+          "name": "National Coast Guard operations room",
+          "number": "+230 208 3935",
+          "also": [],
+          "what": "Call it to reach the operations room of the National Coast Guard, the police branch that carries out search and rescue at sea.",
+          "hours": null,
+          "sources": [
+            3,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "label": "Weather and cyclones",
+      "items": [
+        {
+          "name": "Mauritius Meteorological Services, forecast office",
+          "number": "+230 651 5105",
+          "also": [],
+          "what": "Call it to reach the forecast office of the Mauritius Meteorological Services in Vacoas.",
+          "hours": null,
+          "sources": [
+            11
+          ]
+        },
+        {
+          "name": "Mauritius Meteorological Services, reception",
+          "number": "+230 651 5100",
+          "also": [],
+          "what": "Call it for general enquiries to the Mauritius Meteorological Services.",
+          "hours": null,
+          "sources": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utilities",
+      "label": "Electricity, water and wastewater",
+      "items": [
+        {
+          "name": "Central Electricity Board helpdesk",
+          "number": "130",
+          "also": [],
+          "what": "Call it to report a power cut, an electrical fault or an emergency on the electricity supply, or to ask about an outage.",
+          "hours": "24 hours",
+          "sources": [
+            12
+          ]
+        },
+        {
+          "name": "Central Water Authority hotline",
+          "number": "170",
+          "also": [
+            "+230 601 5000"
+          ],
+          "what": "Call it to report an urgent matter to the Central Water Authority, or call the Authority's main number, given second.",
+          "hours": null,
+          "sources": [
+            14
+          ]
+        },
+        {
+          "name": "Wastewater Management Authority hotline",
+          "number": "800 1300",
+          "also": [
+            "+230 206 3000"
+          ],
+          "what": "Call it with a query or a complaint about wastewater services, or call the Customer Care Unit on the second number in office hours, 08:45 to 16:00.",
+          "hours": null,
+          "sources": [
+            15,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visitors",
+      "label": "Visitors and travel",
+      "items": [
+        {
+          "name": "Police du Tourisme",
+          "number": "+230 213 1740",
+          "also": [
+            "+230 210 3894"
+          ],
+          "what": "Call it if you are a tourist and need the police unit set up for the safety and security of tourists.",
+          "hours": null,
+          "sources": [
+            1,
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, Port Louis (Line Barracks)",
+          "number": "+230 5727 6281",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Metropolitan Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, Grand Bay Police Station",
+          "number": "+230 5727 6282",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Northern Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, La Gaulette Police Station",
+          "number": "+230 5728 2845",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Western Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, Blue Bay Police Station",
+          "number": "+230 5727 5994",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Southern Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, Belle Mare Police Station",
+          "number": "+230 5727 6284",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Eastern Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Police du Tourisme, Plaine Champagne Police Post",
+          "number": "+230 5728 0721",
+          "also": [],
+          "what": "Call it to reach the Police du Tourisme office for the Central Division.",
+          "hours": null,
+          "sources": [
+            16
+          ]
+        },
+        {
+          "name": "Tourism Authority hotline",
+          "number": "8910",
+          "also": [
+            "+230 203 1000"
+          ],
+          "what": "Call it to reach the Tourism Authority, which handles the tourist accommodation certificate, the tourist enterprise licence and the pleasure craft licence, or call its office on the second number.",
+          "hours": null,
+          "sources": [
+            17
+          ]
+        },
+        {
+          "name": "Airport flight information",
+          "number": "8965",
+          "also": [
+            "+230 603 8050"
+          ],
+          "what": "Call it for the current day's flight information at SSR International Airport, using the second number where the short code does not work, as it is for local calls only.",
+          "hours": null,
+          "sources": [
+            18,
+            19
+          ]
+        },
+        {
+          "name": "Airport help inside the passenger terminal",
+          "number": "+230 603 8070",
+          "also": [],
+          "what": "Call it from inside the passenger terminal if you need urgent help with flight information or baggage.",
+          "hours": "During aircraft movement hours only",
+          "sources": [
+            18
+          ]
+        },
+        {
+          "name": "Airport lost and found",
+          "number": "+230 603 8426",
+          "also": [
+            "+230 603 8427"
+          ],
+          "what": "Call it if you have lost personal belongings at SSR International Airport.",
+          "hours": null,
+          "sources": [
+            18
+          ]
+        },
+        {
+          "name": "Passport and Immigration Office hotline",
+          "number": "+230 5727 6619",
+          "also": [],
+          "what": "Call it to reach the Passport and Immigration Office, which deals with passports, immigration control and residence and occupation permits.",
+          "hours": null,
+          "sources": [
+            20
+          ]
+        },
+        {
+          "name": "Passport and Immigration Office, main office",
+          "number": "+230 260 2073",
+          "also": [],
+          "what": "Call it to reach the main office at Sterling House, Lislet Geoffroy Street, Port Louis.",
+          "hours": null,
+          "sources": [
+            20
+          ]
+        },
+        {
+          "name": "Immigration unit at SSR International Airport",
+          "number": "+230 637 4108",
+          "also": [
+            "+230 637 8308"
+          ],
+          "what": "Call it to reach the immigration unit at SSR International Airport, Plaisance.",
+          "hours": null,
+          "sources": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "label": "Help and protection",
+      "items": [
+        {
+          "name": "Child protection hotline",
+          "number": "113",
+          "also": [],
+          "what": "Call it to report a child who is being abused or is at risk, which you can do without giving your name.",
+          "hours": null,
+          "sources": [
+            21,
+            22,
+            1
+          ]
+        },
+        {
+          "name": "Domestic violence hotline",
+          "number": "139",
+          "also": [],
+          "what": "Call it if you or someone you know is facing violence at home.",
+          "hours": null,
+          "sources": [
+            21,
+            2
+          ]
+        },
+        {
+          "name": "Family counselling hotline",
+          "number": "119",
+          "also": [],
+          "what": "Call it for family counselling from the Ministry of Gender Equality and Family Welfare.",
+          "hours": null,
+          "sources": [
+            21
+          ]
+        },
+        {
+          "name": "Police Family Protection Unit",
+          "number": "+230 210 2116",
+          "also": [
+            "+230 210 2122"
+          ],
+          "what": "Call it to reach the headquarters of the police unit that helps victims of domestic violence and child abuse.",
+          "hours": null,
+          "sources": [
+            23,
+            1
+          ]
+        },
+        {
+          "name": "Brigade pour la Protection des Mineurs",
+          "number": "+230 213 4093",
+          "also": [],
+          "what": "Call it to reach the headquarters of the police brigade that protects children and deals with child abuse.",
+          "hours": null,
+          "sources": [
+            24,
+            1
+          ]
+        },
+        {
+          "name": "Elder abuse hotline",
+          "number": "199",
+          "also": [],
+          "what": "Call it to report a case of abuse of an elderly person.",
+          "hours": "24 hours",
+          "sources": [
+            25
+          ]
+        },
+        {
+          "name": "Social security information line",
+          "number": "172",
+          "also": [],
+          "what": "Call it for information and queries about social security.",
+          "hours": "09:00 to 16:00",
+          "sources": [
+            25
+          ]
+        },
+        {
+          "name": "Consumer Affairs Unit hotline",
+          "number": "185",
+          "also": [],
+          "what": "Call it to make a complaint as a consumer to the Consumer Affairs Unit.",
+          "hours": null,
+          "sources": [
+            26
+          ]
+        },
+        {
+          "name": "Befrienders Mauritius",
+          "number": "800 9393",
+          "also": [],
+          "what": "Call it for confidential emotional support from trained volunteers if you are in distress or have thoughts of suicide. It is a voluntary association, not a government service.",
+          "hours": "09:00 to 21:00, every day",
+          "sources": [
+            28,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rodrigues",
+      "label": "Rodrigues",
+      "items": [
+        {
+          "name": "Rodrigues Police",
+          "number": "+230 831 1536",
+          "also": [
+            "+230 831 2968",
+            "+230 831 1526"
+          ],
+          "what": "Call it to reach the office of the Chief Officer of Police in Rodrigues, a number the police also list for the operations room at Port Mathurin.",
+          "hours": null,
+          "sources": [
+            29,
+            3
+          ]
+        },
+        {
+          "name": "Central Electricity Board, Rodrigues office",
+          "number": "+230 832 0210",
+          "also": [],
+          "what": "Call it to reach the Central Electricity Board office at Port Mathurin.",
+          "hours": null,
+          "sources": [
+            13
+          ]
+        },
+        {
+          "name": "Rodrigues Immigration Unit",
+          "number": "+230 831 0654",
+          "also": [],
+          "what": "Call it to reach the immigration unit of the Passport and Immigration Office at Port Mathurin.",
+          "hours": null,
+          "sources": [
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Republic of Mauritius, government portal home page, Hotline list",
+      "publisher": "Government of Mauritius",
+      "url": "https://govmu.org/EN/Pages/default.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 2,
+      "title": "Mauritius Police Force, home page, Hotline panel",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 3,
+      "title": "Contact Us",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=3694",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 4,
+      "title": "FAQs",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=4892",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 5,
+      "title": "Hospital Services (SAMU Services)",
+      "publisher": "Ministry of Health and Wellness",
+      "url": "https://health.govmu.org/health/?page_id=5509",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 6,
+      "title": "Sections, Units & Fire Stations",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "url": "https://mfrs.govmu.org/Pages/Sections-Units.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 7,
+      "title": "Our Customer Charter",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "url": "https://mfrs.govmu.org/Documents/Our%20Customer%20Charter.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 8,
+      "title": "Numbering Plan for the Republic of Mauritius",
+      "publisher": "Information and Communication Technologies Authority",
+      "url": "https://www.icta.mu/documents/2025/05/numbering_plan.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 9,
+      "title": "Travel Advisory in the Context of Ebola Disease Public Health Emergency of International Concern, dated 7 September 2026",
+      "publisher": "Ministry of Health and Wellness",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2026/11/07-September-Updated-Travel-Advisory-1.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 10,
+      "title": "National Coast Guard, Annual Operational Plan 2021, contact numbers",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?mdocs-file=6180",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 11,
+      "title": "Contact Us",
+      "publisher": "Mauritius Meteorological Services",
+      "url": "https://metservice.intnet.mu/contact-us.php",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 12,
+      "title": "Customer Services",
+      "publisher": "Central Electricity Board",
+      "url": "https://ceb.mu/our-activities/customer-services",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 13,
+      "title": "Contact Us",
+      "publisher": "Central Electricity Board",
+      "url": "https://ceb.mu/contact-us",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 14,
+      "title": "Complaints",
+      "publisher": "Central Water Authority",
+      "url": "https://cwa.govmu.org/cwa/?page_id=803",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 15,
+      "title": "Customer Service",
+      "publisher": "Wastewater Management Authority",
+      "url": "https://www.wmamauritius.mu/customer-service/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 16,
+      "title": "Police du Tourisme",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=4914",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 17,
+      "title": "Contact us",
+      "publisher": "Tourism Authority",
+      "url": "https://www.tourismauthority.mu/contact-us/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 18,
+      "title": "Airport Contacts",
+      "publisher": "Airport Terminal Operations Ltd, SSR International Airport",
+      "url": "https://mauritius-airport.atol.aero/passengers/airport-guide/airport-contacts",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 19,
+      "title": "Airports of Mauritius, home page",
+      "publisher": "Airports of Mauritius Co. Ltd",
+      "url": "https://aml.mru.aero/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 20,
+      "title": "Contact Us",
+      "publisher": "Passport and Immigration Office",
+      "url": "https://passport.govmu.org/passport/?page_id=399",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 21,
+      "title": "Contact Us",
+      "publisher": "Ministry of Gender Equality and Family Welfare",
+      "url": "https://gender.govmu.org/Pages/Contact-Us.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 22,
+      "title": "FAQs",
+      "publisher": "Ministry of Gender Equality and Family Welfare",
+      "url": "https://gender.govmu.org/Pages/FAQS.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 23,
+      "title": "Police Family Protection Unit",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=4915",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 24,
+      "title": "Brigade Pour La Protection Des Mineurs",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=6924",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 25,
+      "title": "Contact Us",
+      "publisher": "Ministry of Social Integration, Social Security and National Solidarity",
+      "url": "https://socialsecurity.govmu.org/socialsecurity/?page_id=566",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 26,
+      "title": "Consumer Affairs Unit",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "url": "https://commerce.govmu.org/Pages/Departments/CAU.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 27,
+      "title": "Police de l'Environnement",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=4912",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 28,
+      "title": "Befrienders (Mauritius), the association's profile in the ACTogether directory of NGOs",
+      "publisher": "ACTogether (CIEL Group)",
+      "url": "https://www.actogether.mu/find-an-ngo/befrienders-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 29,
+      "title": "Rodrigues Police",
+      "publisher": "Mauritius Police Force",
+      "url": "https://police.govmu.org/police/?page_id=4925",
+      "read": "2026-11-20"
+    }
+  ],
+  "unverified": [
+    "A telephone number for hearing the weather or cyclone bulletin could not be confirmed. The contact, FAQ and cyclone warning pages of the Mauritius Meteorological Services give only the reception and forecast office numbers.",
+    "The government suicide prevention line (Life Plus) could not be confirmed. Its former site, lifeplus.govmu.org, now leads to the government portal, and the Ministry of Health and Wellness pages that were read do not give a number.",
+    "The Befrienders Mauritius number and hours come from the association's own profile in the ACTogether directory, not from a government page. The website named on that profile did not load the association's pages, and the Befrienders Worldwide directory page could not be read.",
+    "No drug helpline was found on an official page. The National Drug Secretariat site and the Ministry of Health and Wellness page on HIV, AIDS and harm reduction give office numbers only.",
+    "No telephone hotline was found for the Citizen Support Unit. Its portal takes requests online and says to visit a Citizens Advice Bureau otherwise.",
+    "No poison information line was found on the Ministry of Health and Wellness pages that were read.",
+    "Public hospital switchboards are left out. The Ministry of Health and Wellness lists telephone numbers against named officers of each health region, not as public switchboards, and no official page read gives a number for Queen Elizabeth Hospital in Rodrigues.",
+    "It could not be confirmed on a page read whether the short codes 999, 112, 114, 115, 130 and 170 answer in Rodrigues. Only the ordinary Rodrigues numbers listed by the police, the Central Electricity Board and the Passport and Immigration Office are given.",
+    "The Police Information and Operations Room is given as 468 0034 and 468 0035 on the police home page and in the Hotline block of the police contact page, but another block of the same contact page gives 208 0034, 208 0035 and 211 4444, and the government portal gives 208 0034. The first pair is used here.",
+    "The government portal labels 119 as Family Protection Unit (Domestic Violence). The Ministry of Gender Equality and Family Welfare gives 139 for domestic violence and 119 for family counselling, and the police home page also gives 139 for domestic violence, so the Ministry's labels are used.",
+    "The government portal lists a toll free police complaint line, 800 2345. It does not appear on the police site, so it is left out.",
+    "The Police du Tourisme numbers 213 1740 and 210 3894 come from the government portal only. The police page for the unit lists the six local offices and their mobile numbers instead.",
+    "The police contact page gives a second number for most operations rooms without saying whether it is a telephone or a fax. For the National Coast Guard the second number matches the fax number in the Coast Guard leaflet, so second numbers from that list are left out.",
+    "The police home page lists 177 only as National Coast Guard. The Coast Guard leaflet, which dates from 2021, calls it the Maritime Crime Reporting Hotline. No page read says whether it also takes rescue calls, and the same leaflet gives 999 as the emergency number.",
+    "The fire number 995 appears only in the national numbering plan, which says 995 coexists with 115. The Fire and Rescue Service pages give 115 only.",
+    "Hours are left empty wherever the page read does not state them. This covers 999, 112, 113, 119, 139, 148, 154, 170, 177, 185, 8910, 8924 and 8965, so it could not be confirmed that these lines answer at all hours.",
+    "The social security information line 172 is given as 09:00 to 16:00 on the Ministry's contact page and as 08:45 to 16:00 in the footer of its home page. The contact page is used."
+  ]
+}

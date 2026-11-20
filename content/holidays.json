@@ -1,0 +1,212 @@
+{
+  "checked": "2026-11-20",
+  "years": {
+    "2026": [
+      {
+        "date": "2026-01-01",
+        "name": "New Year",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-01-02",
+        "name": "New Year",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-02-01",
+        "name": "Abolition of Slavery",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-02-01",
+        "name": "Thaipoosam Cavadee",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-02-15",
+        "name": "Maha Shivaratree",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-02-17",
+        "name": "Chinese Spring Festival",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-03-12",
+        "name": "Independence Day and Republic Day",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-03-19",
+        "name": "Ugaadi",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-03-21",
+        "name": "Eid-Ul-Fitr",
+        "subjectToConfirmation": true
+      },
+      {
+        "date": "2026-05-01",
+        "name": "Labour Day",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-08-15",
+        "name": "Assumption of the Blessed Virgin Mary",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-09-15",
+        "name": "Ganesh Chaturthi",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-11-02",
+        "name": "Arrival of Indentured Labourers",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-11-08",
+        "name": "Divali",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-11-09",
+        "name": "Public holiday on the Monday after Divali",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2026-12-25",
+        "name": "Christmas",
+        "subjectToConfirmation": false
+      }
+    ],
+    "2027": [
+      {
+        "date": "2027-01-01",
+        "name": "New Year",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-01-02",
+        "name": "New Year",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-01-22",
+        "name": "Thaipoosam Cavadee",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-02-01",
+        "name": "Abolition of Slavery",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-02-06",
+        "name": "Chinese Spring Festival",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-03-06",
+        "name": "Maha Shivaratree",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-03-10",
+        "name": "Eid-Ul-Fitr",
+        "subjectToConfirmation": true
+      },
+      {
+        "date": "2027-03-12",
+        "name": "Independence Day and Republic Day",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-04-07",
+        "name": "Ougadi",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-05-01",
+        "name": "Labour Day",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-09-05",
+        "name": "Ganesh Chaturthi",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-09-06",
+        "name": "Public holiday on the Monday after Ganesh Chaturthi",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-10-29",
+        "name": "Divali",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-11-01",
+        "name": "All Saints Day",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-11-02",
+        "name": "Arrival of Indentured Labourers",
+        "subjectToConfirmation": false
+      },
+      {
+        "date": "2027-12-25",
+        "name": "Christmas",
+        "subjectToConfirmation": false
+      }
+    ]
+  },
+  "sources": [
+    {
+      "n": 1,
+      "title": "General Notice No. 611 of 2026, Public Holidays 2026 (Amended), dated 25 May 2026",
+      "publisher": "Prime Minister's Office, Republic of Mauritius",
+      "url": "https://pmo.govmu.org/Communique/GN_No._611-Amendment_to_Public_Holidays_2026.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 2,
+      "title": "General Notice No. 1195 of 2025, Public Holidays 2026, dated 20 August 2025",
+      "publisher": "Prime Minister's Office, Republic of Mauritius (copy published by the National Archives Department)",
+      "url": "https://nationalarchives.govmu.org/nationalarchives/wp-content/uploads/2026/02/GN_No._1195-Public_Holidays_2026.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 3,
+      "title": "Communiqué, Public Holiday, dated 02 October 2026 (Monday 09 November 2026)",
+      "publisher": "Prime Minister's Office, Republic of Mauritius",
+      "url": "https://pmo.govmu.org/Communique/Communiqu%C3%A9_PMO_Public%20Holiday.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 4,
+      "title": "General Notice No. 1088 of 2026, Public Holidays 2027, dated 31 August 2026",
+      "publisher": "Prime Minister's Office, Republic of Mauritius",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 5,
+      "title": "Highlights of Cabinet Meeting, Friday 28 August 2026, item 3 (list of Public Holidays for the Year 2027)",
+      "publisher": "Prime Minister's Office, Republic of Mauritius",
+      "url": "https://pmo.govmu.org/CabinetDecision/2026/Highlights%20of%20Cabinet%20Meeting%20Friday%2028%20August%20%202026.pdf",
+      "read": "2026-11-20"
+    }
+  ],
+  "unverified": [
+    "No official communiqué confirming the day on which Eid-Ul-Fitr 2026 was observed could be found. The amended notice of 25 May 2026 still lists Saturday 21 March 2026 as subject to confirmation, so the flag is kept.",
+    "Eid-Ul-Fitr 2027 is listed for Wednesday 10 March 2027, subject to confirmation because the date depends on the visibility of the moon. It cannot be confirmed until nearer the time.",
+    "The Government Gazette issues that carry these general notices were not read. The notices were read as published by the Prime Minister's Office. The first 2026 notice was read from the copy on the National Archives site, because the government portal's link to it on the Prime Minister's Office site returned a page not found error.",
+    "The notices give no name of their own to the two Monday holidays, 09 November 2026 and 06 September 2027. The names used here are descriptions, not official names."
+  ]
+}

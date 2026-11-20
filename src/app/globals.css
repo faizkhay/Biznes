@@ -855,6 +855,21 @@
     min-height: var(--hero-h);
     padding-block: 5.5rem 4.5rem;
     text-align: center;
+    isolation: isolate;
+  }
+  /* A soft light behind the words, in the paper's colour: whatever the picture holds there (a
+     mountain, a tree), the words keep their contrast. Measured by scripts/hero-contrast.mjs. */
+  .hero-open::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 46%;
+    width: min(64rem, 150vw);
+    height: 30rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-cream) 92%, transparent), color-mix(in srgb, var(--palette-cream) 80%, transparent) 45%, color-mix(in srgb, var(--palette-cream) 40%, transparent) 75%, transparent);
+    pointer-events: none;
   }
   /* A small line above the question: what the index holds, as a count. */
   .pill-note {
@@ -990,7 +1005,7 @@
     color: var(--color-on-ink);
   }
   .card-ink .row-title,
-  .card-ink a:not(.btn) {
+  .card-ink a:not(.btn, .cite) {
     color: inherit;
   }
   /* A button's arrow, in its own circle: the one playful mark on a main action. */

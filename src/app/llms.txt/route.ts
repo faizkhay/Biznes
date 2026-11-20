@@ -1,4 +1,4 @@
-import { site } from "@/data/site";
+import { PLANS, site } from "@/data/site";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
@@ -32,7 +32,9 @@ export function GET() {
     "",
     "## About the data",
     "",
-    `- [Where the data comes from](${siteUrl}/data): sources, licences, what is never taken, corrections and removal.`,
+    `- [Emergency numbers](${siteUrl}/emergency): police, ambulance, fire, the coast guard, utilities and help lines of Mauritius, each from an official page.`,
+    `- [List your business](${siteUrl}/pricing): ${PLANS.map((p) => `${p.name}${p.price ? `, Rs ${p.price} a month for each business` : ", free"}: ${p.line}`).join(" ")}`,
+    `- [Where the data comes from](${siteUrl}/data): sources, licences, how results are ordered, what is never taken, corrections and removal.`,
     `- [${site.bot.name}](${siteUrl}${site.bot.path}): how the crawler behaves and how to keep it out.`,
     `- [Official pages](${siteUrl}/official): the government pages, registers and forms the guides point to.`,
     "",
