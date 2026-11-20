@@ -17,9 +17,12 @@
     "contrast": "node scripts/contrast.mjs --json scripts/contrast.pairs.json",
     "design": "npx --yes @google/design.md@0.4.0 lint DESIGN.md",
     "og": "node scripts/og.mjs",
-    "leads": "node scripts/leads.mjs"
+    "leads": "node scripts/leads.mjs",
+    "test:rls": "bash scripts/test-rls.sh"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.2",
     "geist": "^1.5.1",
     "minisearch": "^7.2.0",
     "next": "16.3.5",
