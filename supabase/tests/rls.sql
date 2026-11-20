@@ -563,6 +563,53 @@ select t.lives($$ select public.admin_handle_plan_request((select id from public
 select t.is($$ select plan || ',' || (plan_until = current_date + 365) || ',' || (select count(*) from public.plan_requests r where r.business_id = b.id and r.status = 'open') from public.businesses b where id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'go,true,0', 'the plan runs to the day it was paid to, and no further');
 
 ------------------------------------------------------------------------------------------------
+select t.be('anon', '', 'A visitor places an order as a guest');
+select t.is($$ select count(*) from public.catalogue where active $$, '13', 'reads what the site sells, and at what price');
+select t.is($$ select public.place_order('[{"id": "guide:mauritius-places-to-see", "qty": 2}, {"id": "sponsor:panel", "qty": 3, "detail": "From next month"}]'::jsonb, ' Gita Guest ', '+230 5123 4567', '', 'Call in the afternoon.') ->> 'total' $$, '4800', 'orders two guides and three months of a panel, and is told the total at the site''s own prices');
+select t.is($$ select public.place_order('[{"id": "guide:mauritius-places-to-see", "qty": 1, "price": 1, "unit_mur": 1, "price_mur": 1}]'::jsonb, 'Gita Guest', '', 'GITA@guest.mu') ->> 'total' $$, '150', 'cannot set a price of their own: a price sent with a line is not read');
+select t.is($$ select (public.place_order('[{"id": "ad:home", "qty": 1}]'::jsonb, 'Gita Guest', '', 'gita@guest.mu')) ->> 'on_request' $$, 'true', 'orders something priced on request, and is told so');
+select t.throws($$ select public.place_order('[{"id": "plan:platinum", "qty": 1}]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot order what the site does not sell', '22023', 'does not sell');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 0}]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot order none of a thing', '22023');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 500}]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot order five hundred of a thing', '22023');
+select t.throws($$ select public.place_order('[]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot place an empty order', '22023');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Gita Guest') $$, 'cannot order without a way to be reached', '22023', 'reach you');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, '', '+230 5123 4567') $$, 'cannot order without a name', '22023');
+select t.throws($$ select * from public.orders $$, 'cannot read orders, their own included', '42501');
+select t.throws($$ select * from public.order_items $$, 'cannot read the lines of orders', '42501');
+select t.throws($$ insert into public.orders (name, phone, total_mur, status) values ('Gita Guest', '+230 5123 4567', 1, 'paid') $$, 'cannot write an order straight to the table', '42501');
+select t.throws($$ update public.catalogue set price_mur = 1 $$, 'cannot change a price', '42501');
+select t.throws($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 1}]'::jsonb) $$, 'cannot call set_catalogue', '42501');
+select t.throws($$ select public.admin_set_order('00000000-0000-4000-8000-0000000000ff', 'paid') $$, 'cannot call admin_set_order', '42501');
+select t.lives($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Gita Guest', '(230) 5123-4567') from generate_series(1, 4) $$, 'places four more orders from the same telephone number');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Gita Guest', '+230 51 23 45 67') $$, 'the sixth in an hour from one number is refused, however the number is written', 'P0001', 'last hour');
+select t.be('authenticated', :'carol', 'Carol places an order while signed in');
+select t.throws($$ select public.place_order('[{"id": "plan:grow", "qty": 2}]'::jsonb) $$, 'cannot order while her profile has no name, unless she gives one', '22023', 'name');
+select t.lives($$ update public.profiles set name = 'Carol' where id = auth.uid() $$, 'gives her profile a name');
+select t.is($$ select (public.place_order('[{"id": "plan:grow", "qty": 2, "detail": "For Carol Shop 1"}]'::jsonb)) ->> 'total' $$, '2500', 'orders two months of Biznes Grow, leaving her name and address to her profile');
+select t.is($$ select count(*) || ',' || min(name) || ',' || min(email) || ',' || min(status) || ',' || bool_and(customer_id = auth.uid()) from public.orders $$, '1,Carol,carol@new.mu,placed,true', 'reads her own order and no other: not the guest''s');
+select t.is($$ select string_agg(item || ' x' || qty || ' at ' || unit_mur || ' a ' || per || ' (' || detail || ')', ',') from public.order_items $$, 'plan:grow x2 at 1250 a month (For Carol Shop 1)', 'reads its lines, priced as the catalogue had them');
+select t.throws($$ update public.orders set status = 'paid', total_mur = 1 $$, 'cannot mark her own order paid, or change its total', '42501');
+select t.throws($$ update public.order_items set unit_mur = 1 $$, 'cannot change the price on a line', '42501');
+select t.throws($$ delete from public.orders $$, 'cannot delete an order', '42501');
+select t.throws($$ select public.admin_set_order((select id from public.orders limit 1), 'paid') $$, 'cannot move her order on with admin_set_order', '42501', 'Only an admin');
+select t.be('authenticated', :'bob', 'Bob, another person');
+select t.is($$ select (select count(*) from public.orders) + (select count(*) from public.order_items) $$, '0', 'cannot read Carol''s order, the guest''s, or any line of either');
+select t.be('authenticated', :'admin', 'An admin and the orders');
+select t.is($$ select count(*) || ',' || count(*) filter (where customer_id is null) from public.orders $$, '8,7', 'reads every order, the guest''s among them');
+select t.lives($$ select public.admin_set_order((select id from public.orders where customer_id is not null), 'awaiting_payment', 'Sent the Juice number.') $$, 'marks one as awaiting payment, with a note for the admins');
+select t.lives($$ select public.admin_set_order((select id from public.orders where customer_id is not null), 'paid') $$, 'and then as paid');
+select t.is($$ select status || ',' || admin_note || ',' || (handled_by = auth.uid()) from public.orders where customer_id is not null $$, 'paid,Sent the Juice number.,true', 'which the order then says, with who did it');
+select t.throws($$ select public.admin_set_order((select id from public.orders limit 1), 'refunded') $$, 'cannot give a status that does not exist', '22023');
+select t.is($$ select string_agg(action, ',' order by id) from public.audit_log where action like 'order.%' $$, 'order.awaiting_payment,order.paid', 'each step is on the record');
+select t.throws($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 1, "per": "month"}]'::jsonb) $$, 'cannot change what the site sells: that is the superadmin''s', '42501', 'Only the superadmin');
+select t.be('authenticated', :'owner', 'The superadmin and what the site sells');
+select t.lives($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 600, "per": "month"}, {"id": "guide:mauritius-places-to-see", "name": "Mauritius, place by place", "price": 150, "per": "each"}]'::jsonb) $$, 'brings the catalogue level with the site''s data');
+select t.is($$ select (select price_mur from public.catalogue where id = 'plan:go') || ',' || (select count(*) from public.catalogue where active) || ',' || (select count(*) from public.catalogue) $$, '600,2,13', 'a price is changed, and what is no longer sold is switched off, not deleted');
+select t.be('authenticated', :'carol', 'Carol, after the prices changed');
+select t.is($$ select string_agg(unit_mur::text, ',') from public.order_items $$, '1250', 'still reads her order at the price of its day');
+select t.throws($$ select public.place_order('[{"id": "plan:grow", "qty": 1}]'::jsonb) $$, 'cannot order what has been switched off', '22023', 'does not sell');
+
+------------------------------------------------------------------------------------------------
 reset role;
 select E'\n# The second lock: the same rules held by triggers, should a grant ever be widened by mistake';
 grant insert, update on public.businesses, public.profiles, public.bookings, public.plan_requests to authenticated;
