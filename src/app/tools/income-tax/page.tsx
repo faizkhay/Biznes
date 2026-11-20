@@ -81,8 +81,9 @@ export default function IncomeTaxPage() {
                       const family = personal(earner(n, 2), figures);
                       return (
                         <tr key={n}>
+                          {/* On a phone a row stands alone, with no column head over its first figure, so the figure says what it is. */}
                           <th scope="row" className="data-1">
-                            MUR {count(n)}
+                            MUR {count(n)} a year
                           </th>
                           <td className="data-1" data-label="Income tax, no dependents">
                             {rupees(alone.tax)}

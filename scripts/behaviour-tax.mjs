@@ -348,7 +348,7 @@ await still.goto(INCOME, { waitUntil: "domcontentloaded" });
 // The row for MUR 780,000 is example 1's tax, and for two dependents 10% of (780,000 - 190,000 - 500,000) = 9,000.
 // The row for MUR 15,000,000 is example 3's: 3,300,000, and with two dependents 35% less on 190,000: 3,233,500.
 const rowOf = async (first) => (await still.locator("table.table tbody tr", { hasText: first }).first().innerText()).replace(/\s+/g, " ");
-check("no script, income tax: the examples are in a table, worked from the same figures", /^MUR 780,000 MUR 28,000\.00 MUR 9,000\.00 MUR 23,400\.00 MUR 3,565\.20$/.test((await rowOf("MUR 780,000")).trim()), await rowOf("MUR 780,000"));
+check("no script, income tax: the examples are in a table, worked from the same figures", /^MUR 780,000 a year MUR 28,000\.00 MUR 9,000\.00 MUR 23,400\.00 MUR 3,565\.20$/.test((await rowOf("MUR 780,000")).trim()), await rowOf("MUR 780,000"));
 check("no script, income tax: the 35% band is in the table too", /MUR 3,300,000\.00.*MUR 3,233,500\.00/.test(await rowOf("MUR 15,000,000")), await rowOf("MUR 15,000,000"));
 check("no script, income tax: the page says the calculator needs script", /The calculator needs JavaScript/.test(await still.locator("main").innerText()));
 await still.goto(BUSINESS, { waitUntil: "domcontentloaded" });

@@ -89,8 +89,9 @@ export default function BusinessTaxPage() {
                       const sum = business({ turnover, profit, previous: profit, exports: null, qualifying: null, presumptive: false }, figures);
                       return (
                         <tr key={profit}>
+                          {/* On a phone a row stands alone, with no column head over its first figure, so the figure says what it is. */}
                           <th scope="row" className="data-1">
-                            MUR {count(profit)}
+                            MUR {count(profit)} of chargeable income
                           </th>
                           <td className="data-1" data-label="Turnover">
                             MUR {count(turnover)}
