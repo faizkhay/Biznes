@@ -6,7 +6,8 @@ import GuideBlocks, { Cites } from "@/components/GuideBlocks";
 import { Out } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/data/site";
-import { day, shortUrl } from "@/lib/format";
+import { anchorOf, day, shortUrl } from "@/lib/format";
+import { TOOLS } from "@/lib/tools";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
 
@@ -15,11 +16,7 @@ type Props = { params: Promise<{ slug: string }> };
 export const generateStaticParams = () => index().guides.map((g) => ({ slug: g.slug }));
 export const dynamicParams = false;
 
-const anchor = (heading: string) =>
-  heading
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+const anchor = anchorOf;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const g = index().guideBySlug.get((await params).slug);
@@ -33,6 +30,7 @@ export default async function GuidePage({ params }: Props) {
   if (!g) notFound();
   const at = data.guides.indexOf(g);
   const next = data.guides[at + 1];
+  const tool = TOOLS.find((t) => t.guide === g.slug);
 
   return (
     <article className="shell pt-8 pb-8 lg:pt-12">
@@ -52,12 +50,33 @@ export default async function GuidePage({ params }: Props) {
       <Crumbs path={[{ href: "/learn", label: "Learn" }, { label: g.title }]} />
       <h1 className="heading-1 mt-4 max-w-4xl">{g.title}</h1>
       <p className="body-1 measure mt-4 text-ink-subtle">{g.summary}</p>
-      <p className="data-2 mt-6 text-ink-faint">
+      <p className="caption-1 mt-6 text-ink-faint">
         Checked {day(g.checked)} against {g.sources.length} sources. General information, not legal or tax advice.
       </p>
+      {tool && (
+        <p className="mt-6">
+          <Link href={tool.href} className="btn btn-quiet button-md">
+            {tool.title}
+          </Link>
+        </p>
+      )}
+
+      {/* On a phone the way through a long guide is a list that opens. */}
+      <details className="note mt-8 lg:hidden">
+        <summary className="title-2 cursor-pointer">In this guide</summary>
+        <ol className="mt-3 grid gap-1">
+          {[...g.sections.map((s) => s.heading), "Sources"].map((heading) => (
+            <li key={heading}>
+              <a href={`#${anchor(heading)}`} className="body-3 inline-flex min-h-11 items-center text-ink-subtle">
+                {heading}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
 
       {g.facts.length > 0 && (
-        <section aria-labelledby="glance" className="mt-10">
+        <section aria-labelledby="glance" className="mt-10 scroll-mt-8">
           <h2 id="glance" className="label-1 pb-3 text-ink-faint">
             At a glance
           </h2>

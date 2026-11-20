@@ -124,7 +124,7 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
   const places = new Map();
   const place = (name, kind) => {
     const slug = slugify(name);
-    if (!places.has(slug)) places.set(slug, { slug, name, kind, n: 0, lon: 0, lat: 0, districts: {}, regions: {} });
+    if (!places.has(slug)) places.set(slug, { slug, name, kind, n: 0, lon: 0, lat: 0, districts: {}, regions: {}, towns: {} });
     return places.get(slug);
   };
   const tally = (p, l) => {
@@ -147,13 +147,18 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
       if (slug === slugify(l.place ?? "")) delete l.area;
       continue;
     }
-    if (areaCounts.get(l.area) >= 8) tally(place(l.area, "area"), l);
+    if (areaCounts.get(l.area) >= 8) {
+      const area = place(l.area, "area");
+      tally(area, l);
+      // A neighbourhood is listed under the town most of it lies in.
+      if (l.place) area.towns[l.place] = (area.towns[l.place] ?? 0) + 1;
+    }
   }
   const top = (counts) => Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0];
   // A listing whose district the boundaries could not say takes the district of most of its town.
   for (const l of listings) if (!l.district && l.place) l.district = top(places.get(slugify(l.place))?.districts ?? {});
   const placeList = [...places.values()]
-    .map((p) => drop({ slug: p.slug, name: p.name, kind: p.kind, n: p.n, lon: p.n ? Math.round((p.lon / p.n) * 1e5) / 1e5 : undefined, lat: p.n ? Math.round((p.lat / p.n) * 1e5) / 1e5 : undefined, district: top(p.districts), region: top(p.regions) }))
+    .map((p) => drop({ slug: p.slug, name: p.name, kind: p.kind, n: p.n, lon: p.n ? Math.round((p.lon / p.n) * 1e5) / 1e5 : undefined, lat: p.n ? Math.round((p.lat / p.n) * 1e5) / 1e5 : undefined, district: top(p.districts), region: top(p.regions), within: p.kind === "area" && top(p.towns) ? slugify(top(p.towns)) : undefined }))
     .sort((a, b) => a.name.localeCompare(b.name));
   const placeSlugs = new Set(placeList.map((p) => p.slug));
 
@@ -176,7 +181,7 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
 
   const catCounts = {};
   for (const l of out) catCounts[l.cat] = (catCounts[l.cat] ?? 0) + 1;
-  const categories = CATEGORIES.map((c) => ({ id: c.id, group: c.group, label: c.label, one: c.one, words: c.words, n: catCounts[c.id] ?? 0 })).filter((c) => c.n > 0);
+  const categories = CATEGORIES.map((c) => ({ id: c.id, group: c.group, label: c.label, one: c.one, words: c.words, hints: c.hints, n: catCounts[c.id] ?? 0 })).filter((c) => c.n > 0);
   const groups = GROUPS.map((g) => ({ ...g, n: categories.filter((c) => c.group === g.id).reduce((sum, c) => sum + c.n, 0) })).filter((g) => g.n > 0);
 
   const districtCounts = {};
@@ -189,6 +194,7 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
     listings: { all: out.length, onTheMap: osm.listings.length, fromWikidata: added, joinedToWikidata: joined, withPhone: out.filter((l) => l.phone?.length).length, withWebsite: out.filter((l) => l.web).length, withHours: out.filter((l) => l.hours).length, withAbout: out.filter((l) => l.about).length },
     web: { ...web.stats, enriched, sites: sites.length },
     places: placeList.length,
+    towns: placeList.filter((p) => p.kind === "town").length,
     categories: categories.length,
     guides: guides.length,
     official: official.length,

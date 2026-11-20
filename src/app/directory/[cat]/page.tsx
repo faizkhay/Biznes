@@ -20,7 +20,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   if (!c) notFound();
   const listings = listingsIn({ cat: c.id });
   const page = Math.min(Math.max(1, Number((await searchParams).page) || 1), Math.max(1, Math.ceil(listings.length / PAGE_SIZE)));
-  const group = data.groups.find((g) => g.id === c.group);
 
   // The towns that have the most of this category: the ways to narrow the list.
   const byPlace = new Map<string, number>();
@@ -35,7 +34,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <PageHead
         path={[{ href: "/directory", label: "Directory" }, { label: c.label }]}
         title={`${c.label} in Mauritius`}
-        lede={`${count(listings.length)} listed${group ? `, under ${group.label.toLowerCase()}` : ""}. The fullest listings come first.`}
+        lede={`${count(listings.length)} listed. The fullest listings come first.`}
       />
       <ListingList listings={listings} page={page} href={(n) => `/directory/${c.id}${n > 1 ? `?page=${n}` : ""}`} narrow={narrow} narrowLabel="Narrow to a town" says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed lit.`} />
     </>

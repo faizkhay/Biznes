@@ -25,7 +25,7 @@ sold beside the results, with a label, and never inside them.
 
 ## Where we stand today
 
-- **What we own:** 7,179 listings in 273 towns and villages, 13 guides with 334 official sources
+- **What we own:** 7,179 listings in 129 towns and villages, 13 guides with 334 official sources
   between them, a glossary, four tools, and a crawler that rebuilds all of it on demand.
 - **What we do not have yet:** visitors. The site is not launched and has no traffic, so every
   number in the forecast below is an assumption, not a measurement. Revenue follows audience, and
@@ -182,7 +182,7 @@ banner on one section of the country's largest news site was MUR 3,000 to MUR 4,
 1.2 million readers a month behind it. We will be far smaller at first, so we start low and sell
 by the result: the sponsor sees their views and calls.
 
-**The size:** 69 categories and 273 places make a large inventory, but only a few dozen pages will
+**The size:** 70 categories and 273 towns and neighbourhoods make a large inventory, but only a few dozen pages will
 have enough visitors to be worth a sponsor in year one: restaurants, hotels and guest houses,
 pharmacies, car hire, hardware, banks, in the six or eight largest towns.
 

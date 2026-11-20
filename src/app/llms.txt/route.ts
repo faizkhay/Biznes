@@ -14,7 +14,7 @@ export function GET() {
     "",
     `> ${site.description}`,
     "",
-    `The index was last built on ${day(meta.generated)} and holds ${count(meta.listings.all)} listings in ${count(meta.places)} towns and villages. Listings come from OpenStreetMap (Open Database Licence) and Wikidata (CC0), and each says its source. The guides are written from official pages and the Acts, list their sources, and say the day they were checked. They are general information, not legal or tax advice.`,
+    `The index was last built on ${day(meta.generated)} and holds ${count(meta.listings.all)} listings in ${count(meta.towns)} towns and villages. Listings come from OpenStreetMap (Open Database Licence) and Wikidata (CC0); each says its source and when the map last recorded it, which for most is more than two years ago. The guides are written from official pages and the Acts, list their sources, and say the day they were checked. They are general information, not legal or tax advice.`,
     "",
     "## Find a business",
     "",

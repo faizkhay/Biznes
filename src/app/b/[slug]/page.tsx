@@ -8,7 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ACTIONS, CREDITS } from "@/data/site";
 import { degrees } from "@/lib/chart";
-import { day, directionsHref, hoursLines, mapHref, osmHref, shortUrl, telHref, wikidataHref } from "@/lib/format";
+import { day, directionsHref, distance, hoursLines, mapHref, month, osmHref, shortUrl, telHref, wikidataHref, yearsSince } from "@/lib/format";
 import { index, listingFromSlug, whereOf, type Listing } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
 
@@ -45,10 +45,16 @@ export default async function ListingPage({ params }: Props) {
     ? data.listings
         .filter((o) => o.id !== l.id && o.cat === l.cat && o.lat != null && o.region === l.region)
         .map((o) => ({ o, d: Math.hypot((o.lon! - l.lon!) * 104, (o.lat! - l.lat!) * 111) }))
+        // "Nearby" means within eight kilometres: farther than that is another town.
+        .filter(({ d }) => d <= 8)
         .sort((a, b) => a.d - b.d)
         .slice(0, 5)
     : [];
   const aboutFrom = l.aboutFrom === "site" ? "its own website" : l.aboutFrom === "wikidata" ? "Wikidata" : "OpenStreetMap";
+  // How old the map's record is. A number or hours last looked at years ago may have changed.
+  const mapped = l.src.osm && l.src.edited ? month(l.src.edited) : "";
+  const stale = yearsSince(l.src.edited) > 2;
+  const bare = !l.phone?.length && !l.web;
 
   return (
     <article className="shell pt-8 pb-8 lg:pt-12">
@@ -100,6 +106,19 @@ export default async function ListingPage({ params }: Props) {
             </p>
           )}
 
+          {mapped && (
+            <p className={`caption-1 mt-4 max-w-prose ${stale ? "note" : "text-ink-faint"}`}>
+              {stale
+                ? `These details are as the map recorded them, and were last edited there in ${mapped}, over two years ago. Check before you rely on them.`
+                : `As recorded on the map, last edited there in ${mapped}.`}
+            </p>
+          )}
+          {bare && (
+            <p className="body-3 mt-4 max-w-prose text-ink-subtle">
+              No telephone number or website is recorded for it. If you know them, <Link href={`/add?listing=${l.id}`}>add them</Link>.
+            </p>
+          )}
+
           {l.about && (
             <div className="mt-8">
               <p className="body-2 measure">{l.about}</p>
@@ -121,7 +140,7 @@ export default async function ListingPage({ params }: Props) {
                   {l.phone.map((p, i) => (
                     <span key={p}>
                       {i > 0 && ", "}
-                      <a href={telHref(p)} className="whitespace-nowrap">
+                      <a href={telHref(p)} className="inline-flex min-h-11 items-center whitespace-nowrap">
                         {p}
                       </a>
                     </span>
@@ -150,6 +169,7 @@ export default async function ListingPage({ params }: Props) {
                       {line}
                     </span>
                   ))}
+                  {mapped && <span className="caption-1 block text-ink-faint">As mapped, {mapped}.</span>}
                 </dd>
               </>
             )}
@@ -239,6 +259,9 @@ export default async function ListingPage({ params }: Props) {
               )}
               {l.src.site && <li>Its website was read by our crawler on {day(l.src.site.checked)}.</li>}
               <li>
+                Being listed here does not say a business is registered or licensed. <Link href="/tools/verify">The official registers</Link> do.
+              </li>
+              <li>
                 Nobody at biznes.mu has visited or vetted this business. If you run it, or know it has changed,{" "}
                 <Link href={`/add?listing=${l.id}`}>tell us what to correct</Link>. To have it taken out, use the same form.
               </li>
@@ -249,7 +272,7 @@ export default async function ListingPage({ params }: Props) {
         {placed && l.region !== "outer" && (
           <aside className="chart:col-span-5">
             <div className="mx-auto max-w-md chart:sticky chart:top-24">
-              <Chart focus={l} labels={false} says={`A chart of Mauritius marking where ${l.name} is${where ? `, in ${where}` : ""}.`} />
+              <Chart focus={l} says={`A chart of Mauritius marking where ${l.name} is${where ? `, in ${where}` : ""}.`} />
               <p className="caption-1 mt-3 text-ink-faint">The mark is {l.name}. The points are everything else listed.</p>
             </div>
           </aside>
@@ -262,9 +285,10 @@ export default async function ListingPage({ params }: Props) {
             {category.label} nearby
           </h2>
           <ul className="rows mt-6">
-            {near.map(({ o }) => (
-              <li key={o.id}>
+            {near.map(({ o, d }) => (
+              <li key={o.id} className="relative">
                 <ListingRow listing={o} />
+                <span className="data-2 absolute top-5 right-0 text-ink-faint">{distance(d)}</span>
               </li>
             ))}
           </ul>

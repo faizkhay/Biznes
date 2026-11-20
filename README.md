@@ -22,10 +22,13 @@ It replaces the site that sold ready-made businesses (in the repository's histor
 - **The crawler** (`crawler/`): builds the index from OpenStreetMap, Wikidata, the front page of
   each business's own website, the member lists of chambers and associations, and the official
   pages the guides point to.
-- **The index** (`data/index`): 7,179 listings in 273 towns and villages and 69 categories, 217
-  Mauritian websites, 153 official pages. Written by the crawler; never edited by hand.
+- **The index** (`data/index`): 7,179 listings in 129 towns and villages (and 144 neighbourhoods
+  within them) and 70 categories, 217 Mauritian websites, 153 official pages. Written by the
+  crawler; never edited by hand. It can be downloaded from the site's own data page.
 - **The search** (`src/lib/search.ts`): one question over listings, guides, official pages and
-  websites. It reads a town and a kind of business out of a question, in English, French or Kreol.
+  websites. It reads a town and a kind of business out of a question, in English, French or Kreol;
+  it answers a question about how with the fact itself; and it never passes a wider category off as
+  the answer to a narrower word.
 - **The guides** (`content/guides`): thirteen, with 334 sources between them, checked on 20 November
   2026. A glossary of 90 terms (`content/glossary.json`) is drawn from them.
 - **The tools**: check a business, a VAT calculator, a comparison of legal structures, the glossary.
@@ -106,9 +109,10 @@ The results of a search are never indexed, launched or not.
 ### Where requests go
 
 The form at `/add` (add a business, correct a listing, remove one) delivers by the first route
-configured: a webhook, or email through Resend. With neither set, a production server refuses the
-request and the form offers the telephone, WhatsApp and email instead. No request is lost quietly.
-Choose a route before launch.
+configured: a webhook, or email through Resend. With neither set, the form does not post at all:
+the same fields write the request out for the visitor's own WhatsApp or email, addressed to the
+contact in `src/data/site.ts`. No request is lost quietly, and no form fails every time. Choose a
+route before launch if requests should arrive in one place.
 
 ## Where the content lives
 
@@ -222,7 +226,7 @@ Run on 20 November 2026 against a production build served on port 3100.
 | Tokens | `npm run tokens` | 0 failures, 1 warning (a one-pixel offset on the guide's contents rail) |
 | Contrast | `npm run contrast` | 18 pairs: every text pair passes AA for body text, every edge 3:1 |
 | Design record | `npm run design` | 0 errors, 3 warnings (line colours the format cannot attach to a component) |
-| Behaviour | `npm run behaviour` | 57 of 57 |
+| Behaviour | `npm run behaviour` | 71 of 71 |
 | Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on 24 kinds of page at 1440 by 900 and 390 by 844 |
 | Captures | `npm run screenshots` | 24 kinds of page at both sizes: no page wider than its screen, no page errors |
 
@@ -236,14 +240,20 @@ npm run behaviour && npm run a11y && npm run screenshots
 ```
 
 What the behaviour check covers: the chart going live; suggestions and their keyboard; a question
-read as a kind and a town, in Kreol, in French, and by one half of a town of two names; a tax
-question answered by a guide first; nothing found; a second page; a listing reached by its id, its
-sources, its telephone link and its structured data; the four old addresses; robots, the sitemap
+read as a kind and a town, in Kreol, in French, and by one half of a town of two names; a question
+about how answered by the fact itself; a tool and a glossary term found by name; a narrower word
+not passed off as a category; padding words dropped; a misspelling answered and said to be one; the
+chart drawn in on the answers; the "/" key; nothing found; a second page; a listing reached by its id, its
+sources, the age of its record, its telephone link and its structured data; the four old addresses; robots, the sitemap
 and llms.txt; a guide's citations; the VAT sums; the two tools drawn from guides; the form's
-errors, its delivery, its honeypot and its rate limit; the site with no script; and six pages on a
-phone.
+errors, its delivery, its honeypot and its rate limit, and what it does with no route set (it starts
+a second server on port 3101 for that); the site with no script; and six pages on a phone.
 
 Captures of six kinds of page are kept in `review/screens`. The rest are made again by the command.
+
+**The design review.** A reviewer who had not built the site went through it on 20 November 2026
+and made fourteen findings, two of them blockers. `STORY.md` lists each with what was done, and the
+five things left undone. Every check above was run again after the fixes.
 
 **Not run, and why:**
 
@@ -261,6 +271,10 @@ Captures of six kinds of page are kept in `review/screens`. The rest are made ag
 - **Coverage is what the open map holds**: fullest for shops, food, places to stay and public
   services; thin for offices and trades. Only 525 listings have a telephone number and 425 a
   website. The registry counts 126,453 live entities; the index holds 7,179 listings.
+- **Most records are old.** Nine in ten of the map's listings were last edited more than two years
+  ago. Each listing says when, and warns when it is over two years. Claimed listings would cure
+  this; they are not built.
+- **A chain is one row a branch**: "MCB" is 41 rows.
 - **No French or Kreol pages.** A question in either is understood.
 - **No accounts**: a business cannot claim and edit its own listing. It asks through the form.
 - **No light palette**, and the chart cannot be explored (`DESIGN.md`, "Known Gaps").

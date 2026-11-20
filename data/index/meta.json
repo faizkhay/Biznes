@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T05:50:01.468Z",
+  "generated": "2026-11-20T06:17:20.799Z",
   "map": {
     "stamp": "2026-11-17T01:30:20.000Z",
     "from": "download.openstreetmap.fr",
@@ -34,7 +34,8 @@
     "sites": 217
   },
   "places": 273,
-  "categories": 69,
+  "towns": 129,
+  "categories": 70,
   "guides": 13,
   "official": 153,
   "crawler": {

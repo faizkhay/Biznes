@@ -42,6 +42,8 @@ function listing(type, id, tags, lon, lat, stamp) {
   if (!found) return null;
   const name = tidy(tags.name);
   if (name.length < 2) return null;
+  // A ministry is a government office, whatever kind of office the map has it down as.
+  if (/^(the )?minist(ry|ère|ere)\b/i.test(name)) found.cat = "government";
 
   const alt = new Set();
   for (const key of ["name:en", "name:fr", "alt_name", "short_name", "official_name", "brand"]) {

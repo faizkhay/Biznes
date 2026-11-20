@@ -90,7 +90,8 @@ email addresses are held. No tagline beyond the line exists.
   businesses, it holds no reviews, and its guides are general information, not legal or tax advice.
 - **Coverage is what the open map holds.** The map is fullest for shops, food, places to stay and
   public services, and thin for offices and trades. Telephone numbers and websites are known for a
-  minority of listings. The site says how many.
+  minority of listings, and most records were last edited on the map more than two years ago. The
+  site says how many, and each listing says when.
 - **Languages:** English at launch. A question may be asked in French or Kreol; the pages
   themselves in French are a listed gap.
 - **Not built, by decision:** accounts, paid placement, advertising, reviews. They are the subject

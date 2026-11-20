@@ -30,7 +30,7 @@ export default function VatCalc({ rate, threshold }: { rate: number; threshold: 
         <h2 id={`${id}-price`} className="heading-2">
           A price
         </h2>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <div className="mt-6 grid max-w-xl gap-6 sm:grid-cols-2">
           <div>
             <label htmlFor={`${id}-amount`} className="title-2 block">
               Amount, in rupees
@@ -74,20 +74,22 @@ export default function VatCalc({ rate, threshold }: { rate: number; threshold: 
           <h2 id={`${id}-reg`} className="heading-2">
             A year&rsquo;s turnover
           </h2>
-          <div className="mt-6 max-w-sm">
+          <div className="mt-6 max-w-xl">
             <label htmlFor={`${id}-turnover`} className="title-2 block">
               Turnover of taxable supplies in a year, in rupees
             </label>
             <input id={`${id}-turnover`} className="field data-1 mt-2" inputMode="decimal" value={turnover} onChange={(e) => setTurnover(e.target.value)} placeholder="2,400,000" />
           </div>
-          <p className="body-2 measure mt-4" role="status">
+          <p className="body-2 mt-4 max-w-xl" role="status">
             {turnover.trim() === ""
               ? ""
               : sales == null
                 ? "Enter the turnover in figures."
-                : sales > threshold
-                  ? `That is over the threshold of ${rupees(threshold)} by ${rupees(sales - threshold)}. The guide explains what the threshold means and who must register whatever their turnover.`
-                  : `That is under the threshold of ${rupees(threshold)} by ${rupees(threshold - sales)}. Some professions and businesses must register whatever their turnover: the guide lists them.`}
+                : sales === threshold
+                  ? `That is exactly the threshold of ${rupees(threshold)}. The guide says how the threshold is applied.`
+                  : sales > threshold
+                    ? `That is over the threshold of ${rupees(threshold)} by ${rupees(sales - threshold)}. The guide explains what the threshold means and who must register whatever their turnover.`
+                    : `That is under the threshold of ${rupees(threshold)} by ${rupees(threshold - sales)}. Some professions and businesses must register whatever their turnover: the guide lists them.`}
           </p>
         </section>
       )}

@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { day, shortUrl, telHref } from "@/lib/format";
+import { chartPoints } from "@/lib/chart";
 import { index, whereOf, type Listing, type Official, type Site } from "@/lib/index";
-import type { GuideHit } from "@/lib/search";
-import { Out } from "./Icons";
+import type { Lead } from "@/lib/search";
+import { Out, Phone } from "./Icons";
 
 /** One listing in a list: its name, what it is and where, a line about it, and how to reach it. */
 export function ListingRow({ listing: l }: { listing: Listing }) {
   const category = index().categoryById.get(l.cat);
   const where = whereOf(l);
   return (
-    <article className="row">
+    <article className="row" data-point={chartPoints().at.get(l.id)}>
       <h3 className="title-1">
         <Link prefetch={false} href={`/b/${l.slug}`} className="row-title">
           {l.name}
@@ -20,34 +21,31 @@ export function ListingRow({ listing: l }: { listing: Listing }) {
       </p>
       {(l.about || l.street) && <p className="body-3 mt-2 line-clamp-2 max-w-prose text-ink-subtle">{l.about ?? l.street}</p>}
       {(l.phone?.length || l.web) && (
-        <p className="data-2 mt-3 flex flex-wrap gap-x-6 gap-y-1 text-ink-faint">
+        <p className="data-2 mt-1 flex flex-wrap items-center gap-x-6 text-ink-faint">
           {l.phone?.[0] && (
-            <a href={telHref(l.phone[0])} className="inline-flex min-h-6 items-center whitespace-nowrap text-ink-subtle">
-              {l.phone[0]}
+            <a href={telHref(l.phone[0])} className="data-1 inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-ink-subtle">
+              <Phone className="size-4" /> {l.phone[0]}
             </a>
           )}
-          {l.web && <span>{shortUrl(l.web)}</span>}
+          {l.web && <span className="inline-flex min-h-11 items-center">{shortUrl(l.web)}</span>}
         </p>
       )}
     </article>
   );
 }
 
-/** A guide that answers a question, and the part of it that does. */
-export function GuideRow({ hit }: { hit: GuideHit }) {
-  const { guide, section } = hit;
+/** An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or a tool. */
+export function LeadRow({ lead }: { lead: Lead }) {
   return (
     <article className="row">
-      <p className="label-1 tag tag-lit">Guide</p>
+      <p className="label-1 tag tag-lit">{lead.tag}</p>
       <h3 className="title-1 mt-2">
-        <Link prefetch={false} href={`/learn/${guide.slug}`} className="row-title">
-          {guide.title}
+        <Link prefetch={false} href={lead.href} className="row-title">
+          {lead.title}
         </Link>
       </h3>
-      <p className="body-3 mt-1 line-clamp-3 max-w-prose text-ink-subtle">{guide.summary}</p>
-      <p className="data-2 mt-3 text-ink-faint">
-        {section ? `In it: ${section}. ` : ""}Checked {day(guide.checked)}
-      </p>
+      <p className="body-3 mt-1 line-clamp-4 max-w-prose text-ink-subtle">{lead.line}</p>
+      {lead.meta && <p className="caption-1 mt-3 text-ink-faint">{lead.meta}</p>}
     </article>
   );
 }

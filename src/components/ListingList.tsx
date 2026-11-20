@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { chartPoints } from "@/lib/chart";
 import { count } from "@/lib/format";
 import type { Listing } from "@/lib/index";
 import { PAGE_SIZE } from "@/lib/search";
-import { chartPoints } from "@/lib/chart";
 import { Pager } from "./Bits";
 import Chart from "./Chart";
 import { ListingRow } from "./Rows";
@@ -17,22 +17,30 @@ export default function ListingList({ listings, page, href, narrow, narrowLabel,
   const lit = listings.map((l) => at.get(l.id)).filter((i): i is number => i != null);
   const pages = Math.ceil(listings.length / PAGE_SIZE);
   const shown = listings.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const onChart = `On the chart: ${count(lit.length)} of ${count(listings.length)}.`;
   return (
     <div className="shell grid gap-x-12 chart:grid-cols-12">
       <div className="chart:col-span-7">
         {narrow && narrow.length > 0 && (
-          <nav aria-label={narrowLabel} className="mb-8">
-            <h2 className="label-1 pb-3 text-ink-faint">{narrowLabel}</h2>
-            <ul className="flex flex-wrap gap-2">
+          <nav aria-label={narrowLabel} className="mb-6">
+            <h2 className="label-1 text-ink-faint">{narrowLabel}</h2>
+            <ul className="narrow">
               {narrow.map((w) => (
                 <li key={w.href}>
-                  <Link prefetch={false} href={w.href} className="btn btn-quiet button-sm">
+                  <Link prefetch={false} href={w.href} className="body-3">
                     {w.label} <span className="data-2 text-ink-faint">{count(w.n)}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
+        )}
+        {/* On a phone the chart is a small one above the list. */}
+        {lit.length > 0 && (
+          <div className="mb-6 flex items-center gap-4 chart:hidden">
+            <Chart className="chart-strip" lit={lit} zoom says={says} />
+            <p className="caption-1 text-ink-faint">{onChart}</p>
+          </div>
         )}
         <ul className="rows">
           {shown.map((l) => (
@@ -46,10 +54,8 @@ export default function ListingList({ listings, page, href, narrow, narrowLabel,
       {lit.length > 0 && (
         <aside className="hidden chart:col-span-5 chart:block">
           <div className="sticky top-24">
-            <Chart className="chart-side" lit={lit} labels={false} says={says} />
-            <p className="caption-1 mt-3 text-ink-faint">
-              Lit on the chart: {count(lit.length)} of these {count(listings.length)}.
-            </p>
+            <Chart className="chart-side" lit={lit} zoom says={says} />
+            <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
           </div>
         </aside>
       )}

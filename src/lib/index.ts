@@ -48,8 +48,10 @@ export type Listing = {
   full: number;
 };
 
-export type Place = { slug: string; name: string; kind: "town" | "area"; n: number; lon?: number; lat?: number; district?: string; region?: string };
-export type Category = { id: string; group: string; label: string; one: string; words: string[]; n: number };
+export type Place = { slug: string; name: string; kind: "town" | "area"; n: number; lon?: number; lat?: number; district?: string; region?: string; /** For a neighbourhood: the town most of it lies in. */ within?: string };
+export type Category = { id: string; group: string; label: string; one: string; words: string[]; /** Narrower words: kinds of thing a mixed category may hold. */ hints?: string[]; n: number };
+/** A glossary term. Its meaning is taken from the guide it names. */
+export type Term = { term: string; full?: string; meaning: string; guide?: string };
 export type Group = { id: string; label: string; n: number };
 export type District = { slug: string; name: string; n: number };
 export type Site = { host: string; url: string; title: string; name?: string; about?: string; lang?: string; checked?: string };
@@ -68,6 +70,8 @@ export type Meta = {
   listings: { all: number; onTheMap: number; fromWikidata: number; joinedToWikidata: number; withPhone: number; withWebsite: number; withHours: number; withAbout: number };
   web: { named?: number; visited?: number; read?: number; refused?: number; unreachable?: number; discovered?: number; enriched: number; sites: number };
   places: number;
+  /** Of the places, how many are towns and villages; the rest are neighbourhoods. */
+  towns: number;
   categories: number;
   guides: number;
   official: number;
@@ -111,6 +115,7 @@ type Store = {
   meta: Meta;
   guides: Guide[];
   guideBySlug: Map<string, Guide>;
+  glossary: Term[];
 };
 
 const root = process.cwd();
@@ -157,6 +162,7 @@ function load(): Store {
         .map((name) => JSON.parse(readFileSync(join(dir, name), "utf8")) as Guide)
         .map(tidyTitles)
     : [];
+  const glossaryFile = join(root, "content", "glossary.json");
   const rank = (g: Guide) => (GUIDE_ORDER.indexOf(g.slug) + 1 || GUIDE_ORDER.length + 1) * 1000;
   guides.sort((a, b) => rank(a) - rank(b) || a.title.localeCompare(b.title));
   return {
@@ -174,6 +180,7 @@ function load(): Store {
     meta: read<Meta>("meta.json"),
     guides,
     guideBySlug: new Map(guides.map((g) => [g.slug, g])),
+    glossary: existsSync(glossaryFile) ? (JSON.parse(readFileSync(glossaryFile, "utf8")) as Term[]).sort((a, b) => a.term.localeCompare(b.term, "en", { sensitivity: "base" })) : [],
   };
 }
 

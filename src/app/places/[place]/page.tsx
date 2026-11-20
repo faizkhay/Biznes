@@ -34,7 +34,7 @@ export default async function PlacePage({ params, searchParams }: Props) {
       <PageHead
         path={[{ href: "/places", label: "Places" }, { label: p.name }]}
         title={`Businesses in ${p.name}`}
-        lede={`${count(listings.length)} listed${p.district && p.district !== p.name ? ` in ${p.name}, ${p.district} district` : ""}${p.kind === "area" ? ". A neighbourhood, as named on the map" : ""}.`}
+        lede={`${count(listings.length)} listed${p.district && p.district !== p.name ? ` in ${p.name}, ${p.district} district` : ""}${p.kind === "area" ? `. A neighbourhood${p.within && data.placeBySlug.get(p.within) ? ` of ${data.placeBySlug.get(p.within)!.name}` : ""}, as named on the map` : ""}.`}
       />
       <ListingList listings={listings} page={page} href={(n) => `/places/${p.slug}${n > 1 ? `?page=${n}` : ""}`} narrow={narrow} narrowLabel="Narrow to a kind of business" says={`A chart of Mauritius with the ${count(listings.length)} listings in ${p.name} lit.`} />
     </>

@@ -76,8 +76,20 @@ check("reads: a kind and a town", /Pharmacies in Curepipe/.test(await reads("pha
 check("reads: Kreol", /Pharmacies/.test(await reads("farmasi")));
 check("reads: French", /Hardware/.test(await reads("quincaillerie")));
 check("reads: one half of a town of two names", /Beau Bassin-Rose Hill/.test(await reads("restaurants rose hill")));
-await reads("vat");
-check("a question about tax is answered by a guide first", /Value Added Tax/i.test(await text("main article h3")));
+await reads("vat threshold");
+check("a question about how is answered by the fact itself, first", /Value Added Tax/i.test(await text("main article h3")) && /threshold: MUR 3 million/i.test(await text("main article p.body-3")));
+await reads("vat calculator");
+check("a tool is found by its name", (await page.locator('main article a[href="/tools/vat"]').count()) === 1);
+await reads("BRN");
+check("a term is found in the glossary", (await page.locator('main article a[href="/learn/glossary#brn"]').count()) === 1);
+check("a narrower word is not passed off as a category", /Nothing found/.test(await reads("plumber")) && /not a category of its own/.test(await text("main p.note")) && (await page.locator("main article").count()) === 0);
+check("reads: words that only pad a question are dropped", /Read as: Restaurants in Grand Baie\./.test(await reads("restaurant grand baie open now")));
+check("reads: taxis are not car hire", /Read as: Taxis\./.test(await reads("taxi")));
+check("a misspelling is answered and said to be one", /close spellings/.test(await reads("pharmcy curepipe")) && (await page.locator("main article").count()) > 5);
+await reads("pharmacy in curepipe");
+check("results: the chart is drawn in on the answers, with a key", (await page.locator("aside .chart .chart-key").count()) === 1 && (await page.locator("main article[data-point]").count()) > 5);
+await page.keyboard.press("/");
+check("the / key goes to the search box", (await page.evaluate(() => document.activeElement?.id)) === "search");
 check("nothing found says so, and offers the directory", /Nothing found/.test(await reads("zzqqxx")) && (await page.locator('main a[href="/directory"]').count()) > 0);
 await page.goto(`${origin}/search?q=restaurant&page=2`, { waitUntil: "domcontentloaded" });
 check("results: a second page", /Page 2 of/.test(await text(".pager")));
@@ -87,6 +99,8 @@ const res = await page.goto(`${origin}/b/n5651200767`, { waitUntil: "domcontentl
 check("listing: its id alone leads to its full address", /\/b\/keiffel-tours-grand-baie-n5651200767$/.test(page.url()) && res.status() === 200, page.url());
 check("listing: says where it comes from", (await page.locator('a[href="https://www.openstreetmap.org/node/5651200767"]').count()) === 1);
 check("listing: a telephone link", (await page.locator('a[href^="tel:+230"]').count()) >= 1);
+check("listing: says how old the map's record is", /last edited there in November 2021, over two years ago/.test(await text("main p.note")));
+check("listing: points to the official registers", (await page.locator('main a[href="/tools/verify"]').count()) >= 1);
 const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').first().innerText());
 check("listing: structured data from the same facts", ld["@type"] === "LocalBusiness" && ld.address?.addressCountry === "MU" && !!ld.geo);
 check("listing: unknown is a 404", (await page.request.get(`${origin}/b/n1`)).status() === 404);
@@ -145,6 +159,38 @@ let last = 0;
 for (let i = 0; i < 6; i++) last = (await page.request.post(`${origin}/api/enquiry`, { data: {} })).status();
 check("form: the sixth request in ten minutes is refused", last === 429, `${last}`);
 
+// 7b. With no route for requests set, the form writes the request out for WhatsApp instead of posting.
+{
+  const { spawn } = await import("node:child_process");
+  const env = { ...process.env };
+  delete env.ENQUIRY_WEBHOOK_URL;
+  delete env.RESEND_API_KEY;
+  const bare = spawn("npx", ["next", "start", "-p", "3101"], { env, stdio: "ignore", detached: true });
+  let up = false;
+  for (let i = 0; i < 40 && !up; i++) {
+    await new Promise((r) => setTimeout(r, 500));
+    up = await page.request.get("http://localhost:3101/add").then((r) => r.ok(), () => false);
+  }
+  if (up) {
+    await page.goto("http://localhost:3101/add", { waitUntil: "networkidle" });
+    check("form, no route: it offers WhatsApp and email, not a send that would fail", (await page.locator("main button", { hasText: "Send by WhatsApp" }).count()) === 1 && (await page.locator("#email").count()) === 0);
+    await page.fill("#business", "Test Shop");
+    await page.fill("#message", "Please add it.");
+    await page.fill("#name", "A Tester");
+    // It opens with no tie back to this page, so it is the browser, not the page, that reports it.
+    const [popup] = await Promise.all([context.waitForEvent("page", { timeout: 8000 }).catch(() => null), page.click('main button[type="submit"]')]);
+    await popup?.waitForURL(/whatsapp|wa\.me/, { timeout: 8000 }).catch(() => {});
+    const url = popup ? decodeURIComponent(popup.url()) : "";
+    check("form, no route: the request is written out for WhatsApp", /whatsapp|wa\.me/.test(url) && /Test[ +]Shop/.test(url), url.slice(0, 120));
+    await popup?.close();
+  } else check("form, no route: a second server started", false);
+  try {
+    process.kill(-bare.pid);
+  } catch {
+    bare.kill();
+  }
+}
+
 // 8. Without script: the form asks, the page answers, the chart is drawn, the sums are shown.
 const plain = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
 const still = await plain.newPage();
@@ -170,6 +216,10 @@ for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/dir
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
 check("phone: the four ways in are on show", (await small.locator('header nav[aria-label="Main"] a:visible').count()) === 4);
+await small.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcontentloaded" });
+check("phone: results have a small chart above them", await small.locator(".chart-strip").first().isVisible());
+await small.goto(`${origin}/learn/vat`, { waitUntil: "domcontentloaded" });
+check("phone: a guide's contents open as a list", (await small.locator("details summary").first().isVisible()) && (await small.locator("table.table thead").first().evaluate((el) => el.getBoundingClientRect().width <= 2)));
 await phone.close();
 
 check("no page errors", errors.length === 0, errors.slice(0, 2).join(" | "));

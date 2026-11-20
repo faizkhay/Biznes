@@ -13,12 +13,14 @@ export const CHART_EVENT = "biznes:lit";
 /**
  * The chart, live: a canvas over the drawn chart with every listing as its own point of light.
  *
- * It draws only when something changes (the size, or which points are lit), never in a loop. When
- * a set of points is lit the rest dim and the lit ones come up over a third of a second; under
- * reduced motion they are simply lit. Once it has drawn, the drawn chart's gathered dots are
- * hidden (data-live on the parent), so the two never show at once.
+ * It draws only when something changes (the size, which points are lit, which row is under the
+ * pointer), never in a loop. When a set of points is lit the rest dim and the lit ones come up
+ * over a third of a second; under reduced motion they are simply lit. A row of a list that carries
+ * its point (data-point) rings that point while the pointer or the keyboard is on it. Once the
+ * canvas has drawn, the drawn chart's gathered dots are hidden (data-live on the parent), so the
+ * two never show at once.
  */
-export default function ChartLive({ height, lit, follow, focus }: { height: number; lit?: number[]; follow?: boolean; focus?: [number, number] }) {
+export default function ChartLive({ lit, follow, focus, view }: { lit?: number[]; follow?: boolean; focus?: [number, number]; view: [number, number, number, number] }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,8 +28,10 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
     const parent = canvas?.parentElement;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !parent || !ctx) return;
+    const [vx, vy, vw, vh] = view;
     let all: number[] | null = null;
     let current = new Set(lit ?? []);
+    let ringed = -1;
     let frame = 0;
     let started = 0;
     let alive = true;
@@ -38,15 +42,18 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
 
     const draw = (now: number) => {
       frame = 0;
-      if (!all) return;
+      if (!all || !parent.clientWidth) return;
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
       const width = Math.round(parent.clientWidth * ratio);
-      const tall = Math.round((parent.clientWidth * ratio * height) / 1000);
+      const tall = Math.round((width * vh) / vw);
       if (canvas.width !== width || canvas.height !== tall) {
         canvas.width = width;
         canvas.height = tall;
       }
-      const k = width / 10000;
+      // A point is kept in tenths of a chart unit; the view is in chart units.
+      const k = width / (vw * 10);
+      const x = (i: number) => (all![i * 2] - vx * 10) * k;
+      const y = (i: number) => (all![i * 2 + 1] - vy * 10) * k;
       // A frame's own time can be a moment earlier than the time the change was asked for.
       const t = still ? 1 : Math.max(0, Math.min(1, (now - started) / 360));
       const ease = 1 - Math.pow(1 - t, 3);
@@ -55,29 +62,38 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
       const dot = Math.max(1, 1.5 * ratio);
       ctx.fillStyle = pale;
       ctx.globalAlpha = some ? 0.66 - 0.36 * ease : focus ? 0.42 : 0.8;
-      for (let i = 0; i < all.length; i += 2) {
-        if (some && current.has(i / 2)) continue;
-        ctx.fillRect(all[i] * k - dot / 2, all[i + 1] * k - dot / 2, dot, dot);
+      for (let i = 0; i < all.length / 2; i++) {
+        if (some && current.has(i)) continue;
+        const px = x(i);
+        const py = y(i);
+        if (px < -2 || py < -2 || px > width + 2 || py > tall + 2) continue;
+        ctx.fillRect(px - dot / 2, py - dot / 2, dot, dot);
       }
       if (some) {
         ctx.fillStyle = signal;
-        ctx.globalAlpha = 0.16 * ease;
-        ctx.beginPath();
-        for (const i of current) {
-          const x = all[i * 2] * k;
-          const y = all[i * 2 + 1] * k;
-          ctx.moveTo(x + 5.5 * ratio * ease, y);
-          ctx.arc(x, y, 5.5 * ratio * ease, 0, Math.PI * 2);
+        for (const [radius, alpha] of [
+          [5.5 * ratio * ease, 0.16 * ease],
+          [1.9 * ratio, 0.35 + 0.65 * ease],
+        ]) {
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          for (const i of current) {
+            ctx.moveTo(x(i) + radius, y(i));
+            ctx.arc(x(i), y(i), radius, 0, Math.PI * 2);
+          }
+          ctx.fill();
         }
-        ctx.fill();
-        ctx.globalAlpha = 0.35 + 0.65 * ease;
+      }
+      if (ringed >= 0 && ringed * 2 < all.length) {
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = signal;
+        ctx.lineWidth = 1.5 * ratio;
         ctx.beginPath();
-        for (const i of current) {
-          const x = all[i * 2] * k;
-          const y = all[i * 2 + 1] * k;
-          ctx.moveTo(x + 1.7 * ratio, y);
-          ctx.arc(x, y, 1.7 * ratio, 0, Math.PI * 2);
-        }
+        ctx.arc(x(ringed), y(ringed), 10 * ratio, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = signal;
+        ctx.beginPath();
+        ctx.arc(x(ringed), y(ringed), 3 * ratio, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
@@ -105,6 +121,19 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
       ask(true);
     };
     if (follow) window.addEventListener(CHART_EVENT, onLit);
+
+    // The row under the pointer or the keyboard has its point ringed.
+    const ring = (event: Event) => {
+      const row = (event.target as Element | null)?.closest?.("[data-point]");
+      const next = row ? Number(row.getAttribute("data-point")) : -1;
+      if (next !== ringed) {
+        ringed = Number.isFinite(next) ? next : -1;
+        ask(false);
+      }
+    };
+    document.addEventListener("pointerover", ring);
+    document.addEventListener("focusin", ring);
+
     const resize = new ResizeObserver(() => ask(false));
     resize.observe(parent);
     return () => {
@@ -112,9 +141,11 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
       if (frame) cancelAnimationFrame(frame);
       resize.disconnect();
       window.removeEventListener(CHART_EVENT, onLit);
+      document.removeEventListener("pointerover", ring);
+      document.removeEventListener("focusin", ring);
       delete parent.dataset.live;
     };
-    // The lit set of a page is fixed when the page is made; a new page mounts a new chart.
+    // The lit set and the view of a page are fixed when the page is made; a new page mounts a new chart.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -16,9 +16,10 @@ export default function VerifyPage() {
       <div className="shell">
         <section aria-labelledby="ours" className="mb-12 max-w-2xl">
           <h2 id="ours" className="label-1 pb-3 text-ink-faint">
-            First, what we hold on it
+            Look a business up in our index
           </h2>
           <SearchBox size="lg" id="verify-search" />
+          <p className="caption-1 mt-3 text-ink-faint">The index says where a business is and how to reach it. The registers below say whether it is registered or licensed.</p>
         </section>
         <GuideTables slug="verify-a-business" missing="The list of registers comes from the guide to checking a business, which is not available just now." />
       </div>

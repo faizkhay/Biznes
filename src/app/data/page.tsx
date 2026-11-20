@@ -31,6 +31,10 @@ export default function DataPage() {
             <dd>
               <span className="data-1">{count(meta.listings.all)}</span>: {count(meta.listings.onTheMap)} from the map, {count(meta.listings.fromWikidata)} known only to Wikidata
             </dd>
+            <dt>Towns and villages</dt>
+            <dd>
+              <span className="data-1">{count(meta.towns)}</span>, and {count(meta.places - meta.towns)} neighbourhoods within them
+            </dd>
             <dt>With a telephone number</dt>
             <dd className="data-1">{count(meta.listings.withPhone)}</dd>
             <dt>With a website</dt>
@@ -60,7 +64,7 @@ export default function DataPage() {
           </h2>
           <div className="prose body-2 mt-4">
             <p>
-              <strong>OpenStreetMap.</strong> The names, places, addresses, telephone numbers, websites and opening hours of businesses and services come from OpenStreetMap, the map made by volunteers. It is © <a href={CREDITS.osm.href}>{CREDITS.osm.label}</a> and published under the {CREDITS.osm.licence}. The island&rsquo;s outline, its districts and the boundaries of its towns and villages are from the same map. Because the licence asks that data derived from the map stays open, the index built from it is published with this site&rsquo;s source code.
+              <strong>OpenStreetMap.</strong> The names, places, addresses, telephone numbers, websites and opening hours of businesses and services come from OpenStreetMap, the map made by volunteers. It is © <a href={CREDITS.osm.href}>{CREDITS.osm.label}</a> and published under the {CREDITS.osm.licence}. The island&rsquo;s outline, its districts and the boundaries of its towns and villages are from the same map. Because the licence asks that data derived from the map stays open, the index built from it can be downloaded below, under the same licence.
             </p>
             <p>
               <strong>Wikidata.</strong> A one-line description of a company, the year it began, its industry and its stock exchange come from <a href={CREDITS.wikidata.href}>{CREDITS.wikidata.label}</a>, published under {CREDITS.wikidata.licence}. An organisation Wikidata records as dissolved is left out.
@@ -82,6 +86,8 @@ export default function DataPage() {
             <ul>
               <li>No email addresses. They are not taken from any source, so the index cannot be mined for them.</li>
               <li>No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one, and that is the only order there is.</li>
+              <li>No promise that a listing is current. Each one is as the map last recorded it, and says when that was. Most were last edited more than two years ago.</li>
+              <li>Not every business. The map is fullest for shops, food and places to stay, and thin for offices and trades.</li>
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>
               <li>No judgement. Nobody at biznes.mu has visited or vetted a listed business.</li>
             </ul>
@@ -95,6 +101,33 @@ export default function DataPage() {
           <div className="prose body-2 mt-4">
             <p>The picture of the island on this site is drawn from the index: each point is one listing at the position the map gives it. Rodrigues is shown in an inset at a smaller scale than the main island, because it lies far to the east. Listings with no position, and those on the outer islands, are in the lists but not on the chart.</p>
           </div>
+        </section>
+
+        <section aria-labelledby="open" className="max-w-3xl">
+          <h2 id="open" className="heading-2">
+            The index is open
+          </h2>
+          <div className="prose body-2 mt-4">
+            <p>
+              The listings, places and outlines are derived from OpenStreetMap, so they are yours to copy, share and adapt under the {CREDITS.osm.licence}, as long as you credit OpenStreetMap&rsquo;s contributors and keep what you derive from them open in the same way.
+            </p>
+          </div>
+          <ul className="narrow mt-2">
+            {[
+              ["listings.json", "Listings"],
+              ["places.json", "Places"],
+              ["categories.json", "Categories"],
+              ["geo.json", "Outlines"],
+              ["sites.json", "Websites"],
+              ["meta.json", "The last run"],
+            ].map(([file, label]) => (
+              <li key={file}>
+                <a href={`/data/${file}`} className="body-3" download>
+                  {label} <span className="data-2 text-ink-faint">{file}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section aria-labelledby="correct" className="max-w-3xl">

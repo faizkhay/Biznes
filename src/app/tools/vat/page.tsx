@@ -24,7 +24,7 @@ export default function VatPage() {
         ) : (
           <>
             {/* The figures in use, in the guide's own words, each with its source. */}
-            <dl className="facts body-3 mb-12 max-w-2xl">
+            <dl className="facts body-3 mb-12 max-w-xl">
               <dt>{rate.label}</dt>
               <dd>
                 {rate.said}

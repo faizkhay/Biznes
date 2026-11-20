@@ -42,13 +42,18 @@ const PHONE = /^\+?[\d\s().-]{7,20}$/;
 export const isTopic = (v: unknown): v is Topic => typeof v === "string" && (TOPICS as readonly string[]).includes(v);
 export const isReply = (v: unknown): v is Reply => typeof v === "string" && (REPLIES as readonly string[]).includes(v);
 
-export function validateEnquiry(e: Partial<Enquiry>): EnquiryErrors {
+/**
+ * `reach` is false where the visitor sends the request from their own WhatsApp or email, so the
+ * reply goes back the same way and no address need be asked for.
+ */
+export function validateEnquiry(e: Partial<Enquiry>, { reach = true }: { reach?: boolean } = {}): EnquiryErrors {
   const out: EnquiryErrors = {};
   if (!isTopic(e.topic)) out.topic = "required";
   // Which business: needed for everything but a general message.
   if (e.topic !== "other" && !e.business?.trim()) out.business = "required";
   if (!e.message?.trim()) out.message = "required";
   if (!e.name?.trim()) out.name = "required";
+  if (!reach) return out;
   const phone = e.phone?.trim();
   const email = e.email?.trim();
   if (phone && !PHONE.test(phone)) out.phone = "phone";

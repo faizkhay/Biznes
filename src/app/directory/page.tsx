@@ -16,7 +16,7 @@ export default function DirectoryPage() {
       <PageHead title="The directory" lede={`${count(meta.listings.all)} businesses and services in ${count(categories.length)} categories. Choose a category, then narrow it to a town.`} />
       <div className="shell">
         {groups.map((g) => (
-          <section key={g.id} aria-labelledby={`g-${g.id}`} className="grid gap-x-12 gap-y-4 border-t border-line py-10 md:grid-cols-12">
+          <section key={g.id} aria-labelledby={`g-${g.id}`} className="scroll-mt-8 grid gap-x-12 gap-y-4 border-t border-line py-10 md:grid-cols-12">
             <h2 id={`g-${g.id}`} className="heading-2 md:col-span-4">
               {g.label}
               <span className="data-2 mt-2 block text-ink-faint">{count(g.n)} listed</span>
@@ -24,7 +24,7 @@ export default function DirectoryPage() {
             <div className="index-cols md:col-span-8 lg:columns-2">
               {categories
                 .filter((c) => c.group === g.id)
-                .sort((a, b) => b.n - a.n)
+                .sort((a, b) => Number(a.id.startsWith("other-")) - Number(b.id.startsWith("other-")) || b.n - a.n)
                 .map((c) => (
                   <IndexItem key={c.id} href={`/directory/${c.id}`} label={c.label} n={c.n} />
                 ))}

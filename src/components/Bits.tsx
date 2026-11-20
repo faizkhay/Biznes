@@ -52,12 +52,15 @@ export function IndexItem({ href, label, n }: { href: string; label: string; n: 
   );
 }
 
-/** A page's opening: where it is, what it is, and a sentence about it. */
+/**
+ * A page's opening: where it is, what it is, and a sentence about it. Every page has its path, so
+ * every title sits at the same height.
+ */
 export function PageHead({ path, title, lede, children }: { path?: { href?: string; label: string }[]; title: string; lede?: React.ReactNode; children?: React.ReactNode }) {
   return (
     <div className="shell pt-8 pb-10 lg:pt-12">
-      {path && <Crumbs path={path} />}
-      <h1 className={`heading-1 max-w-4xl ${path ? "mt-4" : ""}`}>{title}</h1>
+      <Crumbs path={[{ href: "/", label: "Home" }, ...(path ?? [{ label: title }])]} />
+      <h1 className="heading-1 mt-4 max-w-4xl">{title}</h1>
       {lede && <p className="body-1 measure mt-4 text-ink-subtle">{lede}</p>}
       {children}
     </div>

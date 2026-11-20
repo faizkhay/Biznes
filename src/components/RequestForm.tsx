@@ -33,7 +33,7 @@ const ASKS: Record<Topic, string> = {
  * and never loses a request quietly: if it cannot be delivered, it says so and gives the phone,
  * WhatsApp and email instead.
  */
-export default function RequestForm({ listing }: { listing?: { id: string; name: string } }) {
+export default function RequestForm({ listing, compose = false }: { listing?: { id: string; name: string; path: string }; /** No delivery route is set on the server: the request is written out and sent from the visitor's own WhatsApp or email. */ compose?: boolean }) {
   const [values, setValues] = useState<Enquiry>({ topic: listing ? "correct" : "add", listing: listing?.id, business: listing?.name ?? "", message: "", name: "", phone: "", email: "", reply: "email", website: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [state, setState] = useState<State>("idle");
@@ -51,15 +51,30 @@ export default function RequestForm({ listing }: { listing?: { id: string; name:
     if (key in errors) setErrors(({ [key as keyof EnquiryErrors]: _, ...rest }) => rest);
   };
 
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    const found = validateEnquiry(values);
+  /** Says what is missing, on the fields, and moves to the first. True when nothing is. */
+  function checked(reach: boolean) {
+    const found = validateEnquiry(values, { reach });
     setErrors(found);
     const first = FIELD_ORDER.find((f) => found[f]);
-    if (first) {
-      form.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+    if (first) form.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+    return !first;
+  }
+
+  /** The request in words, for a message the visitor sends themselves. */
+  function written() {
+    const lines = [`biznes.mu: ${TOPIC_NAMES[values.topic ?? "other"]}`, values.business.trim() ? `Business: ${values.business.trim()}` : "", listing ? `Listing: ${window.location.origin}${listing.path}` : "", "", values.message.trim(), "", `From ${values.name.trim()}`];
+    return lines.filter((line, i) => line || (i > 0 && lines[i - 1])).join("\n");
+  }
+  const byWhatsApp = () => checked(false) && window.open(`${site.contact.whatsappHref}?text=${encodeURIComponent(written())}`, "_blank", "noopener");
+  const byEmail = () => checked(false) && window.location.assign(`mailto:${site.contact.email}?subject=${encodeURIComponent(`biznes.mu: ${TOPIC_NAMES[values.topic ?? "other"]}`)}&body=${encodeURIComponent(written())}`);
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (compose) {
+      byWhatsApp();
       return;
     }
+    if (!checked(true)) return;
     setState("sending");
     try {
       const r = await fetch("/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(values) });
@@ -164,34 +179,38 @@ export default function RequestForm({ listing }: { listing?: { id: string; name:
         <FieldError field="name" />
       </div>
 
-      <fieldset>
-        <legend className="title-2">How should we reply?</legend>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {REPLIES.map((r) => (
-            <label key={r} className="chip body-3">
-              <input type="radio" name="reply" value={r} checked={values.reply === r} onChange={() => set("reply", r as Reply)} className="sr-only" />
-              {REPLY_NAMES[r]}
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      {!compose && (
+        <>
+          <fieldset>
+            <legend className="title-2">How should we reply?</legend>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {REPLIES.map((r) => (
+                <label key={r} className="chip body-3">
+                  <input type="radio" name="reply" value={r} checked={values.reply === r} onChange={() => set("reply", r as Reply)} className="sr-only" />
+                  {REPLY_NAMES[r]}
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <label htmlFor="email" className="title-2 block">
-            Email address {values.reply !== "email" && <span className="caption-1 font-normal text-ink-faint">(optional)</span>}
-          </label>
-          <input id="email" name="email" type="email" autoComplete="email" className="field mt-2" value={values.email} onChange={(e) => set("email", e.target.value)} aria-invalid={errors.email ? true : undefined} aria-describedby={describe("email")} />
-          <FieldError field="email" />
-        </div>
-        <div>
-          <label htmlFor="phone" className="title-2 block">
-            Phone or WhatsApp number {values.reply === "email" && <span className="caption-1 font-normal text-ink-faint">(optional)</span>}
-          </label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" className="field data-1 mt-2" value={values.phone} onChange={(e) => set("phone", e.target.value)} aria-invalid={errors.phone ? true : undefined} aria-describedby={describe("phone")} />
-          <FieldError field="phone" />
-        </div>
-      </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="email" className="title-2 block">
+                Email address {values.reply !== "email" && <span className="caption-1 font-normal text-ink-faint">(optional)</span>}
+              </label>
+              <input id="email" name="email" type="email" autoComplete="email" className="field mt-2" value={values.email} onChange={(e) => set("email", e.target.value)} aria-invalid={errors.email ? true : undefined} aria-describedby={describe("email")} />
+              <FieldError field="email" />
+            </div>
+            <div>
+              <label htmlFor="phone" className="title-2 block">
+                Phone or WhatsApp number {values.reply === "email" && <span className="caption-1 font-normal text-ink-faint">(optional)</span>}
+              </label>
+              <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" className="field data-1 mt-2" value={values.phone} onChange={(e) => set("phone", e.target.value)} aria-invalid={errors.phone ? true : undefined} aria-describedby={describe("phone")} />
+              <FieldError field="phone" />
+            </div>
+          </div>
+        </>
+      )}
 
       {/* The honeypot: hidden from people and from assistive technology; only a bot fills it. */}
       <div aria-hidden className="hidden">
@@ -199,12 +218,26 @@ export default function RequestForm({ listing }: { listing?: { id: string; name:
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => set("website", e.target.value)} />
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <button type="submit" className="btn btn-filled button-md" disabled={state === "sending"}>
-          {state === "sending" ? "Sending" : ACTIONS.send}
-        </button>
-        <p className="caption-1 text-ink-faint">We use what you send only to deal with your request and to reply.</p>
-      </div>
+      {compose ? (
+        <div>
+          <p className="flex flex-wrap gap-3">
+            <button type="submit" className="btn btn-filled button-md">
+              Send by WhatsApp
+            </button>
+            <button type="button" className="btn btn-quiet button-md" onClick={byEmail}>
+              Send by email
+            </button>
+          </p>
+          <p className="caption-1 mt-3 max-w-prose text-ink-faint">This writes your request out in WhatsApp or in your email, ready for you to send to us. We reply the same way.</p>
+        </div>
+      ) : (
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <button type="submit" className="btn btn-filled button-md" disabled={state === "sending"}>
+            {state === "sending" ? "Sending" : ACTIONS.send}
+          </button>
+          <p className="caption-1 text-ink-faint">We use what you send only to deal with your request and to reply.</p>
+        </div>
+      )}
     </form>
   );
 }

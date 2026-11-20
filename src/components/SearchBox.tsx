@@ -14,7 +14,26 @@ type Found = { suggestions: Suggestion[]; points: number[]; n: number };
  * script it also offers a few answers while the question is typed (a combobox: arrow keys move,
  * Enter goes, Escape closes), and on the first screen it tells the chart which listings to light.
  */
-export default function SearchBox({ size = "md", initial = "", light = false, autoFocus = false, id }: { size?: "md" | "lg"; initial?: string; light?: boolean; autoFocus?: boolean; id?: string }) {
+export default function SearchBox({
+  size = "md",
+  initial = "",
+  light = false,
+  autoFocus = false,
+  deskFocus = false,
+  hotkey = false,
+  id,
+}: {
+  size?: "md" | "lg";
+  initial?: string;
+  /** Tell the chart which listings to light, as the question is typed. */
+  light?: boolean;
+  autoFocus?: boolean;
+  /** Take focus on load where there is a keyboard and a wide screen, and never on a phone. */
+  deskFocus?: boolean;
+  /** Answer to the "/" key, as search boxes do. */
+  hotkey?: boolean;
+  id?: string;
+}) {
   const router = useRouter();
   const own = useId();
   const listId = `${id ?? own}-list`;
@@ -23,7 +42,22 @@ export default function SearchBox({ size = "md", initial = "", light = false, au
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const box = useRef<HTMLFormElement>(null);
+  const field = useRef<HTMLInputElement>(null);
   const asked = useRef(0);
+
+  useEffect(() => {
+    if (deskFocus && window.matchMedia("(min-width: 68rem) and (pointer: fine)").matches) field.current?.focus({ preventScroll: true });
+    if (!hotkey) return;
+    const onKey = (event: KeyboardEvent) => {
+      const el = event.target as HTMLElement | null;
+      if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey || el?.closest("input, textarea, select, [contenteditable]")) return;
+      event.preventDefault();
+      field.current?.focus();
+      field.current?.select();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [deskFocus, hotkey]);
 
   useEffect(() => {
     const q = value.trim();
@@ -64,11 +98,22 @@ export default function SearchBox({ size = "md", initial = "", light = false, au
   };
 
   return (
-    <form ref={box} action="/search" method="get" role="search" className={`search search-${size}`}>
+    <form
+      ref={box}
+      action="/search"
+      method="get"
+      role="search"
+      className={`search search-${size}`}
+      onBlur={(e) => {
+        // Focus has left the box altogether: the list goes with it.
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+    >
       <span className="search-glass">
         <Glass className="size-5" />
       </span>
       <input
+        ref={field}
         id={id}
         type="search"
         name="q"

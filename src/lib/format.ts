@@ -57,3 +57,24 @@ export const directionsHref = (lat: number, lon: number) => `https://www.google.
 /** A map element's own page: "node/123" is https://www.openstreetmap.org/node/123. */
 export const osmHref = (ref: string) => `https://www.openstreetmap.org/${ref}`;
 export const wikidataHref = (id: string) => `https://www.wikidata.org/wiki/${id}`;
+
+/** The id a heading or a term is reached by: "Who must register" is "who-must-register". */
+export const anchorOf = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/** A distance for a reader: "350 m", "1.2 km", "14 km". */
+export const distance = (km: number) => (km < 1 ? `${Math.round(km * 20) * 50} m` : km < 10 ? `${km.toFixed(1)} km` : `${Math.round(km)} km`);
+
+/** "2021-11-23" as "November 2021", for saying how old a record is. */
+export function month(iso?: string): string {
+  const m = /^(\d{4})-(\d{2})/.exec(iso ?? "");
+  return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : "";
+}
+
+/** Whole years between a date and today. */
+export const yearsSince = (iso?: string) => (iso ? (Date.now() - new Date(iso).getTime()) / (365.25 * 24 * 3600 * 1000) : 0);

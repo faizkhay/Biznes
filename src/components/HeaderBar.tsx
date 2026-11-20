@@ -29,7 +29,7 @@ export default function HeaderBar() {
         <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
           {links}
         </nav>
-        <div className="min-w-0 flex-1">{!ownSearch && <div className="ml-auto max-w-md">{<SearchBox id="header-search" />}</div>}</div>
+        <div className="min-w-0 flex-1">{!ownSearch && <div className="ml-auto max-w-md">{<SearchBox id="header-search" hotkey />}</div>}</div>
         <Link href="/add" className={`btn btn-quiet button-sm shrink-0 ${ownSearch ? "" : "hidden sm:inline-flex"}`}>
           {ACTIONS.add}
         </Link>

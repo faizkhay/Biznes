@@ -128,6 +128,38 @@ What was done:
 
 The owner has not yet seen this round. What they must confirm is on the README's list.
 
+### The design review, 20 November 2026
+
+A reviewer who had not built the site went through it at both sizes, with a keyboard, and with the
+searches a Mauritian would type. Fourteen findings, two of them blockers. What was done:
+
+| Finding | Done |
+|---|---|
+| The search passed a catch-all category off as the answer ("plumber" read as "Trades and workshops", headed by a photographer) | A category now has words that mean all of it and narrower words that do not. A narrower word is searched as a word; the category is offered as a place to look, with a note that the map is thin there. Words are matched as written before any close spelling is tried, and the page says when one was. Taxis are their own category |
+| The form failed every time with no route set | With no route, the same fields write the request out for the visitor's own WhatsApp or email |
+| Listings shown more confidently than the map allows | Each listing says when the map last recorded it, and warns when that is over two years ago. The first screen says how many listings have a telephone number. "Nearby" means within eight kilometres and shows the distance. Every listing points to the official registers |
+| The search box sat at the fold under a tall headline | The line is smaller and the box comes straight after it; it takes focus on a desk, and answers to the "/" key |
+| The chart went blunt where the answer was, and was missing on a phone | Beside a list it draws in on the lit points, with a key of the whole island; the row under the pointer has its point ringed; on a phone a small chart sits above the list. Its lettering is now the page's own type, 12px at every size |
+| A question about how got a guide's title, not the answer | The guides' facts, the glossary and the tools are searched. "vat threshold" answers with the figure and links to where it is |
+| Guides crowded questions about businesses | A question read as a kind of business or a town shows listings first; suggestions offer the category first |
+| "273 towns and villages" was not true | 129 towns and villages, and 144 neighbourhoods within them, said so everywhere and laid out so on the places page |
+| "Check a business" had a misleading label and unusable tables on a phone | Relabelled; on a phone every table becomes a block a row, each cell naming its column |
+| Long pages had no way through on a phone | The first screen's index is the thirteen groups; a guide has a contents list that opens; the glossary has a letter index |
+| Focus hidden under the phone header; a list left open; small targets | Scroll padding matches the header; the list closes on blur; telephone links are full-size |
+| Saffron on chosen chips as well as the action | A chosen chip carries a lit point and a saffron edge. Ways to narrow a list are plain links in a line |
+| Titles at two heights; widths wandering | Every page has its path, so every title sits at the same height; the calculator has one width |
+| Copy and small defects | Sentences are no longer set in the mono face; source numbers are in order; the index can be downloaded from the data page |
+
+Not done, and why:
+
+- **One row for a chain with its branches** ("MCB" is still 41 rows). It needs a notion of a brand
+  the index does not yet hold.
+- **"Open now".** Hours are known for 355 listings, too few to filter by.
+- **Opening a listing from its point on the chart.**
+- **A margin column on the reading pages** that carries sources or a locator. The inner pages are
+  plain by comparison with the first screen and the results.
+- **The date of the map's record on every row of a list.** It is on each listing's own page.
+
 ### Earlier rounds
 
 Rounds 0 to 2 (16 and 17 November 2026) built and rebuilt the site that sold ready-made businesses:

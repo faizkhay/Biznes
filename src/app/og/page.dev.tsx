@@ -20,11 +20,11 @@ export default function OgCard() {
           {site.line}.
         </p>
         <p className="data-1 mt-8 text-ink-faint">
-          {count(meta.listings.all)} listings · {count(meta.places)} towns and villages · {count(meta.guides)} guides
+          {count(meta.listings.all)} listings · {count(meta.towns)} towns and villages · {count(meta.guides)} guides
         </p>
       </div>
-      <div style={{ width: 496 }}>
-        <Chart labels={false} says="" />
+      <div className="*:w-full" style={{ width: 496 }}>
+        <Chart className="chart-strip" says="" />
       </div>
     </div>
   );

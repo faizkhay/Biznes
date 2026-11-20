@@ -2,22 +2,20 @@ import type { Block, Guide } from "@/lib/index";
 
 /** The marks after a block that say which sources it was written from: each a link to that source. */
 export function Cites({ ids, guide }: { ids?: string[]; guide: Guide }) {
-  if (!ids?.length) return null;
+  // In the order of the list of sources, each once.
+  const numbers = [...new Set((ids ?? []).map((id) => guide.sources.findIndex((s) => s.id === id) + 1).filter((n) => n > 0))].sort((a, b) => a - b);
+  if (!numbers.length) return null;
   return (
     <span className="ml-1">
-      {ids.map((id, i) => {
-        const n = guide.sources.findIndex((s) => s.id === id) + 1;
-        if (!n) return null;
-        return (
-          // A space between two marks lets a long run of them wrap on a narrow screen.
-          <span key={id}>
-            {i > 0 && " "}
-            <a href={`#source-${n}`} className="cite" aria-label={`Source ${n}`}>
-              [{n}]
-            </a>
-          </span>
-        );
-      })}
+      {numbers.map((n, i) => (
+        // A space between two marks lets a long run of them wrap on a narrow screen.
+        <span key={n}>
+          {i > 0 && " "}
+          <a href={`#source-${n}`} className="cite" aria-label={`Source ${n}`}>
+            [{n}]
+          </a>
+        </span>
+      ))}
     </span>
   );
 }
@@ -57,7 +55,7 @@ export default function GuideBlocks({ blocks, guide }: { blocks: Block[]; guide:
         return (
           <div key={i} className="not-prose">
             {/* A wide table scrolls inside its own frame, which the keyboard can reach. */}
-            <div className="table-wrap" tabIndex={0} role="region" aria-label="Table">
+            <div className="table-wrap" tabIndex={0} role="region" aria-label={`Table: ${b.columns.slice(0, 3).join(", ")}`}>
               <table className="table">
                 <thead>
                   <tr>
@@ -77,7 +75,7 @@ export default function GuideBlocks({ blocks, guide }: { blocks: Block[]; guide:
                             <Linked text={cell} />
                           </th>
                         ) : (
-                          <td key={c}>
+                          <td key={c} data-label={b.columns[c]}>
                             <Linked text={cell} />
                           </td>
                         ),
@@ -108,7 +106,7 @@ function Linked({ text }: { text: string }) {
     return <>{text}</>;
   }
   return (
-    <a href={text.trim()} rel="noopener" className="data-2 break-all">
+    <a href={text.trim()} rel="noopener" className="data-2 inline-flex min-h-6 items-center wrap-anywhere">
       {host}
     </a>
   );

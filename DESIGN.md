@@ -25,7 +25,7 @@ colors:
   chart-coast: "color-mix(in srgb, #f7f7f8 37%, transparent)"   # derived: limewash at 37%, the coast; 3.24:1 on night
 typography:                               # named as the text styles in src/app/globals.css; fontSize is the clamp() maximum, the full clamp() is in Typography
   # The format cannot hold a width: display-1, heading-1 and heading-2 are Archivo set wide by font-stretch (125%, 120%, 114%). label-1 is capitals by text-transform.
-  display-1: { fontFamily: "Archivo, Arial, sans-serif", fontSize: 5.25rem, fontWeight: 640, lineHeight: 0.98, letterSpacing: "-0.032em" }
+  display-1: { fontFamily: "Archivo, Arial, sans-serif", fontSize: 4rem, fontWeight: 640, lineHeight: 1, letterSpacing: "-0.03em" }
   heading-1: { fontFamily: "Archivo, Arial, sans-serif", fontSize: 2.875rem, fontWeight: 620, lineHeight: 1.04, letterSpacing: "-0.026em" }
   heading-2: { fontFamily: "Archivo, Arial, sans-serif", fontSize: 1.75rem, fontWeight: 600, lineHeight: 1.14, letterSpacing: "-0.018em" }
   heading-3: { fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif", fontSize: 1.125rem, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.01em" }
@@ -57,7 +57,7 @@ components:                               # only: backgroundColor textColor typo
   field-label: { backgroundColor: "{colors.night}", textColor: "{colors.limewash}", typography: "{typography.title-2}" }
   field-error: { backgroundColor: "{colors.night}", textColor: "{colors.coral}", typography: "{typography.caption-1}" }
   chip: { backgroundColor: "{colors.night}", textColor: "{colors.limewash}", typography: "{typography.body-3}", rounded: "{rounded.control}", padding: "0 1rem", height: 2.75rem }
-  chip-selected: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
+  chip-selected: { backgroundColor: "{colors.swell}", textColor: "{colors.limewash}" }
   header: { backgroundColor: "{colors.night}", textColor: "{colors.limewash}", typography: "{typography.title-2}", height: 64px }
   nav-link: { backgroundColor: "{colors.night}", textColor: "{colors.haze}", typography: "{typography.title-2}", height: 2.75rem }
   nav-link-current: { backgroundColor: "{colors.night}", textColor: "{colors.limewash}" }
@@ -169,7 +169,8 @@ Components use roles, never palette values. Tailwind's own colours are switched 
 **Saffron has one meaning.** It is the answer: the points a question lights, the one mark on a
 listing's chart, the action that does the page's job, the thing under the pointer or the keyboard.
 It is never a decoration, a background for a section, or a second accent's rival. There is no
-second accent.
+second accent. The fill is kept for the one action: a chosen chip is marked with a lit point and a
+saffron edge, not filled.
 
 ### Contrast
 
@@ -218,7 +219,7 @@ Three faces, each with one job.
 
 | Style | Face | Size | Weight | Line | Tracking | Used for |
 |---|---|---|---|---|---|---|
-| `display-1` | Archivo 125% | `clamp(2.375rem, 1.1rem + 5.4vw, 5.25rem)` | 640 | 0.98 | -0.032em | The first screen's line, once |
+| `display-1` | Archivo 125% | `clamp(2.125rem, 1rem + 4vw, 4rem)` | 640 | 1 | -0.03em | The first screen's line, once. Kept small enough that the search box follows it on a laptop's first screen |
 | `heading-1` | Archivo 120% | `clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem)` | 620 | 1.04 | -0.026em | A page's title |
 | `heading-2` | Archivo 114% | `clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem)` | 600 | 1.14 | -0.018em | A section's heading |
 | `heading-3` | Geist | 1.125rem | 600 | 1.3 | -0.01em | A sub-heading, a row's title on an index page |
@@ -235,7 +236,7 @@ Three faces, each with one job.
 | `button-sm` | Geist | 0.8125rem | 600 | 1.2 | 0 | A small action |
 
 Nothing is under 12px. Headings balance their lines; paragraphs avoid a short last line. Prose is
-held to 68 characters (`measure`, `.prose`). The tightest tracking is -0.032em.
+held to 68 characters (`measure`, `.prose`). The tightest tracking is -0.03em.
 
 ## Layout
 
@@ -284,15 +285,20 @@ Each is a class in `globals.css` or a file in `src/components`. States are part 
   down), focus, disabled. 44px tall.
 - **Fields** (`.field`): on ink with an edge. Hover, focus, invalid (coral edge, the error in words
   beneath with a mark), placeholder in tide. A select draws its own arrow.
-- **Chips** (`.chip`): a radio drawn as a tab; chosen is saffron.
+- **Chips** (`.chip`): a radio drawn as a tab, with a small ring at its head. Chosen, the ring is a
+  lit point and the edge is saffron.
+- **Ways to narrow** (`.narrow`): names with their counts in a line, as plain links: the towns for a
+  category, the categories for a town, the directory pages a search points to. One line that
+  scrolls sideways on a phone.
 - **Rows** (`Rows.tsx`): a listing (name, what and where, a line about it, a telephone link and a
-  site), a guide (a saffron tag, title, summary, the section that answers, the day checked), an
-  official page and a website (each opens on its own site, marked with an arrow).
+  site; it carries its point, so the chart can ring it), an answer from the guides (a saffron tag
+  saying guide, glossary or tool; the title; and the fact, the section or the meaning that answers),
+  an official page and a website (each opens on its own site, marked with an arrow).
 - **Tabs** (`.tabs`): links with the current one underlined in saffron; scroll sideways on a phone.
 - **Crumbs**, **pager**, **index item**, **page head**: `Bits.tsx`.
 - **Guide blocks** (`GuideBlocks.tsx`): a paragraph, a list, steps, a note, a table. Each ends with
-  its source numbers in the mono face, linked to the source. A table scrolls inside a frame the
-  keyboard can reach.
+  its source numbers in the mono face, in order, linked to the source. A table scrolls inside a
+  frame the keyboard can reach; under 40rem it becomes a block a row, each cell naming its column.
 - **The chart** (`Chart.tsx`, `ChartLive.tsx`): see below.
 - **The request form** (`RequestForm.tsx`): errors on their own fields, focus to the first, a
   success that says what happens next, and a failure that gives the telephone and the email.
@@ -312,11 +318,17 @@ One drawing of the island, used everywhere (`src/lib/chart.ts`).
   dot larger and brighter the more it holds (three steps).
 - **Live** with script: a canvas draws every listing as its own point (1.5px, limewash). It draws
   only when something changes, never in a loop. Once it has drawn, the gathered dots are hidden.
-- **Lit**: saffron, a core of 1.7px and a halo of 5.5px. When a set is lit the rest dim.
+- **Lit**: saffron, a core of 1.9px and a halo of 5.5px. When a set is lit the rest dim.
+- **Drawn in**: beside a list, when the lit points lie close together, the chart shows the smallest
+  part of itself, in its own shape, that holds them with room around, and a key at the corner shows
+  which part of the island that is. A point is still where it always is; only the window moves.
+- **Ringed**: the row of a list under the pointer or the keyboard has its point ringed.
+- **On a phone** the chart beside a list is a small one above it (`.chart-strip`), with no lettering.
 - **Rodrigues** is in an inset at the south-east corner at 72% of the main scale, labelled with its
   distance, which is worked out from the two islands' positions.
-- **Lettering**: degrees and minutes at the frame, and the nine largest towns that do not crowd one
-  another, drawn above the points so they stay readable.
+- **Lettering**: degrees and minutes at the frame on the first screen, and the largest places in
+  view whose names do not run into one another. It is set in the page's own type (`label-1`, 12px)
+  over the drawing, so it is the same size on a phone as on a desk.
 - **A listing's mark**: a ring, a point and two crossing lines to the frame.
 - **To assistive technology** it is one image with a sentence that says what it shows. Everything
   it shows is in the lists beside it.
@@ -331,9 +343,11 @@ One drawing of the island, used everywhere (`src/lib/chart.ts`).
 
 ## Responsive Behavior
 
-- **Under 68rem** the chart sits under the first screen's words, and is left out beside lists.
+- **Under 68rem** the chart sits under the first screen's words, and beside a list becomes a small
+  chart above it.
 - **Under 64rem** the four ways in move to a second row of the header.
-- **Under 40rem** indexes are one column, facts stack, and the header's search box takes the row.
+- **Under 40rem** indexes are one column, facts stack, tables become blocks, the first screen's
+  index is its thirteen groups, and the header's search box takes the row.
 - Targets are 44px, or 24px for a link inside a line of text.
 - Checked at 1440 by 900 and 390 by 844 on every kind of page: no page is wider than its screen.
 
@@ -376,7 +390,9 @@ Don't:
 
 - **No light palette.** An instrument has a day mode, and a phone in the sun would use one. The
   roles are clean enough to add one; it is not built.
-- **The chart cannot be explored**: a point cannot be hovered or opened, and it does not zoom to a
-  town.
+- **The chart cannot be explored by hand**: a point cannot be opened, and it draws in only where a
+  list asks it to.
+- **The reading pages are plain** beside the first screen and the results: no margin column carries
+  a guide's sources or a locator.
 - **French pages** are not built. A question in French or Kreol is understood.
-- **No fresh-eyes design review has been run on this round** (README, "Verification").
+- **A chain is one row a branch.**
