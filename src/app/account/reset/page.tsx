@@ -24,7 +24,7 @@ export default function ResetPage() {
           </ActionForm>
           <p className="body-3 mt-8 text-ink-subtle">
             Remembered it?{" "}
-            <Link href="/account/sign-in" className="text-link">
+            <Link prefetch={false} href="/account/sign-in" className="text-link">
               {ACTIONS.signIn}
             </Link>
             .

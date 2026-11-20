@@ -37,7 +37,7 @@ export default async function SignUpPage({ searchParams }: { searchParams: Promi
           </ActionForm>
           <p className="body-3 mt-8 text-ink-subtle">
             Already have an account?{" "}
-            <Link href={`/account/sign-in${onward}`} className="text-link">
+            <Link prefetch={false} href={`/account/sign-in${onward}`} className="text-link">
               {ACTIONS.signIn}
             </Link>
             .

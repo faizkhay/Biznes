@@ -48,7 +48,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
                 </span>
                 <div>
                   <h2 className="title-1">
-                    <Link href="/dashboard" className="row-title text-ink">
+                    <Link prefetch={false} href="/dashboard" className="row-title text-ink">
                       Your businesses
                     </Link>
                   </h2>
@@ -61,7 +61,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
                 <article className="card card-ink flex h-full gap-4">
                   <div>
                     <h2 className="title-1">
-                      <Link href="/admin" className="row-title">
+                      <Link prefetch={false} href="/admin" className="row-title">
                         Admin
                       </Link>
                     </h2>
@@ -132,7 +132,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
             </ActionForm>
           </div>
           <p className="body-3 mt-8">
-            <Link href="/account/update-password" className="inline-flex min-h-11 items-center gap-2 text-link">
+            <Link prefetch={false} href="/account/update-password" className="inline-flex min-h-11 items-center gap-2 text-link">
               Change your password <Arrow className="size-4" />
             </Link>
           </p>

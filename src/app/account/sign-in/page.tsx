@@ -38,14 +38,14 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
             <Field name="password" label="Password" type="password" autoComplete="current-password" />
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <Submit busy="Signing in">{ACTIONS.signIn}</Submit>
-              <Link href="/account/reset" className="body-3 inline-flex min-h-11 items-center text-link">
+              <Link prefetch={false} href="/account/reset" className="body-3 inline-flex min-h-11 items-center text-link">
                 Forgotten your password?
               </Link>
             </div>
           </ActionForm>
           <p className="body-3 mt-8 text-ink-subtle">
             No account yet?{" "}
-            <Link href={`/account/sign-up${onward}`} className="text-link">
+            <Link prefetch={false} href={`/account/sign-up${onward}`} className="text-link">
               {ACTIONS.signUp}
             </Link>
             . It is free.

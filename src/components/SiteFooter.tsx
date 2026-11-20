@@ -41,7 +41,7 @@ export default function SiteFooter() {
           <ul className="grid gap-1">
             {[...NAV, ...MORE, ...(accountsOn ? [{ href: "/account", label: "Your account" }] : [])].map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
+                <Link href={l.href} prefetch={l.href === "/account" ? false : undefined} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
                   {l.label}
                 </Link>
               </li>

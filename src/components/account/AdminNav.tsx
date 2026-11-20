@@ -13,7 +13,7 @@ export default function AdminNav({ role, current }: { role: Role; current: strin
   return (
     <nav aria-label="Admin" className="tabs mb-8">
       {PAGES.filter((p) => !p.only || p.only === role).map((p) => (
-        <Link key={p.href} href={p.href} aria-current={p.href === current ? "page" : undefined} className="tab title-2">
+        <Link prefetch={false} key={p.href} href={p.href} aria-current={p.href === current ? "page" : undefined} className="tab title-2">
           {p.label}
         </Link>
       ))}

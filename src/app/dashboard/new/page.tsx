@@ -67,7 +67,7 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
               </p>
               <p className="body-3 mt-0.5 text-ink-subtle">{[categoryById.get(listing.cat)?.one, whereOf(listing)].filter(Boolean).join(" · ")}</p>
               <p className="body-3 mt-3">
-                <Link href={`/dashboard/new${plan ? `?plan=${plan}` : ""}`} className="text-link">
+                <Link prefetch={false} href={`/dashboard/new${plan ? `?plan=${plan}` : ""}`} className="text-link">
                   Not this one
                 </Link>
               </p>
@@ -106,8 +106,9 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
                             {claims.byListing.has(l.id) ? (
                               <span className="tag caption-1">Claimed by its owner</span>
                             ) : (
-                              <Link href={`/dashboard/new?listing=${l.id}${keep}`} className="btn btn-quiet btn-sm button-sm" aria-label={`${ACTIONS.claim}: ${l.name}`}>
-                                This is mine
+                              <Link prefetch={false} href={`/dashboard/new?listing=${l.id}${keep}`} className="btn btn-quiet btn-sm button-sm">
+                                {ACTIONS.claim}
+                                <span className="sr-only">: {l.name}</span>
                               </Link>
                             )}
                           </div>

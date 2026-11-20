@@ -9,12 +9,18 @@
 // reads the emails Auth sends from the stack's mail sink (MAIL_DIR) and looks two things up in the
 // database with psql (DATABASE_URL). Exits 1 if any check fails.
 //
-// Needs: playwright (devDependency), psql.
+// Along the way it stops on each kind of account page, in the state a person would see it, and
+// checks it the way the public pages are checked (scripts/a11y.mjs, scripts/screenshots.mjs):
+// axe-core for WCAG 2.2 A and AA at a desk and on a phone, no page wider than its screen, and a
+// capture of each in SCREENS (default .accounts-stack/screens) to look over.
+//
+// Needs: playwright and @axe-core/playwright (devDependencies), psql.
+import AxeBuilder from "@axe-core/playwright";
 import { execFileSync } from "node:child_process";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { chromium } from "playwright";
-import { browserPath } from "./pages.mjs";
+import { VIEWPORTS, browserPath } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3300";
 const MAIL_DIR = process.env.MAIL_DIR ?? ".accounts-stack/mail";
@@ -46,6 +52,27 @@ async function linkFor(email, after = 0) {
   return undefined;
 }
 const mails = () => (existsSync(MAIL_DIR) ? readdirSync(MAIL_DIR).length : 0);
+
+const SCREENS = process.env.SCREENS ?? ".accounts-stack/screens";
+mkdirSync(SCREENS, { recursive: true });
+const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
+const audited = [];
+const faults = [];
+/** The page as it stands, checked at a desk and on a phone: axe, its width, and a capture. */
+async function audit(page, name) {
+  const desk = page.viewportSize();
+  for (const [vp, size] of VIEWPORTS) {
+    await page.setViewportSize(size);
+    await page.waitForTimeout(150);
+    const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+    for (const v of violations.filter((v) => v.impact === "serious" || v.impact === "critical")) faults.push(`${name} ${vp}: ${v.id} at ${v.nodes.slice(0, 2).map((n) => n.target.join(" ")).join("; ")}`);
+    const wide = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    if (wide > 1) faults.push(`${name} ${vp}: ${wide}px wider than the screen`);
+    await page.screenshot({ path: join(SCREENS, `${name}-${vp}.jpg`), type: "jpeg", quality: 60, fullPage: true });
+  }
+  await page.setViewportSize(desk);
+  audited.push(name);
+}
 
 const browser = await chromium.launch({ executablePath: browserPath() });
 const errors = [];
@@ -117,6 +144,7 @@ const owner = await person();
     return id ? document.getElementById(id)?.textContent : "";
   });
   check("sign up: an empty form marks three fields, in words, and moves to the first", invalid === 3 && focused === "name" && /email address/i.test(described ?? ""), `${invalid} invalid, focus on ${focused}, says "${described}"`);
+  await audit(page, "sign-up-errors");
 
   await fill(page, { name: OWNER.name, email: "not-an-address", password: "short" });
   await press(page, "Create an account");
@@ -143,6 +171,7 @@ const owner = await person();
   await page.waitForSelector('header a[href="/account"]', { timeout: 10000 }).catch(() => {});
   check("header: the initial, as a way to the account", (await page.locator('header a[href="/account"]').innerText().catch(() => "")).trim() === "F");
   check("account: a superadmin is shown the way to Admin", (await page.locator('main a[href="/admin"]').count()) === 1);
+  await audit(page, "account-superadmin");
 
   // The profile.
   await fill(page, { name: "Faiz", phone: "12" });
@@ -164,6 +193,7 @@ const owner = await person();
   await press(page, "Sign in");
   await page.waitForSelector('main [role="alert"]', { timeout: 15000 }).catch(() => {});
   check("sign in: a wrong password is refused in plain words, and the address is kept", /do not match/i.test(await said(page)) && (await page.inputValue('main [name="email"]')) === OWNER.email, await said(page));
+  await audit(page, "sign-in-refused");
   await fill(page, { password: OWNER.password });
   await Promise.all([page.waitForURL(`${origin}/admin`, { timeout: 15000 }).catch(() => {}), press(page, "Sign in")]);
   check("sign in: goes on to where it was asked to return", new URL(page.url()).pathname === "/admin", page.url());
@@ -208,20 +238,24 @@ let scratch = "";
   const { page } = alice;
   await go(page, `${origin}/dashboard`);
   check("dashboard: empty, with the way to list a business", /nothing listed yet/i.test(await page.locator("main").innerText()));
+  await audit(page, "dashboard-empty");
   await go(page, `${origin}/dashboard/new`);
   await page.fill("#find-name", "keiffel tours");
   await Promise.all([page.waitForURL(/find=/, { timeout: 15000 }), page.locator("main form[method=get] button").click()]);
   const mine = page.locator("main").getByRole("link", { name: /Claim this listing: /i }).first();
   check("claim: the listing is found by name", (await mine.count()) === 1);
+  await audit(page, "new-found");
   await Promise.all([page.waitForURL(/listing=/, { timeout: 15000 }), mine.click()]);
   claimedId = new URL(page.url()).searchParams.get("listing") ?? "";
   check("claim: the form is filled in from the listing", /keiffel/i.test(await page.inputValue('main [name="name"]')) && (await page.inputValue('main [name="category"]')) !== "" && (await page.inputValue('main [name="town"]')) !== "", `${await page.inputValue('main [name="category"]')} / ${await page.inputValue('main [name="town"]')}`);
+  await audit(page, "new-claim");
   await fill(page, { about: "Day trips and airport transfers, run by the family since 1998.", phone: "+230 5777 1234" });
   await Promise.all([page.waitForURL(/\/dashboard\/[0-9a-f-]{36}/, { timeout: 15000 }).catch(() => {}), press(page, "Claim this listing")]);
   check("claim: sent, and waiting to be checked", /\/dashboard\/[0-9a-f-]{36}/.test(page.url()) && /waiting to be checked/i.test(await page.locator("main").innerText()) && /claim is with us/i.test(await said(page)), page.url());
   check("claim: in the database it is pending, free and unverified", sql(`select status || '|' || plan || '|' || verified || '|' || listing_id from public.businesses where listing_id = '${claimedId}'`) === `pending|free|false|${claimedId}`);
   claimedSlug = sql(`select slug from public.businesses where listing_id = '${claimedId}'`);
   check("claim: no plan can be asked for until it is live", /once the business is live/i.test(await page.locator("#plan").innerText()));
+  await audit(page, "business-pending");
 
   const listing = await go(visitor.page, `${origin}/b/${claimedId}`);
   check("claim: until approved, the public page is unchanged and still offers the claim", listing?.status() === 200 && /Is this your business\?/.test(await visitor.page.locator("main").innerText()) && !/Claimed by its owner/.test(await visitor.page.locator("main").innerText()));
@@ -234,6 +268,7 @@ let scratch = "";
   await press(page, "List your business");
   await page.waitForSelector('main [aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
   check("list: an empty form names what is missing, on each field", (await page.locator('main [aria-invalid="true"]').count()) === 3 && (await page.evaluate(() => document.activeElement?.getAttribute("name"))) === "name");
+  await audit(page, "new-errors");
   await fill(page, { name: "Zanzibar Hair Studio", address: "12 Royal Road", phone: "+230 5888 4321", website: "zanzibar-hair.mu", about: "Cuts, colour and braids in the middle of Curepipe." });
   await page.selectOption('main [name="category"]', "hairdressers");
   await page.selectOption('main [name="town"]', "curepipe");
@@ -256,6 +291,7 @@ const scratchSlug = sql(`select slug from public.businesses where id = '${scratc
   await go(page, `${origin}/admin`);
   const main = await page.locator("main").innerText();
   check("admin: the queue holds both, with the owner to reach", /Zanzibar Hair Studio/.test(main) && /A claim on the listing/.test(main) && main.includes(ALICE.email));
+  await audit(page, "admin-queue");
   const card = (name) => page.locator("#queue").locator("xpath=..").locator("article", { hasText: name });
   await card("Zanzibar Hair Studio").getByRole("button", { name: "Do not accept" }).click();
   await page.waitForSelector('main [name="note"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
@@ -271,10 +307,12 @@ const scratchSlug = sql(`select slug from public.businesses where id = '${scratc
   const listing = await visitor.page.locator("main").innerText();
   check("public: the claimed listing says so quietly, with the owner's own details", /Claimed by its owner/.test(listing) && /run by the family since 1998/.test(listing) && /\+230 5777 1234/.test(listing) && !/Is this your business\?/.test(listing));
   check("public: a free listing never carries the vivid mark", !/Verified/.test(listing) && !/Priority/.test(listing));
+  await audit(visitor.page, "listing-claimed");
   const biz = await go(visitor.page, `${origin}/biz/${scratchSlug}`);
   const bizText = await visitor.page.locator("main").innerText();
   check("public: the business listed from scratch has its own page", biz?.status() === 200 && /Zanzibar Hair Studio/.test(bizText) && /Listed by its owner/.test(bizText) && !/Verified/.test(bizText));
   check("public: on the free plan there is no booking form", (await visitor.page.locator('main [name="wanted"], main [name="date"]').count()) === 0);
+  await audit(visitor.page, "biz-free");
   const again = await go(visitor.page, `${origin}/biz/${claimedSlug}`);
   check("public: a claimed listing has one page, the listing's own", again?.status() === 200 && new URL(visitor.page.url()).pathname.startsWith("/b/"), visitor.page.url());
   await go(visitor.page, `${origin}/search?q=hairdresser+in+curepipe`);
@@ -295,6 +333,7 @@ const scratchSlug = sql(`select slug from public.businesses where id = '${scratc
   const first = await visitor.page.locator("#r-listings ~ ul h3").first().innerText();
   check("search: on a paid plan and verified, it is first, and marked Verified and Priority", /Zanzibar Hair Studio/.test(first) && /Verified/.test(first) && /Priority/.test(first), first);
   check("search: the page says what Priority means", /is on a paid plan and is shown first/.test(await visitor.page.locator("main").innerText()));
+  await audit(visitor.page, "search-priority");
   await go(visitor.page, `${origin}/search?q=keiffel+tours`);
   const named = await visitor.page.locator("#r-listings ~ ul h3").first().innerText();
   check("search: a business asked for by name still comes first", /Keiffel/i.test(named), named);
@@ -333,6 +372,7 @@ const tomorrow = new Date(Date.now() + 4 * 3600e3 + 2 * 864e5).toISOString().sli
   await press(page, "Ask for a booking");
   await page.waitForSelector('main [name="date"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
   check("booking: a day that has passed is refused on its field", (await page.locator('main [name="date"][aria-invalid="true"]').count()) === 1 && (await page.inputValue('main [name="name"]')) === "Dev Ramdin");
+  await audit(page, "biz-grow-booking-errors");
   await fill(page, { date: tomorrow, time: "14:30", note: "First visit." });
   await page.selectOption('main [name="service"]', { label: "Cut and blow dry, Rs 600, 45 minutes" });
   await press(page, "Ask for a booking");
@@ -358,12 +398,14 @@ const carol = await person();
   check("booking: signed in, it is kept with the account", /kept in your account/i.test(await said(page)) && sql(`select (customer_id = (select id from public.profiles where email = '${CAROL.email}'))::text from public.bookings where name = 'Carol Customer'`) === "true", await said(page));
   await go(page, `${origin}/account`);
   check("account: the booking is listed, with the business's name", /Zanzibar Hair Studio/.test(await page.locator("#bookings").locator("xpath=..").innerText()) && /Requested/.test(await page.locator("#bookings").locator("xpath=..").innerText()));
+  await audit(page, "account-bookings");
 }
 {
   const { page } = alice;
   await go(page, `${origin}/dashboard/${scratch}`);
   const section = page.locator("#bookings").locator("xpath=..");
   check("grow: the owner sees both requests, with the numbers to call", /Dev Ramdin/.test(await section.innerText()) && /Carol Customer/.test(await section.innerText()) && /\+230 5999 0001/.test(await section.innerText()));
+  await audit(page, "business-grow");
   await section.locator("article", { hasText: "Dev Ramdin" }).getByRole("button", { name: "Confirm" }).click();
   await page.waitForFunction(() => /Confirmed, 1/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
   check("grow: a request is confirmed", sql(`select status from public.bookings where name = 'Dev Ramdin'`) === "confirmed");
@@ -379,6 +421,132 @@ const carol = await person();
   check("account: the customer cancels their own booking", sql(`select status from public.bookings where name = 'Carol Customer'`) === "cancelled");
   const peek = await go(page, `${origin}/dashboard/${scratch}`);
   check("user: another owner's business is not there for them", peek?.status() === 404, peek?.status());
+}
+
+// ---------------------------------------------------------------------------------------------
+// 6b. How to pay by MCB Juice, the limit on requests from one number, and the honeypot.
+{
+  const { page } = alice;
+  await go(page, `${origin}/dashboard/${scratch}`);
+  const pay = page.locator("#pay").locator("xpath=..");
+  await pay.locator('[name="juice_number"]').fill("1234");
+  await pay.locator('[name="juice_name"]').fill("Zanzibar Hair Studio Ltd");
+  await pay.getByRole("button", { name: "Save how you are paid" }).click();
+  await page.waitForSelector('main [name="juice_number"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("pay: a number that is not a Mauritian mobile number is refused on its field", (await pay.locator('[name="juice_number"][aria-invalid="true"]').count()) === 1);
+  await pay.locator('[name="juice_number"]').fill("+230 57770001");
+  await pay.getByRole("button", { name: "Save how you are paid" }).click();
+  await pay.locator('[role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  check("pay: saved, written as 5XXX XXXX", sql(`select juice_number || '|' || juice_name from public.pay_details where business_id = '${scratch}'`) === "5777 0001|Zanzibar Hair Studio Ltd", await said(page));
+}
+{
+  const { page } = visitor;
+  await go(page, `${origin}/biz/${scratchSlug}`);
+  const text = await page.locator("main").innerText();
+  check("public: the page says how to pay by MCB Juice, and that the site takes no part", /Pay by MCB Juice to 5777 0001, in the name of Zanzibar Hair Studio Ltd/.test(text) && /takes no part in the payment/.test(text));
+  await audit(page, "biz-grow");
+  const ask = async (time, phone = "+230 5999 0001") => {
+    await fill(page, { date: tomorrow, time, name: "Dev Ramdin", phone });
+    await press(page, "Ask for a booking");
+    await page.waitForFunction(() => document.querySelector('main form [role="status"], main form [role="alert"]') && !document.querySelector("main form button[disabled]"), null, { timeout: 15000 }).catch(() => {});
+    return (await page.locator('main form [role="status"], main form [role="alert"]').allInnerTexts()).join(" ");
+  };
+  const second = await ask("09:00");
+  check("booking: the answer says how to pay by MCB Juice", /Pay by MCB Juice to 5777 0001, in the name of Zanzibar Hair Studio Ltd/.test(second), second);
+  await ask("10:00");
+  const fourth = await ask("11:00");
+  check("booking: a fourth request in an hour from one number is refused by the database, in plain words", /already come from this number/i.test(fourth) && sql(`select count(*) from public.bookings where phone_key = '23059990001'`) === "3", fourth);
+  await go(page, `${origin}/biz/${scratchSlug}`);
+  await page.evaluate(() => (document.querySelector('main form input[name="website"]').value = "http://spam.example"));
+  const trapped = await ask("12:00", "+230 5999 0009");
+  check("booking: a filled honeypot is told it worked, and nothing is kept", /has been sent/i.test(trapped) && sql(`select count(*) from public.bookings where phone_key = '23059990009'`) === "0", trapped);
+}
+
+// ---------------------------------------------------------------------------------------------
+// 6c. Asking for a plan from the dashboard: taken back, declined, asked again, switched on.
+const claimedBiz = sql(`select id from public.businesses where listing_id = '${claimedId}'`);
+{
+  const { page } = alice;
+  await go(page, `${origin}/dashboard`);
+  const row = page.locator("main article", { hasText: /Keiffel/i });
+  check("dashboard: a live claimed listing on the free plan says so quietly, and offers the paid plans", /Claimed by its owner/.test(await row.innerText()) && /Ask for Biznes Go or Biznes Grow/.test(await row.innerText()));
+  const askFor = async () => {
+    await go(page, `${origin}/dashboard/${claimedBiz}`);
+    await page.locator("#plan label", { hasText: "Biznes Go" }).click();
+    await page.locator('#plan [name="note"]').fill("Call after five.");
+    await page.locator("#plan").getByRole("button", { name: "Ask for this plan" }).click();
+    await page.waitForFunction(() => /You asked for Biznes Go/.test(document.querySelector("#plan")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  };
+  await askFor();
+  check("plan: asked for, and told payment is arranged by hand for now", sql(`select plan || '|' || status || '|' || note from public.plan_requests where business_id = '${claimedBiz}'`) === "go|open|Call after five." && /We will contact you to arrange payment/.test(await page.locator("#plan").innerText()));
+  await page.locator("#plan").getByRole("button", { name: "Take the request back" }).click();
+  await page.waitForFunction(() => !/You asked for Biznes Go/.test(document.querySelector("#plan")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("plan: the request is taken back", sql(`select count(*) from public.plan_requests where business_id = '${claimedBiz}'`) === "0");
+  await askFor();
+
+  const admin = owner.page;
+  const answer = async (button) => {
+    await go(admin, `${origin}/admin`);
+    await admin.locator("#plans").locator("xpath=..").locator("article", { hasText: /Keiffel/i }).getByRole("button", { name: button }).click();
+    await admin.waitForFunction(() => /No request is open/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  };
+  await answer("Decline");
+  await go(page, `${origin}/dashboard/${claimedBiz}`);
+  check("plan: declined, and the owner is told and may ask again", sql(`select status from public.plan_requests where business_id = '${claimedBiz}'`) === "declined" && /was not taken up/.test(await page.locator("#plan").innerText()));
+  await audit(page, "business-live-free");
+  await askFor();
+  await answer("Switch the plan on");
+  await go(visitor.page, `${origin}/b/${claimedId}`);
+  let listing = await visitor.page.locator("main").innerText();
+  check("public: a claimed listing on Go, verified, carries the vivid mark and says it is shown first", /Verified/.test(listing) && /Priority listing/.test(listing) && !/Claimed by its owner/.test(listing));
+
+  const row2 = async () => {
+    await go(admin, `${origin}/admin?q=keiffel`);
+    const found = admin.locator("#every").locator("xpath=..").locator("details", { hasText: /Keiffel/i });
+    await found.locator("summary").click();
+    return found;
+  };
+  await (await row2()).getByRole("button", { name: "Take the verified mark off" }).click();
+  await admin.waitForFunction(() => /Mark verified/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  await go(visitor.page, `${origin}/b/${claimedId}`);
+  listing = await visitor.page.locator("main").innerText();
+  check("public: with the verified mark taken off, the vivid mark and the priority go, whatever the plan", sql(`select plan || '|' || verified from public.businesses where id = '${claimedBiz}'`) === "go|false" && !/Priority listing/.test(listing) && /Claimed by its owner/.test(listing));
+  const found = await row2();
+  await found.locator('select[name="plan"]').selectOption("free");
+  await found.getByRole("button", { name: "Set the plan" }).click();
+  await admin.waitForFunction(() => /Back on Biznes Free/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("admin: sets a plan by hand", sql(`select plan || '|' || (plan_until is null) from public.businesses where id = '${claimedBiz}'`) === "free|true");
+}
+
+// ---------------------------------------------------------------------------------------------
+// 6d. A business that is not accepted, sent back, and then taken out by its owner.
+{
+  const { page } = carol;
+  await go(page, `${origin}/dashboard/new`);
+  await fill(page, { name: "Carol Cakes" });
+  await page.selectOption('main [name="category"]', "bakeries");
+  await page.selectOption('main [name="town"]', "curepipe");
+  await Promise.all([page.waitForURL(/\/dashboard\/[0-9a-f-]{36}/, { timeout: 15000 }).catch(() => {}), press(page, "List your business")]);
+  const cakes = /\/dashboard\/([0-9a-f-]{36})/.exec(page.url())?.[1] ?? "";
+  const admin = owner.page;
+  await go(admin, `${origin}/admin`);
+  const card = admin.locator("#queue").locator("xpath=..").locator("article", { hasText: "Carol Cakes" });
+  await card.locator('[name="note"]').fill("Tell us the street it is on.");
+  await card.getByRole("button", { name: "Do not accept" }).click();
+  await admin.waitForFunction(() => /No business is waiting/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  await go(page, `${origin}/dashboard/${cakes}`);
+  check("owner: a business that is not accepted says why", sql(`select status from public.businesses where id = '${cakes}'`) === "rejected" && /Not accepted/.test(await page.locator("main").innerText()) && /Tell us the street it is on/.test(await page.locator("main").innerText()));
+  await fill(page, { address: "5 Mango Lane" });
+  await press(page, "Save the details");
+  await page.waitForFunction(() => /sent back to us/.test(document.querySelector("main")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("owner: saving it sends it back to be checked again", sql(`select status || '|' || status_note || '|' || address from public.businesses where id = '${cakes}'`) === "pending||5 Mango Lane");
+  await page.locator("main summary", { hasText: "Remove this business" }).click();
+  await press(page, "Remove it for good");
+  await page.waitForSelector('main [name="sure"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("owner: removing a business asks them to be sure", (await page.locator('main [name="sure"][aria-invalid="true"]').count()) === 1 && sql(`select count(*) from public.businesses where id = '${cakes}'`) === "1");
+  await page.locator('main [name="sure"]').check();
+  await Promise.all([page.waitForURL(/\/dashboard\?said=removed/, { timeout: 15000 }).catch(() => {}), press(page, "Remove it for good")]);
+  check("owner: and then takes it out for good", sql(`select count(*) from public.businesses where id = '${cakes}'`) === "0" && /has been taken out/.test(await said(page)), page.url());
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -402,6 +570,11 @@ const carol = await person();
   await me.getByRole("button", { name: "Save the role" }).click();
   await page.waitForSelector('main [role="alert"]', { timeout: 15000 }).catch(() => {});
   check("superadmin: the last superadmin cannot be demoted, and is told why", /last superadmin cannot be demoted/i.test(await said(page)) && sql(`select role from public.profiles where email = '${OWNER.email}'`) === "superadmin", await said(page));
+  await go(page, `${origin}/admin/people?q=alice`);
+  const onlyAlice = await page.locator("main article").count();
+  await go(page, `${origin}/admin/people?q=biznes.test`);
+  check("superadmin: people are found by name or by email address", onlyAlice === 1 && (await page.locator("main article").count()) === 3, `${onlyAlice} for alice`);
+  await audit(page, "admin-people");
   const her = page.locator("main article", { hasText: ALICE.email });
   await her.locator("select").selectOption("admin");
   await her.getByRole("button", { name: "Save the role" }).click();
@@ -411,6 +584,7 @@ const carol = await person();
   await go(page, `${origin}/admin/settings`);
   await page.selectOption('main [name="picture"]', "lights");
   await fill(page, { greeting: "Happy testing" });
+  await audit(page, "admin-settings");
   await press(page, "Save the look");
   await page.waitForSelector('main [role="status"]', { timeout: 15000 }).catch(() => {});
   await go(visitor.page, origin);
@@ -433,6 +607,7 @@ const carol = await person();
   await go(page, `${origin}/admin/leads?town=curepipe&reach=1`);
   const leads = await page.locator("main").innerText();
   check("admin: the listings with no website, by town", /with no website/.test(leads) && (await page.locator("main table tbody tr").count()) > 5);
+  await audit(page, "admin-leads");
   const csv = await page.request.get(`${origin}/admin/leads/export?town=curepipe&reach=1`);
   const body = await csv.text();
   check("admin: and as a file", csv.status() === 200 && /text\/csv/.test(csv.headers()["content-type"] ?? "") && body.includes("Name,Kind,Group") && body.split("\n").length > 6, csv.status());
@@ -442,6 +617,7 @@ const carol = await person();
   await row.locator("summary").click();
   await row.getByRole("button", { name: "Suspend" }).click();
   await page.waitForSelector('main [name="note"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  await audit(page, "admin-every-open");
   await row.locator('[name="note"]').fill("Reported closed. Write to us to put it right.");
   await row.getByRole("button", { name: "Suspend" }).click();
   await page.waitForFunction(() => /Suspended/.test(document.querySelector("#every")?.parentElement?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
@@ -463,6 +639,7 @@ const carol = await person();
   await press(page, "Send the link");
   await page.waitForSelector('main [role="status"]', { timeout: 20000 }).catch(() => {});
   check("reset: says a link is on its way, whoever asks", /on its way/i.test(await said(page)), await said(page));
+  await audit(page, "reset-sent");
   const link = await linkFor(CAROL.email, before);
   if (link) await go(page, link);
   check("reset: the link lands on the page to choose a new password", new URL(page.url()).pathname === "/account/update-password", page.url());
@@ -470,6 +647,7 @@ const carol = await person();
   await press(page, "Save the new password");
   await page.waitForSelector('main [name="password"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
   check("reset: a short password is refused on its field", (await page.locator('main [name="password"][aria-invalid="true"]').count()) === 1);
+  await audit(page, "update-password-error");
   await fill(page, { password: "carol-password-2" });
   await Promise.all([page.waitForURL(/\/account\?said=password/, { timeout: 15000 }).catch(() => {}), press(page, "Save the new password")]);
   check("reset: saved", /password is changed/i.test(await said(page)), page.url());
@@ -479,6 +657,22 @@ const carol = await person();
   check("reset: the old password no longer signs in", new URL(page.url()).pathname === "/account/sign-in");
   await signIn(page, CAROL, "carol-password-2");
   check("reset: the new one does", new URL(page.url()).pathname === "/account", page.url());
+}
+
+{
+  // The other kind of link, as the README's email template carries it: it works in any browser.
+  await sleep(1500);
+  const asker = await person();
+  await go(asker.page, `${origin}/account/reset`);
+  await fill(asker.page, { email: CAROL.email });
+  await press(asker.page, "Send the link");
+  await asker.page.waitForSelector('main form [role="status"]', { timeout: 20000 }).catch(() => {});
+  const hash = sql(`select recovery_token from auth.users where email = '${CAROL.email}'`);
+  const other = await person();
+  await go(other.page, `${origin}/auth/confirm?token_hash=${hash}&type=recovery&next=/account/update-password`);
+  check("reset: a token_hash link opens the page to choose a new password, in another browser", Boolean(hash) && new URL(other.page.url()).pathname === "/account/update-password" && /carol@biznes\.test/.test(await other.page.locator("main").innerText()), other.page.url());
+  await asker.context.close();
+  await other.context.close();
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -499,6 +693,7 @@ const carol = await person();
 }
 
 check("no page raised a script error", errors.length === 0, errors.join(" | "));
+check(`accessibility and width: ${audited.length} kinds of account page, at a desk and on a phone`, faults.length === 0, faults.join(" | "));
 await browser.close();
 console.log(`\n${passed} passed, ${failed} failed.`);
 process.exit(failed ? 1 : 0);

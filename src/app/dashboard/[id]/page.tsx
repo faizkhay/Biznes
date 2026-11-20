@@ -68,6 +68,8 @@ export default async function BusinessPage({ params, searchParams }: { params: P
     .sort((x, y) => x.name.localeCompare(y.name))
     .map((p) => ({ value: p.slug, label: p.name }));
   const planName = (which: string) => PLANS.find((p) => p.id === which)?.name ?? which;
+  // The paid plans it is not on today. Biznes Grow holds everything in Biznes Go, so on Grow there is none to ask for.
+  const offered = plan === "grow" ? [] : PLANS.filter((p) => p.price > 0 && p.id !== plan);
   const page = shown.byId.get(b.id)?.path;
   const claimed = b.listing_id ? byId.get(b.listing_id) : undefined;
   const serviceName = (k: Booking) => services.find((s) => s.id === k.service_id)?.name;
@@ -332,6 +334,8 @@ export default async function BusinessPage({ params, searchParams }: { params: P
                   </div>
                 </ActionForm>
               </div>
+            ) : b.status === "live" && offered.length === 0 ? (
+              <p className="body-3 mt-2 text-ink-subtle">Biznes Grow holds everything in Biznes Go. To change or end the plan, write to us.</p>
             ) : b.status === "live" ? (
               <div className="mt-6">
                 {answered?.status === "declined" && <p className="body-3 mb-4 text-ink-subtle">Your last request, for {planName(answered.plan)}, was not taken up. Ask again whenever you like.</p>}
@@ -340,8 +344,8 @@ export default async function BusinessPage({ params, searchParams }: { params: P
                   <Chips
                     name="plan"
                     legend="Ask for a plan"
-                    defaultValue={plan === "go" ? "grow" : "go"}
-                    choices={PLANS.filter((p) => p.price > 0).map((p) => ({ value: p.id, label: `${p.name}, ${rupees(p.price)} a month` }))}
+                    defaultValue={offered[0]?.id}
+                    choices={offered.map((p) => ({ value: p.id, label: `${p.name}, ${rupees(p.price)} a month` }))}
                   />
                   <TextArea name="note" label="Anything we should know" optional rows={3} maxLength={500} hint="The best time to call you, for one." />
                   <div>

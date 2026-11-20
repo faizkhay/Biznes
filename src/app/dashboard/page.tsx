@@ -52,7 +52,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
             <h2 className="heading-3 mt-4">Nothing listed yet</h2>
             <p className="body-2 mt-2 text-ink-subtle">List your business, or claim it if it is already in the directory. A basic listing is free for good.</p>
             <p className="mt-6">
-              <Link href="/dashboard/new" className="btn btn-filled button-md">
+              <Link prefetch={false} href="/dashboard/new" className="btn btn-filled button-md">
                 {ACTIONS.list}
               </Link>
             </p>
@@ -60,7 +60,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         ) : (
           <>
             <p className="mb-6">
-              <Link href="/dashboard/new" className="btn btn-filled button-md">
+              <Link prefetch={false} href="/dashboard/new" className="btn btn-filled button-md">
                 List another business
               </Link>
             </p>
@@ -78,7 +78,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
                         {b.listing_id && b.status === "live" && plan === "free" && <span className="tag">Claimed by its owner</span>}
                       </p>
                       <h2 className="title-1 mt-2">
-                        <Link href={`/dashboard/${b.id}`} className="row-title">
+                        <Link prefetch={false} href={`/dashboard/${b.id}`} className="row-title">
                           {b.name}
                         </Link>
                         {b.verified && plan !== "free" && <VerifiedMark priority />}
@@ -93,7 +93,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
                       {wants && <p className="body-3 mt-2 text-ink-subtle">You asked for {planName(wants)}. We will contact you to arrange payment.</p>}
                       {b.status === "live" && plan === "free" && !wants && (
                         <p className="body-3 mt-2">
-                          <Link href={`/dashboard/${b.id}#plan`} className="inline-flex min-h-11 items-center gap-2 font-semibold text-link">
+                          <Link prefetch={false} href={`/dashboard/${b.id}#plan`} className="inline-flex min-h-11 items-center gap-2 font-semibold text-link">
                             Ask for Biznes Go or Biznes Grow <Arrow className="size-4" />
                           </Link>
                         </p>
