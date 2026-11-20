@@ -140,13 +140,15 @@ shows them.
 
 To confirm with the owner:
 
-- **How a plan is paid for.** No payment gateway is chosen. Until one is, a business asks for a
-  plan through the form and a person answers.
-- **Whether Biznes Grow includes Biznes Go's verified mark and priority.** The owner's words give
-  the mark and the priority to Biznes Go only. `/pricing` and `/data` at present say that a
-  business on either paid plan comes first; they follow the owner's answer.
-- **"Your own page to send customers to"**, the third line under Biznes Grow, is Khay Digital's
-  wording of what selling services online needs. It is not in the owner's words.
+- **How a plan is paid for: answered, 20 November 2026.** Through Stripe, which is not connected
+  yet. Until it is, a business asks for a plan through the form and a person answers. A customer
+  pays a business directly, by MCB Juice, from the details the business shows; the site takes no
+  part in that payment.
+- **What Biznes Grow holds: answered, 20 November 2026.** "Yes, all from go but with some booking
+  and services sale management tools": everything in Biznes Go, with bookings and service sales.
+  So a business on either paid plan carries the mark and comes first, as `/pricing` and `/data` say.
+- **The pocket guide's price: answered, 20 November 2026.** About USD 1.99, set at Rs 125. The
+  owner intends 50 to 100 guides and a bundle of them all at about 60 per cent off.
 - **What "verified" checks.** The site says only that the business has been checked to be real.
   Against what, and by whom, is not written down.
 - **Claiming a listing**, which the site lists under Biznes Free, waits on the accounts. Until

@@ -608,9 +608,6 @@ failed to open. The worker now resolves a redirect itself (`public/sw.js`).
   this.
 - **The shelf about Mauritius is not full**: four articles of eleven when this was written.
 - **One pocket guide.** The script and the shop hold one guide; the bundle is not built.
-- **The other records are a step behind the owner's last answers.** `PRODUCT.md`, `STORY.md` and
-  `REVENUE.md` do not yet say that plans are paid through Stripe, that Biznes Grow holds Biznes Go,
-  that customers pay by MCB Juice, or that the pocket guide is Rs 125.
 - **A chain is one card a branch.**
 - **No French or Kreol pages.** A question in either is understood.
 - **A superadmin cannot yet choose the picture**: the calendar does, and the owner changes a file.

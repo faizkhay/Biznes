@@ -31,8 +31,10 @@ The owner's streams, in the owner's words of 20 November 2026:
 | Pocket guides, as PDFs | Not yet set by the owner | The first is made: 51 pages, 60 places, 110 sources. `/shop` shows it and takes requests |
 | Websites through Khay Digital | Quoted by the agency | `npm run leads` writes the list: 6,754 listings with no website on record, 273 of them businesses with a telephone number |
 
-Nothing can be paid for on the site yet. No payment gateway is chosen; a plan or a guide is asked
-for through the form and a person answers.
+Nothing can be paid for on the site yet. The owner has chosen Stripe (20 November 2026) and has
+not connected it; until then a plan or a guide is asked for through the form and a person answers.
+A customer of a Biznes Grow business pays that business directly, by MCB Juice, from the details
+the business shows: the site takes no part and no cut.
 
 **The rule that changed.** The first version of this page said the order of results is never for
 sale. The owner's Biznes Go is "listed with priority", which reverses that, and it is the owner's
@@ -383,9 +385,11 @@ are four in the index, that is where the next crawl, and the next sales call, sh
 
 ## Decisions for the owner
 
-1. How are plans and pocket guides paid for? No payment gateway is chosen.
-2. What is the pocket guide's price?
-3. Does Biznes Grow include Biznes Go's verified mark and priority?
+1. How are plans and pocket guides paid for? Answered: through Stripe, to be connected.
+2. What is the pocket guide's price? Answered: about USD 1.99, set at Rs 125, with a bundle of
+   every guide at about 60 per cent off once there are 50 to 100 of them.
+3. Does Biznes Grow include Biznes Go's verified mark and priority? Answered: yes, everything in
+   Go, with bookings and service sales.
 4. What does "verified" check, and who does the checking?
 5. The Supabase project for accounts could not be created from the build session. Will the owner
    create or approve one, and who is the first superadmin? The proposal is the first account

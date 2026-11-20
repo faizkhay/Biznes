@@ -241,10 +241,16 @@ and none is described as done anywhere in these documents.
 
 **Not decided: for the owner.**
 
-1. How plans and pocket guides are paid for. No payment gateway is chosen.
-2. The pocket guide's price.
-3. Whether Biznes Grow includes Biznes Go's verified mark and priority.
-4. The Supabase project.
+1. How plans and pocket guides are paid for. Answered the same day: "payment we will use stripe,
+   not connectting now tho". Until Stripe is connected, a plan or a guide is asked for and a person
+   answers.
+2. The pocket guide's price. Answered: "just 1.99$ or equivalent in Mur. like 125rs, we can have
+   like 50-100 guides the sell a bundle of all for like 60% off something like that". Set at Rs 125.
+3. Whether Biznes Grow includes Biznes Go's verified mark and priority. Answered: "yes, all feom go
+   but with some booking and services sale management tools, users can pay businesses via mcb juice
+   (no integrarion, just details)".
+4. The Supabase project. The owner agreed to pay for one ("go ahead, create it, i'll pay for it");
+   its creation waits on a cost confirmation only the owner can give.
 5. Who the first superadmin is. The proposal is the first account registered.
 6. The owner's reading of the new guides and of the pocket guide, as of the first thirteen.
 
