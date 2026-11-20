@@ -79,7 +79,7 @@ async function audit(page, name) {
 const browser = await chromium.launch({ executablePath: browserPath() });
 const errors = [];
 async function person() {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const context = await browser.newContext({ serviceWorkers: process.env.SW === "block" ? "block" : "allow",  viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   page.on("pageerror", (e) => errors.push(e.message));
   return { context, page };
@@ -170,8 +170,8 @@ const owner = await person();
   const session = cookies.filter((c) => c.name === "biznes-auth" || c.name.startsWith("biznes-auth."));
   check("session: kept in cookies no script can read", session.length > 0 && session.every((c) => c.httpOnly && c.sameSite === "Lax"), JSON.stringify(session.map((c) => [c.name, c.httpOnly, c.sameSite])));
   check("session: the marker says only that someone is signed in", cookies.find((c) => c.name === "biznes-in")?.value === "1");
-  await page.waitForSelector('header a[href="/account"]', { timeout: 10000 }).catch(() => {});
-  check("header: the initial, as a way to the account", (await page.locator('header a[href="/account"]').innerText().catch(() => "")).trim() === "F");
+  await page.waitForSelector('header .nav-pill > a[href="/account"]', { timeout: 10000 }).catch(() => {});
+  check("header: the initial, as a way to the account", (await page.locator('header .nav-pill > a[href="/account"]').innerText().catch(() => "")).trim() === "F");
   check("account: a superadmin is shown the way to Admin", (await page.locator('main a[href="/admin"]').count()) === 1);
   await audit(page, "account-superadmin");
 
@@ -364,7 +364,15 @@ const scratchSlug = sql(`select slug from public.businesses where id = '${scratc
 const tomorrow = new Date(Date.now() + 4 * 3600e3 + 2 * 864e5).toISOString().slice(0, 10);
 {
   const { page } = visitor;
-  await go(page, `${origin}/biz/${scratchSlug}`);
+  // A page that is kept is made again on the first visit after a change, and that visit may still
+  // be handed the copy from before. So the page is asked for again until it shows the change.
+  let asked = 0;
+  for (; asked < 8; asked++) {
+    await go(page, `${origin}/biz/${scratchSlug}`);
+    if (/Cut and blow dry/.test(await page.locator("main").innerText())) break;
+    await page.waitForTimeout(700);
+  }
+  check("public: the new service is on the page by the second visit at the latest", asked <= 1, `${asked + 1} visits`);
   const text = await page.locator("main").innerText();
   check("public: the page shows the mark, the service and its price", /Verified/.test(text) && /Priority listing/.test(text) && /Cut and blow dry/.test(text) && /Rs 600/.test(text) && /45 minutes/.test(text));
   await press(page, "Ask for a booking");
@@ -680,7 +688,7 @@ const claimedBiz = sql(`select id from public.businesses where listing_id = '${c
 // ---------------------------------------------------------------------------------------------
 // 9. With script off, the forms still work.
 {
-  const context = await browser.newContext({ javaScriptEnabled: false });
+  const context = await browser.newContext({ serviceWorkers: process.env.SW === "block" ? "block" : "allow",  javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto(`${origin}/account/sign-in`, { waitUntil: "load" });
   await page.fill('main [name="email"]', CAROL.email);

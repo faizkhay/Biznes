@@ -46,7 +46,7 @@ export default function AccountControl() {
   if (!accountsOn) return null;
   if (who) {
     return (
-      <Link prefetch={false} href="/account" className="icon-btn icon-btn-edge title-2 hidden text-ink sm:inline-grid" aria-label={who.name ? `Your account, ${who.name}` : "Your account"} title="Your account">
+      <Link prefetch={false} href="/account" className="icon-btn icon-btn-sq title-2 hidden text-ink sm:inline-grid" aria-label={who.name ? `Your account, ${who.name}` : "Your account"} title="Your account">
         <span aria-hidden>{who.initial || "?"}</span>
       </Link>
     );

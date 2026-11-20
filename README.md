@@ -718,23 +718,22 @@ The old site's addresses lead on for good: `/businesses` and `/businesses/...` t
 
 ## Verification
 
-The state of the checks on 20 November 2026, with the round still open. Nothing is claimed beyond
+The state of the checks on 20 November 2026, at the end of the round. Nothing is claimed beyond
 this list.
 
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 121 files |
+| House style | `npm run copy` | 0 failures, 176 files |
 | Tokens | `npm run tokens` | 0 failures |
 | Contrast | `npm run contrast` | Every pair passes |
 | Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all four pictures at a desk and on a phone: the lowest is 5.77:1 |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 87 of 87, against a production server |
-| Accessibility | `npm run a11y` | axe-core, clean on every kind of page at phone size in the last full run. The run at desk size is still to be redone |
-| Captures | `npm run screenshots` | Still to be redone. The captures kept in `review/screens` are of the earlier design |
-
-The desk run of the accessibility check and the final captures wait for the accounts to be merged,
-so that they are made once, on the whole site.
+| Behaviour | `npm run behaviour` | 106 of 106, against a production server with accounts off |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on every kind of public page, at a desk and on a phone |
+| Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
+| The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |
+| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 118 of 118, against Supabase's own database, sign-in and API services run on this machine (`scripts/accounts-stack.sh`), including axe-core on the account pages. Not against a hosted project: there is none yet |
 
 The behaviour, accessibility and capture checks, and `npm run hero`, need a production server. The
 behaviour check starts the form's own receiver, so the form is tested end to end:
@@ -756,13 +755,24 @@ the redirect, with its sources, the age of its record, its telephone link and it
 the old addresses; robots, the sitemap and `llms.txt`; an article's citations; the VAT sums; the
 two tools drawn from guides; the form's errors, its delivery, its honeypot and its rate limit, and
 what it does with no route set (it starts a second server on port 3101 for that); the site with no
-script; the menu's groups; narrowing by telephone number and by town; saving, the saved page and a
-shared list; the three plans and their prices; and, on a phone, pages no wider than the screen,
-the tab bar, the menu, the small island above a list and an article's contents.
+script; the menu's groups; answers to general questions (an emergency number as a button that
+calls it, a holiday's date, an article's own words, a question about how led by an article, a
+business's own name led by businesses); narrowing by telephone number and by town; saving, the
+saved page and a shared list; the three plans and their prices; the pocket guide's price, its
+sponsors and that it is not handed out while it is sold; and, on a phone, fourteen pages no wider
+than the screen itself, the tab bar on the first screen, the menu, the emergency numbers one tap
+from the first screen, and an article's contents.
 
-**One fix worth knowing.** On a page's first making the server gives a redirect's address twice. A
-browser forgives that; a service worker's sealed copy of the redirect does not, and the page
-failed to open. The worker now resolves a redirect itself (`public/sw.js`).
+**Two fixes worth knowing,** both in `public/sw.js`. On a page's first making the server gives a
+redirect's address twice. A browser forgives that; a service worker's sealed copy of the redirect
+does not, and the page failed to open: the worker now resolves a redirect itself. And a worker's
+request for a page is not a visit in the browser's eyes, so the browser handed back the copy it
+had kept while it fetched a new one, and a page that had just changed was shown as it was: the
+worker now asks for every page afresh. The accounts' checks found the second.
+
+**A design review by a fresh reviewer** was run on a built copy at both sizes, with a keyboard and
+twenty-two searches: twenty-three findings, one of them a blocker. What was done about each, and
+the five things left, are in `STORY.md` ("The design review of Round 4").
 
 **Tested, but not where it matters most:**
 
@@ -771,8 +781,8 @@ failed to open. The worker now resolves a redirect itself (`public/sw.js`).
 
 **Not run, and why:**
 
-- **The accounts against a live Supabase project.** There is no project yet.
-- **A design review by a fresh reviewer.** None has been run on this round.
+- **The accounts against a hosted Supabase project.** There is no project yet: its creation waits
+  on the owner. What a hosted project adds to the local one is listed under Accounts.
 - **A reading by a practitioner.** The first item on the confirm list. This is the gap that matters.
 - **Speed measurements** (Lighthouse, real devices on a mobile network). Not run in this session.
 - **A screen reader, by ear.** axe-core passes; nobody has listened to it.
@@ -794,7 +804,6 @@ failed to open. The worker now resolves a redirect itself (`public/sw.js`).
 - **Most records are old.** Nine in ten of the map's listings were last edited more than two years
   ago. Each listing says when, and warns when it is over two years. Claimed listings would cure
   this.
-- **The shelf about Mauritius is not full**: four articles of eleven when this was written.
 - **One pocket guide.** The script and the shop hold one guide; the bundle is not built.
 - **A chain is one card a branch.**
 - **No French or Kreol pages.** A question in either is understood.

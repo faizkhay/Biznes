@@ -11,7 +11,7 @@
 //
 // Raise VERSION when this file changes what it keeps, or when a file under /themes/ or /icons/ is
 // replaced under the same name. The caches of the older version are then deleted.
-const VERSION = "v1";
+const VERSION = "v2";
 const PREFIX = "biznes-";
 const SHELL = `${PREFIX}shell-${VERSION}`; // kept from the start: the offline page and the icons
 const ASSETS = `${PREFIX}assets-${VERSION}`; // files that never change under the same address
@@ -82,7 +82,10 @@ self.addEventListener("fetch", (event) => {
 /** A page: the network first, and a copy kept for the day there is none. */
 async function page(event) {
   try {
-    const response = await fetch(event.request);
+    // The page is asked for afresh, past the browser's own store. A worker's request is not a
+    // visit in the browser's eyes, so without this the browser may hand back the copy it kept
+    // while it fetches a new one, and a page that has just changed would be shown as it was.
+    const response = await fetch(event.request, { cache: "no-cache" });
     // A redirect comes back sealed, and the server can give its address twice on a page's first
     // making, which a browser forgives and a worker's sealed copy does not. So the worker asks
     // where the address leads and sends the browser there itself.
