@@ -5,7 +5,7 @@ import { Arrow, Book, Calc, Glass, GroupIcon, Landmark, Tick } from "@/component
 import JsonLd from "@/components/JsonLd";
 import LitCount from "@/components/LitCount";
 import SearchBox from "@/components/SearchBox";
-import { ACTIONS, EXAMPLES, PROMISES, site } from "@/data/site";
+import { ACTIONS, EXAMPLES, PROMISES, SHELVES, site } from "@/data/site";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
@@ -19,6 +19,10 @@ export default function Home() {
   const { meta, groups, places, guides } = index();
   const towns = [...places].filter((p) => p.kind === "town").sort((a, b) => b.n - a.n);
   const theme = themeFor();
+  // The guides shown on the first screen: the first of each shelf, then the next business ones.
+  const shelves = SHELVES.map((shelf) => ({ ...shelf, n: guides.filter((g) => (g.shelf ?? "business") === shelf.id).length })).filter((shelf) => shelf.n > 0);
+  const firsts = shelves.map((shelf) => guides.find((g) => (g.shelf ?? "business") === shelf.id)!);
+  const featured = [...firsts, ...guides.filter((g) => !firsts.includes(g))].slice(0, 6);
   return (
     <>
       <JsonLd
@@ -65,7 +69,7 @@ export default function Home() {
             Every category <Arrow className="size-4" />
           </Link>
         </div>
-        <ul className="-mx-3 mt-6 grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="mt-6 grid grid-cols-2 gap-2 sm:-mx-3 sm:gap-x-4 sm:gap-y-1 lg:grid-cols-3 xl:grid-cols-4">
           {groups.map((g) => (
             <li key={g.id}>
               <Link prefetch={false} href={`/directory#g-${g.id}`} className="tile">
@@ -118,19 +122,34 @@ export default function Home() {
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-1">
             <div>
               <h2 id="learn" className="heading-2">
-                How business works here
+                Guides to Mauritius
               </h2>
-              <p className="body-2 measure mt-3 text-ink-subtle">Plain guides to starting and running a business in Mauritius. Every figure is taken from an official source, named beside it, with the day it was checked.</p>
+              <p className="body-2 measure mt-3 text-ink-subtle">For doing business here, visiting, moving here and living here. Every figure is taken from an official source, named beside it, with the day it was checked.</p>
             </div>
             <Link prefetch={false} href="/learn" className={more}>
               All {count(guides.length)} guides <Arrow className="size-4" />
             </Link>
           </div>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {guides.slice(0, 6).map((g) => (
+          <ul className="narrow mt-4">
+            {shelves.map((shelf) => (
+              <li key={shelf.id}>
+                <Link prefetch={false} href={`/learn#${shelf.id}`} className="body-3">
+                  {shelf.label} <span className="data-2 text-ink-faint">{count(shelf.n)}</span>
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link prefetch={false} href="/emergency" className="body-3">
+                Emergency numbers
+              </Link>
+            </li>
+          </ul>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((g) => (
               <li key={g.slug}>
                 <article className="card h-full">
-                  <h3 className="title-1">
+                  <p className="label-1 text-ink-faint">{SHELVES.find((shelf) => shelf.id === (g.shelf ?? "business"))?.label}</p>
+                  <h3 className="title-1 mt-2">
                     <Link prefetch={false} href={`/learn/${g.slug}`} className="row-title text-ink">
                       {g.title}
                     </Link>

@@ -52,6 +52,9 @@ export default function SiteFooter() {
           <Link href="/add" className="btn btn-filled button-sm mt-3">
             {ACTIONS.add}
           </Link>
+          <p className="body-3 mt-6 max-w-xs text-ink-subtle">
+            No website yet? {builder.name}, who make {site.name}, <a href={builder.url} rel="noopener">build them for Mauritian businesses</a>.
+          </p>
           <p className="body-3 mt-6 text-ink-subtle">
             <a href={contact.phoneHref} className="data-1 inline-flex min-h-8 items-center whitespace-nowrap">
               {contact.phone}

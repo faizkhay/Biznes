@@ -16,19 +16,20 @@
   --palette-cream: #fdf9ec; /* derived, saffron 8% on white: the sheet of paper the page is written on */
   --palette-sand: #f5efe0; /* derived from cream, deeper: a tile, a chip, a quiet panel */
   --palette-limewash: #f7f7f8; /* sampled: the brand's white. Points on the island's dark panel */
-  --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.58:1 on white, 16.63:1 on cream, 15.26:1 on sand */
+  --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.69:1 on white, 16.8:1 on cream, 15.42:1 on sand */
   --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer, land on the chart */
   --palette-night: #050a1a; /* derived from ink, darker: the sea on the chart */
-  --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.99:1 on white, 8.5:1 on cream, 7.8:1 on sand */
-  --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.42:1 on white, 5.13:1 on cream, 4.7:1 on sand */
-  --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.04:1 */
-  --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.11:1 */
-  --palette-saffron-wash: #fef6d9; /* derived, saffron 16% on white: an answer's ground, a chosen thing; ink on it 16.21:1 */
-  --palette-royal: #0d36a7; /* sampled from the mock-up approved on 20 November 2026: what answers. 9.96:1 on white, 9.3:1 on limewash */
+  --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.9:1 on white, 8.45:1 on cream, 7.76:1 on sand */
+  --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.7:1 on sand */
+  --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.02:1 */
+  --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.03:1 */
+  --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 8.3:1 */
+  --palette-saffron-wash: #fef6d9; /* derived, saffron 16% on white: an answer's ground, a chosen thing; ink on it 16.34:1 */
+  --palette-royal: #0d36a7; /* sampled from the mock-up approved on 20 November 2026: what answers. 9.98:1 on white, 9.48:1 on cream */
   --palette-lagoon: #aebadf; /* sampled from the same mock-up: the pale blue of the glow behind the question */
   --palette-haze: #b6c0db; /* derived from limewash toward ink: words on the chart; 9.73:1 on ink */
-  --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Not words on white (3.62:1) */
-  --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.85:1 on white */
+  --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Never words on white or cream */
+  --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.78:1 on white, 5.48:1 on cream */
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --nav-h: 56px;
@@ -948,6 +949,17 @@
   .tile-n {
     color: var(--color-ink-faint);
   }
+  /* On a phone the tiles stand two abreast, each a small card with its icon on top. */
+  @media (max-width: 40rem) {
+    .tile {
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+      padding: 0.875rem;
+      background: var(--color-paper);
+      border: 1px solid var(--color-line);
+    }
+  }
 
   /* A block that stands off the page: a guide to read, a tool, an answer. */
   .card {
@@ -1135,21 +1147,144 @@
     position: relative;
     z-index: 1;
   }
-  /* A listing in a list: its kind's icon, what is known of it, and what can be done with it. */
+  /* A listing in a list: the biznes card. A white card with its kind's icon on an ink tile, what
+     is known of it, and what can be done with it. A list of them is a stack of cards, not rows. */
+  .rows:has(> li > .listing) {
+    display: grid;
+    gap: 0.75rem;
+    border-top: 0;
+  }
+  .rows > li:has(> .listing) {
+    border-bottom: 0;
+  }
   .listing {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 0 1rem;
     align-items: start;
+    padding: 1.125rem 1.125rem 1.125rem 1.25rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .listing:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 20%, transparent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
   }
   .listing-icon {
     display: grid;
     place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: var(--radius-md);
-    background: var(--color-panel);
-    color: var(--color-ink-subtle);
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-ink);
+    color: var(--color-signal);
+  }
+  /* A business that is verified and pays for its place: the card is ringed in saffron and glows,
+     and it carries the mark. Nothing else on the site looks like it. */
+  .listing-paid,
+  .biz-paid {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(to bottom, var(--palette-saffron-wash), var(--palette-white) 5.5rem) padding-box,
+      linear-gradient(110deg, var(--palette-saffron), var(--palette-ember)) border-box;
+    box-shadow: 0 1px 2px rgb(10 22 57 / 0.05), 0 10px 32px -8px color-mix(in srgb, var(--palette-saffron-deep) 55%, transparent);
+  }
+  .listing-paid:hover {
+    border-color: transparent;
+    box-shadow: 0 1px 2px rgb(10 22 57 / 0.05), 0 16px 40px -8px color-mix(in srgb, var(--palette-saffron-deep) 70%, transparent);
+  }
+  .listing-paid .listing-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+  }
+  /* The verified mark: a seal and the word, on saffron running to ember. */
+  .verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3125rem;
+    min-height: 1.5rem;
+    padding: 0 0.625rem 0 0.25rem;
+    border-radius: var(--radius-full);
+    background: linear-gradient(100deg, var(--palette-saffron), var(--palette-ember));
+    color: var(--palette-ink);
+    font-size: 0.75rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    vertical-align: 0.15em;
+    box-shadow: 0 2px 10px -2px color-mix(in srgb, var(--palette-ember) 70%, transparent);
+    --seal-tick: var(--palette-saffron);
+  }
+  .verified svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: none;
+  }
+  h3 > .verified {
+    margin-left: 0.375rem;
+  }
+  .verified-more {
+    padding-left: 0.4375rem;
+    border-left: 1px solid color-mix(in srgb, var(--palette-ink) 35%, transparent);
+    font-weight: 700;
+  }
+  .verified-lg {
+    min-height: 2rem;
+    padding: 0 0.875rem 0 0.375rem;
+    font-size: 0.875rem;
+    gap: 0.4375rem;
+  }
+  .verified-lg svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* A business's own page opens with its card: a strip of the day's picture, its kind's icon
+     standing on the strip's edge, its name, and what can be done. */
+  .biz-head {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .biz-cover {
+    height: 7.5rem;
+    background: var(--color-panel) var(--theme-image-sm) center 78% / cover;
+  }
+  .biz-paid .biz-cover {
+    height: 9rem;
+  }
+  .biz-body {
+    padding: 0 1.5rem 1.5rem;
+  }
+  .biz-icon {
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-top: -2.25rem;
+    border: 4px solid var(--color-paper);
+    border-radius: 1.375rem;
+    background: var(--color-ink);
+    color: var(--color-signal);
+  }
+  .biz-icon svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .biz-paid .biz-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+  }
+  @media (max-width: 30rem) {
+    .biz-body {
+      padding: 0 1.125rem 1.25rem;
+    }
   }
   .listing-icon svg {
     width: 1.25rem;
@@ -1158,7 +1293,7 @@
   .listing-acts {
     display: flex;
     align-items: center;
-    margin: -0.375rem -0.5rem 0 0;
+    margin: -0.375rem -0.375rem 0 0;
   }
   @media (max-width: 30rem) {
     .listing {

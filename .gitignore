@@ -30,3 +30,6 @@ scripts/_*
 
 # Lists made for the owner from the index (npm run leads). Not part of the site.
 reports/
+
+# Previews sent to the owner during a round. Not part of the site.
+review/preview/

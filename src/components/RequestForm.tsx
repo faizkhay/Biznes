@@ -33,8 +33,8 @@ const ASKS: Record<Topic, string> = {
  * and never loses a request quietly: if it cannot be delivered, it says so and gives the phone,
  * WhatsApp and email instead.
  */
-export default function RequestForm({ listing, compose = false, start = "" }: { listing?: { id: string; name: string; path: string }; /** No delivery route is set on the server: the request is written out and sent from the visitor's own WhatsApp or email. */ compose?: boolean; /** Words to begin the message with, when the form is opened for a plan. */ start?: string }) {
-  const [values, setValues] = useState<Enquiry>({ topic: listing ? "correct" : "add", listing: listing?.id, business: listing?.name ?? "", message: start, name: "", phone: "", email: "", reply: "email", website: "" });
+export default function RequestForm({ listing, compose = false, start = "", about }: { listing?: { id: string; name: string; path: string }; /** No delivery route is set on the server: the request is written out and sent from the visitor's own WhatsApp or email. */ compose?: boolean; /** Words to begin the message with, when the form is opened for a plan or a guide. */ start?: string; /** What the request is about, when the page that opened the form knows. */ about?: Enquiry["topic"] }) {
+  const [values, setValues] = useState<Enquiry>({ topic: about ?? (listing ? "correct" : "add"), listing: listing?.id, business: listing?.name ?? "", message: start, name: "", phone: "", email: "", reply: "email", website: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [state, setState] = useState<State>("idle");
   const form = useRef<HTMLFormElement>(null);

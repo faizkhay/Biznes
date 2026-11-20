@@ -1,31 +1,27 @@
-import Chart from "@/components/Chart";
+import { Wordmark } from "@/components/Logo";
+import { PICTURES } from "@/data/themes";
 import { site } from "@/data/site";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 
 /**
- * The link preview card, as a page: the name, the line and the chart at 1200 by 630. It exists only
- * under `next dev` (its file ends .dev.tsx), where scripts/og.mjs captures it into public/og.jpg.
- * So the card is always the site's own chart, drawn from the index of the day.
+ * The link preview card, as a page: the name and the line on the lagoon picture, at 1200 by 630.
+ * It exists only under `next dev` (its file ends .dev.tsx), where scripts/og.mjs captures it into
+ * public/og.jpg. The card always shows the everyday picture, whatever the season.
  */
 export default function OgCard() {
   const { meta } = index();
   return (
-    <div id="og" className="flex items-center gap-12 overflow-hidden bg-paper px-16" style={{ width: 1200, height: 630 }}>
-      <div className="min-w-0 flex-1">
-        <p className="wordmark">
-          biznes<span className="dot">.</span>mu
-        </p>
-        <p className="heading-1 mt-8" style={{ fontSize: "4rem" }}>
-          {site.line}.
-        </p>
-        <p className="data-1 mt-8 text-ink-faint">
-          {count(meta.listings.all)} listings · {count(meta.towns)} towns and villages · {count(meta.guides)} guides
-        </p>
-      </div>
-      <div className="*:w-full" style={{ width: 496 }}>
-        <Chart className="chart-strip" says="" />
-      </div>
+    <div id="og" className="relative flex flex-col overflow-hidden px-16 py-12" style={{ width: 1200, height: 630, backgroundImage: `linear-gradient(to bottom, rgb(253 249 236 / 0.9), rgb(253 249 236 / 0.55) 42%, transparent 70%), url(${PICTURES.lagoon.src})`, backgroundSize: "cover", backgroundPosition: "center bottom" }}>
+      <p className="text-ink *:h-12 *:w-auto">
+        <Wordmark />
+      </p>
+      <p className="display-1 mt-10 max-w-4xl" style={{ fontSize: "5rem" }}>
+        {site.line}.
+      </p>
+      <p className="body-1 mt-6 font-semibold text-ink">
+        {count(meta.listings.all)} businesses and services, {count(meta.towns)} towns and villages, {count(meta.guides)} guides
+      </p>
     </div>
   );
 }

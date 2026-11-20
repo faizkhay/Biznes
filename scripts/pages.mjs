@@ -29,6 +29,11 @@ export const PAGES = [
   ["bot", "/bot"],
   ["add", "/add"],
   ["privacy", "/privacy"],
+  ["search-narrowed", "/search?q=restaurants&phone=1"],
+  ["pricing", "/pricing"],
+  ["saved", "/saved"],
+  ["emergency", "/emergency"],
+  ["shop", "/shop"],
   ["missing", "/no-such-page"],
 ];
 

@@ -13,8 +13,13 @@ website and the crawler that feeds it.
   and named. What could not be confirmed goes in the guide's `unverified` list, not its prose.
 - The crawler obeys robots.txt, reads one page a site, and never takes an email address
   (`crawler/config.mjs`). Keep it so.
-- The order of search results is by how well a listing answers and how full it is, and the site
-  says so (`/data`). If that ever changes, the page changes first.
+- The order of search results is by how well a listing answers and how full it is. A business on
+  a paid plan comes first among equal answers and is always marked as a priority listing. The
+  site says so (`/data`, `/pricing`). If the order ever changes, those pages change first.
+- The plans, their prices and what each gives are the owner's words (`PLANS` in
+  `src/data/site.ts`). Never add a feature or a price to a plan that the owner has not given.
+- The picture behind the page follows the calendar (`src/data/themes.ts`, `src/lib/theme.ts`).
+  Holiday dates come only from `content/holidays.json`, written from the official notice.
 - House style in every file: British spelling, plain sentences, no em or en dashes.
 - Before committing: `npm run typecheck && npm run build && npm run copy && npm run tokens`, then
   the behaviour, accessibility and capture checks against a production server (README,

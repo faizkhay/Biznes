@@ -54,8 +54,19 @@ export const NAV = [
   { href: "/tools", label: "Tools" },
 ] as const;
 
+/** The shelves of the guides page: who each set of guides is for. */
+export const SHELVES = [
+  { id: "business", label: "Starting and running a business", line: "Registration, companies, tax, VAT, staff, licences and the rest." },
+  { id: "visitors", label: "Visiting Mauritius", line: "What to know before you come, and what there is to see and do." },
+  { id: "newcomers", label: "Moving here", line: "The ways to live in Mauritius, and settling in once you have arrived." },
+  { id: "everyday", label: "Living here", line: "The paperwork and the bills of everyday life." },
+] as const;
+
 /** The quieter pages, for the footer. */
 export const MORE = [
+  { href: "/emergency", label: "Emergency numbers" },
+  { href: "/pricing", label: "List your business" },
+  { href: "/shop", label: "Pocket guides" },
   { href: "/official", label: "Official pages" },
   { href: "/data", label: "Where the data comes from" },
   { href: "/bot", label: "Our crawler" },

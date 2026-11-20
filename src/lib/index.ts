@@ -94,6 +94,8 @@ export type Guide = {
   title: string;
   summary: string;
   audience?: string;
+  /** Who it is for, as a shelf of the guides page (src/data/site.ts, SHELVES). None means business. */
+  shelf?: "business" | "visitors" | "newcomers" | "everyday";
   /** The day its facts were last read against their sources. */
   checked: string;
   facts: { label: string; value: string; detail?: string; sources?: string[] }[];
@@ -139,6 +141,12 @@ const GUIDE_ORDER = [
   "invest-from-abroad",
   "global-business",
   "verify-a-business",
+  "visiting-mauritius",
+  "things-to-do-in-mauritius",
+  "moving-to-mauritius",
+  "settling-in-mauritius",
+  "everyday-paperwork-in-mauritius",
+  "household-bills-and-services",
 ];
 
 /**

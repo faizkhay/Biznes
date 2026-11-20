@@ -78,18 +78,31 @@ export default function DataPage() {
           </div>
         </section>
 
+        <section aria-labelledby="order" className="max-w-3xl">
+          <h2 id="order" className="heading-2">
+            How results are ordered
+          </h2>
+          <div className="prose body-2 mt-4">
+            <p>Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name.</p>
+            <p>
+              A business on a paid plan (<Link href="/pricing">Biznes Go or Biznes Grow</Link>) is shown before others that answer equally well, and it is marked as a priority listing, so that a paid place is never mistaken for a better answer. Until a business is on a paid plan, the order is by answer and fullness alone.
+            </p>
+            <p>Paying changes nothing else: not what a listing says about anyone, not the guides, not the official pages.</p>
+          </div>
+        </section>
+
         <section aria-labelledby="not" className="max-w-3xl">
           <h2 id="not" className="heading-2">
             What is not here
           </h2>
           <div className="prose body-2 mt-4">
             <ul>
-              <li>No email addresses. They are not taken from any source, so the index cannot be mined for them.</li>
-              <li>No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one, and that is the only order there is.</li>
+              <li>No email addresses in the index. The crawler takes none from any source, so the index cannot be mined for them. An account, if you make one, holds the address you give it and nothing else does.</li>
+              <li>No reviews or ratings of our own.</li>
               <li>No promise that a listing is current. Each one is as the map last recorded it, and says when that was. Most were last edited more than two years ago.</li>
               <li>Not every business. The map is fullest for shops, food and places to stay, and thin for offices and trades.</li>
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>
-              <li>No judgement. Nobody at biznes.mu has visited or vetted a listed business.</li>
+              <li>No judgement. Nobody at biznes.mu has visited or vetted a listed business. The one exception is the verified mark: it means we have checked that the business is real, and nothing more.</li>
             </ul>
           </div>
         </section>

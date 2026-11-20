@@ -4,6 +4,7 @@ import { PageHead } from "@/components/Bits";
 import RequestForm from "@/components/RequestForm";
 import { PLANS, site } from "@/data/site";
 import { index } from "@/lib/index";
+import { products } from "@/lib/shop";
 
 export const metadata: Metadata = {
   title: "Add or correct a listing",
@@ -11,9 +12,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/add" },
 };
 
-export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; plan?: string }> }) {
-  const { listing: wanted, plan: asked } = await searchParams;
+export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; plan?: string; product?: string }> }) {
+  const { listing: wanted, plan: asked, product: guide } = await searchParams;
   const plan = PLANS.find((p) => p.id === asked);
+  const product = products().find((p) => p.slug === guide);
   const listing = wanted ? index().byId.get(wanted) : undefined;
   const { contact } = site;
   // With no route for requests set on the server, a form that posts would fail every time. The
@@ -24,7 +26,7 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
       <PageHead title="Add or correct a listing" lede={listing ? `About ${listing.name}. Tell us what should change, or that it should be taken out.` : "Add a business, put a listing right, or have one taken out. It costs nothing, and a person reads every request."} />
       <div className="shell grid gap-x-12 gap-y-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <RequestForm compose={compose} start={plan ? `I would like ${plan.name} for my business.` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
+          <RequestForm compose={compose} about={product ? "other" : undefined} start={plan ? `I would like ${plan.name} for my business.` : product ? `I would like the pocket guide "${product.title}".` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
         </div>
         <aside className="lg:col-span-4 lg:col-start-9">
           <h2 className="heading-3">Other ways</h2>

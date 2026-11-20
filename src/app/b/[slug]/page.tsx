@@ -84,10 +84,13 @@ export default async function ListingPage({ params }: Props) {
 
       <div className="mt-6 grid gap-x-12 gap-y-10 chart:grid-cols-12">
         <div className="chart:col-span-7">
-          <span className="listing-icon mb-6" aria-hidden>
-            <GroupIcon group={category?.group} />
-          </span>
-          <h1 className="heading-1">{l.name}</h1>
+          <header className="biz-head">
+            <div className="biz-cover" aria-hidden />
+            <div className="biz-body">
+              <span className="biz-icon" aria-hidden>
+                <GroupIcon group={category?.group} />
+              </span>
+              <h1 className="heading-1 mt-4">{l.name}</h1>
           <p className="body-1 mt-3 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where].filter(Boolean).join(" · ")}</p>
 
           {(l.phone?.length || l.web || placed) && (
@@ -113,6 +116,8 @@ export default async function ListingPage({ params }: Props) {
             <SaveButton id={l.id} name={l.name} words />
             <ShareButton title={l.name} words />
           </p>
+            </div>
+          </header>
 
           {mapped && (
             <p className={`caption-1 mt-4 max-w-prose ${stale ? "note" : "text-ink-faint"}`}>
