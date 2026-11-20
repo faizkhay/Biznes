@@ -30,3 +30,6 @@ scripts/_*
 
 # Lists made for the owner from the index (npm run leads). Not part of the site.
 reports/
+
+# The local test stack for the accounts (scripts/accounts-stack.sh): its mail and its logs.
+.accounts-stack/

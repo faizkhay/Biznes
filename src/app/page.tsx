@@ -9,16 +9,16 @@ import { ACTIONS, EXAMPLES, PROMISES, site } from "@/data/site";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
-import { themeFor } from "@/lib/theme";
+import { themeNow } from "@/lib/theme";
 import { TOOLS } from "@/lib/tools";
 
 const TOOL_ICON: Record<string, React.ReactNode> = { "/tools/verify": <Landmark />, "/tools/vat": <Calc />, "/tools/structures": <GroupIcon group="companies" />, "/learn/glossary": <Book /> };
 const more = "body-3 inline-flex min-h-11 items-center gap-2 font-semibold text-link no-underline hover:underline";
 
-export default function Home() {
+export default async function Home() {
   const { meta, groups, places, guides } = index();
   const towns = [...places].filter((p) => p.kind === "town").sort((a, b) => b.n - a.n);
-  const theme = themeFor();
+  const theme = await themeNow();
   return (
     <>
       <JsonLd

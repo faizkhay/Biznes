@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { ACTIONS, CREDITS, site } from "@/data/site";
+import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 
@@ -78,6 +79,23 @@ export default function DataPage() {
           </div>
         </section>
 
+        {/* Said only once owners can list a business themselves: it is the one thing not drawn from an open source. */}
+        {accountsOn && (
+          <section aria-labelledby="order" className="max-w-3xl">
+            <h2 id="order" className="heading-2">
+              Listed by its owner, and the order of results
+            </h2>
+            <div className="prose body-2 mt-4">
+              <p>
+                <strong>A business&rsquo;s own listing.</strong> An owner can create an account and list a business, or claim a listing that is already here. A person at {site.name} checks each one before anything changes. Its details are then the owner&rsquo;s own words, and its page says so. A claimed listing on the free plan is marked &ldquo;Claimed by its owner&rdquo;.
+              </p>
+              <p>
+                <strong>The order of results.</strong> Listings that answer a question are ordered by how well they answer and how full they are. One thing comes before that, and it is paid for: a business on Biznes Go or Biznes Grow that we have verified is shown first among the listings that answer, and it is marked &ldquo;Verified&rdquo; and &ldquo;Priority listing&rdquo; wherever it is shown. A search for a business by its own name still shows that business first. Paying never hides another listing, changes what a listing says about someone else, or buys a place in a guide. <Link href="/pricing">The plans</Link>.
+              </p>
+            </div>
+          </section>
+        )}
+
         <section aria-labelledby="not" className="max-w-3xl">
           <h2 id="not" className="heading-2">
             What is not here
@@ -85,7 +103,7 @@ export default function DataPage() {
           <div className="prose body-2 mt-4">
             <ul>
               <li>No email addresses. They are not taken from any source, so the index cannot be mined for them.</li>
-              <li>No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one, and that is the only order there is.</li>
+              <li>No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one{accountsOn ? ". The one place that is paid for is always marked: see above." : ", and that is the only order there is."}</li>
               <li>No promise that a listing is current. Each one is as the map last recorded it, and says when that was. Most were last edited more than two years ago.</li>
               <li>Not every business. The map is fullest for shops, food and places to stay, and thin for offices and trades.</li>
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>

@@ -2,7 +2,8 @@
 --
 -- Anyone may ask a live business on Biznes Grow for a booking, signed in or not, with a name and a
 -- telephone number. The business confirms, declines, or marks it done. Payment is between the
--- customer and the business: nothing here takes money.
+-- customer and the business: nothing here takes money. A business may say how it is paid by MCB
+-- Juice, as details only: a mobile number and a name, shown to customers while it is on Grow.
 
 create table public.services (
   id uuid primary key default gen_random_uuid(),
@@ -38,6 +39,16 @@ comment on table public.bookings is 'A request for a booking with a business on 
 create index bookings_business on public.bookings (business_id, created_at desc);
 create index bookings_customer on public.bookings (customer_id) where customer_id is not null;
 create index bookings_phone on public.bookings (phone_key, created_at desc);
+
+create table public.pay_details (
+  business_id uuid primary key references public.businesses (id) on delete cascade,
+  -- The Mauritian mobile number of the business's MCB Juice account, as "5XXX XXXX", and the name
+  -- the account is under. Details for a customer to pay with: the site takes no part in a payment.
+  juice_number text not null default '' check (juice_number = '' or juice_number ~ '^[0-9]{4} [0-9]{4}$'),
+  juice_name text not null default '' check (char_length(juice_name) <= 80),
+  updated_at timestamptz not null default now()
+);
+comment on table public.pay_details is 'How a business is paid by MCB Juice: details only, written by the owner, shown to the public while the business is live and on Biznes Grow.';
 
 -- True for a live business whose Biznes Grow plan is paid up today.
 create function private.takes_bookings(business uuid) returns boolean
@@ -78,6 +89,22 @@ revoke all on function private.services_before_write() from public;
 create trigger services_10_before_write
   before insert or update on public.services
   for each row execute function private.services_before_write();
+
+create function private.pay_details_before_write() returns trigger
+language plpgsql set search_path = ''
+as $$
+begin
+  new.juice_number := btrim(new.juice_number);
+  new.juice_name := btrim(new.juice_name);
+  new.updated_at := now();
+  return new;
+end;
+$$;
+revoke all on function private.pay_details_before_write() from public;
+
+create trigger pay_details_10_before_write
+  before insert or update on public.pay_details
+  for each row execute function private.pay_details_before_write();
 
 -- A new booking, as the API may send it: always a request, from whoever is asking.
 create function private.bookings_guard_insert() returns trigger
@@ -175,11 +202,19 @@ create trigger bookings_10_guard_update
 -- Who may read and change what.
 alter table public.services enable row level security;
 alter table public.bookings enable row level security;
+alter table public.pay_details enable row level security;
 
 revoke all on table public.services from anon, authenticated;
 revoke all on table public.bookings from anon, authenticated;
+revoke all on table public.pay_details from anon, authenticated;
 
-grant select (id, business_id, name, description, price_mur, minutes, active) on table public.services to anon;
+grant select (business_id, juice_number, juice_name) on table public.pay_details to anon;
+grant select on table public.pay_details to authenticated;
+grant insert (business_id, juice_number, juice_name) on table public.pay_details to authenticated;
+grant update (business_id, juice_number, juice_name) on table public.pay_details to authenticated;
+grant delete on table public.pay_details to authenticated;
+
+grant select (id, business_id, name, description, price_mur, minutes, active, created_at) on table public.services to anon;
 grant select on table public.services to authenticated;
 grant insert (business_id, name, description, price_mur, minutes, active) on table public.services to authenticated;
 grant update (name, description, price_mur, minutes, active) on table public.services to authenticated;
@@ -223,3 +258,26 @@ create policy bookings_update on public.bookings
   for update to authenticated
   using (customer_id = (select auth.uid()) or private.owns_business(business_id))
   with check (customer_id = (select auth.uid()) or private.owns_business(business_id));
+
+-- How a business is paid is the public's to read only while it is live and on Biznes Grow. Its
+-- owner writes it at any time, for their own businesses and no other.
+create policy pay_details_public_read on public.pay_details
+  for select to anon
+  using (private.takes_bookings(business_id));
+
+create policy pay_details_read on public.pay_details
+  for select to authenticated
+  using (private.owns_business(business_id) or (select private.is_admin()));
+
+create policy pay_details_insert on public.pay_details
+  for insert to authenticated
+  with check (private.owns_business(business_id));
+
+create policy pay_details_update on public.pay_details
+  for update to authenticated
+  using (private.owns_business(business_id))
+  with check (private.owns_business(business_id));
+
+create policy pay_details_delete on public.pay_details
+  for delete to authenticated
+  using (private.owns_business(business_id));

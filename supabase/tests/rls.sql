@@ -114,6 +114,10 @@ insert into public.services (id, business_id, name, price_mur, minutes, active) 
   ('c0000000-0000-4000-8000-0000000000a1', 'b0000000-0000-4000-8000-0000000000a2', 'Cut and blow dry', 600, 45, true),
   ('c0000000-0000-4000-8000-0000000000a2', 'b0000000-0000-4000-8000-0000000000a2', 'Old offer', 100, 30, false),
   ('c0000000-0000-4000-8000-0000000000b1', 'b0000000-0000-4000-8000-0000000000b2', 'Massage', 1500, 60, true);
+insert into public.pay_details (business_id, juice_number, juice_name) values
+  ('b0000000-0000-4000-8000-0000000000a2', '5222 2222', 'Alice Salon Ltd'),
+  ('b0000000-0000-4000-8000-0000000000b1', '5333 3333', 'Bob Books'),
+  ('b0000000-0000-4000-8000-0000000000b2', '5444 4444', 'Bob Spa');
 select t.is($$ select slug from public.businesses where name = 'Alice Bakery' $$, 'alice-bakery-b0000000', 'a business gets its address from its name');
 select t.is($$ select public.plan_now('grow', current_date - 1) || ',' || public.plan_now('grow', current_date + 1) || ',' || public.plan_now('go', null) $$, 'free,grow,go', 'a paid plan past its last day counts as free');
 
@@ -124,6 +128,9 @@ select t.is($$ select count(*) from public.businesses where status <> 'live' $$,
 select t.throws($$ select owner_id from public.businesses $$, 'cannot read who owns a business', '42501');
 select t.throws($$ select status_note from public.businesses $$, 'cannot read an admin''s note on a business', '42501');
 select t.is($$ select string_agg(name, ',') from public.services $$, 'Cut and blow dry', 'sees the active services of a live business on Grow: not an inactive one, not one whose plan has lapsed');
+select t.is($$ select string_agg(juice_number || ' ' || juice_name, ',') from public.pay_details $$, '5222 2222 Alice Salon Ltd', 'sees how to pay a live business on Grow by MCB Juice: not one on Go, not one whose plan has lapsed');
+select t.throws($$ insert into public.pay_details (business_id, juice_number, juice_name) values ('b0000000-0000-4000-8000-0000000000a1', '5000 0000', 'A Stranger') $$, 'cannot write how a business is paid', '42501');
+select t.throws($$ update public.pay_details set juice_number = '5000 0000' $$, 'cannot change how a business is paid', '42501');
 select t.is($$ select count(*) from public.site_settings $$, '1', 'reads the site''s look');
 select t.throws($$ select * from public.profiles $$, 'cannot read profiles', '42501');
 select t.throws($$ select * from public.bookings $$, 'cannot read bookings', '42501');
@@ -207,6 +214,13 @@ select t.lives($$ insert into public.services (business_id, name, price_mur, min
 select t.throws($$ insert into public.services (business_id, name) values ('b0000000-0000-4000-8000-0000000000a1', 'Cake to order') $$, 'cannot add a service to her business on the free plan', '42501', 'row-level security');
 select t.throws($$ insert into public.services (business_id, name) values ('b0000000-0000-4000-8000-0000000000b2', 'Hacked') $$, 'cannot add a service to another owner''s business', '42501', 'row-level security');
 select t.is($$ select count(*) from public.services $$, '3', 'sees her own services, the inactive one too, and nobody else''s');
+select t.lives($$ update public.pay_details set juice_number = ' 5222 0000 ', juice_name = 'Alice Lallah' where business_id = 'b0000000-0000-4000-8000-0000000000a2' $$, 'changes how her business on Grow is paid by MCB Juice');
+select t.lives($$ insert into public.pay_details (business_id, juice_number, juice_name) values ('b0000000-0000-4000-8000-0000000000a1', '5111 0000', 'Alice Lallah') $$, 'writes it for her free business too, where it waits unseen');
+select t.throws($$ insert into public.pay_details (business_id, juice_number, juice_name) values ('b0000000-0000-4000-8000-0000000000a3', '51110000', 'Alice Lallah') $$, 'cannot give a number that is not eight digits as 5XXX XXXX', '23514');
+select t.throws($$ insert into public.pay_details (business_id, juice_number, juice_name) values ('b0000000-0000-4000-8000-0000000000b1', '5000 0000', 'Alice Lallah') $$, 'cannot write how another owner''s business is paid', '42501', 'row-level security');
+select t.is($$ with done as (update public.pay_details set juice_number = '5000 0000' where business_id = 'b0000000-0000-4000-8000-0000000000b1' returning 1) select count(*) from done $$, '0', 'cannot redirect another owner''s payments to her own number');
+select t.throws($$ update public.pay_details set business_id = 'b0000000-0000-4000-8000-0000000000b1' where business_id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'cannot move her payment details onto another owner''s business');
+select t.is($$ select count(*) from public.pay_details $$, '2', 'reads her own payment details and nobody else''s');
 select t.is($$ select count(*) from public.bookings $$, '3', 'sees the three requests made to her business');
 select t.lives($$ update public.bookings set status = 'confirmed' where phone = '+230 5999 0001' and note = 'After work' $$, 'confirms a request');
 select t.lives($$ update public.bookings set status = 'done' where note = 'After work' $$, 'marks a confirmed booking done');
@@ -294,6 +308,7 @@ select t.throws($$ delete from public.audit_log $$, 'cannot wipe the record', '4
 select t.be('anon', '', 'A visitor again, after the admin''s work');
 select t.is($$ select count(*) from public.businesses $$, '4', 'sees the business that was approved, and no longer the one that was suspended');
 select t.is($$ select count(*) from public.services $$, '0', 'sees no services of a business taken off Grow');
+select t.is($$ select count(*) from public.pay_details $$, '0', 'nor how to pay it: no business is on Grow now');
 select t.throws($$ insert into public.bookings (business_id, name, phone, wanted_at) values ('b0000000-0000-4000-8000-0000000000a2', 'Dev', '+230 5888 0001', now() + interval '2 days') $$, 'can no longer ask it for a booking', '42501', 'row-level security');
 
 ------------------------------------------------------------------------------------------------

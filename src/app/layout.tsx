@@ -4,7 +4,7 @@ import HeaderBar from "@/components/HeaderBar";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
-import { themeFor } from "@/lib/theme";
+import { themeNow } from "@/lib/theme";
 import TabBar from "@/components/TabBar";
 import "./globals.css";
 
@@ -35,8 +35,8 @@ export const viewport: Viewport = { themeColor: "#fdf9ec", colorScheme: "light",
 // hour and takes the day's look with it.
 export const revalidate = 3600;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const theme = themeFor();
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const theme = await themeNow();
   return (
     <html lang="en" className={manrope.variable} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
       <body>

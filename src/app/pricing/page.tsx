@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { Arrow, Tick } from "@/components/Icons";
 import { PLANS, site } from "@/data/site";
+import { accountsOn } from "@/lib/accounts/config";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 
@@ -41,7 +42,8 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   <p className="mt-auto pt-8">
-                    <Link href={`/add?plan=${p.id}`} className={`btn button-md w-full ${main ? "btn-filled" : p.id === "free" ? "btn-ink" : "btn-quiet"}`}>
+                    {/* With accounts on, an owner lists the business themselves, signing up on the way. */}
+                    <Link href={accountsOn ? `/dashboard/new${p.price ? `?plan=${p.id}` : ""}` : `/add?plan=${p.id}`} className={`btn button-md w-full ${main ? "btn-filled" : p.id === "free" ? "btn-ink" : "btn-quiet"}`}>
                       {p.price ? `Ask for ${p.name}` : "List it free"}
                       <span className="btn-dot">
                         <Arrow />
@@ -58,9 +60,9 @@ export default function PricingPage() {
           <div>
             <h2 className="heading-3">How it works</h2>
             <ol className="body-2 mt-4 grid gap-3 text-ink-subtle">
-              <li>1. Tell us about the business, or find its listing and say it is yours.</li>
+              <li>1. {accountsOn ? "Create an account, then tell us about the business, or find its listing and claim it." : "Tell us about the business, or find its listing and say it is yours."}</li>
               <li>2. A person checks it and answers, usually within a working day.</li>
-              <li>3. On a paid plan, we confirm the business is real before it is marked verified.</li>
+              <li>3. On a paid plan, we confirm the business is real before it is marked verified.{accountsOn ? " We contact you to arrange payment: nothing is paid on this site yet, and paying online is on its way." : ""}</li>
             </ol>
           </div>
           <div>

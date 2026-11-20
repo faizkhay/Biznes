@@ -18,7 +18,8 @@ const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Cl
 export default function robots(): MetadataRoute.Robots {
   if (!site.launched) return { rules: [{ userAgent: "*", disallow: "/" }] };
   return {
-    rules: [{ userAgent: [...AI_CRAWLERS, "*"], allow: "/", disallow: ["/api/", "/search"] }],
+    // The account pages are one person's own: nothing in them is for a crawler.
+    rules: [{ userAgent: [...AI_CRAWLERS, "*"], allow: "/", disallow: ["/api/", "/search", "/account", "/dashboard", "/admin", "/auth/"] }],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

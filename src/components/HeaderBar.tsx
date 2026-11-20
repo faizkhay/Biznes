@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ACTIONS, NAV, site } from "@/data/site";
+import AccountControl from "./AccountControl";
 import { Glass } from "./Icons";
 import { Wordmark } from "./Logo";
 import { SavedLink } from "./Save";
@@ -40,6 +41,7 @@ export default function HeaderBar() {
         <span className="hidden lg:contents">
           <SavedLink />
         </span>
+        <AccountControl />
         <Link href="/pricing" className="btn btn-ink btn-sm button-sm shrink-0">
           {ACTIONS.list}
         </Link>

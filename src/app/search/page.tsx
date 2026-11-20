@@ -8,6 +8,7 @@ import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
 import SearchBox from "@/components/SearchBox";
 import { EXAMPLES } from "@/data/site";
+import { owned } from "@/lib/accounts/owned";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { KINDS, narrowOf, PAGE_SIZE, search, type Kind, type Narrow } from "@/lib/search";
@@ -49,7 +50,10 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   const narrow = narrowOf(params);
   const narrowing = Boolean(narrow.phone || narrow.web || narrow.town);
-  const a = search(q, { kind, page, narrow });
+  // Businesses listed by their owners are laid over the index. With accounts off there are none.
+  const own = await owned();
+  const a = search(q, { kind, page, narrow, overlay: own.overlay });
+  const paidShown = a.listings.some((l) => own.byRow.get(l.id)?.paid);
   const { meta } = index();
   const total = a.counts.listing + a.counts.guide + a.counts.official + a.counts.site;
   const href = (k?: Kind, n = 1, how: Narrow = narrow) => `/search?q=${encodeURIComponent(q)}${k ? `&kind=${k}` : ""}${narrowQuery(how)}${n > 1 ? `&page=${n}` : ""}`;
@@ -168,12 +172,20 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 Businesses and services
               </h2>
               <ul className="rows">
-                {a.listings.map((l) => (
-                  <li key={l.id}>
-                    <ListingRow listing={l} />
-                  </li>
-                ))}
+                {a.listings.map((l) => {
+                  const o = own.byRow.get(l.id);
+                  return (
+                    <li key={l.id}>
+                      <ListingRow listing={l} paid={o?.paid} verified={o?.verified} href={o && !o.listingId ? o.path : undefined} />
+                    </li>
+                  );
+                })}
               </ul>
+              {paidShown && (
+                <p className="caption-1 mt-3 text-ink-faint">
+                  A listing marked Priority is on a paid plan and is shown first among those that answer. <Link href="/data#order">How results are ordered</Link>.
+                </p>
+              )}
               {showing === "listing" && <Pager page={page} pages={pagesOf("listing")} href={(n) => href(kind, n)} />}
             </section>
           )}

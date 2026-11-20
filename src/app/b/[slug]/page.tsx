@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import ListingClaim from "@/components/account/Claim";
 import { Crumbs } from "@/components/Bits";
 import Chart from "@/components/Chart";
 import { Globe, GroupIcon, Phone, Pin } from "@/components/Icons";
@@ -8,6 +9,7 @@ import { SaveButton, ShareButton } from "@/components/Save";
 import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ACTIONS, CREDITS } from "@/data/site";
+import { claimOf } from "@/lib/accounts/owned";
 import { degrees } from "@/lib/chart";
 import { day, directionsHref, distance, hoursLines, mapHref, month, osmHref, shortUrl, telHref, wikidataHref, yearsSince } from "@/lib/format";
 import { index, listingFromSlug, whereOf, type Listing } from "@/lib/index";
@@ -39,6 +41,8 @@ export default async function ListingPage({ params }: Props) {
   if (slug !== l.slug) permanentRedirect(`/b/${l.slug}`);
 
   const data = index();
+  // The live business that has claimed this listing, if one has. Always undefined with accounts off.
+  const claim = await claimOf(l.id);
   const category = data.categoryById.get(l.cat);
   const where = whereOf(l);
   const placed = l.lat != null && l.lon != null;
@@ -240,6 +244,9 @@ export default async function ListingPage({ params }: Props) {
               </>
             )}
           </dl>
+
+          {/* What its owner adds, once they have claimed it; or the way to claim it. */}
+          <ListingClaim listing={l} claim={claim} />
 
           {/* Where every part of the listing came from: the promise the whole index makes. */}
           <section aria-labelledby="from" className="mt-10">

@@ -5,24 +5,44 @@ import { index, whereOf, type Listing, type Official, type Site } from "@/lib/in
 import type { Lead } from "@/lib/search";
 import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
+import { VerifiedMark } from "./Verified";
 
 /**
  * One listing in a list: its kind's icon, its name, what it is and where, a line about it, how to
  * reach it, and the two things a visitor can do with it: save it, share it.
  */
-export function ListingRow({ listing: l, note }: { listing: Listing; /** A word more for its line: how far away it is. */ note?: string }) {
+export function ListingRow({
+  listing: l,
+  note,
+  paid = false,
+  verified = false,
+  href,
+}: {
+  listing: Listing;
+  /** A word more for its line: how far away it is. */
+  note?: string;
+  /** On Biznes Go or Biznes Grow today. With `verified`, the row is shown first and carries the mark. */
+  paid?: boolean;
+  /** Checked by an admin to be a real business. */
+  verified?: boolean;
+  /** Its own page, for a business its owner listed outside the open index. */
+  href?: string;
+}) {
   const category = index().categoryById.get(l.cat);
   const where = whereOf(l);
+  const to = href ?? `/b/${l.slug}`;
+  const marked = paid && verified;
   return (
-    <article className="row listing" data-point={chartPoints().at.get(l.id)}>
+    <article className={marked ? "row listing listing-paid" : "row listing"} data-point={chartPoints().at.get(l.id)}>
       <span className="listing-icon" aria-hidden>
         <GroupIcon group={category?.group} />
       </span>
       <div className="min-w-0">
         <h3 className="title-1">
-          <Link prefetch={false} href={`/b/${l.slug}`} className="row-title">
+          <Link prefetch={false} href={to} className="row-title">
             {l.name}
           </Link>
+          {marked && <VerifiedMark priority={paid} />}
         </h3>
         <p className="body-3 mt-0.5 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where, note].filter(Boolean).join(" · ")}</p>
         {(l.about || l.street) && <p className="body-3 mt-2 line-clamp-2 max-w-prose text-ink-subtle">{l.about ?? l.street}</p>}
@@ -42,8 +62,9 @@ export function ListingRow({ listing: l, note }: { listing: Listing; /** A word 
         )}
       </div>
       <div className="listing-acts">
-        <SaveButton id={l.id} name={l.name} />
-        <ShareButton title={l.name} path={`/b/${l.slug}`} />
+        {/* The shortlist holds listings of the open index, so only those can be saved. */}
+        {!href && <SaveButton id={l.id} name={l.name} />}
+        <ShareButton title={l.name} path={to} />
       </div>
     </article>
   );
