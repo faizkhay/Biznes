@@ -17,12 +17,14 @@ export default function Filters({ facets, narrow, href, town = true }: { facets:
     <nav aria-label="Narrow these listings" className="filters">
       {(facets.phone > 0 || narrow.phone) && (
         <Link prefetch={false} href={href({ ...narrow, phone: !narrow.phone })} aria-current={narrow.phone ? "true" : undefined} className="filter body-3" rel="nofollow">
-          {narrow.phone ? <Tick /> : <Phone />} With a telephone number <span className="n data-2">{count(facets.phone)}</span>
+          {narrow.phone ? <Tick /> : <Phone />} <span className="sm:hidden">Has a number</span>
+          <span className="hidden sm:inline">With a telephone number</span> <span className="n data-2">{count(facets.phone)}</span>
         </Link>
       )}
       {(facets.web > 0 || narrow.web) && (
         <Link prefetch={false} href={href({ ...narrow, web: !narrow.web })} aria-current={narrow.web ? "true" : undefined} className="filter body-3" rel="nofollow">
-          {narrow.web ? <Tick /> : <Globe />} With a website <span className="n data-2">{count(facets.web)}</span>
+          {narrow.web ? <Tick /> : <Globe />} <span className="sm:hidden">Website</span>
+          <span className="hidden sm:inline">With a website</span> <span className="n data-2">{count(facets.web)}</span>
         </Link>
       )}
       {town && (towns.length > 1 || narrow.town) && (

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
-import { Arrow, Tick } from "@/components/Icons";
+import { Arrow, GroupIcon, Tick } from "@/components/Icons";
+import { VerifiedMark } from "@/components/Verified";
 import { PLANS, site } from "@/data/site";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
@@ -54,7 +55,30 @@ export default function PricingPage() {
           })}
         </ul>
 
-        <div className="mt-10 grid gap-x-16 gap-y-8 lg:grid-cols-2">
+        <p className="body-3 mt-4 text-ink-subtle">Paying online is not open yet. Ask for a plan and a person replies with how to pay.</p>
+
+        <section aria-labelledby="mark" className="mt-12 grid items-center gap-x-16 gap-y-6 lg:grid-cols-2">
+          <div>
+            <h2 id="mark" className="heading-3">
+              How a verified business looks
+            </h2>
+            <p className="body-2 mt-4 text-ink-subtle">On Biznes Go and Biznes Grow, once we have checked the business is real, its card is ringed in saffron and carries the mark. The words "Priority listing" are always there, so nobody mistakes a paid place for a better answer.</p>
+          </div>
+          <div className="row listing listing-paid" aria-label="An example of a verified listing's card">
+            <span className="listing-icon" aria-hidden>
+              <GroupIcon group="eat" />
+            </span>
+            <div className="min-w-0">
+              <p className="title-1 text-link">
+                Your business <VerifiedMark priority />
+              </p>
+              <p className="body-3 mt-0.5 text-ink-subtle">What you do · Your town</p>
+              <p className="caption-1 mt-2 text-ink-faint">An example, not a listing.</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-12 grid gap-x-16 gap-y-8 lg:grid-cols-2">
           <div>
             <h2 className="heading-3">How it works</h2>
             <ol className="body-2 mt-4 grid gap-3 text-ink-subtle">

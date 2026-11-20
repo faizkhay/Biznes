@@ -6,7 +6,7 @@ import { SHELVES } from "@/data/site";
 import { index } from "@/lib/index";
 
 export const metadata: Metadata = {
-  title: "Guides to Mauritius: business, visiting, moving and living here",
+  title: "Articles about Mauritius: the island, business, visiting, moving and living here",
   description: "Plain guides to starting and running a business in Mauritius: registration, companies, tax, VAT, employing people, licences, trade marks, data protection, investing from abroad. Every fact sourced.",
   alternates: { canonical: "/learn" },
 };
@@ -16,9 +16,9 @@ export default function LearnPage() {
   const shelves = SHELVES.map((shelf) => ({ ...shelf, guides: guides.filter((g) => (g.shelf ?? "business") === shelf.id) })).filter((shelf) => shelf.guides.length > 0);
   return (
     <>
-      <PageHead title="Guides to Mauritius" path={[{ label: "Learn" }]} lede="Plain guides for people doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
+      <PageHead title="Articles about Mauritius" path={[{ label: "Learn" }]} lede="Plain articles about Mauritius: the island itself, doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
       <div className="shell">
-        {guides.length === 0 && <p className="body-2 text-ink-subtle">The guides are being written.</p>}
+        {guides.length === 0 && <p className="body-2 text-ink-subtle">The articles are being written.</p>}
         {shelves.length > 1 && (
           <nav aria-label="Shelves">
             <ul className="narrow">

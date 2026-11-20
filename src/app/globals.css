@@ -94,6 +94,7 @@
     }
   }
   body {
+    overflow-x: clip;
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.6;
@@ -112,6 +113,7 @@
     flex: 1;
     position: relative;
     isolation: isolate;
+    z-index: 1;
     margin-top: 0.75rem;
     padding-bottom: 4rem;
   }
@@ -336,11 +338,27 @@
     min-height: var(--nav-h);
     margin-inline: auto;
     padding: 0.375rem 0.375rem 0.375rem 1.25rem;
-    background: color-mix(in srgb, var(--palette-white) 90%, transparent);
-    backdrop-filter: saturate(1.6) blur(16px);
+    background: var(--palette-white);
     border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-md);
+  }
+  /* Behind the pill, the page fades to paper, so nothing reads through the strip above it. */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -0.75rem 0 -0.5rem;
+    background: linear-gradient(to bottom, var(--palette-cream) 45%, transparent);
+    pointer-events: none;
+  }
+  /* While a group of the menu is open, a clear sheet over the page takes the tap that closes it,
+     so that tap does not also open whatever lay beneath. */
+  .menu-scrim {
+    position: fixed;
+    z-index: 49;
+    inset: 0;
+    touch-action: none;
   }
   .logo {
     display: inline-flex;
@@ -446,9 +464,16 @@
   .menu-panel-all {
     left: auto;
     right: 0;
-    width: min(21rem, calc(100vw - 2 * var(--edge)));
-    max-height: min(34rem, calc(100dvh - 11rem));
+    width: min(21rem, calc(100vw - 1rem));
+    max-height: calc(100dvh - var(--nav-h) - 8rem - env(safe-area-inset-bottom));
     overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .menu-panel-all .menu-item {
+    padding-block: 0.6875rem;
+  }
+  .menu-panel-all .menu-item .caption-1 {
+    display: none;
   }
   .menu-item {
     display: block;
@@ -842,6 +867,18 @@
   .search-md .search-glass {
     width: 2.75rem;
   }
+  .search-md .suggest {
+    left: auto;
+    right: 0;
+    width: min(30rem, calc(100vw - 2 * var(--edge) - 1rem));
+  }
+  .search-md .suggest-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .search-md .suggest-note {
+    grid-column: 2;
+    max-width: none;
+  }
   .search-md input {
     font-size: 0.9375rem;
   }
@@ -945,6 +982,7 @@
     padding-block: 5.5rem 4.5rem;
     text-align: center;
     isolation: isolate;
+    overflow-x: clip;
   }
   /* A soft light behind the words, in the paper's colour: whatever the picture holds there (a
      mountain, a tree), the words keep their contrast. Measured by scripts/hero-contrast.mjs. */
@@ -1176,8 +1214,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     padding: 0.25rem;
-    background: color-mix(in srgb, var(--palette-white) 92%, transparent);
-    backdrop-filter: saturate(1.6) blur(16px);
+    background: var(--palette-white);
     border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
@@ -1306,6 +1343,10 @@
   .answer .row-title::after {
     border-radius: var(--radius-xl);
   }
+  .answer .btn {
+    position: relative;
+    z-index: 1;
+  }
   /* Pages on other sites that answer: folded away under the site's own answer. */
   .elsewhere > summary {
     display: inline-flex;
@@ -1397,16 +1438,47 @@
     box-shadow: var(--shadow-sm);
   }
   .biz-cover {
-    height: 7.5rem;
-    background: var(--color-panel) var(--theme-image-sm) center 78% / cover;
+    position: relative;
+    height: 9.5rem;
+    overflow: hidden;
+    background: var(--palette-shallows);
   }
-  .biz-paid .biz-cover {
-    height: 9rem;
+  /* The strip at the top of the card is the map, drawn in on where the business is. */
+  .biz-cover .chart {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 0;
+  }
+  .biz-cover .chart-key {
+    display: none;
+  }
+  .biz-acts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  @media (max-width: 30rem) {
+    .biz-acts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .biz-acts > :first-child:not(:last-child):nth-last-child(odd) {
+      grid-column: span 2;
+    }
+    .biz-acts-pair > :first-child:not(:last-child):nth-last-child(odd) {
+      grid-column: auto;
+    }
   }
   .biz-body {
     padding: 0 1.5rem 1.5rem;
   }
   .biz-icon {
+    position: relative;
+    z-index: 2;
     display: grid;
     place-items: center;
     width: 4.5rem;
@@ -1459,7 +1531,18 @@
     color: var(--color-ink);
     text-decoration: none;
     white-space: nowrap;
+    max-width: 100%;
+    min-width: 0;
     transition: background-color 160ms var(--ease-out);
+  }
+  .act > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .act-quiet {
+    background: transparent;
+    border: 1px dashed color-mix(in srgb, var(--palette-ink) 28%, transparent);
+    color: var(--color-ink-subtle);
   }
   .act:hover {
     background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
@@ -1951,6 +2034,43 @@
     justify-content: space-between;
     gap: 1rem;
     padding-top: 1.5rem;
+  }
+
+  @media (pointer: coarse) {
+    .act,
+    .filter,
+    .try,
+    .narrow a,
+    .tab {
+      min-height: 2.75rem;
+    }
+    .crumbs li {
+      min-height: 2.25rem;
+    }
+  }
+  /* On a phone the sheet runs edge to edge: a sliver of picture either side is only noise. */
+  @media (max-width: 40rem) {
+    :root {
+      --edge: 0rem;
+    }
+    main::before {
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .site-header {
+      padding-inline: 0.5rem;
+    }
+    .site-footer {
+      margin: 0;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .tabbar::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -1rem -0.5rem calc(-0.5rem - env(safe-area-inset-bottom));
+      background: linear-gradient(to top, var(--palette-cream) 55%, transparent);
+      pointer-events: none;
+    }
   }
 
   /* A word that comes and goes at the foot of the screen: "Link copied". */

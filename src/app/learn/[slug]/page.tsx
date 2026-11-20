@@ -72,7 +72,7 @@ export default async function GuidePage({ params }: Props) {
 
       {/* On a phone the way through a long guide is a list that opens. */}
       <details className="note mt-8 lg:hidden">
-        <summary className="title-2 cursor-pointer">In this guide</summary>
+        <summary className="title-2 cursor-pointer">In this article</summary>
         <ol className="mt-3 grid gap-1">
           {[...g.sections.map((s) => s.heading), "References"].map((heading) => (
             <li key={heading}>
@@ -105,9 +105,9 @@ export default async function GuidePage({ params }: Props) {
       )}
 
       <div className="mt-12 grid gap-x-12 lg:grid-cols-12">
-        <nav aria-label="In this guide" className="hidden lg:col-span-3 lg:block">
+        <nav aria-label="In this article" className="hidden lg:col-span-3 lg:block">
           <div className="sticky top-24">
-            <h2 className="label-1 pb-3 text-ink-faint">In this guide</h2>
+            <h2 className="label-1 pb-3 text-ink-faint">In this article</h2>
             <ol className="grid gap-1 border-l border-line">
               {[...g.sections.map((s) => s.heading), "References"].map((heading) => (
                 <li key={heading}>
@@ -132,8 +132,59 @@ export default async function GuidePage({ params }: Props) {
             </section>
           ))}
 
-          {/* Keep reading: the pages of this site that follow on, before any way out of it. */}
-          <section aria-labelledby="keep-reading" className="mb-12">
+          {g.unverified && g.unverified.length > 0 && (
+            <section aria-labelledby="open" className="mb-12 max-w-prose">
+              <h2 id="open" className="heading-3">
+                What this article could not confirm
+              </h2>
+              <p className="body-3 mt-2 text-ink-subtle">These points were looked for and not found on an official page, so the article does not state them. Check them with the body concerned.</p>
+              <ul className="prose body-3 mt-3 text-ink-subtle">
+                {g.unverified.map((u) => (
+                  <li key={u}>{u}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* The references: where every figure came from, and the official pages themselves, for
+              whoever wants to check or go further. They close the page; they are not its way on. */}
+          <section aria-labelledby="references" className="max-w-prose border-t border-line pt-8">
+            <h2 id="references" className="heading-3">
+              References
+            </h2>
+            <p className="body-3 mt-2 text-ink-subtle">Every figure above carries the number of the page it was read on.</p>
+            <ol className="mt-4 grid gap-3">
+              {g.sources.map((s, i) => (
+                <li key={s.id} id={`source-${i + 1}`} className="body-3 grid grid-cols-[2.5rem_1fr] text-ink-subtle">
+                  <span className="data-2 pt-0.5 text-ink-faint">[{i + 1}]</span>
+                  <span>
+                    <a href={s.url} rel="noopener" className="text-ink">
+                      {s.title}
+                    </a>
+                    . {s.publisher}
+                    {s.published ? `. ${s.published}` : ""}. Read {day(s.accessed)}. <span className="data-2 text-ink-faint [overflow-wrap:anywhere]">{shortUrl(s.url)}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            {outside.length > 0 && (
+              <>
+                <h3 className="title-1 mt-8">The official pages to go to</h3>
+                <ul className="mt-3 grid gap-3">
+                  {outside.map((r) => (
+                    <li key={r.url} className="body-3 text-ink-subtle">
+                      <a href={r.url} rel="noopener" className="inline-flex items-baseline gap-2 text-ink">
+                        {r.title} <Out className="size-4 shrink-0 self-center text-ink-faint" />
+                      </a>
+                      . {r.what} <span className="text-ink-faint">{r.publisher}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </section>
+          {/* Keep reading: the pages of this site that follow on, after its references: the last thing on the page is a way on, not a way out. */}
+          <section aria-labelledby="keep-reading" className="mt-12">
             <h2 id="keep-reading" className="heading-2">
               Keep reading
             </h2>
@@ -167,57 +218,6 @@ export default async function GuidePage({ params }: Props) {
             </ul>
           </section>
 
-          {g.unverified && g.unverified.length > 0 && (
-            <section aria-labelledby="open" className="mb-12 max-w-prose">
-              <h2 id="open" className="heading-3">
-                What this guide could not confirm
-              </h2>
-              <p className="body-3 mt-2 text-ink-subtle">These points were looked for and not found on an official page, so the guide does not state them. Check them with the body concerned.</p>
-              <ul className="prose body-3 mt-3 text-ink-subtle">
-                {g.unverified.map((u) => (
-                  <li key={u}>{u}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {/* The references: where every figure came from, and the official pages themselves, for
-              whoever wants to check or go further. They close the page; they are not its way on. */}
-          <section aria-labelledby="references" className="max-w-prose border-t border-line pt-8">
-            <h2 id="references" className="heading-3">
-              References
-            </h2>
-            <p className="body-3 mt-2 text-ink-subtle">Every figure above carries the number of the page it was read on.</p>
-            <ol className="mt-4 grid gap-3">
-              {g.sources.map((s, i) => (
-                <li key={s.id} id={`source-${i + 1}`} className="body-3 grid grid-cols-[2.5rem_1fr] text-ink-subtle">
-                  <span className="data-2 pt-0.5 text-ink-faint">[{i + 1}]</span>
-                  <span>
-                    <a href={s.url} rel="noopener" className="text-ink">
-                      {s.title}
-                    </a>
-                    . {s.publisher}
-                    {s.published ? `. ${s.published}` : ""}. Read {day(s.accessed)}. <span className="data-2 break-all text-ink-faint">{shortUrl(s.url)}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-            {outside.length > 0 && (
-              <>
-                <h3 className="title-1 mt-8">The official pages to go to</h3>
-                <ul className="mt-3 grid gap-3">
-                  {outside.map((r) => (
-                    <li key={r.url} className="body-3 text-ink-subtle">
-                      <a href={r.url} rel="noopener" className="inline-flex items-baseline gap-2 text-ink">
-                        {r.title} <Out className="size-4 shrink-0 self-center text-ink-faint" />
-                      </a>
-                      . {r.what} <span className="text-ink-faint">{r.publisher}</span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </section>
         </div>
       </div>
     </article>

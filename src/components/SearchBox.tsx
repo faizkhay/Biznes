@@ -142,7 +142,7 @@ export default function SearchBox({
           }
         }}
         placeholder={size === "lg" ? "What are you looking for?" : "Search"}
-        aria-label="Search businesses, guides and official pages"
+        aria-label="Search businesses, articles and numbers"
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}

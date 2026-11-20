@@ -9,6 +9,7 @@ import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ACTIONS, CREDITS } from "@/data/site";
 import { degrees } from "@/lib/chart";
+import { chartPoints } from "@/lib/chart";
 import { day, directionsHref, distance, hoursLines, mapHref, month, osmHref, shortUrl, telHref, wikidataHref, yearsSince } from "@/lib/format";
 import { index, listingFromSlug, whereOf, type Listing } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
@@ -55,6 +56,7 @@ export default async function ListingPage({ params }: Props) {
   // How old the map's record is. A number or hours last looked at years ago may have changed.
   const mapped = l.src.osm && l.src.edited ? month(l.src.edited) : "";
   const stale = yearsSince(l.src.edited) > 2;
+  const own = chartPoints().at.get(l.id);
   const bare = !l.phone?.length && !l.web;
 
   return (
@@ -85,7 +87,8 @@ export default async function ListingPage({ params }: Props) {
       <div className="mt-6 grid gap-x-12 gap-y-10 chart:grid-cols-12">
         <div className="chart:col-span-7">
           <header className="biz-head">
-            <div className="biz-cover" aria-hidden />
+            {/* The top of the card is the map, drawn in on where the business is, among its neighbours. */}
+            <div className="biz-cover">{own != null ? <Chart lit={[own]} focus={l} zoom span={96} says={`A map of the streets around ${l.name}, with the other listings near it.`} /> : null}</div>
             <div className="biz-body">
               <span className="biz-icon" aria-hidden>
                 <GroupIcon group={category?.group} />
@@ -94,7 +97,7 @@ export default async function ListingPage({ params }: Props) {
           <p className="body-1 mt-3 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where].filter(Boolean).join(" · ")}</p>
 
           {(l.phone?.length || l.web || placed) && (
-            <p className="mt-6 flex flex-wrap gap-3">
+            <p className="biz-acts mt-6">
               {l.phone?.[0] && (
                 <a href={telHref(l.phone[0])} className="btn btn-filled button-md">
                   <Phone /> {ACTIONS.call} <span className="data-1">{l.phone[0]}</span>
@@ -112,7 +115,7 @@ export default async function ListingPage({ params }: Props) {
               )}
             </p>
           )}
-          <p className="mt-3 flex flex-wrap gap-3 empty:hidden">
+          <p className="biz-acts biz-acts-pair mt-3 empty:hidden">
             <SaveButton id={l.id} name={l.name} words />
             <ShareButton title={l.name} words />
           </p>
@@ -122,7 +125,7 @@ export default async function ListingPage({ params }: Props) {
           {mapped && (
             <p className={`caption-1 mt-4 max-w-prose ${stale ? "note" : "text-ink-faint"}`}>
               {stale
-                ? `These details are as the map recorded them, and were last edited there in ${mapped}, over two years ago. Check before you rely on them.`
+                ? `These details are as the map recorded them, and were last edited there in ${mapped}, ${yearsSince(l.src.edited) >= 3 ? `${Math.floor(yearsSince(l.src.edited))} years ago` : "over two years ago"}. Check before you rely on them.`
                 : `As recorded on the map, last edited there in ${mapped}.`}
             </p>
           )}

@@ -101,7 +101,7 @@ const res = await page.goto(`${origin}/b/n5651200767`, { waitUntil: "domcontentl
 check("listing: its id alone leads to its full address", /\/b\/keiffel-tours-grand-baie-n5651200767$/.test(page.url()) && res.status() === 200, page.url());
 check("listing: says where it comes from", (await page.locator('a[href="https://www.openstreetmap.org/node/5651200767"]').count()) === 1);
 check("listing: a telephone link", (await page.locator('a[href^="tel:+230"]').count()) >= 1);
-check("listing: says how old the map's record is", /last edited there in November 2021, over two years ago/.test(await text("main p.note")));
+check("listing: says how old the map's record is", /last edited there in November 2021, \d+ years ago/.test(await text("main p.note")));
 check("listing: points to the official registers", (await page.locator('main a[href="/tools/verify"]').count()) >= 1);
 const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').first().innerText());
 check("listing: structured data from the same facts", ld["@type"] === "LocalBusiness" && ld.address?.addressCountry === "MU" && !!ld.geo);
@@ -132,7 +132,7 @@ const row = (n) => page.locator("dl[aria-live] dd").nth(n).innerText();
 check("VAT: 1,000 before VAT is 1,150 with it", (await row(2)) === "MUR 1,150.00", await row(2));
 await page.locator("label.chip", { hasText: "VAT included" }).click();
 check("VAT: 1,000 with VAT is 869.57 before it", (await row(0)) === "MUR 869.57", await row(0));
-await page.fill('input[placeholder="2,400,000"]', "3,500,000");
+await page.fill('input[placeholder="For example, 2,400,000"]', "3,500,000");
 check("VAT: a turnover over the threshold says so", /over the threshold of MUR 3,000,000\.00 by MUR 500,000\.00/.test(await page.locator('section p[role="status"]').innerText()));
 await page.goto(`${origin}/tools/verify`, { waitUntil: "domcontentloaded" });
 check("check a business: the registers, from the guide", (await page.locator("table.table tbody tr").count()) >= 5);
@@ -217,6 +217,10 @@ const answerTo = async (q) => {
 check("answers: an emergency number, before a list of stations", /Police emergency: 999 or 112.*\| \/emergency/s.test(await answerTo("police number")), await answerTo("police number"));
 check("answers: a public holiday's date", /Divali: Sunday 8 November 2026.*\| \/holidays/s.test(await answerTo("when is divali")));
 check("answers: a general question, from an article", /1 November to 15 May.*\| \/learn\/weather-and-cyclones-in-mauritius/s.test(await answerTo("cyclone season")));
+check("answers: a question about how leads with an article, whatever nouns it holds", /\| \/learn\/(incorporate-a-company|register-a-business)/.test(await answerTo("register a company")), await answerTo("register a company"));
+check("answers: a business's own name leads with businesses, not with a passing mention", (await answerTo("MCB")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
+await answerTo("ambulance");
+check("answers: a number to call is a button that calls it", (await page.locator('main article.answer a[href="tel:114"]').count()) === 1);
 check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 
 // 8a. The menu: a group opens, shows its pages, and closes when one is chosen.
@@ -281,12 +285,16 @@ check("shop: asking to sponsor opens the form with the guide named", /sponsor th
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 const small = await phone.newPage();
-for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/directory", "/tools/verify", "/pricing", "/saved"]) {
+for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/learn/vat", "/b/n5651200767", "/directory", "/directory/restaurants", "/places/curepipe", "/tools/verify", "/pricing", "/saved", "/shop", "/emergency", "/holidays"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
-  const over = await small.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+  const over = await small.evaluate(() => Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth) - 390);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
 check("phone: the five ways in are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").count()) === 5);
+await small.goto(`${origin}/`, { waitUntil: "domcontentloaded" });
+const bar = await small.locator("nav.tabbar").boundingBox();
+check("phone: the bar is on the first screen", bar != null && bar.y + bar.height <= 844 && bar.y > 700, JSON.stringify(bar));
+check("phone: the emergency numbers are one tap from the first screen", (await small.locator('main section.hero-open a[href="/emergency"]').count()) === 1);
 await small.locator('header summary[aria-label="Menu"]').click();
 check("phone: the menu opens every group of pages", (await small.locator("header .menu-panel-all a:visible").count()) >= 10);
 await small.keyboard.press("Escape");

@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Pager } from "@/components/Bits";
 import Chart from "@/components/Chart";
 import Filters, { narrowQuery } from "@/components/Filters";
-import { Chevron, Glass } from "@/components/Icons";
+import { Chevron, Glass, Phone } from "@/components/Icons";
 import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
 import SearchBox from "@/components/SearchBox";
 import { EXAMPLES } from "@/data/site";
+import { dialHref } from "@/lib/emergency";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { KINDS, narrowOf, PAGE_SIZE, search, type Kind, type Narrow } from "@/lib/search";
@@ -64,7 +65,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   // answers, large, with the article it is from. The other articles that answer follow it.
   // A number to call answers even a question about who: "police number" wants 999 before a list of stations.
   const first = !a.who || a.leads[0]?.tag === "Number";
-  const answer = first && !kind ? a.leads[0] : undefined;
+  const answer = first && !kind && a.leads[0] && !a.leads[0].soft ? a.leads[0] : undefined;
   // What to read next: the articles on the same shelf as the one that answered, or the first few.
   const from = a.leads.map((lead) => (lead.href.startsWith("/learn/") ? guideBySlug.get(lead.href.slice(7).split(/[#?]/)[0]) : undefined)).find(Boolean);
   const shown = new Set(a.leads.map((lead) => lead.href.split("#")[0]));
@@ -78,6 +79,15 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       {answer && (
         <article className="answer">
           <p className="body-1">{answer.line}</p>
+          {answer.call && (
+            <p className="mt-4 flex flex-wrap gap-3">
+              {answer.call.map((number, i) => (
+                <a key={number} href={dialHref(number)} className={`btn button-md ${i === 0 ? "btn-filled" : "btn-quiet"}`}>
+                  <Phone /> Call <span className="tabular">{number}</span>
+                </a>
+              ))}
+            </p>
+          )}
           <p className="body-3 mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-subtle">
             <span className="label-1 tag">{answer.tag === "Guide" ? "Article" : answer.tag}</span>
             <Link prefetch={false} href={answer.href} className="row-title title-2">
@@ -115,11 +125,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           <div className="mt-4 flex items-start justify-between gap-4">
           <p className="body-3 pt-2 text-ink-subtle" role="status">
             {total === 0 ? `Nothing found for “${q}”.` : `${count(total)} ${total === 1 ? "result" : "results"}.`}
-            {a.readAs ? ` Read as: ${a.readAs}.` : ""}
-            {a.ignored ? ` No listing mentions “${a.ignored}”, so that was left out.` : ""}
-            {a.spelling ? " Nothing matched as written, so close spellings are shown." : ""}
+            <span className="text-ink-faint">
+              {a.readAs ? ` Read as: ${a.readAs}.` : ""}
+              {a.ignored ? ` No listing mentions “${a.ignored}”, so that was left out.` : ""}
+              {a.spelling ? " Nothing matched as written, so close spellings are shown." : ""}
+            </span>
           </p>
-          <ShareButton title={`${q} on biznes.mu`} label="Share this search" />
+          {total > 0 && <ShareButton title={`${q} on biznes.mu`} label="Share this search" />}
           </div>
 
           {a.near && (
@@ -131,6 +143,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               ({count(a.near.n)} listed), along with other kinds.{a.counts.listing > 0 ? " What follows is every listing that mentions the word." : ""}
             </p>
           )}
+
+          {first && leads}
 
       {(kind || KINDS.filter((k) => a.counts[k.id] > 0).length > 1) && (
         <nav aria-label="Kinds of result" className="tabs mt-3">
@@ -176,15 +190,6 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </p>
           )}
 
-          {/* On a phone the island is a small one above the list. */}
-          {charted && (
-            <div className="mt-6 flex items-center gap-4 chart:hidden">
-              <Chart className="chart-strip" lit={a.points} zoom says={says} />
-              <p className="caption-1 text-ink-faint">{onChart}</p>
-            </div>
-          )}
-
-          {first && leads}
 
           {a.listings.length > 0 && (
             <section aria-labelledby="r-listings" className="mt-8">
@@ -217,6 +222,14 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 ))}
               </ul>
             </nav>
+          )}
+
+          {/* On a phone the island comes after the list: a name and a number come first. */}
+          {charted && (
+            <div className="mt-8 flex items-center gap-4 chart:hidden">
+              <Chart className="chart-strip" lit={a.points} zoom says={says} />
+              <p className="caption-1 text-ink-faint">{onChart}</p>
+            </div>
           )}
 
           {!first && leads}
@@ -337,7 +350,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 ))}
               </ul>
               <Link prefetch={false} href="/learn" className="body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-link no-underline hover:underline">
-                All articles and guides
+                All articles
               </Link>
             </div>
           </aside>

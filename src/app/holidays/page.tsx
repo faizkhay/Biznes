@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { day } from "@/lib/format";
-import { holidays, longDay } from "@/lib/holidays";
+import { holidays, longDay, type Holiday } from "@/lib/holidays";
 import { todayInMauritius } from "@/lib/theme";
 
 export const metadata: Metadata = {
@@ -23,6 +23,15 @@ export default function HolidaysPage() {
     );
   }
   const years = Object.keys(data.years).sort();
+  const row = (h: Holiday) => (
+    <li key={`${h.date}-${h.name}`}>
+      <div className="row grid grid-cols-[1fr_auto] items-baseline gap-x-6">
+        <p className="title-2">{h.name}</p>
+        <p className="data-1 text-right">{longDay(h.date).replace(/ \d{4}$/, "")}</p>
+        {h.subjectToConfirmation && <p className="caption-1 col-span-2 mt-1 text-ink-faint">The date depends on the visibility of the moon and is subject to confirmation.</p>}
+      </div>
+    </li>
+  );
   const next = years.flatMap((y) => data.years[y]).find((h) => h.date >= today);
   return (
     <>
@@ -41,17 +50,15 @@ export default function HolidaysPage() {
             <h2 id={`y-${year}`} className="heading-2">
               {year}
             </h2>
-            <ul className="rows mt-4">
-              {data.years[year].map((h) => (
-                <li key={`${h.date}-${h.name}`}>
-                  <div className={`row grid grid-cols-[1fr_auto] items-baseline gap-x-6 ${h.date < today ? "text-ink-faint" : ""}`}>
-                    <p className="title-2">{h.name}</p>
-                    <p className="data-1 text-right">{longDay(h.date).replace(` ${year}`, "")}</p>
-                    {h.subjectToConfirmation && <p className="caption-1 col-span-2 mt-1 text-ink-faint">The date depends on the visibility of the moon and is subject to confirmation.</p>}
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <ul className="rows mt-4">{data.years[year].filter((h) => h.date >= today).map(row)}</ul>
+            {data.years[year].some((h) => h.date < today) && (
+              <details className={data.years[year].some((h) => h.date >= today) ? "mt-4" : "mt-2"}>
+                <summary className="filter body-3 inline-flex">
+                  Earlier in {year} <span className="n data-2">{data.years[year].filter((h) => h.date < today).length}</span>
+                </summary>
+                <ul className="rows mt-4 text-ink-subtle">{data.years[year].filter((h) => h.date < today).map(row)}</ul>
+              </details>
+            )}
           </section>
         ))}
         <section aria-labelledby="h-sources" className="max-w-prose lg:col-span-2">

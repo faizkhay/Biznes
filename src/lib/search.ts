@@ -34,7 +34,17 @@ export const KINDS: { id: Kind; label: string }[] = [
 ];
 
 /** An answer from the guides: a guide, the fact in it that answers, a glossary term, or a tool. */
-export type Lead = { tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday"; title: string; href: string; line: string; meta?: string };
+export type Lead = {
+  tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday";
+  title: string;
+  href: string;
+  line: string;
+  meta?: string;
+  /** The numbers to dial, when the answer is a number to call. */
+  call?: string[];
+  /** True for a part of an article that only mentions the words: it may be listed, but it is not "the answer". */
+  soft?: boolean;
+};
 export type Way = { href: string; label: string; n: number };
 
 export type Answer = {
@@ -92,8 +102,14 @@ type Engine = {
   places: Phrase<Place>[];
   categories: Phrase<Category>[];
   hints: Phrase<Category>[];
-  leads: Map<string, { lead: Lead; guide?: string; weight: number; whole: boolean }>;
+  leads: Map<string, { lead: Lead; guide?: string; weight: number; whole: boolean; /** A part's own heading, folded: the words that make it an answer and not a mention. */ heading?: string }>;
 };
+
+/**
+ * Words that make a question about how, not a search for a business: "register a company" asks
+ * how, although "company" is also a kind of listing. Such a question is not read as a category.
+ */
+const ASKING = /^(how|what|when|why|which|who|can|do|does|is|are|should|where (can|do|to)|comment|kan|kouma|ki)\b|\b(register|registering|registration|incorporate|incorporating|apply|applying|application|renew|renewal|start|starting|set up|setting up|become|cost|costs|fee|fees|price|rate|rates|threshold|deadline|requirements?|documents?|procedure|steps|rules|law|laws|meaning|definition)\b/;
 
 let engine: Engine | undefined;
 
@@ -115,7 +131,7 @@ function build(): Engine {
   }
 
   const leads: Engine["leads"] = new Map();
-  const lead = (id: string, doc: Omit<Doc, "id" | "kind" | "where">, entry: { lead: Lead; guide?: string; weight: number; whole: boolean }) => {
+  const lead = (id: string, doc: Omit<Doc, "id" | "kind" | "where">, entry: { lead: Lead; guide?: string; weight: number; whole: boolean; heading?: string }) => {
     docs.push({ id, kind: "guide", where: "", ...doc });
     leads.set(id, entry);
   };
@@ -136,7 +152,7 @@ function build(): Engine {
       const first = section.blocks.find((b) => "text" in b);
       const opening = first && "text" in first ? first.text : "";
       const cut = opening.length > 320 ? `${opening.slice(0, 320).replace(/[^.!?]*$/, "") || `${opening.slice(0, 300)}...`}` : opening;
-      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: !cut ? `In it: ${section.heading}.` : section.heading.endsWith("?") ? cut : `${section.heading.replace(/\.$/, "")}: ${cut}`, meta }, guide: g.slug, weight: 1, whole: false });
+      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: !cut ? `In it: ${section.heading}.` : section.heading.endsWith("?") ? cut : `${section.heading.replace(/\.$/, "")}: ${cut}`, meta }, guide: g.slug, weight: 1, whole: false, heading: fold(section.heading) });
     });
   }
   // The emergency numbers and the public holidays answer by themselves: the number, the date.
@@ -146,7 +162,7 @@ function build(): Engine {
       lead(
         `e:${group.id}#${i}`,
         { name: item.name, alt: `${group.label} emergency number telephone call`, what: item.number, text: item.what },
-        { lead: { tag: "Number", title: "Emergency numbers", href: `/emergency#g-${group.id}`, line: `${item.name}: ${[item.number, ...(item.also ?? [])].join(" or ")}. ${item.what}`, meta: `Checked ${day(numbers.checked)}` }, weight: group.id === "emergency" ? 4 : 2, whole: true },
+        { lead: { tag: "Number", title: "Emergency numbers", href: `/emergency#g-${group.id}`, line: `${item.name}: ${[item.number, ...(item.also ?? [])].join(" or ")}. ${item.what}`, meta: `Checked ${day(numbers.checked)}`, call: [item.number, ...(item.also ?? [])] }, weight: group.id === "emergency" ? 4 : 2, whole: true },
       ),
     ),
   );
@@ -215,7 +231,9 @@ export function understand(query: string): { text: string; place?: Place; catego
 
   let category: Category | undefined;
   const stemmed = tokens.map(stem);
-  for (const c of engine.categories) {
+  // A question about how names no kind of business, whatever nouns it holds. A town in it still counts.
+  const asking = !place && ASKING.test(text);
+  for (const c of asking ? [] : engine.categories) {
     const at = find(stemmed, c.tokens);
     if (at < 0) continue;
     category = c.of;
@@ -223,7 +241,7 @@ export function understand(query: string): { text: string; place?: Place; catego
     break;
   }
   let hint: { category: Category; word: string } | undefined;
-  if (!category) {
+  if (!category && !asking) {
     for (const h of engine.hints) {
       const at = find(stemmed, h.tokens);
       if (at >= 0) {
@@ -313,6 +331,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
   const who = Boolean(place || category) && ranked.length > 0;
 
   // Answers from the guides: one a guide (its best part), and each glossary term and tool that answers.
+  const asked = text.split(" ").filter((word) => word && !PADDING.has(word));
   const collect = (hits: { id: unknown; score: number }[]) => {
     const best = new Map<string, { lead: Lead; score: number }>();
     for (const r of hits) {
@@ -321,7 +340,9 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
       if (!entry || (who && !entry.whole)) continue;
       const key = entry.guide ?? (r.id as string);
       const score = r.score * entry.weight;
-      if (!best.has(key) || score > best.get(key)!.score) best.set(key, { lead: entry.lead, score });
+      // A part of an article answers when the question's words are in its own heading; else it only mentions them.
+      const soft = entry.heading != null && !asked.every((word) => entry.heading!.includes(word));
+      if (!best.has(key) || score > best.get(key)!.score) best.set(key, { lead: soft ? { ...entry.lead, soft: true } : entry.lead, score });
     }
     return [...best.values()].sort((a, b) => b.score - a.score).map((b) => b.lead);
   };
@@ -367,6 +388,9 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
     ranked = ranked.filter((r) => kept.has(r.l));
   }
 
+  // A question that is a business's own name ("MCB") is about who, unless one of our pages truly answers it.
+  const named = !who && ranked.length > 0 && asked.length > 0 && asked.every((word) => fold(ranked[0].l.name).split(" ").includes(word)) && !leads.some((lead) => !lead.soft);
+
   const counts: Record<Kind, number> = { listing: ranked.length, guide: leads.length, official: official.length, site: sites.length };
   const { at } = chartPoints();
   const points: number[] = [];
@@ -405,7 +429,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
     ignored,
     // Offered only when the guides do not answer: "tax" is a question, "plumber" is a search for one.
     near: read.hint && !category && !leads.length ? { href: `/directory/${read.hint.category.id}`, label: read.hint.category.label, n: read.hint.category.n, word: read.hint.word } : undefined,
-    who,
+    who: who || named,
     spelling,
     listings: kind && kind !== "listing" ? [] : ranked.slice(start, start + PAGE_SIZE).map((r) => r.l),
     leads: cut(leads, who ? 2 : 3, "guide"),
@@ -437,7 +461,7 @@ export function suggest(query: string): { suggestions: Suggestion[]; points: num
     for (const c of [...data.categories].filter((c) => [c.one, c.label, ...c.words].some((w) => fold(w).startsWith(text))).sort((x, y) => y.n - x.n).slice(0, 2)) add({ href: `/directory/${c.id}`, label: c.label, note: `${c.n}`, kind: "way" });
     for (const p of [...data.places].filter((p) => fold(p.name).startsWith(text)).sort((x, y) => y.n - x.n).slice(0, 2)) add({ href: `/places/${p.slug}`, label: `Everything in ${p.name}`, note: `${p.n}`, kind: "way" });
   }
-  const leads = () => a.leads.slice(0, 2).forEach((l) => add({ href: l.href, label: l.title, note: l.tag, kind: "guide" }));
+  const leads = () => a.leads.slice(0, 2).forEach((l) => add({ href: l.href, label: l.title, note: l.tag === "Guide" ? "Article" : l.tag, kind: "guide" }));
   // A question about how is answered by the guides first; one about who and where, by listings.
   if (!a.who && a.counts.listing < 3) leads();
   for (const l of a.listings.slice(0, 5)) add({ href: `/b/${l.slug}`, label: l.name, note: [data.categoryById.get(l.cat)?.one, whereOf(l)].filter(Boolean).join(", "), kind: "listing" });

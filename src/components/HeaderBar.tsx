@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ACTIONS, MENU, site } from "@/data/site";
 import { Chevron, Glass, List } from "./Icons";
 import { Wordmark } from "./Logo";
@@ -22,7 +22,10 @@ export default function HeaderBar() {
   const bar = useRef<HTMLElement>(null);
   const ownSearch = pathname === "/" || pathname === "/search";
   const current = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const [open, setOpen] = useState(false);
   const close = () => bar.current?.querySelectorAll<HTMLDetailsElement>("details[open]").forEach((d) => (d.open = false));
+  // Whether any group is open: a clear sheet then lies over the page and takes the tap that closes it.
+  const watch = () => setOpen(Boolean(bar.current?.querySelector("details[open]")));
 
   // A page was chosen: whatever was open closes.
   useEffect(close, [pathname]);
@@ -57,13 +60,14 @@ export default function HeaderBar() {
 
   return (
     <header ref={bar} className="site-header">
+      {open && <div className="menu-scrim" aria-hidden onClick={close} />}
       <div className="nav-pill">
         <Link href="/" className="logo" aria-label={`${site.name}, home`}>
           <Wordmark />
         </Link>
         <nav aria-label="Main" className="ml-4 hidden items-center gap-1 lg:flex">
           {MENU.map((group) => (
-            <details key={group.label} name="menu" className="menu-group">
+            <details key={group.label} name="menu" className="menu-group" onToggle={watch}>
               <summary className="nav-link title-2" data-current={group.items.some((item) => current(item.href)) || undefined}>
                 {group.label} <Chevron />
               </summary>
@@ -83,11 +87,14 @@ export default function HeaderBar() {
         <Link href="/pricing" className="btn btn-ink btn-sm button-sm hidden shrink-0 sm:inline-flex">
           {ACTIONS.list}
         </Link>
-        <details name="menu" className="menu-group lg:hidden">
+        <details name="menu" className="menu-group lg:hidden" onToggle={watch}>
           <summary className="icon-btn icon-btn-sq" aria-label="Menu">
             <List />
           </summary>
           <nav aria-label="All pages" className="menu-panel menu-panel-all">
+            <Link href="/pricing" className="btn btn-ink button-md mb-2 w-full sm:hidden" onClick={close}>
+              {ACTIONS.list}
+            </Link>
             {MENU.map((group) => (
               <div key={group.label}>
                 <p className="label-1 px-3 pt-3 pb-1 text-ink-faint">{group.label}</p>

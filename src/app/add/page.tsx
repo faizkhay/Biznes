@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import RequestForm from "@/components/RequestForm";
 import { PLANS, site } from "@/data/site";
+import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { monthName, offer, products } from "@/lib/shop";
 
@@ -24,7 +25,23 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
   const compose = process.env.NODE_ENV === "production" && !process.env.ENQUIRY_WEBHOOK_URL && !process.env.RESEND_API_KEY;
   return (
     <>
-      <PageHead title="Add or correct a listing" lede={listing ? `About ${listing.name}. Tell us what should change, or that it should be taken out.` : "Add a business, put a listing right, or have one taken out. It costs nothing, and a person reads every request."} />
+      <PageHead
+        title={plan ? (plan.price ? `Ask for ${plan.name}` : "List your business free") : product ? "Ask for a pocket guide" : toSponsor ? "Sponsor a pocket guide" : "Add or correct a listing"}
+        path={[{ label: plan ? plan.name : product ? "Pocket guide" : toSponsor ? "Sponsor a guide" : "Add or correct a listing" }]}
+        lede={
+          plan
+            ? plan.price
+              ? `${plan.name} is Rs ${count(plan.price)} a month for each business. Paying online is not open yet: tell us about the business, and a person replies with how to pay and what we need to verify it.`
+              : "A basic listing costs nothing. If your business is already here, say so and we will make the listing yours; if not, tell us about it and we add it."
+            : product
+              ? `"${product.title}" is ${product.price ? `Rs ${count(product.price)}` : "not yet priced"}. Paying online is not open yet: ask for it here, and a person sends it and tells you how to pay.`
+              : toSponsor
+                ? `A place on the sponsors' page of "${toSponsor.title}", from ${monthName(offer(toSponsor).next)}. Say which option you want and for which months; a person replies with how to pay and what to send us.`
+                : listing
+                  ? `About ${listing.name}. Tell us what should change, or that it should be taken out.`
+                  : "Add a business, put a listing right, or have one taken out. It costs nothing, and a person reads every request."
+        }
+      />
       <div className="shell grid gap-x-12 gap-y-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <RequestForm

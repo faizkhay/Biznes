@@ -51,7 +51,7 @@ export default function DataPage() {
             ) : null}
             <dt>Mauritian websites indexed</dt>
             <dd className="data-1">{count(w.sites)}</dd>
-            <dt>Articles and guides</dt>
+            <dt>Articles</dt>
             <dd className="data-1">{count(guides.length)}</dd>
             <dt>Official pages</dt>
             <dd className="data-1">{count(meta.official)}</dd>

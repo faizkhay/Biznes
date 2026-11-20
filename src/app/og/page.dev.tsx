@@ -20,7 +20,7 @@ export default function OgCard() {
         {site.line}.
       </p>
       <p className="pill-note body-1 mt-6 self-start font-semibold">
-        {count(meta.listings.all)} businesses and services, {count(meta.towns)} towns and villages, {count(guides.length)} articles and guides
+        {count(meta.listings.all)} businesses and services, {count(meta.towns)} towns and villages, {count(guides.length)} articles
       </p>
     </div>
   );

@@ -78,7 +78,7 @@ export default function VatCalc({ rate, threshold }: { rate: number; threshold: 
             <label htmlFor={`${id}-turnover`} className="title-2 block">
               Turnover of taxable supplies in a year, in rupees
             </label>
-            <input id={`${id}-turnover`} className="field data-1 mt-2" inputMode="decimal" value={turnover} onChange={(e) => setTurnover(e.target.value)} placeholder="2,400,000" />
+            <input id={`${id}-turnover`} className="field data-1 mt-2" inputMode="decimal" value={turnover} onChange={(e) => setTurnover(e.target.value)} placeholder="For example, 2,400,000" />
           </div>
           <p className="body-2 mt-4 max-w-xl" role="status">
             {turnover.trim() === ""

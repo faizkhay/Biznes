@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { day, shortUrl, telHref } from "@/lib/format";
+import { day, directionsHref, shortUrl, telHref } from "@/lib/format";
 import { chartPoints } from "@/lib/chart";
 import { index, whereOf, type Listing, type Official, type Site } from "@/lib/index";
 import type { Lead } from "@/lib/search";
-import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone, Sun } from "./Icons";
+import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone, Route, Sun } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
 
 /**
@@ -26,20 +26,29 @@ export function ListingRow({ listing: l, note }: { listing: Listing; /** A word 
         </h3>
         <p className="body-3 mt-0.5 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where, note].filter(Boolean).join(" · ")}</p>
         {(l.about || l.street) && <p className="body-3 mt-2 line-clamp-2 max-w-prose text-ink-subtle">{l.about ?? l.street}</p>}
-        {(l.phone?.length || l.web) && (
-          <p className="mt-3 flex flex-wrap gap-2">
-            {l.phone?.[0] && (
-              <a href={telHref(l.phone[0])} className="act data-2">
-                <Phone /> {l.phone[0]}
-              </a>
-            )}
-            {l.web && (
-              <a href={l.web} rel="noopener nofollow" className="act data-2">
-                <Globe /> {shortUrl(l.web)}
-              </a>
-            )}
-          </p>
-        )}
+        <p className="mt-3 flex flex-wrap gap-2">
+          {l.phone?.[0] && (
+            <a href={telHref(l.phone[0])} className="act data-2">
+              <Phone /> <span>{l.phone[0]}</span>
+            </a>
+          )}
+          {l.web && (
+            <a href={l.web} rel="noopener nofollow" className="act data-2">
+              <Globe /> <span>{shortUrl(l.web).split("/")[0]}</span>
+            </a>
+          )}
+          {/* With no number on record there is still something to do: go there, or tell us the number. */}
+          {!l.phone?.length && l.lat != null && l.lon != null && (
+            <a href={directionsHref(l.lat, l.lon)} rel="noopener" className="act data-2">
+              <Route /> <span>Directions</span>
+            </a>
+          )}
+          {!l.phone?.length && (
+            <Link prefetch={false} href={`/add?listing=${l.id}`} className="act act-quiet data-2" rel="nofollow">
+              <span>Add its number</span>
+            </Link>
+          )}
+        </p>
       </div>
       <div className="listing-acts">
         <SaveButton id={l.id} name={l.name} />

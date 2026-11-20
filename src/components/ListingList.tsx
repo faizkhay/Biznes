@@ -61,13 +61,6 @@ export default function ListingList({
         <div className="mb-6">
           <Filters facets={facets} narrow={chosen} href={(how) => query(1, how)} town={false} />
         </div>
-        {/* On a phone the island is a small one above the list. */}
-        {lit.length > 0 && (
-          <div className="mb-6 flex items-center gap-4 chart:hidden">
-            <Chart className="chart-strip" lit={lit} zoom says={says} />
-            <p className="caption-1 text-ink-faint">{onChart}</p>
-          </div>
-        )}
         {listings.length === 0 ? (
           <p className="body-2 text-ink-subtle" role="status">
             None of the {count(all.length)} listed here has that on record.{" "}
@@ -85,6 +78,13 @@ export default function ListingList({
           </ul>
         )}
         <Pager page={page} pages={pages} href={(n) => query(n)} />
+        {/* On a phone the island comes after the list: the first thing a visitor needs is a name and a number. */}
+        {lit.length > 0 && (
+          <div className="mt-10 flex items-center gap-4 chart:hidden">
+            <Chart className="chart-strip" lit={lit} zoom says={says} />
+            <p className="caption-1 text-ink-faint">{onChart}</p>
+          </div>
+        )}
       </div>
       {lit.length > 0 && (
         <aside className="hidden chart:col-span-5 chart:block">

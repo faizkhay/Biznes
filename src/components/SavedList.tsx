@@ -131,12 +131,12 @@ export default function SavedList({ shared }: { shared?: string[] }) {
                   <p className="mt-3 flex flex-wrap gap-2">
                     {r.phone && (
                       <a href={telHref(r.phone)} className="act data-2">
-                        <Phone /> {r.phone}
+                        <Phone /> <span>{r.phone}</span>
                       </a>
                     )}
                     {r.web && (
                       <a href={r.web} rel="noopener nofollow" className="act data-2">
-                        <Globe /> {shortUrl(r.web)}
+                        <Globe /> <span>{shortUrl(r.web).split("/")[0]}</span>
                       </a>
                     )}
                   </p>

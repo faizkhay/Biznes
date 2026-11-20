@@ -19,7 +19,8 @@ export default async function SavedPage({ searchParams }: { searchParams: Promis
         path={[{ label: "Saved" }]}
         lede={sent ? "Someone sent you these listings. Keep them on your own list, or open any one." : "The listings you have saved, kept in this browser. Share the list as a link, or take anything off it."}
       />
-      <div className="shell max-w-4xl pb-8">
+      <div className="shell pb-8">
+        <div className="max-w-4xl">
         <SavedList shared={sent ? shared : undefined} />
         {/* Without script the shared list is still readable: the same listings, as plain links. */}
         <noscript>
@@ -47,6 +48,7 @@ export default async function SavedPage({ searchParams }: { searchParams: Promis
             <Link href="/saved">Your own saved list</Link>
           </p>
         )}
+        </div>
       </div>
     </>
   );

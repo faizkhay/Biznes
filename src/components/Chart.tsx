@@ -24,6 +24,7 @@ export default function Chart({
   follow = false,
   zoom = false,
   degreesShown = false,
+  span = 170,
   says,
   className,
 }: {
@@ -35,6 +36,8 @@ export default function Chart({
   follow?: boolean;
   /** Draw in on the lit points when they lie close together, with the whole island as a small key. */
   zoom?: boolean;
+  /** How wide, in the chart's own units of a thousand across, the view may be drawn in to at its closest. */
+  span?: number;
   /** Letter the graticule in degrees and minutes. */
   degreesShown?: boolean;
   /** What the picture shows, in a sentence, for a visitor who cannot see it. */
@@ -58,7 +61,7 @@ export default function Chart({
       y0 = Math.min(y0, flat[i * 2 + 1] / 10);
       y1 = Math.max(y1, flat[i * 2 + 1] / 10);
     }
-    const w = Math.max(170, (x1 - x0) * 1.3, ((y1 - y0) * 1.3 * CHART_W) / c.h);
+    const w = Math.max(span, (x1 - x0) * 1.3, ((y1 - y0) * 1.3 * CHART_W) / c.h);
     if (w < CHART_W * 0.6) {
       const h = (w * c.h) / CHART_W;
       view = { w, h, x: Math.max(0, Math.min(CHART_W - w, (x0 + x1) / 2 - w / 2)), y: Math.max(0, Math.min(c.h - h, (y0 + y1) / 2 - h / 2)) };
@@ -131,10 +134,10 @@ export default function Chart({
 
       {/* What must stay readable over the points: the mark, then the lettering, in the page's own type. */}
       {mark && (
-        <svg viewBox={`0 0 ${CHART_W} ${c.h}`} aria-hidden focusable="false" className="chart-over">
+        <svg viewBox={`${view.x.toFixed(1)} ${view.y.toFixed(1)} ${view.w.toFixed(1)} ${view.h.toFixed(1)}`} aria-hidden focusable="false" className="chart-over">
           <path className="chart-tick" d={`M${mark[0].toFixed(1)} 0V${(mark[1] - 22).toFixed(1)}M${mark[0].toFixed(1)} ${(mark[1] + 22).toFixed(1)}V${c.h}M0 ${mark[1].toFixed(1)}H${(mark[0] - 22).toFixed(1)}M${(mark[0] + 22).toFixed(1)} ${mark[1].toFixed(1)}H${CHART_W}`} />
-          <circle cx={mark[0]} cy={mark[1]} r={22} fill="color-mix(in srgb, var(--palette-saffron) 30%, transparent)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
-          <circle cx={mark[0]} cy={mark[1]} r={6} fill="var(--palette-saffron)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+          <circle cx={mark[0]} cy={mark[1]} r={22 * scale} fill="color-mix(in srgb, var(--palette-saffron) 30%, transparent)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+          <circle cx={mark[0]} cy={mark[1]} r={6 * scale} fill="var(--palette-saffron)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
         </svg>
       )}
       <div className="chart-letters" aria-hidden>
