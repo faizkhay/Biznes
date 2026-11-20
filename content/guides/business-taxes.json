@@ -1,8 +1,8 @@
 {
   "slug": "business-taxes",
   "title": "Business taxes in Mauritius",
-  "summary": "The taxes a business in Mauritius meets on its profits: income tax on companies and the levies charged with it, tax on a sole trader's business income, and how and when to file and pay. Figures are those in force on 20 November 2026, after the Finance Act 2026.",
-  "audience": "Owners of companies and sole traders, including first-time business owners.",
+  "summary": "The taxes a business in Mauritius meets on its profits: income tax on companies and the levies charged with it, how a sole trader and a société are taxed instead, and how and when to file and pay. Figures are those in force on 20 November 2026, after the Finance Act 2026.",
+  "audience": "Owners of companies, partners and sole traders, including first-time business owners.",
   "checked": "2026-11-20",
   "facts": [
     {
@@ -17,7 +17,16 @@
     {
       "label": "Company income tax on export of goods",
       "value": "3%",
-      "detail": "On the share of chargeable income that comes from exporting goods. In force since 1 July 2017.",
+      "detail": "On the share of chargeable income that comes from exporting goods: export income over total gross income. In force since 1 July 2017.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Partial exemption",
+      "value": "80% of listed kinds of income",
+      "detail": "Foreign dividends, interest earned by a company that is not a bank or other listed financial business, and others. 95% for interest earned by a collective investment scheme or closed-end fund. Substance conditions apply.",
       "sources": [
         "S1",
         "S3"
@@ -34,36 +43,19 @@
     },
     {
       "label": "Corporate Climate Responsibility (CCR) levy",
-      "value": "2% of chargeable income",
-      "detail": "Only where turnover is above MUR 50 million. Applies from the year of assessment that started on 1 July 2024.",
+      "value": "2% of chargeable income, where turnover is above MUR 50 million",
+      "detail": "Turnover is gross income from all sources, exempt income included. Applies from the year of assessment that started on 1 July 2024.",
       "sources": [
         "S1"
       ]
     },
     {
       "label": "Fair Share Contribution, companies",
-      "value": "5% of chargeable income",
-      "detail": "Only where chargeable income is above MUR 24 million in an accounting year. 2% for a company taxed at 3%. Income derived from 1 July 2025 to 30 June 2028.",
+      "value": "5% of chargeable income, or 2% for a company taxed at 3%, where chargeable income is above MUR 24 million",
+      "detail": "On the whole chargeable income of the accounting year, not only the part above the test. Income derived from 1 July 2025 to 30 June 2028.",
       "sources": [
         "S5",
         "S6"
-      ]
-    },
-    {
-      "label": "Income tax bands for individuals, including sole traders",
-      "value": "0%, 10%, 20% and 35%",
-      "detail": "First MUR 500,000 at 0%, next MUR 500,000 at 10%, next MUR 11 million at 20%, remainder at 35%. Income year starting 1 July 2026.",
-      "sources": [
-        "S1",
-        "S2"
-      ]
-    },
-    {
-      "label": "Presumptive tax for small enterprises",
-      "value": "1% of gross income",
-      "detail": "Optional. Gross income of MUR 10 million or less a year, in farming, manufacturing, retail or wholesale of goods.",
-      "sources": [
-        "S1"
       ]
     },
     {
@@ -76,12 +68,67 @@
       ]
     },
     {
+      "label": "APS statements and payment",
+      "value": "Within 3 months of the end of each of the first three quarters",
+      "detail": "Counted from the end of the month in which the quarter ends. Tax is worked on a quarter of last year's chargeable income, or on the quarter's own figures.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
       "label": "Company annual return and payment",
       "value": "Within 6 months of the year end",
       "detail": "Counted from the end of the month in which the accounting period ends. June and December year ends have set dates.",
       "sources": [
         "S1",
         "S3"
+      ]
+    },
+    {
+      "label": "Due dates at the end of June and December",
+      "value": "2 days earlier, excluding Saturdays and public holidays",
+      "detail": "For APS quarters ending in March and September, and for the returns of companies with June and December year ends.",
+      "sources": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "Sole trader",
+      "value": "Taxed as an individual",
+      "detail": "On the bands for individuals, after personal deductions. The return is due by 15 October.",
+      "sources": [
+        "S1",
+        "S8",
+        "S13"
+      ]
+    },
+    {
+      "label": "Income tax bands for individuals, including sole traders",
+      "value": "0%, 10%, 20% and 35%",
+      "detail": "First MUR 500,000 at 0%, next MUR 500,000 at 10%, next MUR 11 million at 20%, remainder at 35%. Income year starting 1 July 2026. Our guide to personal income tax has the deductions.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Resident société or partnership",
+      "value": "Not taxed itself: each associate pays on a share",
+      "detail": "The société pays CSR at 2% of the previous year's net income, and the CCR levy when its turnover passes the test. Its return is due by 30 September.",
+      "sources": [
+        "S1",
+        "S21"
+      ]
+    },
+    {
+      "label": "Presumptive tax for small enterprises",
+      "value": "1% of gross income, where gross income is MUR 10 million or less",
+      "detail": "Optional, in farming, forestry, fishing, manufacturing, retail or wholesale of goods. Income from other sources must be MUR 400,000 or less.",
+      "sources": [
+        "S1"
       ]
     },
     {
@@ -211,13 +258,58 @@
         {
           "type": "list",
           "items": [
-            "Export of goods includes international buying and selling where the goods go straight from the exporting country to the importing country without landing in Mauritius. Since the Finance Act 2026 it no longer includes the export of live animals.",
-            "A partial exemption of 80%, or 95% in some cases, applies to listed types of income. Examples are foreign dividends, and interest earned by a company that is not a bank or other listed financial business. The company must carry out its core income generating activities in Mauritius, employ enough suitably qualified people and incur a minimum level of expenditure.",
+            "Export of goods includes international buying and selling where the goods go straight from the exporting country to the importing country without landing in Mauritius, and the sale of aviation fuel to an airline. Since the Finance Act 2026 it no longer includes the export of live animals.",
+            "A partial exemption takes 80% of some kinds of income out of tax. The table below lists them. The company must carry out its core income generating activities in Mauritius, employ enough suitably qualified people and incur a minimum level of expenditure. Expenditure incurred to earn exempt income cannot be deducted.",
             "A loss can be carried forward and set against net income of the following 5 income years, provided there is no change of more than 50% in the shareholding. The 5 year limit does not apply to the part of a loss that comes from annual allowance on capital expenditure incurred on or after 1 July 2006."
           ],
           "sources": [
             "S1",
             "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Kind of income",
+            "Share exempt"
+          ],
+          "rows": [
+            [
+              "Foreign dividends received by a company other than a bank, where the dividend was not deducted in the country it came from",
+              "80%"
+            ],
+            [
+              "Interest earned by a company other than a bank, a non-bank deposit taker, a money changer, a foreign exchange dealer, an insurer, a leasing company or a company providing factoring, hire purchase or credit sales",
+              "80%"
+            ],
+            [
+              "Interest earned by a collective investment scheme or a closed-end fund",
+              "95%"
+            ],
+            [
+              "Other income of a collective investment scheme or closed-end fund, and the income of a licensed fund manager, fund administrator, investment adviser, investment dealer or asset manager",
+              "80%"
+            ],
+            [
+              "Profit of a permanent establishment that a resident company has abroad",
+              "80%"
+            ],
+            [
+              "Leasing of ships, aircraft, locomotives and trains. Reinsurance and reinsurance brokering. Leasing and provision of international fibre capacity. Sale, financing and asset management of aircraft",
+              "80%"
+            ],
+            [
+              "Interest from money lent through a licensed peer-to-peer lending platform",
+              "80%"
+            ],
+            [
+              "Income of a company holding a licence from the Financial Services Commission for payment intermediary services, for robotic and artificial intelligence enabled advisory services, or as a virtual asset service provider",
+              "80%"
+            ]
+          ],
+          "sources": [
+            "S1",
             "S3"
           ]
         },
@@ -348,7 +440,7 @@
           "items": [
             "For the income year that started on 1 July 2025 an individual also pays a Fair Share Contribution of 15% on leviable income above MUR 12 million. The Finance Act 2026 limited that contribution to that one income year.",
             "The 35% band applies to the income year starting 1 July 2026 and to every later income year.",
-            "Chargeable income is worked out after reliefs and deductions. The deduction for dependents is MUR 110,000 for one dependent, MUR 190,000 for two, MUR 275,000 for three and MUR 355,000 for four or more.",
+            "Chargeable income is worked out after reliefs and deductions. The deduction for dependents is MUR 110,000 for one dependent, MUR 190,000 for two, MUR 275,000 for three and MUR 355,000 for four or more. Our guide to personal income tax sets out the others.",
             "A self-employed person also pays the Contribution Sociale Généralisée (CSG) on net income. It is MUR 150 a month where monthly net income is MUR 10,000 or less. Between MUR 10,000 and MUR 50,000 it is 1.5% of 90% of net income, with a minimum of MUR 150. Above MUR 50,000 it is 3% of 90% of net income."
           ],
           "sources": [
@@ -356,6 +448,33 @@
             "S2",
             "S11",
             "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "A société or partnership",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Income Tax Act calls a partnership a société. The word covers a société formed under the law of Mauritius, a société de fait or en participation, a limited partnership, a limited liability partnership, a joint venture and a partnership formed abroad. A société is resident where its seat is in Mauritius, or where at least one associate or manager is resident. A resident société pays no income tax. Each associate is taxed on a share of its income, whether or not that share is paid out: an individual on the bands for individuals, a company at its own rate.",
+          "sources": [
+            "S1",
+            "S21"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The société itself sets up a CSR Fund of 2% of its net income of the previous year, unless it holds a Global Business Licence. It also pays the CCR levy, at 2% of its net income, when its turnover is above MUR 50 million.",
+            "It files a return by 30 September after the income year and gives each associate a statement of the share that falls to them.",
+            "A non-resident société is taxed as a company, at 15%.",
+            "The Fair Share Contribution is charged on companies. Its definition of a company names a non-resident société and does not name a resident one."
+          ],
+          "sources": [
+            "S1",
+            "S5",
+            "S21"
           ]
         }
       ]
@@ -809,9 +928,23 @@
       "publisher": "Mauritius Revenue Authority",
       "published": "16 June 2026",
       "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Société & Succession - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/taxes-duties/societe-succession",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
     }
   ],
   "resources": [
+    {
+      "title": "Personal income tax in Mauritius",
+      "url": "/learn/personal-income-tax-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the bands, deductions and reliefs for an individual, which a sole trader and an associate of a société pay on."
+    },
     {
       "title": "MRA e-Services portal",
       "url": "https://eservices38.mra.mu/centralLogin/login",
@@ -900,10 +1033,10 @@
   "unverified": [
     "The rate at which tax is charged on a quarterly CPS statement. Section 108 of the Income Tax Act leaves the method to regulations. The MRA self-employed page gives 15%, but that page also shows penalty rates that were replaced on 1 July 2025, so the figure was left out. The MRA copy of the Income Tax Regulations 1996, consolidated to April 2026, was searched without finding the CPS computation.",
     "How and when a Tax Account Number is first allotted to a newly registered company or sole trader. The MRA pages fetched show how a TAN is used to log in and file, not how it is issued.",
-    "Which listed items of income qualify for the 95% partial exemption rather than 80%. The MRA corporate taxation page mentions both rates without splitting the list.",
     "MRA guidance on how the alternative minimum tax (year of assessment starting 1 July 2026) is reported in APS statements and the annual return. Only the text of section 44A of the Income Tax Act was found.",
     "MRA guidance for individuals on the 35% band that applies from the income year starting 1 July 2026. The band is confirmed in the Finance Act 2026 and the consolidated Income Tax Act, and in KPMG's summary, but the MRA individual pages and tax calculator still showed the 2025-2026 rates on 20 November 2026.",
     "Whether the MRA page figures for tax deducted at source are complete and current for late 2026. The rates quoted were read from the MRA TDS page, and the two items added in 2026 from the Finance Act 2026. The full Sixth Schedule was not compared line by line.",
-    "The substance conditions prescribed for the 3% rate for freeport manufacturing and for medical, biotechnology and pharmaceutical manufacturing. They sit in regulations that were not fetched."
+    "The substance conditions prescribed for the 3% rate for freeport manufacturing and for medical, biotechnology and pharmaceutical manufacturing. They sit in regulations that were not fetched.",
+    "How the Fair Share Contribution is charged on a company taxed partly at 3% and partly at 15%. Section 53N of the VAT Act gives 5% for a company subject to tax at 15% and 2% for one subject to tax at 3%. Neither it nor the MRA page says how a company that exports only part of its goods is treated."
   ]
 }
