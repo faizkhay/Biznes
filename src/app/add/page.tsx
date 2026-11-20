@@ -13,8 +13,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/add" },
 };
 
-export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; plan?: string; product?: string; sponsor?: string }> }) {
-  const { listing: wanted, plan: asked, product: guide, sponsor: sponsored } = await searchParams;
+export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string }> }) {
+  const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored } = await searchParams;
+  // A listing's owner who comes to claim it, where there are no accounts to claim it with: the same form, opened for that.
+  const wanted = named ?? claimed;
+  const claiming = Boolean(claimed) && !named;
   const toSponsor = products().find((p) => p.slug === sponsored);
   const plan = PLANS.find((p) => p.id === asked);
   const product = products().find((p) => p.slug === guide);
@@ -26,8 +29,8 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
   return (
     <>
       <PageHead
-        title={plan ? (plan.price ? `Ask for ${plan.name}` : "List your business free") : product ? "Ask for a pocket guide" : toSponsor ? "Sponsor a pocket guide" : "Add or correct a listing"}
-        path={[{ label: plan ? plan.name : product ? "Pocket guide" : toSponsor ? "Sponsor a guide" : "Add or correct a listing" }]}
+        title={plan ? (plan.price ? `Ask for ${plan.name}` : "List your business free") : product ? "Ask for the pocket guide" : toSponsor ? "Sponsor the pocket guide" : claiming && listing ? "Claim this listing" : "Add or correct a listing"}
+        path={[{ label: plan ? plan.name : product ? "Pocket guide" : toSponsor ? "Sponsor the guide" : claiming && listing ? "Claim a listing" : "Add or correct a listing" }]}
         lede={
           plan
             ? plan.price
@@ -37,8 +40,10 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
               ? `"${product.title}" is ${product.price ? `Rs ${count(product.price)}` : "not yet priced"}. Paying online is not open yet: ask for it here, and a person sends it and tells you how to pay.`
               : toSponsor
                 ? `A place on the sponsors' page of "${toSponsor.title}", from ${monthName(offer(toSponsor).next)}. Say which option you want and for which months; a person replies with how to pay and what to send us.`
-                : listing
-                  ? `About ${listing.name}. Tell us what should change, or that it should be taken out.`
+                : listing && claiming
+                  ? `${listing.name}. Tell us it is yours and how we can check, and a person replies. Claiming a listing costs nothing.`
+                  : listing
+                    ? `About ${listing.name}. Tell us what should change, or that it should be taken out.`
                   : "Add a business, put a listing right, or have one taken out. It costs nothing, and a person reads every request."
         }
       />
@@ -47,7 +52,7 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
           <RequestForm
             compose={compose}
             about={product || toSponsor ? "other" : undefined}
-            start={plan ? `I would like ${plan.name} for my business.` : product ? `I would like the pocket guide "${product.title}".` : toSponsor ? `I would like to sponsor the pocket guide "${toSponsor.title}" from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
+            start={claiming && listing ? "This is my business, and I would like to claim its listing. " : plan ? `I would like ${plan.name} for my business.` : product ? `I would like the pocket guide "${product.title}".` : toSponsor ? `I would like to sponsor the pocket guide "${toSponsor.title}" from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
         </div>
         <aside className="lg:col-span-4 lg:col-start-9">
           <h2 className="heading-3">Other ways</h2>

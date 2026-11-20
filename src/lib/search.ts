@@ -125,6 +125,15 @@ const ASKS = new Set(["how", "what", "when", "why", "which", "who", "can", "do",
  * are not here; each category carries its own French and Kreol words (crawler/taxonomy.mjs).
  */
 const SAID_PHRASES: [string, string][] = [
+  ["start a business", "register a business"],
+  ["open a business", "register a business"],
+  ["ouvrir une entreprise", "register a business"],
+  ["creer une entreprise", "register a business"],
+  ["ouver enn biznes", "register a business"],
+  ["start a company", "incorporate a company"],
+  ["open a company", "incorporate a company"],
+  ["creer une societe", "incorporate a company"],
+  ["creer une compagnie", "incorporate a company"],
   ["ki pou fer", "things to do"],
   ["que faire", "things to do"],
   ["quoi faire", "things to do"],
@@ -164,7 +173,10 @@ function phrased(text: string): string {
 }
 /** A question in the articles' own words. */
 function said(text: string): string {
-  const words = phrased(text).split(" ").map((word) => SAID[word] ?? word);
+  // "Biznes" is Kreol for business, and it is also this site's name: before "mu" it is left as it is.
+  const words = phrased(text)
+    .split(" ")
+    .map((word, i, all) => (word === "biznes" && all[i + 1] === "mu" ? word : (SAID[word] ?? word)));
   // "Time in Mauritius" asks for the time zone: on its own the word finds every fact with a time in it.
   const telling = words.filter((word) => !PADDING.has(word) && !ASKS.has(word));
   return telling.length === 1 && telling[0] === "time" ? "time zone" : words.join(" ");
@@ -223,7 +235,7 @@ export type Overlay = { stamp: number; extras: Listing[]; byId: Map<string, List
  * Words that make a question about how, not a search for a business: "register a company" asks
  * how, although "company" is also a kind of listing. Such a question is not read as a category.
  */
-const ASKING = /^(how|what|when|why|which|who|can|do|does|is|are|should|where (can|do|to)|comment|kan|kouma|ki)\b|\b(register|registering|registration|incorporate|incorporating|apply|applying|application|renew|renewal|start|starting|set up|setting up|become|cost|costs|fee|fees|price|rate|rates|threshold|deadline|requirements?|documents?|procedure|steps|rules|law|laws|meaning|definition)\b/;
+const ASKING = /^(how|what|when|why|which|who|can|do|does|is|are|should|where (can|do|to)|comment|kan|kouma|ki)\b|\b(register|registering|registration|incorporate|incorporating|apply|applying|application|renew|renewal|start|starting|set up|setting up|become|open an?|ouvrir|ouver|creer|cost|costs|fee|fees|price|rate|rates|threshold|deadline|requirements?|documents?|procedure|steps|rules|law|laws|meaning|definition)\b/;
 
 let engine: Engine | undefined;
 
@@ -408,7 +420,7 @@ export function understand(query: string): { text: string; place?: Place; catego
   let category: Category | undefined;
   let dish: Dish | undefined;
   // A question about how names no kind of business, whatever nouns it holds. A town in it still counts.
-  const asking = !place && ASKING.test(text);
+  const asking = !place && ASKING.test(phrased(text));
   if (!asking) {
     const isDish = (phrase: Phrase<Category>) => e.eat.has(phrase.of.id) && DISH_STEMS.has(phrase.tokens.join(" "));
     const named = first(e.categories);

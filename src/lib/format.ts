@@ -50,9 +50,56 @@ export function hoursLines(raw: string): string[] {
 }
 const times = (text: string) => (/^(off|closed)$/i.test(text.trim()) ? "closed" : text.replace(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/g, "$1 to $2").replace(/,\s*/g, " and "));
 
+const WEEK = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] as const;
+const SPAN = /^\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2}(?:\s*,\s*\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2})*$/;
+
+/** A day of the week and what the map records for it: its hours, "closed", or nothing at all. */
+export type DayHours = { code: (typeof WEEK)[number]; day: string; /** Each a span as written, "08:00-17:00". */ spans: string[]; closed: boolean };
+
+/**
+ * Opening hours as the map writes them, day by day, Monday to Sunday. Only the plain rules are
+ * read: days or runs of days, then spans of time or "off". A later rule for a day replaces an
+ * earlier one, as the map's own rules say. A day no rule names is left with nothing recorded:
+ * it is never called closed on a guess. Anything else in the text (months, sunrise, a comment)
+ * gives null, and the page then shows the text rule by rule as the map has it (`hoursLines`).
+ */
+export function hoursByDay(raw: string): { days: DayHours[]; holidays?: string } | null {
+  const days: DayHours[] = WEEK.map((code) => ({ code, day: DAYS[code], spans: [], closed: false }));
+  let holidays: string | undefined;
+  const text = raw.trim();
+  const rules = text === "24/7" ? ["Mo-Su 00:00-24:00"] : text.split(";").map((rule) => rule.trim()).filter(Boolean);
+  if (!rules.length) return null;
+  for (const rule of rules) {
+    const m = /^((?:Mo|Tu|We|Th|Fr|Sa|Su|PH)(?:\s*[-,]\s*(?:Mo|Tu|We|Th|Fr|Sa|Su|PH))*)\s+(.+)$/.exec(rule);
+    const when = m ? m[2].trim() : rule;
+    const off = /^(off|closed)$/i.test(when);
+    if (!off && !SPAN.test(when)) return null;
+    const spans = off ? [] : when.split(",").map((span) => span.replace(/\s+/g, ""));
+    const named: string[] = [];
+    for (const part of (m ? m[1] : "Mo-Su").split(",")) {
+      const [from, to] = part.trim().split(/\s*-\s*/);
+      if (!to) named.push(from);
+      else if (from === "PH" || to === "PH") return null;
+      else for (let i = WEEK.indexOf(from as (typeof WEEK)[number]), n = 0; n < 7; i = (i + 1) % 7, n++) {
+        named.push(WEEK[i]);
+        if (WEEK[i] === to) break;
+      }
+    }
+    for (const code of named) {
+      if (code === "PH") holidays = off ? "closed" : spans.map(spanWords).join(" and ");
+      else Object.assign(days[WEEK.indexOf(code as (typeof WEEK)[number])], { spans, closed: off });
+    }
+  }
+  return { days, holidays };
+}
+/** "08:00-17:00" as "08:00 to 17:00", and a whole day as that. */
+export const spanWords = (span: string) => (span === "00:00-24:00" ? "open all day" : span.replace("-", " to "));
+
 /** Where to see a point on a map, and how to be taken to it. */
 export const mapHref = (lat: number, lon: number) => `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=18/${lat}/${lon}`;
 export const directionsHref = (lat: number, lon: number) => `https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`;
+/** The same, for a business known by its address and not by a position on the map. */
+export const directionsToHref = (address: string) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
 /** A map element's own page: "node/123" is https://www.openstreetmap.org/node/123. */
 export const osmHref = (ref: string) => `https://www.openstreetmap.org/${ref}`;

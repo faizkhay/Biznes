@@ -86,7 +86,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const answers = a.leads.length > 0 && (
     <section aria-labelledby="r-guides" className="mt-6">
       <h2 id="r-guides" className="label-1 pb-3 text-ink-faint">
-        {kind === "guide" ? "From our articles" : direct ? "The answer, from our pages" : "From our articles"}
+        {direct && kind !== "guide" ? "The answer, from our pages" : a.leads.every((lead) => lead.tag === "Guide") ? "From our articles" : "From our pages"}
       </h2>
       {direct && (
         <article className="answer">
