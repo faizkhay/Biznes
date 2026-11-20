@@ -1,0 +1,934 @@
+{
+  "slug": "support-and-finance",
+  "title": "Grants, loans and support for small businesses",
+  "summary": "How the law defines micro, small, medium and mid-market enterprises, how to register as an SME, and the grants, loans, export rebates and other public support open to small businesses in late 2026.",
+  "audience": "Owners of small businesses and start-ups in Mauritius, and people about to start one.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Microenterprise",
+      "value": "Annual turnover of not more than MUR 10 million",
+      "detail": "First Schedule to the Small and Medium Enterprises Act 2017, as replaced with effect from 2 August 2022.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Small enterprise",
+      "value": "More than MUR 10 million and not more than MUR 30 million",
+      "detail": "Same Schedule.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Medium enterprise",
+      "value": "More than MUR 30 million and not more than MUR 100 million",
+      "detail": "Same Schedule.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Mid-market enterprise",
+      "value": "More than MUR 100 million and not more than MUR 250 million",
+      "detail": "Same Schedule. A mid-market enterprise can register but is not an SME under the Act.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "SME registration certificate",
+      "value": "Free, valid for 5 years",
+      "detail": "Issued by the SME Registration Unit of the Ministry. Renewal is applied for at least 3 months before expiry.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "SME Mauritius grants",
+      "value": "80 per cent of approved cost, up to MUR 50,000 to MUR 250,000",
+      "detail": "The cap depends on the category of the business (A to D), set by turnover and number of full-time employees.",
+      "sources": [
+        "S5",
+        "S3"
+      ]
+    },
+    {
+      "label": "Largest DBM business loan",
+      "value": "Up to MUR 25 million",
+      "detail": "Business Loan Scheme, covering 90 per cent of project cost, repayable over up to 7 years.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "DBM loan for women entrepreneurs",
+      "value": "Up to MUR 1 million",
+      "detail": "Women Entrepreneur Loan Scheme, with a moratorium of up to 1 year.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Refund for taking part in an international fair",
+      "value": "Up to MUR 167,000 per financial year",
+      "detail": "EDB SME Refund Scheme, from 1 July 2026, for SMEs with turnover under MUR 100 million.",
+      "sources": [
+        "S19"
+      ]
+    },
+    {
+      "label": "Start-up income tax exemption",
+      "value": "10 income years",
+      "detail": "For a start-up set up on or after 19 June 2026 under the National SME Incubator Scheme, with turnover not above MUR 100 million. Enacted in the Finance Act 2026.",
+      "sources": [
+        "S24"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How the law defines small businesses",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Small and Medium Enterprises Act 2017 sorts enterprises by annual turnover. An SME under the Act means a small or medium enterprise and includes a microenterprise. A mid-market enterprise is a separate, larger class that can also register. The bands below were set with effect from 2 August 2022.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Class",
+            "Annual turnover"
+          ],
+          "rows": [
+            [
+              "Microenterprise",
+              "Not more than MUR 10 million"
+            ],
+            [
+              "Small enterprise",
+              "More than MUR 10 million and not more than MUR 30 million"
+            ],
+            [
+              "Medium enterprise",
+              "More than MUR 30 million and not more than MUR 100 million"
+            ],
+            [
+              "Mid-market enterprise",
+              "More than MUR 100 million and not more than MUR 250 million"
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Individual schemes set their own limits, which do not always match the Act. Several EDB export schemes, for example, define an SME as a business with turnover of not more than MUR 100 million. Check the limit in each scheme's own guidelines.",
+          "sources": [
+            "S16",
+            "S19",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Registering as an SME",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Registration is done by the SME Registration Unit of the Ministry of Industry, SME and Cooperatives, not by SME Mauritius Ltd. It is free. It is not compulsory, but the registration certificate is required to benefit from Government assistance to SMEs. Any legal business activity with a projected annual turnover of less than MUR 250 million can apply. The certificate is valid for 5 years.",
+          "sources": [
+            "S2",
+            "S3",
+            "S1"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Register the business or company first with the Corporate and Business Registration Department, so that it has a Business Registration Card.",
+            "Apply online at smeregistration.govmu.org, or download the form from enterbusiness.govmu.org, or go to the SME Registration Unit, Ground Floor, Pope Hennessy Building, 25 Pope Hennessy Street, Port Louis, or to an office of SME Mauritius Ltd.",
+            "Attach the documents for the type of business.",
+            "If the application is approved, collect the registration certificate from the SME Registration Unit.",
+            "Apply for renewal at least 3 months before the certificate expires. Apply in writing to the Unit if the name, address or nature of the business changes."
+          ],
+          "sources": [
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Individual: Business Registration Card, National Identity Card, and proof of trade fee paid to the Corporate and Business Registration Department or any other fee or licence.",
+            "Company or partnership: Business Registration Card, identity card of the authorised signatory, extract of file or particulars of the company or partnership, proof of trade fee or other licence, and the last financial statements or tax return for the past 12 months for an existing business.",
+            "Cooperative society: Business Registration Card, identity card of the authorised signatory, certificate of the cooperative society, proof of trade fee or other licence, and the last financial statements or tax return."
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Ministry's leaflet of February 2026 lists what registration opens up. A new small company registered as an SME may qualify for a 4 year income tax holiday, except in ICT, financial services, certain professional services, activities needing a tourist enterprise licence and training services. A local SME with annual turnover of not more than MUR 100 million can have a margin of preference of up to 40 per cent in public procurement. Registered SMEs can also apply for SME Mauritius grants, DBM loans, and some duty and tax concessions on vehicles and land conversion, each with its own conditions.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The registration certificate is not a permit or a licence. Authorisations for the activity itself still have to be obtained from the relevant regulator.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Grants from SME Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "SME Mauritius Ltd is a private company incorporated in 2017 and fully owned by the Government of Mauritius. It supports small businesses with advice, training and grant schemes. Its grants cover 80 per cent of the approved, itemised cost of a project. The business pays at least the other 20 per cent. The total a business can receive, within one scheme or across schemes, is capped by its category, which depends on its turnover and its number of full-time employees.",
+          "sources": [
+            "S5",
+            "S3",
+            "S28"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Category",
+            "Maximum total grant"
+          ],
+          "rows": [
+            [
+              "A",
+              "MUR 50,000"
+            ],
+            [
+              "B",
+              "MUR 130,000"
+            ],
+            [
+              "C",
+              "MUR 200,000"
+            ],
+            [
+              "D",
+              "MUR 250,000"
+            ]
+          ],
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Business Transformation Scheme (BTS): advisory work, restructuring, lean management, mentoring, productivity, compliance and governance.",
+            "Technology and Innovation Scheme (TINS): productive technology, business software, robotics or AI, mobile apps, cloud and digital solutions, website development.",
+            "Market Readiness Scheme (MRS): marketing, packaging and design, quality assurance, barcodes, branding, trademarks and patents, listing on international platforms.",
+            "Greening Support Scheme (GSS): renewables, recycling, water treatment, energy conservation and environmental standards.",
+            "Agri-Business Scheme (ABS): food processing, hydroponics, aquaponics, utility connections, agricultural implements, smart agriculture and soil testing."
+          ],
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "SME Mauritius publishes at smemu.com. The Ministry's February 2026 leaflet gives that address for scheme details. An applicant must hold the SME registration certificate.",
+          "sources": [
+            "S2",
+            "S3",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Loans from the Development Bank of Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Development Bank of Mauritius Ltd (DBM) is a development bank that has operated as a company since 1 January 1989 and lends to small businesses. In November 2026 its site lists the loan schemes below for businesses. Each finances 90 per cent of the project cost, with 10 per cent from the borrower's own funds, and is repayable over up to 7 years including the moratorium. Security is taken according to DBM's terms and conditions. Applications are made online through the DBM site.",
+          "sources": [
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10",
+            "S26"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Scheme",
+            "Maximum loan",
+            "Moratorium",
+            "Who and what it is for"
+          ],
+          "rows": [
+            [
+              "Business Loan Scheme",
+              "MUR 25 million",
+              "Up to 6 months",
+              "Enterprises, including SMEs and start-ups, and professionals, in trade, transport, construction, jewellery, tourism and services. Equipment, furniture, land for development, goods and working capital"
+            ],
+            [
+              "DBM Boost Loan Scheme",
+              "MUR 10 million",
+              "Up to 1 year",
+              "Start-ups and existing businesses in productive activities in manufacturing and the circular economy. Machines, equipment, working capital and marketing"
+            ],
+            [
+              "Women Entrepreneur Loan Scheme",
+              "MUR 1 million",
+              "Up to 1 year",
+              "Women entrepreneurs and women-led enterprises, including start-ups, in productive activities"
+            ],
+            [
+              "Techno Loan Scheme",
+              "MUR 2 million",
+              "Up to 6 months",
+              "Enterprises and professionals investing in digitalisation and advanced technologies, and start-ups in artificial intelligence and digitalisation"
+            ],
+            [
+              "Agricultural Loan Scheme",
+              "MUR 10 million",
+              "Up to 1 year",
+              "Young and seasoned farmers and small planters. Farming costs, equipment, infrastructure, modern methods and the rehabilitation of abandoned land"
+            ]
+          ],
+          "sources": [
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The DBM scheme pages read for this guide do not state interest rates. The bank also lists agricultural, fishing and green loans, such as solar and rainwater schemes, which are not covered here.",
+          "sources": [
+            "S6",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Leasing and factoring from the Industrial Finance Corporation of Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Industrial Finance Corporation of Mauritius Ltd (IFCM) was set up following the 2020-2021 Budget to help enterprises modernise. In November 2026 it still operates under that name and offers two services under its Modernisation and Transformation Fund.",
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Leasing: finance of up to 85 per cent of the cost of an asset, in rupees or foreign currency, for up to 9 years depending on the asset, secured by a lien on the asset. Eligible sectors are manufacturing, agro-industry, construction, ICT, the blue economy and other productive sectors.",
+            "Factoring: finance of up to 90 per cent of an invoice amount, for business-to-business sales on credit terms of up to 90 days, on local and export receivables, with no collateral. Eligible sectors are trading, manufacturing, agro-industry and other productive sectors.",
+            "Documents asked for: certificate of incorporation, Business Registration Card, valid trade licence, VAT certificate, proof of business address, bank statements for the last 6 months and the last 3 financial statements, plus a quotation for the asset or a list of debtors."
+          ],
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "IFCM describes its interest rate as preferential but does not publish the rate on the pages read.",
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Women, young entrepreneurs and cooperatives",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The National Women Entrepreneur Council (NWEC) is a parastatal body under the Ministry of Gender Equality and Family Welfare, set up in 1999. It supports women who run or want to start a business. Its services are business counselling, skills development programmes, talks and sensitisation campaigns, and marketing assistance. Registered members receive a membership card that is renewed every year. Its office is at the National Women Development Centre, Royal Road, Phoenix.",
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Women: the DBM Women Entrepreneur Loan Scheme lends up to MUR 1 million, and the 2026-2027 Budget Speech provides MUR 5 million for a dedicated incubator for women under the SME scheme.",
+            "Young people and start-ups: the DBM Business, Boost and Techno loan schemes are open to start-ups, the Agricultural Loan Scheme names young farmers, and the National SME Incubator Scheme takes projects from the idea stage.",
+            "Students: the 2026-2027 Budget Speech announces an Innovation Scholarship of up to MUR 500,000 in seed funding for ten university students, through the National Research and Innovation Institute."
+          ],
+          "sources": [
+            "S8",
+            "S6",
+            "S7",
+            "S9",
+            "S10",
+            "S14",
+            "S23"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Cooperative societies are registered and supervised by the Cooperatives Division of the same Ministry that handles SMEs. The Division provides free audit services, project write-up services, marketing outlets and a common logo. Fiscal incentives include no stamp duty on instruments executed by a cooperative society, and no registration, transcription or inscription fees except on the transfer of a motor vehicle. A cooperative society can also register as an SME. The Division publishes a compendium of the incentives that other public bodies offer to cooperatives.",
+          "sources": [
+            "S21",
+            "S22",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Research and innovation grants",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Research and Innovation Council (MRIC) funds research and innovation projects through calls for proposals. Its schemes page shows which schemes are open. On 20 November 2026 two were accepting applications.",
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "National SME Incubator Scheme (NSIS): open. Accredited private-sector incubators select, coach and mentor innovative start-ups from the idea stage.",
+            "Intellectual Property Promotion Scheme (IPPS): open. Support for applications for patents and for the registration of industrial designs.",
+            "Proof of Concept Scheme, Collaborative Research and Innovation Grant Scheme, Research and Innovation Bridges, Social Innovation Research Grant Scheme, Pole of Innovation Grant Scheme, Rodrigues Research and Innovation Grant Scheme and Innovation Boost Grant: not accepting applications on that date."
+          ],
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The National Research and Innovation Institute Act 2026 repeals the Mauritius Research and Innovation Council Act and transfers the Council's assets and pending matters to a new Institute. The Act comes into operation on a date to be fixed by Proclamation. On 20 November 2026 the MRIC website was still operating under the MRIC name.",
+          "sources": [
+            "S15",
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Export support from the Economic Development Board",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Economic Development Board (EDB) runs export support schemes funded by Government. The guidelines for the financial year from 1 July 2026 to 30 June 2027 set the rates below. The two freight rebates step down on 1 January 2027.",
+          "sources": [
+            "S16",
+            "S17",
+            "S18",
+            "S19"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Trade Promotion and Marketing Scheme: a rebate on air freight cost to eligible markets. For SMEs with annual turnover of not more than MUR 100 million the rebate is 40 per cent for claims submitted from 1 July to 31 December 2026 and 20 per cent from 1 January to 30 June 2027. For agricultural products the rebate is shared equally between planter and exporter.",
+            "Freight Rebate Scheme: a rebate on ocean freight for exporters of local products. From 1 July to 31 December 2026, first-time exporters receive 27 per cent of the ocean freight cost, up to USD 200 per 20-foot container and USD 400 per 40-foot container. Other eligible exporters receive 17 per cent with the same caps. Lower rates apply from 1 January 2027.",
+            "Export Credit Guarantee Insurance Scheme: a refund of 17 per cent of the export credit insurance premium paid, or 0.17 per cent of insurable declared turnover if lower, until 30 June 2027. The exporter must hold an Export Development Certificate or a Freeport Certificate.",
+            "Participation in International Fairs SME Refund Scheme: for SMEs with turnover under MUR 100 million. From 1 July 2026 the maximum refund is MUR 167,000 per financial year, for one eligible event and one representative. Any unused balance is not carried forward."
+          ],
+          "sources": [
+            "S16",
+            "S17",
+            "S18",
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Budget measures and the schemes at a glance",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "In force: income derived by a start-up enterprise is exempt from income tax for 10 income years from the year it starts operations. The start-up must be set up on or after 19 June 2026, be managed in Mauritius, operate in Mauritius or Africa, fall under the National SME Incubator Scheme with the support of an accredited incubator, and have annual turnover of not more than MUR 100 million. This was enacted in the Finance Act 2026.",
+            "Announced in the 2026-2027 Budget Speech, not confirmed as in force: an SME Bill, a Start-Up Act, an Accelerator Scheme at the EDB, a wider customs duty exemption on utility vehicles for registered SMEs in transformative sectors, and a single digital platform from SME Mauritius listing all schemes, grants, tax incentives and financing facilities.",
+            "Announced in the Budget Annex: new directives requiring SMEs that hold a Made in Moris certificate to prove local production to benefit from the 40 per cent margin of preference on public contracts."
+          ],
+          "sources": [
+            "S23",
+            "S24",
+            "S25"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Scheme",
+            "Who runs it",
+            "What it offers",
+            "Official page"
+          ],
+          "rows": [
+            [
+              "SME registration certificate",
+              "SME Registration Unit, Ministry of Industry, SME and Cooperatives",
+              "Free certificate, valid 5 years, needed for Government SME support",
+              "https://enterbusiness.govmu.org/Pages/SME-Registration-Unit.aspx"
+            ],
+            [
+              "BTS, TINS, MRS, GSS and ABS grant schemes",
+              "SME Mauritius Ltd",
+              "Grant of 80 per cent of approved cost, capped at MUR 50,000 to MUR 250,000 by category",
+              "https://www.smemu.com/schemes/"
+            ],
+            [
+              "Business Loan Scheme",
+              "Development Bank of Mauritius",
+              "Loan of up to MUR 25 million, 90 per cent of project cost, up to 7 years",
+              "https://www.dbm.mu/loans/business-loan-scheme/"
+            ],
+            [
+              "DBM Boost Loan Scheme",
+              "Development Bank of Mauritius",
+              "Loan of up to MUR 10 million for manufacturing and the circular economy",
+              "https://www.dbm.mu/loans/dbm-boost-loan-scheme/"
+            ],
+            [
+              "Women Entrepreneur Loan Scheme",
+              "Development Bank of Mauritius",
+              "Loan of up to MUR 1 million for women entrepreneurs",
+              "https://www.dbm.mu/loans/women-entrepreneur-loan-scheme-2/"
+            ],
+            [
+              "Techno Loan Scheme",
+              "Development Bank of Mauritius",
+              "Loan of up to MUR 2 million for digitalisation and technology",
+              "https://www.dbm.mu/loans/2546/"
+            ],
+            [
+              "Agricultural Loan Scheme",
+              "Development Bank of Mauritius",
+              "Loan of up to MUR 10 million for farmers and small planters",
+              "https://www.dbm.mu/loans/agricultural-loan-scheme/"
+            ],
+            [
+              "Leasing",
+              "Industrial Finance Corporation of Mauritius",
+              "Finance of up to 85 per cent of asset cost, up to 9 years",
+              "https://ifcm.mu/leasing/"
+            ],
+            [
+              "Factoring",
+              "Industrial Finance Corporation of Mauritius",
+              "Finance of up to 90 per cent of invoice amount, credit terms up to 90 days",
+              "https://ifcm.mu/factoring/"
+            ],
+            [
+              "National SME Incubator Scheme and Intellectual Property Promotion Scheme",
+              "Mauritius Research and Innovation Council",
+              "Incubation through accredited incubators; support for patent and design applications",
+              "https://www.mric.mu/innovation-and-commercialisation-schemes"
+            ],
+            [
+              "Trade Promotion and Marketing Scheme",
+              "Economic Development Board",
+              "Air freight rebate of 40 per cent, then 20 per cent from 1 January 2027, for SMEs",
+              "https://edbmauritius.org/wp-content/uploads/2022/10/TPMS-Guidelines.pdf"
+            ],
+            [
+              "Freight Rebate Scheme",
+              "Economic Development Board",
+              "Ocean freight rebate of 27 or 17 per cent to 31 December 2026, capped per container",
+              "https://edbmauritius.org/wp-content/uploads/2025/07/FRS-Guidelines.pdf"
+            ],
+            [
+              "Export Credit Guarantee Insurance Scheme",
+              "Economic Development Board",
+              "Refund of 17 per cent of export credit insurance premium",
+              "https://edbmauritius.org/wp-content/uploads/2022/10/ECGIS-Guidelines.pdf"
+            ],
+            [
+              "Participation in International Fairs SME Refund Scheme",
+              "Economic Development Board",
+              "Refund of up to MUR 167,000 per financial year",
+              "https://edbmauritius.org/wp-content/uploads/2022/10/SME-Refund-Scheme.pdf"
+            ],
+            [
+              "Membership and services for women entrepreneurs",
+              "National Women Entrepreneur Council",
+              "Counselling, training, sensitisation and marketing assistance",
+              "https://nwec.govmu.org/nwec/"
+            ],
+            [
+              "Support to cooperative societies",
+              "Cooperatives Division, Ministry of Industry, SME and Cooperatives",
+              "Registration, free audit, project write-up and fiscal incentives",
+              "https://cooperatives.govmu.org/Pages/Incentives.aspx"
+            ],
+            [
+              "Start-up income tax exemption",
+              "Mauritius Revenue Authority, under the Income Tax Act",
+              "Exemption for 10 income years for qualifying start-ups set up on or after 19 June 2026",
+              "https://www.mra.mu/download/FinanceAct2026.pdf"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S4",
+            "S5",
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10",
+            "S12",
+            "S13",
+            "S14",
+            "S16",
+            "S17",
+            "S18",
+            "S19",
+            "S20",
+            "S21",
+            "S24"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Small and Medium Enterprises Act 2017 (updated text)",
+      "url": "https://enterbusiness.govmu.org/Documents/Useful%20Documents/Updated%20Small%20and%20Medium%20Enterprises%20(SME)%20Act.pdf",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "Amendments noted up to Act 15 of 2022, with effect from 2 August 2022; file last modified 25 August 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Register your SME for free and unlock key benefits (SME Registration Unit leaflet)",
+      "url": "https://enterbusiness.govmu.org/Documents/Useful%20Documents/Updated_Leaflet_SME_Registration_Unit.pdf",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "File last modified 2 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Frequently Asked Questions",
+      "url": "https://enterbusiness.govmu.org/Pages/New-FAQ.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "SME Registration Unit",
+      "url": "https://enterbusiness.govmu.org/Pages/SME-Registration-Unit.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Available Schemes For SMEs | SME Mauritius",
+      "url": "https://www.smemu.com/schemes/",
+      "publisher": "SME Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Business Loan Scheme - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/loans/business-loan-scheme/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "DBM Boost Loan Scheme - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/loans/dbm-boost-loan-scheme/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Women Entrepreneur Loan Scheme - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/loans/women-entrepreneur-loan-scheme-2/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Techno Loan Scheme - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/loans/2546/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Agricultural Loan Scheme - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/loans/agricultural-loan-scheme/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Home | Industrial Finance Corporation of Mauritius",
+      "url": "https://ifcm.mu/",
+      "publisher": "Industrial Finance Corporation of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Leasing services in Mauritius | IFCM",
+      "url": "https://ifcm.mu/leasing/",
+      "publisher": "Industrial Finance Corporation of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Factoring Services in Mauritius | IFCM",
+      "url": "https://ifcm.mu/factoring/",
+      "publisher": "Industrial Finance Corporation of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "SCHEMES | MRIC",
+      "url": "https://www.mric.mu/innovation-and-commercialisation-schemes",
+      "publisher": "Mauritius Research and Innovation Council",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "The National Research and Innovation Institute Act 2026 (Act No. 6 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/Act0626.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Government Gazette No. 40 of 4 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Trade Promotion and Marketing Scheme: Guidelines 2026/27",
+      "url": "https://edbmauritius.org/wp-content/uploads/2022/10/TPMS-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Effective 1 July 2026 to 30 June 2027",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Freight Rebate Scheme for Exporters of Local Products: Guidelines 2026/27",
+      "url": "https://edbmauritius.org/wp-content/uploads/2025/07/FRS-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Effective 1 July 2026 to 30 June 2027",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Export Credit Guarantee Insurance Scheme: Guidelines 2026/27",
+      "url": "https://edbmauritius.org/wp-content/uploads/2022/10/ECGIS-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Effective 1 July 2026 to 30 June 2027",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Participation in International Fairs SME Refund Scheme: Guidelines",
+      "url": "https://edbmauritius.org/wp-content/uploads/2022/10/SME-Refund-Scheme.pdf",
+      "publisher": "Economic Development Board",
+      "published": "July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "National Women Entrepreneur Council",
+      "url": "https://nwec.govmu.org/nwec/",
+      "publisher": "National Women Entrepreneur Council",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Incentives",
+      "url": "https://cooperatives.govmu.org/Pages/Incentives.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (Cooperatives Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Compendium of Incentives, Facilities and Support Services to Co-operative Societies",
+      "url": "https://cooperatives.govmu.org/Pages/Compendium/Compendium.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (Cooperatives Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Budget Speech 2026-2027",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/SPEECH-2026_2027.pdf",
+      "publisher": "National Assembly of Mauritius (copy of the speech)",
+      "published": "June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Mauritius Revenue Authority (copy of the Act)",
+      "published": "Assented 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Annex to Budget Speech 2026-2027",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/Annex-Budget-Speech-2026-2027.pdf",
+      "publisher": "National Assembly of Mauritius (copy of the annex)",
+      "published": "June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "About us - Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/about-us/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Ministry of Industry, SME and Cooperatives (SME Division): online SME registration",
+      "url": "https://smeregistration.govmu.org/",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Corporate Profile | SME",
+      "url": "https://www.smemu.com/corporate-profile/",
+      "publisher": "SME Mauritius Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "SME Registration Unit",
+      "url": "https://enterbusiness.govmu.org/Pages/SME-Registration-Unit.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Find the SME registration form, the information leaflet and contact details."
+    },
+    {
+      "title": "Online SME registration",
+      "url": "https://smeregistration.govmu.org/",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Apply online for the SME registration certificate."
+    },
+    {
+      "title": "Small and Medium Enterprises Act 2017",
+      "url": "https://enterbusiness.govmu.org/Documents/Useful%20Documents/Updated%20Small%20and%20Medium%20Enterprises%20(SME)%20Act.pdf",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Read the definitions, the turnover bands and the rules on registration certificates."
+    },
+    {
+      "title": "Frequently Asked Questions on SME registration and schemes",
+      "url": "https://enterbusiness.govmu.org/Pages/New-FAQ.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Check who can register, what to bring and how the certificate works."
+    },
+    {
+      "title": "SME Mauritius schemes",
+      "url": "https://www.smemu.com/schemes/",
+      "publisher": "SME Mauritius Ltd",
+      "what": "Check your category, read the five grant schemes and start an application."
+    },
+    {
+      "title": "Development Bank of Mauritius",
+      "url": "https://www.dbm.mu/",
+      "publisher": "Development Bank of Mauritius Ltd",
+      "what": "Read each loan scheme and apply online."
+    },
+    {
+      "title": "Industrial Finance Corporation of Mauritius",
+      "url": "https://ifcm.mu/",
+      "publisher": "Industrial Finance Corporation of Mauritius Ltd",
+      "what": "Read the leasing and factoring terms and the documents required."
+    },
+    {
+      "title": "MRIC schemes",
+      "url": "https://www.mric.mu/innovation-and-commercialisation-schemes",
+      "publisher": "Mauritius Research and Innovation Council",
+      "what": "See which research and innovation schemes are accepting applications."
+    },
+    {
+      "title": "EDB Info Centre",
+      "url": "https://edbmauritius.org/info-centre",
+      "publisher": "Economic Development Board",
+      "what": "Download the current guidelines and claim forms for the export support schemes."
+    },
+    {
+      "title": "National Women Entrepreneur Council",
+      "url": "https://nwec.govmu.org/nwec/",
+      "publisher": "National Women Entrepreneur Council",
+      "what": "Read about membership, services and current calls for women entrepreneurs."
+    },
+    {
+      "title": "Cooperatives Division: incentives",
+      "url": "https://cooperatives.govmu.org/Pages/Incentives.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Read the incentives and support services for cooperative societies."
+    },
+    {
+      "title": "Budget Speech 2026-2027",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/SPEECH-2026_2027.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read the start-up and SME measures announced for 2026-2027."
+    },
+    {
+      "title": "The Finance Act 2026",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the tax measures that were enacted, including the start-up exemption."
+    }
+  ],
+  "unverified": [
+    "Whether the turnover bands in the SME Act have changed since 2 August 2022. The Ministry's copy of the Act stops at that amendment. No amendment to the SME Act was found in the Finance Act 2025, the Finance Act 2026 or the Economic and Financial Measures (Miscellaneous Provisions) Acts of 2025 and 2026, but the 2023 and 2024 Finance Acts were not read.",
+    "SME measures of the 2025-2026 Budget that are still in force. The budget site budgetmof.govmu.org could not be opened, and the only SME-specific item read in the Finance Act 2025 is wage relief for January to June 2025, which has ended.",
+    "Whether the SME Bill, the Start-Up Act, the EDB Accelerator Scheme, the wider customs duty exemption on utility vehicles and the single SME information platform announced in June 2026 have been enacted or launched. No SME or Start-Up Act appears among Acts 1 to 18 of 2026 on the National Assembly site.",
+    "The turnover and employee thresholds that define SME Mauritius categories A to D, and whether SME Mauritius still runs other schemes (for example an employment scheme for graduates) listed on older official pages.",
+    "Interest rates on Development Bank of Mauritius loans and on IFCM leasing and factoring.",
+    "Any merger or successor of the Industrial Finance Corporation of Mauritius. Its own site showed none on 20 November 2026.",
+    "Grant amounts under the MRIC schemes, including the National SME Incubator Scheme. The amounts on the EDB business support portal date from 2020 and 2021 and are not repeated.",
+    "Whether the National Research and Innovation Institute Act 2026 has been proclaimed.",
+    "NWEC membership conditions and any membership fee.",
+    "The detailed conditions of the 4 year tax holiday, the margin of preference and the vehicle and land concessions listed in the Ministry's leaflet.",
+    "The address smemu.org, which appears in older official documents, showed unrelated content on 20 November 2026. The working SME Mauritius site is smemu.com."
+  ]
+}

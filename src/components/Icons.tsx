@@ -16,55 +16,46 @@ const base = {
 
 type P = SVGProps<SVGSVGElement>;
 
+export const Glass = (p: P) => (
+  <svg {...base} {...p}>
+    <circle cx="10.5" cy="10.5" r="6.5" />
+    <path d="m15.5 15.5 5 5" />
+  </svg>
+);
 export const Arrow = (p: P) => (
-  <svg {...base} {...p} className={["arrow", p.className].filter(Boolean).join(" ")}>
+  <svg {...base} {...p}>
     <path d="M4 12h15M13 6l6 6-6 6" />
   </svg>
 );
-
-export const ArrowBack = (p: P) => (
+export const Out = (p: P) => (
   <svg {...base} {...p}>
-    <path d="M20 12H5M11 6l-6 6 6 6" />
+    <path d="M8 16 18 6M10 6h8v8" />
   </svg>
 );
-
 export const Phone = (p: P) => (
   <svg {...base} {...p}>
     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
   </svg>
 );
-
-/** A speech bubble, for messaging. The service is named in words beside it. */
-export const Chat = (p: P) => (
+export const Globe = (p: P) => (
   <svg {...base} {...p}>
-    <path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z" />
-    <path d="M8.5 11.5h7M8.5 14.5h4" />
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M3.5 12h17M12 3.5c2.5 2.4 3.5 5.2 3.5 8.5s-1 6.1-3.5 8.5c-2.5-2.4-3.5-5.2-3.5-8.5s1-6.1 3.5-8.5Z" />
   </svg>
 );
-
-export const Mail = (p: P) => (
+export const Pin = (p: P) => (
   <svg {...base} {...p}>
-    <rect x="3" y="5" width="18" height="14" rx="2" />
-    <path d="m3.5 7 8.5 6 8.5-6" />
+    <path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" />
+    <circle cx="12" cy="10.5" r="2.2" />
   </svg>
 );
-
-export const Plus = (p: P) => (
-  <svg {...base} {...p}>
-    <path d="M12 5v14M5 12h14" />
-  </svg>
-);
-
 export const Tick = (p: P) => (
   <svg {...base} {...p}>
     <path d="m5 12.5 4.5 4.5L19 7.5" />
   </svg>
 );
-
-/** A small mark that leads an error message, so the error is never colour alone. */
 export const Alert = (p: P) => (
   <svg {...base} {...p}>
-    <circle cx="12" cy="12" r="8.5" />
-    <path d="M12 8v5M12 16.2v.1" />
+    <path d="M12 4 3 19.5h18L12 4ZM12 10v4.5M12 17.2v.100" />
   </svg>
 );

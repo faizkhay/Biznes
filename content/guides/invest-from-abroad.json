@@ -1,0 +1,1023 @@
+{
+  "slug": "invest-from-abroad",
+  "title": "Invest in or move a business to Mauritius as a non-citizen",
+  "summary": "The permits, visas and property routes open to a non-citizen who wants to start, buy into or work in a business in Mauritius, with the thresholds in force after the August 2026 changes.",
+  "audience": "Non-citizens planning to invest, work or settle in Mauritius, and the people advising them.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Investor Occupation Permit: minimum investment",
+      "value": "USD 100,000",
+      "detail": "Since 13 August 2026. The USD 50,000 investor option was removed. Funds must reach a bank account in Mauritius within 60 days of the permit being issued.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Investor: turnover the company must reach",
+      "value": "MUR 5 million from year 3, MUR 8 million from year 5",
+      "detail": "The MUR 8 million figure is the renewal test. Rules in force from 13 August 2026.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Professional Occupation Permit: minimum salary",
+      "value": "MUR 50,000 basic a month",
+      "detail": "All sectors, from 13 August 2026. A professional who already held a permit on the old MUR 30,000 rule gets one renewal on that rule.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Self-employed Occupation Permit",
+      "value": "USD 50,000 initial investment",
+      "detail": "Services sector only. Business income of at least MUR 2 million from year 3 and MUR 3 million a year from year 5 for renewal.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Fees for an Occupation Permit",
+      "value": "USD 50 to apply, then USD 1,000 for a 10 year investor or self-employed permit",
+      "detail": "Application fee non-refundable, in force from 1 December 2025. Permit fee is paid after approval in principle.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Residence permit through property",
+      "value": "Purchase price of at least USD 375,000",
+      "detail": "Property under the IRS, RES, IHS, PDS or Smart City Scheme, or an apartment in a building of at least ground plus two floors.",
+      "sources": [
+        "S1",
+        "S13"
+      ]
+    },
+    {
+      "label": "Golden Visa",
+      "value": "USD 1 million invested within 12 months",
+      "detail": "Valid up to 2 years, renewable. Applications opened on NELS on 12 November 2026.",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "label": "Permanent Residence Permit",
+      "value": "20 years",
+      "detail": "For example, an investor must have held an Occupation Permit for at least 5 years with turnover of MUR 15 million a year.",
+      "sources": [
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "label": "Premium Visa",
+      "value": "Stay of more than 6 months and up to 1 year, renewable",
+      "detail": "No fee. The holder must not enter the Mauritian labour market.",
+      "sources": [
+        "S10",
+        "S26"
+      ]
+    },
+    {
+      "label": "Exchange control",
+      "value": "None",
+      "detail": "The UNCTAD investment guide lists free repatriation of profits, dividends and capital. Deloitte's January 2026 summary states that there is no foreign exchange control.",
+      "sources": [
+        "S29",
+        "S30"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Who does what",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Economic Development Board (EDB) is the Government agency that promotes Mauritius as a place to invest and do business. It was set up under the Economic Development Board Act 2017 and works under the Ministry of Finance. It acts as the single interface with investors, registers them, and runs the National Electronic Licensing System (NELS), the online platform for permit and licence applications.",
+          "sources": [
+            "S31",
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Economic Development Board: receives Occupation Permit, retired non-citizen and Golden Visa applications through NELS, checks them and registers the investor, professional or self-employed person.",
+            "Passport and Immigration Office (PIO): a branch of the Mauritius Police Force under the Prime Minister's Office. It issues the permits and visas.",
+            "Prime Minister's Office: chairs the Joint Committee that assesses Occupation Permit applications, and its Residence Permit Section receives Permanent Residence Permit applications.",
+            "Ministry of Labour and Industrial Relations (Employment Division): issues work permits to employers of foreign workers.",
+            "Corporate and Business Registration Department: incorporates the company or registers the business."
+          ],
+          "sources": [
+            "S1",
+            "S5",
+            "S11",
+            "S24",
+            "S33",
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The criteria in this guide are those in the First Schedule to the Economic Development Board Act as replaced by the Economic and Financial Measures (Miscellaneous Provisions) Act 2026, which was gazetted on 13 August 2026, and in the EDB guidelines as they stood on 20 November 2026. Some official web pages still show older figures. The Passport and Immigration Office page on Occupation Permits, for example, still shows permanent residence after 3 years. Where pages disagree, this guide follows the Act and the EDB guidelines.",
+          "sources": [
+            "S2",
+            "S3",
+            "S1",
+            "S34"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Occupation Permit and its categories",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Occupation Permit is a combined work and residence permit. It lets a non-citizen work, invest and live in Mauritius. The three main categories are investor, professional and self-employed. A non-citizen applies under the category that matches the activity. Where the investor is a company, each shareholder who is also a director must apply and must meet the criteria.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Permit",
+            "Who it is for",
+            "Main threshold",
+            "Validity",
+            "Conditions to keep or renew it"
+          ],
+          "rows": [
+            [
+              "Occupation Permit: Investor",
+              "A non-citizen who invests in and runs a business",
+              "Initial investment of USD 100,000, with a certified bank statement and a written undertaking to transfer the money within 60 days of the permit being issued",
+              "Up to 10 years, renewable",
+              "Turnover of at least MUR 5 million from the third year of registration. For renewal, at least MUR 8 million from the fifth year."
+            ],
+            [
+              "Occupation Permit: Investor for innovative start-ups",
+              "A founder with an innovative project",
+              "No minimum investment. The project is submitted to the EDB, or the business is registered with an incubator accredited by the Mauritius Research and Innovation Council",
+              "Up to 10 years, renewable",
+              "Annual progress report within 3 months of the end of the first year. Development report showing a minimum viable product at the end of the fifth year."
+            ],
+            [
+              "Occupation Permit: Professional",
+              "An employee with a contract of employment in Mauritius",
+              "Monthly basic salary of at least MUR 50,000, in all sectors",
+              "The length of the contract or 10 years, whichever is shorter",
+              "The employer applies. A holder under the earlier MUR 30,000 rule gets one renewal under that rule."
+            ],
+            [
+              "Occupation Permit: Self-employed",
+              "A person working alone in the services sector",
+              "Initial investment of USD 50,000, transferred within 60 days, and at least 3 letters of intent, 2 of them from potential local clients",
+              "Up to 10 years, renewable",
+              "Business income of at least MUR 2 million from the third year. For renewal, at least MUR 3 million a year from the fifth year. One local administrative employee is allowed."
+            ],
+            [
+              "Occupation Permit: Young professional",
+              "A graduate of a tertiary institution in Mauritius",
+              "An undergraduate degree from a local institution recognised by the Higher Education Commission, or an equivalent professional certification obtained in Mauritius",
+              "The length of the contract or 3 years, whichever is shorter",
+              "The employer applies."
+            ],
+            [
+              "Short-term Occupation Permit",
+              "A professional on a short assignment",
+              "No separate threshold is stated in the EDB guidelines",
+              "Up to 9 months, with one extension of up to 3 months",
+              "The extension must be applied for at least 15 days before expiry."
+            ],
+            [
+              "Residence permit: retired non-citizen",
+              "A non-citizen aged 50 or over",
+              "Bank statement showing at least USD 24,000, then an initial transfer of at least USD 2,000 within 60 days and USD 24,000 a year or USD 2,000 a month",
+              "10 years, renewable",
+              "No paid employment. Investment in a business is allowed if the holder takes no salary from it."
+            ],
+            [
+              "Residence permit through property",
+              "A buyer under an approved scheme",
+              "Purchase price of at least USD 375,000",
+              "For as long as the buyer owns the property",
+              "The main holder does not need an Occupation Permit or work permit to invest and work."
+            ],
+            [
+              "Golden Visa",
+              "A high net worth investor",
+              "Written undertaking to invest at least USD 1 million in qualifying sectors within 12 months, and a bank statement showing USD 1 million",
+              "Up to 2 years, renewable",
+              "The EDB monitors the investment. The first source of income must be outside Mauritius."
+            ],
+            [
+              "Premium Visa",
+              "A long-stay visitor, retiree or remote worker",
+              "Proof of long-stay plans and of travel and health insurance. Income source outside Mauritius",
+              "More than 6 months and up to 1 year, renewable",
+              "The holder must not enter the Mauritian labour market."
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3",
+            "S5",
+            "S9",
+            "S10",
+            "S32"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "What changed on 13 August 2026: the USD 50,000 investor option was removed, the professional salary threshold rose from MUR 30,000 to MUR 50,000 for all sectors, the Expert Pass and ProPass labels were dropped, the self-employed income tests were raised, and the Family Occupation Permit (a USD 250,000 contribution) was abolished. A new technical category for workers under Government-to-Government agreements is in the Act but starts only on a date to be fixed by Proclamation.",
+          "sources": [
+            "S3",
+            "S32",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A professional may invest in a business if he or she is not employed in it and takes no salary from it. A professional may hold shares in the employer, but not a majority.",
+            "A professional who changes employer needs a fresh application from the new employer. After a contract ends, the holder has 6 months to find a new job or permit if a self-undertaking form reaches the EDB and PIO within 2 weeks.",
+            "Dependants (spouse, including a common law partner of the opposite sex, parents and unmarried children who do not work) can apply for a residence permit for the same period as the main holder.",
+            "Regulated activities need their own licence or clearance, for example from the Bank of Mauritius, the Financial Services Commission or the Tourism Authority."
+          ],
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How to apply for an Occupation Permit, and what it costs",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Register on NELS at business.edbmauritius.org and submit the application online with every document on the checklist. This can be done from abroad. For a professional, the employer submits the application.",
+            "Pay the non-refundable application fee of USD 50 by credit or debit card. This fee has applied to all Occupation Permit and Residence Permit applications since 1 December 2025.",
+            "The Occupation Permit Unit and the PIO check the file. A Joint Committee of the EDB and PIO, chaired by the Prime Minister's Office, assesses complete applications.",
+            "If approved, an Approval in Principle email is sent. It is valid for 90 days for a new application and 30 days for a renewal. It is not a visa.",
+            "Travel to Mauritius, complete the medical examination there, upload the remaining documents and pay the permit fee.",
+            "Attend the appointment with all original documents and a valid visa. The applicant is registered with the EDB and the PIO issues the permit.",
+            "Investors and self-employed persons transfer the investment into a bank account in Mauritius within 60 days of the permit being issued."
+          ],
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Fee",
+            "Amount"
+          ],
+          "rows": [
+            [
+              "Application fee, per application (non-refundable)",
+              "USD 50"
+            ],
+            [
+              "Permit fee: investor, self-employed or retired non-citizen, 10 years",
+              "USD 1,000"
+            ],
+            [
+              "Permit fee: professional, contract of not more than 2 years (paid by the employer)",
+              "USD 400"
+            ],
+            [
+              "Permit fee: professional, contract of more than 2 and not more than 3 years",
+              "USD 500"
+            ],
+            [
+              "Permit fee: professional, contract of more than 3 and not more than 5 years",
+              "USD 800"
+            ],
+            [
+              "Permit fee: professional, contract of more than 5 and up to 10 years",
+              "USD 1,000"
+            ],
+            [
+              "Short-term Occupation Permit, first issue (up to 9 months)",
+              "USD 300"
+            ],
+            [
+              "Short-term Occupation Permit, extension (up to 3 months, once)",
+              "USD 150"
+            ],
+            [
+              "Each dependant of a permit holder",
+              "USD 400"
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A refused applicant may appeal once, through NELS, within 30 days of the refusal email.",
+            "A renewal application must be submitted on NELS at least one month before the permit expires.",
+            "The EDB, the PIO and the Mauritius Revenue Authority may check that a holder still meets the criteria. A holder who does not may be deregistered by the EDB and the permit cancelled by the PIO.",
+            "Investors must declare the company's gross income to the Mauritius Revenue Authority each year. A company must also file an annual return with the Corporate and Business Registration Department."
+          ],
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Several pages on residency.mu still say that applying on NELS is free of charge. The EDB guidelines, updated in October 2026, state the USD 50 application fee from 1 December 2025. This guide follows the guidelines.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The work permit route",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen who does not hold an Occupation Permit or another exempting permit needs a work permit to be employed in Mauritius. Work permits are issued by the Employment Division of the Ministry of Labour and Industrial Relations under the Non-Citizens (Employment Restriction) Act. The employer applies, not the worker, and a work permit is tied to that employer.",
+          "sources": [
+            "S23",
+            "S24"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Applications for new, renewed and transferred work permits are made online on NELS. Since 1 April 2024 a residence permit application to the PIO is submitted automatically with the online work permit application.",
+            "The employer must show that the job could not be filled locally, with a vacancy report from an Employment Information Centre and proof of advertising on mauritiusjobs.govmu.org.",
+            "The quota system and the Permission in Principle step have been abolished. The maximum stay for foreign workers in all sectors is 10 years.",
+            "The worker should generally be aged 20 to 60. Holders of a tourist or student visa cannot be the subject of a work permit application.",
+            "A contract of employment must be vetted by the Ministry where the salary is MUR 50,000 a month or less.",
+            "A processing fee of MUR 700 is paid per application. On approval, a non-refundable annual fee of MUR 500 per worker is paid with the prescribed work permit fee. Fees not paid within 30 days of the claim cancel the application.",
+            "Renewal should be applied for 3 months before expiry. A late renewal carries a surcharge of 50 per cent of the permit fee within 30 days of expiry and 100 per cent after that.",
+            "Working, or employing a non-citizen, without a valid permit is an offence. The fine is between MUR 100,000 and MUR 500,000, with imprisonment of up to 5 years."
+          ],
+          "sources": [
+            "S23",
+            "S25",
+            "S27"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Premium Visa and Golden Visa",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Premium Visa is for a non-citizen who wants to stay longer than a tourist, as a visitor, a retiree or a professional working remotely with his or her family. It is needed for a stay of more than 180 days in a calendar year. It is valid for more than six months and up to one year, and can be renewed. It is applied for online and no fee is charged. The holder must not enter the Mauritian labour market, and the main place of business and source of income must be outside Mauritius.",
+          "sources": [
+            "S10",
+            "S26"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A Premium Visa holder who later wants to work or invest in Mauritius can apply for an Occupation Permit, or for a residence permit as a retired non-citizen.",
+          "sources": [
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Golden Visa is new in 2026. It was written into the Economic Development Board Act in August 2026 and applications opened on NELS on 12 November 2026. It is aimed at high net worth investors and entrepreneurs. The applicant undertakes in writing to invest at least USD 1 million in qualifying sectors within 12 months of the visa being issued.",
+          "sources": [
+            "S3",
+            "S5",
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Validity: up to 2 years, multiple entry, renewable. Spouse and children are covered.",
+            "Fee: no processing fee.",
+            "Processing: 5 working days once the application is complete. The EDB screens it and the PIO issues the visa.",
+            "Evidence: a business plan, travel and health insurance, proof of accommodation, the written undertaking, and a bank statement from the country of origin showing a balance of at least USD 1 million.",
+            "Qualifying sectors: financial services, fintech, ICT, tourism and hospitality, manufacturing, healthcare and wellness, education, renewable energy, blue economy, innovative or knowledge-based activities, and creative industries.",
+            "If the investment is not made in time, the visa may be cancelled or not renewed.",
+            "A holder who has invested USD 1 million within 12 months, in a business activity other than buying residential property under the EDB property schemes, may apply for a Permanent Residence Permit."
+          ],
+          "sources": [
+            "S5",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Residence permits and permanent residence",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A residence permit gives the right to live in Mauritius. A non-citizen can hold one as the dependant of a permit holder, as a retired non-citizen aged 50 or over, or as the owner of a qualifying property bought for at least USD 375,000. From 1 October 2026 a non-refundable processing fee of USD 50 is charged for each applicant, including each dependant, on residence permit applications based on a property purchase. It is paid by card at the EDB office.",
+          "sources": [
+            "S1",
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Permanent Residence Permit lasts 20 years. It is open to holders of an Occupation Permit or a retired non-citizen residence permit who have held it for at least 5 years and meet the test for their category. The Finance Act 2025 raised the qualifying period from 3 to 5 years and removed the older route of investing USD 375,000 in a qualifying business. Applications go to the Residence Permit Section of the Prime Minister's Office in Port Louis. Spouse, children and parents can be included.",
+          "sources": [
+            "S2",
+            "S11",
+            "S32",
+            "S34"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Category",
+            "Test for a Permanent Residence Permit (rules in force from 13 August 2026)"
+          ],
+          "rows": [
+            [
+              "Investor",
+              "Occupation Permit as investor for at least 5 years, and turnover of at least MUR 15 million a year for the 5 years before applying, or MUR 75 million in total over 5 consecutive years"
+            ],
+            [
+              "Professional",
+              "Occupation Permit as professional, or a valid work permit, for at least 5 years, and a monthly basic salary of at least MUR 400,000 for 5 consecutive years"
+            ],
+            [
+              "Self-employed",
+              "Occupation Permit as self-employed for at least 5 years, and business income of at least MUR 3 million a year for 5 consecutive years, or MUR 15 million in total over 5 consecutive years"
+            ],
+            [
+              "Retired non-citizen",
+              "Residence permit as retired non-citizen for at least 5 years, and transfers of at least USD 200,000 in total over 5 consecutive years"
+            ],
+            [
+              "Golden Visa holder",
+              "At least USD 1 million invested within 12 months of the visa being issued, in a business activity other than residential property under the EDB schemes"
+            ],
+            [
+              "AI founder",
+              "An AI founder, as prescribed under the AI City Scheme, who has invested at least USD 1 million"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The EDB guidelines add that professionals and self-employed persons should apply no later than 6 months after meeting the test.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Buying property as a non-citizen",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen can buy residential property in Mauritius only in the ways the law allows. The main routes are the schemes approved and managed by the EDB, and apartments in buildings of at least ground plus two floors. Holders of an Occupation Permit, Premium Visa or Golden Visa can use the same routes.",
+          "sources": [
+            "S12",
+            "S8",
+            "S10",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Route",
+            "What can be bought",
+            "Minimum value stated by the EDB",
+            "Residence permit"
+          ],
+          "rows": [
+            [
+              "Integrated Resort Scheme (IRS)",
+              "Villas, townhouses, penthouses, apartments, duplexes and serviced plots in existing IRS projects",
+              "Serviced land: not less than USD 350,000. No other minimum is stated on the EDB page",
+              "Yes, if the price is at least USD 375,000"
+            ],
+            [
+              "Real Estate Scheme (RES)",
+              "Residences in existing RES projects",
+              "No minimum is stated on the EDB page",
+              "Yes, if the price is at least USD 375,000"
+            ],
+            [
+              "Property Development Scheme (PDS)",
+              "Residential property in PDS projects",
+              "No minimum is stated on the EDB page",
+              "Yes, if the price exceeds USD 375,000"
+            ],
+            [
+              "Smart City Scheme (SCS)",
+              "A townhouse, villa, apartment, penthouse or duplex in a smart city",
+              "No minimum is stated on the EDB page",
+              "Yes, if the price is at least USD 375,000"
+            ],
+            [
+              "Invest Hotel Scheme (IHS)",
+              "A room or unit in an approved hotel. The owner may use it for 45 days in any 12 months",
+              "No minimum is stated on the EDB page",
+              "Yes, if the price is at least USD 375,000"
+            ],
+            [
+              "Ground plus two apartments",
+              "An apartment in a building of at least two floors above the ground floor, outside the schemes",
+              "MUR 6 million",
+              "Yes, if the price is at least USD 375,000"
+            ]
+          ],
+          "sources": [
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S16",
+            "S17",
+            "S18",
+            "S19"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The residence permit lasts for as long as the buyer owns the property. The main holder does not need an Occupation Permit or work permit to invest and work in Mauritius.",
+            "An application to buy under the IRS, RES or PDS is made to the EDB by the scheme company or the buyer's representative, with a non-refundable processing fee of MUR 25,000.",
+            "A non-citizen buyer transfers the price from abroad in a convertible currency. 85 per cent of the price is paid to the promoter in rupees and the rest in foreign currency or rupees.",
+            "An owner who rents out the property must do so through the scheme company or a provider it appoints.",
+            "An owner may resell, after giving the EDB written notice 30 days before the sale."
+          ],
+          "sources": [
+            "S1",
+            "S13",
+            "S19"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Duties in 2026: the Finance Act 2025 had set a 10 per cent rate of registration duty and land transfer tax on sales of residential property to non-citizens from 1 July 2026. The Finance Act 2026 repealed those provisions, and KPMG's summary states that the general 5 per cent rate continues. The Finance Act 2026 also introduced an additional duty of 10 per cent, paid by the seller, on the transfer to a non-citizen of residential property on State land or Pas Géométriques, unless a presale agreement was signed before a notary before 19 June 2026.",
+          "sources": [
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The EDB info centre still lists guidelines dated December 2023 under which a resident non-citizen, such as the main holder of an Occupation Permit or Permanent Residence Permit, may with approval buy one residential property outside the schemes for at least USD 500,000. This guide could not confirm that the route was still open on 20 November 2026.",
+          "sources": [
+            "S20"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Bank accounts and foreign exchange",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Banks in Mauritius are licensed by the Bank of Mauritius. Non-residents are allowed to open a bank account, usually a savings account. Foreign residents can open a current account in rupees or in foreign currency. A foreign currency account can receive funds only by bank transfer. The minimum deposit depends on the bank's own rules.",
+          "sources": [
+            "S28"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An Occupation Permit applicant becomes eligible to open a bank account in Mauritius once the Approval in Principle email is received. The investor's USD 100,000, or the self-employed person's USD 50,000, must then reach the account within 60 days of the permit being issued. Before that, the application rests on a certified bank statement from the applicant's home country and a written undertaking.",
+          "sources": [
+            "S8",
+            "S35",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Mauritius has no exchange control. The UNCTAD investment guide lists no exchange controls and free repatriation of profits, dividends and capital. The EDB states that owners of scheme property face no restriction on repatriating the proceeds of sale or rent.",
+          "sources": [
+            "S29",
+            "S30",
+            "S14"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Bank of Mauritius website could not be opened for this guide, so the foreign exchange position is cited from the UNCTAD guide, the EDB and Deloitte's January 2026 summary.",
+          "sources": [
+            "S29",
+            "S30"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "OP Guidelines: Occupation Permit (Investor, Professional, Self-Employed) and Residence Permit (Retired Non-Citizen)",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/OP-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Undated; file last modified 8 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Economic Development Board Act (Act 11 of 2017), consolidated text",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/EDB-Act-2026.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Amendments noted up to Act 13 of 2026, in operation 13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Assented 12 August 2026; Government Gazette No. 59 of 13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "What's New in Occupation and Residence Permits",
+      "url": "https://edbmauritius.org/newsletter-august-2026-op",
+      "publisher": "Economic Development Board",
+      "published": "EDB Monthly Newsletter, August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Golden Visa Scheme Mauritius: Guidelines",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/Golden-Visa-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Mauritius Golden Visa: Now Live on NELS",
+      "url": "https://edbmauritius.org/newsroom/mauritius-golden-visa-now-live-on-nels",
+      "publisher": "Economic Development Board",
+      "published": "12 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Communique: Processing fees for residence permit application",
+      "url": "https://edbmauritius.org/newsroom/communique-processing-fees-for-residence-permit-application",
+      "publisher": "Economic Development Board",
+      "published": "4 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Investment of USD 100,000 - Residency in Mauritius",
+      "url": "https://residency.mu/invest/investment-of-usd-100000/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Residency by Innovation - Residency in Mauritius",
+      "url": "https://residency.mu/invest/residency-by-innovation/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Mauritius Premium Visa - Residency in Mauritius",
+      "url": "https://residency.mu/live/mauritius-premium-visa/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Permanent Residence Permit (PRP) - Residency in Mauritius",
+      "url": "https://residency.mu/live/permanent-residence-permit-prp/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Acquire - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Ground + 2 Appartments - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/ground-2-appartments/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Integrated Resort Scheme - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/integrated-resort-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Real Estate Scheme - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/real-estate-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Property Development Scheme - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/property-development-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Smart City Scheme - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/smart-city-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Invest Hotel Scheme - Residency in Mauritius",
+      "url": "https://residency.mu/acquire/invest-hotel-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Guidelines for Buyers of Residential Property under the IRS / RES / PDS",
+      "url": "https://edbmauritius.org/wp-content/uploads/2022/10/Guidelines-for-IRS-RES-PDS-1.pdf",
+      "publisher": "Economic Development Board",
+      "published": "January 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Guidelines: Acquisition of Residential Property for a minimum of USD 500,000",
+      "url": "https://edbmauritius.org/wp-content/uploads/2023/12/Guidelines-Acquisition-of-property-USD-500-000-.pdf",
+      "publisher": "Prime Minister's Office and Economic Development Board",
+      "published": "File dated 20 December 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Mauritius Revenue Authority (copy of the Act)",
+      "published": "Assented 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Tax Alert Issue 09: Finance Act 2026",
+      "url": "https://assets.kpmg.com/content/dam/kpmgsites/za/pdf/2026/08/Tax%20Alert%20Issue%2009%20-%20Finance%20Act%202026.pdf",
+      "publisher": "KPMG Mauritius (professional firm summary, not an official source)",
+      "published": "August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Work Permit Information Sheet: Summary of Main Procedures and Checklist of Documents",
+      "url": "https://empment-labour.govmu.org/Documents/Downloads/Workpermit%20Infosheet.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "About Work Permit Unit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/AboutWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Application of Work Permit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/ApplicationWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Premium Visa",
+      "url": "https://passport.govmu.org/passport/?page_id=595",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Residence Permit for Employment",
+      "url": "https://passport.govmu.org/passport/?page_id=557",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Banks - Residency in Mauritius",
+      "url": "https://residency.mu/practical-information/banks/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "iGuide Mauritius: Investment Guide to Mauritius",
+      "url": "https://theiguides.org/public-docs/guides/mauritius",
+      "publisher": "UNCTAD and the International Chamber of Commerce (guide linked from the Economic Development Board site)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "International Tax: Mauritius Highlights 2026",
+      "url": "https://www.deloitte.com/content/dam/assets-shared/docs/services/tax/2026/dttl-tax-mauritiushighlights-2026.pdf",
+      "publisher": "Deloitte (professional firm summary, not an official source)",
+      "published": "Updated January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "About EDB",
+      "url": "https://edbmauritius.org/about-edb",
+      "publisher": "Economic Development Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "The Finance Act 2025 (Act No. 18 of 2025)",
+      "url": "https://www.mra.mu/download/FinanceAct2025.pdf",
+      "publisher": "Mauritius Revenue Authority (copy of the Act)",
+      "published": "Assented 8 August 2025; Government Gazette No. 66 of 9 August 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S33",
+      "title": "Passport and Immigration Office: home page",
+      "url": "https://passport.govmu.org/passport/",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S34",
+      "title": "Occupation Permit",
+      "url": "https://passport.govmu.org/passport/?page_id=626",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S35",
+      "title": "Residency Self Employed Entrepreneurs - Residency in Mauritius",
+      "url": "https://residency.mu/invest/self-employed-entrepreneurs/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "National Electronic Licensing System (NELS)",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board",
+      "what": "Register and apply online for an Occupation Permit, a retired non-citizen residence permit, a Golden Visa or a work permit."
+    },
+    {
+      "title": "Residency in Mauritius portal",
+      "url": "https://residency.mu/",
+      "publisher": "Economic Development Board",
+      "what": "Read the EDB's pages on each permit, visa and property scheme and find the forms."
+    },
+    {
+      "title": "OP Guidelines",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/OP-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Check the criteria, document checklists, fees and undertaking forms for Occupation Permits and retired non-citizen permits."
+    },
+    {
+      "title": "Golden Visa Guidelines",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/Golden-Visa-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Read the conditions, qualifying sectors, checklist and undertaking form for the Golden Visa."
+    },
+    {
+      "title": "Mauritius Premium Visa",
+      "url": "https://residency.mu/live/mauritius-premium-visa/",
+      "publisher": "Economic Development Board",
+      "what": "See who can apply for a Premium Visa and follow the link to the online application."
+    },
+    {
+      "title": "Permanent Residence Permit (PRP)",
+      "url": "https://residency.mu/live/permanent-residence-permit-prp/",
+      "publisher": "Economic Development Board",
+      "what": "Read the criteria for the 20 year permit and find the application forms."
+    },
+    {
+      "title": "EDB Info Centre",
+      "url": "https://edbmauritius.org/info-centre",
+      "publisher": "Economic Development Board",
+      "what": "Download scheme guidelines, including those for IRS, RES, PDS, Smart City and Invest Hotel buyers."
+    },
+    {
+      "title": "Guidelines for Buyers of Residential Property under the IRS / RES / PDS",
+      "url": "https://edbmauritius.org/wp-content/uploads/2022/10/Guidelines-for-IRS-RES-PDS-1.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Read how a purchase under the schemes is approved, paid for, registered and resold."
+    },
+    {
+      "title": "Application of Work Permit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/ApplicationWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Find out how an employer applies for a work permit and download the information sheet."
+    },
+    {
+      "title": "Work Permit Information Sheet",
+      "url": "https://empment-labour.govmu.org/Documents/Downloads/Workpermit%20Infosheet.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Check the procedure, fees and documents for a work permit, sector by sector."
+    },
+    {
+      "title": "Passport and Immigration Office",
+      "url": "https://passport.govmu.org/passport/",
+      "publisher": "Passport and Immigration Office",
+      "what": "Read about visas and residence permits and download immigration forms."
+    },
+    {
+      "title": "Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Incorporate a company or register a business before or alongside the permit application."
+    },
+    {
+      "title": "Economic Development Board Act, consolidated",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/EDB-Act-2026.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Read the legal criteria for each permit in the First Schedule."
+    },
+    {
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read the August 2026 amendments to the EDB Act and the Immigration Act."
+    }
+  ],
+  "unverified": [
+    "Fees for a Permanent Residence Permit. The only official figures found (USD 50 to apply and USD 3,000 for the principal applicant) are in guidelines dated July 2022 that predate the 2025 and 2026 changes, so they are not stated in the guide.",
+    "Whether a resident non-citizen can still buy one residential property outside the schemes for at least USD 500,000 (section 3(3)(d) of the Non-Citizens (Property Restriction) Act). The EDB still lists its December 2023 guidelines and the Finance Acts 2025 and 2026 do not repeal the provision, but press reports say the 2025-2026 Budget announced its discontinuation and no official confirmation either way was found.",
+    "The current consolidated text of the Non-Citizens (Property Restriction) Act. The copy on residency.mu is dated May 2021.",
+    "Any minimum purchase price under the RES, PDS, Smart City and Invest Hotel schemes other than the USD 375,000 residence permit threshold. None is stated on the EDB pages read.",
+    "The income or bank evidence required for a Premium Visa. The EDB page refers to a checklist that was not opened.",
+    "The work permit fee by category under the Non-Citizens (Work Permits) (Fees) Regulations 2013. Only the MUR 700 processing fee and MUR 500 annual fee were confirmed.",
+    "How long an Occupation Permit application takes. No processing time is stated in the EDB guidelines.",
+    "Any minimum salary for the Young Professional Occupation Permit. None is set in the First Schedule to the EDB Act; a figure quoted by an immigration firm was not confirmed.",
+    "Whether the technical category Occupation Permit (item 6) and the digital travel authorisation have been brought into force. Both start on a date to be fixed by Proclamation.",
+    "The Bank of Mauritius position on exchange control and account opening. The site bom.mu could not be opened (certificate error by direct request, HTTP 503 through the fetch tool).",
+    "The KPMG tax alert on residency and property rules after the Finance Act 2025 (link returned HTTP 404)."
+  ]
+}

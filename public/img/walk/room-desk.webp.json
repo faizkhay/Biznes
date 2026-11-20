@@ -1,7 +1,0 @@
-{
-  "file": "/img/walk/room-desk.webp",
-  "is": "The painted stage at the \"room\" stop of the walk, framed for a wide screen. A capture of this site's own stage: generated paintings with the listings' lettering set over them in code.",
-  "made": "scripts/stills.mjs, from src/components/stage, through ?debug and window.__walk",
-  "size": "1600 x 920",
-  "prompt": "Origin: a capture of this site's own painted stage (src/components/stage), made by scripts/stills.mjs. The paintings on it are generated illustrations whose prompts are in public/img/plates/*.json; the lettering, the plaque and the tags are set over them in code from the site's data."
-}

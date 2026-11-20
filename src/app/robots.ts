@@ -5,31 +5,20 @@ import { siteUrl } from "@/lib/site-url";
 export const dynamic = "force-static";
 
 /**
- * Before launch the site is closed to every crawler: its listings are samples, and a sample must
- * never be found as if it were for sale. Once `launched` is true in src/data/site.ts, search engines
- * and AI assistants are welcome, because a business wants to be found and quoted correctly. The
- * named crawlers share one group with everyone's rules: a crawler follows only the group that names
- * it.
+ * Before launch the site is closed to every crawler. Once `launched` is true in src/data/site.ts,
+ * search engines and AI assistants are welcome: a directory wants to be found and quoted correctly.
+ * The results of a search and the endpoints behind the pages are kept out: they are as many
+ * addresses as there are questions. The named crawlers share one group with everyone's rules,
+ * because a crawler follows only the group that names it.
  *
  * KOS kit. The crawler list is the agency site's, October 2026.
  */
-const AI_CRAWLERS = [
-  "GPTBot",
-  "OAI-SearchBot",
-  "ChatGPT-User",
-  "ClaudeBot",
-  "Claude-SearchBot",
-  "Claude-User",
-  "PerplexityBot",
-  "Google-Extended",
-  "Applebot-Extended",
-  "CCBot",
-];
+const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot"];
 
 export default function robots(): MetadataRoute.Robots {
   if (!site.launched) return { rules: [{ userAgent: "*", disallow: "/" }] };
   return {
-    rules: [{ userAgent: [...AI_CRAWLERS, "*"], allow: "/", disallow: "/api/" }],
+    rules: [{ userAgent: [...AI_CRAWLERS, "*"], allow: "/", disallow: ["/api/", "/search"] }],
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

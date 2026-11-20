@@ -1,0 +1,1194 @@
+{
+  "slug": "licences-and-permits",
+  "title": "Licences and permits a business needs after registration",
+  "summary": "What a business in Mauritius needs beyond registration: the Building and Land Use Permit from the council, the yearly trade fee, the National Electronic Licensing System, and the main sector licences with the bodies that issue them. Written for someone opening a first business.",
+  "audience": "First-time business owners and people opening new premises in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Building and Land Use Permit: time for a decision",
+      "value": "14 working days",
+      "detail": "Counted from the effective date of the application. 3 working days for a micro or small enterprise registered under the Small and Medium Enterprises Act 2017. Text of the Act as at 13 October 2025.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Building and Land Use Permit: application fee",
+      "value": "None",
+      "detail": "A fee set by each council is payable when the permit is issued.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Trade fee due dates, financial year 2026/2027",
+      "value": "20 January 2027 and 30 June 2027",
+      "detail": "First instalment, for 1 July to 31 December 2026, by 20 January 2027. Second instalment, for 1 January to 30 June 2027, by 30 June 2027. Paid at the Corporate and Business Registration Department.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Surcharge on a late trade fee",
+      "value": "50 per cent",
+      "detail": "On any amount not paid within the period set by section 122 of the Local Government Act.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Small trade fees",
+      "value": "Not payable where the annual fee is MUR 5,000 or less",
+      "detail": "Section 122(6B): for 11 years from 1 January 2017, for an operator whose annual trade fee did not exceed MUR 5,000 at 30 June 2016. Not for trades under the Excise Act, gambling or other prescribed activities.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Trade fee for a new business",
+      "value": "First payable 2 financial years after registration",
+      "detail": "Part of a financial year counts as one financial year. Applies to businesses registered on or after 5 August 2021.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Fire certificate fee",
+      "value": "MUR 1,000 for premises up to 1,000 m2",
+      "detail": "Plus MUR 1,000 for each additional 1,000 m2 or part, up to MUR 25,000. No application fee. Figures from the fire service guideline dated 13 September 2021.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "Food Handler's Certificate",
+      "value": "Valid 3 years, fee MUR 300",
+      "detail": "Food Regulations 2024. The fee provisions were set to start on 1 September 2025.",
+      "sources": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "label": "Liquor retail licence (off premises), year 2026",
+      "value": "MUR 8,000 a year",
+      "detail": "A processing fee of MUR 1,500 applies to an application for the issue or transfer of a Part II licence from 1 October 2025.",
+      "sources": [
+        "S22",
+        "S21",
+        "S23"
+      ]
+    },
+    {
+      "label": "Tourist Enterprise Licence",
+      "value": "Valid 12 months",
+      "detail": "From the date of issue, or a shorter period set by the Tourism Authority.",
+      "sources": [
+        "S18"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What sits on top of registration",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Registering a business or incorporating a company does not by itself allow every activity to start. Three further layers can apply: a Building and Land Use Permit for the premises, an annual trade fee for a classified trade, and a licence, certificate or approval from the body that regulates the sector.",
+          "sources": [
+            "S1",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Local Government Act makes each Municipal City Council, Municipal Town Council or District Council responsible for the Building and Land Use Permit in its area. A classified trade is a business listed in the Twelfth Schedule to that Act. The Corporate and Business Registration Department publishes the list of classified trades and the trade fee for each one.",
+          "sources": [
+            "S1",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Regulated activity named by the registry",
+            "Approval comes from"
+          ],
+          "rows": [
+            [
+              "Activities related to betting and horse racing",
+              "Gambling Regulatory Authority"
+            ],
+            [
+              "Banian and owner of fishing business",
+              "Ministry of Agro-Industry, Food Security, Blue Economy and Fisheries"
+            ],
+            [
+              "Bank, main office and branch",
+              "Bank of Mauritius"
+            ],
+            [
+              "Pharmacy, wholesale or retail",
+              "Ministry of Health and Wellness"
+            ],
+            [
+              "Retail and wholesale of liquor",
+              "Mauritius Revenue Authority"
+            ],
+            [
+              "Sale of fruits, vegetables, foodstuffs and non-foodstuffs in markets, fairs, along the road or mobile",
+              "Ministry of Local Government"
+            ],
+            [
+              "Sale of foodstuffs and non-foodstuffs on the beach",
+              "Ministry of Tourism"
+            ],
+            [
+              "Wholesale of scrap metal",
+              "Ministry of Commerce and Consumer Protection"
+            ]
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The table above is the registry's own list of regulated activities that require approval by the relevant authorities. It is not a full list of sector licences. The table later in this guide covers more sectors.",
+          "sources": [
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Building and Land Use Permit",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No development works may be undertaken unless a Building and Land Use Permit has been issued for them. Development works include putting up, extending or demolishing a building, altering or repairing a building, making a material change in the use of a building or of land around it, and dividing land. The City Council of Port Louis lists starting up a business, changing the use of a building or plot, displaying an advertising sign and using electric engines or motors among the cases that need a permit.",
+          "sources": [
+            "S1",
+            "S9"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Apply to the council for the area where the premises are, through the National Electronic Licensing System. The Act says the application must be made through that system. No application fee is payable.",
+            "The council's Chief Executive may ask for more information or documents within 8 working days of receipt. Once the application is complete it gets an effective date and an acknowledgement receipt.",
+            "The council forwards the application to the Permits and Business Monitoring Committee and, where a clearance is needed, to bodies such as the Ministry responsible for health, the Central Electricity Board, the Central Water Authority or the Waste Water Management Authority. Each has 5 working days to give its clearance. If it does not answer in time, the clearance is taken as given.",
+            "The Committee approves the application or refuses it in writing with reasons within 14 working days of the effective date. The limit is 3 working days for a micro or small enterprise registered under the Small and Medium Enterprises Act 2017.",
+            "On approval, pay the fee set by the council. The permit is then issued through the National Electronic Licensing System, with any conditions the council decides.",
+            "A refusal can be appealed to the Environment and Land Use Appeal Tribunal within 21 days of receiving the notification."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the applicant has neither a permit nor a refusal within 2 working days after the time limit ends, the application is deemed approved once the fee is paid. The acknowledgement receipt and the fee receipt together then count as the permit. This does not apply to some cases, such as premises in the Buffer Zones or a place of public worship.",
+            "No fee is payable for the issue of a permit to build a pharmaceutical manufacturing factory, a food processing plant, a warehouse or a sheltered farming structure.",
+            "A permit granted for an economic activity states the cluster the activity belongs to. A change of activity inside the same cluster needs no fresh permit, subject to the Eleventh Schedule. A change to another cluster needs a fresh permit.",
+            "The Act does not require a permit from a person who sets up a greenhouse for crop production on agricultural land, or who carries out a classified trade that regulations exempt. The City Council of Port Louis also lists a home based activity that follows the Planning Policy Guidance as exempt."
+          ],
+          "sources": [
+            "S1",
+            "S9"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Each council sets its own fee for the issue of a permit by regulations. For the documents to file, the City Council of Port Louis refers applicants to the Building and Land Use Permit Guide on the Economic Development Board's platform.",
+          "sources": [
+            "S1",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Trade fees under the Local Government Act",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A person who carries out a classified trade in the area of a council pays the prescribed fee to that council. Since 1 January 2020 the fee is paid through the Registrar, which in practice means the Corporate and Business Registration Department, at its office or online. The fee for a financial year is due on 20 January. Where it is more than MUR 5,000 it may be paid in 2 equal instalments, on or before 20 January and on or before 30 June of that financial year.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Rule",
+            "What the Act or the registry says"
+          ],
+          "rows": [
+            [
+              "Dates for financial year 2026/2027",
+              "First instalment, covering 1 July to 31 December 2026, payable until 20 January 2027. Second instalment, covering 1 January to 30 June 2027, payable by 30 June 2027."
+            ],
+            [
+              "Late payment",
+              "Surcharge of 50 per cent on the unpaid amount."
+            ],
+            [
+              "New business",
+              "The fee is first payable 2 financial years after the business is registered, then every financial year. Part of a financial year counts as one. The registry applies this to businesses registered on or after 5 August 2021."
+            ],
+            [
+              "Annual fee of MUR 5,000 or less",
+              "Section 122 does not apply, for 11 years from 1 January 2017, to an operator whose annual trade fee did not exceed MUR 5,000 at 30 June 2016. That period ends on 31 December 2027. The registry's notice for 2024/2025 put it this way: businesses whose fees are not more than MUR 5,000 are exempted."
+            ],
+            [
+              "Limits on that exemption",
+              "It does not cover trades regulated under the Excise Act, gambling activities or other prescribed activities."
+            ],
+            [
+              "Tourism and global business",
+              "No trade fee for the holder of a certificate, licence or permit from the Tourism Authority, or for the holder of a Global Business Licence with no physical office in Mauritius."
+            ],
+            [
+              "Paying ahead",
+              "The fee may be paid in advance for up to 3 years."
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Find the trade and its fee in the list of classified trades and trade fees published by the Corporate and Business Registration Department.",
+            "To pay online, register with Mauritius Network Services, log in, open the section for yearly and trade fees, search the pending fees for the business registration number and choose the instalment.",
+            "To pay in person, go to the cash office of the Corporate and Business Registration Department, One Cathedral Square Building, Jules Koenig Street, Port Louis.",
+            "The Registrar remits the fees and any surcharge collected to the council concerned."
+          ],
+          "sources": [
+            "S5",
+            "S3",
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "From 1 August 2026 trade fees for three trade codes are no longer paid at the Corporate and Business Registration Department: 70100 Agent in Land and/or Building or Estate Agent, 70101 Multipurpose Hall and 70200 Land Promoter and Property Developer. The registry directs these payments to the Real Estate Agent Authority. Its earlier notice says the two exemptions above do not apply to these activities.",
+          "sources": [
+            "S4",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The National Electronic Licensing System",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The National Electronic Licensing System, often written NELS, is run by the Economic Development Board at business.edbmauritius.org. The Board describes it as a single entry point for the application, payment, processing and determination of business-related licences. The site calls itself the Mauritius Business Licensing Platform.",
+          "sources": [
+            "S7",
+            "S8"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Body",
+            "Permits listed on the platform on 20 November 2026"
+          ],
+          "rows": [
+            [
+              "Local authorities",
+              "Building and Land Use Permit; Occupation Certificate"
+            ],
+            [
+              "Mauritius Fire and Rescue Service",
+              "Fire Certificate; Fire Safety Plan"
+            ],
+            [
+              "Mauritius Revenue Authority",
+              "Excise Licence"
+            ],
+            [
+              "Ministry of Environment, Solid Waste Management and Climate Change",
+              "Preliminary Environment Report approval; Environment Impact Assessment licence; Completion Certificate; Waste Carrier Licence"
+            ],
+            [
+              "Ministry of Health and Wellness",
+              "Licence to trade in dangerous chemicals; registration of extremely dangerous chemicals"
+            ],
+            [
+              "Ministry of Agro-Industry, Food Security, Blue Economy and Fisheries",
+              "Land Conversion Permit; Green Leaf Cultivator Licence; Laboratory Licence"
+            ],
+            [
+              "Ministry of Housing and Lands",
+              "Morcellement Permit; Real Estate Agent Licence"
+            ],
+            [
+              "Mauritius Qualifications Authority",
+              "Registration, renewal and change of a training institution"
+            ],
+            [
+              "Tourism Authority",
+              "Pleasure Craft Licence"
+            ],
+            [
+              "Ministry of Labour and Industrial Relations",
+              "Work Permit; Certificate of Exemption"
+            ],
+            [
+              "Economic Development Board and Passport and Immigration Office",
+              "Occupation and residence permits, visas and several support schemes"
+            ]
+          ],
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "The sequence below is the one the fire service describes for its certificate. Register an account on the platform.",
+            "Choose the permit, fill in the online form and upload the documents asked for.",
+            "Answer any request for clarification and follow the status of the application online. The system sends alerts by SMS and email.",
+            "Pay the fee when the application is approved, online by credit card or with a payment voucher at the body's cash office.",
+            "Download the permit or certificate from the platform."
+          ],
+          "sources": [
+            "S11",
+            "S7"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Tourist Enterprise Licence, the Food Handler's Certificate, the private security licence and trade fees were not listed on the platform on 20 November 2026. They are handled by the bodies named in this guide.",
+          "sources": [
+            "S7",
+            "S18",
+            "S26",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Fire certificate",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A fire certificate is required under section 19 of the Mauritius Fire and Rescue Service Act 2013 and the Fire Safety Plan and Fire Certificate Regulations 2018, as amended in 2021. Since 13 September 2021 every application and renewal is filed on the National Electronic Licensing System. A certificate is valid for at least one year and at most 3 years, depending on the risk assessment of the premises.",
+          "sources": [
+            "S11",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Commercial premises.",
+            "Industrial premises.",
+            "Residential premises of more than 7 storeys.",
+            "Premises where explosives are used or stored and that need a licence under the Explosives Act.",
+            "Premises where highly inflammable liquid or gas, or dangerous chemical, biological, radiological, nuclear or hazardous materials are used or stored.",
+            "Any other premises to which the public has access."
+          ],
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Item",
+            "Fee"
+          ],
+          "rows": [
+            [
+              "Application for a fire certificate",
+              "Nil"
+            ],
+            [
+              "Issue of a fire certificate, premises up to 1,000 m2",
+              "MUR 1,000"
+            ],
+            [
+              "Each additional 1,000 m2 or part",
+              "MUR 1,000"
+            ],
+            [
+              "Maximum fee for a certificate",
+              "MUR 25,000"
+            ],
+            [
+              "Reinspection",
+              "MUR 1,000"
+            ],
+            [
+              "Approval of a fire safety plan",
+              "MUR 1,000"
+            ]
+          ],
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "The owner of the premises applies. Where there is a single occupier, the occupier may apply with the owner's written consent and a letter undertaking to carry out the fire safety requirements. Where the premises have several owners, a syndic applies.",
+            "The fire service checks the application and documents. A complete application gets an effective date and lapses 6 months after it.",
+            "An officer visits the site.",
+            "If the premises meet fire safety norms, a payment voucher is issued and the certificate follows payment. If not, the applicant receives recommendations, carries out the works and pays for a reinspection."
+          ],
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Food businesses",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Food Act 2022 says no person may operate a food business unless registered under the Business Registration Act. A food business covers any stage of manufacture, processing, packaging, storage, transport, import or distribution of food, and includes food services, catering and the sale of food.",
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every person engaged in the sale, preparation, manufacture, serving, packing, cooking, carriage, handling or delivery of food for sale must hold a valid Food Handler's Certificate at all times.",
+            "No person may employ in a food business anyone who does not hold a valid certificate.",
+            "The certificate states that the holder has had a medical examination by a Government Medical Officer, has no infectious or communicable disease, is fit to work in a food establishment and has followed an approved food safety and hygiene training course.",
+            "The application goes to the supervising officer of the Ministry of Health and Wellness. The certificate is valid for 3 years and may be renewed for further periods of 3 years.",
+            "The fee for issue or renewal is MUR 300. A duplicate costs MUR 100.",
+            "A renewal application is due at least 30 days before expiry. A later application carries a surcharge of 50 per cent."
+          ],
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No person may import, manufacture or sell a food listed in the Second Schedule to the Food Regulations 2024 without a pre-market approval permit from the supervising officer. The application is made through TradeNet or on the form in the regulations, with a certificate of analysis from an accredited laboratory. The fee is MUR 5,000 for each approval granted. The fee for verification of imported food and clearance to Customs is MUR 1,000 for each clearance.",
+          "sources": [
+            "S12",
+            "S32"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Food Regulations 2024 came into operation on 9 September 2024 and replaced the Food Regulations 1999. Their fee provisions were first set to start on 1 March 2025 and were moved to 1 September 2025 by Government Notice No. 19 of 2025. A ministry notice of 21 January 2016, still linked from its Food Handler's Certificate page, gives a validity of two years. The 2024 regulations are the later text and give 3 years.",
+          "sources": [
+            "S12",
+            "S13",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Environment licences and import and export permits",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Under the Environment Act 2024 no proponent may start, alter or modify an undertaking listed in Part A of the Sixth Schedule without a Preliminary Environmental Report (PER) licence, or one listed in Part B without an Environmental Impact Assessment (EIA) licence. Part C lists undertakings that need a Strategic Environmental Assessment licence. Doing so without the licence is an offence. A project that is not listed is treated as an undertaking by the Minister where its nature, scope, scale and sensitive location make it likely to affect the environment or the zoning of an area.",
+          "sources": [
+            "S16"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Part A, PER licence, includes for example: manufacture of animal feed, manufacture of paint, manufacture of plastic products involving melting, moulding and extrusion, a ready-mix concrete plant, rearing of poultry above 15,000 heads, a recycling plant, a sawmill, a slaughter house and a textile industry associated with washing, bleaching and printing.",
+            "Part B, EIA licence, includes for example an asphalt plant, a landfill, the manufacture of batteries and land clearing and development in or on environmentally sensitive areas.",
+            "A Building and Land Use Permit for a scheduled undertaking is approved only where there is an approved preliminary environmental report or an EIA licence.",
+            "PER approval and the EIA licence are applied for on the National Electronic Licensing System. A ministry notice of 6 November 2026 says the Completion Certificate for PER, EIA and SEA projects is now applied for there too, with 2 hard copies sent to the Ministry."
+          ],
+          "sources": [
+            "S16",
+            "S1",
+            "S7",
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Controlled goods may enter Mauritius only with an import permit or an authorisation from the relevant authority. Without it the goods are detained and referred to that authority. Prohibited goods cannot be imported, exported, transited, sold or circulated. The official trade portal says an import permit or an approval to clear controlled goods is normally issued within 3 working days when all information and documents have been supplied.",
+          "sources": [
+            "S29"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Mauritius Revenue Authority lists prohibited and restricted imports under the Consumer Protection (Control of Imports) Regulations 2017.",
+            "Foodstuffs need permits from health or agricultural authorities. Plants and plant products need clearance from the Ministry of Agro Industry and Food Security. Weights and balances need authorisation from the Legal Metrology Services. Pharmaceutical products need authorisation from the Government Pharmacist.",
+            "If the authority refuses a permit, the imported goods are liable to seizure.",
+            "Most goods can be exported freely. A few controlled items need an export permit before export. The trade portal says export permits and export certificates are approved and delivered on the same day through TradeNet when all conditions are met, and Kimberley Process Certificates within 2 working days."
+          ],
+          "sources": [
+            "S31",
+            "S30"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Alcohol and tobacco licences",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No person may carry on a business listed in the Second Schedule to the Excise Act without the matching licence. The licensing authority is the Director-General of the Mauritius Revenue Authority. An application for a Part I or Part II licence needs a certificate of character issued by the Director of Public Prosecutions. An application for a Part III licence needs a clearance from the Commissioner of Police. Part I and Part II licences expire on 31 December. A licence renewed more than 14 days after expiry attracts a surcharge of 50 per cent. A licensee may not sell alcohol to a person under 18.",
+          "sources": [
+            "S21"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Part II licence",
+            "Yearly fee for 2026"
+          ],
+          "rows": [
+            [
+              "Dealer in liquor and alcoholic products (wholesale)",
+              "MUR 12,000"
+            ],
+            [
+              "Retailer of liquor and alcoholic products (off)",
+              "MUR 8,000"
+            ],
+            [
+              "Retailer of liquor and alcoholic products (on and off)",
+              "MUR 10,000"
+            ],
+            [
+              "Retailer of beer and alcoholic beverages (on and off)",
+              "MUR 2,000"
+            ],
+            [
+              "Retailer of liquor and alcoholic products, hotel and guest house (on and off)",
+              "MUR 4,000"
+            ],
+            [
+              "Retailer of liquor and alcoholic products, restaurant (on)",
+              "MUR 8,000"
+            ],
+            [
+              "Retailer of liquor, private club (on)",
+              "MUR 4,000"
+            ],
+            [
+              "Retailer of liquor, night club (on)",
+              "MUR 8,000"
+            ],
+            [
+              "Retailer of liquor and alcoholic products, casino or gaming house (on)",
+              "MUR 12,000"
+            ],
+            [
+              "Retailer of beer, alcoholic beverages, alcoholic products and liquor, pub (on)",
+              "MUR 8,000"
+            ],
+            [
+              "Retailer of beer, alcoholic beverages, alcoholic products and liquor, table d'hôte (on)",
+              "MUR 4,000"
+            ]
+          ],
+          "sources": [
+            "S22",
+            "S21"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A processing fee of MUR 1,500 is payable from 1 October 2025 on an application for the issue or transfer of a Part II licence.",
+            "For 2026, licences renewed after 14 January 2026 were subject to the 50 per cent surcharge.",
+            "Holders of the hotel and guest house, restaurant, private club, night club, pub and table d'hôte licences must hold a valid Tourist Enterprise Licence or Tourist Accommodation Certificate when they renew.",
+            "A wholesale dealer must have furnished security by means of a bond to the Mauritius Revenue Authority.",
+            "Part III covers an occasional retail licence and a restaurant extension licence, each at MUR 2,000.",
+            "Part I lists manufacturing licences. Examples: manufacturer of cigarettes and other tobacco products MUR 10,000 a year, brewer MUR 20,000, bottler of water MUR 500, importer or manufacturer of sugar sweetened products MUR 500."
+          ],
+          "sources": [
+            "S23",
+            "S22",
+            "S21"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The fees above are those in the Excise Act as published by the Mauritius Revenue Authority on 1 October 2026 and in its notice for the year 2026. The renewal notice for 2027 had not been published when this guide was checked.",
+          "sources": [
+            "S21",
+            "S22"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sector licences and the bodies that issue them",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Activity",
+            "Licence or permit",
+            "Issuing body",
+            "Official page"
+          ],
+          "rows": [
+            [
+              "Building, extending or changing the use of premises",
+              "Building and Land Use Permit",
+              "Municipal City Council, Municipal Town Council or District Council for the area",
+              "https://business.edbmauritius.org/"
+            ],
+            [
+              "Any classified trade",
+              "Annual trade fee (a fee, not a licence)",
+              "The council for the area, collected by the Corporate and Business Registration Department",
+              "https://companies.govmu.org/cbrd/trade-fees/"
+            ],
+            [
+              "Commercial or industrial premises and premises open to the public",
+              "Fire Certificate",
+              "Mauritius Fire and Rescue Service",
+              "https://mfrs.govmu.org/Pages/Index.aspx"
+            ],
+            [
+              "Handling food for sale",
+              "Food Handler's Certificate for each food handler",
+              "Ministry of Health and Wellness",
+              "https://health.govmu.org/health/?page_id=6532"
+            ],
+            [
+              "Importing, making or selling foods in the Second Schedule to the Food Regulations 2024",
+              "Pre-market approval permit",
+              "Ministry of Health and Wellness",
+              "https://health.govmu.org/health/?page_id=7951"
+            ],
+            [
+              "Undertakings in the Sixth Schedule to the Environment Act 2024",
+              "PER licence or EIA licence",
+              "Ministry of Environment, Solid Waste Management and Climate Change",
+              "https://environment.govmu.org/Pages/Index.aspx"
+            ],
+            [
+              "Services or goods for tourists, such as a restaurant, pub, night club, table d'hôte, tour operator, travel agency, rental agency for bicycles, motorcycles, quads or buses, or tourist guide",
+              "Tourist Enterprise Licence",
+              "Tourism Authority",
+              "https://www.tourismauthority.mu/tourist-enterprise-licence/"
+            ],
+            [
+              "Hotel, guest house, tourist residence or domaine",
+              "Tourist Accommodation Certificate",
+              "Tourism Authority",
+              "https://www.tourismauthority.mu/tourist-accommodation-certificate/"
+            ],
+            [
+              "Wholesale or retail sale of liquor and alcoholic products",
+              "Excise licence, Part II of the Second Schedule to the Excise Act",
+              "Director-General, Mauritius Revenue Authority",
+              "https://www.mra.mu/download/ExciseAct.pdf"
+            ],
+            [
+              "Manufacture of excisable goods, for example a brewer, a bottler of water or a manufacturer of cigarettes and other tobacco products",
+              "Excise licence, Part I of the Second Schedule to the Excise Act",
+              "Director-General, Mauritius Revenue Authority",
+              "https://www.mra.mu/download/ExciseAct.pdf"
+            ],
+            [
+              "Construction works as a contractor, or consultancy services in construction",
+              "Registration as contractor or consultant",
+              "Construction Industry Authority",
+              "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/12/act1923.pdf"
+            ],
+            [
+              "Non-bank financial services and global business",
+              "Licence under the Financial Services Act 2007 and related Acts",
+              "Financial Services Commission",
+              "https://edbmauritius.org/financial-services"
+            ],
+            [
+              "Banking",
+              "Banking licence",
+              "Bank of Mauritius",
+              "https://edbmauritius.org/financial-services"
+            ],
+            [
+              "Private security service",
+              "Private Security Service Provider Licence",
+              "Commissioner of Police",
+              "https://police.govmu.org/police/?page_id=5668"
+            ],
+            [
+              "Operating a pharmacy",
+              "Pharmacy licence, with a pharmacist in charge",
+              "Pharmacy Board",
+              "https://health.govmu.org/health/wp-content/uploads/2023/03/PHARMACY-ACT-1983-1.pdf"
+            ],
+            [
+              "Facilities and services for children",
+              "Registration, where regulations made under the Children's Act 2020 require it",
+              "Ministry responsible for child development",
+              "https://gender.govmu.org/Documents/2021/children's%20act%202020.pdf"
+            ],
+            [
+              "Importing controlled goods",
+              "Import permit or authorisation for the goods",
+              "The authority responsible for the goods, for example health or agricultural authorities",
+              "https://www.mauritiustrade.mu/en/trading-with-mauritius/import-procedures"
+            ],
+            [
+              "Exporting controlled goods",
+              "Export permit or export authorisation",
+              "The authority responsible for the goods",
+              "https://www.mauritiustrade.mu/en/trading-with-mauritius/export-procedures"
+            ],
+            [
+              "Betting and horse racing",
+              "Approval by the relevant authority",
+              "Gambling Regulatory Authority",
+              "https://companies.govmu.org/cbrd/business-registration-individual/"
+            ],
+            [
+              "Trading in dangerous chemicals",
+              "Licence to trade in dangerous chemicals",
+              "Ministry of Health and Wellness",
+              "https://business.edbmauritius.org/"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S5",
+            "S11",
+            "S12",
+            "S16",
+            "S18",
+            "S19",
+            "S21",
+            "S24",
+            "S25",
+            "S26",
+            "S27",
+            "S28",
+            "S29",
+            "S30",
+            "S6",
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Tourism. A Tourist Enterprise Licence is issued for an establishment or activity run to provide services or goods to tourists for reward. The Tourism Authority publishes a checklist for each type, including restaurant, pub, night club, private club, table d'hôte, spa, golf course, karting, eco tourism, tour operator, travel agency, online travel agency, rental agencies for bicycles, motorcycles, quads and buses, and tourist guide. Renewal is applied for within 3 months before expiry. A renewal made within 30 days after expiry carries a surcharge of 50 per cent, and the licence lapses if it is not renewed within those 30 days. The Tourist Accommodation Certificate covers hotels, guest houses, tourist residences and domaines and is valid for 3 consecutive years. An Act gazetted on 13 August 2026 added an outdoor accommodation certificate and a temporary tourist accommodation certificate valid for up to 90 days.",
+          "sources": [
+            "S18",
+            "S19",
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Construction. The Construction Industry Authority Act 2023 repealed the Construction Industry Development Board Act. The assets of the former Board vested in the Construction Industry Authority, and registration certificates issued by the Board that were still valid are deemed issued by the Authority. The Local Government Act records the changes made by the 2023 Act as in force from 1 April 2024. Under the 2023 Act no local contractor may undertake construction works unless registered under the Act and unless, where one is needed, there is a valid Building and Land Use Permit for the works. No local consultant may provide consultancy services unless registered. Importers, manufacturers and producers of listed construction materials, plant and equipment register as suppliers. A contractor's or consultant's registration runs to the next 30 June and is renewable yearly. The renewal application is due at least one month before expiry. A renewal within 30 days after expiry carries a surcharge of 25 per cent, and the registration lapses after those 30 days.",
+          "sources": [
+            "S24",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Private security and pharmacies. A Private Security Service Provider Licence is applied for by appointment at the Police Prosecution Office, Private Security Section, Sterling House, Port Louis, under the Private Security Service Act 2004. The licence costs MUR 10,000, is valid for one year and must be renewed not later than 21 days before expiry. The documents include a development permit from the council stating that the place is to be used by a private security service provider. Under the Pharmacy Act no person may operate a pharmacy without a licence from the Pharmacy Board and a pharmacist in charge. The Board has the premises inspected and takes account of the number of pharmacies in the area. The licence is valid for one year and is renewed each year.",
+          "sources": [
+            "S26",
+            "S27"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Local Government Act (Act 36 of 2011), consolidated text",
+      "url": "https://www.mra.mu/download/TheLocalGovernmentAct2011.pdf",
+      "publisher": "Mauritius Revenue Authority (hosted copy of the Act)",
+      "published": "Consolidated to GN 101 of 2025, in force 13 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Payment of Trade Fees 2026-2027",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/07/CBRD-Payment-of-Trade-Fees-2026-2027_.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "30 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Payment of Registration Fees 2025 and Trade Fees 2024/2025",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/Paymentof-Registration-Fees-2025-and-Trade-Fees-2024_2025.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "December 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "IMPORTANT NOTICE-Payment of Trade Fees/Real Estate",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/07/IMPORTANT-NOTICE-Payment_of_Trade_Fees_Real_Estate.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "31 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Trade Fees",
+      "url": "https://companies.govmu.org/cbrd/trade-fees/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Business Registration Individual",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Mauritius Business Licensing Platform: National Electronic Licensing System of Mauritius (permits by agency and by category)",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "EDB Mauritius Newsletter March 2024: National Electronic Licensing System (NELS)",
+      "url": "https://edbmauritius.org/newsletter2024/march/nels.html",
+      "publisher": "Economic Development Board",
+      "published": "March 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Building and Land Use Permits",
+      "url": "https://mccpl.mu/services/land-use-planning/building-and-land-use-permits/",
+      "publisher": "City Council of Port Louis",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Communiqué: Online application for a Fire Certificate on the National Electronic Licensing System (NELS) Platform",
+      "url": "https://mfrs.govmu.org/Documents/Communique/Communique-Fire%20Certificate%20-%20final.pdf",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Guideline for Online Application of Fire Certificate, Version 1.0",
+      "url": "https://mfrs.govmu.org/Documents/Guideline%20for%20making%20application%20for%20Fire%20Certificate.pdf",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "published": "13 September 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Food Regulations 2024 (Government Notice No. 142 of 2024)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/09/FOOD-REGULATIONS-2024.pdf",
+      "publisher": "Mauritius Food Standards Agency (hosted copy of the regulations)",
+      "published": "7 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Food (Amendment) Regulations 2025 (Government Notice No. 19 of 2025)",
+      "url": "https://faolex.fao.org/docs/pdf/mat234222.pdf",
+      "publisher": "Government Gazette of Mauritius (copy held by FAOLEX, Food and Agriculture Organization)",
+      "published": "1 March 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Food Act 2022",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/06/Food-Act-2022.pdf",
+      "publisher": "Mauritius Food Standards Agency (hosted copy of the Act)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Food Handler's Training Course (notice linked from the Food Handler's Certificate page)",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/04/Food-handlers-course.pdf",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "21 January 2016",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Environment Act (Act 3 of 2024), consolidated text",
+      "url": "https://faolex.fao.org/docs/pdf/mat227959.pdf",
+      "publisher": "Attorney General's Office (copy held by FAOLEX, Food and Agriculture Organization)",
+      "published": "Consolidated to GN 79 of 2025, in force 20 September 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Communique: Online application for Completion Certificate for PER/EIA/SEA projects on the National Electronic Licensing System (NELS)",
+      "url": "https://environment.govmu.org/Documents/communique/2026/Communique_Online%20application%20for%20Completion%20Certificate%20for%20PER_EIA_SEA%20projects%20on%20the%20NELS.pdf",
+      "publisher": "Ministry of Environment, Solid Waste Management and Climate Change",
+      "published": "6 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Tourist Accommodation Certificate",
+      "url": "https://www.tourismauthority.mu/tourist-accommodation-certificate/",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "The Excise Act (version for information purposes)",
+      "url": "https://www.mra.mu/download/ExciseAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "1 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Communiqué: Renewal of Licences for Sale of Beer, Rum, Liquor and Alcoholic Products for the Year 2026",
+      "url": "https://www.mra.mu/download/Renewal121225.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "12 December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Communiqué: Processing Fee Payable on Application for the Issue/Transfer of a Part II Licence",
+      "url": "https://www.mra.mu/download/Communique281025.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "The Construction Industry Authority Act 2023 (Act No. 19 of 2023)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/12/act1923.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "11 December 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Financial Services",
+      "url": "https://edbmauritius.org/financial-services",
+      "publisher": "Economic Development Board (used because the Financial Services Commission website refused automated access)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Guidelines for a New Application or Renewal of Private Security Service Provider Licence",
+      "url": "https://police.govmu.org/police/?page_id=5668",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Pharmacy Act (Act 60 of 1983), Revised Laws of Mauritius",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/03/PHARMACY-ACT-1983-1.pdf",
+      "publisher": "Ministry of Health and Wellness (hosted copy of the Act)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "The Children's Act 2020",
+      "url": "https://gender.govmu.org/Documents/2021/children's%20act%202020.pdf",
+      "publisher": "Ministry of Gender Equality and Family Welfare (hosted copy of the Act)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Import Procedures: Key import regulations",
+      "url": "https://www.mauritiustrade.mu/en/trading-with-mauritius/import-procedures",
+      "publisher": "Mauritius Trade Easy (portal supported by the Ministry of Foreign Affairs, Regional Integration and International Trade)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "Export Procedures: Key export regulations",
+      "url": "https://www.mauritiustrade.mu/en/trading-with-mauritius/export-procedures",
+      "publisher": "Mauritius Trade Easy (portal supported by the Ministry of Foreign Affairs, Regional Integration and International Trade)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Prohibited and restricted goods",
+      "url": "https://www.mra.mu/download/ProhibitedRestricted.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "Food Import Unit",
+      "url": "https://health.govmu.org/health/?page_id=7951",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Mauritius Business Licensing Platform (National Electronic Licensing System)",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board",
+      "what": "Apply online for a Building and Land Use Permit, a fire certificate, an excise licence, PER approval, an EIA licence and the other permits listed there."
+    },
+    {
+      "title": "Trade Fees",
+      "url": "https://companies.govmu.org/cbrd/trade-fees/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Download the list of classified trades and the trade fee for each, and find the contact details for trade fee questions."
+    },
+    {
+      "title": "Communique",
+      "url": "https://companies.govmu.org/cbrd/communique-2/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the yearly notices on trade fee payment dates and changes."
+    },
+    {
+      "title": "Companies and Businesses Registration Integrated System",
+      "url": "https://portalmns.mu/cbris/",
+      "publisher": "Mauritius Network Services",
+      "what": "Register and log in to pay trade fees and registration fees online."
+    },
+    {
+      "title": "Local Government Act, consolidated text",
+      "url": "https://www.mra.mu/download/TheLocalGovernmentAct2011.pdf",
+      "publisher": "Mauritius Revenue Authority (hosted copy of the Act)",
+      "what": "Read section 117 on the Building and Land Use Permit, section 122 on trade fees and the Twelfth Schedule list of classified trades."
+    },
+    {
+      "title": "Building and Land Use Permits",
+      "url": "https://mccpl.mu/services/land-use-planning/building-and-land-use-permits/",
+      "publisher": "City Council of Port Louis",
+      "what": "See when a council asks for a permit and which cases it treats as exempt."
+    },
+    {
+      "title": "Guideline for Online Application of Fire Certificate",
+      "url": "https://mfrs.govmu.org/Documents/Guideline%20for%20making%20application%20for%20Fire%20Certificate.pdf",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "what": "Follow the screens, documents and fees for a fire certificate application."
+    },
+    {
+      "title": "Food Handler's Certificate",
+      "url": "https://health.govmu.org/health/?page_id=6532",
+      "publisher": "Ministry of Health and Wellness",
+      "what": "Find the food handlers' course notice and the map of health offices and the localities each covers."
+    },
+    {
+      "title": "Food Legislations",
+      "url": "https://mfsa.govmu.org/mfsa/?page_id=525",
+      "publisher": "Mauritius Food Standards Agency",
+      "what": "Read the Food Act 2022 and the Food Regulations 2024."
+    },
+    {
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "what": "Download the application and renewal forms and the checklist for each type of tourist enterprise."
+    },
+    {
+      "title": "Tourist Accommodation Certificate",
+      "url": "https://www.tourismauthority.mu/tourist-accommodation-certificate/",
+      "publisher": "Tourism Authority",
+      "what": "Download the forms and checklists for a hotel, guest house, tourist residence or domaine."
+    },
+    {
+      "title": "The Excise Act",
+      "url": "https://www.mra.mu/download/ExciseAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check the Second Schedule for each excise licence, its yearly fee and the business it authorises."
+    },
+    {
+      "title": "Application Forms / Guidelines",
+      "url": "https://police.govmu.org/police/?page_id=5535",
+      "publisher": "Mauritius Police Force",
+      "what": "Find the guidelines and forms for a private security service licence and for registration as a security guard."
+    },
+    {
+      "title": "Import Procedures",
+      "url": "https://www.mauritiustrade.mu/en/trading-with-mauritius/import-procedures",
+      "publisher": "Mauritius Trade Easy",
+      "what": "Look up the import rules for a product and the lists of controlled and prohibited goods."
+    },
+    {
+      "title": "Prohibited and restricted goods",
+      "url": "https://www.mra.mu/download/ProhibitedRestricted.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check which goods are prohibited or restricted and which ministry or agency handles each."
+    }
+  ],
+  "unverified": [
+    "Construction Industry Authority: its website (given in a government tender document as cidb.govmu.org) could not be reached, and cidb.mu now shows unrelated content. Registration fees, grades of contractors, forms and the application route were not confirmed. Only the text of the Construction Industry Authority Act 2023 was used.",
+    "Financial Services Commission: fscmauritius.org refused automated access (HTTP 403). Licence categories, fees and the application portal were not confirmed on the Commission's own pages. The Economic Development Board's description was used instead.",
+    "Child day care centres: no official page or regulation setting out the registration of a child day care centre could be opened. Only the power to make regulations on registration of facilities and services for children, in section 71 of the Children's Act 2020, was confirmed. The name of the regulations, the fees and the steps are unconfirmed.",
+    "Building and Land Use Permit fees charged by each council on issue, and the Building and Land Use Permit Guide with its document checklists, were not opened.",
+    "The list of classified trades exempt from the Building and Land Use Permit under regulations made under the Local Government Act was not opened.",
+    "Trade fee amounts for each classified trade: the registry publishes a scanned copy of 2019 Government Notices. The amounts were not transcribed, and whether they have been amended since 2019 was not confirmed.",
+    "Whether the Local Government Act was amended after 13 October 2025. The Finance Act 2026 and the Economic and Financial Measures (Miscellaneous Provisions) Act 2026 do not list it among the Acts they amend, but no consolidated text dated later than October 2025 was found.",
+    "Whether the fire certificate fees in the fire service guideline of 13 September 2021 have changed since.",
+    "Whether the start date of the Food Handler's Certificate fee provisions was deferred again after Government Notice No. 19 of 2025 set it at 1 September 2025.",
+    "How to book the Food Handler's Certificate medical examination and training, and the current cost of training. The only ministry document found is a notice of 21 January 2016.",
+    "Whether a licence is needed to sell tobacco products at retail. The Excise Act lists a licence for manufacturers of cigarettes and other tobacco products only. Health rules on tobacco sales were not checked.",
+    "Tourist Enterprise Licence and Tourist Accommodation Certificate fee amounts. The Tourism Authority's fee documents were not opened.",
+    "Excise licence fees and renewal dates for 2027. The Mauritius Revenue Authority's notice for 2027 was not yet published on 20 November 2026.",
+    "Whether an import permit carries a fee, and the current list of controlled goods. The trade portal pages are undated.",
+    "Pharmacy licence fees, and whether the copy of the Pharmacy Act on the Ministry of Health site reflects all amendments.",
+    "Gambling, banking, real estate agent, training institution and dangerous chemicals licences are named only from the registry's and the licensing platform's lists. Their conditions and fees were not checked."
+  ]
+}

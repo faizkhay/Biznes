@@ -1,61 +1,42 @@
-import { BUSINESSES } from "@/data/businesses";
-import { FAQS, INCLUDED, STEPS } from "@/data/pack";
 import { site } from "@/data/site";
-import { formatPrice, listPlaces } from "@/lib/format";
+import { count, day } from "@/lib/format";
+import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
+import { TOOLS } from "@/lib/tools";
 
-// Written once at build time.
 export const dynamic = "force-static";
 
-/**
- * /llms.txt: what an AI assistant needs to describe biznes.mu correctly, written from the same data
- * the pages render, so it can never say something the site does not. Sample listings are left out.
- *
- * KOS kit. The shape is the agency site's.
- */
+/** The site in plain text, for AI assistants: what it is, what it holds, and where each part is. */
 export function GET() {
-  const { contact, builder } = site;
-  const real = BUSINESSES.filter((b) => !b.sample && b.status !== "sold");
+  const { meta, guides, groups } = index();
   const lines = [
     `# ${site.name}`,
     "",
     `> ${site.description}`,
     "",
-    "## Facts",
+    `The index was last built on ${day(meta.generated)} and holds ${count(meta.listings.all)} listings in ${count(meta.places)} towns and villages. Listings come from OpenStreetMap (Open Database Licence) and Wikidata (CC0), and each says its source. The guides are written from official pages and the Acts, list their sources, and say the day they were checked. They are general information, not legal or tax advice.`,
     "",
-    `- Built and sold by: ${builder.legalName}, Mauritius (BRN ${builder.brn}), ${builder.url}`,
-    `- Phone and WhatsApp: ${contact.phone}`,
-    `- Email: ${contact.email}`,
-    `- Hours: ${contact.hours}`,
-    "- Each business is sold once, to one owner.",
-    "- The price covers the brand and what comes with it. Premises, licences, equipment, stock and staff are the buyer's to arrange. No income is promised.",
+    "## Find a business",
     "",
-    "## What every business comes with",
+    `- [Search](${siteUrl}/search): one question over listings, guides, official pages and Mauritian websites. /search?q=pharmacy+in+curepipe`,
+    `- [The directory](${siteUrl}/directory): every category. ${groups.map((g) => g.label).join(", ")}.`,
+    `- [Towns and villages](${siteUrl}/places): listings by place, district by district.`,
     "",
-    ...INCLUDED.map((i) => `- ${i.title}: ${i.line}`),
+    "## Guides",
     "",
-    "## How a sale runs",
+    ...guides.map((g) => `- [${g.title}](${siteUrl}/learn/${g.slug}): ${g.summary} Checked ${day(g.checked)}.`),
     "",
-    ...STEPS.map((s, i) => `${i + 1}. ${s.title}: ${s.line}`),
+    "## Tools",
     "",
-    "## Businesses for sale",
+    ...TOOLS.map((t) => `- [${t.title}](${siteUrl}${t.href}): ${t.what}`),
     "",
-    ...(real.length
-      ? real.map(
-          (b) =>
-            `- [${b.name}](${siteUrl}/businesses/${b.slug}): ${b.sector}, for ${listPlaces(b.places)}. ${b.line}${site.showPrices ? ` ${formatPrice(b.price).replace(" ", " ")}.` : ""}`,
-        )
-      : ["- None listed yet."]),
+    "## About the data",
     "",
-    "## Questions",
+    `- [Where the data comes from](${siteUrl}/data): sources, licences, what is never taken, corrections and removal.`,
+    `- [${site.bot.name}](${siteUrl}${site.bot.path}): how the crawler behaves and how to keep it out.`,
+    `- [Official pages](${siteUrl}/official): the government pages, registers and forms the guides point to.`,
     "",
-    ...FAQS.flatMap((f) => [`### ${f.q}`, "", f.a, ""]),
-    "## Pages",
-    "",
-    `- [Home](${siteUrl}/): the businesses on the rail, what each comes with, and what stays with the buyer`,
-    `- [Businesses](${siteUrl}/businesses): every business for sale, with its price`,
-    `- [How it works](${siteUrl}/how-it-works): the sale in four steps, and the questions people ask`,
-    `- [Enquire](${siteUrl}/enquire): send a request about a business, or call, WhatsApp or email`,
+    `Built and run by ${site.builder.name} (${site.builder.url}).`,
     "",
   ];
   return new Response(lines.join("\n"), { headers: { "Content-Type": "text/plain; charset=utf-8" } });

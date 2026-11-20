@@ -1,0 +1,967 @@
+{
+  "slug": "choose-a-structure",
+  "title": "Choose a legal structure for a business",
+  "summary": "A plain comparison of the legal forms open to a business in Mauritius: sole trader, société, company, limited liability partnership, limited partnership, foundation, trust, co-operative society and a branch of a foreign company. For each form it gives the governing law, who is liable, the minimum number of people, where it is registered and what must be filed afterwards. Fees are those for 2026.",
+  "audience": "Anyone deciding how to set up a business or hold assets in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Main registry",
+      "value": "Corporate and Business Registration Department (CBRD), Port Louis",
+      "detail": "Registers individual businesses, companies, sociétés, limited partnerships, limited liability partnerships and foundations. Co-operatives register with the Registrar of Co-operative Societies.",
+      "sources": [
+        "S18",
+        "S8"
+      ]
+    },
+    {
+      "label": "Fewest people needed",
+      "value": "1 for a sole trader or a company; 2 for a société or a limited liability partnership",
+      "detail": "A company needs at least 1 shareholder and 1 director ordinarily resident in Mauritius. A co-operative needs 5 or 50 members, by class.",
+      "sources": [
+        "S3",
+        "S1",
+        "S4",
+        "S9"
+      ]
+    },
+    {
+      "label": "Sole trader registration fee",
+      "value": "Nil",
+      "detail": "Under regulations gazetted on 3 September 2022.",
+      "sources": [
+        "S20"
+      ]
+    },
+    {
+      "label": "Company incorporation fee",
+      "value": "Nil",
+      "detail": "Domestic private or public company. A signed certificate costs MUR 300 on request.",
+      "sources": [
+        "S19",
+        "S21"
+      ]
+    },
+    {
+      "label": "Limited liability partnership or domestic limited partnership",
+      "value": "MUR 3,000 plus MUR 200 for the certificate",
+      "detail": "Fee at registration. The annual fee for 2026 is MUR 5,000.",
+      "sources": [
+        "S13",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "label": "Foundation",
+      "value": "MUR 9,000 plus MUR 100 for the certificate",
+      "detail": "Fee at registration. The annual fee for 2026 is MUR 9,000 for a charitable foundation and MUR 18,000 for any other.",
+      "sources": [
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "label": "Société commerciale",
+      "value": "MUR 9,000 at registration and MUR 9,000 a year",
+      "detail": "Annual fee for 2026. A société civile pays no registration fee and no annual fee.",
+      "sources": [
+        "S12",
+        "S16",
+        "S17"
+      ]
+    },
+    {
+      "label": "Small private company",
+      "value": "Turnover under MUR 100 million",
+      "detail": "Such a company need not appoint a secretary or an auditor and files a financial summary.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Annual registration fee for a company, 2026",
+      "value": "MUR 500 to MUR 27,000",
+      "detail": "MUR 500 for a small private company with turnover up to MUR 30 million; MUR 27,000 for a public or foreign company. Payable by 20 January.",
+      "sources": [
+        "S16",
+        "S3"
+      ]
+    },
+    {
+      "label": "Trustees of a trust",
+      "value": "Not more than 4, at least one a qualified trustee",
+      "detail": "A qualified trustee is a management company, or another person resident in Mauritius authorised by the Financial Services Commission.",
+      "sources": [
+        "S7"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "The forms at a glance",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Form",
+            "Governing law",
+            "Who is liable",
+            "Minimum people",
+            "Registered with",
+            "Ongoing filing"
+          ],
+          "rows": [
+            [
+              "Sole trader (individual business)",
+              "Business Registration Act 2002",
+              "The owner, personally, for all debts and obligations",
+              "1 natural person",
+              "Registrar of Businesses (CBRD)",
+              "Notify changes within 14 days and cessation within 15 days"
+            ],
+            [
+              "Société civile",
+              "Code Civil Mauricien",
+              "The partners, without limit, in proportion to their share of the capital",
+              "2",
+              "Registrar of Companies (CBRD)",
+              "Notify changes; beneficial owner information; no annual return and no annual fee"
+            ],
+            [
+              "Société commerciale (en nom collectif or en commandite simple)",
+              "Code de Commerce",
+              "En nom collectif: all partners, without limit and jointly. En commandite simple: general partners the same; limited partners up to their contribution",
+              "2",
+              "Registrar of Companies (CBRD)",
+              "Annual registration fee; notify changes; beneficial owner information; no annual return"
+            ],
+            [
+              "Private company, including small private and one person companies",
+              "Companies Act 2001",
+              "The company. A shareholder's liability is usually limited to any amount unpaid on shares, unless the company is unlimited",
+              "1 shareholder and 1 director ordinarily resident in Mauritius",
+              "Registrar of Companies (CBRD)",
+              "Annual registration fee; financial summary or financial statements; annual return where required; beneficial owner information"
+            ],
+            [
+              "Public company",
+              "Companies Act 2001",
+              "As for a private company",
+              "1 shareholder; a board with at least 1 woman and 2 independent directors",
+              "Registrar of Companies (CBRD)",
+              "Annual registration fee; audited financial statements; annual report; annual return"
+            ],
+            [
+              "Limited liability partnership (LLP)",
+              "Limited Liability Partnerships Act 2016",
+              "The LLP. A partner is not liable beyond the agreed contribution, except for his or her own wrongful act or omission",
+              "2 partners and at least 1 manager resident in Mauritius",
+              "Registrar of Limited Liability Partnerships (CBRD)",
+              "Annual fee; financial summary or financial statements within 6 months of the financial year end"
+            ],
+            [
+              "Limited partnership (LP)",
+              "Limited Partnerships Act 2011",
+              "General partners: jointly and severally, without limit. Limited partners: up to the amount contributed or agreed",
+              "1 general partner and 1 limited partner",
+              "Registrar of Limited Partnerships (CBRD)",
+              "Annual fee; annual return; financial statements or, for a small limited partnership, a financial summary"
+            ],
+            [
+              "Foundation",
+              "Foundations Act 2012",
+              "The foundation, once registered. Council members and officers cannot be relieved of liability for fraud, wilful misconduct or gross negligence",
+              "A founder, a council with at least 1 member ordinarily resident in Mauritius, and a secretary",
+              "Registrar of Foundations (CBRD)",
+              "Annual fee; notify changes; accounting records and beneficial owner register"
+            ],
+            [
+              "Trust",
+              "Trusts Act 2001",
+              "Where the trustee tells a third party that he or she acts as trustee, the claim extends only to the trust property; otherwise the trustee is personally liable",
+              "A settlor and 1 to 4 trustees, at least one a qualified trustee",
+              "No registrar of trusts in the Act; the qualified trustee notifies the Financial Services Commission",
+              "Trustees keep accounts, records and a register of the trust; changes notified within 5 working days"
+            ],
+            [
+              "Co-operative society",
+              "Co-operatives Act 2016",
+              "The society. Where it is registered with limited liability, members are liable for amounts unpaid on their shares and any further amount set in its rules",
+              "5 members, or 50 for consumer and credit or financial services co-operatives",
+              "Registrar of Co-operative Societies",
+              "Annual fee; yearly turnover declaration; audit according to size"
+            ],
+            [
+              "Branch of a foreign company",
+              "Companies Act 2001, Part XXII",
+              "The foreign company. The Act registers the foreign company itself",
+              "2 or more authorised agents resident in Mauritius",
+              "Registrar of Companies (CBRD)",
+              "Annual registration fee; yearly balance sheet and financial statements for Mauritius operations; changes within one month"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S5",
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10",
+            "S11",
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Registrar of Companies is also the Registrar of Businesses, of Limited Partnerships, of Limited Liability Partnerships and of Foundations. All of these registers are kept at the Corporate and Business Registration Department (CBRD).",
+          "sources": [
+            "S2",
+            "S4",
+            "S5",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Economic Development Board's Getting Started page gives its own list of structures, which it calls non-exhaustive: company limited by shares, by guarantee or both; limited life company; foreign company; foundation; trust; Global Business Company; and business by an individual.",
+          "sources": [
+            "S25"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sole trader (individual business)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The CBRD describes an individual business as a business owned and run by one natural person, in his or her own name or under a business name. One person has full control. The business has no separate legal personality and the owner is personally liable for all its debts and obligations. The CBRD describes it as taxed as personal income.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The business is registered under the Business Registration Act 2002. The application fee is nil. The Registrar allocates a Business Registration Number and issues a Business Registration Card; the CBRD Customer Charter says the card is issued immediately on application. Changes in the registered particulars must be notified within 14 days, and a cessation, sale or transfer within 15 days. Applications are made online or at the CBRD counter, using form BRF1 for an individual.",
+          "sources": [
+            "S2",
+            "S20",
+            "S18",
+            "S26"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Société (partnership)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A société is formed by two or more persons who agree to contribute to a common undertaking with the intention of sharing profits. The partners also undertake to share the losses. The statuts must be in writing. A société that is commercial by its form is a société en nom collectif or a société en commandite simple; any société that the law does not treat as commercial is a société civile.",
+          "sources": [
+            "S1",
+            "S11",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Société en nom collectif: every partner has the status of a trader and answers for the société's debts without limit and jointly. Creditors must first give the société formal notice to pay.",
+            "Société en commandite simple: the general partners (commandités) have the status of partners in a société en nom collectif. The limited partners (commanditaires) answer for the debts only up to their contribution, and may not take part in external management.",
+            "Société civile: the partners answer for the debts without limit, in proportion to their share of the capital. Creditors must first pursue the société."
+          ],
+          "sources": [
+            "S10",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Sociétés are registered with the Registrar of Companies at the CBRD. A société commerciale pays MUR 9,000 at registration and an annual registration fee, MUR 9,000 for 2026 if paid by the due date. A société civile pays neither. The CBRD's FAQs say sociétés do not file an annual return, and that a partnership doing business for gain or profit needs a Business Registration Card. The duration of a société commerciale may not exceed 99 years. Since 13 August 2026 every partnership, civil or commercial, must keep a register of its beneficial owners and file the information with the Registrar at registration and within 14 days of any change. Partnerships operating before that date have until 31 March 2027.",
+          "sources": [
+            "S12",
+            "S16",
+            "S17",
+            "S10",
+            "S23",
+            "S9"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Sources differ on legal personality. The CBRD's page on choosing a structure says a société has no separate legal personality unless it is a société à responsabilité limitée under specific rules. Article 21 of the Code de Commerce and article 1841 of the Code Civil Mauricien, in the texts published by the CBRD, say sociétés enjoy legal personality once the registration formalities are completed, except the société en participation. The liability rules above are the same in both sources.",
+          "sources": [
+            "S1",
+            "S10",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Company",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A company incorporated under the Companies Act 2001 is a body corporate separate from its shareholders. It continues in existence until it is removed from the register. Subject to the constitution, a shareholder is not liable for an obligation of the company merely by being a shareholder. The shareholder's liability to the company is limited to items such as any amount unpaid on the shares, any distribution that must be repaid and any liability set out in the constitution. A company may also be limited by guarantee or unlimited.",
+          "sources": [
+            "S3",
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Private company: not more than 50 shareholders and no offer of shares or debentures to the public. A company is public unless its application for incorporation or its constitution states that it is private.",
+            "Small private company: a private company with turnover under MUR 100 million in its last accounting period, with no Global Business Licence and not listed in the First Schedule to the Financial Reporting Act. It need not appoint a secretary or an auditor, and files a financial summary or financial statements.",
+            "One person company: a private company whose only shareholder is also its sole director, and is not a corporation.",
+            "Public company: its board must include at least one woman and at least 2 independent directors."
+          ],
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every company needs a name, one or more shareholders, one or more directors (at least one ordinarily resident in Mauritius) and a registered office in Mauritius. A constitution is optional. Incorporation of a domestic private or public company is free of charge, and the CBRD Customer Charter says companies are incorporated within half an hour of the filing of complete forms.",
+          "sources": [
+            "S3",
+            "S19",
+            "S18"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each year a company pays a registration fee by 20 January, holds an annual meeting, and files accounts. Companies that are not small private companies file audited financial statements and an annual return. A small private company with turnover up to MUR 100 million files a financial summary and need not file an annual return unless its shareholding, directors or related particulars changed.",
+          "sources": [
+            "S3",
+            "S24"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Limited liability partnership and limited partnership",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A limited liability partnership (LLP) is a body corporate with legal personality separate from its partners. The Limited Liability Partnerships Act applies to persons offering professional or consultancy services, to holders of a Global Legal Advisory Services licence, and to any activity whose primary object is to hold an ownership interest in, or contract with, an entity offering professional or consultancy services.",
+          "sources": [
+            "S4",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An LLP needs at least 2 partners. A partner may be an individual, a body corporate or an unincorporated body.",
+            "It must have at least one manager who is a natural person resident in Mauritius and qualified to be a company secretary under the Companies Act.",
+            "A partner is not liable for the LLP's debts beyond the amount agreed as contribution. This does not protect a partner from liability for his or her own wrongful act or omission.",
+            "The name must end with Limited Liability Partnership, L.L.P. or LLP. A reserved name is held for 6 months, a period raised from 2 months on 13 August 2026.",
+            "An LLP with turnover under MUR 100 million files a financial summary; one with turnover of MUR 100 million or more files financial statements as under the Companies Act. The threshold was MUR 50 million before 13 August 2026. The first filing is due within 15 months of registration and later ones within 6 months of the financial year end.",
+            "Fees: MUR 3,000 plus MUR 200 for the certificate at registration, and an annual fee of MUR 5,000 for 2026."
+          ],
+          "sources": [
+            "S4",
+            "S9",
+            "S13",
+            "S16"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A limited partnership (LP) has one or more general partners and one or more limited partners, and must have a partnership agreement. General partners manage the business and are jointly and severally liable for all its debts without limit. Limited partners contribute capital, may not take part in management, and are not liable beyond what they contributed or agreed to contribute. The CBRD Customer Charter says verification and processing of an application to register an LLP or an LP may take from half a day to one day.",
+          "sources": [
+            "S5",
+            "S1",
+            "S18"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An LP has legal personality only if the general partners elect for it, when applying for registration or later by notifying the Registrar. The register and the certificate of registration state whether it has.",
+            "Unless at least one general partner is resident in Mauritius, or incorporated or registered under Mauritian law, the LP must keep a registered agent in Mauritius.",
+            "The name must end with Limited Partnership, L.P. or LP.",
+            "Every LP files an annual return in the month allocated to it. It prepares financial statements within 6 months of its balance sheet date.",
+            "A small LP, with turnover under MUR 100 million and no Global Business Licence, need not appoint a licensed auditor and files a financial summary with its annual return. The threshold was MUR 50 million before 13 August 2026.",
+            "Fees for a domestic LP: MUR 3,000 plus MUR 200 for the certificate at registration, and an annual fee of MUR 5,000 for 2026."
+          ],
+          "sources": [
+            "S5",
+            "S9",
+            "S14",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Foundation and trust",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A foundation may have charitable objects, non-charitable objects or both, for the benefit of persons or to carry out a purpose. It has separate legal personality from the date its certificate of registration is issued by the Registrar of Foundations. The CBRD describes its uses as estate planning, wealth management, charitable purposes and the long-term holding of assets.",
+          "sources": [
+            "S6",
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A council administers the foundation's property and carries out its objects. At least one council member must be ordinarily resident in Mauritius.",
+            "Every foundation must have a secretary, which is a management company or another person resident in Mauritius authorised by the Financial Services Commission.",
+            "It must have a registered office in Mauritius. Its name must end with Foundation or Fondation.",
+            "Fees: MUR 9,000 plus MUR 100 for the certificate at registration. The annual fee, due by 20 January, is MUR 9,000 for a charitable foundation and MUR 18,000 for any other, for 2026.",
+            "It must keep accounting records and a register of beneficial owners. The Registrar may ask a charitable foundation for financial statements."
+          ],
+          "sources": [
+            "S6",
+            "S15",
+            "S16"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A trust exists where a trustee holds property, of which the trustee is not the owner in his or her own right, with a duty to use it for beneficiaries or for a purpose. A trust must be created by a written instrument stating the trustee's name, the intention to create a trust, its object and beneficiaries, the trust property and its duration. A trust other than a purpose trust may last up to 99 years.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A trust has not more than 4 trustees. At least one must be a qualified trustee: a management company, or another person resident in Mauritius authorised by the Financial Services Commission to provide trusteeship services.",
+            "The settlor may also be a trustee or a beneficiary, but not the sole beneficiary.",
+            "A trustee who tells a third party that he or she is acting as trustee limits the third party's claim to the trust property. A trustee who does not is personally liable, with a right of indemnity from the trust property unless acting in breach of trust.",
+            "Trustees who commit a breach of trust are liable jointly and severally for the loss.",
+            "Since 18 April 2026 a trustee must keep a register of each trust under its trusteeship, and the qualified trustee must notify the Financial Services Commission of that information and of any change within 5 working days.",
+            "The Trusts Act as read sets up no register of trusts kept by a registrar. In the Business Registration Act a person includes a trust, so a trust that carries on business falls under the duty to register with the Registrar of Businesses."
+          ],
+          "sources": [
+            "S7",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Co-operative society",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A co-operative society is registered by the Registrar of Co-operative Societies under the Co-operatives Act 2016. Its object is to promote the economic and social betterment of its members. From the date of its certificate of registration it is a body corporate, and it may not start business before then. A society may be registered with limited or unlimited liability. Where liability is limited, a member is liable for the amount unpaid on his or her shares and any further amount undertaken in the rules, and the society's name ends with Limited or Ltd.",
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Class of co-operative",
+            "Minimum members",
+            "Minimum share capital",
+            "Minimum directors"
+          ],
+          "rows": [
+            [
+              "Consumer",
+              "50",
+              "MUR 50,000",
+              "5"
+            ],
+            [
+              "Credit or financial services",
+              "50",
+              "MUR 50,000",
+              "5"
+            ],
+            [
+              "Agricultural; sugar cane and tea marketing; multipurpose; fisheries; transport; livestock; poultry",
+              "5",
+              "MUR 10,000",
+              "3"
+            ],
+            [
+              "Other, including handicrafts, artisans, IT, housing, workers and agro-processing",
+              "5",
+              "MUR 10,000",
+              "3"
+            ]
+          ],
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These minimum requirements were added to the Act on 13 August 2026. The same amendment set the application fee at MUR 1,500 and sorted societies by annual turnover: micro (less than MUR 50,000), small (more than MUR 50,000 but less than MUR 10 million), medium (more than MUR 10 million but less than MUR 50 million) and large (more than MUR 50 million). Annual fees are MUR 500, MUR 1,000, MUR 1,500 and MUR 2,000 in that order. The new section requiring each society to pay the annual fee according to its category starts on 1 January 2027.",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Under the 2026 amendment a micro society is exempt from audit, small and medium societies are audited by the Principal Co-operative Auditor, and a large society by a qualified auditor. Every society must declare its annual turnover to the Registrar before the end of August following the financial year. The annual fee is payable within 2 months of the end of the financial year.",
+          "sources": [
+            "S9",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Branch of a foreign company",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A body corporate incorporated outside Mauritius that has a place of business or carries on business in Mauritius must register as a foreign company under Part XXII of the Companies Act. It files its documents within one month of establishing the place of business or starting business. The Registrar registers the foreign company itself and issues a certificate.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "It files authenticated copies of its certificate of incorporation and constitution, lists of its shareholders, beneficial owners and directors, and notice of its registered office in Mauritius.",
+            "It appoints 2 or more persons resident in Mauritius as authorised agents to accept service of process and notices. An authorised agent is answerable for everything the Act requires the company to do.",
+            "Its registered office in Mauritius must be open to the public for at least 4 hours on every day other than a Saturday or public holiday.",
+            "Each year it files its balance sheet within 3 months of its annual meeting, and financial statements for its Mauritius operations within 6 months of the end of its accounting period.",
+            "The annual registration fee for 2026 is MUR 27,000, or MUR 40,500 after the due date."
+          ],
+          "sources": [
+            "S3",
+            "S19",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Registration and annual fees compared, 2026",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Form",
+            "Fee at registration",
+            "Annual registration fee for 2026, paid by the due date"
+          ],
+          "rows": [
+            [
+              "Sole trader",
+              "Nil",
+              "None on the CBRD's fee schedule"
+            ],
+            [
+              "Société civile",
+              "Nil",
+              "None"
+            ],
+            [
+              "Société commerciale",
+              "MUR 9,000",
+              "MUR 9,000"
+            ],
+            [
+              "Small private company",
+              "Nil",
+              "MUR 500 (turnover not exceeding MUR 30 million) or MUR 2,500"
+            ],
+            [
+              "Private company with turnover above MUR 100 million",
+              "Nil",
+              "MUR 18,000"
+            ],
+            [
+              "Public company",
+              "Nil",
+              "MUR 27,000"
+            ],
+            [
+              "Domestic limited liability partnership",
+              "MUR 3,000 plus MUR 200 for the certificate",
+              "MUR 5,000"
+            ],
+            [
+              "Domestic limited partnership",
+              "MUR 3,000 plus MUR 200 for the certificate",
+              "MUR 5,000"
+            ],
+            [
+              "Foreign limited liability partnership or foreign limited partnership",
+              "MUR 9,000 plus MUR 200 for the certificate",
+              "MUR 18,000"
+            ],
+            [
+              "Foundation",
+              "MUR 9,000 plus MUR 100 for the certificate",
+              "MUR 9,000 (charitable) or MUR 18,000 (other)"
+            ],
+            [
+              "Foreign company",
+              "Nil under the 2022 fee regulations",
+              "MUR 27,000"
+            ],
+            [
+              "Co-operative society",
+              "MUR 1,500 application fee",
+              "MUR 500 to MUR 2,000, by size category"
+            ]
+          ],
+          "sources": [
+            "S16",
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S17",
+            "S20",
+            "S21",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD Customer Charter says registration fees for companies, sociétés commerciales, limited partnerships and foundations are payable each year from 3 to 20 January. The CBRD's fee schedule sets on-time and late fees for limited liability partnerships in the same way. A higher fee applies after the due date: for example MUR 750 in place of MUR 500, and MUR 40,500 in place of MUR 27,000. Trade fees owed to local authorities for classified trades are separate and are also collected by the CBRD.",
+          "sources": [
+            "S18",
+            "S16"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "As at 20 November 2026 the CBRD had published the fee schedule for 2026 only. The CBRD's guidelines of 4 April 2025, not followed here, list MUR 13,500 plus MUR 200 for registering a foreign company.",
+          "sources": [
+            "S16",
+            "S21",
+            "S27"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Choosing a Business Structure - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/choosing-a-business-structure/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 24 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Business Registration Act 2002 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/BusinessRegistrationAct2002-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "The Companies Act 2001 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Companies-Act-200131-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "The Limited Liability Partnerships Act 2016 (consolidated text)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/The_Limited_Liability_Partnerships_Act_201607-09-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated text posted September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "The Limited Partnerships Act 2011 (consolidated text)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Limited-Partnership-Act-201107-09-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated text posted September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "The Foundations Act 2012 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Foundation_Act_2012-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Trusts Act (Act 14 of 2001), text reflecting amendments up to Act 3 of 2026",
+      "url": "https://www.fscmauritius.org/media/uouhyxma/trusts-act.pdf",
+      "publisher": "Financial Services Commission, Mauritius",
+      "published": "Amended to 18 April 2026; file dated 7 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "The Co-operatives Act 2016 (Act No. 22 of 2016), as passed",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/03/act2216.pdf",
+      "publisher": "Mauritius National Assembly",
+      "published": "Gazetted 26 November 2016",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "Mauritius National Assembly (Government Gazette No. 59)",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Extract of the Code de Commerce",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/12/Extract-of-the-Code-de-Commerce.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Code Civil Mauricien",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/02/code-civil-mauricien.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Registering a Société - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/registering-a-societe/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 23 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Setting up a Limited Liability Partnership (LLP) - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/setting-up-a-limited-liability-partnership/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 28 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Setting up a Limited Partnership - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/setting-up-a-limited-partnership/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 28 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Registering a Foundation - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/register-a-foundation/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Fees Payable to the Registrar - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/fees-payable-to-roc/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Fees for the year 2026; last modified 22 April 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Frequently Asked Questions (FAQs): Foundations, Sociétés, Limited Partnerships and Limited Liability Partnerships",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Partnership.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Updated 10 August 2026 (file name and file date); first published June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Incorporation of a Company - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 24 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Business Registration (Amendment of Schedule) (No. 2) Regulations 2022, GN No. 242 of 2022",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN-No.-242-of-2022.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 119)",
+      "published": "3 September 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Companies (Payment of Fees to Registrar) (Amendment) Regulations 2022, GN No. 241 of 2022",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN.-241-of-2022.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 119)",
+      "published": "3 September 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Limited Liability Partnerships (Application) Regulations 2024, Government Notice No. 35 of 2024",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/35_The-Limited-Liability-Partnerships-Application-Reg-2024.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 21)",
+      "published": "2 March 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Communique: Filing of Beneficial Ownership Information by Partnerships",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/10/Communique-Filing-of-BO-Information-by-partnerships.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "22 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Statutory Obligations - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/statutory-obligations/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Getting Started - EDB Mauritius",
+      "url": "https://edbmauritius.org/getting-started",
+      "publisher": "Economic Development Board Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Business Registration Individual - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Guidelines for Incorporation/Registration of Companies and Registration of Businesses: The online guide",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GUIDELINES-FOR-INCORPORATION-REGISTRATION-OF-COMPANIES-AND-REGISTRATION-OF-BUSINESSES_04_04_25.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "4 April 2025",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Choosing a Business Structure",
+      "url": "https://companies.govmu.org/cbrd/choosing-a-business-structure/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the CBRD's own description of each structure it registers, with links to the Acts."
+    },
+    {
+      "title": "Register your Business",
+      "url": "https://companies.govmu.org/cbrd/register-your-business/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Go to the CBRD's registration page for each structure."
+    },
+    {
+      "title": "Business Registration Individual",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See how an individual registers a business and obtains a Business Registration Card."
+    },
+    {
+      "title": "Incorporation of a Company",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the requirements, documents and fees for incorporating a company or registering a foreign company."
+    },
+    {
+      "title": "Registering a Société",
+      "url": "https://companies.govmu.org/cbrd/registering-a-societe/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the requirements and fees for civil and commercial partnerships."
+    },
+    {
+      "title": "Setting up a Limited Liability Partnership (LLP)",
+      "url": "https://companies.govmu.org/cbrd/setting-up-a-limited-liability-partnership/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the steps, forms and fees for a limited liability partnership."
+    },
+    {
+      "title": "Setting up a Limited Partnership",
+      "url": "https://companies.govmu.org/cbrd/setting-up-a-limited-partnership/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the steps, forms and fees for a limited partnership."
+    },
+    {
+      "title": "Registering a Foundation",
+      "url": "https://companies.govmu.org/cbrd/register-a-foundation/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the steps, forms and fees for a foundation."
+    },
+    {
+      "title": "Fees Payable to the Registrar",
+      "url": "https://companies.govmu.org/cbrd/fees-payable-to-roc/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Compare the annual registration fees for each type of entity for the current year."
+    },
+    {
+      "title": "Acts",
+      "url": "https://companies.govmu.org/cbrd/acts/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Open the consolidated texts of the Acts the CBRD administers."
+    },
+    {
+      "title": "Downloadable Forms",
+      "url": "https://companies.govmu.org/cbrd/downloadable-forms/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Download the application forms for companies, businesses, limited partnerships, limited liability partnerships and foundations."
+    },
+    {
+      "title": "Acts of the National Assembly",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/acts-2/",
+      "publisher": "Mauritius National Assembly",
+      "what": "Find Acts as passed, including the Co-operatives Act 2016 and the 2026 amending Act."
+    },
+    {
+      "title": "Legislations (co-operatives)",
+      "url": "https://cooperatives.govmu.org/Pages/Legislations/Legislations.aspx",
+      "publisher": "Ministry of Industry, SMEs and Cooperatives (Cooperatives Division)",
+      "what": "Find the Co-operatives Act 2016 and regulations on the ministry's site."
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://edbmauritius.org/getting-started",
+      "publisher": "Economic Development Board Mauritius",
+      "what": "Read the Economic Development Board's list of business structures and its outline of setting up."
+    }
+  ],
+  "unverified": [
+    "The legal personality of sociétés. The CBRD's page says a société has no separate legal personality unless it is a société à responsabilité limitée; the Code de Commerce (article 21) and Code Civil Mauricien (article 1841) texts on the CBRD site say personality is acquired on registration. The CBRD copy of the Code Civil dates from 2011 and no later consolidated text was found.",
+    "The current consolidated text of the Co-operatives Act 2016. Only the Act as passed in 2016 and the 2026 amending Act were read, so amendments made between 2017 and 2025 to provisions such as liability, registration and the annual fee deadline may not be reflected.",
+    "How and where a co-operative society applies in practice, and how long registration takes. The Registrar of Co-operative Societies' own service pages were not read.",
+    "Whether the société à responsabilité limitée mentioned by the CBRD can still be formed, and under what rules. No source read sets them out.",
+    "Whether a trust must register anywhere else, for example with the Mauritius Revenue Authority, and what licensing applies to trustees under the Financial Services Act. Only the Trusts Act was read.",
+    "Tax treatment of each form. The only statement used is the CBRD's line that an individual business is taxed as personal income; the Income Tax Act and MRA guidance were not read for this guide.",
+    "Annual fees for 2027 for every form. Only the 2026 schedule had been published as at 20 November 2026.",
+    "The fee at registration of a foreign company: nil under the 2022 regulations, MUR 13,500 plus MUR 200 in the CBRD's guidelines of 4 April 2025.",
+    "Whether sociétés civiles must hold a Business Registration Card when they only hold assets. The CBRD's FAQs say a card is needed if the partnership does business for gain or profit.",
+    "Limited life companies, protected cell companies and variable capital companies, which exist under the Companies Act and other Acts, were not researched and are not compared here."
+  ]
+}

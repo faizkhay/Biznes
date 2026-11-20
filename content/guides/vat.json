@@ -1,0 +1,859 @@
+{
+  "slug": "vat",
+  "title": "Value Added Tax (VAT) in Mauritius",
+  "summary": "How VAT works for a business in Mauritius: the rate, who must register and how, returns and deadlines, VAT invoices, e-invoicing, digital services bought from abroad and the penalties. Rules are those in force on 20 November 2026, after the Finance Act 2026.",
+  "audience": "Business owners near or above the VAT threshold, and people in the professions that must register whatever their turnover.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Standard rate of VAT",
+      "value": "15%",
+      "detail": "On taxable supplies other than zero-rated supplies, and on imports. Rate in force on 20 November 2026.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Compulsory registration threshold",
+      "value": "MUR 3 million a year",
+      "detail": "Annual turnover of taxable supplies. Reduced from MUR 6 million on 1 October 2025.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "label": "Registration whatever the turnover",
+      "value": "Listed professions and businesses",
+      "detail": "Accountants, architects, attorneys, consultants, engineers, estate agents, notaries and others in the Tenth Schedule to the VAT Act.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Return frequency",
+      "value": "Quarterly up to MUR 10 million, monthly above",
+      "detail": "By annual turnover of taxable supplies. A quarterly filer may opt for monthly returns.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Return and payment deadline",
+      "value": "End of the following month",
+      "detail": "Where the return is filed and the tax paid electronically. The general time limit is 20 days after the period. May and November returns are due 2 days before the end of June and December.",
+      "sources": [
+        "S19",
+        "S2",
+        "S7"
+      ]
+    },
+    {
+      "label": "Late return",
+      "value": "MUR 2,000 a month, up to MUR 20,000",
+      "detail": "Up to MUR 5,000 for a small enterprise.",
+      "sources": [
+        "S1",
+        "S7"
+      ]
+    },
+    {
+      "label": "Late payment",
+      "value": "10% penalty and 1% interest a month",
+      "detail": "The penalty is 2% for a small enterprise.",
+      "sources": [
+        "S1",
+        "S7"
+      ]
+    },
+    {
+      "label": "Records and copies of VAT invoices",
+      "value": "Keep for at least 5 years",
+      "detail": "Counted from the end of the transaction.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Mandatory e-invoicing, latest stage",
+      "value": "Turnover above MUR 40 million from 1 September 2026",
+      "detail": "Earlier stages covered turnover above MUR 100 million and MUR 80 million. The MRA can also notify any business.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "VAT on digital services from abroad",
+      "value": "15% from 1 January 2026",
+      "detail": "From 1 October 2026 a foreign supplier registers only where its taxable supplies exceed MUR 3 million a year.",
+      "sources": [
+        "S1",
+        "S14"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What VAT is and the rate",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Value Added Tax (VAT) is a tax on goods and services. It is charged on taxable supplies made in Mauritius by a taxable person in the course of business. It is also payable on goods imported into Mauritius, whether or not the importer is a taxable person. The standard rate is 15%.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A registered business charges VAT on its sales. This is its output tax. It is charged VAT on purchases from other registered suppliers. This is its input tax. In each return it deducts the allowable input tax from the output tax and pays the difference to the Mauritius Revenue Authority (MRA). Where input tax is higher, the excess is carried forward to the next return or, in set cases, repaid. VAT becomes due at the time of supply. That is the date an invoice or VAT invoice is issued or the date payment is received, whichever comes first. Since 1 October 2026 it is no later than 3 months from the date the goods are delivered or the services performed.",
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "No input tax credit is allowed on goods or services used to make an exempt supply.",
+            "None is allowed on motor cars and other vehicles for up to 9 persons, motorcycles and mopeds for own use, or on their spare parts, maintenance and repairs.",
+            "None is allowed on accommodation, catering, receptions and entertainment, or on renting or leasing such vehicles for own use.",
+            "Where goods or services are used for both taxable and exempt supplies, credit is allowed in the proportion of taxable supplies to total turnover."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Input tax not claimed in the right period can be claimed within 24 months. The Finance Act 2026 reduced this from 36 months with effect from 13 August 2026.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who must register",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "A person who makes taxable supplies in the course of business must apply for registration when the turnover of taxable supplies exceeds, or is likely to exceed, MUR 3 million a year. The Finance Act 2025 reduced the threshold from MUR 6 million with effect from 1 October 2025.",
+            "Turnover of taxable supplies is the value of all taxable supplies at all places of business in Mauritius, including Rodrigues. It includes zero-rated supplies. It leaves out exempt supplies, capital goods disposed of and disbursements made on behalf of customers.",
+            "A person whose turnover is made up only of zero-rated supplies, or of zero-rated and exempt supplies, is not bound to register. A person who makes only exempt supplies cannot register.",
+            "A business may be carried on through several persons, with avoiding registration as a main reason. The MRA can then add their taxable supplies together and direct all of them to register if the total exceeds the threshold."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "People in the businesses and professions listed in Part I of the Tenth Schedule to the VAT Act must register whatever their turnover. This includes a person in employment who also carries on one of them outside the job. The list follows. Three businesses in Part II of the Schedule also register whatever their turnover. Banks register for banking other than with non-residents and Global Business Licence corporations. Holders of a management licence register for services other than to Global Business Licence corporations. Companies other than banks register for credit card services to merchants.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Accountant or auditor",
+            "Advertising agent",
+            "Adviser, including investment adviser and tax adviser",
+            "Architect",
+            "Attorney or solicitor",
+            "Barrister with more than 2 years' standing at the Bar",
+            "Freight forwarding agent and customs house broker under the Customs Act",
+            "Consultant, including legal, tax and management consultant, and management company other than the holder of a management licence",
+            "Wholesale dealer in liquor and alcoholic products",
+            "Engineer, land surveyor, marine surveyor, motor surveyor and quantity surveyor",
+            "Estate agent and property valuer",
+            "Notary and sworn auctioneer",
+            "Optician",
+            "Project manager",
+            "General sales agent of airlines",
+            "Agent in the importation of second-hand motor cars or other motor vehicles",
+            "Holder of a Pleasure Craft Licence for a craft of more than 12 metres used for commercial purposes"
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A person below the threshold who makes taxable supplies may apply for voluntary registration. The MRA may register the applicant where it is satisfied that the person keeps proper records and has been meeting obligations under the revenue laws. Input tax can then be claimed on goods and services acquired from the date of registration.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How to register",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Find the form that applies. Form VAT 1 covers compulsory registration on turnover and voluntary registration. Form VAT 1A covers the professions and businesses that register whatever their turnover. Form VAT 1B covers banks, management services and credit card services.",
+            "Apply online through the MRA Simplified VAT Registration facility. Log in with a National Identity Card number, Business Registration Number or Tax Account Number and a password. A password can be retrieved through the MRA password management system.",
+            "As an alternative, download the form from the MRA website and send it to the MRA by email or registered post. VAT registration can also be requested when registering the business through the Corporate and Business Registration Integrated System (CBRIS).",
+            "On submitting online, note the acknowledgement ID shown on screen and sent by email. Without it the submission is incomplete.",
+            "The MRA allocates a VAT Registration Number, which is the same as the Tax Account Number, and issues a Certificate of Registration and a distinctive mark.",
+            "Display the certificate and the mark in a conspicuous place at each business premises.",
+            "Charge VAT and issue VAT invoices from the date of registration shown on the certificate."
+          ],
+          "sources": [
+            "S4",
+            "S5",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Registration covers all the person's business activities at every place of business in Mauritius, including Rodrigues.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "To deregister, a business sends a request for cancellation to the Director-General of the MRA. An application form for cancellation is on the MRA VAT forms page. The business keeps filing returns until the MRA confirms the cancellation in writing. On cancellation it pays tax on capital goods worth more than MUR 100,000 that still form part of its assets.",
+          "sources": [
+            "S2",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Returns, deadlines and payment",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Annual turnover of taxable supplies",
+            "Return",
+            "Due date when filed and paid electronically"
+          ],
+          "rows": [
+            [
+              "MUR 10 million or less",
+              "Quarterly, for quarters ending 31 March, 30 June, 30 September and 31 December. The business may opt for monthly returns",
+              "End of the month following the quarter"
+            ],
+            [
+              "More than MUR 10 million",
+              "Monthly, with a list of taxable supplies other than retail sales, showing invoice number and value",
+              "End of the following month"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The VAT Act requires the return to be submitted and the tax paid electronically. The VAT Regulations set the general time limit at 20 days after the taxable period, and at one month where both the return and the payment are made electronically.",
+            "Where the last day is a Saturday, Sunday or public holiday, the return may be submitted on the next working day.",
+            "Under the VAT Regulations the electronic deadline for the May and November returns is 2 days, excluding Saturdays and public holidays, before the end of June and December. In 2026 that meant Friday 26 June for May and Tuesday 29 December for November.",
+            "A registered person who makes no supplies and receives none in a period still files a nil return.",
+            "Only one return is filed for each period. To correct a return already filed, the business enters a VAT adjustment in the return for the next month or quarter and sends the MRA a statement of the details.",
+            "Payment by direct debit needs a PLACH Direct Debit Mandate Form, sent to the MRA before the due date of the return."
+          ],
+          "sources": [
+            "S1",
+            "S19",
+            "S2",
+            "S4",
+            "S7",
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Excess input tax is normally carried forward. A repayment can be claimed where the excess includes more than MUR 100,000 of input tax on capital goods such as buildings, plant, machinery and equipment. It can also be claimed where the business is mainly engaged in making zero-rated supplies.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A small enterprise may apply to the MRA to use the VAT annual accounting system, on an accrual or a cash basis. It then files a simplified VAT statement after each of the first three quarters of its accounting year.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Zero-rated and exempt supplies in outline",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A zero-rated supply is a taxable supply charged at 0%. The supplier charges no VAT and can still claim input tax. An exempt supply carries no VAT, and no input tax can be claimed on goods or services used to make it. Zero-rated supplies are listed in the Fifth Schedule to the VAT Act and exempt supplies in the First Schedule.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Examples of zero-rated supplies (Fifth Schedule)",
+            "Examples of exempt supplies (First Schedule)"
+          ],
+          "rows": [
+            [
+              "Goods exported from Mauritius under Customs control",
+              "Educational services, and training approved by the Mauritius Qualifications Authority"
+            ],
+            [
+              "Rice, wheat flour, bread, edible oils, margarine, butter, milk, cheese, sugar, fresh meat, fish, tea, common salt and unprocessed farm produce",
+              "Wheat, cereal flours other than wheat flour, and breakfast cereals"
+            ],
+            [
+              "Services supplied to a person who belongs outside Mauritius and is outside Mauritius when they are performed, where the services are not consumed in Mauritius",
+              "Banking and the other financial services listed, including insurance"
+            ],
+            [
+              "Transport of passengers and goods by sea or air to or from Mauritius",
+              "Renting of accommodation used mainly as a home, for a continuous term of more than 90 days"
+            ],
+            [
+              "Transport of passengers by public service vehicles and by light rail, other than contract buses for tourists and contract cars",
+              "Sale or transfer of a building, apartment or flat for residential purposes"
+            ],
+            [
+              "Medical, hospital and dental services",
+              "Veterinary services, and burial and cremation services"
+            ],
+            [
+              "Electricity supplied by the Central Electricity Board and water supplied by the Central Water Authority",
+              "Journals and periodicals"
+            ],
+            [
+              "Printed books and electronic books, photovoltaic systems, and postal services",
+              "Services of a management licence holder to Global Business Licence corporations, from 1 October 2026"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S10"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The schedules are long and are amended most years. The Finance Act 2026 moved postal services to the zero-rated list and added electronic books to it. The Annex to the 2026-2027 Budget Speech had described electronic books as exempt. This guide follows the Act.",
+          "sources": [
+            "S1",
+            "S3",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "VAT invoices and records",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A registered person who makes a taxable supply must issue a VAT invoice for it. Only a registered person may issue a VAT invoice or any document showing an amount as VAT, and only for a taxable supply. The invoice must show the items listed below. Where a buyer who is not in business asks to be named on the invoice, the supplier adds the buyer's name, address and National Identity Card number.",
+          "sources": [
+            "S1",
+            "S17"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The words VAT INVOICE in a prominent place.",
+            "The supplier's name, business address, VAT Registration Number and Business Registration Number.",
+            "A serial number and the date of issue.",
+            "The quantity and description of the goods, or a description of the services.",
+            "The value of the supply, the amount of VAT charged and the rate applied.",
+            "The rate of exchange, where the value is given in a foreign currency.",
+            "Where the buyer is a registered person: the buyer's name, business address, Business Registration Number and VAT Registration Number.",
+            "Where the buyer is in business but not registered: the buyer's name, business address and Business Registration Number."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every business keeps a full and true written record of every transaction, on paper or electronically, in English or French. It keeps its customs declarations, its purchase invoices and receipts, and copies of the invoices it issues, in date order. Records and copies of VAT invoices are kept for at least 5 years after the transaction.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The MRA offers a free Simplified Record Keeping Facility to VAT-registered small and medium enterprises that file quarterly returns and have annual turnover of MUR 6 million or less. It records sales, purchases and expenses and computes the VAT for the quarter. It does not replace the VAT return.",
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "E-invoicing and its roll-out",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Under the MRA e-Invoicing system a business sends each invoice, debit note and credit note from its Electronic Billing System (EBS) to the MRA in real time. The MRA registers the transaction and returns an Invoice Registration Number and a QR code. The business then issues the fiscal invoice, with the QR code, to the customer. Mandatory use is being brought in by stages.",
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Taxpayer category on the MRA page",
+            "Annual turnover above",
+            "Deadline to issue fiscal invoices"
+          ],
+          "rows": [
+            [
+              "LTD",
+              "MUR 100 million",
+              "15 May 2024"
+            ],
+            [
+              "MSTD",
+              "MUR 100 million",
+              "1 August 2025"
+            ],
+            [
+              "MSTD",
+              "MUR 80 million",
+              "30 June 2026"
+            ],
+            [
+              "MSTD",
+              "MUR 40 million",
+              "1 September 2026"
+            ]
+          ],
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The MRA table does not spell out LTD and MSTD. The MRA has a Large Taxpayer Department, which deals with persons whose annual gross income exceeds MUR 100 million, and a Medium and Small Taxpayer Department.",
+            "The MRA can also require any business to issue fiscal invoices by written notice, whatever its turnover and whether or not it is registered for VAT. The notice gives the starting date.",
+            "A business that has to issue fiscal invoices uses an EBS that meets the MRA specifications. The MRA publishes a list of EBS solution providers.",
+            "The business registers for e-invoicing on the MRA e-Invoicing Portal, completes the tests set there and on-boards each EBS. The portal issues an EBS MRA ID, which identifies the EBS for live transmission of invoices.",
+            "Manual invoices stop once the obligation applies. Where the internet connection is lost, the EBS may issue invoices and send them for fiscalisation when the connection returns."
+          ],
+          "sources": [
+            "S1",
+            "S12",
+            "S13",
+            "S18"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "From 1 October 2026 a person who is required to issue fiscal invoices and does not is liable to a penalty of MUR 5,000 for each day of failure. The maximum is MUR 1 million in any 12 consecutive months. The penalty is payable within 28 days of the claim. Failing to use the system is also an offence, with a fine of up to MUR 500,000 and imprisonment of up to 24 months. Misusing or tampering with the system carries a penalty of up to MUR 50,000. The MRA e-invoicing FAQ, dated July 2023, still quotes the earlier penalty of MUR 10,000 a month up to MUR 200,000, which the Finance Act 2026 replaced.",
+          "sources": [
+            "S1",
+            "S3",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Digital and electronic services from abroad",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Since 1 January 2026 VAT at 15% applies to digital or electronic services supplied from outside Mauritius to a person in Mauritius. The foreign supplier registers with the MRA, charges the VAT, files the return and pays the tax. A foreign supplier is a person with no permanent establishment in Mauritius or whose place of abode is outside Mauritius. The services covered are listed in Part III of the Tenth Schedule to the VAT Act.",
+          "sources": [
+            "S1",
+            "S14"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Supplies of images or texts, such as photographs, screensavers and other digitised documents",
+            "Supplies of music, films, television shows, games and programmes on demand",
+            "Supplies of applications, software and software maintenance",
+            "Website supply or web hosting services",
+            "Advertising space on a website",
+            "Online magazines",
+            "Distance maintenance of programmes and equipment",
+            "Commission, fee or other consideration receivable by operators of an online marketplace, added by the Finance Act 2026"
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "From 1 October 2026 a foreign supplier must register only where its taxable supplies exceed, or are likely to exceed, MUR 3 million a year. It need not register where it supplies its services only to VAT-registered persons.",
+            "The duty to appoint a tax representative in Mauritius was repealed with effect from 13 August 2026.",
+            "A registered person in Mauritius may receive a taxable supply of services from a person who does not belong in Mauritius and is not registered for VAT. The registered person is then treated as having made the supply and accounts for the VAT. This is the reverse charge under section 14 of the VAT Act.",
+            "A foreign supplier treats the customer as being in Mauritius where any two of five indicators agree. They are the billing address, the location of the bank the payment comes from, the internet protocol address or other geolocation of the device, the country code of the customer's telephone number, and other commercially relevant information.",
+            "A foreign supplier files its return and pays within 20 days of the end of the taxable period, with a list of the taxable supplies made to persons in Mauritius. The MRA accepts payment in US dollars, euros, pounds sterling, Singapore dollars, South African rand and Swiss francs."
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S14",
+            "S15",
+            "S16"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "On 20 November 2026 the MRA web page on digital services still described the 2025 rules: registration whatever the turnover, and a tax representative above MUR 3 million. This guide follows the VAT Act as consolidated up to the Finance Act 2026.",
+          "sources": [
+            "S14",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Penalties and interest",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Default",
+            "Penalty or interest"
+          ],
+          "rows": [
+            [
+              "Not applying for compulsory registration",
+              "MUR 5,000 for each month or part of a month, up to MUR 50,000"
+            ],
+            [
+              "Late return",
+              "MUR 2,000 for each month or part of a month, up to MUR 20,000. Up to MUR 5,000 for a small enterprise"
+            ],
+            [
+              "Late payment of tax",
+              "10% of the tax. 2% for a small enterprise"
+            ],
+            [
+              "Interest on unpaid tax",
+              "1% for each month or part of a month"
+            ],
+            [
+              "Not joining the electronic filing system after notice",
+              "MUR 5,000 for each month or part of a month, up to MUR 100,000"
+            ],
+            [
+              "Not issuing fiscal invoices where required",
+              "MUR 5,000 a day, up to MUR 1 million in 12 months, from 1 October 2026"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The VAT Act defines a small enterprise as a person whose annual turnover does not exceed MUR 10 million.",
+            "Total penalty and interest under the Act, apart from the fixed penalties for registration, returns, electronic filing and e-invoicing, cannot exceed 100% of the tax due.",
+            "Failing to register is also an offence. On conviction the fine can be up to three times the tax involved, with imprisonment of up to 8 years.",
+            "Where a registered person does not file a return, the MRA can publish the name, trading name and address of the business, and the names of its directors or partners. It does so no sooner than 3 months after the due date and after giving 7 days' notice."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S4"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The cuts to income tax penalties and interest made on 1 July 2025 do not apply to VAT. The VAT Act as consolidated up to the Finance Act 2026 still sets a 10% late payment penalty and interest of 1% a month.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Value Added Tax Act (Consolidated Version up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/VATAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "FAQs VAT: Frequently Asked Questions, Value Added Tax",
+      "url": "https://www.mra.mu/download/VATFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "September 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the Mauritius Revenue Authority",
+      "published": "Assented to on 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Simplified VAT Registration - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/simplified-vat-registration",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Guide on Simplified VAT Registration",
+      "url": "https://www.mra.mu/download/GuideVATReg.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "September 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "VAT Forms - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/downloadable-forms/vat/vat-forms",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "VAT Return - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/vat-return",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Tax Calendar - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Calendar for July to December 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Communiqué: Filing of Returns/Statements and Payment of Tax",
+      "url": "https://www.mra.mu/download/Communique160626.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "16 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Communiqué: VAT Treatment, Supply of Services by Holder of a Management Licence",
+      "url": "https://www.mra.mu/download/VATTreatment021026.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "2 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Simplified Record Keeping - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/simplified-record-keeping",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "e-Invoicing - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/e-invoicing",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "FAQs e-Invoicing System",
+      "url": "https://www.mra.mu/download/eInvoicing/e-InvoicingFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "July 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "VAT on Digital or Electronic Services from Foreign Suppliers - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/vat-on-digital-or-electronic-services-from-foreign-suppliers",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Finance Act 2026, Mauritius: Key tax and regulatory changes (Tax Alert Issue 09)",
+      "url": "https://assets.kpmg.com/content/dam/kpmgsites/za/pdf/2026/08/Tax%20Alert%20Issue%2009%20-%20Finance%20Act%202026.pdf",
+      "publisher": "KPMG Mauritius (professional firm summary, used as a cross-check)",
+      "published": "17 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Annex to the Budget Speech 2026-2027",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/Annex-Budget-Speech-2026-2027.pdf",
+      "publisher": "Ministry of Finance, copy published by the National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Press Release: Obligations of VAT-Registered Persons under the VAT Act",
+      "url": "https://www.mra.mu/download/PressRelease230126.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "23 January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "FAQs - Large Taxpayer - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/faqs-large-taxpayer",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Value Added Tax Regulations 1998 (Consolidated Version up to November 2026)",
+      "url": "https://www.mra.mu/download/VATReg.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to November 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Simplified VAT Registration",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/simplified-vat-registration",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the registration rules and reach the online registration form."
+    },
+    {
+      "title": "VAT Registration Form (online)",
+      "url": "https://eservices8.mra.mu/Registrationvat/loginReg",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Log in and apply to register for VAT."
+    },
+    {
+      "title": "VAT Forms",
+      "url": "https://www.mra.mu/index.php/downloadable-forms/vat/vat-forms",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Download forms VAT 1, VAT 1A, VAT 1B, the VAT return and the cancellation form."
+    },
+    {
+      "title": "VAT Return",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/vat-return",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the e-filing notes, file templates for the monthly annex and the deadlines."
+    },
+    {
+      "title": "E-Filing of VAT Return",
+      "url": "https://eservices3.mra.mu/vatreturn/taxpayerlogin.jsp",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Log in to file a monthly or quarterly VAT return."
+    },
+    {
+      "title": "MRA e-Payment",
+      "url": "https://eservices2.mra.mu/mrapayments/userlogin.jsp",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Pay VAT due online."
+    },
+    {
+      "title": "VAT FAQs",
+      "url": "https://www.mra.mu/download/VATFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the MRA's plain questions and answers on registration, returns and repayment."
+    },
+    {
+      "title": "Guide on Simplified VAT Registration",
+      "url": "https://www.mra.mu/download/GuideVATReg.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Follow the MRA guide written for businesses brought in by the MUR 3 million threshold."
+    },
+    {
+      "title": "Value Added Tax Act (consolidated)",
+      "url": "https://www.mra.mu/download/VATAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check the current text of the Act, including the schedules of exempt and zero-rated supplies."
+    },
+    {
+      "title": "Value Added Tax Regulations 1998 (consolidated)",
+      "url": "https://www.mra.mu/download/VATReg.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check the prescribed time limits for returns and the other detailed rules made under the Act."
+    },
+    {
+      "title": "MRA e-Invoicing System",
+      "url": "https://www.mra.mu/index.php/e-invoicing",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "See the roll-out stages, technical specifications and list of EBS solution providers."
+    },
+    {
+      "title": "MRA e-Invoicing Portal",
+      "url": "https://vfiscportal.mra.mu/einvoice-portal/home",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Register for e-invoicing and on-board an Electronic Billing System."
+    },
+    {
+      "title": "Simplified Record Keeping Facility",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/simplified-record-keeping",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read who can use the free record keeping tool and reach it."
+    },
+    {
+      "title": "VAT on Digital or Electronic Services from Foreign Suppliers",
+      "url": "https://www.mra.mu/index.php/eservices1/vat-eservices/vat-on-digital-or-electronic-services-from-foreign-suppliers",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Reach the registration and return facilities for foreign suppliers. The page text predates the Finance Act 2026."
+    },
+    {
+      "title": "Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "See the VAT due dates month by month."
+    }
+  ],
+  "unverified": [
+    "Whether any fee is charged to register for VAT. The MRA registration page, guide and FAQ mention none, but none of them says registration is free.",
+    "The full wording of LTD and MSTD in the MRA e-invoicing table. The page does not expand them. The MRA has a Large Taxpayer Department and a Medium and Small Taxpayer Department, which is the likely meaning.",
+    "Any e-invoicing stage after 1 September 2026, for turnover below MUR 40 million. None was listed on the MRA e-invoicing page on 20 November 2026.",
+    "Whether any category of business has been prescribed for mandatory e-invoicing by regulation, as section 20A(2)(a) of the VAT Act allows. The Value Added Tax (E-invoicing) Regulations 2023 were opened only for their definitions. The guide relies on the MRA roll-out table and the notice power in the Act.",
+    "How a Mauritian business claims input tax on digital services bought from a foreign supplier. Section 21(2)(i) of the VAT Act restricts input tax on the supply of digital or electronic services, and the MRA guide for foreign suppliers predates the Finance Act 2026, so the point was left out."
+  ]
+}

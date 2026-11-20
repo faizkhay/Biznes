@@ -1,52 +1,41 @@
 // Every fact about biznes.mu and the agency behind it, once. Each surface (the header, the footer,
-// the form's fallbacks, the structured data, llms.txt) reads from here, so no two can disagree.
+// the forms' fallbacks, the structured data, llms.txt) reads from here, so no two can disagree.
 //
 // Sources:
-//   U   the owner, in conversation, 15 and 16 November 2026.
+//   U   the owner, in conversation, 15 to 20 November 2026.
 //   K   Khay Digital's own published facts, https://www.khay.digital/llms.txt, read 16 November 2026.
-// Anything marked "to confirm" is on the README's confirm list.
+// Anything marked "to confirm" is on the README's confirm list. What the search holds is not here:
+// it is data/index, written by the crawler, and content/guides, each with its own sources.
 
 export const site = {
   /** The name people say, and the address they type. */
   name: "biznes.mu",
-  /** What it is, in one line (U). */
-  line: "Ready-to-launch businesses in Mauritius",
+  /** What it is, in one line (U: "the search engine for Mauritian businesses"). */
+  line: "The search engine for business in Mauritius",
   /** One sentence for metadata and machines. */
   description:
-    "biznes.mu sells ready-to-launch businesses in Mauritius. Each one comes with its name and identity, its domain, its website and its strategy, built by Khay Digital and sold to one owner.",
-  /** The first screen's lede: where, who by, what is done, and the one term. */
-  lede: "The name, the brand, the domain, the website and the strategy are done. Each business is sold once, to one owner.",
+    "biznes.mu is a search engine for business in Mauritius: a directory of businesses and services across the island, plain guides to starting and running a business with every fact sourced, and the official registers to check one against.",
   /**
-   * False until the listings are real. While false, pages ask search engines not to index them and
-   * robots.txt closes the site, so sample listings can never be found as if they were for sale.
+   * False until the owner has confirmed the guides and chosen where requests go (README, "To
+   * confirm"). While false, pages ask search engines not to index them and robots.txt closes the site.
    */
   launched: false,
-  /** One switch hides every price on the site, if the owner prefers to quote in person. */
-  showPrices: true,
-  /**
-   * What the footer says about the site's pictures. The street is painted: generated illustrations,
-   * not photographs, and no shop in them exists (README, "Where it came from"). Said on every page
-   * so a painting can never pass for premises.
-   */
-  pictures: "The shopfronts on this site are illustrations. A business comes without premises.",
   locale: "en_MU",
 
-  /** The agency that builds every business sold here (K). */
+  /** The crawler, as it names itself once the site is live (crawler/config.mjs). */
+  bot: { name: "BiznesBot", path: "/bot" },
+
+  /** The agency that builds and runs the site (K). */
   builder: {
     name: "Khay Digital",
     legalName: "Khay Digital Ltd",
     brn: "C22187903",
     url: "https://khay.digital",
-    founded: "June 2020",
-    founder: "Faïz Khayrattee",
-    belief: "Anyone can make a website; Khay tells stories.",
-    /** Its published track record (K): the one figure on the site, and it is the agency's own. */
-    projects: "175+",
   },
 
   /**
-   * How to reach us. These are Khay Digital's own published routes (K), used here until biznes.mu
-   * has its own: to confirm.
+   * How to reach the people behind the site. These are Khay Digital's own published routes (K),
+   * used here until biznes.mu has its own: to confirm.
    */
   contact: {
     phone: "+230 5450 8600",
@@ -59,25 +48,36 @@ export const site = {
 
 /** The pages in the header and the footer, in reading order. One label per page, everywhere. */
 export const NAV = [
-  { href: "/businesses", label: "Businesses" },
-  { href: "/how-it-works", label: "How it works" },
+  { href: "/directory", label: "Directory" },
+  { href: "/places", label: "Places" },
+  { href: "/learn", label: "Learn" },
+  { href: "/tools", label: "Tools" },
 ] as const;
 
-/**
- * One label per intent, the same on every page (voice rule 6).
- *
- * `ask` is what a business's own page offers. It was "Reserve this business" until the design review
- * of 16 November 2026: nothing yet says what holds a business or for how long, so pressing the
- * button only sends a request, and the label says so. `enquire` is the one name for the route to the
- * form, wherever it appears; `send` is the form's own button and nothing else.
- */
+/** The quieter pages, for the footer. */
+export const MORE = [
+  { href: "/official", label: "Official pages" },
+  { href: "/data", label: "Where the data comes from" },
+  { href: "/bot", label: "Our crawler" },
+  { href: "/privacy", label: "Privacy" },
+] as const;
+
+/** One label per intent, the same on every page. */
 export const ACTIONS = {
-  browse: "See the businesses",
-  how: "How it works",
-  ask: "Ask about this business",
-  enquire: "Enquire",
-  send: "Send a request",
+  search: "Search",
+  add: "Add or correct a listing",
+  send: "Send",
+  call: "Call",
+  website: "Visit website",
+  directions: "Directions",
   whatsapp: "WhatsApp",
-  call: "Call us",
-  email: "Email us",
+} as const;
+
+/** Questions the first screen offers, each a real search. Chosen to show the three things it answers. */
+export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a company", "VAT", "restaurants in Grand Baie"] as const;
+
+/** The sources of the index, as they must be credited. */
+export const CREDITS = {
+  osm: { label: "OpenStreetMap contributors", href: "https://www.openstreetmap.org/copyright", licence: "Open Database Licence 1.0" },
+  wikidata: { label: "Wikidata", href: "https://www.wikidata.org/wiki/Wikidata:Licensing", licence: "CC0 1.0" },
 } as const;

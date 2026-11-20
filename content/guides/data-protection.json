@@ -1,0 +1,838 @@
+{
+  "slug": "data-protection",
+  "title": "Data protection for a business: the Data Protection Act 2017",
+  "summary": "What the Data Protection Act 2017 asks of a business in Mauritius that holds information about customers, staff or suppliers: registration with the Data Protection Office, lawful grounds, privacy notices, rights of individuals, breach notification, transfers abroad, the data protection officer and penalties.",
+  "audience": "Owners and managers of businesses in Mauritius that keep personal data.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Registration fee, controller or processor",
+      "value": "MUR 1,000, MUR 1,500 or MUR 2,500",
+      "detail": "MUR 1,000 with not more than 5 employees, MUR 1,500 with 6 to 25, MUR 2,500 with more than 25. Data Protection (Fees) Regulations 2020, in operation since 1 August 2020. The renewal fee is the same.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Registration certificate",
+      "value": "Valid 3 years",
+      "detail": "Renewal may be applied for not later than 3 months before expiry.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Personal data breach",
+      "value": "Notify the Commissioner within 72 hours where feasible",
+      "detail": "Without undue delay after becoming aware of the breach. A later notification must give the reasons for the delay.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Answer to an access request",
+      "value": "Within one month",
+      "detail": "May be extended by a further month where needed, given the complexity and number of requests. Free of charge unless the request is manifestly excessive.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Change in registered particulars",
+      "value": "Notify within 14 days",
+      "detail": "In writing to the Commissioner. Failure is an offence with a fine of up to MUR 50,000.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Children",
+      "value": "Parental consent below 16",
+      "detail": "No person may process the personal data of a child below 16 unless a parent or guardian consents.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "General penalty",
+      "value": "Fine up to MUR 200,000 and prison up to 5 years",
+      "detail": "On conviction, for an offence under the Act with no specific penalty, including acting as controller or processor without registration.",
+      "sources": [
+        "S1",
+        "S11"
+      ]
+    },
+    {
+      "label": "Data protection officer regulations",
+      "value": "In operation on 1 January 2027",
+      "detail": "Every controller designates a data protection officer from its staff and tells the Office within 14 days. The Office has announced a moratorium of 6 months for compliance.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "label": "Act in force",
+      "value": "Since 15 January 2018",
+      "detail": "The Data Protection Act 2017 replaced the Data Protection Act 2004.",
+      "sources": [
+        "S2",
+        "S1",
+        "S11"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Who the Act applies to",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Data Protection Act 2017 applies to the processing of personal data by automated means, and to other processing where the data form part of a filing system. Personal data is any information relating to an identified or identifiable individual. Individual means a living individual. The Act does not apply to processing by an individual in the course of a purely personal or household activity.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Term",
+            "Meaning in the Act",
+            "Example from the Act or the Data Protection Office"
+          ],
+          "rows": [
+            [
+              "Controller",
+              "A person or public body that, alone or jointly with others, determines the purposes and means of the processing of personal data and has decision-making power over it.",
+              "A school, a medical practitioner, a société, a private company such as an insurer or a bank."
+            ],
+            [
+              "Processor",
+              "A person or public body that processes personal data on behalf of a controller.",
+              "A company that hosts and manages the servers of an e-commerce business in its data centre."
+            ],
+            [
+              "Data subject",
+              "An identified or identifiable individual.",
+              "Employees, customers, shareholders, directors, suppliers, students."
+            ],
+            [
+              "Special categories of personal data",
+              "Data on racial or ethnic origin, political opinion, religious or philosophical beliefs, trade union membership, physical or mental health, sexual orientation, genetic or biometric data, offences and related proceedings.",
+              "The Act counts facial images and dactyloscopic (fingerprint) data as biometric data."
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S11",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Act applies to a controller or processor established in Mauritius that processes personal data in the context of that establishment.",
+            "A person ordinarily resident in Mauritius, or one that processes data through an office, branch or agency in Mauritius, is treated as established in Mauritius.",
+            "The Act also applies to a controller or processor not established in Mauritius that uses equipment in Mauritius for processing, other than for transit. Such a controller or processor must nominate a representative established in Mauritius.",
+            "The Office's registration guide names public and private organisations, sociétés, partnerships, professionals such as doctors, lawyers, engineers, architects and notaries, and sole traders among those who must register as controllers."
+          ],
+          "sources": [
+            "S1",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Registering with the Data Protection Office",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No person may act as controller or processor unless registered with the Data Protection Commissioner. A business already registered as controller that also processes personal data on behalf of another controller must register as processor too. The application describes the personal data and the categories of data subjects, says whether special categories are held, and gives the purposes, the recipients, any country to which data may be transferred, and the risks, safeguards and security measures. Types of data are listed, not the names of the people concerned.",
+          "sources": [
+            "S1",
+            "S11",
+            "S10"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Go to the DPO Portal at dpo.govmu.org. The Office announced on 7 December 2022 that all controllers and processors are required to register on the portal.",
+            "Create an administrator account for the organisation. Choose a username that is not the same as a MauPass username. Select the organisation, choose to register with the Business Registration Number and upload a scanned copy.",
+            "Submit the form and wait for the account activation email from the Office. Then log in with the credentials in that email.",
+            "Add a representative, the person who will submit the application, with a copy of the National Identity Card and proof of address. Add the organisation's data protection officer under Manage Officers.",
+            "After vetting, the representative receives a welcome email and logs in with MauPass credentials.",
+            "Choose Register New Controller, Register New Processor or both. For a renewal choose Renew Application.",
+            "Enter the number of employees. The portal shows the table of fees and the fee to pay. Choose the mode of payment and submit. The modes are cash, cheque, adjustment voucher for government departments and online payment by credit card.",
+            "When the email confirming approval arrives, log in again and download the registration certificate."
+          ],
+          "sources": [
+            "S8",
+            "S9",
+            "S7",
+            "S19"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Item",
+            "Amount or period",
+            "Basis"
+          ],
+          "rows": [
+            [
+              "Registration or renewal, not more than 5 employees",
+              "MUR 1,000",
+              "Fees Regulations 2020, from 1 August 2020"
+            ],
+            [
+              "Registration or renewal, 6 to 25 employees",
+              "MUR 1,500",
+              "Fees Regulations 2020"
+            ],
+            [
+              "Registration or renewal, more than 25 employees",
+              "MUR 2,500",
+              "Fees Regulations 2020"
+            ],
+            [
+              "Certified copy of, or extract from, an entry in the register",
+              "MUR 100",
+              "Fees Regulations 2020"
+            ],
+            [
+              "Validity of the registration certificate",
+              "3 years",
+              "Section 16 of the Act"
+            ],
+            [
+              "Renewal application",
+              "Not later than 3 months before expiry",
+              "Section 18 of the Act"
+            ],
+            [
+              "Notice of a change in the registered particulars",
+              "Within 14 days of the change",
+              "Section 17 of the Act"
+            ],
+            [
+              "Inspection of the Data Protection Register",
+              "Free of charge",
+              "Section 20 of the Act"
+            ]
+          ],
+          "sources": [
+            "S3",
+            "S1",
+            "S14"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Office's guide says the documents filed with a controller application are a copy of the certificate of incorporation or of the Business Registration Number card, or another document that confirms the organisation exists. Knowingly supplying false or misleading information in an application is an offence, with a fine of up to MUR 100,000 and imprisonment for up to 5 years. The Commissioner may cancel a certificate or vary its terms after giving the holder 14 days to show cause.",
+          "sources": [
+            "S10",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Lawful grounds and consent",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Personal data must be processed lawfully, fairly and transparently, collected for explicit, specified and legitimate purposes, limited to what is necessary, kept accurate, kept no longer than necessary and processed in line with the rights of data subjects. No person may process personal data unless one of the grounds in section 28 applies. Processing without a lawful ground is an offence, with a fine of up to MUR 100,000 and imprisonment for up to 5 years.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The data subject consents to the processing for one or more specified purposes.",
+            "The processing is necessary for a contract with the data subject, or for steps taken at the data subject's request before a contract.",
+            "It is necessary for compliance with a legal obligation of the controller.",
+            "It is necessary to protect the vital interests of the data subject or another person.",
+            "It is necessary for a task carried out in the public interest, in the exercise of official authority or by a public authority.",
+            "It is necessary for the legitimate interests of the controller or of a third party to whom the data are disclosed, unless the processing is unwarranted given the harm to the rights, freedoms or legitimate interests of the data subject.",
+            "It is necessary for historical, statistical or scientific research."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Consent means a freely given, specific, informed and unambiguous indication of the data subject's wishes, by a statement or a clear affirmative action. The controller bears the burden of proving consent. The data subject may withdraw consent at any time. In judging whether consent was freely given, account is taken of whether a contract or service is made conditional on consent to processing that the contract does not need. The Office's guide says pre-ticked opt-in boxes are not valid, and that a consent request is kept separate from other terms and conditions.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Special categories of personal data may be processed only where a section 28 ground applies and one of the further conditions in section 29 is met, for example where the data subject has manifestly made the data public, or the processing is necessary for a legal claim, for occupational medicine or for carrying out the obligations and specific rights of the controller or the data subject. For a child below 16, consent must come from a parent or guardian, and the controller must make every reasonable effort to verify it.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What a privacy notice must say",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A controller may collect personal data only for a lawful purpose connected with its function or activity, and only where the collection is necessary for that purpose. Where the data are collected directly from the data subject, section 23 requires the controller to make sure, at the time of collection, that the person is informed of the matters below. The same information is owed where the data come from another source.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The identity and contact details of the controller and, where applicable, its representative and any data protection officer.",
+            "The purpose for which the data are collected.",
+            "The intended recipients of the data.",
+            "Whether supplying the data is voluntary or mandatory.",
+            "The right to withdraw consent at any time.",
+            "The right to ask for access to, rectification, restriction or erasure of the data, and the right to object to the processing.",
+            "The existence of automated decision making, including profiling, with information on the logic involved and the significance and envisaged consequences.",
+            "The period for which the data will be stored.",
+            "The right to lodge a complaint with the Commissioner.",
+            "Where applicable, that the controller intends to transfer the data to another country, and the level of suitable protection afforded by that country.",
+            "Any further information needed to guarantee fair processing in the circumstances."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The controller need not give this information where the data subject already has it. Where the data are not collected from the data subject, it need not do so if giving it proves impossible or would involve a disproportionate effort, or if the recording or disclosure of the data is laid down by law.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Rights of individuals",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Right",
+            "What the controller must do",
+            "Time limit or condition"
+          ],
+          "rows": [
+            [
+              "Access (section 37)",
+              "On written request, confirm whether personal data about the person are processed and send a copy, with the purposes, categories, recipients, storage period, source and safeguards for any transfer.",
+              "Tell the person in writing within one month whether action has been taken. One further month is allowed where necessary. Free unless the request is manifestly excessive."
+            ],
+            [
+              "Automated decisions (section 38)",
+              "Not subject the person to a decision based solely on automated processing, including profiling, that has legal effects or significantly affects the person.",
+              "Does not apply where the decision is necessary for a contract, authorised by law or based on explicit consent."
+            ],
+            [
+              "Rectification (section 39)",
+              "Correct inaccurate data and complete incomplete data.",
+              "Without undue delay."
+            ],
+            [
+              "Erasure (section 39)",
+              "Erase data that are no longer necessary, where consent is withdrawn and no other ground exists, where the person objects and no overriding ground exists, or where the data were unlawfully processed.",
+              "Without undue delay. Exceptions include legal obligations and legal claims."
+            ],
+            [
+              "Restriction (section 39)",
+              "The controller may restrict processing at the person's request, for example while accuracy is checked or an objection is assessed.",
+              "The controller tells the person before lifting the restriction."
+            ],
+            [
+              "Objection (section 40)",
+              "Stop processing when the person objects in writing, unless the controller shows compelling legitimate grounds that override the person's interests, or needs the data for a legal claim.",
+              "At any time. After an objection to direct marketing, the data may no longer be processed for that purpose."
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A controller that refuses a request must tell the person in writing within one month, with the reason and the possibility of complaining to the Commissioner.",
+            "A controller that treats a request as manifestly excessive may charge a fee or decline to act, and bears the burden of proving that the request is excessive. The Fees Regulations 2020 set the fee under section 37(7) at MUR 100.",
+            "Where the controller has a reasonable doubt about the identity of the person asking, it may ask for more information to confirm it.",
+            "A right may be exercised for a minor by a person with parental authority or a guardian, or by a person the data subject has authorised in writing.",
+            "The Office publishes a Rights of Data Subjects Form."
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Security, records, impact assessments and processors",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Security. A controller or processor must put in place appropriate security and organisational measures against unauthorised access, alteration, disclosure, accidental loss and destruction. The measures include pseudonymisation and encryption, the ability to keep systems confidential, intact, available and resilient, the ability to restore data after an incident, and regular testing.",
+            "Staff. Every controller or processor must take all reasonable steps to make sure its employees know the security measures and comply with them.",
+            "Processors. A controller that uses a processor must choose one that gives sufficient guarantees on security, and sign a written contract. The contract says the processor acts only on the controller's instructions and is bound by the controller's security obligations. A processor that goes beyond its instructions is treated as a controller for that processing.",
+            "Records. Every controller or processor keeps a record of all processing operations: its contact details, the purposes, the categories of data subjects, data and recipients, any transfers to another country and, where possible, the time limits for erasure. The record is given to the Office on request. The Office publishes a template.",
+            "Destruction. When the purpose for keeping personal data has lapsed, the controller destroys the data as soon as reasonably practicable and tells any processor holding it to do the same."
+          ],
+          "sources": [
+            "S1",
+            "S16"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A data protection impact assessment is required before processing that is likely to result in a high risk to the rights and freedoms of data subjects. The Act names systematic and extensive evaluation based on automated processing and profiling, large-scale processing of special categories of data, and systematic monitoring of a publicly accessible area on a large scale. Where the assessment shows a high risk, the controller or processor consults the Office before processing. The Office publishes a guide to the assessment form and a list of high risk processing operations. The form is submitted online on the DPO Portal.",
+          "sources": [
+            "S1",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Personal data breaches",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A personal data breach is a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, personal data. The Office's guide treats a controller as aware of a breach once it has a reasonable degree of certainty that one has occurred.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "A processor that becomes aware of a breach notifies the controller without any undue delay.",
+            "The controller notifies the Data Protection Commissioner without undue delay and, where feasible, not later than 72 hours after becoming aware of the breach. The notification is made with the Notification of Personal Data Breach eform on the DPO Portal.",
+            "The notification describes the nature of the breach, including where possible the categories and approximate number of data subjects and records concerned. It gives the name and contact details of the data protection officer or another contact point, and the measures to address the breach and limit its effects.",
+            "If the 72 hours are missed, the controller gives the Commissioner the reasons for the delay.",
+            "Where the breach is likely to result in a high risk to the rights and freedoms of a data subject, the controller tells the data subject without undue delay, after notifying the Commissioner, in clear language.",
+            "The controller sets out the facts of the breach, its effects and the remedial action taken, so that the Commissioner can verify compliance. The Office's guide says a controller that finds further evidence, or finds that there was no breach, updates the Office."
+          ],
+          "sources": [
+            "S1",
+            "S6",
+            "S11"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The data subject need not be told where the data were protected by measures that make them unintelligible to unauthorised persons, such as encryption, where later measures mean the high risk is no longer likely to materialise, or where telling each person would involve disproportionate effort and a public communication informs them equally well. The Commissioner may still require the controller to tell data subjects.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Transfers abroad, direct marketing and CCTV",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "A controller or processor may transfer personal data to another country where it has provided to the Commissioner proof of appropriate safeguards for the protection of the data.",
+            "A transfer is also allowed where the data subject has given explicit consent after being informed of the possible risks of the transfer.",
+            "A transfer is also allowed where it is necessary for a contract with the data subject, for a contract concluded in the data subject's interest, for reasons of public interest provided by law, for a legal claim, or to protect vital interests where the data subject cannot consent.",
+            "A further ground covers compelling legitimate interests where the transfer is not repetitive, concerns a limited number of data subjects and proof of appropriate safeguards has been given to the Commissioner.",
+            "The Commissioner may ask a person who transfers data to show that the safeguards work, and may prohibit or suspend the transfer or attach conditions.",
+            "The Office's guide says a transfer to a processor abroad, including cloud-based and outsourced services, falls under these rules, and that the controller stays responsible. The Transfer of Personal Data Abroad eform is on the DPO Portal."
+          ],
+          "sources": [
+            "S1",
+            "S11",
+            "S6",
+            "S18"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Direct marketing is the communication of any advertising or marketing material directed to a particular individual. A data subject may object to processing for direct marketing, including profiling related to it. Once a person objects, the personal data may no longer be processed for that purpose. The right to object must be explicitly brought to the person's attention. The Office's guide gives the example of a competition entry form: an email address may be used for direct marketing only if the form said so and offered a box to tick.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "CCTV. The Office's guidelines on video surveillance treat recognisable images as personal data. They ask for clearly visible signs that tell people they are entering an area covered by CCTV, with the identity of the person responsible, the purpose and a contact. Where the purpose is not obvious, such as monitoring staff, people must be told before recording. Sound recording of conversations is to be disabled. Areas such as toilets, shower rooms, lockers and recreation areas are not to be covered. Images are erased when the retention period ends, and the guidelines say it would be difficult to justify keeping images of a normal security system beyond, for instance, two months. Recording without a person's knowledge is described as generally unlawful.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The video surveillance guidelines were issued in 2010 under the Data Protection Act 2004 and cite sections of that Act. The Office still publishes them, in its list of publications under the 2004 Act. The principles, rights and offences that apply to CCTV today are those of the 2017 Act.",
+          "sources": [
+            "S12",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Data protection officer, enforcement and penalties",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Act requires every controller to designate an officer responsible for data protection compliance. Regulations made on 17 June 2026 set out the rules and come into operation on 1 January 2027. Every controller must designate a data protection officer from a staff member of the organisation, on the basis of professional qualifications that include certification issued by the Office or by a training institution the Office approves. The controller tells the Office the officer's particulars within 14 days of the designation and of any change, and publishes the officer's contact details at a conspicuous place on its premises or, where applicable, on its website. The officer reports to the highest management level, may not be dismissed or penalised for lawfully doing the job, and is not personally liable for the controller's non-compliance. The Office has announced a moratorium of 6 months for compliance.",
+          "sources": [
+            "S1",
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Offence",
+            "Maximum penalty on conviction"
+          ],
+          "rows": [
+            [
+              "Acting as controller or processor without registration, unlawful disclosure of personal data, and any offence with no specific penalty",
+              "Fine of MUR 200,000 and imprisonment for 5 years"
+            ],
+            [
+              "Knowingly giving false or misleading information in a registration application",
+              "Fine of MUR 100,000 and imprisonment for 5 years"
+            ],
+            [
+              "Processing personal data without a lawful ground, or special categories outside the conditions",
+              "Fine of MUR 100,000 and imprisonment for 5 years"
+            ],
+            [
+              "Not notifying a change in registered particulars within 14 days",
+              "Fine of MUR 50,000"
+            ],
+            [
+              "Not complying with an enforcement notice, or with a notice requiring information",
+              "Fine of MUR 50,000 and imprisonment for 2 years"
+            ],
+            [
+              "From 1 January 2027: not notifying the Office of the data protection officer, or not publishing the officer's contact details",
+              "Fine of MUR 100,000 and imprisonment for 5 years"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S4",
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Commissioner may serve an enforcement notice on a controller or processor that has contravened, is contravening or is about to contravene the Act. The notice gives at least 21 days to carry out the measures.",
+            "The Commissioner investigates complaints, may require information by written notice and may carry out periodical audits of the systems of controllers and processors.",
+            "In addition to a penalty, the Court may order the forfeiture of equipment used in an offence and may order or prohibit any act to stop a continuing contravention.",
+            "A person aggrieved by a decision of the Commissioner may appeal to the ICT Appeal Tribunal within 21 days of being told of the decision. The appeal fee is MUR 500.",
+            "Certification of processing operations by the Office is voluntary and lasts up to 3 years.",
+            "The Office publishes guides under the 2017 Act, among them an introductory guide, a 2026 guide on data protection in the financial sector and a guide on health data and artificial intelligence."
+          ],
+          "sources": [
+            "S1",
+            "S13",
+            "S3",
+            "S20"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Office's introductory guide, written before the 2026 regulations, says the officer's duties may be contracted out to an external provider. The 2026 regulations say the officer is designated from a staff member of the organisation. The Office's notice of 23 June 2026 asks organisations that operate without any supporting staff to contact it for advice on certification as data protection officer.",
+          "sources": [
+            "S11",
+            "S4",
+            "S5"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "The Data Protection Act 2017 (Act 20 of 2017)",
+      "url": "https://dataprotection.govmu.org/Documents/DPA_2017.pdf",
+      "publisher": "Data Protection Office",
+      "published": "Text showing the amendment made by Act No. 1 of 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Pages/The%20Law/Data-Protection-Act-2017.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Data Protection (Fees) Regulations 2020 (Government Notice No. 152 of 2020)",
+      "url": "https://dataprotection.govmu.org/Pages/The%20Law/152%20The%20Data%20Protection%20Fees%20Regulations%202020.pdf",
+      "publisher": "Data Protection Office",
+      "published": "6 July 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Data Protection (Designation, Tasks and Position of Data Protection Officers) Regulations 2026 (Government Notice No. 117 of 2026)",
+      "url": "https://dataprotection.govmu.org/Documents/2026/regulations.pdf",
+      "publisher": "Data Protection Office",
+      "published": "17 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Communiqué: Data Protection (Designation, Tasks and Position of Data Protection Officers) Regulations 2026",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/CommuniqueDPO.pdf",
+      "publisher": "Data Protection Office (copy published by the Economic Development Board)",
+      "published": "23 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "eDPO",
+      "url": "https://dataprotection.govmu.org/Pages/eDPO.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Communiqué to the Public: Data Protection E-Services (Registration, Complaints and Eforms)",
+      "url": "https://dataprotection.govmu.org/Documents/Communique%20DPO%20Portal.pdf",
+      "publisher": "Data Protection Office",
+      "published": "7 December 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Basic Steps for Organisation (online portal)",
+      "url": "https://dataprotection.govmu.org/Documents/2026/Basic%20Steps%20to%20submit%20application%20for%20Organisation.pdf",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "DPO Portal User Guide, version 8.1",
+      "url": "https://dataprotection.govmu.org/Documents/2026/DPO%20Portal%20User%20Guide_V8-1.pdf",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Guide on Registration and Renewal as Controller",
+      "url": "https://dataprotection.govmu.org/Documents/Guides/Guide_for%20Controller_Application.pdf",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Introductory Guide to the Data Protection Act 2017 (Volume 12)",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Publications%20and%20Guidelines/Guidelines.pdf",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Guidelines to regulate the Processing of Personal Data by Video Surveillance Systems (Volume 5)",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Publications%20and%20Guidelines/Guidelines%20DPA%20Act%202004%20doc5.pdf",
+      "publisher": "Data Protection Office",
+      "published": "March 2010",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Complaints",
+      "url": "https://dataprotection.govmu.org/Pages/Controllers%20and%20Processors/Enforcement/Complaints.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Data Protection Regulations",
+      "url": "https://dataprotection.govmu.org/Pages/The%20Law/Data-Protection-Regulations.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Data Protection Impact Assessment and High Risk Operations",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Data-Protection-Impact-Assessment-and-High-Risk-Operations.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Records of processing operations",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Records-of-processing-operations.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Rights of Data Subjects Form",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Rights-of-Data-Subjects-Form.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Transfer of data abroad",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Transfer-of-data-abroad.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "DPO Portal: login page",
+      "url": "https://dpo.govmu.org/",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Guidelines Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Guidelines-Data-Protection-Act-2017.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "DPO Portal",
+      "url": "https://dpo.govmu.org/",
+      "publisher": "Data Protection Office",
+      "what": "Register or renew as controller or processor, pay the fee and submit the eforms for breaches, transfers abroad, impact assessments, compliance audits and certification."
+    },
+    {
+      "title": "eDPO",
+      "url": "https://dataprotection.govmu.org/Pages/eDPO.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Find the portal user guide and the step sheets for individuals, organisations and groups of companies."
+    },
+    {
+      "title": "Basic Steps for Organisation",
+      "url": "https://dataprotection.govmu.org/Documents/2026/Basic%20Steps%20to%20submit%20application%20for%20Organisation.pdf",
+      "publisher": "Data Protection Office",
+      "what": "Follow the eleven steps to open a portal account and submit a registration."
+    },
+    {
+      "title": "DPO Portal User Guide",
+      "url": "https://dataprotection.govmu.org/Documents/2026/DPO%20Portal%20User%20Guide_V8-1.pdf",
+      "publisher": "Data Protection Office",
+      "what": "See each screen of the portal, including renewal, online payment and the eforms."
+    },
+    {
+      "title": "The Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Documents/DPA_2017.pdf",
+      "publisher": "Data Protection Office",
+      "what": "Read the full text of the Act."
+    },
+    {
+      "title": "Data Protection Regulations",
+      "url": "https://dataprotection.govmu.org/Pages/The%20Law/Data-Protection-Regulations.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Download the Fees Regulations 2020 and the application forms for controllers and processors."
+    },
+    {
+      "title": "Data Protection (Designation, Tasks and Position of Data Protection Officers) Regulations 2026",
+      "url": "https://dataprotection.govmu.org/Documents/2026/regulations.pdf",
+      "publisher": "Data Protection Office",
+      "what": "Read the duties, qualifications and position of the data protection officer from 1 January 2027."
+    },
+    {
+      "title": "Introductory Guide to the Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Publications%20and%20Guidelines/Guidelines.pdf",
+      "publisher": "Data Protection Office",
+      "what": "Read the Office's question and answer guide to each part of the Act, with to-do lists."
+    },
+    {
+      "title": "Guidelines Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Guidelines-Data-Protection-Act-2017.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Find the Office's sector guides, including the 2026 guide for the financial sector and the guide on health data and artificial intelligence."
+    },
+    {
+      "title": "Records of processing operations",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Records-of-processing-operations.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Download the template for the record of processing operations."
+    },
+    {
+      "title": "Data Protection Impact Assessment and High Risk Operations",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Data-Protection-Impact-Assessment-and-High-Risk-Operations.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Download the guide to the impact assessment form and the list of high risk processing operations."
+    },
+    {
+      "title": "Rights of Data Subjects Form",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Document%20%26%20Forms/Rights-of-Data-Subjects-Form.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Download the form a person can use to exercise a right."
+    },
+    {
+      "title": "Data Protection Training Toolkit",
+      "url": "https://dataprotection.govmu.org/Pages/Home%20-%20Pages/Data-Protection-Training-Toolkit.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Watch the Office's training clips on registration, obligations, rights, transfers and penalties."
+    },
+    {
+      "title": "Guidelines to regulate the Processing of Personal Data by Video Surveillance Systems",
+      "url": "https://dataprotection.govmu.org/Pages/Downloads/Publications%20and%20Guidelines/Guidelines%20DPA%20Act%202004%20doc5.pdf",
+      "publisher": "Data Protection Office",
+      "what": "Read the Office's guidance on signs, retention, access requests and covert recording for CCTV, issued under the 2004 Act."
+    },
+    {
+      "title": "Complaints",
+      "url": "https://dataprotection.govmu.org/Pages/Controllers%20and%20Processors/Enforcement/Complaints.aspx",
+      "publisher": "Data Protection Office",
+      "what": "See who can complain to the Commissioner and how a decision can be appealed."
+    }
+  ],
+  "unverified": [
+    "Whether the Data Protection Act 2017 has been amended since Act No. 1 of 2020. The copy on the Data Protection Office site shows only that amendment. The Finance Act 2025, the Economic and Financial Measures (Miscellaneous Provisions) Acts 2025 and 2026 and the Finance Act 2026 do not list the Act among those they amend, but no consolidated text dated 2026 was found.",
+    "The Office's full list of communiqués. The list on its site is loaded by script and could not be read, so there may be 2025 or 2026 notices on registration that are not reflected here.",
+    "How long the Office takes to approve a registration or renewal.",
+    "Who is exempt from the registration fee. The portal user guide mentions that an applicant may be exempt in exceptional cases but does not say who.",
+    "The training and certification fees for data protection officers under the 2026 regulations, the list of approved training institutions, and the designation process. The Office's notice says these will be communicated in due course.",
+    "The start and end dates of the 6-month moratorium announced for the 2026 regulations. The notice does not state them.",
+    "Whether the Office has issued CCTV guidance under the 2017 Act. Only the 2010 guidelines issued under the 2004 Act were found.",
+    "Rules on unsolicited electronic marketing messages under other laws, such as the Information and Communication Technologies Act. Only section 40 of the Data Protection Act was checked.",
+    "The Office's document on the roles and responsibilities of the data protection officer (version 3), linked from its site, returned an error and was not read.",
+    "Whether payment in cash or by cheque is still accepted at the Office's cash office and its current address. The modes of payment are taken from the portal user guide."
+  ]
+}

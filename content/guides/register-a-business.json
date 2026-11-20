@@ -1,0 +1,839 @@
+{
+  "slug": "register-a-business",
+  "title": "Register a business as a sole trader or partnership",
+  "summary": "How a person trading on their own account, or a partnership (société), registers with the Corporate and Business Registration Department under the Business Registration Act 2002: who must register, how and where to apply, what it costs, what the Business Registration Card is for, and what registration does not cover.",
+  "audience": "Individuals, self-employed people and partnerships starting a business in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Registration fee",
+      "value": "Nil",
+      "detail": "Application under section 6(3) of the Business Registration Act, under regulations gazetted on 3 September 2022.",
+      "sources": [
+        "S3",
+        "S6"
+      ]
+    },
+    {
+      "label": "When to apply",
+      "value": "At least 2 days before starting business",
+      "detail": "Business Registration Act, section 6(4).",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Time to register",
+      "value": "Card issued immediately on application",
+      "detail": "CBRD Customer Charter, updated 10 August 2026. The CBRD's guidelines of 4 April 2025 say within half a day.",
+      "sources": [
+        "S7",
+        "S6"
+      ]
+    },
+    {
+      "label": "Certified copy or amended card",
+      "value": "MUR 100 each",
+      "detail": "For a certified copy of the Business Registration Card, or a fresh card after a change.",
+      "sources": [
+        "S4",
+        "S1"
+      ]
+    },
+    {
+      "label": "Reporting a change",
+      "value": "Within 14 days",
+      "detail": "Any change in the registered particulars, section 11.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Reporting that the business has stopped, been sold or transferred",
+      "value": "Within 15 days",
+      "detail": "Section 12. The CBRD cancels the card free of charge.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Fine for trading without registration",
+      "value": "Up to MUR 100,000",
+      "detail": "On conviction, section 6(6).",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Société commerciale",
+      "value": "MUR 9,000 at registration, then MUR 9,000 a year",
+      "detail": "Annual fee for 2026 when paid by the due date; MUR 13,500 after it. A société civile pays nothing at registration.",
+      "sources": [
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "label": "Where to apply",
+      "value": "Online through CBRIS, or at the CBRD, One Cathedral Square Building, Jules Koenig Street, Port Louis",
+      "detail": "Office hours 08:45 to 16:00 and cash office 09:00 to 15:30, Monday to Friday.",
+      "sources": [
+        "S1",
+        "S7",
+        "S22"
+      ]
+    },
+    {
+      "label": "Compulsory VAT registration",
+      "value": "Taxable turnover above MUR 3 million a year",
+      "detail": "Mauritius Revenue Authority VAT FAQs dated September 2025. Listed professions register whatever their turnover.",
+      "sources": [
+        "S18"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Who must register",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Business Registration Act 2002 was proclaimed on 1 October 2006. No person may carry on business in Mauritius without being registered under it. Business means every form of trade, commerce, manufacture, craft, calling, profession, vocation or occupation, or any other activity, carried on for gain or profit. A person who has a place of business in Mauritius is treated as carrying on business in Mauritius.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Not covered: any office or employment.",
+            "Not covered: a craftsman who works from his or her own home and has no business premises.",
+            "Not covered: a person cultivating land of not more than 4.2208 hectares (10 arpents)."
+          ],
+          "sources": [
+            "S2",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In the Act, a person includes a société, partnership, joint venture, consortium, trust or firm. Companies and commercial partnerships registered under the Companies Act 2001 are deemed to be registered and do not apply separately. The CBRD lists civil partnerships, associations, co-operatives, statutory bodies, trade unions, successions and joint ventures among those that apply for a card.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What registration gives",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Registrar of Businesses enters the business and its business name in the Central Business Registration Database and allocates a Business Registration Number (BRN). The Registrar of Businesses is the Registrar of Companies, whose office is the Corporate and Business Registration Department (CBRD).",
+          "sources": [
+            "S2",
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Registrar then issues a Business Registration Card, electronically or in another form the Registrar decides. The card shows the BRN, the person's full name, the business name if any, the nature of the business, the principal place of business and every other place where business is carried on, and its date of issue. Unless the contrary is proved, the card is conclusive evidence that the business is registered.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A person has one BRN and one card only. A person with several places of business, or several different businesses, makes one application.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The consolidated Act as at 31 August 2026 shows the former subsections on a 3 year validity period and renewal of the card as deleted. The text in force gives the card no expiry date.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Business names",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A registered person may trade only under a business name that has been registered with the Registrar. Trading under an unregistered business name is an offence with a fine of up to MUR 50,000. Registering a business name does not authorise its use where another law prohibits it.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Needs the Registrar's written consent: Authority, Corporation, Government, Mauritius, National, President, Presidential, Regional, Republic or State, or any word suggesting the patronage of the Government, a statutory corporation or another State.",
+            "Needs the Registrar's written consent: Municipal or Chartered, or any word suggesting a connection with a local authority.",
+            "Needs the Registrar's written consent: co-operative.",
+            "Needs the Registrar's written consent: Chamber of Commerce."
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Registrar may refuse or cancel a registration where the business name is identical to, or nearly resembles, the name or business name of another person carrying on business, or is in the Registrar's opinion undesirable or misleading. The person has 30 days from the Registrar's request to change the name. An appeal against refusal or cancellation goes in writing to the Minister within 30 days.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Names already on the register can be checked on the CBRD's online search, which the CBRD home page describes as free of charge.",
+          "sources": [
+            "S25"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How to apply",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Choose the business activity from the CBRD's list of trade codes. The CBRD publishes a list of classified trades with the trade fee for each.",
+            "Check whether the activity is one the CBRD lists as regulated and needing approval from another authority (see the section on what registration does not cover).",
+            "Apply at least 2 days before the business starts. Apply online through the Companies and Businesses Registration Integrated System (CBRIS), or at the CBRD counter in Port Louis.",
+            "Use the right form. An individual uses BRF1. Civil partnerships, successions and other bodies use BRF3. Existing companies and commercial partnerships use BRF2.",
+            "Give the particulars the Act requires: full name and national identification number, the business name if any, the general nature of the business, the principal place of business and any other place of business, and the date or proposed date of starting.",
+            "Pay no registration fee: the fee for the application is nil. The CBRD's guidelines list no documents to upload for an online business registration.",
+            "Receive the electronic Business Registration Card. The guidelines say the applicant then collects the hard copy at the CBRD counter."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3",
+            "S6",
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD Customer Charter, updated on 10 August 2026, says a Business Registration Card is issued to the person immediately on application. The CBRD's guidelines of 4 April 2025 say a business is registered within half a day. The Registrar may ask for further information before registering. The Act does not oblige the Registrar to register a person if not satisfied with the particulars given, or where the business contravenes any law.",
+          "sources": [
+            "S7",
+            "S6",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD is at One Cathedral Square Building, Jules Koenig Street, Port Louis. Hours of business are 08:45 to 16:00 and the cash office is open from 09:00 to 15:30, Monday to Friday. The Charter says staff at the counters help customers who cannot file online, and that the CBRD runs a unit in Rodrigues offering similar services.",
+          "sources": [
+            "S7",
+            "S22"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Older CBRD documents, including the FAQs and the April 2025 guidelines, give the online address as portalmns.mu. When checked on 20 November 2026 that address no longer led to the registration system. The CBRD home page links to CBRIS at cbris.mns.global, where new users can register for an account.",
+          "sources": [
+            "S25",
+            "S21",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Partnerships (sociétés)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A partnership in Mauritius is a société: two or more persons who agree to contribute to a common undertaking with the intention of sharing profits. The CBRD names two common types. The société civile is governed by the Code Civil Mauricien. The société commerciale, which includes the société en nom collectif and the société en commandite simple, is governed by the Code de Commerce. The partners draw up statuts. The CBRD says this can be done by notarial deed or under private signature (sous seing privé), and that a form exists to reserve the partnership name. Sociétés are registered with the Registrar of Companies at the CBRD. The Customer Charter says a certificate of posting, evidencing registration, is delivered within one working day of the documents being submitted.",
+          "sources": [
+            "S10",
+            "S11",
+            "S12",
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Point compared",
+            "Société civile",
+            "Société commerciale"
+          ],
+          "rows": [
+            [
+              "How the CBRD describes it",
+              "Mostly partnerships holding assets",
+              "Partnerships that trade"
+            ],
+            [
+              "Fee at registration",
+              "Nil",
+              "MUR 9,000"
+            ],
+            [
+              "Annual registration fee for 2026",
+              "None",
+              "MUR 9,000 by the due date, MUR 13,500 after it"
+            ],
+            [
+              "Annual return to the Registrar",
+              "Not required",
+              "Not required"
+            ],
+            [
+              "Business Registration Card",
+              "Needed if the partnership does business for gain or profit",
+              "Deemed registered under the Business Registration Act; the number given by the Registrar is its BRN"
+            ]
+          ],
+          "sources": [
+            "S11",
+            "S12",
+            "S13",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD's FAQs state that the liability of a commercial partnership is unlimited. Under article 23 of the Code de Commerce, the partners in a société en nom collectif answer for the société's debts without limit and jointly. A partnership of more than 20 persons may not be formed to carry on business for gain unless it is registered as a company or formed under another enactment. This rule in section 348 of the Companies Act does not affect sociétés civiles, or professions designated by the Minister.",
+          "sources": [
+            "S12",
+            "S24",
+            "S19"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Since 13 August 2026 every partnership, civil or commercial, must keep a register of its beneficial owners and file the information with the Registrar at registration and within 14 days of any change. Partnerships operating before 13 August 2026 must comply by 31 March 2027. The fine for not complying is up to MUR 300,000.",
+          "sources": [
+            "S14",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "After registration",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Display a copy of the Business Registration Card in force, in any format, in a conspicuous place at the principal place of business and at every other place of business. The words 'in any format' were added on 13 August 2026, and the text in force asks for a copy, not a certified copy.",
+            "Use the BRN on every document in every transaction, and show the other party's BRN where that party is registered. Not doing so is an offence with a fine of up to MUR 100,000.",
+            "Notify the Registrar within 14 days of any change in the registered particulars. Where the card must change, return it with the notice. A fresh card costs MUR 100.",
+            "To amend a card the CBRD asks for the amendment form, the original card and MUR 100. If an authorised person files it, the CBRD also asks for an authorisation letter and a copy of the signatory's national identity card.",
+            "If the card is lost, the CBRD's FAQs say to obtain a memo from the police station of the locality, call in person at the CBRD with a national identity card, hand in the memo with a written application for a certified copy, and pay MUR 100."
+          ],
+          "sources": [
+            "S2",
+            "S9",
+            "S4",
+            "S1",
+            "S5",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No public sector agency may issue a permit, licence, approval or other authorisation to a person who is required to be registered unless that person holds a Business Registration Card.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Stopping, selling or transferring the business",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A registered person who stops carrying on business, or sells or transfers it, must notify the Registrar in writing within 15 days, giving the date and the full name of the buyer or transferee, and must return the card and all copies. A person who buys or takes over a business must also notify the Registrar. Not doing so is an offence with a fine of up to MUR 50,000.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Apply for cancellation. The CBRD has a request form that asks for the reason, such as ceasing to trade or moving the business into a company.",
+            "Settle any outstanding trade fee.",
+            "Return the original Business Registration Card and any certified copy. Cancellation is free of charge."
+          ],
+          "sources": [
+            "S1",
+            "S5",
+            "S26"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Registrar may also cancel a registration without a request. Where the Registrar has reasonable cause to believe a person is not carrying on business, a notice is sent by registered post giving one month to show cause. A registration may also be cancelled where the business contravenes an enactment. Cards of companies and commercial partnerships are cancelled once they are removed or struck off the register.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What registration does not cover",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Registration, and the issue of a card, do not mean that the requirements of any other law for the business have been met. Permits, licences, trade fees and tax registration are separate.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Regulated activity listed by the CBRD",
+            "Approval from"
+          ],
+          "rows": [
+            [
+              "Activities related to betting and horse racing",
+              "Gambling Regulatory Authority"
+            ],
+            [
+              "Banian and owner of a fishing business",
+              "Ministry of Agro-Industry, Food Security, Blue Economy and Fisheries"
+            ],
+            [
+              "Bank, main office and branch",
+              "Bank of Mauritius"
+            ],
+            [
+              "Pharmacy, wholesale or retail",
+              "Ministry of Health and Wellness"
+            ],
+            [
+              "Retail and wholesale of liquor",
+              "Mauritius Revenue Authority"
+            ],
+            [
+              "Retail of fruits and vegetables in stores, markets or fairs, along the road or mobile",
+              "Ministry of Local Government"
+            ],
+            [
+              "Sale of foodstuffs and non-foodstuffs along the road or mobile, or in markets and fairs",
+              "Ministry of Local Government"
+            ],
+            [
+              "Sale of foodstuffs and non-foodstuffs on the beach",
+              "Ministry of Tourism"
+            ],
+            [
+              "Wholesale of scrap metal",
+              "Ministry of Commerce and Consumer Protection"
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Trade fees for classified trades are due to local authorities. The CBRD has collected them on behalf of local authorities since 3 January 2020, online or at its counter.",
+            "For financial year 2026/2027 the first instalment, for 1 July to 31 December 2026, is payable until 20 January 2027. The second, for 1 January to 30 June 2027, is payable by 30 June 2027.",
+            "The CBRD's notice of 9 January 2025, for financial year 2024/2025, states two exemptions. Classified trades whose fee is not more than MUR 5,000 pay no trade fee, except regulated activities. Businesses registered on or after 5 August 2021 pay no trade fee for two financial years from their date of registration.",
+            "The CBRD's guidelines of 17 December 2020 say a surcharge of 50 per cent is levied on unpaid trade fees.",
+            "From 1 August 2026 trade fees for estate agents (trade code 70100) and for land promoters and property developers (trade code 70200) are no longer payable at the CBRD. The CBRD's notice refers payers to the Real Estate Agent Authority."
+          ],
+          "sources": [
+            "S16",
+            "S15",
+            "S17",
+            "S23"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Tax registration is with the Mauritius Revenue Authority (MRA). The MRA's VAT FAQs, dated September 2025, say a person must register for VAT where the turnover of taxable supplies exceeds or is likely to exceed MUR 3 million a year, and that listed professions and businesses must register whatever their turnover. A person can apply for VAT registration when registering a business through CBRIS. Under the Business Registration Act the Registrar shares information on registered businesses with other public sector agencies.",
+          "sources": [
+            "S18",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Offences and fines",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Offence",
+            "Section of the Act",
+            "Maximum fine on conviction"
+          ],
+          "rows": [
+            [
+              "Carrying on business without being registered",
+              "6",
+              "MUR 100,000"
+            ],
+            [
+              "Trading under a business name that is not registered",
+              "10",
+              "MUR 50,000"
+            ],
+            [
+              "Not notifying a change in particulars within 14 days",
+              "11",
+              "MUR 50,000"
+            ],
+            [
+              "Not notifying a cessation, sale, transfer or takeover",
+              "12",
+              "MUR 50,000"
+            ],
+            [
+              "Not using the BRN on transaction documents",
+              "14",
+              "MUR 100,000"
+            ],
+            [
+              "Any other breach of the Act or its regulations",
+              "19",
+              "MUR 50,000"
+            ]
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A Magistrate has jurisdiction to try any offence under the Act. Any person responsible for the management of a business is also answerable for what the Act requires the business to do.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Business Registration Individual - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Business Registration Act 2002 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/BusinessRegistrationAct2002-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Business Registration (Amendment of Schedule) (No. 2) Regulations 2022, GN No. 242 of 2022",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN-No.-242-of-2022.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 119)",
+      "published": "3 September 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Business Registration (Amendment of Schedule) Regulations 2022, GN No. 58 of 2022",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN-No.-58-of-2022.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 35)",
+      "published": "11 March 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Frequently Asked Questions (FAQs): Business Registration",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Business_Registration.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Guidelines for Incorporation/Registration of Companies and Registration of Businesses: The online guide",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GUIDELINES-FOR-INCORPORATION-REGISTRATION-OF-COMPANIES-AND-REGISTRATION-OF-BUSINESSES_04_04_25.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "4 April 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Updated 10 August 2026 (file name and file date); first published June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Statutory Obligations - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/statutory-obligations/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "Mauritius National Assembly (Government Gazette No. 59)",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Choosing a Business Structure - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/choosing-a-business-structure/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 24 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Registering a Société - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/registering-a-societe/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 23 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Frequently Asked Questions (FAQs): Foundations, Sociétés, Limited Partnerships and Limited Liability Partnerships",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Partnership.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Fees Payable to the Registrar - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/fees-payable-to-roc/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Fees for the year 2026; last modified 22 April 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Communique: Filing of Beneficial Ownership Information by Partnerships",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/10/Communique-Filing-of-BO-Information-by-partnerships.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "22 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Payment of Trade Fees (financial year 2026/2027)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/07/CBRD-Payment-of-Trade-Fees-2026-2027_.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "30 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Guidelines for the Payment of Trade Fees: The online payment guide",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/Guidelines-for-the-payment-of-trade-fees.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "17 December 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Payment of Registration Fees 2025 and Trade Fees 2024/2025",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/Paymentof-Registration-Fees-2025-and-Trade-Fees-2024_2025.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "9 January 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "FAQs VAT: Frequently Asked Questions, Value Added Tax",
+      "url": "https://www.mra.mu/download/VATFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "September 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "The Companies Act 2001 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Companies-Act-200131-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Downloadable Forms - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/downloadable-forms/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 26 August 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Companies and Businesses Registration Integrated System (CBRIS)",
+      "url": "https://cbris.mns.global/cbris/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Frequently Asked Questions (FAQs): Finance",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/Finance-FAQs.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Important Notice: Payment of Trade Fees/Real Estate",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/IMPORTANT-NOTICE.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document; posted on the CBRD site on 31 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Extract of the Code de Commerce",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/12/Extract-of-the-Code-de-Commerce.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Home - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 10 July 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Request for Cancellation for Business Registration Card",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/03/Request-for-Cancellation-of-the-Business-Registration-Card-1.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Business Registration Individual",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the CBRD's own instructions for registering, amending and cancelling a business registration, with links to the forms."
+    },
+    {
+      "title": "CBRIS: Companies and Businesses Registration Integrated System",
+      "url": "https://cbris.mns.global/cbris/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Log in to apply for a Business Registration Number online and to pay fees."
+    },
+    {
+      "title": "CBRIS Registration",
+      "url": "https://cbris-registration.mns.global/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Create the user account needed before filing online."
+    },
+    {
+      "title": "CBRD Online Search",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Search the register of companies and businesses by name or number."
+    },
+    {
+      "title": "Downloadable Forms",
+      "url": "https://companies.govmu.org/cbrd/downloadable-forms/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Download forms BRF1, BRF2 and BRF3, the card amendment form and the cancellation request."
+    },
+    {
+      "title": "Business Registration Act 2002 (consolidated to 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/BusinessRegistrationAct2002-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the Act itself, with amendments marked."
+    },
+    {
+      "title": "Regulations",
+      "url": "https://companies.govmu.org/cbrd/regulations/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the fee regulations made under the Business Registration Act and the other Acts the CBRD administers."
+    },
+    {
+      "title": "Trade Fees",
+      "url": "https://companies.govmu.org/cbrd/trade-fees/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the list of classified trades and trade fees, and the CBRD's trade fee contacts."
+    },
+    {
+      "title": "Updated list of classified trades and trade fees",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/11/tradefees_govtNotices2019.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Look up the trade fee attached to a trade code."
+    },
+    {
+      "title": "CBRD: Trade Fee for individual",
+      "url": "https://cbris.mns.global/cbris-ytf/login",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Pay a trade fee online as an individual business."
+    },
+    {
+      "title": "Registering a Société",
+      "url": "https://companies.govmu.org/cbrd/registering-a-societe/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the CBRD's requirements and fees for civil and commercial partnerships."
+    },
+    {
+      "title": "Request for Amendment in the Business Registration Card",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/New-Form-Amendment-in-the-Business-Registration-Card.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Ask the CBRD to change the nature or place of business shown on a card."
+    },
+    {
+      "title": "Request for Cancellation for Business Registration Card",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/03/Request-for-Cancellation-of-the-Business-Registration-Card-1.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Ask the CBRD to cancel a card when the business stops."
+    },
+    {
+      "title": "FAQs VAT",
+      "url": "https://www.mra.mu/download/VATFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check who must register for VAT and how VAT registration works."
+    },
+    {
+      "title": "Contact Us",
+      "url": "https://companies.govmu.org/cbrd/contact-us/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Send a query to the CBRD by category, or find its address and telephone number."
+    }
+  ],
+  "unverified": [
+    "Whether the trade fee exemptions (fees of MUR 5,000 or less, and two financial years for businesses registered on or after 5 August 2021) still apply in financial year 2026/2027. The latest CBRD statement found is its notice of 9 January 2025. The 2026/2027 notice gives payment dates only, and the Local Government Act and its fee regulations were not read.",
+    "Whether Mauritius Network Services charges a submission package fee for a business registration filed through CBRIS. The CBRD's April 2025 guidelines show a 'purchase package' step and the 2015 fees regulations (GN No. 3 of 2016) set package fees, but no current page read confirms what an individual pays today.",
+    "The documents an individual must show at the CBRD counter (for example a national identity card or proof of address). The guidelines list no documents for online registration and the counter requirements are not stated on the pages read.",
+    "The exact date the nil registration fee took effect. GN No. 242 of 2022 was made on 30 August 2022 and gazetted on 3 September 2022, and states no separate commencement date.",
+    "Whether the statuts of a société must first be registered with the Registrar-General, and what duty applies. This is not stated on the CBRD pages read.",
+    "How a self-employed person registers for income tax with the Mauritius Revenue Authority. Only the VAT FAQs were read for this guide.",
+    "Whether the VAT registration threshold of MUR 3 million in the MRA's FAQs of September 2025 is unchanged. The Finance Act 2026 was checked and amends section 15 of the VAT Act without replacing the threshold amount, but a consolidated VAT Act was not read."
+  ]
+}

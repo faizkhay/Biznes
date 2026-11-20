@@ -1,0 +1,552 @@
+{
+  "slug": "global-business",
+  "title": "Global business companies and Authorised Companies in outline",
+  "summary": "What the Global Business Licence and the Authorised Company are, who must hold them, what substance the law requires, how they are taxed, and where the rules and registers are, as at November 2026.",
+  "audience": "Newcomers who need to understand the global business sector before speaking to a management company or adviser.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Regulator",
+      "value": "Financial Services Commission (FSC)",
+      "detail": "The integrated regulator for non-bank financial services and global business, established in 2001 and acting under the Financial Services Act 2007.",
+      "sources": [
+        "S8",
+        "S1"
+      ]
+    },
+    {
+      "label": "Who must hold a Global Business Licence",
+      "value": "A resident corporation mainly owned or controlled by non-citizens that does business principally outside Mauritius",
+      "detail": "Section 71(1) of the Financial Services Act. Banks are excluded.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Resident directors for a licence holder",
+      "value": "At least 2",
+      "detail": "One of the matters the FSC looks at when it decides whether the company is managed and controlled from Mauritius.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Authorised Company",
+      "value": "Central management and control outside Mauritius",
+      "detail": "It must have a registered agent in Mauritius, which must be a management company. It is treated as non-resident for income tax.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Company income tax rate",
+      "value": "15 per cent",
+      "detail": "Standard rate in 2026. A licence holder may claim an 80 per cent exemption on specified income if substance conditions are met.",
+      "sources": [
+        "S5",
+        "S3"
+      ]
+    },
+    {
+      "label": "Registrar's incorporation fee",
+      "value": "MUR 3,200 for a GBC, USD 100 for an Authorised Company",
+      "detail": "Fees quoted by the Corporate and Business Registration Department in its FAQ file of August 2025. FSC fees are separate.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Operating without the licence or authorisation",
+      "value": "Fine of up to MUR 1 million",
+      "detail": "Sections 71(5) and 71A(12) of the Financial Services Act.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "New in 2026",
+      "value": "Bank accounts must follow an FSC signatory arrangement",
+      "detail": "Added to section 71(3)(b) of the Act with effect from 1 September 2026.",
+      "sources": [
+        "S2"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What the sector is and who regulates it",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Global business is the part of the Mauritian financial centre that serves companies whose owners are abroad and whose business is done mainly outside Mauritius. The law provides two forms for them: a corporation holding a Global Business Licence, often called a Global Business Company or GBC, and an Authorised Company. Both are set out in Part X of the Financial Services Act.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Financial Services Commission is the integrated regulator for the non-bank financial services sector and global business. It was established in 2001 and acts under the Financial Services Act 2007, with the Securities Act 2005, the Insurance Act 2005 and the Private Pension Schemes Act as enabling laws. It issues the licences and authorisations, makes FSC Rules and guidelines, and keeps the register of licensees. Banks are licensed separately by the Bank of Mauritius.",
+          "sources": [
+            "S8",
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "This guide describes the legal framework. It does not recommend any structure. The Financial Services Commission website could not be read for this guide, so the Act is cited from a consolidated copy published by the Stock Exchange of Mauritius, which states that it is for information only and that the authoritative version is the one in the Revised Laws of Mauritius.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Global Business Licence: who needs one",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A resident corporation must apply to the FSC for a Global Business Licence where the majority of its shares, voting rights or legal or beneficial interest are held or controlled by a person who is not a citizen of Mauritius, and it conducts or proposes to conduct business principally outside Mauritius. A resident corporation means a company incorporated or registered under the Companies Act, a société or partnership registered in Mauritius, a trust, or any other body of persons established under the laws of Mauritius. Banks licensed by the Bank of Mauritius are excluded.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The application is made through a management company.",
+            "It has no effect unless a law practitioner, legal consultant or law firm certifies that it complies with the laws of Mauritius.",
+            "If the business itself needs a licence under another law, for example a fund, an insurance or an investment activity, that licence must be obtained before the business starts.",
+            "A corporation that conducts such business without a Global Business Licence commits an offence and is liable to a fine of up to MUR 1 million."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A licence holder is still treated as doing business outside Mauritius when it has certain dealings in Mauritius. These include keeping a rupee bank account for day to day operations, keeping a foreign currency account, investing in listed securities, dealing with other licence holders, and using a management company, lawyers or auditors in Mauritius.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Authorised Company",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "An Authorised Company is a company incorporated under the Companies Act that is mainly owned or controlled by non-citizens, does business principally outside Mauritius, and has its central management and control outside Mauritius. It applies to the FSC for an authorisation, through a management company. The form has existed since 1 October 2018.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Point",
+            "Global Business Licence holder",
+            "Authorised Company"
+          ],
+          "rows": [
+            [
+              "Where it is managed and controlled",
+              "From Mauritius",
+              "Outside Mauritius"
+            ],
+            [
+              "Directors",
+              "At least 2 directors resident in Mauritius",
+              "At least 1 director, who need not be resident. A corporate director is allowed"
+            ],
+            [
+              "Local service provider",
+              "Administered by a management company",
+              "A registered agent in Mauritius at all times, which must be a management company"
+            ],
+            [
+              "Bank account",
+              "Principal bank account kept in Mauritius",
+              "No such requirement in section 71A"
+            ],
+            [
+              "Activities",
+              "May be used for licensed financial services, such as fund management, insurance broking or investment dealing",
+              "May not carry on banking, financial services, fund management as a professional functionary, corporate services or trusteeship services, unless FSC Rules say otherwise"
+            ],
+            [
+              "Income tax status",
+              "Resident. Taxed at the company rate, with the partial exemption where conditions are met",
+              "Treated as non-resident. It must still file a return of income"
+            ],
+            [
+              "Yearly filing with the FSC",
+              "Audited financial statements, within 6 months of the end of its financial year",
+              "A financial summary, within 6 months of the end of its financial year"
+            ],
+            [
+              "Registrar's incorporation fee (August 2025)",
+              "MUR 3,200",
+              "USD 100"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S5",
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The registered agent files returns and documents required under the Financial Services Act, the Income Tax Act and the Companies Act.",
+            "It receives and forwards communications from the FSC, the Mauritius Revenue Authority and the Registrar of Companies.",
+            "It carries out anti-money laundering and counter terrorist financing measures.",
+            "It keeps records, including board minutes and resolutions and transaction records."
+          ],
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Substance: what a licence holder must do in Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A holder of a Global Business Licence must at all times carry out its core income generating activities in or from Mauritius, be managed and controlled from Mauritius, and be administered by a management company. When the FSC decides whether a company is managed and controlled from Mauritius, the Act tells it to look in particular at the points below.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "It has at all times at least 2 directors resident in Mauritius, of sufficient calibre to exercise independence of mind and judgement.",
+            "It keeps its principal bank account in Mauritius at all times.",
+            "It keeps its accounting records at its registered office in Mauritius.",
+            "It prepares its statutory financial statements and has them audited in Mauritius.",
+            "Its board meetings include at least 2 directors from Mauritius.",
+            "From 1 September 2026, its bank accounts are operated under a bank signatory arrangement that follows guidelines issued by the FSC."
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The licence holder must notify the FSC of any statutory filing on a change of directors within 7 days of the filing. This duty was added with effect from 9 August 2025. If a holder fails to comply with FSC Rules or guidelines, the FSC may direct it to stop part or all of its business or to take remedial action.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The tax rules add their own substance test. To claim the partial exemption on most categories of income, the company must carry out its core income generating activities in Mauritius, employ, directly or indirectly, an adequate number of suitably qualified persons to conduct them, and incur a minimum expenditure proportionate to its level of activities. For foreign dividends the test is that the company complies with its filing obligations under the Companies Act or the Financial Services Act and has adequate resources for holding and managing share participations.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "KPMG's summary of the 2026 change states that the FSC guideline, issued on 8 June 2026, requires the authorised signatories of each bank account of a licence holder to include at least one officer of its management company. The guideline itself could not be read for this guide.",
+          "sources": [
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The role of a management company",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A management company is a company that holds a management licence from the FSC under section 77 of the Financial Services Act. Its main activity is to set up, administer and manage corporations that hold or apply for a Global Business Licence, and Authorised Companies, and to provide nominee and other services to them. It may also act as corporate trustee or qualified trustee.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Applications for a Global Business Licence and for an authorisation can only be made through a management company.",
+            "The Registrar of Companies accepts applications to incorporate a GBC or an Authorised Company from a management company or registered agent licensed by the FSC.",
+            "A licence holder that wants to appoint a new management company, and an Authorised Company that wants a new registered agent, must apply to the FSC and pay the fee set in FSC Rules. This has applied since 1 August 2024.",
+            "The management company's own charges are a matter of contract and are not set by law."
+          ],
+          "sources": [
+            "S1",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How they are taxed",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A company holding a Global Business Licence is resident in Mauritius and is taxed like any other company. The standard rate of income tax on companies is 15 per cent in 2026. There is no capital gains tax. A licence holder may claim either the partial exemption or a credit for foreign tax actually paid on the same income, not both.",
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Under the partial exemption, 80 per cent of certain income is exempt from income tax, so tax at 15 per cent falls on the remaining 20 per cent. The Income Tax Act lists the categories in Part II of its Second Schedule. Some of them are shown below. Each is subject to the substance conditions described above.",
+          "sources": [
+            "S3",
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Foreign source dividend derived by a company, provided the dividend was not allowed as a deduction in the country of source.",
+            "Interest derived by a company other than a bank, a non-bank deposit taking institution, a money changer and certain other financial institutions.",
+            "Profit attributable to a permanent establishment that a resident company has in a foreign country.",
+            "Income, other than interest, derived by a collective investment scheme or closed end fund licensed or approved by the FSC, and income of a CIS manager, CIS administrator, investment adviser, investment dealer or asset manager licensed by the FSC.",
+            "Income derived by companies engaged in the leasing of ships, aircraft, locomotives and trains."
+          ],
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An Authorised Company is in a different position. A company incorporated in Mauritius is treated as non-resident for tax if it is centrally managed and controlled outside Mauritius. Non-residents are taxed only on income from Mauritius. The company must still submit a return of income to the Mauritius Revenue Authority.",
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Large groups face a further rule. Mauritius applies a qualified domestic minimum top-up tax of 15 per cent to multinational groups with consolidated revenue of at least EUR 750 million, from the year of assessment 2025/2026 that began on 1 July 2025. Tax treatment depends on the facts of each company, and this guide gives the outline only.",
+          "sources": [
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Fees",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Two public bodies charge fees. The Registrar of Companies charges for incorporation: the Corporate and Business Registration Department quotes MUR 3,200 for a GBC and USD 100 for an Authorised Company in its FAQ file of August 2025. The FSC charges fees for the application and for the licence or authorisation, and a fee for a change of management company or registered agent. Those amounts are set in FSC Rules made under the Financial Services Act.",
+          "sources": [
+            "S6",
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The FSC fee amounts are not stated here because the FSC's fee rules could not be read for this guide. The Act refers to them only as fees specified in FSC Rules.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Registers and rules: where to look",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Register of licensees: the Financial Services Act requires the FSC's Chief Executive to keep a register of licensees and make it available for public inspection. It must show each licensee's name and business address, the type and category of licence and the activity authorised, the date the licence was granted, and any agent or representative.",
+            "Company registry: the Corporate and Business Registration Department keeps the company file. For a private company holding a Global Business Licence and for an Authorised Company, the information open to the public is limited to the company's name, its registered office and its management company or registered agent.",
+            "Extracts: a management company or registered agent, a director, a shareholder, a representative of the company or a qualified company secretary may apply to the Registrar for an extract of file or a certificate of current standing.",
+            "Law: the Financial Services Act, FSC Rules and FSC guidelines govern licensing and conduct. The Income Tax Act and Income Tax Regulations, published by the Mauritius Revenue Authority, govern tax.",
+            "Closing a company: to remove a GBC from the register, clearance is needed from both the Mauritius Revenue Authority and the FSC. For an Authorised Company, clearance from the FSC is needed."
+          ],
+          "sources": [
+            "S1",
+            "S6",
+            "S7"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Corporate and Business Registration Department states that the list of licensed management companies is available on the FSC website. The FSC site refused automated requests on 20 November 2026, so its register address is not given here.",
+          "sources": [
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Changes in 2025 and 2026",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "9 August 2025: the wording on resident directors in section 71 was amended, and licence holders must notify the FSC of a change of directors within 7 days of the statutory filing.",
+            "1 July 2025: the qualified domestic minimum top-up tax began to apply to large multinational groups.",
+            "1 September 2026: licence holders must operate their bank accounts under a signatory arrangement that follows FSC guidelines.",
+            "1 September 2026: the FSC gained power to appoint a conservator to take charge of a licensee in financial or regulatory difficulty, and to issue a Private Wealth Management Licence for activities to be specified in FSC Rules."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S5"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Financial Services Act (Act 14 of 2007), consolidated text",
+      "url": "https://stockexchangeofmauritius.com/media/12664/2026-financial-services-act.pdf",
+      "publisher": "Stock Exchange of Mauritius (copy of the consolidated Act; the Financial Services Commission site refused automated requests)",
+      "published": "Amendments noted up to Act 3 of 2026, in operation 18 April 2026; file last modified 22 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Assented 12 August 2026; Government Gazette No. 59 of 13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "File last modified 19 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "The Income Tax Regulations 1996 (consolidated)",
+      "url": "https://www.mra.mu/download/ITaxRegulationsGN78of1996.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "File last modified 15 April 2026; amendments noted up to GN No. 19 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "International Tax: Mauritius Highlights 2026",
+      "url": "https://www.deloitte.com/content/dam/assets-shared/docs/services/tax/2026/dttl-tax-mauritiushighlights-2026.pdf",
+      "publisher": "Deloitte (professional firm summary, not an official source)",
+      "published": "Updated January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Frequently Asked Questions: Global Business Company (GBC)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Global_Business_Company.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "File uploaded August 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Updated 10 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Financial Services - EDB Mauritius",
+      "url": "https://edbmauritius.org/financial-services",
+      "publisher": "Economic Development Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Tax Alert Issue 09: Finance Act 2026",
+      "url": "https://assets.kpmg.com/content/dam/kpmgsites/za/pdf/2026/08/Tax%20Alert%20Issue%2009%20-%20Finance%20Act%202026.pdf",
+      "publisher": "KPMG Mauritius (professional firm summary, not an official source)",
+      "published": "August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Home - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Financial Services Act, consolidated copy",
+      "url": "https://stockexchangeofmauritius.com/media/12664/2026-financial-services-act.pdf",
+      "publisher": "Stock Exchange of Mauritius",
+      "what": "Read sections 71 to 79 on global business, Authorised Companies and management licences."
+    },
+    {
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read the 2026 amendments to the Financial Services Act in section 20."
+    },
+    {
+      "title": "Acts of Parliament",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/acts-2/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Find each year's Acts as passed, with their gazette dates."
+    },
+    {
+      "title": "The Income Tax Act 1995, consolidated",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the partial exemption items in the Second Schedule and section 73A on companies treated as non-resident."
+    },
+    {
+      "title": "The Income Tax Regulations 1996",
+      "url": "https://www.mra.mu/download/ITaxRegulationsGN78of1996.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read regulation 23D on the substance conditions for the exemption."
+    },
+    {
+      "title": "Legislations",
+      "url": "https://www.mra.mu/index.php/legislations1",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Find the revenue laws and regulations, including the minimum top-up tax regulations."
+    },
+    {
+      "title": "FAQs: Global Business Company",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Global_Business_Company.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the registry's answers on incorporation, fees, extracts and removal for GBCs and Authorised Companies."
+    },
+    {
+      "title": "CBRD Online Search",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Search the company and business registry free of charge."
+    },
+    {
+      "title": "Financial Services",
+      "url": "https://edbmauritius.org/financial-services",
+      "publisher": "Economic Development Board",
+      "what": "Read the EDB's overview of the financial services sector and its regulators."
+    }
+  ],
+  "unverified": [
+    "The Financial Services Commission website (fscmauritius.org) returned HTTP 403 to every request, so none of its pages could be read. This covers the register of licensees and its address, the Financial Services (Consolidated Licensing and Fees) Rules 2008 and their 2024 to 2026 amendments, FSC circulars on substance, and the guideline of 8 June 2026 on bank signatories.",
+    "FSC processing and annual fees for a Global Business Licence and for an Authorised Company, and the fee for changing management company or registered agent.",
+    "Whether the Registrar's incorporation fees (MUR 3,200 and USD 100) have changed since the August 2025 FAQ file.",
+    "The consolidated Financial Services Act cited stops at Act 3 of 2026. The September 2026 amendments are taken from Act 13 of 2026 itself and have not been read in a consolidated text.",
+    "The full list of income categories that qualify for the 80 per cent exemption, and the categories of person with whom a licence holder may deal under FSC Rules. Only examples read in the Income Tax Act are given.",
+    "Typical numbers of global business companies, management companies or assets in the sector. No current official statistic was read.",
+    "Whether a Private Wealth Management Licence can yet be applied for. The Act refers to FSC Rules that were not read."
+  ]
+}

@@ -1,0 +1,1026 @@
+{
+  "slug": "employing-people",
+  "title": "Employing people in Mauritius",
+  "summary": "What an employer in Mauritius must do: register with the MRA, withhold PAYE, pay social contributions and levies, meet the minimum wage and the Workers' Rights Act, and hold the right permit before employing a non-citizen. Figures are those in force on 20 November 2026.",
+  "audience": "Business owners taking on their first employees, and small employers.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "National minimum wage",
+      "value": "MUR 17,745 a month",
+      "detail": "For a worker other than a part-time worker, from 1 January 2026.",
+      "sources": [
+        "S15"
+      ]
+    },
+    {
+      "label": "Salary compensation for 2026",
+      "value": "MUR 635 a month",
+      "detail": "Additional remuneration for full-time workers with monthly basic pay of MUR 50,000 or less, from 1 January 2026.",
+      "sources": [
+        "S16"
+      ]
+    },
+    {
+      "label": "CSG (social contribution)",
+      "value": "Employer 3% or 6%, employee 1.5% or 3%",
+      "detail": "The lower rates apply where monthly basic pay is MUR 50,000 or less. Rates in force on 20 November 2026.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "label": "National Savings Fund",
+      "value": "Employer 2.5%, employee 1%",
+      "detail": "On basic pay up to MUR 29,710 a month, from 1 July 2026.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Training levy (HRDC)",
+      "value": "1.5% of basic pay",
+      "detail": "Paid by the employer. Rate since July 2021. Not due for household workers.",
+      "sources": [
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "label": "Portable Retirement Gratuity Fund (PRGF)",
+      "value": "4.5% of monthly remuneration",
+      "detail": "Paid by the employer, unless it contributes to an approved private pension scheme for the worker.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "PAYE exemption",
+      "value": "MUR 38,462 a month",
+      "detail": "No PAYE where monthly emoluments are at or below this, in MRA guidance for the income year 1 July 2025 to 30 June 2026.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Monthly returns and payment",
+      "value": "End of the following month",
+      "detail": "Joint PAYE, CSG and NSF return, and PRGF return, filed and paid electronically. Earlier dates apply for May and November.",
+      "sources": [
+        "S4",
+        "S8",
+        "S11"
+      ]
+    },
+    {
+      "label": "Normal working week",
+      "value": "45 hours",
+      "detail": "Not counting meal and tea breaks. Overtime on a week day is paid at 1.5 times the normal rate.",
+      "sources": [
+        "S17"
+      ]
+    },
+    {
+      "label": "Annual and sick leave",
+      "value": "20 working days plus 2 days, and 15 working days",
+      "detail": "After 12 months' continuous employment with the same employer.",
+      "sources": [
+        "S17"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Registering as an employer",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "An employer is a person who employs one or more employees under a contract of service or apprenticeship, written or oral. This includes part-time employees. It does not include a self-employed person providing services.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Where a person registering a business with the Registrar of Businesses states that it will have employees, the Mauritius Revenue Authority (MRA) registers that person as an employer automatically. The MRA sends an Employer Registration Number (ERN) and a password for the monthly return. An existing business that starts to employ people is registered when it submits its first contributions and PAYE return.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The MRA PAYE guide says a person who becomes an employer registers with the MRA within 14 days, using the PAYE Employer Registration Form. An employer whose employees are all below the PAYE exemption must still register. Failing to register is an offence.",
+          "sources": [
+            "S27"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every employer files a joint monthly return covering PAYE, the Contribution Sociale Généralisée (CSG), National Savings Fund contributions and the training levy, and a separate monthly return for the Portable Retirement Gratuity Fund. Both are filed and paid electronically, with the ERN as user ID.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "PAYE: withholding income tax from pay",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Under Pay As You Earn (PAYE) the employer withholds income tax from emoluments when they are paid and sends it to the MRA each month. The tax is worked out on a cumulative basis over the income year, which runs from 1 July to 30 June.",
+            "Each employee gives the employer an Employee Declaration Form (EDF) claiming reliefs and deductions for the income year. It can be submitted on the MRA website, and the employer downloads its employees' declarations with its ERN.",
+            "Where an employee has not submitted an EDF and monthly emoluments are above the exemption, the employer withholds tax at a flat 15%, or 20% if the employee asks.",
+            "MRA guidance for the income year 1 July 2025 to 30 June 2026 says no PAYE is withheld where monthly emoluments are MUR 38,462 or less. Fees paid to a company director are an exception: PAYE applies at 15%, or 20% on request.",
+            "Late payment of PAYE carries a penalty of 10% of the tax unpaid and interest of 0.5% for each month or part of a month. A late Return of Employees carries a penalty of MUR 5,000 for each month or part of a month, up to MUR 20,000.",
+            "An employer keeps records of the emoluments paid to each employee and the tax withheld, and the EDFs, for at least 5 years."
+          ],
+          "sources": [
+            "S2",
+            "S3",
+            "S4",
+            "S14"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Annual chargeable income",
+            "Rate for the income year from 1 July 2026"
+          ],
+          "rows": [
+            [
+              "First MUR 500,000",
+              "0%"
+            ],
+            [
+              "Next MUR 500,000",
+              "10%"
+            ],
+            [
+              "Next MUR 11 million",
+              "20%"
+            ],
+            [
+              "Remainder",
+              "35%"
+            ]
+          ],
+          "sources": [
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Obligation",
+            "Due date"
+          ],
+          "rows": [
+            [
+              "Monthly PAYE return and payment, made electronically",
+              "End of the month after the month in which the tax was withheld"
+            ],
+            [
+              "PAYE returns for May and November",
+              "2 days, excluding Saturdays and public holidays, before the end of June and December"
+            ],
+            [
+              "Annual Return of Employees (ROE), covering every employee",
+              "15 August after the income year. Monday 17 August in 2026"
+            ],
+            [
+              "Statement of Emoluments and Tax Deduction given to each employee",
+              "Same date as the Return of Employees"
+            ]
+          ],
+          "sources": [
+            "S4",
+            "S3",
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Finance Act 2026 added the 35% band from 1 July 2026. It also ended the 15% Fair Share Contribution on individuals after the income year that started on 1 July 2025. On 20 November 2026 the MRA PAYE page and employer circular still described the 2025-2026 rules. On 5 August 2026 the MRA told employers to apply PAYE for 2026-2027 on the reliefs, allowances, deductions and rates for that year.",
+          "sources": [
+            "S4",
+            "S5",
+            "S2",
+            "S14",
+            "S31"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "CSG, National Savings Fund, training levy and PRGF",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Contribution",
+            "Employer",
+            "Employee",
+            "Charged on"
+          ],
+          "rows": [
+            [
+              "CSG, monthly basic pay of MUR 50,000 or less",
+              "3%",
+              "1.5%",
+              "Basic wage or salary, with no ceiling"
+            ],
+            [
+              "CSG, monthly basic pay above MUR 50,000",
+              "6%",
+              "3%",
+              "Basic wage or salary, with no ceiling"
+            ],
+            [
+              "National Savings Fund (NSF)",
+              "2.5%",
+              "1%",
+              "Basic wage or salary up to MUR 29,710 a month, from 1 July 2026"
+            ],
+            [
+              "Training levy (HRDC)",
+              "1.5%",
+              "None",
+              "Total basic wage or salary, with no ceiling"
+            ],
+            [
+              "Portable Retirement Gratuity Fund (PRGF)",
+              "4.5%",
+              "None",
+              "Monthly remuneration"
+            ]
+          ],
+          "sources": [
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S10",
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "For CSG, basic wage or salary includes additional remuneration and leaves out overtime, bonus and allowances. CSG also applies to the statutory end of year bonus, worked out separately from the month's pay.",
+            "CSG covers part-time and full-time employees, executive directors, non-citizen employees and employees aged 65 and over. It does not cover a non-executive director or a non-citizen employee who is not tax resident. Nor does it cover a non-citizen employed by an export manufacturing enterprise who has lived in Mauritius for less than 2 continuous years.",
+            "For a domestic worker earning MUR 3,000 a month or less in total, only the employer's 3% CSG is due.",
+            "No NSF contribution is due for an employee under 18 or one who has reached retirement age. From 1 July 2026 the lowest monthly wage on which it is charged is MUR 4,580, or MUR 2,910 for private household employees.",
+            "The training levy is paid for every employee other than a household worker, on total basic wage or salary excluding overtime, bonuses and allowances.",
+            "The Human Resource Development Council runs a Training Grant System that refunds training costs. Only employers that pay the levy each month are eligible, and only for courses approved in advance by the Mauritius Qualifications Authority or the Higher Education Commission.",
+            "An employer that contributes to a private pension scheme approved by the Financial Services Commission for a worker does not pay PRGF for that worker. The payslip must show the employer's PRGF contribution."
+          ],
+          "sources": [
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S11",
+            "S17",
+            "S24"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The joint PAYE, CSG and NSF return and the PRGF return are due, with payment, by the end of the following month. The returns for May and November are due 2 days, excluding Saturdays and public holidays, before the end of June and December. Late CSG carries a penalty of 10% and interest of 1% for each month or part of a month. Late NSF contributions and training levy carry a surcharge of 5% for each month or part of a month, up to 100%. Late PRGF contributions carry a surcharge of 10% and interest of 1% for each month or part of a month, which the employer cannot recover from the worker.",
+          "sources": [
+            "S6",
+            "S7",
+            "S8",
+            "S9",
+            "S11",
+            "S12",
+            "S17"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Section 94 of the Workers' Rights Act gives the 20th of the following month as the PRGF payment date. The MRA page and tax calendar give the end of the following month for electronic return and payment, under the 2020 PRGF regulations. This guide shows the MRA date.",
+          "sources": [
+            "S17",
+            "S11",
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Minimum wage and salary compensation",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The national minimum wage is MUR 17,745 a month for every worker other than a part-time worker, from 1 January 2026. It was MUR 17,110 in 2025. The figure includes the additional remuneration payable for 2026. A part-time worker's minimum is worked out under the Schedule to the regulations. For a worker in an export enterprise the minimum wage includes housing and food allowances, up to MUR 3,000 a month together, and fixed monthly cash pay guaranteed for normal hours. It does not include variable pay.",
+          "sources": [
+            "S15",
+            "S26",
+            "S32"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Salary compensation is paid as additional remuneration under the Workers' Rights Act. From 1 January 2026 every employer pays MUR 635 a month to each full-time worker whose monthly basic wage or salary is MUR 50,000 or less. A part-time worker earning less than MUR 17,110 a month receives 3.7% of basic pay, rounded up to the next rupee. A part-time worker earning MUR 17,110 to MUR 50,000 receives MUR 635. The regulations do not cover public officers, local government officers or workers of statutory bodies governed by the Pay Research Bureau report.",
+          "sources": [
+            "S16"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Workers' Rights Act does not stop an employer paying more than the rates in any Remuneration Regulations, or giving conditions more favourable than the Act.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The national minimum wage regulations for 2024, 2025 and 2026, and the additional remuneration regulations for 2026, each took effect on 1 January of their year. No 2027 regulations were listed on the Ministry of Labour pages checked on 20 November 2026.",
+          "sources": [
+            "S26",
+            "S32",
+            "S15",
+            "S16",
+            "S29",
+            "S30"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Written particulars, hours and overtime",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The employer gives every worker engaged for more than one month a written statement of particulars of employment, in the form set out in the First Schedule to the Workers' Rights Act. It is due within 14 days of the end of the first calendar month. A copy goes to the supervising officer of the Ministry within 30 days. Remuneration is paid at monthly intervals unless the parties agree a shorter interval. It is paid in legal tender unless there is a written agreement to pay by cheque or into the worker's bank account. Payment into a bank account is made not later than the last working day of the pay period. The employer issues a payslip with each payment.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The normal working week is 45 hours, not counting meal and tea breaks. It is made up of 9 hours on 5 days, or 8 hours on 5 days and 5 hours on a sixth day.",
+            "A worker is entitled to a rest day of at least 24 consecutive hours in every 7 days and to at least 11 consecutive hours of rest in any day.",
+            "Except in special circumstances no worker can be required to work more than 12 hours a day.",
+            "The employer gives at least 24 hours' notice of extra work as far as practicable.",
+            "A worker may opt for paid time off in place of overtime pay, at the same rates.",
+            "A worker receives an adequate free meal or a meal allowance of MUR 85 a day in two cases. One is more than 2 hours of extra work after a normal day's work. The other is a normal day's work of at least 10 hours."
+          ],
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Work done",
+            "Minimum pay"
+          ],
+          "rows": [
+            [
+              "Beyond normal hours on a week day",
+              "1.5 times the normal rate"
+            ],
+            [
+              "On a public holiday, during normal working hours",
+              "2 times the normal rate"
+            ],
+            [
+              "On a public holiday, after normal working hours",
+              "3 times the normal rate"
+            ]
+          ],
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "For most general conditions of employment the Act defines a worker as a person whose basic wage or salary is MUR 600,000 a year or less. Above that level the Act still applies on listed matters, including discrimination, maternity and paternity leave, menstrual leave, termination of agreement and the PRGF.",
+          "sources": [
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Leave and the end of year bonus",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Entitlement",
+            "Amount",
+            "Condition"
+          ],
+          "rows": [
+            [
+              "Annual leave",
+              "20 working days, plus 2 further days",
+              "After 12 months' continuous employment with the same employer, in each later period of 12 months"
+            ],
+            [
+              "Annual leave in the first year",
+              "1 day a month, from the seventh to the twelfth month",
+              "After 6 months' continuous employment with attendance on all working days"
+            ],
+            [
+              "Sick leave",
+              "15 working days on full pay",
+              "After 12 months' continuous employment. Unused sick leave accumulates"
+            ],
+            [
+              "Vacation leave",
+              "Up to 30 days with pay",
+              "For every 5 consecutive years with the same employer. Not for migrant workers"
+            ],
+            [
+              "Maternity leave",
+              "16 weeks on full pay. 26 weeks from 1 January 2027",
+              "On production of a medical certificate"
+            ],
+            [
+              "Paternity leave",
+              "4 consecutive weeks with pay. 6 weeks from 1 January 2027",
+              "12 months' continuous employment. Without pay below that"
+            ],
+            [
+              "Menstrual leave",
+              "1 day a month on full pay",
+              "Female workers, from 13 August 2026"
+            ]
+          ],
+          "sources": [
+            "S17",
+            "S18"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "From 1 January 2027 a female worker is entitled to 26 weeks' maternity leave on full pay, with at least 14 weeks taken straight after the birth. She may then opt for up to a further 26 weeks on half pay.",
+            "A worker who is ill for more than 3 consecutive working days sends the employer a medical certificate on the fourth day of absence."
+          ],
+          "sources": [
+            "S17",
+            "S18",
+            "S31"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A worker who is with an employer for all or part of a year, and still employed on 31 December, receives an end of year bonus of one twelfth of earnings for that year. At least 75% of the expected bonus is paid no later than 5 clear working days before 25 December, and the balance by the last working day of the year. For this rule a worker is a person whose monthly basic wage or salary is MUR 100,000 or less.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A worker who leaves during the year is paid the bonus by the last working day of the month of leaving. This applies where the employment is terminated, the contract ends or the worker retires. It also applies where the worker resigns after at least 8 months' continuous employment.",
+          "sources": [
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Notice, termination and severance",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Either party may end an agreement by giving notice. The notice is at least 30 days, whatever the agreement says, and may be verbal or written. Pay in place of notice is allowed. The employer states the reason for termination when giving notice, and allows the worker reasonable paid time off to look for work. Remuneration due is paid on or before the day the notice expires. Annual leave accumulated and not taken is refunded at a normal day's wage for each day.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An employer cannot dismiss for alleged misconduct unless these conditions are met. It notified the worker of the charge within 10 days of becoming aware of the alleged misconduct. It gave the worker at least 7 days' notice to answer the charge at an oral hearing. It cannot in good faith take any other course of action. It ends the agreement no later than 7 days after the worker answered the charge at the hearing.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Severance allowance concerns a worker with at least 12 months' continuous employment. Where the Court finds the termination unjustified, it may order 3 months' remuneration for every 12 months of continuous employment, and a proportion for any further months. No severance allowance is due to a migrant worker or non-citizen employed under fixed-term contracts when the contract expires.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An employer who intends to end a migrant worker's employment and repatriate the worker gives the Ministry at least 20 working days' written notice.",
+          "sources": [
+            "S17",
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Public holidays",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A worker is entitled to a normal day's pay for every public holiday, other than a Sunday, that falls on one of the worker's normal working days. A worker required to work on that day is paid the public holiday rate in addition.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Public holiday in 2027",
+            "Date"
+          ],
+          "rows": [
+            [
+              "New Year",
+              "Friday 1 January and Saturday 2 January"
+            ],
+            [
+              "Thaipoosam Cavadee",
+              "Friday 22 January"
+            ],
+            [
+              "Abolition of Slavery",
+              "Monday 1 February"
+            ],
+            [
+              "Chinese Spring Festival",
+              "Saturday 6 February"
+            ],
+            [
+              "Maha Shivaratree",
+              "Saturday 6 March"
+            ],
+            [
+              "Eid-Ul-Fitr",
+              "Wednesday 10 March, subject to confirmation"
+            ],
+            [
+              "Independence Day and Republic Day",
+              "Friday 12 March"
+            ],
+            [
+              "Ougadi",
+              "Wednesday 7 April"
+            ],
+            [
+              "Labour Day",
+              "Saturday 1 May"
+            ],
+            [
+              "Ganesh Chaturthi",
+              "Sunday 5 September, with Monday 6 September also a public holiday"
+            ],
+            [
+              "Divali",
+              "Friday 29 October"
+            ],
+            [
+              "All Saints Day",
+              "Monday 1 November"
+            ],
+            [
+              "Arrival of Indentured Labourers",
+              "Tuesday 2 November"
+            ],
+            [
+              "Christmas",
+              "Saturday 25 December"
+            ]
+          ],
+          "sources": [
+            "S19"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The date of Eid-Ul-Fitr depends on the visibility of the moon. Monday 6 September 2027 is a public holiday under section 3(3) of the Public Holidays Act, as amended in 2026.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Employing a non-citizen",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen cannot work in Mauritius without a valid permit. Employing a non-citizen who has none is an offence, with a fine of MUR 100,000 to MUR 500,000 and imprisonment of up to 5 years. A work permit is granted by the Employment Division of the Ministry of Labour and Industrial Relations. The employer applies online through the National E-Licensing System (NELS) for a new permit, a renewal or a transfer. The worker is generally aged 20 to 60. The employer has to show that it could not recruit locally, with a vacancy report from an Employment Information Centre.",
+          "sources": [
+            "S20",
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A processing fee of MUR 700 is paid for each work permit application. On approval a non-refundable annual fee of MUR 500 is paid with the prescribed work permit fee.",
+            "The maximum stay for foreign workers is 10 years in all sectors. The quota system has been abolished.",
+            "Renewal is applied for 3 months before the permit expires. Late renewal carries a surcharge of 50% of the permit fee within 30 days of expiry and 100% after that.",
+            "A contract of employment vetted by the Ministry is needed where the salary is MUR 50,000 a month or less.",
+            "A lodging accommodation permit, or proof that one has been applied for, is needed except for professionals, household employees and the sports sector.",
+            "A permit lapses if the worker does not arrive to take up the job within 6 months of issue.",
+            "Ministry guidelines say an employer generally recruits a non-citizen worker through a licensed private recruitment agency. The employer bears all recruitment fees and does not hold the worker's passport, identity documents or work permit."
+          ],
+          "sources": [
+            "S21",
+            "S25"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An occupation permit is handled by the Economic Development Board (EDB), also through NELS. For a professional employed by a company in Mauritius the minimum monthly basic salary is MUR 50,000. The permit is valid for up to 10 years, depending on the contract of employment, and is renewable. A professional whose current permit was granted on the earlier MUR 30,000 criterion can renew once on that criterion. The EDB charges no fee to process the application.",
+          "sources": [
+            "S23",
+            "S28",
+            "S18",
+            "S31"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 added a student employment permit for foreign students aged 16 and over. That section comes into operation on a date to be fixed by proclamation.",
+          "sources": [
+            "S18"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "New Employer - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/employers/new-employer",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Pay As You Earn (PAYE) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/employers/paye",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Circular to all employers: Personal Income Tax, PAYE, Income Year 01 July 2025 to 30 June 2026",
+      "url": "https://www.mra.mu/download/PayrollTaxes.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "6 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the Mauritius Revenue Authority",
+      "published": "Assented to on 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Contribution Sociale Généralisée (CSG) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/csg",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Social Contribution and Social Benefits Act 2021 (as amended up to Act 14 of 2026)",
+      "url": "https://www.mra.mu/download/SocialContributionAndSocialBenefitsAct2021.pdf",
+      "publisher": "Attorney General's Office, copy published by the Mauritius Revenue Authority",
+      "published": "Amended up to Act 14 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "NPF / NSF Contributions - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/employers/npf-nsf-contributions",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Human Resource Development Act 2003",
+      "url": "https://www.mra.mu/download/TheHumanResourceDevelopmentAct2003.pdf",
+      "publisher": "Attorney General's Office, copy published by the Mauritius Revenue Authority",
+      "published": "Amended up to Act 12 of 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Guide to Employers on Pension Contributions (NPF, CSG, NSF and Training Levy)",
+      "url": "https://www.mra.mu/download/GuideToEmployersNPFNSF.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Monthly Portable Retirement Gratuity Fund (PRGF) Return - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/prgf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Tax Calendar - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Calendar for July to December 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Communiqué: Submission of Return of Employees (ROE), Annual Tax Deduction at Source (TDS) Statement and Other Return and Statements",
+      "url": "https://www.mra.mu/download/Com_ROE_TDSStmt.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "11 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Communiqué: Submission of e-EDF, Income Year 2026/27",
+      "url": "https://www.mra.mu/download/Com_EDF2627.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "5 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "The National Minimum Wage (Amendment) Regulations 2026 (Government Notice No. 8 of 2026)",
+      "url": "https://labour.govmu.org/Documents/Legislations/NWCC/The%20National%20Minimum%20Wage_Amd_Regulations%202026%20gazetted%20on%2017.1.2026.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "Gazetted 17 January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "The Workers' Rights (Additional Remuneration) (2026) Regulations 2026 (Government Notice No. 7 of 2026)",
+      "url": "https://labour.govmu.org/Documents/Legislations/THE%20WORKERS%20RIGHTS%20Act%202019/The%20Workers%E2%80%99%20Rights%20(Additional%20Remuneration)%20(2026)%20Regulations%202026%20gazetted%20on%2017.01.2026.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "Gazetted 17 January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Workers' Rights Act (Act 20 of 2019, as amended up to Act 13 of 2026)",
+      "url": "https://www.mra.mu/download/WorkersRightsAct2019.pdf",
+      "publisher": "Attorney General's Office, copy published by the Mauritius Revenue Authority",
+      "published": "Amended up to Act 13 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Gazetted 13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Republic of Mauritius: Public Holidays 2027 (General Notice No. 1088 of 2026)",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Application of Work Permit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/ApplicationWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Work Permit Information Sheet: Summary of Main Procedures and Checklist of Documents",
+      "url": "https://empment-labour.govmu.org/Documents/Downloads/Workpermit%20Infosheet.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "About Work Permit Unit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/AboutWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Professional - Employed in Mauritius by a Multinational or a local company - Residency in Mauritius",
+      "url": "https://residency.mu/work/professional-employed-in-mauritius-by-a-multinational-or-a-local-company/",
+      "publisher": "Economic Development Board Mauritius (residency portal)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Eligibility for Grants - HRDC - Human Resources Development Council Mauritius",
+      "url": "https://www.hrdc.mu/index.php/training-grant-system/eligibility-for-grants",
+      "publisher": "Human Resource Development Council",
+      "published": "2 May 2011",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Guidelines for Employers Recruiting a Non-Citizen Worker",
+      "url": "https://empment-labour.govmu.org/Documents/Useful%20doc/Guidelines%20for%20Employers.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "The National Minimum Wage (Amendment) Regulations 2024 (Government Notice No. 8 of 2024)",
+      "url": "https://labour.govmu.org/Documents/Legislations/NWCC/8_The%20National%20Minimum%20Wage%20(Amendment)%20Regulations%202024.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "Made on 15 January 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Guide on Pay As You Earn (PAYE)",
+      "url": "https://www.mra.mu/download/PAYEGuide.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Work - Residency in Mauritius",
+      "url": "https://residency.mu/work/",
+      "publisher": "Economic Development Board Mauritius (residency portal)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "NWC-Legislation: The National Wage Consultative Council Act and Regulations",
+      "url": "https://labour.govmu.org/Pages/NWC-Legislation.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "The Workers' Rights Act 2019 and Regulations",
+      "url": "https://labour.govmu.org/Pages/The-Workers'-Rights-Act-2019-and-Regulations.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "The National Minimum Wage (Amendment) Regulations 2025 (Government Notice No. 8 of 2025)",
+      "url": "https://labour.govmu.org/Documents/NWCC/The%20NMW_Amd%20Reg%202025.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "Made on 16 January 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Finance Act 2026, Mauritius: Key tax and regulatory changes (Tax Alert Issue 09)",
+      "url": "https://assets.kpmg.com/content/dam/kpmgsites/za/pdf/2026/08/Tax%20Alert%20Issue%2009%20-%20Finance%20Act%202026.pdf",
+      "publisher": "KPMG Mauritius (professional firm summary, used as a cross-check)",
+      "published": "17 August 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "New Employer",
+      "url": "https://www.mra.mu/index.php/employers/new-employer",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read how an Employer Registration Number is issued and what an employer files."
+    },
+    {
+      "title": "Pay As You Earn (PAYE)",
+      "url": "https://www.mra.mu/index.php/employers/paye",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read how PAYE is calculated and remitted. The page text covers the income year 2025-2026."
+    },
+    {
+      "title": "Guide on Pay As You Earn (PAYE)",
+      "url": "https://www.mra.mu/download/PAYEGuide.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Download the full PAYE guide, dated December 2025, with worked examples."
+    },
+    {
+      "title": "Monthly PAYE / CSG / NSF Return",
+      "url": "https://www.mra.mu/index.php/eservices1/individual/monthly-paye-csg-nsf-return",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Reach the joint monthly return and the file templates for it."
+    },
+    {
+      "title": "Monthly Portable Retirement Gratuity Fund (PRGF) Return",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/prgf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "File the monthly PRGF return and exit statements, and read the PRGF rules."
+    },
+    {
+      "title": "Contribution Sociale Généralisée (CSG)",
+      "url": "https://www.mra.mu/index.php/business/csg",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check CSG rates, who counts as a participant and the filing deadline."
+    },
+    {
+      "title": "NPF / NSF Contributions and Training Levy",
+      "url": "https://www.mra.mu/index.php/employers/npf-nsf-contributions",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check NSF rates and wage ceilings, the training levy and surcharges."
+    },
+    {
+      "title": "MRA e-Services portal",
+      "url": "https://eservices38.mra.mu/centralLogin/login",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Log in to file employer returns online."
+    },
+    {
+      "title": "Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "See each month's due dates for PAYE, CSG, NSF and PRGF."
+    },
+    {
+      "title": "The Workers' Rights Act 2019 and Regulations",
+      "url": "https://labour.govmu.org/Pages/The-Workers'-Rights-Act-2019-and-Regulations.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Download the consolidated Act and the regulations made under it, including each year's additional remuneration."
+    },
+    {
+      "title": "The National Wage Consultative Council Act and Regulations",
+      "url": "https://labour.govmu.org/Pages/NWC-Legislation.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Download the national minimum wage regulations for each year."
+    },
+    {
+      "title": "Application of Work Permit",
+      "url": "https://empment-labour.govmu.org/Pages/Work%20Permit/ApplicationWP.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "what": "Read how to apply for a work permit and download the information sheet and forms."
+    },
+    {
+      "title": "National E-Licensing System (NELS)",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board Mauritius",
+      "what": "Apply online for a work permit or an occupation permit."
+    },
+    {
+      "title": "Occupation permit for professionals",
+      "url": "https://residency.mu/work/professional-employed-in-mauritius-by-a-multinational-or-a-local-company/",
+      "publisher": "Economic Development Board Mauritius (residency portal)",
+      "what": "Read the criteria for a professional occupation permit and how the employer applies."
+    },
+    {
+      "title": "HRDC Training Grant System",
+      "url": "https://www.hrdc.mu/index.php/training-grant-system",
+      "publisher": "Human Resource Development Council",
+      "what": "Read how an employer that pays the training levy claims a refund of training costs."
+    }
+  ],
+  "unverified": [
+    "The national minimum wage and salary compensation for 2027. No 2027 regulations were listed on the Ministry of Labour legislation pages on 20 November 2026. The 2026 figures took effect on 1 January 2026.",
+    "The monthly PAYE exemption for the income year 1 July 2026 to 30 June 2027. MRA guidance was found only for 2025-2026 (MUR 38,462). The MUR 500,000 zero-rate band is unchanged in the Act, but no MRA circular or PAYE table for 2026-2027 was found.",
+    "The reduced PRGF rates for small and medium enterprises. The MRA PRGF page says SMEs pay a lower rate for the first three years. An MRA guide of April 2025 dates that period January 2022 to December 2024. Whether any reduced rate still applied in late 2026 could not be confirmed, so only the 4.5% rate is given.",
+    "The scale of work permit fees under the Non-Citizens (Work Permit) (Fees) Regulations 2013. Only the MUR 700 processing fee and MUR 500 annual fee in the February 2026 information sheet were confirmed.",
+    "The official list of public holidays for 2026. Only the 2027 list (General Notice No. 1088 of 2026) was fetched.",
+    "The refund rates and annual ceilings of the HRDC Training Grant System. The HRDC site shows rates but mixes pages of different dates, so they were left out.",
+    "The retirement age that ends National Savings Fund contributions. The MRA page gives 65 for pay periods from August 2018. It was not checked against the 2025 and 2026 amendments to pension law.",
+    "Sector Remuneration Regulations, which set pay and conditions for particular industries. None were fetched.",
+    "Criteria for occupation permits other than the professional category, such as those for people investing in or running their own business and for young professionals. KPMG's summary of the 2026 changes was read, but the EDB pages for those categories were not opened."
+  ]
+}

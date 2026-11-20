@@ -1,0 +1,1009 @@
+{
+  "slug": "incorporate-a-company",
+  "title": "Incorporate a company",
+  "summary": "How to incorporate a company under the Companies Act 2001 with the Corporate and Business Registration Department: the types of company, what must be in place, the steps, the time and the fees, how a foreign company registers a branch, and what a company must file and pay each year. Fees are those for 2026.",
+  "audience": "People setting up a company in Mauritius for the first time, and directors of new companies.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Incorporation fee",
+      "value": "Nil",
+      "detail": "For a domestic private or public company, at the office or online. The electronic certificate is free; a signed certificate costs MUR 300 on request.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "label": "Time to incorporate",
+      "value": "Within half an hour of filing complete forms",
+      "detail": "CBRD Customer Charter, updated 10 August 2026. The Economic Development Board and the CBRD's April 2025 guidelines say within half a day. Companies that need Financial Services Commission approval take longer.",
+      "sources": [
+        "S7",
+        "S8",
+        "S12"
+      ]
+    },
+    {
+      "label": "Minimum people",
+      "value": "1 shareholder and 1 director",
+      "detail": "At least one director must be ordinarily resident in Mauritius. A director must be a natural person aged 18 or over.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Small private company",
+      "value": "Turnover under MUR 100 million",
+      "detail": "In the last accounting period, with no Global Business Licence and not an entity in the First Schedule to the Financial Reporting Act. A new private company qualifies for its first accounting period.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Name reservation",
+      "value": "Optional; a reserved name is held for 6 months",
+      "detail": "Raised from 2 months on 13 August 2026 (section 34 of the Companies Act).",
+      "sources": [
+        "S2",
+        "S10"
+      ]
+    },
+    {
+      "label": "Annual registration fee, 2026",
+      "value": "MUR 500 to MUR 27,000",
+      "detail": "MUR 500 or MUR 2,500 for a small private company, MUR 18,000 for other private companies, MUR 27,000 for public and foreign companies. Payable by 20 January; 50 per cent more after that date.",
+      "sources": [
+        "S3",
+        "S5"
+      ]
+    },
+    {
+      "label": "Annual meeting",
+      "value": "Within 6 months of the balance sheet date",
+      "detail": "And not later than 15 months after the previous meeting. The first meeting must be held within 18 months of incorporation.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Annual return",
+      "value": "Within 28 days of the annual meeting",
+      "detail": "A small private company with turnover up to MUR 100 million need not file one unless its shareholding, directors or related particulars changed.",
+      "sources": [
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "label": "Financial statements",
+      "value": "Completed within 6 months of the balance sheet date",
+      "detail": "Companies other than small private companies file them, with the auditor's report, within 28 days after they must be signed. Small private companies file a financial summary.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Beneficial owner changes",
+      "value": "Filed within 14 days",
+      "detail": "From the date of the entry or alteration in the share register. CBRD guidance of 5 October 2026 uses a threshold of 20 per cent of shares or voting rights.",
+      "sources": [
+        "S2",
+        "S16"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Types of company",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Every company is limited by shares, limited by guarantee, limited by both shares and guarantee, or unlimited. Every company is also either public or private. A company is public unless its application for incorporation or its constitution states that it is private.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Type",
+            "What defines it",
+            "Main consequences"
+          ],
+          "rows": [
+            [
+              "Private company",
+              "Stated to be private. Not more than 50 shareholders: joint holders count as one, and employees and former employees who stayed on as members are not counted. No offer of shares or debentures to the public.",
+              "May restrict the transfer of its shares in its constitution. May pass written resolutions in place of shareholders' meetings. May dispense with an annual report by unanimous resolution."
+            ],
+            [
+              "Small private company",
+              "A private company with turnover under MUR 100 million in its last accounting period, that holds no Global Business Licence and is not listed in the First Schedule to the Financial Reporting Act. A new private company qualifies for its first accounting period.",
+              "No company secretary required. No auditor required unless a shareholder holding at least 5 per cent of the shares gives notice. Files a financial summary or financial statements, and need not follow International Accounting Standards."
+            ],
+            [
+              "One person company",
+              "A private company whose only shareholder is also its sole director. The shareholder cannot be a corporation.",
+              "Must nominate a person to become secretary if the sole shareholder and director dies. The annual report rules do not apply."
+            ],
+            [
+              "Public company",
+              "Any company not stated to be private.",
+              "The board must include at least one woman and at least 2 independent directors. A listed public company needs at least 25 per cent women on its board."
+            ],
+            [
+              "Company limited by guarantee",
+              "Each member undertakes to contribute a stated amount to the assets if the company is wound up.",
+              "Must file a constitution and each member's signed consent with the application. The 50 shareholder limit does not apply."
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD describes a domestic company as one incorporated under the Companies Act 2001 with its main business operations in Mauritius. Companies holding a Global Business Licence and Authorised Companies are incorporated subject to approval by the Financial Services Commission, have their own requirements such as a management company or registered agent, and pay different fees. The rest of this guide covers domestic companies.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What a company needs",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Requirement",
+            "Rule"
+          ],
+          "rows": [
+            [
+              "Name",
+              "The name must be available. It may not be identical to that of an existing company or statutory corporation. Where shareholders' liability is limited the name must end with Limited, Limitée, Ltd or Ltée."
+            ],
+            [
+              "Restricted words",
+              "The Registrar's written consent is needed for names including Authority, Corporation, Government, Mauritius, National, President, Presidential, Regional, Republic, State, Municipal, Chartered, co-operative or Chamber of Commerce. The CBRD also publishes a longer list of restricted names, last issued as at 13 May 2026."
+            ],
+            [
+              "Shareholders",
+              "At least one. Each signs a consent stating the class and number of shares taken and the consideration (form F9). A corporate shareholder provides a letter naming its authorised signatory."
+            ],
+            [
+              "Directors",
+              "At least one, who must be ordinarily resident in Mauritius. A director must be a natural person, aged 18 or over, not an undischarged bankrupt and not disqualified. Each signs a consent and a certificate of non-disqualification (form F7)."
+            ],
+            [
+              "Secretary",
+              "Required for every company other than a small private company or an Authorised Company. The secretary is a natural person ordinarily resident in Mauritius, or a firm or corporation approved by the Registrar. The office may not stay vacant for more than 3 months."
+            ],
+            [
+              "Registered office",
+              "Every company must always have a registered office in Mauritius. It is the address for communications, notices and service of legal proceedings. The company name and the words 'Registered Office' must be displayed permanently outside it."
+            ],
+            [
+              "Constitution",
+              "Optional. Without one, the rights, powers and duties of the company, board, directors and shareholders are those set out in the Act. A constitution and any amendment must be certified by a law practitioner, legal consultant or law firm, and need not be in a notarial deed."
+            ],
+            [
+              "Beneficial owners",
+              "A declaration of beneficial ownership is filed with the application. Where ownership is indirect, the CBRD asks for a structure chart showing percentage ownership."
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S1",
+            "S18"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The secretary of a public company, or of a private company that is not small, must be a law practitioner, a legal consultant, a law firm, a member of one of the accountancy bodies listed in section 198(1) of the Act, a member of the Chartered Governance Institute or of the Chartered Institute of Management Accountants, or a member of an association of company secretaries approved by the Minister.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Where the only director is a foreign national, the CBRD asks for a copy of a permanent residence permit or an occupation permit as investor. It asks for a copy of the passport of every non-citizen and proof of address for at least one resident director.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Reserving a name is optional. Under section 34 of the Act as amended on 13 August 2026 a reserved name stays available for 6 months. The CBRD Customer Charter, updated on 10 August 2026, still says a reservation is valid for 2 months. This guide follows the Act.",
+          "sources": [
+            "S2",
+            "S10",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How to incorporate",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Check that the proposed name is available, using the CBRD online search and the list of restricted names. The CBRD's FAQs say verifying the name is advised but not compulsory, and a name may be reserved with form F11.",
+            "Register for a CBRIS account to apply online, or prepare paper forms for the office of the Registrar of Companies in Port Louis. A director, secretary, shareholder or authorised representative of the company may apply.",
+            "Complete the application for incorporation (form F1). It states the company name, the registered office, whether the company is limited or unlimited and private or public, the full name, residential address and service address of every director, secretary and shareholder, and the shares each shareholder takes and the amount to be paid.",
+            "For a one person company, name in the application the person nominated to act as secretary if the sole shareholder and director dies or loses mental capacity.",
+            "Attach the signed consents: directors (form F7), secretary where there is one (form F8), shareholders (form F9) and, for a company limited by guarantee, members (form F10).",
+            "Attach the constitution, if the company has one, certified by at least one applicant, with a legal certificate signed by a law practitioner.",
+            "Attach proof of address for at least one resident director, a copy of the passport of any non-citizen, the certificate of name reservation if any, and the declaration of beneficial ownership.",
+            "Give the details for the Business Registration Card in the same application: business name if any, address of the principal place of business, general nature of the business, proposed start date, workforce and contact details.",
+            "Sign the declaration that the information is true and correct and submit. No incorporation fee is payable for a domestic private or public company.",
+            "Where the application complies with the Act, the Registrar enters the company on the register, assigns a unique company number and issues an electronic certificate of incorporation."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S11",
+            "S18",
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD Customer Charter, updated on 10 August 2026, says all companies are incorporated within half an hour of the submission of the prescribed forms duly filled and signed, except companies that need approval from the Financial Services Commission. The Economic Development Board's Getting Started page and the CBRD's guidelines of 4 April 2025 say incorporation is completed within half a day. Since 20 April 2026 the CBRD has processed incorporation applications on a fast track basis.",
+          "sources": [
+            "S7",
+            "S8",
+            "S12",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A certificate of incorporation is conclusive evidence that the requirements of the Act for incorporation were met and that the company is incorporated from the date in the certificate. The company is a body corporate under its registered name until it is removed from the register. The CBRD's guidelines say an applicant can register for VAT with the Mauritius Revenue Authority, and register the ultimate beneficial owners, as part of the online incorporation.",
+          "sources": [
+            "S2",
+            "S12"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Older CBRD documents, including the FAQs and the April 2025 guidelines, give the online address as portalmns.mu. When checked on 20 November 2026 that address no longer led to the filing system. The CBRD home page links to CBRIS at cbris.mns.global.",
+          "sources": [
+            "S27",
+            "S23",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Fees at incorporation",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Item",
+            "Fee"
+          ],
+          "rows": [
+            [
+              "Incorporation of a private company",
+              "Nil"
+            ],
+            [
+              "Incorporation of a public company",
+              "Nil"
+            ],
+            [
+              "Electronic certificate of incorporation",
+              "Nil"
+            ],
+            [
+              "Signed certificate of incorporation, on request",
+              "MUR 300"
+            ],
+            [
+              "Summary of the file",
+              "MUR 100"
+            ],
+            [
+              "Change of company name (form F2, with a certified copy of the shareholders' resolution)",
+              "MUR 100"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The nil fee at incorporation of a private or public company, and at registration of a foreign company, was set by amendment regulations gazetted on 3 September 2022. The CBRD's offences page adds that no fee is payable at the time of filing any document required by the Companies Act.",
+          "sources": [
+            "S4",
+            "S13"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "On a change of name the CBRD issues the certificate within 3 days of payment. The company must then submit evidence of publication in 2 daily newspapers and the Government Gazette.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD's finance FAQs list the ways to pay: online by deposit account, bank transfer, credit card or instant payment through MauCAS, and at the cash office by cash, cheque or card. A service charge of 1.725 per cent applies to card payments above MUR 25,000.",
+          "sources": [
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Registering a foreign company (branch)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A company incorporated outside Mauritius that has a place of business or carries on business in Mauritius must file for registration under Part XXII of the Companies Act within one month of establishing the place of business or starting business. Its name must be available before it carries on business. The Registrar registers the foreign company itself and issues a certificate.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An authenticated copy of its certificate of incorporation or registration in its place of origin, or an equivalent document.",
+            "An authenticated copy of its constitution, charter, statute or memorandum and articles.",
+            "A list of its shareholders, naming any beneficial owner, with the beneficial ownership information required by section 91(3A) of the Act.",
+            "A list of its directors with their particulars and, where directors resident in Mauritius sit on a local board, a memorandum stating their powers.",
+            "A memorandum of appointment or power of attorney naming 2 or more persons resident in Mauritius who are authorised to accept service of process and notices.",
+            "Notice of the situation of its registered office in Mauritius and its opening days and hours.",
+            "A declaration made by the authorised agents."
+          ],
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The CBRD says to check whether the country of origin is party to the Hague Convention, in which case documents should be apostilled. The registered office in Mauritius must be open and accessible to the public for at least 4 hours on every day other than a Saturday or a public holiday. Changes to the constitution, directors, authorised agents, registered office, share register or name must be filed within one month. Each year a foreign company files a copy of its balance sheet within 3 months of its annual meeting. It also files financial statements for its operations in or from Mauritius, complying with International Accounting Standards, within 6 months after the end of its accounting period. The annual registration fee for 2026 is MUR 27,000, or MUR 40,500 after the due date.",
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Sources differ on the fee at registration of a foreign company. The 2022 amendment regulations set it at nil, and the CBRD's incorporation page, updated in September 2026, mentions only MUR 300 for a signed certificate of registration. The CBRD's guidelines of 4 April 2025 list MUR 13,500 plus MUR 200 for the certificate. This guide follows the regulations and the current web page.",
+          "sources": [
+            "S4",
+            "S1",
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "After incorporation",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Business Registration Card. A company is deemed to be registered under the Business Registration Act and its company number is its Business Registration Number. The Registrar issues the card electronically. The company must tell the Registrar its business name if any, the nature of its business, its places of business and its start date at least 14 days before it starts business.",
+            "Company name. The name must be clearly stated in every written communication sent by or for the company and on every document that evidences or creates a legal obligation of the company.",
+            "Records at the registered office. These include the constitution, minutes and resolutions of shareholders and directors for the last 7 years, the share register, the names and addresses of the directors, financial statements and accounting records for the last 7 accounting periods, and an interests register. A private company may dispense with the interests register by unanimous resolution.",
+            "Accounting records. They must correctly record and explain the company's transactions, allow its financial position to be determined, and be kept in written form in English or French.",
+            "Changes of directors or secretary. Notice in the approved form must reach the Registrar within 28 days of the change.",
+            "Balance sheet date. A company that adopts a balance sheet date other than 30 June must notify the Registrar. A company need not have a balance sheet date in the calendar year of its incorporation if its first one falls in the following year and not later than 18 months after incorporation."
+          ],
+          "sources": [
+            "S2",
+            "S19",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every company must at all times identify its beneficial owners and record them in a separate register. The register holds each beneficial owner's full name and usual residential address, national identity or passport number, citizenship or nationality, the ownership structure and, since 13 August 2026, date of birth. The company must obtain a written declaration from each beneficial owner. The information is lodged with the Registrar at incorporation, with the annual return, and within 14 days of any change in shareholding or issue of shares.",
+          "sources": [
+            "S2",
+            "S10",
+            "S15"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Companies incorporated before 9 August 2025 had until 30 June 2026 to obtain written declarations from their beneficial owners. Companies incorporated before the date of birth requirement started have until 30 June 2027 to add dates of birth to the register.",
+          "sources": [
+            "S14",
+            "S2",
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Trade fees for classified trades are paid to the CBRD, which collects them for local authorities. For financial year 2026/2027 the first instalment, for 1 July to 31 December 2026, is payable until 20 January 2027 and the second, for 1 January to 30 June 2027, by 30 June 2027.",
+          "sources": [
+            "S26",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Each year: meeting, accounts and returns",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The board must call an annual meeting of shareholders once in each year, not later than 6 months after the balance sheet date (or another period the Registrar sets) and not later than 15 months after the previous meeting. The first annual meeting need not be held in the calendar year of incorporation but must be held within 18 months of incorporation. The meeting adopts the financial statements, receives any auditor's report and appoints any auditor.",
+          "sources": [
+            "S2",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The board must ensure that financial statements are completed, dated and signed within 6 months after the balance sheet date. Public companies, and private companies that are not small, prepare them under International Accounting Standards; those that are not public interest entities may use the IFRS for SMEs. These companies appoint an auditor at each annual meeting. They file the financial statements, the auditor's report and the annual report with the Registrar within 28 days after the statements are required to be signed.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Company",
+            "Annual return",
+            "Accounts filed with the Registrar",
+            "Audit"
+          ],
+          "rows": [
+            [
+              "Small private company (turnover under MUR 100 million)",
+              "Not required unless there is a change in shareholding, in the board or in related particulars. The CBRD asks for a No Change Return (form F26) with the financial summary where nothing changed, and an annual return (form F24) where something did.",
+              "A financial summary containing the information in the Ninth Schedule, which may be prepared on a cash basis showing a profit and loss statement only, or full financial statements.",
+              "Not required, unless a shareholder holding at least 5 per cent of the shares gives notice before the annual meeting."
+            ],
+            [
+              "Company registered under the Small and Medium Enterprises Development Authority Act on or after 2 June 2015, with net assets up to MUR 50 million and annual turnover up to MUR 20 million",
+              "Exempt for 8 years from incorporation.",
+              "Exempt from filing a financial summary for 8 years from incorporation; afterwards may file a cash basis profit and loss statement.",
+              "As for a small private company."
+            ],
+            [
+              "Private company with turnover of MUR 100 million or more",
+              "Annual return (form F24) within 28 days of the annual meeting.",
+              "Audited financial statements, and the annual report where one is required.",
+              "Required."
+            ],
+            [
+              "Public company",
+              "Annual return within 28 days of the annual meeting.",
+              "Audited financial statements, and the annual report where one is required.",
+              "Required."
+            ],
+            [
+              "Company recorded by the Registrar as dormant",
+              "As for its type.",
+              "As for its type.",
+              "Exempt while it stays dormant."
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The annual return is signed by a director or secretary and contains the matters in the Tenth Schedule to the Act, including the registered office, share capital, directors, secretary, auditor and shareholders. Where nothing has changed since the last return, a director or secretary may certify a No Change Return. A company does not make an annual return in the calendar year of its incorporation. Updated beneficial ownership information is lodged at the same time, using the CBRD's template. The CBRD Customer Charter states that public and private companies with turnover above MUR 50 million in the last accounting period must file their financial statements in XBRL format. The CBRD also says that once a company has appointed a representative for online filing, all its documents must be submitted online.",
+          "sources": [
+            "S2",
+            "S15",
+            "S7",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Annual registration fee",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A registration fee is payable for every year after incorporation for as long as the company stays on the register. The Act requires payment not later than 20 January in each year. The CBRD collects the fee from 3 to 20 January and applies a higher rate after 20 January. The Registrar may waive the difference between the late fee and the on-time fee where satisfied that late payment had a reasonable cause. Where a company has ceased business and a winding-up resolution, striking-off notice or notice of appointment of a receiver or administrator has been filed or issued, no registration fee is due from the following year.",
+          "sources": [
+            "S2",
+            "S7",
+            "S6"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Company",
+            "2026 fee paid by the due date",
+            "2026 fee paid after the due date"
+          ],
+          "rows": [
+            [
+              "Small private company, turnover not exceeding MUR 30 million",
+              "MUR 500",
+              "MUR 750"
+            ],
+            [
+              "Small private company, turnover above MUR 30 million and below MUR 100 million",
+              "MUR 2,500",
+              "MUR 3,750"
+            ],
+            [
+              "Private company, turnover above MUR 100 million",
+              "MUR 18,000",
+              "MUR 27,000"
+            ],
+            [
+              "Public company",
+              "MUR 27,000",
+              "MUR 40,500"
+            ],
+            [
+              "Foreign company",
+              "MUR 27,000",
+              "MUR 40,500"
+            ],
+            [
+              "Dormant company recorded as dormant by the Registrar",
+              "MUR 2,500",
+              "MUR 3,750"
+            ],
+            [
+              "Private company holding a Global Business Licence",
+              "MUR 18,000",
+              "MUR 27,000"
+            ],
+            [
+              "Public or foreign company holding a Global Business Licence",
+              "MUR 27,000",
+              "MUR 40,500"
+            ],
+            [
+              "Authorised Company",
+              "USD 130",
+              "USD 200"
+            ]
+          ],
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These are the fees for 2026. The amounts for private companies with turnover above MUR 100 million, public companies, foreign companies and Authorised Companies were raised by regulations made on 1 October 2025. For 2025 they were MUR 9,000 for those private companies, MUR 13,500 for public and foreign companies and USD 100 for Authorised Companies. The small private company and dormant company fees were the same in 2025. A small private company's fee is based on the turnover last recorded at the CBRD. The CBRD's notice for 2025 said that where the financial summary had not been filed or was not yet due, the payment had to come with a directors' declaration that turnover had not exceeded MUR 30 million in the last accounting period. The declaration form is on the CBRD's forms page.",
+          "sources": [
+            "S5",
+            "S3",
+            "S22",
+            "S20"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "As at 20 November 2026 the CBRD's fees page and communiqués showed the 2026 schedule only. No notice of fees for 2027 had been published.",
+          "sources": [
+            "S3",
+            "S25"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Penalties and removal from the register",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The CBRD states that a company or person who fails to comply with the Companies Act commits an offence and is liable to prosecution, with fines from MUR 100,000 to MUR 1 million. Its Customer Charter says a non-compliant entity may have the offence compounded or be referred to court, and that the CBRD may remove the entity from the register. Where a person is convicted of failing to pay the registration fee or to file the annual return, the court also orders payment of the fee or filing of the return within a set time.",
+          "sources": [
+            "S13",
+            "S7",
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Failure",
+            "Section",
+            "Maximum fine on conviction"
+          ],
+          "rows": [
+            [
+              "Not calling the annual meeting in time",
+              "115",
+              "MUR 200,000"
+            ],
+            [
+              "Not notifying a change of directors or secretary, or of their addresses",
+              "142",
+              "MUR 200,000"
+            ],
+            [
+              "Not filing financial statements or group accounts",
+              "215",
+              "MUR 200,000"
+            ],
+            [
+              "Not filing the annual return within the set time",
+              "223",
+              "MUR 100,000"
+            ],
+            [
+              "Not complying with the beneficial ownership rules (companies other than small private companies)",
+              "91",
+              "MUR 300,000"
+            ],
+            [
+              "Not changing the registered office when required by the Registrar",
+              "189",
+              "MUR 200,000"
+            ],
+            [
+              "Not telling the Registrar within 14 days of ceasing to be dormant",
+              "294",
+              "MUR 200,000"
+            ],
+            [
+              "Falsifying the records of the company",
+              "334",
+              "MUR 1 million and 5 years' imprisonment"
+            ]
+          ],
+          "sources": [
+            "S13",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Registrar removes a company from the register where satisfied that it has ceased to carry on business, has failed to pay its registration fees, has not filed its annual return, or has not complied with section 91(3A)(c) on beneficial ownership records, among other grounds. Before removing a company for ceasing business, unpaid fees or a missing annual return, the Registrar gives notice and deals with any objection. A shareholder authorised by special resolution may also request removal where the company has ceased business and discharged its liabilities; the request needs a written notice of no objection from the Director-General of the Mauritius Revenue Authority. A shareholder, director, creditor, liquidator or receiver may apply to the Registrar to restore a company to the register. The fee for the request is MUR 5,000 under the fees regulations as amended in 2020.",
+          "sources": [
+            "S2",
+            "S24",
+            "S17"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Incorporation of a Company - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 24 September 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Companies Act 2001 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Companies-Act-200131-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Fees Payable to the Registrar - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/fees-payable-to-roc/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Fees for the year 2026; last modified 22 April 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Companies (Payment of Fees to Registrar) (Amendment) Regulations 2022, GN No. 241 of 2022",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN.-241-of-2022.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 119)",
+      "published": "3 September 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Companies (Payment of Fees to Registrar) (Amendment) Regulations 2025, GN No. 90 of 2025",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/02/no-90-companies-payment-fees-registrar-amendment-regulations-2025_3.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 78)",
+      "published": "4 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Statutory Obligations - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/statutory-obligations/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 25 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Updated 10 August 2026 (file name and file date); first published June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Getting Started - EDB Mauritius",
+      "url": "https://edbmauritius.org/getting-started",
+      "publisher": "Economic Development Board Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Communique: Implementation of Fast Track Counter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/04/Updated-COMMUNIQUE-Fast-Track-Counter.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "24 April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "Mauritius National Assembly (Government Gazette No. 59)",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Frequently Asked Questions (FAQs): Information/Monitoring",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Incorporation.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Guidelines for Incorporation/Registration of Companies and Registration of Businesses: The online guide",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GUIDELINES-FOR-INCORPORATION-REGISTRATION-OF-COMPANIES-AND-REGISTRATION-OF-BUSINESSES_04_04_25.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "4 April 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Offences - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/offences/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 20 February 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Practice Direction (No. 1 of 2026) pursuant to section 12(8) of the Companies Act 2001, General Notice No. 842 of 2026",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/PRACTICE-DIRECTION-NO.-1-OF-2026.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette)",
+      "published": "Dated 21 July 2026; gazetted 25 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Practice Direction (No. 3 of 2026) pursuant to section 12(8) of the Companies Act 2001: Filing of Updated Beneficial Ownership Information, General Notice No. 844 of 2026",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/PRACTICE-DIRECTION-NO.-3-OF-2026.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette)",
+      "published": "Dated 21 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Guidance Note: Identification of Beneficial Owners under the Companies Act 2001",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/10/BO_Guidance-05_Oct_2026-.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "5 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Companies (Payment of Fees to Registrar) Regulations 2015, GN No. 3 of 2016",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN.-3-of-2016.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 2)",
+      "published": "9 January 2016",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "List of Restricted Names including any of their derivatives in any language (as at 13 May 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/List-of-Prohibited-names-as-at-13-May-2026-1.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "13 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "The Business Registration Act 2002 (consolidated text as at 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/BusinessRegistrationAct2002-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Consolidated to 31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Downloadable Forms - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/downloadable-forms/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 26 August 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Frequently Asked Questions (FAQs): Finance",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/Finance-FAQs.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Not dated on the document",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Payment of Registration Fees 2025 and Trade Fees 2024/2025",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/Paymentof-Registration-Fees-2025-and-Trade-Fees-2024_2025.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "9 January 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Companies and Businesses Registration Integrated System (CBRIS)",
+      "url": "https://cbris.mns.global/cbris/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Companies (Payment of Fees to Registrar) (Amendment) Regulations 2020, GN No. 217 of 2020",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/09/GN.-217-of-2020.pdf",
+      "publisher": "Corporate and Business Registration Department (Government Gazette No. 118)",
+      "published": "19 September 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Communique - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/communique-2/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 23 October 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Payment of Trade Fees (financial year 2026/2027)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/07/CBRD-Payment-of-Trade-Fees-2026-2027_.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "30 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Home - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Last modified 10 July 2026 (page metadata)",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Incorporation of a Company",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the CBRD's requirements, document list and fees for each kind of company."
+    },
+    {
+      "title": "Login To CBRD (incorporation and Business Registration Number)",
+      "url": "https://cbris.mns.global/cbris-F1Dom/login",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Apply online to incorporate a company, obtain its Business Registration Number and pay its trade fee."
+    },
+    {
+      "title": "CBRIS: Companies and Businesses Registration Integrated System",
+      "url": "https://cbris.mns.global/cbris/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "File annual returns and other documents and pay yearly registration fees online."
+    },
+    {
+      "title": "CBRD Online Search",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Mauritius Network Services Ltd, for the Corporate and Business Registration Department",
+      "what": "Search existing company and business names before choosing a name."
+    },
+    {
+      "title": "List of Restricted Names (as at 13 May 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/List-of-Prohibited-names-as-at-13-May-2026-1.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Check whether a word in the proposed name is restricted."
+    },
+    {
+      "title": "Downloadable Forms",
+      "url": "https://companies.govmu.org/cbrd/downloadable-forms/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Download forms F1, F7, F8, F9, F10, F11, F24 and F26, the beneficial ownership templates and the small private company declaration."
+    },
+    {
+      "title": "Companies Act 2001 (consolidated to 31 August 2026)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Companies-Act-200131-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read the Act itself, with amendments marked."
+    },
+    {
+      "title": "Fees Payable to the Registrar",
+      "url": "https://companies.govmu.org/cbrd/fees-payable-to-roc/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the annual registration fee schedule for the current year."
+    },
+    {
+      "title": "Statutory Obligations",
+      "url": "https://companies.govmu.org/cbrd/statutory-obligations/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the CBRD's summary of yearly obligations and time limits for companies."
+    },
+    {
+      "title": "Regulations",
+      "url": "https://companies.govmu.org/cbrd/regulations/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the fee regulations made under the Companies Act, year by year."
+    },
+    {
+      "title": "Practice Directions",
+      "url": "https://companies.govmu.org/cbrd/practice-directions/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the Registrar's practice directions, including those of 2026 on beneficial ownership."
+    },
+    {
+      "title": "Guidelines",
+      "url": "https://companies.govmu.org/cbrd/guidelines/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the beneficial ownership guidance note, the incorporation guidelines and the Customer Charter."
+    },
+    {
+      "title": "Offences",
+      "url": "https://companies.govmu.org/cbrd/offences/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See examples of offences under the Companies Act and their maximum fines."
+    },
+    {
+      "title": "Communiqués",
+      "url": "https://companies.govmu.org/cbrd/communique-2/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Check for new notices, such as the yearly notice on registration fees."
+    },
+    {
+      "title": "Getting Started",
+      "url": "https://edbmauritius.org/getting-started",
+      "publisher": "Economic Development Board Mauritius",
+      "what": "Read the Economic Development Board's overview of setting up a business, including opening a bank account."
+    }
+  ],
+  "unverified": [
+    "Annual registration fees for 2027. As at 20 November 2026 the CBRD had published the 2026 schedule only, and no regulations after GN No. 90 of 2025 were listed on its regulations page.",
+    "The fee at registration of a foreign company. The 2022 regulations say nil and the CBRD's September 2026 web page mentions only MUR 300 for a signed certificate, but the CBRD's guidelines of 4 April 2025 list MUR 13,500 plus MUR 200.",
+    "Incorporation fees for companies holding a Global Business Licence. The CBRD's incorporation page says MUR 3,200, its April 2025 guidelines say MUR 3,000 (private) and MUR 13,500 (public), and the 2018 amendment regulations say MUR 3,000 and MUR 13,500. These were left out of the guide.",
+    "Whether Mauritius Network Services charges a submission or package fee for filings through CBRIS today. The 2015 regulations (GN No. 3 of 2016) set package fees, but no current page read confirms the amounts.",
+    "The XBRL filing threshold. The Customer Charter updated on 10 August 2026 says turnover above MUR 50 million; the practice directions on XBRL were not read.",
+    "Which companies are obliged to file online. The 2015 regulations list companies with turnover of MUR 50 million or more; the CBRD's notice of 9 January 2025 says MUR 100 million or more. The amending text was not found.",
+    "The list of entities in the First Schedule to the Financial Reporting Act, which cannot be small private companies, and the definition of a public interest entity. That Act was not read.",
+    "Whether the 8 year filing exemption for companies registered under the Small and Medium Enterprises Development Authority Act still operates in practice. The wording is in the consolidated Companies Act, but the SME legislation was not read.",
+    "The special rules in section 138 of the Companies Act for directors of public companies aged over 70. They were not read and are not covered.",
+    "Whether a minimum share capital applies. Section 21 requires one or more shares and a search of the consolidated Act found no minimum capital figure, but sector laws were not checked.",
+    "Whether the VAT registration at incorporation described in the CBRD's April 2025 guidelines is still offered in CBRIS. The MRA's VAT FAQs of September 2025 also mention it, but the live form was not opened."
+  ]
+}

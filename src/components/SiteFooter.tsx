@@ -1,80 +1,69 @@
 import Link from "next/link";
-import { ACTIONS, NAV, site } from "@/data/site";
-import ClosingBand from "./ClosingBand";
-import { Chat, Mail, Phone } from "./Icons";
-import Lambrequin from "./Lambrequin";
-import Logo from "./Logo";
+import { ACTIONS, CREDITS, MORE, NAV, site } from "@/data/site";
+import { day } from "@/lib/format";
+import { index } from "@/lib/index";
 
 /**
- * The footer is the last page of the story: deep dusk, the invitation that fits the page just read
- * (ClosingBand), then every way to reach us with the numbers written out, and the credit.
+ * The footer: where the data comes from (the map's licence asks for its credit wherever its data
+ * is shown, so it is on every page), the pages, how to reach the people behind the site, and who
+ * made it.
  */
 export default function SiteFooter() {
+  const { meta } = index();
   const { contact, builder } = site;
   return (
-    <footer id="site-footer" data-ground="deep">
-      {/* The footer hangs from the page above it the way a roof hangs over a pavement. */}
-      <Lambrequin className="text-(--fringe)" />
-      <div className="shell section-y">
-        <ClosingBand />
-
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.6fr_1fr]">
-          <div>
-            <Logo />
-            <p className="body-3 measure mt-4 text-ink-subtle">
-              {site.line}. Each one is built by {builder.name} and sold to one owner.
-            </p>
-          </div>
-
-          <nav aria-label="Footer">
-            <ul className="grid gap-1">
-              {[...NAV, { href: "/enquire", label: ACTIONS.enquire }, { href: "/privacy", label: "Privacy" }].map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="body-3 link inline-flex min-h-11 items-center">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <ul className="grid gap-1">
-            <li>
-              <a href={contact.phoneHref} className="body-3 link inline-flex min-h-11 items-center gap-3">
-                <Phone className="size-5 flex-none" />
-                <span>
-                  {ACTIONS.call}: <span className="tabular whitespace-nowrap">{contact.phone}</span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="body-3 link inline-flex min-h-11 items-center gap-3">
-                <Chat className="size-5 flex-none" />
-                <span>
-                  {ACTIONS.whatsapp}: <span className="tabular whitespace-nowrap">{contact.phone}</span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${contact.email}`} className="body-3 link inline-flex min-h-11 items-center gap-3">
-                <Mail className="size-5 flex-none" />
-                <span>{contact.email}</span>
-              </a>
-            </li>
-            <li className="caption-2 mt-2 text-ink-subtle">{contact.hours}</li>
-          </ul>
-        </div>
-
-        <div className="caption-2 mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line pt-6 text-ink-subtle">
-          <p className="measure">
-            {site.name} is a {builder.legalName} project. BRN {builder.brn}. {site.pictures}
+    <footer id="site-footer" className="mt-24 border-t border-line">
+      <div className="shell grid gap-10 py-12 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <p className="wordmark">
+            biznes<i aria-hidden />mu
           </p>
-          <a href={builder.url} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center text-ink-subtle">
-            <span>
-              A Digital Experience by <strong className="body-4 text-ink">Khay Digital</strong>
-            </span>
-          </a>
+          <p className="body-3 mt-4 max-w-sm text-ink-subtle">{site.line}. Listings come from open data and each one says where; guides are written from official sources and each one lists them.</p>
+          <p className="caption-1 mt-6 max-w-sm text-ink-faint">
+            Map data from{" "}
+            <a href={CREDITS.osm.href} rel="noopener">
+              {CREDITS.osm.label}
+            </a>
+            , under the {CREDITS.osm.licence}, as of {day(meta.map.stamp)}. Company facts from{" "}
+            <a href={CREDITS.wikidata.href} rel="noopener">
+              {CREDITS.wikidata.label}
+            </a>
+            , {CREDITS.wikidata.licence}.
+          </p>
         </div>
+        <nav aria-label="Footer" className="md:col-span-3">
+          <ul className="grid gap-1">
+            {[...NAV, ...MORE].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="md:col-span-4">
+          <p className="body-3 text-ink-subtle">Is something wrong or missing?</p>
+          <Link href="/add" className="btn btn-quiet button-sm mt-3">
+            {ACTIONS.add}
+          </Link>
+          <p className="body-3 mt-6 text-ink-subtle">
+            <a href={contact.phoneHref} className="data-1 whitespace-nowrap">
+              {contact.phone}
+            </a>
+            <br />
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </p>
+        </div>
+      </div>
+      <div className="shell flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line py-6">
+        <p className="caption-1 text-ink-faint">The guides are general information, not legal or tax advice.</p>
+        <p className="caption-1 text-ink-subtle">
+          A Digital Experience by{" "}
+          <a href={builder.url} rel="noopener" className="font-semibold text-ink">
+            {builder.name}
+          </a>
+        </p>
       </div>
     </footer>
   );

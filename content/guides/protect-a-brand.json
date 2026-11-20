@@ -1,0 +1,900 @@
+{
+  "slug": "protect-a-brand",
+  "title": "Protect a business name and a trade mark",
+  "summary": "How a name is protected in Mauritius: the difference between a business name, a company name, a .mu domain name and a registered trade mark, and how to register and keep a trade mark at the Industrial Property Office under the Industrial Property Act 2019.",
+  "audience": "Business owners choosing a name, a logo or a web address in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Trade mark application fee",
+      "value": "MUR 6,000 for the first class",
+      "detail": "Plus MUR 2,000 for each additional class. Industrial Property Regulations 2022, in force since 31 January 2022. The fee is not refundable.",
+      "sources": [
+        "S2",
+        "S3",
+        "S1"
+      ]
+    },
+    {
+      "label": "Search of the register",
+      "value": "MUR 300",
+      "detail": "Carried out at the Industrial Property Office. The Office advises applicants to search before filing.",
+      "sources": [
+        "S3",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "label": "Opposition period",
+      "value": "2 months from publication",
+      "detail": "Counted from publication of the accepted application in the Government Gazette. The opposition fee is MUR 5,000.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Length of protection",
+      "value": "10 years from the filing date",
+      "detail": "Renewable for consecutive periods of 10 years.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Renewal fee",
+      "value": "MUR 5,000 for the first class",
+      "detail": "Plus MUR 2,000 for each additional class. Applied for within the 6 months before expiry. Late payment within a further 6 months carries a surcharge of MUR 2,000.",
+      "sources": [
+        "S2",
+        "S3",
+        "S1"
+      ]
+    },
+    {
+      "label": "Classes of goods and services",
+      "value": "45 Nice classes",
+      "detail": "Classes 1 to 34 are goods. Classes 35 to 45 are services. One application may cover several classes.",
+      "sources": [
+        "S5",
+        "S2"
+      ]
+    },
+    {
+      "label": "Removal for non-use",
+      "value": "After 3 years without use",
+      "detail": "An interested person may ask for removal where the mark has not been used for a continuous period of at least 3 years after registration.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Madrid Protocol in Mauritius",
+      "value": "In force since 6 May 2023",
+      "detail": "Handling fee of MUR 3,000 payable to the Office for an international application filed from Mauritius.",
+      "sources": [
+        "S9",
+        "S12",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Company name reservation",
+      "value": "Held for 6 months",
+      "detail": "Raised from 2 months by Act No. 13 of 2026, gazetted on 13 August 2026.",
+      "sources": [
+        "S15",
+        "S18"
+      ]
+    },
+    {
+      "label": ".mu registrars",
+      "value": "114 accredited registrars",
+      "detail": "Count shown on the registry's website on 20 November 2026. A .mu name is registered through a registrar, not with the registry directly.",
+      "sources": [
+        "S20"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Four different things: business name, company name, domain name, trade mark",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "What",
+            "Where it is registered",
+            "Law or rules",
+            "What the registration does"
+          ],
+          "rows": [
+            [
+              "Business name",
+              "Registrar of Businesses, Corporate and Business Registration Department",
+              "Business Registration Act 2002",
+              "Records the name or style under which a registered person carries on business. A registered person may not trade under a business name that is not registered."
+            ],
+            [
+              "Company name",
+              "Registrar of Companies, Corporate and Business Registration Department",
+              "Companies Act 2001",
+              "The name under which the company is incorporated. No company is registered under a name identical to that of an existing company or statutory corporation."
+            ],
+            [
+              "Trade mark",
+              "Industrial Property Office of Mauritius",
+              "Industrial Property Act 2019 and Industrial Property Regulations 2022",
+              "Gives the exclusive right to use the mark for the goods and services it is registered for, for 10 years at a time."
+            ],
+            [
+              ".mu domain name",
+              "MU-NIC, through an accredited registrar",
+              "The registry's published policies and registration agreement",
+              "Gives the registrant a licence to use the domain name, subject to the registry's acceptable user policy."
+            ]
+          ],
+          "sources": [
+            "S14",
+            "S15",
+            "S1",
+            "S20",
+            "S21"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Industrial Property Act 2019 came into force on 31 January 2022 and is administered by the Industrial Property Office of Mauritius. It says the exclusive right to use a mark is acquired by registration. A mark is a visually perceptible sign, or combination of signs, capable of distinguishing the goods or services of one enterprise from those of others. A trade name is a name or designation used to identify an enterprise in the course of trade.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Registering a business name does not authorise its use where another enactment prohibits that use.",
+            "The Registrar of Businesses may refuse or cancel a business name that is identical to, or so nearly resembles, the name of another person carrying on business or another business name, or that the Registrar finds undesirable or misleading. The person has 30 days to change it.",
+            "Reserving a company name does not by itself entitle the company to be registered under that name. A reserved name stays available for 6 months.",
+            "The Corporate and Business Registration Department says a company name should not be identical to existing names. It publishes a list of prohibited names and offers a free online search of its register.",
+            "Trade names are protected against unlawful acts by third parties even before or without registration. Using an existing trade name, or a similar name or mark likely to mislead the public, is unlawful.",
+            "The prior user of an unregistered mark may oppose another person's application to register a similar mark for similar goods or services, on evidence of prior use."
+          ],
+          "sources": [
+            "S14",
+            "S15",
+            "S1",
+            "S16",
+            "S17",
+            "S18"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The registers are kept under different rules and each Act sets its own test. The Companies Act compares a proposed name with existing companies and statutory corporations. The Business Registration Act compares it with other persons carrying on business and their business names. The Industrial Property Act bars a mark that conflicts with a third party right in force in Mauritius, in particular an earlier mark.",
+          "sources": [
+            "S15",
+            "S1",
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What can be registered as a mark",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A mark may consist of words, letters, numerals, figures, pictures, a combination of colours, the shape of goods or of their parts, or the packaging of goods. The definition also covers collective marks and certification marks. A collective mark is filed with the agreement that governs its use and cannot be licensed. The holder of a certification mark may not use it to certify its own goods or services.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A sign with no distinctive character.",
+            "A sign that only describes the kind, quality, quantity, intended purpose, value, geographical origin or time of production of the goods or services.",
+            "A sign that has become generic in current language or in trade practice.",
+            "A shape that results from the nature of the goods or gives a technical result.",
+            "A sign contrary to public order or morality.",
+            "A sign likely to mislead, for example about geographical origin, nature or quality.",
+            "The armorial bearings, flag or emblem of a State or international organisation, or an official sign of control.",
+            "A mark that conflicts with an earlier right in Mauritius: one similar to a mark registered or filed earlier for similar goods or services, or one that reproduces or imitates a mark well known in Mauritius."
+          ],
+          "sources": [
+            "S1",
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The list above gives the grounds on which the Act bars registration. In a case of honest concurrent use, the Director may allow registration of a mark by more than one owner, with conditions.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who can apply and what to prepare",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Any individual or organisation may file in its own name. A person who is a national, or a business incorporated in Mauritius, may file without an agent. An applicant whose residence or principal place of business is outside Mauritius must be represented by a law practitioner resident and practising in Mauritius, or by an agent approved by the Minister. A foreign applicant living in Mauritius provides proof of residence.",
+          "sources": [
+            "S4",
+            "S5",
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Form TM 1, Application to Register a Mark, Collective Mark or Certification Mark, from the Office or from its web page.",
+            "A clear reproduction of the mark on the form, and one reproduction in soft copy.",
+            "The list of goods and services, grouped by class of the Nice Classification.",
+            "The name, address, nationality and place of residence of the applicant, and the agent's name and address if there is one.",
+            "For a company or other legal entity, the certificate of incorporation or registration.",
+            "A transliteration or translation where the mark is in a foreign language or in characters other than Latin.",
+            "Where priority is claimed from an earlier foreign filing: the date, number and country of that filing. The Mauritius application must be filed within 6 months of the earlier one.",
+            "The fee, paid by cash, credit card, debit card or cheque payable to the Government of Mauritius."
+          ],
+          "sources": [
+            "S4",
+            "S7",
+            "S6",
+            "S2",
+            "S5",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Searching first. The Office advises applicants to search its records before filing, for a fee of MUR 300, to see whether the proposed mark conflicts with a registered mark or a pending application. Its FAQ says the search is done at the Office, 11th Floor, Sterling House, Lislet Geoffroy Street, Port Louis, between 9.30 and 14.30. The Office warns that a clear search result does not mean the mark will be registered, because it carries out its own search and review after filing. The World Intellectual Property Organization's Global Brand Database also offers a search of the national trade mark collection of Mauritius.",
+          "sources": [
+            "S4",
+            "S5",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "It is not possible to add goods, services or classes to an application after filing. A new application with its own fee is needed for them. Fees paid to the Office are not usually refunded.",
+          "sources": [
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Steps to register a mark",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Search the Office's records for conflicting marks. The Office advises applicants to do this before filing.",
+            "Complete Form TM 1 with the representation of the mark and the list of goods and services by class.",
+            "File the application with the Industrial Property Office and pay MUR 6,000 for the first class and MUR 2,000 for each additional class. The filing date is the date the Office receives an application that contains the required matters.",
+            "The Director examines the application. Where something is missing, the Office writes to the applicant, who has 2 months to correct it. Where the Director asks for an amendment, it is due within 2 months of the written notification. If the applicant does not comply, the application lapses or is treated as not filed.",
+            "If the requirements are met, the Director accepts the application and has it published in the Government Gazette.",
+            "Any person may oppose within 2 months of publication, by notice stating the grounds, with a fee of MUR 5,000. The applicant has 2 months from receiving the notice to send a counter-statement. Without one, the application is deemed abandoned.",
+            "If there is no opposition, or the opposition is decided in the applicant's favour, the Director registers the mark, publishes the registration and issues a certificate of registration."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Event",
+            "Time limit",
+            "Who it binds"
+          ],
+          "rows": [
+            [
+              "Correcting an application that lacks a required element",
+              "2 months from the Office's notification",
+              "Applicant"
+            ],
+            [
+              "Amending an application at the Director's request",
+              "2 months from the written notification",
+              "Applicant"
+            ],
+            [
+              "Claiming priority from an earlier foreign application",
+              "6 months from the earlier filing date",
+              "Applicant"
+            ],
+            [
+              "Opposing a published application",
+              "2 months from publication",
+              "Any person"
+            ],
+            [
+              "Counter-statement to an opposition",
+              "2 months from receipt of the notice",
+              "Applicant"
+            ],
+            [
+              "Written representations after a refusal",
+              "6 months from receipt of the refusal",
+              "Applicant"
+            ],
+            [
+              "Director's decision on those representations",
+              "1 month from receipt",
+              "Office"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "From publication until registration the applicant has the same rights as if the mark were registered. A defendant may answer that the mark could not validly have been registered at the time. An applicant may withdraw the application or limit the list of goods and services at any time before registration.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Official fees for marks",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Item",
+            "Fee"
+          ],
+          "rows": [
+            [
+              "Application to register a mark, first class",
+              "MUR 6,000"
+            ],
+            [
+              "Application to register a mark, each additional class",
+              "MUR 2,000"
+            ],
+            [
+              "Opposition",
+              "MUR 5,000"
+            ],
+            [
+              "Renewal, first class",
+              "MUR 5,000"
+            ],
+            [
+              "Renewal, each additional class",
+              "MUR 2,000"
+            ],
+            [
+              "Surcharge for late payment of the renewal fee",
+              "MUR 2,000"
+            ],
+            [
+              "Handling fee for an international application under the Madrid Protocol",
+              "MUR 3,000"
+            ],
+            [
+              "Request to replace a national registration by an international registration",
+              "MUR 1,000"
+            ],
+            [
+              "Consultation of registers (search)",
+              "MUR 300"
+            ],
+            [
+              "Copies of extracts or documents",
+              "MUR 500"
+            ],
+            [
+              "Recording a change of address",
+              "MUR 2,000"
+            ],
+            [
+              "Recording a change in application or ownership, such as an assignment, merger or change of name",
+              "MUR 3,000"
+            ]
+          ],
+          "sources": [
+            "S3",
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "These are the fees in the First Schedule to the Industrial Property Regulations 2022, which came into operation on 31 January 2022, as shown on the Office's fee sheet. Fees charged by an agent or law practitioner are separate.",
+          "sources": [
+            "S2",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "After registration: term, renewal, use and enforcement",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Registration lasts 10 years from the filing date of the application.",
+            "The owner may apply to renew within the 6 months before expiry, on Form TM 4, signed by the owner or agent, with the renewal fee. The Office issues a certificate of renewal.",
+            "If the renewal fee is not paid in time, the Director may allow a further 6 months for payment with the surcharge.",
+            "If the mark is not renewed, the registration lapses. The Director publishes a notice in the Gazette within one month of the expiry of a mark.",
+            "Within one year of expiry, the previous owner may apply to register the mark again and has precedence over any other applicant.",
+            "A mark may be removed from the register, at the request of an interested person, if the owner or a licensee has not used it for a continuous period of at least 3 years after registration, unless reasonable circumstances prevented use.",
+            "A licence must be submitted to the Director for recording. It has no effect against third parties until it is recorded."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No person may use a registered mark for the goods and services it covers without the written agreement of the registered owner. The owner may bring court proceedings against a person who uses the mark, or a similar sign likely to confuse the public, without agreement. The right does not extend to articles put on the market in Mauritius by the owner or with the owner's consent. Proceedings may not be started more than 5 years after the claimant became aware, or had reason to know, of the infringing act. A person who knowingly infringes commits an offence and is liable on conviction to a fine of up to MUR 250,000 and imprisonment for up to 5 years.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An interested person may apply to the Industrial Property Tribunal to invalidate a registration that does not meet the Act's conditions. The Mauritius Revenue Authority's customs pages carry an application form for suspension of clearance and a notice to right holders on border protection of intellectual property rights.",
+          "sources": [
+            "S1",
+            "S25"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Office states that the rights from a trade mark registration are limited to the territory where it is registered. A registration in Mauritius gives rights only in Mauritius. The registered symbol, ®, may be used next to a mark once it is registered.",
+          "sources": [
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Protection abroad: Madrid, Hague, PCT and ARIPO",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "System",
+            "Covers",
+            "In force for Mauritius"
+          ],
+          "rows": [
+            [
+              "Madrid Protocol",
+              "International registration of marks",
+              "6 May 2023"
+            ],
+            [
+              "Hague Agreement, 1999 Geneva Act",
+              "International registration of industrial designs",
+              "6 May 2023"
+            ],
+            [
+              "Patent Cooperation Treaty (PCT)",
+              "International patent applications",
+              "15 March 2023"
+            ],
+            [
+              "Paris Convention",
+              "Priority rights for marks, patents and designs",
+              "Party; the Act allows a 6-month priority claim for marks"
+            ]
+          ],
+          "sources": [
+            "S9",
+            "S10",
+            "S11",
+            "S12",
+            "S1",
+            "S26"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold a basic application or a basic registration for the mark at the Industrial Property Office of Mauritius, in the same name.",
+            "File the international application with the Director. A citizen of Mauritius, a person residing in Mauritius or a legal entity may file. The application is in English.",
+            "Pay the handling fee of MUR 3,000 to the Office at filing. The fees of the international system are separate.",
+            "The Office checks that it is the office of origin and that the particulars follow the Madrid Protocol, certifies the application, records the date of receipt and forwards it to the International Bureau of the World Intellectual Property Organization."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mauritius deposited its instrument of accession to the Madrid Protocol on 6 February 2023.",
+            "For marks coming into Mauritius through the Madrid system, Mauritius has 18 months, instead of one year, to notify a provisional refusal, and receives an individual fee.",
+            "Recording a licence in the International Register has no effect in Mauritius. A licence must be recorded in the national register at the Office.",
+            "If the basic application or registration ceases to have effect, the Director informs the International Bureau and asks for cancellation of the international registration for the goods and services affected.",
+            "The Hague System lets the owner of a design file one international application, in one language, with one set of fees in Swiss francs."
+          ],
+          "sources": [
+            "S9",
+            "S1",
+            "S24"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Act No. 13 of 2026, gazetted on 13 August 2026, added a Part on the Harare Protocol to the Industrial Property Act 2019. A patent, utility model or industrial design granted or registered by the African Regional Intellectual Property Organization (ARIPO) that designates Mauritius has the same effect as one granted under the Act, unless the Director tells ARIPO otherwise. The new Part does not cover marks.",
+          "sources": [
+            "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": ".mu domain names in outline",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Internet Assigned Numbers Authority lists Internet Direct Ltd, Port Louis, as the manager of the .mu country-code top-level domain, with nic.mu as the registry website. The registry presents itself as MU-NIC, the Mauritius Network Information Centre, and says it operates the Mauritius domain name registry.",
+          "sources": [
+            "S19",
+            "S20"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Check whether the name is free with the registry's WHOIS lookup. The registry says the WHOIS service is for querying availability, identifying the holder of a domain name licence and contacting the holder.",
+            "Choose a registrar from the registry's list of accredited registrars. The registrar is the accredited organisation that sells domain names to the public.",
+            "Register the name through that registrar. The registrant is the person or company that registers the name and manages its settings through the registrar, which passes changes to the registry."
+          ],
+          "sources": [
+            "S23",
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The registry publishes a registration agreement, a registrar agreement, an acceptable user policy and a WHOIS policy. A registrant's licence to use a domain requires compliance with the acceptable user policy. A breach may lead to suspension of the domain and its removal from the zone.",
+            "The acceptable user policy treats as a breach the use of a .mu name that is identical or confusingly similar to a company, business or trading name registered with the relevant Mauritius agency, or to a trade or service mark in which a complainant has uncontested rights, where the use deceives or confuses others.",
+            "The policy says the registry or affected parties may use the .mu Domain Name Dispute Resolution Policy, administered by the Arbitration and Mediation Center of the World Intellectual Property Organization, or the courts, to resolve disputes over the policy."
+          ],
+          "sources": [
+            "S21",
+            "S22"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "The Industrial Property Act 2019 (Act No. 15 of 2019)",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/Regulations/INDUSTRIAL%20PROPERTY%20ACT%202019.pdf",
+      "publisher": "Industrial Property Office of Mauritius, Ministry of Foreign Affairs, Regional Integration and International Trade",
+      "published": "10 August 2019",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Industrial Property Regulations 2022 (Government Notice No. 36 of 2022)",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/Regulations/Industrial%20Property%20Regulations%202022.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "5 February 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Prescribed Fees: Marks",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/FEES.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Guidelines to Applicants for the Registration of Marks",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/Guidelines.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Frequently Asked Questions (trade marks)",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/FAQs%20Trademarks.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Industrial Property Office of Mauritius (IPOM)",
+      "url": "https://foreign.govmu.org/Pages/Industrial%20Property%20Office/Industrial-Property-Office.aspx",
+      "publisher": "Ministry of Foreign Affairs, Regional Integration and International Trade",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Marks: Downloadable Forms",
+      "url": "https://foreign.govmu.org/Pages/Trademarks_Download-Forms.aspx",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "The Industrial Property Office of Mauritius (IPOM): About Us",
+      "url": "https://foreign.govmu.org/Pages/Industrial%20Property%20Office/ABOUT-US0409-2313.aspx",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Information Notice No. 5/2023: Accession to the Madrid Protocol: Mauritius",
+      "url": "https://www.wipo.int/edocs/madrdocs/en/2023/madrid_2023_5.pdf",
+      "publisher": "World Intellectual Property Organization",
+      "published": "23 February 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Mauritius Joins the Hague System",
+      "url": "https://www.wipo.int/en/web/hague-system/w/news/2023/news_0005",
+      "publisher": "World Intellectual Property Organization",
+      "published": "6 February 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Mauritius Joins the PCT",
+      "url": "https://www.wipo.int/en/web/pct-system/w/news/2022/news_0056",
+      "publisher": "World Intellectual Property Organization",
+      "published": "15 December 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "WIPO Lex: Mauritius (laws and treaty membership)",
+      "url": "https://www.wipo.int/wipolex/en/members/profile/MU",
+      "publisher": "World Intellectual Property Organization",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Explore IP Landscape: Mauritius",
+      "url": "https://www.wipo.int/en/web/country-profiles/mu",
+      "publisher": "World Intellectual Property Organization",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "The Business Registration Act 2002, consolidated text",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/BusinessRegistrationAct2002-31-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Companies Act 2001, consolidated text",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/09/Companies-Act-200131-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Incorporation of a Company",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Corporate and Business Registration Department: home page",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "The Economic and Financial Measures (Miscellaneous Provisions) Act 2026 (Act No. 13 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/08/Act1326.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": ".mu Top-Level Domain: delegation record",
+      "url": "https://www.iana.org/domains/root/db/mu.html",
+      "publisher": "Internet Assigned Numbers Authority",
+      "published": "Last updated 13 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Registrars",
+      "url": "https://www.nic.mu/registrars.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Policies",
+      "url": "https://www.nic.mu/policies.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Acceptable User Policy",
+      "url": "https://www.nic.mu/acceptable-use-policy.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "WHOIS",
+      "url": "https://www.nic.mu/whois.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Filing through the Hague System",
+      "url": "https://foreign.govmu.org/Pages/Hague-System.aspx",
+      "publisher": "Industrial Property Office of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Customs",
+      "url": "https://www.mra.mu/index.php/customs",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Intellectual Property Rights",
+      "url": "https://www.mauritiustrade.mu/en/intellectual-property-policy",
+      "publisher": "Mauritius Trade Easy (portal supported by the Ministry of Foreign Affairs, Regional Integration and International Trade)",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Industrial Property Office of Mauritius (IPOM)",
+      "url": "https://foreign.govmu.org/Pages/Industrial%20Property%20Office/Industrial-Property-Office.aspx",
+      "publisher": "Ministry of Foreign Affairs, Regional Integration and International Trade",
+      "what": "Find the forms, guidelines, fees and FAQs for marks, patents, designs and geographical indications."
+    },
+    {
+      "title": "Marks: Downloadable Forms",
+      "url": "https://foreign.govmu.org/Pages/Trademarks_Download-Forms.aspx",
+      "publisher": "Industrial Property Office of Mauritius",
+      "what": "Download Form TM 1 to apply, Form TM 4 to renew, Form IP 6 to oppose and the other mark forms."
+    },
+    {
+      "title": "Prescribed Fees: Marks",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/FEES.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "what": "Check the official fee for each step."
+    },
+    {
+      "title": "Guidelines to Applicants for the Registration of Marks",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/Guidelines.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "what": "Read the Office's own checklist for filing an application."
+    },
+    {
+      "title": "Frequently Asked Questions (trade marks)",
+      "url": "https://foreign.govmu.org/Documents/2022/IPO/IP%20Rights/Trademarks/pdf%20version/FAQs%20Trademarks.docx.pdf",
+      "publisher": "Industrial Property Office of Mauritius",
+      "what": "Read the Office's answers on classes, searches, disclaimers, priority claims and refusals."
+    },
+    {
+      "title": "Legislation",
+      "url": "https://foreign.govmu.org/Pages/Industrial%20Property%20Office/Legislation/Legislation.aspx",
+      "publisher": "Industrial Property Office of Mauritius",
+      "what": "Open the Industrial Property Act 2019 and the Industrial Property Regulations 2022."
+    },
+    {
+      "title": "Global Brand Database",
+      "url": "https://branddb.wipo.int/en/quicksearch",
+      "publisher": "World Intellectual Property Organization",
+      "what": "Search international marks and the national trade mark collection of Mauritius."
+    },
+    {
+      "title": "Madrid System",
+      "url": "https://www.wipo.int/en/web/madrid-system",
+      "publisher": "World Intellectual Property Organization",
+      "what": "Read how an international trade mark application works and what it costs."
+    },
+    {
+      "title": "WIPO Lex: Mauritius",
+      "url": "https://www.wipo.int/wipolex/en/members/profile/MU",
+      "publisher": "World Intellectual Property Organization",
+      "what": "Check which intellectual property treaties Mauritius has joined and on what dates."
+    },
+    {
+      "title": "Search Online (free of charge)",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Corporate and Business Registration Department, through Mauritius Network Services",
+      "what": "Search registered companies and businesses by name."
+    },
+    {
+      "title": "List of Prohibited Names as at 13 May 2026",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/List-of-Prohibited-names-as-at-13-May-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Check the registry's list before applying to incorporate, reserve or change a company name."
+    },
+    {
+      "title": "Incorporation of a Company",
+      "url": "https://companies.govmu.org/cbrd/incorporation-domestic-company/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "See the name rule, documents and forms for incorporating a company or changing its name."
+    },
+    {
+      "title": "Registrars",
+      "url": "https://www.nic.mu/registrars.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "what": "Find an accredited registrar for a .mu domain name."
+    },
+    {
+      "title": "WHOIS",
+      "url": "https://www.nic.mu/whois.html",
+      "publisher": "MU-NIC, Mauritius Network Information Centre",
+      "what": "Look up whether a .mu name is taken and who holds it."
+    },
+    {
+      "title": "Customs",
+      "url": "https://www.mra.mu/index.php/customs",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Find the application form for suspension of clearance and the notice on customs border protection of intellectual property rights."
+    }
+  ],
+  "unverified": [
+    "Whether the fees in the First Schedule to the Industrial Property Regulations 2022 have been amended since 2022. The Office's fee sheet dates from 2022 and WIPO Lex lists only the 2022 regulations, but no check of every later Government Notice was possible.",
+    "How long the Industrial Property Office takes to examine and register a mark. No official figure was found.",
+    "Whether the Industrial Property Office offers online filing or an online search of its own register. Its pages describe paper forms and a search at the Office. The search hours of 9.30 to 14.30 come from an FAQ created in 2022.",
+    "The amounts of the individual fee Mauritius charges when it is designated in a Madrid application. WIPO said they would be in a separate notice, which was not opened.",
+    "Whether Mauritius has deposited an instrument of accession to the Harare Protocol with ARIPO, and from what date ARIPO filings can designate Mauritius. Only the amendment to the Industrial Property Act made by Act No. 13 of 2026 was confirmed.",
+    "Whether Mauritius is party to ARIPO's Banjul Protocol on marks. Nothing was found and nothing is stated in the guide.",
+    "Rules on who may register a .mu name, registration periods and prices. The registry's registration agreement page did not load (it returned a browser check), and prices are set by registrars.",
+    "The text of the .mu Domain Name Dispute Resolution Policy. Only the reference to it in the registry's acceptable user policy was read.",
+    "Fees for reserving a company name and for changing a business name or company name.",
+    "Current opening hours, address and payment methods of the Industrial Property Office. They are taken from guidelines and an FAQ created in 2022."
+  ]
+}

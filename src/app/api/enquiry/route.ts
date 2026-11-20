@@ -1,23 +1,24 @@
 import { NextResponse } from "next/server";
-import { REPLY_NAMES, TOPIC_NAMES, isReply, isTopic, validateEnquiry, type Enquiry } from "@/lib/enquiry";
+import { index } from "@/lib/index";
+import { REPLY_NAMES, TOPIC_NAMES, isReply, isTopic, validateEnquiry, type Enquiry } from "@/lib/request";
 
 /**
- * Requests from the Enquire page.
+ * Requests from the form: add a business, correct a listing, take one out.
  *
  * Validated with the same rules the form uses, trapped with a honeypot, and rate limited per
  * connection. Then delivered by the first route configured:
  *
- *   ENQUIRY_WEBHOOK_URL  POST the enquiry as JSON (Zapier, Make, a CRM, an Apps Script)
+ *   ENQUIRY_WEBHOOK_URL  POST the request as JSON (Zapier, Make, a CRM, an Apps Script)
  *   RESEND_API_KEY       email it to ENQUIRY_TO, from ENQUIRY_FROM (a domain verified with Resend)
  *
- * With neither set: in development the enquiry is written to the server log; in production it is
- * refused (503), because the business would never see it, and the form then offers the phone,
- * WhatsApp and email instead. No enquiry is ever silently lost. Choose a route before launch.
+ * With neither set: in development the request is written to the server log; in production it is
+ * refused (503), because nobody would see it, and the form then offers the phone, WhatsApp and
+ * email instead. No request is ever silently lost. Choose a route before launch.
  *
  * The rate limit lives in memory, so it is per server instance: enough to stop a careless loop or
- * a lazy bot, not a determined one. Put a shared store behind it if the client needs more.
+ * a lazy bot, not a determined one.
  *
- * KOS kit. From DHE (src/app/api/enquiry/route.ts), the third and strictest of three Khay forms.
+ * KOS kit. From DHE (src/app/api/enquiry/route.ts).
  */
 
 const WINDOW_MS = 10 * 60 * 1000;
@@ -35,13 +36,16 @@ function limited(ip: string) {
 const clip = (v: unknown, n = 500) => (typeof v === "string" ? v.trim().slice(0, n) : undefined);
 
 function summary(e: Enquiry) {
+  const listing = e.listing ? index().byId.get(e.listing) : undefined;
   const rows: [string, string | undefined][] = [
     ["About", e.topic ? TOPIC_NAMES[e.topic] : undefined],
+    ["Business", e.business],
+    ["Listing", listing ? `${listing.name} (/b/${listing.slug})` : undefined],
+    ["Message", e.message],
     ["Name", e.name],
     ["Phone", e.phone],
     ["Email", e.email],
     ["Reply by", e.reply ? REPLY_NAMES[e.reply] : undefined],
-    ["Message", e.message],
   ];
   return rows
     .filter(([, v]) => v)
@@ -65,19 +69,20 @@ export async function POST(req: Request) {
 
   const enquiry: Enquiry = {
     topic: isTopic(body.topic) ? body.topic : undefined,
+    listing: /^[nwrq]\d+$/.test(String(body.listing ?? "")) ? String(body.listing) : undefined,
+    business: clip(body.business, 160) ?? "",
+    message: clip(body.message, 3000) ?? "",
     name: clip(body.name, 120) ?? "",
     phone: clip(body.phone, 40) ?? "",
     email: clip(body.email, 160) ?? "",
-    message: clip(body.message, 2000),
     reply: isReply(body.reply) ? body.reply : undefined,
   };
 
   const errors = validateEnquiry(enquiry);
-  if (Object.keys(errors).length)
-    return NextResponse.json({ ok: false, error: "invalid", errors }, { status: 422 });
+  if (Object.keys(errors).length) return NextResponse.json({ ok: false, error: "invalid", errors }, { status: 422 });
 
   const text = summary(enquiry);
-  const subject = `Enquiry: ${enquiry.topic ? TOPIC_NAMES[enquiry.topic] : "General"}, ${enquiry.name}`;
+  const subject = `biznes.mu: ${enquiry.topic ? TOPIC_NAMES[enquiry.topic] : "Request"}, ${enquiry.business || enquiry.name}`;
 
   try {
     if (process.env.ENQUIRY_WEBHOOK_URL) {
@@ -94,13 +99,7 @@ export async function POST(req: Request) {
       const r = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from,
-          to: [to],
-          ...(enquiry.email ? { reply_to: enquiry.email } : {}),
-          subject,
-          text,
-        }),
+        body: JSON.stringify({ from, to: [to], ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject, text }),
       });
       if (!r.ok) throw new Error(`resend ${r.status}`);
     } else if (process.env.NODE_ENV === "production") {

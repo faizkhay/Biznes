@@ -1,7 +1,0 @@
-{
-  "file": "assets/plates/certificate.webp",
-  "is": "The master. A painted close view of a framed certificate on a plastered wall. A generated illustration, not a photograph. The paper is blank: the lines and the seal the site shows on it are set over it in code, and say nothing.",
-  "made": "Saved as generated, at 2048 x 1360, as WebP at quality 95. Nothing was retouched.",
-  "generator": "Higgsfield, model gpt_image_2_6, high quality, 17 November 2026, job 1ee2c137-0454-4403-9285-c00f6946efce, with the first business's own plate as its reference",
-  "prompt": "Paint a close-up illustration plate in exactly the painted style, colours and warm light of the reference image, showing a detail of the same room: the smooth cream plaster back wall, seen straight on.\n\nHanging on the wall is ONE certificate in a thin dark wood frame with a narrow brass inner edge, portrait format, taking up about half the height of the image. The paper inside is plain cream and completely BLANK: no writing, no lines, no seal, no signature, no emblem.\n\nWarm light from a ceiling spot falls across the wall from above. The frame hangs right of centre, leaving the left third of the image calm wall. Nothing else: no furniture, no screen, no people. No lettering, numbers or logos anywhere in the image."
-}

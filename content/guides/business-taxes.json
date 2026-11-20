@@ -1,0 +1,909 @@
+{
+  "slug": "business-taxes",
+  "title": "Business taxes in Mauritius",
+  "summary": "The taxes a business in Mauritius meets on its profits: income tax on companies and the levies charged with it, tax on a sole trader's business income, and how and when to file and pay. Figures are those in force on 20 November 2026, after the Finance Act 2026.",
+  "audience": "Owners of companies and sole traders, including first-time business owners.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Company income tax, standard rate",
+      "value": "15%",
+      "detail": "On chargeable income. Rate in force on 20 November 2026.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Company income tax on export of goods",
+      "value": "3%",
+      "detail": "On the share of chargeable income that comes from exporting goods. In force since 1 July 2017.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Corporate Social Responsibility (CSR) Fund",
+      "value": "2% of the previous year's chargeable income",
+      "detail": "At least 75% is paid to the MRA. For a CSR Fund set up in calendar year 2026 the share is at least 50%.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Corporate Climate Responsibility (CCR) levy",
+      "value": "2% of chargeable income",
+      "detail": "Only where turnover is above MUR 50 million. Applies from the year of assessment that started on 1 July 2024.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Fair Share Contribution, companies",
+      "value": "5% of chargeable income",
+      "detail": "Only where chargeable income is above MUR 24 million in an accounting year. 2% for a company taxed at 3%. Income derived from 1 July 2025 to 30 June 2028.",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "label": "Income tax bands for individuals, including sole traders",
+      "value": "0%, 10%, 20% and 35%",
+      "detail": "First MUR 500,000 at 0%, next MUR 500,000 at 10%, next MUR 11 million at 20%, remainder at 35%. Income year starting 1 July 2026.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Presumptive tax for small enterprises",
+      "value": "1% of gross income",
+      "detail": "Optional. Gross income of MUR 10 million or less a year, in farming, manufacturing, retail or wholesale of goods.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Advance Payment System (APS) threshold",
+      "value": "Gross income above MUR 10 million",
+      "detail": "Quarterly statements are due where last year's gross income was above MUR 10 million and the company had chargeable income.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "label": "Company annual return and payment",
+      "value": "Within 6 months of the year end",
+      "detail": "Counted from the end of the month in which the accounting period ends. June and December year ends have set dates.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Late payment of income tax",
+      "value": "2.5% penalty and 0.25% interest a month",
+      "detail": "From 1 July 2025. The penalty is 1% for a small enterprise with turnover of MUR 10 million or less.",
+      "sources": [
+        "S1",
+        "S10"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "The taxes at a glance",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Revenue Authority (MRA) runs these taxes on a self-assessment basis. The business works out its own tax, files a return at the end of each period and pays what the return shows. The MRA can audit a return, and can act where no return is filed. A person resident in Mauritius is taxed on worldwide income. A non-resident is taxed on income from sources in Mauritius.",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Tax or levy",
+            "Who pays",
+            "Rate on 20 November 2026"
+          ],
+          "rows": [
+            [
+              "Income tax on companies",
+              "Companies, trusts, foundations, collective investment schemes and non-resident sociétés",
+              "15% of chargeable income. 3% on export of goods"
+            ],
+            [
+              "CSR Fund",
+              "Companies, other than those holding a Global Business Licence",
+              "2% of the previous year's chargeable income"
+            ],
+            [
+              "CCR levy",
+              "Companies with turnover above MUR 50 million",
+              "2% of chargeable income"
+            ],
+            [
+              "Fair Share Contribution",
+              "Companies with chargeable income above MUR 24 million",
+              "5%, or 2% for a company taxed at 3%. Income from 1 July 2025 to 30 June 2028"
+            ],
+            [
+              "Alternative minimum tax",
+              "Hotels, insurers, financial intermediaries, real estate and telecommunication companies",
+              "10% of adjusted book profit where normal tax is lower. From the year of assessment starting 1 July 2026"
+            ],
+            [
+              "Income tax on individuals",
+              "Sole traders and other self-employed people",
+              "0% to 35% in bands. Income year from 1 July 2026"
+            ],
+            [
+              "Presumptive tax",
+              "Small enterprises that elect to pay it",
+              "1% of gross income"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Tax rules change each year with the Budget and the Finance Act. The Finance Act 2026 was assented to on 12 August 2026. The figures in this guide are taken from the Income Tax Act and the Value Added Tax Act as consolidated by the MRA up to that Act.",
+          "sources": [
+            "S1",
+            "S2",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Income tax on companies",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Companies, trusts, trustees of unit trust schemes, collective investment schemes, foundations and non-resident sociétés pay income tax on chargeable income. Chargeable income is gross income less allowable deductions. Gross income is all income other than exempt income.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Case",
+            "Rate"
+          ],
+          "rows": [
+            [
+              "Standard rate",
+              "15%"
+            ],
+            [
+              "Company exporting goods",
+              "3% on the chargeable income attributable to exports. That share is gross income from exports divided by total gross income, multiplied by chargeable income"
+            ],
+            [
+              "Freeport operator or private freeport developer manufacturing goods for the local market",
+              "3%, subject to prescribed substance conditions"
+            ],
+            [
+              "Manufacturing company in the medical, biotechnology or pharmaceutical sector holding an Investment Certificate from the Economic Development Board",
+              "3%, subject to prescribed conditions"
+            ],
+            [
+              "Higher education institution set up in Mauritius",
+              "3%"
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Export of goods includes international buying and selling where the goods go straight from the exporting country to the importing country without landing in Mauritius. Since the Finance Act 2026 it no longer includes the export of live animals.",
+            "A partial exemption of 80%, or 95% in some cases, applies to listed types of income. Examples are foreign dividends, and interest earned by a company that is not a bank or other listed financial business. The company must carry out its core income generating activities in Mauritius, employ enough suitably qualified people and incur a minimum level of expenditure.",
+            "A loss can be carried forward and set against net income of the following 5 income years, provided there is no change of more than 50% in the shareholding. The 5 year limit does not apply to the part of a loss that comes from annual allowance on capital expenditure incurred on or after 1 July 2006."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "An alternative minimum tax applies from the year of assessment starting 1 July 2026. It covers companies operating a hotel, insurance companies, financial intermediaries, companies in real estate activities and licensed telecommunication companies. Where the normal tax is less than 10% of adjusted book profit, the tax payable is 10% of adjusted book profit. Global business entities are excluded.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "CSR, the climate levy and the Fair Share Contribution",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Every company must set up a Corporate Social Responsibility (CSR) Fund each year equal to 2% of its chargeable income of the previous year. Companies holding a Global Business Licence, foundations, trusts and non-resident sociétés are outside the rule, as is a company that elected to pay presumptive tax for the previous income year. Part of the Fund is paid to the MRA. The rest is spent on a CSR programme, or given to a non-governmental organisation running one, in the priority areas listed in the Act. A company that files APS statements pays the MRA share in four parts: 25% with each of the first three APS statements and 25% with the annual return. Other companies pay with the annual return. Tax credits cannot be set against CSR.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "CSR Fund set up",
+            "Share to be paid to the MRA"
+          ],
+          "rows": [
+            [
+              "1 January 2019 to 31 December 2025",
+              "At least 75%"
+            ],
+            [
+              "1 January 2026 to 31 December 2026",
+              "At least 50%"
+            ],
+            [
+              "On or after 1 January 2027",
+              "At least 75%"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Corporate Climate Responsibility (CCR) levy is 2% of chargeable income. It applies from the year of assessment that started on 1 July 2024.",
+            "No CCR levy is due for a year in which the company's turnover is MUR 50 million or less. Turnover here means gross income from all sources, including exempt income.",
+            "Since the Finance Act 2026 a company that files APS statements pays the CCR levy quarterly with those statements, and the balance with its annual return. Other companies pay it with the annual return.",
+            "The quarterly CCR amount is reduced by 75% where the APS due date falls between 1 July 2026 and 30 June 2027. The reduction is 50% between 1 July 2027 and 30 June 2028, and 25% between 1 July 2028 and 30 June 2029."
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A company with chargeable income above MUR 24 million in an accounting year pays a Fair Share Contribution. The rate is 5% of chargeable income for a company taxed at 15% and 2% for a company taxed at 3%.",
+            "The contribution applies to income derived from 1 July 2025 to 30 June 2028. Global business entities are excluded.",
+            "The Finance Act 2026 removed the earlier test based on supplies and VAT registration, so chargeable income is the only test.",
+            "The company files a Fair Share Contribution statement and pays electronically each quarter. Statements for the first three quarters are due within 3 months of the end of the month in which the quarter ends. The fourth covers the whole accounting year and is due within 6 months of the year end.",
+            "Late payment of the contribution carries a penalty of 2.5% and interest of 0.25% a month."
+          ],
+          "sources": [
+            "S5",
+            "S2",
+            "S6",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "A sole trader's business income",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A sole trader is taxed as an individual. The MRA treats as self-employed a person who has no contract of employment and derives income from a trade, business or profession in their own name, or from rent. The income year runs from 1 July to 30 June, and the return is due by 15 October. An individual doing business in Mauritius obtains a Business Registration Number from the Corporate and Business Registration Department and shows it on every invoice.",
+          "sources": [
+            "S8",
+            "S13",
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Chargeable income",
+            "Income year 1 July 2025 to 30 June 2026",
+            "Income year from 1 July 2026"
+          ],
+          "rows": [
+            [
+              "First MUR 500,000",
+              "0%",
+              "0%"
+            ],
+            [
+              "Next MUR 500,000",
+              "10%",
+              "10%"
+            ],
+            [
+              "Next MUR 11 million",
+              "20%",
+              "20%"
+            ],
+            [
+              "Remainder",
+              "20%",
+              "35%"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S15"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "For the income year that started on 1 July 2025 an individual also pays a Fair Share Contribution of 15% on leviable income above MUR 12 million. The Finance Act 2026 limited that contribution to that one income year.",
+            "The 35% band applies to the income year starting 1 July 2026 and to every later income year.",
+            "Chargeable income is worked out after reliefs and deductions. The deduction for dependents is MUR 110,000 for one dependent, MUR 190,000 for two, MUR 275,000 for three and MUR 355,000 for four or more.",
+            "A self-employed person also pays the Contribution Sociale Généralisée (CSG) on net income. It is MUR 150 a month where monthly net income is MUR 10,000 or less. Between MUR 10,000 and MUR 50,000 it is 1.5% of 90% of net income, with a minimum of MUR 150. Above MUR 50,000 it is 3% of 90% of net income."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S11",
+            "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Presumptive tax for small enterprises",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A small enterprise can elect to pay a presumptive tax of 1% of its gross income in place of tax on chargeable income. The election is made by irrevocable notice on or before the due date of the return. Three conditions apply.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The business is engaged in agriculture, forestry and fishing, manufacturing other than restaurants, retail of goods (including food sold to be eaten off the premises) or wholesale of goods.",
+            "Its gross income in the income year is MUR 10 million or less.",
+            "Its gross income from other sources is MUR 400,000 or less."
+          ],
+          "sources": [
+            "S1",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A business that elects cannot claim deductions, reliefs or allowances. It files a return by the normal due date and pays the tax with it, less any tax already withheld under PAYE or deducted at source. Where the MRA finds undeclared gross income and the total stays within MUR 10 million, it can charge presumptive tax on the undeclared amount.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "An individual engaged in these activities whose gross income for the previous year was MUR 10 million or less does not file quarterly CPS statements.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Paying during the year: APS, CPS and tax deducted at source",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Under the Advance Payment System (APS) a company files a statement and pays tax for each of the first three quarters of its accounting year. No statement is due for a quarter where, in the previous accounting year, gross income was MUR 10 million or less or the company had no chargeable income. The company chooses how to work out the chargeable income of a quarter: 25% of the previous year's chargeable income, or the actual gross income less allowable deductions for the quarter. Tax is charged at the company's own rate. APS is a provisional payment and is set against the tax due on the annual return.",
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "APS quarter",
+            "Statement and payment due"
+          ],
+          "rows": [
+            [
+              "First, second and third quarter of the accounting year",
+              "Within 3 months of the end of the month in which the quarter ends"
+            ],
+            [
+              "Quarter ending in March",
+              "2 days, excluding Saturdays and public holidays, before the end of June"
+            ],
+            [
+              "Quarter ending in September",
+              "2 days, excluding Saturdays and public holidays, before the end of December"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Under the Current Payment System (CPS) an individual with business or rental income files a quarterly statement and pays tax. The quarter July to September is due 2 days, excluding Saturdays and public holidays, before the end of December. October to December is due on 31 March. January to March is due 2 days, excluding Saturdays and public holidays, before the end of June. No statement is due where gross income under CPS in the previous income year was MUR 4 million or less, or where the tax for the quarter is MUR 500 or less.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Some payments to a business have tax deducted at source (TDS) by the payer, who sends it to the MRA. It is an advance payment and is set against the recipient's income tax.",
+            "Rates include 0.75% on payments to contractors and sub-contractors, 3% on commission and 7.5% on rent paid to a resident. The rate is 5% on fees for the professional services listed in the Fifth Schedule to the Income Tax Act.",
+            "No tax is deducted where the amount would be less than MUR 500.",
+            "The Finance Act 2026 added two items. One is 1% on payments above MUR 300,000 made by a person other than an individual to an ICT services provider for software, software licences and related maintenance. The other is 5% on payments made by a person other than an individual for advertising, promotional, endorsement or marketing services carried out through social media or digital content."
+          ],
+          "sources": [
+            "S14",
+            "S1",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Tax Account Number and e-filing",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The MRA identifies taxpayers by a Tax Account Number (TAN). A company uses its TAN as the user ID to file returns on MRA e-services, with a password issued by the MRA. An individual logs in with a National Identity Card number, a Non-Citizen Identity Card number or a TAN.",
+          "sources": [
+            "S3",
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every company must file its annual return and pay its tax electronically, through MRA e-services or the Mauritius Network Services system. A company that does not do so after written notice from the MRA is liable to a penalty. It is 20% of the tax payable, up to MUR 100,000, or MUR 5,000 where the return shows no tax.",
+          "sources": [
+            "S1",
+            "S3",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A company can ask an approved e-Filing Service Centre to file on its behalf. Payment by direct debit needs a PLACH Direct Debit Mandate Form, which must reach the MRA at least 15 days before the payment date.",
+          "sources": [
+            "S3",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Individuals also file and pay electronically. A self-employed person who is not required to file the standard return files a simplified return.",
+          "sources": [
+            "S1",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Returns and deadlines",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Return",
+            "Who files",
+            "Due date"
+          ],
+          "rows": [
+            [
+              "Annual company return and payment",
+              "Every company, whether or not it has tax to pay",
+              "Within 6 months of the end of the month in which the accounting period ends"
+            ],
+            [
+              "Company with a June year end",
+              "As above",
+              "2 days, excluding Saturdays and public holidays, before the end of December. By 15 January where no tax is payable or a loss is declared"
+            ],
+            [
+              "Company with a December year end",
+              "As above",
+              "2 days, excluding Saturdays and public holidays, before the end of June"
+            ],
+            [
+              "APS statement and payment",
+              "Companies above the MUR 10 million threshold",
+              "Within 3 months of the end of the quarter, with set dates for quarters ending in March and September"
+            ],
+            [
+              "Individual annual return and payment",
+              "Individuals, including sole traders",
+              "15 October after the income year ends on 30 June"
+            ],
+            [
+              "CPS statement and payment",
+              "Individuals above the CPS threshold",
+              "End of December, 31 March and end of June"
+            ],
+            [
+              "Annual return of a resident société",
+              "The société",
+              "30 September after the income year, as shown in the 2026 tax calendar"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An individual files a return where any one of these applies in the income year: total net income above MUR 500,000, gross income from business above MUR 2 million, PAYE withheld from emoluments, tax deducted at source from income, or chargeable income.",
+            "A person who has to file once keeps filing each year unless the MRA agrees otherwise in writing.",
+            "A company that is not in operation can submit a declaration of company not in operation in place of a return. MRA guidance sets a limit of 3 months from the end of the accounting year for that declaration.",
+            "The MRA publishes a tax calendar listing each month's due dates. In 2026, companies with a December 2025 year end had until Friday 26 June 2026, and companies with a June 2026 year end have until Tuesday 29 December 2026."
+          ],
+          "sources": [
+            "S1",
+            "S13",
+            "S12",
+            "S19",
+            "S7",
+            "S20"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The MRA can move a date in a given year. In July 2026 it gave companies with a January 2026 year end until 31 August 2026 to file and pay. The e-filing facility for the year of assessment 2026-2027 was to open only after the Finance Bill 2026 was enacted.",
+          "sources": [
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Records, penalties and interest",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Anyone carrying on business must keep proper books, registers, accounts, receipts, invoices, vouchers, contracts and a full record of transactions, in English or French, on computer or on paper. Records are kept for at least 5 years after the transaction. An employer also keeps records of pay and tax withheld, and employees' declaration forms.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Default",
+            "Penalty or interest"
+          ],
+          "rows": [
+            [
+              "Late return",
+              "MUR 2,000 for each month or part of a month, up to MUR 20,000. Up to MUR 5,000 for a small enterprise with turnover of MUR 10 million or less, or an individual not in business"
+            ],
+            [
+              "Late payment of income tax",
+              "2.5% of the tax. 1% for a small enterprise with turnover of MUR 10 million or less, or an individual not in business"
+            ],
+            [
+              "Interest on unpaid income tax",
+              "0.25% for each month or part of a month"
+            ],
+            [
+              "Late payment under CPS",
+              "2.5% of the tax unpaid"
+            ],
+            [
+              "Loss overclaimed",
+              "Up to 2.5% of the loss overclaimed"
+            ],
+            [
+              "Company not filing or paying electronically after notice",
+              "20% of the tax payable, up to MUR 100,000, or MUR 5,000 where no tax is declared"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S10"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Finance Act 2025 halved the late payment penalty and the interest rate with effect from 1 July 2025. The penalty went from 5% to 2.5%, and from 2% to 1% for small enterprises. Interest went from 0.5% to 0.25% a month. On 20 November 2026 the MRA's corporate taxation, APS and self-employed pages still showed the old rates. This guide follows the Income Tax Act as consolidated up to the Finance Act 2026 and the MRA's Penalty and Interest page, which show the new rates.",
+          "sources": [
+            "S1",
+            "S3",
+            "S4",
+            "S8",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A taxpayer who is in doubt about how the law applies to an item can state the doubt in the return. The taxpayer is then treated as having acted in good faith, and no late payment penalty is charged on extra tax that results from that item.",
+            "Where a company does not file a return, the MRA can issue an automatic tax claim payable within 28 days.",
+            "The MRA can also publish the name of a company that has not filed on its website, no sooner than 3 months after the due date and after 7 days' notice."
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the Mauritius Revenue Authority",
+      "published": "Assented to on 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Corporate Taxation - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/corporate-tax",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Advance Payment System (APS) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/aps",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Value Added Tax Act (Consolidated Version up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/VATAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Fair Share Contribution (FSC) Statement - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/fair-share-contribution-fsc",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Tax Calendar - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Calendar for July to December 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Self Employed - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/self-employed",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Overview of Taxes - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/taxes-duties/overview-of-taxes",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Penalty & Interest - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/penalty-interest",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Contribution Sociale Généralisée (CSG) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/csg",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Company & Trust Return - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/company-trust-return",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Communiqué: Individual Income Tax Returns, e-Filing Season 2026",
+      "url": "https://www.mra.mu/download/ComFilng280826.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "FAQs - Tax Deduction at Source (TDS) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/tds",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Finance Act 2026, Mauritius: Key tax and regulatory changes (Tax Alert Issue 09)",
+      "url": "https://assets.kpmg.com/content/dam/kpmgsites/za/pdf/2026/08/Tax%20Alert%20Issue%2009%20-%20Finance%20Act%202026.pdf",
+      "publisher": "KPMG Mauritius (professional firm summary, used as a cross-check)",
+      "published": "17 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Annex to the Budget Speech 2026-2027",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/Annex-Budget-Speech-2026-2027.pdf",
+      "publisher": "Ministry of Finance, copy published by the National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Communiqué: Filing of Corporate Tax Return, Year of Assessment 2026-2027",
+      "url": "https://www.mra.mu/download/Communique280726.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Social Contribution and Social Benefits Act 2021 (as amended up to Act 14 of 2026)",
+      "url": "https://www.mra.mu/download/SocialContributionAndSocialBenefitsAct2021.pdf",
+      "publisher": "Attorney General's Office, copy published by the Mauritius Revenue Authority",
+      "published": "Amended up to Act 14 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Tax Basics for Newly Incorporated Companies: Company Tax Obligations",
+      "url": "https://www.mra.mu/download/TaxBasicsForNewlyIncorporatedCompanies.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "April 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Communiqué: Filing of Returns/Statements and Payment of Tax",
+      "url": "https://www.mra.mu/download/Communique160626.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "16 June 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "MRA e-Services portal",
+      "url": "https://eservices38.mra.mu/centralLogin/login",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Log in to file company and individual income tax returns online."
+    },
+    {
+      "title": "Company & Trust Return",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/company-trust-return",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Start the annual company return, read the notes for each year of assessment and retrieve a password."
+    },
+    {
+      "title": "APS Online",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/aps-online",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "File a quarterly Advance Payment System statement."
+    },
+    {
+      "title": "Fair Share Contribution (FSC) Statement",
+      "url": "https://www.mra.mu/index.php/eservices1/corporate/fair-share-contribution-fsc",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "File the quarterly Fair Share Contribution statement and read the MRA notes on it."
+    },
+    {
+      "title": "MRA e-Payment",
+      "url": "https://eservices2.mra.mu/mrapayments/userlogin.jsp",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Pay tax due to the MRA online."
+    },
+    {
+      "title": "Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "See the due dates for returns and payments month by month."
+    },
+    {
+      "title": "Corporate Taxation",
+      "url": "https://www.mra.mu/index.php/business/corporate-tax",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the MRA summary of company tax rates, partial exemption, losses and returns."
+    },
+    {
+      "title": "Self Employed / Current Payment System (CPS)",
+      "url": "https://www.mra.mu/index.php/individuals/self-employed",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read who must file quarterly CPS statements and when."
+    },
+    {
+      "title": "FAQs on Advance Payment System (APS)",
+      "url": "https://www.mra.mu/index.php/business/aps",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read how APS quarters, methods and due dates work."
+    },
+    {
+      "title": "FAQs on Tax Deduction at Source (TDS)",
+      "url": "https://www.mra.mu/index.php/business/tds",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check which payments have tax deducted at source and at what rate."
+    },
+    {
+      "title": "Legislations",
+      "url": "https://www.mra.mu/index.php/legislations1",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Download the consolidated Income Tax Act, the regulations and each year's Finance Act."
+    },
+    {
+      "title": "The Finance Act 2026",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the Mauritius Revenue Authority",
+      "what": "Read the changes made after the 2026-2027 Budget and their commencement dates."
+    },
+    {
+      "title": "Communiqués and press releases for 2026",
+      "url": "https://www.mra.mu/index.php/media1/communique-2026",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check for deadline extensions and other notices from the MRA."
+    },
+    {
+      "title": "MRA e-Appointment Platform",
+      "url": "https://eservices15.mra.mu/e-appointment/index.html",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Reserve a time slot for help from the MRA."
+    }
+  ],
+  "unverified": [
+    "The rate at which tax is charged on a quarterly CPS statement. Section 108 of the Income Tax Act leaves the method to regulations. The MRA self-employed page gives 15%, but that page also shows penalty rates that were replaced on 1 July 2025, so the figure was left out. The MRA copy of the Income Tax Regulations 1996, consolidated to April 2026, was searched without finding the CPS computation.",
+    "How and when a Tax Account Number is first allotted to a newly registered company or sole trader. The MRA pages fetched show how a TAN is used to log in and file, not how it is issued.",
+    "Which listed items of income qualify for the 95% partial exemption rather than 80%. The MRA corporate taxation page mentions both rates without splitting the list.",
+    "MRA guidance on how the alternative minimum tax (year of assessment starting 1 July 2026) is reported in APS statements and the annual return. Only the text of section 44A of the Income Tax Act was found.",
+    "MRA guidance for individuals on the 35% band that applies from the income year starting 1 July 2026. The band is confirmed in the Finance Act 2026 and the consolidated Income Tax Act, and in KPMG's summary, but the MRA individual pages and tax calculator still showed the 2025-2026 rates on 20 November 2026.",
+    "Whether the MRA page figures for tax deducted at source are complete and current for late 2026. The rates quoted were read from the MRA TDS page, and the two items added in 2026 from the Finance Act 2026. The full Sixth Schedule was not compared line by line.",
+    "The substance conditions prescribed for the 3% rate for freeport manufacturing and for medical, biotechnology and pharmaceutical manufacturing. They sit in regulations that were not fetched."
+  ]
+}

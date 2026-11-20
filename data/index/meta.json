@@ -1,0 +1,48 @@
+{
+  "generated": "2026-11-20T04:39:06.317Z",
+  "map": {
+    "stamp": "2026-11-17T01:30:20.000Z",
+    "from": "cache",
+    "nodes": 1395343,
+    "ways": 144023,
+    "candidates": 6915,
+    "listed": 6819,
+    "dropped": 76
+  },
+  "listings": {
+    "all": 7179,
+    "onTheMap": 6819,
+    "fromWikidata": 360,
+    "joinedToWikidata": 119,
+    "withPhone": 531,
+    "withWebsite": 425,
+    "withHours": 355,
+    "withAbout": 647
+  },
+  "web": {
+    "named": 378,
+    "hubs": 16,
+    "hubPages": 97,
+    "visited": 800,
+    "read": 596,
+    "refused": 16,
+    "unreachable": 179,
+    "notHtml": 9,
+    "fromCache": 348,
+    "discovered": 408,
+    "enriched": 244,
+    "sites": 214
+  },
+  "places": 273,
+  "categories": 69,
+  "guides": 7,
+  "official": 85,
+  "crawler": {
+    "robots": "BiznesBot",
+    "pause": 1500,
+    "pagesPerSite": 1,
+    "follows": [
+      ".mu"
+    ]
+  }
+}

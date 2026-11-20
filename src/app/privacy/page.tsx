@@ -1,71 +1,33 @@
 import type { Metadata } from "next";
-import JsonLd from "@/components/JsonLd";
+import Link from "next/link";
+import { PageHead } from "@/components/Bits";
 import { site } from "@/data/site";
-import { pageGraph } from "@/lib/structured";
-
-const title = "Privacy";
-const description = "What biznes.mu collects when you send a request, what it is used for, and how to have it removed.";
 
 export const metadata: Metadata = {
-  title,
-  description,
+  title: "Privacy",
+  description: "What biznes.mu keeps about its visitors and about the businesses it lists, and what it does not.",
   alternates: { canonical: "/privacy" },
-  openGraph: { title, description, url: "/privacy" },
 };
 
-/**
- * The privacy notice, written new for this site and describing only what the site does. It is on
- * the confirm list for the owner's approval before launch.
- */
-export default function Privacy() {
-  const { builder, contact } = site;
-  const sections: { heading: string; body: string[] }[] = [
-    {
-      heading: "Who we are",
-      body: [`${site.name} is run by ${builder.legalName}, a company registered in Mauritius (BRN ${builder.brn}).`],
-    },
-    {
-      heading: "What we collect",
-      body: [
-        "When you send a request, we receive what you type into the form: your name, the business you are asking about, a phone number or an email address, and your message if you write one.",
-        "If you call, message or email us, we receive what you choose to tell us.",
-      ],
-    },
-    {
-      heading: "What we use it for",
-      body: ["Only to reply to you about the business you asked about. We do not sell it, and we do not use it for advertising."],
-    },
-    {
-      heading: "What this site does not do",
-      body: ["It has no analytics, no advertising and no tracking cookies. Its typefaces are served from this site, not from another company."],
-    },
-    {
-      heading: "Your rights",
-      body: [
-        `Under the Data Protection Act 2017 of Mauritius you can ask what we hold about you, and ask us to correct it or remove it. Email ${contact.email} and we will do so.`,
-      ],
-    },
-  ];
-
+export default function PrivacyPage() {
+  const { contact, builder } = site;
   return (
     <>
-      <JsonLd data={pageGraph({ path: "/privacy", name: title, description, crumbs: [{ name: title, path: "/privacy" }] })} />
-      <div className="shell pb-24 pt-16 lg:pt-24">
-        <h1 className="heading-2 measure-hero">Privacy</h1>
-        <p className="title-1 measure-hero mt-6 text-ink-subtle">What this site collects, what it is used for, and how to have it removed.</p>
-        <div className="mt-16 border-t border-line-strong">
-          {sections.map((s) => (
-            <section key={s.heading} className="grid gap-x-20 gap-y-3 border-b border-line py-8 lg:grid-cols-[0.5fr_1fr]">
-              <h2 className="heading-5">{s.heading}</h2>
-              <div className="grid gap-3">
-                {s.body.map((p) => (
-                  <p key={p} className="body-3 measure">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </section>
-          ))}
+      <PageHead title="Privacy" lede="What this site keeps, and what it does not." />
+      <div className="shell">
+        <div className="prose body-2">
+          <h2 className="heading-3">If you only look</h2>
+          <p>The site sets no cookies and runs no analytics or advertising scripts. A search is sent to our server to be answered and is not stored against you. Our hosting provider keeps ordinary server logs, as every website&rsquo;s does.</p>
+          <h2 className="heading-3 mt-8">If you send a request</h2>
+          <p>The form on the page for adding or correcting a listing sends us what you type: the business, the details, your name, and the email address or number you ask us to reply to. We use it to deal with the request and to reply, and for nothing else. We do not sell it or pass it on.</p>
+          <h2 className="heading-3 mt-8">If your business is listed</h2>
+          <p>
+            Listings describe businesses, not people. They are built from open data, each saying its source, and hold no email addresses. If a listing shows something about you that it should not, or you want it taken out, <Link href="/add">ask</Link> and it will be. <Link href="/data">Where the data comes from</Link> sets out the sources.
+          </p>
+          <h2 className="heading-3 mt-8">Who is responsible</h2>
+          <p>
+            {site.name} is run by {builder.legalName} (BRN {builder.brn}), Mauritius. Write to <a href={`mailto:${contact.email}`}>{contact.email}</a> to see, correct or delete anything we hold about you.
+          </p>
         </div>
       </div>
     </>

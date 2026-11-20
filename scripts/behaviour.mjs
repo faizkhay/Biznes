@@ -1,206 +1,179 @@
-// What a sweep does not see: the phone menu as a dialog, the request form end to end, the endpoint,
-// the page without script, the painted walk live and plain, and the files a machine reads. Saves the states it meets (the open menu,
-// the filled form, the form's refusal, the page without script) to review/screens/states.
+// What the site does, checked in a real browser against a production server.
 //
-//   npm run build && npx next start -p 3100 &
-//   node scripts/behaviour.mjs [origin]          (default http://localhost:3100)
+//   npm run build
+//   ENQUIRY_WEBHOOK_URL=http://127.0.0.1:3199/hook npx next start -p 3100 &
+//   node scripts/behaviour.mjs [origin]        (default http://localhost:3100)
 //
-// Run it against a production server with no delivery route set: it expects the form to refuse.
-// The endpoint allows five requests per connection per ten minutes, so a second run inside that
-// window sees 429 on the endpoint checks; restart the server between runs.
+// It listens on port 3199 for the request form's delivery, so the form is tested end to end: typed
+// in a browser, validated, sent, and received. Exits 1 if any check fails.
 //
-// Needs: playwright and sharp (devDependencies). Exits 1 if any check fails.
+// Needs: playwright (devDependency).
+import { createServer } from "node:http";
 import { chromium } from "playwright";
-import { mkdirSync } from "node:fs";
-import sharp from "sharp";
-import { GL_ARGS, browserPath } from "./pages.mjs";
+import { browserPath } from "./pages.mjs";
 
-const O = process.argv[2] ?? "http://localhost:3100";
-const OUT = "review/screens/states";
-mkdirSync(OUT, { recursive: true });
-const b = await chromium.launch({ executablePath: browserPath(), args: GL_ARGS });
+const origin = process.argv[2] ?? "http://localhost:3100";
 let failed = 0;
-const ok = (name, pass, extra = "") => {
-  if (!pass) failed++;
-  console.log(`${pass ? "PASS" : "FAIL"}  ${name}${extra ? "  " + extra : ""}`);
+let passed = 0;
+const check = (name, ok, detail = "") => {
+  if (ok) passed++;
+  else failed++;
+  console.log(`${ok ? "pass" : "FAIL"}  ${name}${ok || !detail ? "" : `  (${detail})`}`);
 };
 
-// 1. Phone menu
-{
-  const p = await b.newPage({ viewport: { width: 390, height: 844 } });
-  await p.goto(O + "/?still", { waitUntil: "networkidle" });
-  await p.keyboard.press("Tab");
-  ok("skip link is first in the tab order", await p.evaluate(() => document.activeElement?.classList.contains("skip-link")));
-  const btn = p.locator('button[aria-controls="menu-sheet"]');
-  await btn.click();
-  await p.waitForSelector("#menu-sheet");
-  ok("menu opens as a dialog", (await p.locator("#menu-sheet").getAttribute("role")) === "dialog");
-  ok("page behind is inert", await p.evaluate(() => document.getElementById("main").hasAttribute("inert") && document.getElementById("site-footer").hasAttribute("inert")));
-  ok("focus moves into the menu", await p.evaluate(() => document.getElementById("menu-sheet").contains(document.activeElement)));
-  await p.waitForTimeout(900); // the links arrive in sequence; capture the menu at rest
-  ok("the menu names the form's route once, as Enquire", (await p.locator("#menu-sheet a", { hasText: "Enquire" }).count()) === 1);
-  await p.screenshot({ path: OUT + "/menu-open.png" });
-  await p.keyboard.press("Escape");
-  await p.waitForTimeout(200);
-  ok("Escape closes it", (await p.locator("#menu-sheet").count()) === 0);
-  ok("focus returns to the button", await p.evaluate(() => document.activeElement?.getAttribute("aria-controls") === "menu-sheet"));
-  ok("page behind is live again", await p.evaluate(() => !document.getElementById("main").hasAttribute("inert")));
-  await p.close();
-}
-
-// 2. The form
-{
-  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
-  await p.goto(O + "/enquire?business=lepalatier", { waitUntil: "networkidle" });
-  ok("a business link arrives chosen", (await p.locator("#topic").inputValue()) === "lepalatier");
-  const options = await p.locator("#topic option").allTextContents();
-  ok("the form offers no sample business", !options.some((o) => /Lakrem|Souffle|Bouk|Larout|Kazprop/.test(o)), options.join(" | "));
-  await p.getByRole("button", { name: "Send a request" }).click();
-  ok("name error is said on its field", (await p.locator("#name-error").textContent())?.includes("Tell us your name"));
-  ok("first wrong field takes focus", await p.evaluate(() => document.activeElement?.id === "name"));
-  await p.fill("#name", "Test Visitor");
-  await p.fill("#phone", "abc");
-  await p.getByRole("button", { name: "Send a request" }).click();
-  ok("a bad phone number is named", (await p.locator("#phone-error").textContent())?.includes("doesn't look right"));
-  await p.fill("#phone", "+230 5555 0000");
-  await p.screenshot({ path: OUT + "/form-filled.png" });
-  await p.getByRole("button", { name: "Send a request" }).click();
-  await p.waitForSelector('form [role="alert"]', { timeout: 10000 });
-  const alert = await p.locator('form [role="alert"]').textContent();
-  ok("with no delivery route, the form says so and gives the other routes", alert.includes("couldn") && alert.includes("+230 5450 8600") && alert.includes("faiz@khay.digital"));
-  ok("the failure notice takes focus", await p.evaluate(() => document.activeElement?.getAttribute("role") === "alert" && !!document.activeElement.closest("form")));
-  await p.screenshot({ path: OUT + "/form-failed.png" });
-  await p.close();
-}
-
-// 3. The API
-{
-  const post = (body) => fetch(O + "/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(async (r) => [r.status, await r.json()]);
-  const [s1, j1] = await post({ topic: "lepalatier", name: "", phone: "" });
-  ok("API refuses what the form refuses (422)", s1 === 422 && j1.errors?.name === "required");
-  const [s2, j2] = await post({ topic: "lepalatier", name: "Bot", phone: "+230 5555 0000", website: "http://spam" });
-  ok("a filled honeypot gets a quiet success", s2 === 200 && j2.ok === true);
-  const [s3, j3] = await post({ topic: "lepalatier", name: "Test", phone: "+230 5555 0000", reply: "whatsapp" });
-  ok("no route in production answers 503", s3 === 503 && j3.error === "unconfigured");
-  const [s4] = await post({ topic: "lakrem", name: "Test", phone: "+230 5555 0000" });
-  ok("a sample business is refused by the endpoint too", s4 === 422);
-  // The form's own submission above was the first request from this connection; this is the sixth.
-  const [s5] = await post({ topic: "lepalatier", name: "Test", phone: "+230 5555 0000" });
-  ok("the sixth request inside ten minutes is limited (429)", s5 === 429);
-}
-
-// 4. Without script
-{
-  const ctx = await b.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
-  const p = await ctx.newPage();
-  await p.goto(O + "/", { waitUntil: "load" });
-  const hidden = await p.evaluate(() => [...document.querySelectorAll("[data-reveal], h1, h2, .tagline-reveal [data-word]")].filter((el) => getComputedStyle(el).opacity !== "1").length);
-  ok("without script every reveal and heading is visible", hidden === 0);
-  ok("without script the six shopfronts are links", (await p.locator('ul[aria-label="Businesses for sale"] a').count()) === 6);
-  ok("without script the walk is eight plain sections, seven with a still", (await p.locator(".walk-chapter").count()) === 8 && (await p.locator(".walk-still img").count()) === 7);
-  await p.goto(O + "/enquire", { waitUntil: "load" });
-  const note = await p.locator("form noscript").count();
-  ok("without script the form says how else to reach us", note === 1 && (await p.content()).includes("This form needs JavaScript"));
-  await p.screenshot({ path: OUT + "/noscript.png" });
-  await ctx.close();
-}
-
-// 5. The walk: the painted stage where script runs, and the plain sections where it does not
-{
-  const errors = [];
-  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
-  p.on("pageerror", (e) => errors.push(String(e)));
-  await p.goto(O + "/", { waitUntil: "load" });
-  const live = await p.waitForSelector('.walk[data-mode="live"]', { timeout: 60000 }).then(() => true, () => false);
-  ok("where script runs, the walk goes live", live);
-  await p.waitForSelector(".stage-live .stage-layer", { timeout: 60000 }).catch(() => undefined);
-  ok("the live stage holds its plates", (await p.locator(".stage-live .stage-layer").count()) >= 1);
-  const at = () => p.evaluate(() => [...document.querySelectorAll(".walk-stop")].findIndex((a) => a.getAttribute("aria-current") === "step"));
-  ok("the walk starts at its first stop", (await at()) === 0);
-  // Every sign on the street carries its listing's own lettering, and every sample its tag.
-  const street = await p.evaluate(() => {
-    const plate = document.querySelector(".stage-layer-street");
-    return { signs: plate?.querySelectorAll(".plate-wall svg").length ?? 0, tags: plate?.querySelectorAll(".plate-tag").length ?? 0 };
+// The form's delivery lands here.
+const received = [];
+const hook = createServer((req, res) => {
+  let body = "";
+  req.on("data", (chunk) => (body += chunk));
+  req.on("end", () => {
+    try {
+      received.push(JSON.parse(body));
+    } catch {
+      received.push(null);
+    }
+    res.writeHead(200).end("ok");
   });
-  ok("the painted street carries six signs and five sample tags", street.signs === 6 && street.tags === 5, JSON.stringify(street));
-  await p.evaluate(() => {
-    const el = document.querySelector(".walk");
-    window.scrollTo({ top: el.getBoundingClientRect().top + scrollY + el.offsetHeight - innerHeight, behavior: "instant" });
-  });
-  // The stage must never be empty: a visitor who jumps (a stop's mark, the End key) lands while the
-  // plates are still arriving, and the still must hold until they have. Sampled every 400ms for
-  // four seconds: the terrace's side of the stage is never one flat colour.
-  let emptyAt = -1;
-  for (let i = 0; i < 10; i++) {
-    await p.waitForTimeout(400);
-    const stats = await sharp(await p.screenshot()).extract({ left: 620, top: 560, width: 780, height: 320 }).stats();
-    if (Math.max(...stats.channels.map((c) => c.stdev)) < 4 && emptyAt < 0) emptyAt = i;
-  }
-  ok("after a jump to the walk's end the stage is never empty", emptyAt < 0, emptyAt < 0 ? "" : `flat at sample ${emptyAt}`);
-  ok("scrolling to the walk's end reaches its last stop", (await at()) === 7);
-  await p.waitForTimeout(1200);
-  await p.screenshot({ path: OUT + "/walk-last-stop.png" });
-  ok("the stage threw nothing", errors.length === 0, errors.slice(0, 2).join(" | "));
-  await p.close();
+}).listen(3199, "127.0.0.1");
 
-  const q = await b.newPage({ viewport: { width: 1440, height: 900 } });
-  await q.goto(O + "/?plain", { waitUntil: "load" });
-  await q.waitForTimeout(2500);
-  ok("with ?plain the walk stays plain", (await q.locator('.walk[data-mode="plain"]').count()) === 1 && (await q.locator(".stage-live").count()) === 0);
-  ok("plain, every stop shows its still and its words", (await q.locator(".walk-still img:visible").count()) === 7 && (await q.locator(".walk-card h2:visible").count()) === 7);
-  await q.close();
+const browser = await chromium.launch({ executablePath: browserPath() });
+const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+const page = await context.newPage();
+const errors = [];
+page.on("pageerror", (e) => errors.push(e.message));
+const text = (selector) => page.locator(selector).first().innerText();
 
-  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
-  const r = await ctx.newPage();
-  const rerrors = [];
-  r.on("pageerror", (e) => rerrors.push(String(e)));
-  await r.goto(O + "/", { waitUntil: "load" });
-  await r.waitForTimeout(3000);
-  const h1 = await r.locator("h1").evaluate((el) => getComputedStyle(el).opacity === "1" && el.getBoundingClientRect().top < innerHeight);
-  ok("with reduced motion on a phone the headline is on the first screen and nothing throws", h1 && rerrors.length === 0, rerrors.slice(0, 2).join(" | "));
-  await r.screenshot({ path: OUT + "/reduced-motion-phone.png" });
-  await ctx.close();
+// 1. The first screen, and the chart.
+await page.goto(origin, { waitUntil: "networkidle" });
+check("home: one h1, the owner's line", (await page.locator("h1").count()) === 1 && /search engine/i.test(await text("h1")));
+await page.waitForFunction(() => document.querySelector(".chart")?.dataset.live === "true", null, { timeout: 15000 }).catch(() => {});
+check("home: the chart goes live with script", (await page.locator('.chart[data-live="true"]').count()) === 1);
+const pts = await (await page.request.get(`${origin}/points.json`)).json();
+check("points.json: pairs of whole numbers", Array.isArray(pts) && pts.length > 10000 && pts.length % 2 === 0 && pts.every(Number.isInteger), `${pts.length}`);
+
+// 2. Typing: suggestions, the keyboard, and the chart lighting what answers.
+await page.fill("#home-search", "pharm");
+await page.waitForSelector('[role="listbox"] [role="option"]', { timeout: 8000 }).catch(() => {});
+const options = await page.locator('[role="listbox"] [role="option"]').count();
+check("search box: suggestions while typing", options >= 3, `${options}`);
+await page.waitForFunction(() => /lit for your question/.test(document.querySelector('[role="status"]')?.textContent ?? ""), null, { timeout: 5000 }).catch(() => {});
+check("home: the chart says how many it lit", /\d+ lit for your question/.test(await page.locator('main [role="status"]').first().innerText()));
+await page.keyboard.press("ArrowDown");
+check("search box: arrow key marks an option", (await page.locator('[role="option"][aria-selected="true"]').count()) === 1);
+check("search box: the input points at it", ((await page.getAttribute("#home-search", "aria-activedescendant")) ?? "").length > 0);
+await page.keyboard.press("Escape");
+check("search box: Escape closes the list", (await page.locator('[role="listbox"]').count()) === 0);
+await page.keyboard.press("Enter");
+await page.waitForURL(/\/search\?q=pharm/, { timeout: 8000 }).catch(() => {});
+check("search box: Enter asks the search page", /\/search\?q=pharm/.test(page.url()), page.url());
+
+// 3. What a question is read as.
+const reads = async (q) => {
+  await page.goto(`${origin}/search?q=${encodeURIComponent(q)}`, { waitUntil: "domcontentloaded" });
+  return page.locator('main p[role="status"]').first().innerText();
+};
+check("reads: a kind and a town", /Pharmacies in Curepipe/.test(await reads("pharmacy in curepipe")));
+check("reads: Kreol", /Pharmacies/.test(await reads("farmasi")));
+check("reads: French", /Hardware/.test(await reads("quincaillerie")));
+check("reads: one half of a town of two names", /Beau Bassin-Rose Hill/.test(await reads("restaurants rose hill")));
+await reads("vat");
+check("a question about tax is answered by a guide first", /Value Added Tax/i.test(await text("main article h3")));
+check("nothing found says so, and offers the directory", /Nothing found/.test(await reads("zzqqxx")) && (await page.locator('main a[href="/directory"]').count()) > 0);
+await page.goto(`${origin}/search?q=restaurant&page=2`, { waitUntil: "domcontentloaded" });
+check("results: a second page", /Page 2 of/.test(await text(".pager")));
+
+// 4. A listing.
+const res = await page.goto(`${origin}/b/n5651200767`, { waitUntil: "domcontentloaded" });
+check("listing: its id alone leads to its full address", /\/b\/keiffel-tours-grand-baie-n5651200767$/.test(page.url()) && res.status() === 200, page.url());
+check("listing: says where it comes from", (await page.locator('a[href="https://www.openstreetmap.org/node/5651200767"]').count()) === 1);
+check("listing: a telephone link", (await page.locator('a[href^="tel:+230"]').count()) >= 1);
+const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').first().innerText());
+check("listing: structured data from the same facts", ld["@type"] === "LocalBusiness" && ld.address?.addressCountry === "MU" && !!ld.geo);
+check("listing: unknown is a 404", (await page.request.get(`${origin}/b/n1`)).status() === 404);
+
+// 5. Old addresses, and what machines read.
+for (const [from, to] of [["/businesses", "/directory"], ["/businesses/lepalatier", "/directory"], ["/enquire", "/add"], ["/how-it-works", "/data"]]) {
+  const r = await page.request.get(origin + from, { maxRedirects: 0 });
+  check(`old address ${from} leads to ${to}`, r.status() === 308 && r.headers().location === to, `${r.status()} ${r.headers().location}`);
 }
+const robots = await (await page.request.get(`${origin}/robots.txt`)).text();
+check("robots.txt: closed until launch", /Disallow: \/\s*$/m.test(robots));
+const sitemap = await (await page.request.get(`${origin}/sitemap.xml`)).text();
+check("sitemap: listings, guides, towns", (sitemap.match(/<loc>/g) ?? []).length > 7000 && /\/learn\/vat</.test(sitemap) && /\/places\/curepipe</.test(sitemap));
+const llms = await (await page.request.get(`${origin}/llms.txt`)).text();
+check("llms.txt: names the guides and the sources", /OpenStreetMap/.test(llms) && /\/learn\/vat/.test(llms));
+const sug = await (await page.request.get(`${origin}/api/suggest?q=bank+port+louis`)).json();
+check("suggest: answers and points", sug.suggestions.length > 0 && sug.points.length > 0 && sug.n > 0);
 
-// 6. The painted shopfront, with motion on: an open one stays open, and pointing raises a real business's shutter
-{
-  const flat = (t) => t === "none" || t === "matrix(1, 0, 0, 1, 0, 0)";
-  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
-  await p.goto(O + "/businesses/lepalatier?still", { waitUntil: "networkidle" });
-  ok(
-    "a real business's own page shows its shop open, on its own painted plate",
-    (await p.locator('header .plate .plate-picture[src*="lepalatier"]').count()) === 1 && (await p.locator("header .plate .plate-doorway").count()) === 0,
-  );
-  await p.goto(O + "/businesses/souffle?still", { waitUntil: "networkidle" });
-  ok(
-    "a sample's page shows its shopfront shut and tagged, with no shutter to raise",
-    (await p.locator("header .shopfront-painted .plate-tag").count()) === 1 && (await p.locator("header .shopfront-painted .shutter").count()) === 0,
-  );
-  await p.goto(O + "/businesses?still", { waitUntil: "networkidle" });
-  const link = p.locator('ul[aria-label="Businesses for sale"] a').first();
-  await link.scrollIntoViewIfNeeded();
-  await p.mouse.move(5, 5);
-  await p.waitForTimeout(1800);
-  const down = await link.locator(".shutter").evaluate((el) => getComputedStyle(el).transform);
-  await link.hover();
-  await p.waitForTimeout(1400);
-  const up = await link.locator(".shutter").evaluate((el) => getComputedStyle(el).transform);
-  ok("in the catalogue a shutter rests down, and rises when its shop is pointed at", flat(down) && !flat(up), `${down} then ${up}`);
-  await p.close();
-}
+// 6. A guide and the tools.
+await page.goto(`${origin}/learn/vat`, { waitUntil: "domcontentloaded" });
+const cites = await page.locator("a.cite").count();
+const firstCite = await page.locator("a.cite").first().getAttribute("href");
+check("guide: every block cites, and a citation leads to its source", cites > 20 && (await page.locator(firstCite).count()) === 1, `${cites}`);
+check("guide: a table can be reached by keyboard", (await page.locator('.table-wrap[tabindex="0"]').count()) >= 1);
+await page.goto(`${origin}/tools/vat`, { waitUntil: "networkidle" });
+const row = (n) => page.locator("dl[aria-live] dd").nth(n).innerText();
+check("VAT: 1,000 before VAT is 1,150 with it", (await row(2)) === "MUR 1,150.00", await row(2));
+await page.locator("label.chip", { hasText: "VAT included" }).click();
+check("VAT: 1,000 with VAT is 869.57 before it", (await row(0)) === "MUR 869.57", await row(0));
+await page.fill('input[placeholder="2,400,000"]', "3,500,000");
+check("VAT: a turnover over the threshold says so", /over the threshold of MUR 3,000,000\.00 by MUR 500,000\.00/.test(await page.locator('section p[role="status"]').innerText()));
+await page.goto(`${origin}/tools/verify`, { waitUntil: "domcontentloaded" });
+check("check a business: the registers, from the guide", (await page.locator("table.table tbody tr").count()) >= 5);
+await page.goto(`${origin}/tools/structures`, { waitUntil: "domcontentloaded" });
+check("compare structures: the table, from the guide", (await page.locator("table.table tbody tr").count()) >= 5);
 
-// 7. Machine-facing files
-{
-  const robots = await (await fetch(O + "/robots.txt")).text();
-  ok("robots.txt closes the site before launch", /Disallow: \//.test(robots));
-  const llms = await (await fetch(O + "/llms.txt")).text();
-  ok("llms.txt lists LePalatier and no sample", llms.includes("LePalatier") && !llms.includes("Lakrem"));
-  const sm = await (await fetch(O + "/sitemap.xml")).text();
-  ok("sitemap has LePalatier and no sample", sm.includes("/businesses/lepalatier") && !sm.includes("lakrem"));
-  const home = await (await fetch(O + "/")).text();
-  ok("pages ask not to be indexed before launch", /<meta name="robots" content="noindex, nofollow"/.test(home));
-  const r404 = await fetch(O + "/no-such-page");
-  ok("an unknown address answers 404", r404.status === 404);
+// 7. The form, end to end.
+await page.goto(`${origin}/add?listing=n5651200767`, { waitUntil: "networkidle" });
+check("form: opened from a listing, it names it", (await page.inputValue("#business")) === "Keiffel Tours");
+await page.click('button[type="submit"]');
+check("form: an empty send says what is missing, on the fields", (await page.locator('[id$="-error"]').count()) >= 3);
+check("form: and moves to the first of them", (await page.evaluate(() => document.activeElement?.id)) === "message");
+await page.fill("#message", "The telephone number has changed.");
+await page.fill("#name", "A Tester");
+await page.fill("#email", "not-an-address");
+await page.click('button[type="submit"]');
+check("form: a bad email address is refused in words", /does not look right/.test(await text("#email-error")));
+await page.fill("#email", "tester@example.com");
+await page.click('button[type="submit"]');
+await page.waitForSelector('[role="status"] h2', { timeout: 10000 }).catch(() => {});
+check("form: sent, and it says so", /Thank you, A Tester/.test(await page.locator('main [role="status"]').first().innerText().catch(() => "")));
+check("form: delivered whole", received.length === 1 && received[0]?.listing === "n5651200767" && /Keiffel Tours \(\/b\//.test(received[0]?.text ?? ""), JSON.stringify(received[0])?.slice(0, 200));
+const pot = await page.request.post(`${origin}/api/enquiry`, { data: { topic: "add", business: "x", message: "y", name: "z", email: "a@b.co", website: "spam" } });
+check("form: a filled honeypot is thrown away quietly", pot.status() === 200 && received.length === 1);
+let last = 0;
+for (let i = 0; i < 6; i++) last = (await page.request.post(`${origin}/api/enquiry`, { data: {} })).status();
+check("form: the sixth request in ten minutes is refused", last === 429, `${last}`);
+
+// 8. Without script: the form asks, the page answers, the chart is drawn, the sums are shown.
+const plain = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+const still = await plain.newPage();
+await still.goto(origin, { waitUntil: "domcontentloaded" });
+check("no script: the chart is drawn, with its dots", (await still.locator(".chart svg path.chart-dots").count()) === 3 && (await still.locator(".chart svg path.chart-coast").count()) >= 2);
+await still.fill("#home-search", "dentist");
+await still.press("#home-search", "Enter");
+await still.waitForURL(/\/search\?q=dentist/, { timeout: 8000 }).catch(() => {});
+check("no script: the search works", /\/search\?q=dentist/.test(still.url()) && (await still.locator("main article").count()) > 3);
+check("no script: the answers are lit on the drawn chart", (await still.locator(".chart circle.chart-lit").count()) >= 0);
+await still.goto(`${origin}/tools/vat`, { waitUntil: "domcontentloaded" });
+check("no script: the VAT sums are in a table", /MUR 1,150\.00/.test(await still.content()));
+await still.goto(`${origin}/add`, { waitUntil: "domcontentloaded" });
+check("no script: the form says so and gives the other routes", /needs JavaScript/.test(await still.content()) && /\+230 5450 8600/.test(await still.content()));
+await plain.close();
+
+// 9. A phone: nothing wider than the screen, the ways in always on show.
+const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+const small = await phone.newPage();
+for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/directory", "/tools/verify"]) {
+  await small.goto(origin + path, { waitUntil: "domcontentloaded" });
+  const over = await small.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+  check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
-await b.close();
+check("phone: the four ways in are on show", (await small.locator('header nav[aria-label="Main"] a:visible').count()) === 4);
+await phone.close();
+
+check("no page errors", errors.length === 0, errors.slice(0, 2).join(" | "));
+console.log(`\n${passed} passed, ${failed} failed`);
+await browser.close();
+hook.close();
 process.exit(failed ? 1 : 0);

@@ -10,14 +10,8 @@ contrast.json
 # The viewport slices are working files; the stitched pages in review/screens are the evidence.
 review/screens/slices/
 
-# impeccable's working files. Kept: the approved mock-up, every mock-up's prompt and record (the two
-# that were not chosen are in the owner's Higgsfield library, by the job id in their record), the
-# specs, the direction contract, the finish review, and the measured comparison's side-by-side and
-# report. The rest is rebuilt on demand.
-.impeccable/mocks/comp-a-elevation.png
-.impeccable/mocks/comp-c-one-shop.png
-.impeccable/build/**/*.png
-.impeccable/review/*.png
-.impeccable/review/diff/**/heatmap.png
-.impeccable/review/diff/**/regions/
-.impeccable/config.local.json
+# Helpers for one session's checks.
+scripts/_*
+
+# What the crawler fetched: downloads and pages, kept between runs.
+.crawl/
