@@ -65,7 +65,7 @@ export default function VatCalc({ rate, threshold }: { rate: number; threshold: 
           <dt>VAT at {rate}%</dt>
           <dd className="data-1">{vat == null ? "" : rupees(vat)}</dd>
           <dt>With VAT</dt>
-          <dd className="data-1 text-signal">{gross == null ? "" : rupees(gross)}</dd>
+          <dd className="data-1 font-bold text-ink">{gross == null ? "" : rupees(gross)}</dd>
         </dl>
       </section>
 

@@ -1,81 +1,90 @@
-/* biznes.mu, design tokens: the night chart.
+/* biznes.mu, design tokens: the postcard.
    Tailwind CSS v4, no tailwind.config. Colour comes in two layers (KOS, after Elaya's
    ai-design-skills): the palette holds the values, each with where it came from and its measured
    contrast; the roles are what components use, each an alias of a palette value. Both are recorded
    in DESIGN.md.
 
-   The site is one instrument: the island of Mauritius drawn only by its businesses, as lights on
-   a dark sea, and a question that lights the ones that answer. The palette keeps the three colours
-   biznes.mu already had (sampled from the mock-up the owner approved on 17 November 2026: its
-   saffron, its ink, its white) and derives the rest from them. Ratios are WCAG 2.x, floored. */
+   The page is a picture of the island with a sheet of warm paper laid on it. The picture changes
+   with the season and the holiday (src/data/themes.ts); the paper, the ink and the saffron point
+   do not. Ink for words, a royal blue for anything that answers (a result's title, a link,
+   focus), saffron for the one point that is lit: the centre of the b in the name, the search
+   button, a saved listing. Ratios are WCAG 2.x, floored. */
 @import "tailwindcss";
 
 :root {
-  --palette-night: #050a1a; /* derived from ink, darker: the sea at night. The page's ground */
-  --palette-ink: #0a1639; /* sampled: the brand's dark. The header, a panel, a field */
-  --palette-swell: #14224f; /* derived from ink, lighter: a control under the pointer, a chosen row */
-  --palette-saffron: #f8c618; /* sampled: the brand's action. What answers a question: a lit point, the one filled action, focus; 12.28:1 on night, and night on it the same */
-  --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer */
-  --palette-limewash: #f7f7f8; /* sampled: the brand's white. Words on night (18.42:1) and on ink (16.52:1) */
-  --palette-haze: #b6c0db; /* derived from limewash toward ink: secondary words, 10.84:1 on night, 9.73:1 on ink */
-  --palette-tide: #8794bb; /* derived from haze toward night: a chart's own lettering, captions; 6.55:1 on night, 5.88:1 on ink, 5.09:1 on swell */
-  --palette-coral: #f14949; /* sampled: the brand's red. An error's words and mark: 5.43:1 on night, 4.87:1 on ink */
+  --palette-white: #ffffff; /* chosen: a card, a field, the menu. What stands on the paper */
+  --palette-cream: #fdf9ec; /* derived, saffron 8% on white: the sheet of paper the page is written on */
+  --palette-sand: #f5efe0; /* derived from cream, deeper: a tile, a chip, a quiet panel */
+  --palette-limewash: #f7f7f8; /* sampled: the brand's white. Points on the island's dark panel */
+  --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.58:1 on white, 16.63:1 on cream, 15.26:1 on sand */
+  --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer, land on the chart */
+  --palette-night: #050a1a; /* derived from ink, darker: the sea on the chart */
+  --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.99:1 on white, 8.5:1 on cream, 7.8:1 on sand */
+  --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.42:1 on white, 5.13:1 on cream, 4.7:1 on sand */
+  --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.04:1 */
+  --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.11:1 */
+  --palette-saffron-wash: #fef6d9; /* derived, saffron 16% on white: an answer's ground, a chosen thing; ink on it 16.21:1 */
+  --palette-royal: #0d36a7; /* sampled from the mock-up approved on 20 November 2026: what answers. 9.96:1 on white, 9.3:1 on limewash */
+  --palette-lagoon: #aebadf; /* sampled from the same mock-up: the pale blue of the glow behind the question */
+  --palette-haze: #b6c0db; /* derived from limewash toward ink: words on the chart; 9.73:1 on ink */
+  --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Not words on white (3.62:1) */
+  --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.85:1 on white */
 
-  --gutter: clamp(1rem, 4vw, 3rem);
-  --nav-h: 64px;
-  --shell: 82rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --nav-h: 56px;
+  --shell: 76rem;
+  --edge: clamp(0.5rem, 1.4vw, 1.25rem); /* the picture that shows round the sheet */
+  --hero-h: clamp(33rem, 80svh, 44rem);
+
+  --shadow-sm: 0 1px 2px rgb(10 22 57 / 0.05), 0 2px 8px rgb(10 22 57 / 0.04);
+  --shadow-md: 0 1px 2px rgb(10 22 57 / 0.04), 0 10px 30px -6px rgb(10 22 57 / 0.1);
+  --shadow-lg: 0 2px 4px rgb(10 22 57 / 0.04), 0 24px 56px -12px rgb(10 22 57 / 0.18);
 }
 
 /* The roles. Tailwind's own colours are off, so only a role paints. */
 @theme {
   --color-*: initial;
-  --color-paper: var(--palette-night);
-  --color-panel: var(--palette-ink);
-  --color-raised: var(--palette-swell);
-  --color-ink: var(--palette-limewash);
-  --color-ink-subtle: var(--palette-haze);
-  --color-ink-faint: var(--palette-tide);
+  --color-paper: var(--palette-white);
+  --color-sheet: var(--palette-cream);
+  --color-panel: var(--palette-sand);
+  --color-ink: var(--palette-ink);
+  --color-ink-subtle: var(--palette-slate);
+  --color-ink-faint: var(--palette-mist);
+  --color-on-ink: var(--palette-white);
+  --color-link: var(--palette-royal);
   --color-signal: var(--palette-saffron);
   --color-signal-hover: var(--palette-saffron-deep);
-  --color-on-signal: var(--palette-night);
-  --color-alert: var(--palette-coral);
-  --color-line: color-mix(in srgb, var(--palette-limewash) 13%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 46%, transparent); /* an edge: 4.40:1 on night, 4.36:1 on ink */
-  --color-focus: var(--palette-saffron);
+  --color-signal-wash: var(--palette-saffron-wash);
+  --color-on-signal: var(--palette-ink);
+  --color-alert: var(--palette-coral-deep);
+  --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-ink) 50%, transparent); /* a field's edge: 3.4:1 on white */
+  --color-focus: var(--palette-royal);
 
-  /* Archivo at its widest speaks for the site: the name, a page's title. It is one file with a
-     width axis, so the wide cut and the regular are the same face. Geist carries every sentence
-     and control; Geist Mono carries what is measured or looked up: a count, a coordinate, a
-     telephone number, a date. All three are SIL OFL 1.1 and served from this site. */
-  --font-display: var(--font-archivo), "Arial", sans-serif;
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  /* One face: Manrope (SIL OFL 1.1), from the list KOS keeps for a brand with no face of its own.
+     It carries the name, every title and every sentence. Figures are set tabular where they are
+     measured or looked up. Served from this site. */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --breakpoint-chart: 68rem; /* 1088px: from here the chart sits beside the words */
-}
-
-/* A panel: the header, a block that stands off the page. Roles change; palette values do not. */
-[data-ground="panel"] {
-  --color-paper: var(--palette-ink);
-  --color-panel: var(--palette-swell);
-  background: var(--color-paper);
-  color: var(--color-ink);
+  --breakpoint-chart: 68rem; /* 1088px: from here the island sits beside a list */
 }
 
 @layer base {
   html {
-    background: var(--palette-night);
+    background: var(--palette-cream);
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--nav-h) + 4.5rem);
-    scrollbar-color: var(--palette-swell) var(--palette-night);
-    color-scheme: dark;
+    color-scheme: light;
   }
   @media (min-width: 64rem) {
     html {
@@ -91,31 +100,50 @@
     flex-direction: column;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    caret-color: var(--palette-saffron);
-    accent-color: var(--palette-saffron);
+    caret-color: var(--palette-royal);
+    accent-color: var(--palette-royal);
   }
+  /* The sheet: the paper the page is written on, laid over the picture with the picture showing
+     round it. It is drawn behind the page's own blocks, so a block needs to know nothing of it.
+     On the first screen it begins under the question. */
   main {
     flex: 1;
+    position: relative;
+    isolation: isolate;
+    margin-top: 0.75rem;
+    padding-bottom: 4rem;
+  }
+  main::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: var(--sheet-top, 0) var(--edge) 0;
+    background: var(--color-sheet);
+    border-radius: var(--radius-2xl);
+  }
+  main:has(> .hero-open) {
+    --sheet-top: var(--hero-h);
+    margin-top: 0;
   }
   ::selection {
     background: var(--palette-saffron);
-    color: var(--palette-night);
+    color: var(--palette-ink);
   }
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
   }
   a {
     color: inherit;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.22em;
-    text-decoration-color: var(--color-line-strong);
+    text-decoration-color: color-mix(in srgb, var(--palette-ink) 30%, transparent);
     transition: text-decoration-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
   a:hover {
-    text-decoration-color: var(--color-signal);
+    text-decoration-color: currentColor;
   }
   h1,
   h2,
@@ -131,6 +159,13 @@
   table {
     font-variant-numeric: tabular-nums;
   }
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
   [hidden] {
     display: none !important;
   }
@@ -141,56 +176,51 @@
   }
 }
 
-/* Type. One scale; every size on the site is one of these. Nothing is under 12px. */
+/* Type. One face, one scale; every size on the site is one of these. Nothing is under 12px. */
 @utility display-1 {
-  font-family: var(--font-display);
-  font-stretch: 125%;
-  font-weight: 640;
-  font-size: clamp(2.125rem, 1rem + 4vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-weight: 650;
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
 }
 @utility heading-1 {
-  font-family: var(--font-display);
-  font-stretch: 120%;
-  font-weight: 620;
-  font-size: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem);
-  line-height: 1.04;
-  letter-spacing: -0.026em;
+  font-weight: 600;
+  font-size: clamp(1.875rem, 1.5rem + 1.4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
 }
 @utility heading-2 {
-  font-family: var(--font-display);
-  font-stretch: 114%;
   font-weight: 600;
-  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
-  line-height: 1.14;
-  letter-spacing: -0.018em;
+  font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 @utility heading-3 {
-  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 1.125rem;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 @utility title-1 {
   font-weight: 600;
   font-size: 1.0625rem;
   line-height: 1.35;
-  letter-spacing: -0.006em;
+  letter-spacing: -0.012em;
 }
 @utility title-2 {
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.4;
+  letter-spacing: -0.005em;
 }
 @utility body-1 {
   font-size: 1.125rem;
   line-height: 1.55;
+  letter-spacing: -0.008em;
 }
 @utility body-2 {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 @utility body-3 {
   font-size: 0.875rem;
@@ -198,27 +228,27 @@
 }
 @utility caption-1 {
   font-size: 0.8125rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
-/* What is measured or looked up. */
+/* What is measured or looked up: a count, a telephone number, a date. The same face, in figures
+   that line up. */
 @utility data-1 {
-  font-family: var(--font-mono);
   font-size: 0.875rem;
   line-height: 1.5;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
 }
 @utility data-2 {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.4;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
-/* A chart's own lettering: a column's head, a town on the chart, a kind of result. */
+/* A small heading over a list, a kind of result, a column's head. */
 @utility label-1 {
-  font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.3;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -240,7 +270,7 @@
   padding-inline: var(--gutter);
 }
 @utility measure {
-  max-width: 68ch;
+  max-width: 64ch;
 }
 @utility tabular {
   font-variant-numeric: tabular-nums;
@@ -249,36 +279,128 @@
 @layer components {
   .skip-link {
     position: absolute;
-    left: 1rem;
-    top: -4rem;
+    left: 0.75rem;
+    top: 0.75rem;
     z-index: 100;
-    background: var(--color-signal);
-    color: var(--color-on-signal);
     padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
+    background: var(--palette-ink);
+    color: var(--palette-white);
+    border-radius: var(--radius-full);
     text-decoration: none;
+    transform: translateY(-200%);
   }
   .skip-link:focus {
-    top: 1rem;
+    transform: none;
   }
 
-  /* Actions. One filled action in any group; the rest are quiet. */
+  /* The picture behind the page. It is fixed, so the sheet slides over it. A veil of the paper's
+     own colour lies over its sky, so words set on it keep their contrast whatever the picture. */
+  .backdrop {
+    position: fixed;
+    z-index: -2;
+    inset: 0;
+    background-color: var(--palette-cream);
+    background-image: var(--theme-image);
+    background-size: cover;
+    background-position: center bottom;
+  }
+  @media (max-width: 40rem) {
+    .backdrop {
+      background-image: var(--theme-image-sm);
+    }
+  }
+  .backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--palette-cream) 78%, transparent), color-mix(in srgb, var(--palette-cream) 52%, transparent) 38%, transparent 68%);
+  }
+
+  /* The menu: a white pill that floats over the picture and the sheet. */
+  .site-header {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 50;
+    padding-inline: var(--edge);
+    pointer-events: none;
+  }
+  .nav-pill {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 68rem;
+    min-height: var(--nav-h);
+    margin-inline: auto;
+    padding: 0.375rem 0.375rem 0.375rem 1.25rem;
+    background: color-mix(in srgb, var(--palette-white) 90%, transparent);
+    backdrop-filter: saturate(1.6) blur(16px);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    flex: none;
+  }
+  .logo svg {
+    height: 1.375rem;
+    width: auto;
+    display: block;
+  }
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--color-ink-subtle);
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: color 160ms var(--ease-out);
+  }
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
+    color: var(--color-ink);
+  }
+  .nav-link[aria-current="page"] {
+    font-weight: 600;
+  }
+  /* The page you are on carries the lit point. */
+  .nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0.25rem;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-left: -0.15625rem;
+    border-radius: 50%;
+    background: var(--color-signal);
+  }
+
+  /* Buttons: pills. One filled action per group; the others are ink or quiet. */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    padding: 0 1.125rem;
-    border-radius: var(--radius-sm);
+    padding: 0 1.25rem;
     border: 1px solid transparent;
+    border-radius: var(--radius-full);
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 120ms var(--ease-out);
   }
   .btn:active {
-    transform: translateY(1px);
+    transform: scale(0.98);
   }
   .btn-filled {
     background: var(--color-signal);
@@ -287,18 +409,30 @@
   .btn-filled:hover {
     background: var(--color-signal-hover);
   }
+  .btn-ink {
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+  .btn-ink:hover {
+    background: var(--palette-swell);
+  }
   .btn-quiet {
-    border-color: var(--color-line-strong);
+    background: var(--color-paper);
     color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
   }
   .btn-quiet:hover {
-    border-color: var(--color-signal);
-    background: var(--color-raised);
+    background: var(--color-panel);
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0 1rem;
   }
   .btn[disabled],
   .btn[aria-disabled="true"] {
-    opacity: 0.55;
-    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
   }
   .btn svg {
     width: 1.125rem;
@@ -306,25 +440,82 @@
     flex: none;
   }
 
+  /* A round control that is only an icon: save, share. It carries its own label. */
+  .icon-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-ink-subtle);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .icon-btn:hover {
+    background: var(--color-panel);
+    color: var(--color-ink);
+  }
+  .icon-btn:active {
+    transform: scale(0.94);
+  }
+  .icon-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .icon-btn[aria-pressed="true"] {
+    color: var(--color-ink);
+  }
+  .icon-btn[aria-pressed="true"] svg {
+    fill: var(--color-signal);
+  }
+  .icon-btn-edge {
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
+    background: var(--color-paper);
+  }
+  /* How many are saved, on the header's bookmark. */
+  .badge {
+    position: absolute;
+    top: 0.125rem;
+    right: 0;
+    min-width: 1.125rem;
+    height: 1.125rem;
+    padding: 0 0.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-full);
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
   /* Fields. */
   .field {
     display: block;
     width: 100%;
-    min-height: 2.875rem;
-    padding: 0.625rem 0.875rem;
-    background: var(--palette-ink);
+    min-height: 3rem;
+    padding: 0.6875rem 1rem;
+    background: var(--color-paper);
     color: var(--color-ink);
     border: 1px solid var(--color-line-strong);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     font: inherit;
-    transition: border-color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+    transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
   }
   .field:hover {
     border-color: var(--color-ink-subtle);
   }
   .field:focus-visible {
-    outline-offset: 1px;
-    border-color: var(--color-signal);
+    outline: none;
+    border-color: var(--color-focus);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 14%, transparent);
   }
   .field[aria-invalid="true"] {
     border-color: var(--color-alert);
@@ -340,78 +531,155 @@
   select.field {
     appearance: none;
     padding-right: 2.5rem;
-    background-image: linear-gradient(45deg, transparent 50%, var(--palette-haze) 50%), linear-gradient(135deg, var(--palette-haze) 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, var(--palette-slate) 50%), linear-gradient(135deg, var(--palette-slate) 50%, transparent 50%);
     background-position: calc(100% - 1.125rem) 52%, calc(100% - 0.8125rem) 52%;
     background-size: 0.3125rem 0.3125rem;
     background-repeat: no-repeat;
   }
 
-  /* A choice among a few: a radio drawn as a tab. */
+  /* A choice among a few: a radio drawn as a pill. The chosen one is filled with ink. */
   .chip {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    padding: 0 1rem;
-    border: 1px solid var(--color-line-strong);
-    border-radius: var(--radius-sm);
+    padding: 0 1.125rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 50%, transparent);
+    border-radius: var(--radius-full);
     cursor: pointer;
     transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
   .chip:hover {
-    border-color: var(--color-ink-subtle);
-  }
-  /* A chosen chip carries the lit point and a saffron edge. The fill is kept for the one action. */
-  .chip::before {
-    content: "";
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-right: 0.5rem;
-    border-radius: 50%;
-    border: 1px solid var(--color-line-strong);
-    flex: none;
+    border-color: var(--color-ink);
   }
   .chip:has(input:checked) {
-    background: var(--color-raised);
-    border-color: var(--color-signal);
-  }
-  .chip:has(input:checked)::before {
-    background: var(--color-signal);
-    border-color: var(--color-signal);
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-on-ink);
   }
   .chip:has(input:focus-visible) {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
   }
 
-  /* The search box: the one control every page has. A frame with the chart's corner marks. */
+  /* A way to narrow a list, as a link: with a telephone number, with a website, in one town. It
+     works with no script. The one that is on is filled with ink and ticked. */
+  .filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 16%, transparent);
+    border-radius: var(--radius-full);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .filter:hover {
+    background: var(--color-panel);
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
+  }
+  .filter svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+  .filter .n {
+    color: var(--color-ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .filter[aria-current="true"],
+  .menu[open] > .filter {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+  .filter[aria-current="true"] .n,
+  .menu[open] > .filter .n {
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  /* A list that opens under a filter: the towns to choose from. */
+  .menu {
+    position: relative;
+  }
+  .menu-list {
+    position: absolute;
+    z-index: 40;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    width: max-content;
+    min-width: 15rem;
+    max-width: min(22rem, calc(100vw - 2 * var(--gutter)));
+    max-height: min(22rem, 60vh);
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.375rem;
+    list-style: none;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .menu-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+  }
+  .menu-list a:hover,
+  .menu-list a:focus-visible {
+    background: var(--color-panel);
+  }
+  .menu-list a[aria-current="true"] {
+    font-weight: 600;
+  }
+
+  /* The search box: the one control every page has. A white pill that lifts off the page. */
   .search {
     position: relative;
     display: flex;
-    align-items: stretch;
-    background: var(--palette-ink);
-    border: 1px solid var(--color-line-strong);
-    border-radius: var(--radius-sm);
+    align-items: center;
+    background: var(--color-paper);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   .search:hover {
-    border-color: var(--color-ink-subtle);
+    border-color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
   }
   .search:focus-within {
-    border-color: var(--color-signal);
-    box-shadow: 0 10px 40px -18px color-mix(in srgb, var(--palette-saffron) 55%, transparent);
+    border-color: color-mix(in srgb, var(--palette-royal) 60%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 12%, transparent), var(--shadow-lg);
   }
   .search input {
     flex: 1;
     min-width: 0;
+    align-self: stretch;
     background: transparent;
     color: var(--color-ink);
     border: 0;
-    padding: 0 0.25rem 0 0;
+    padding: 0 0.5rem 0 0;
     font: inherit;
+    font-weight: 500;
     outline: none;
   }
   .search input::placeholder {
     color: var(--color-ink-faint);
+    font-weight: 400;
     opacity: 1;
   }
   .search input::-webkit-search-cancel-button {
@@ -420,78 +688,145 @@
   .search-glass {
     display: grid;
     place-items: center;
-    width: 3rem;
+    width: 3.5rem;
     flex: none;
     color: var(--color-ink-faint);
   }
   .search:focus-within .search-glass {
-    color: var(--color-signal);
+    color: var(--color-ink);
   }
   .search-go {
-    margin: 0.3125rem;
-    border-radius: var(--radius-xs);
+    margin: 0.375rem;
     min-height: 0;
+    align-self: stretch;
+    flex: none;
   }
   .search-lg {
     min-height: 4rem;
   }
   .search-lg input {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
+  }
+  .search-lg .search-go {
+    padding: 0 1.5rem;
+  }
+  .search-go svg {
+    display: none;
+  }
+  /* On a phone the large box keeps its room for the question: the button is the glass alone. */
+  @media (max-width: 30rem) {
+    .search-lg .search-glass {
+      width: 1.5rem;
+      visibility: hidden;
+    }
+    .search-lg .search-go {
+      width: 3.25rem;
+      padding: 0;
+    }
+    .search-lg .search-go svg {
+      display: block;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .search-lg .search-go span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
   }
   .search-md {
     min-height: 2.75rem;
+    box-shadow: none;
+    background: var(--color-panel);
+    border-color: transparent;
+  }
+  .search-md:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
+  }
+  .search-md:focus-within {
+    background: var(--color-paper);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 12%, transparent);
   }
   .search-md .search-glass {
-    width: 2.5rem;
+    width: 2.75rem;
   }
   .search-md input {
     font-size: 0.9375rem;
+  }
+  /* The small box has no room for a button's word: Enter asks, and the button is kept for those
+     who look for one with a screen reader. */
+  .search-md .search-go {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    margin: 0;
+    padding: 0;
+  }
+  .search-md .search-go:focus-visible {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    margin: 0.25rem;
+    padding: 0 0.875rem;
   }
 
   /* What the box offers while a question is typed. */
   .suggest {
     position: absolute;
     z-index: 60;
-    top: calc(100% + 0.375rem);
-    left: -1px;
-    right: -1px;
-    background: var(--palette-ink);
-    border: 1px solid var(--color-line-strong);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 24px 48px -20px rgb(0 0 0 / 0.7);
-    padding: 0.375rem;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem;
     list-style: none;
     margin: 0;
     max-height: min(26rem, 60vh);
     overflow-y: auto;
+    text-align: left;
   }
   .suggest-item {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
-    gap: 0.25rem 1rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
     min-height: 2.75rem;
-    padding: 0.5625rem 0.75rem;
-    border-radius: var(--radius-xs);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-md);
     text-decoration: none;
     cursor: pointer;
   }
-  @media (max-width: 40rem) {
-    .suggest-item {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .suggest-note {
-      max-width: none;
-    }
+  .suggest-icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-panel);
+    color: var(--color-ink-subtle);
+  }
+  .suggest-icon svg {
+    width: 1rem;
+    height: 1rem;
   }
   .suggest-item[aria-selected="true"],
   .suggest-item:hover {
-    background: var(--color-raised);
+    background: var(--color-panel);
   }
-  .suggest-item[aria-selected="true"] .suggest-label {
-    color: var(--color-signal);
+  .suggest-item[aria-selected="true"] .suggest-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
   }
   .suggest-label {
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -503,66 +838,265 @@
     text-overflow: ellipsis;
     max-width: 16rem;
   }
+  @media (max-width: 40rem) {
+    .suggest-note {
+      display: none;
+    }
+  }
 
-  /* The header. */
-  .nav-link {
+  /* The first screen: the question, set straight on the picture's sky. */
+  .hero-open {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--hero-h);
+    padding-block: 5.5rem 4.5rem;
+    text-align: center;
+  }
+  /* A small line above the question: what the index holds, as a count. */
+  .pill-note {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
-    padding: 0 0.125rem;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0 0.875rem 0 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--palette-white) 82%, transparent);
+    backdrop-filter: blur(8px);
+    color: var(--color-ink);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .pill-note::before {
+    content: "";
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--color-signal);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-saffron) 28%, transparent);
+  }
+  a.pill-note:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* A question to try, under the box: an icon and the words, as a quiet pill. */
+  .try {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem 0 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--palette-white) 82%, transparent);
+    backdrop-filter: blur(8px);
+    color: var(--color-ink);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+  }
+  .try svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-ink-subtle);
+  }
+  .try:hover {
+    background: var(--color-paper);
+    border-color: color-mix(in srgb, var(--palette-ink) 28%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* A way in, as a tile: an icon in a soft square, a name, how many. The directory's groups. */
+  .tile {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background-color 160ms var(--ease-out);
+  }
+  .tile:hover {
+    background: var(--color-paper);
+    box-shadow: var(--shadow-sm);
+  }
+  .tile-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    flex: none;
+    border-radius: var(--radius-lg);
+    background: var(--color-ink);
+    color: var(--color-signal);
+    transition: background-color 160ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .tile-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .tile:hover .tile-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+    transform: rotate(-4deg) scale(1.04);
+  }
+  .tile-n {
+    color: var(--color-ink-faint);
+  }
+
+  /* A block that stands off the page: a guide to read, a tool, an answer. */
+  .card {
+    position: relative;
+    display: block;
+    padding: 1.5rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .card:has(.row-title):hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+    box-shadow: var(--shadow-md);
+  }
+  .card-wash {
+    background: var(--color-signal-wash);
+    border-color: color-mix(in srgb, var(--palette-saffron-deep) 40%, transparent);
+  }
+  .card-panel {
+    background: var(--color-panel);
+    border-color: transparent;
+  }
+  /* A dark card: the island's own ground. For the footer, a plan, a thing to notice. */
+  .card-ink {
+    background: var(--color-ink);
+    border-color: transparent;
+    color: var(--color-on-ink);
+  }
+  .card-ink .row-title,
+  .card-ink a:not(.btn) {
+    color: inherit;
+  }
+  /* A button's arrow, in its own circle: the one playful mark on a main action. */
+  .btn-dot {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: -0.625rem;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-signal);
+    transition: transform 200ms var(--ease-out);
+  }
+  .btn-ink .btn-dot {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+  }
+  .btn:hover .btn-dot {
+    transform: translateX(2px) rotate(-45deg);
+  }
+  .btn .btn-dot svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  /* The foot of the page: a dark card on the picture, with the b standing on its edge. */
+  .site-footer {
+    position: relative;
+    margin: 0.75rem var(--edge) var(--edge);
+    padding-top: 4.5rem;
+    background: var(--palette-ink);
+    color: var(--palette-white);
+    border-radius: var(--radius-2xl);
+    --color-ink: var(--palette-white);
+    --color-ink-subtle: color-mix(in srgb, var(--palette-white) 78%, transparent);
+    --color-ink-faint: var(--palette-haze);
+    --color-line: color-mix(in srgb, var(--palette-white) 14%, transparent);
+  }
+  .site-footer .footer-mark {
+    position: absolute;
+    top: -2.25rem;
+    left: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-left: -2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1.375rem;
+    background: var(--palette-saffron);
+    color: var(--palette-ink);
+    box-shadow: var(--shadow-lg);
+    transform: rotate(-6deg);
+  }
+  .site-footer .footer-mark svg {
+    height: 2.5rem;
+    width: auto;
+  }
+  .site-footer .footer-mark circle {
+    fill: var(--palette-white);
+  }
+
+  /* On a phone the ways in are a bar at the foot of the screen, as in an app. */
+  .tabbar {
+    position: fixed;
+    z-index: 55;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding: 0.25rem;
+    background: color-mix(in srgb, var(--palette-white) 92%, transparent);
+    backdrop-filter: saturate(1.6) blur(16px);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+  .tabbar a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    min-height: 3.25rem;
+    border-radius: var(--radius-lg);
     color: var(--color-ink-subtle);
     text-decoration: none;
-    transition: color 160ms var(--ease-out);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
   }
-  .nav-link:hover,
-  .nav-link[aria-current="page"] {
+  .tabbar a svg {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+  .tabbar a[aria-current="page"] {
     color: var(--color-ink);
+    background: var(--color-signal-wash);
   }
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.4375rem;
-    height: 2px;
-    background: var(--color-signal);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 220ms var(--ease-out);
+  .tabbar .badge {
+    top: 0.25rem;
+    right: calc(50% - 1.375rem);
   }
-  .nav-link[aria-current="page"]::after {
-    transform: scaleX(1);
+  @media (min-width: 64rem) {
+    .tabbar {
+      display: none;
+    }
+  }
+  @media (max-width: 63.999rem) {
+    body {
+      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    }
   }
 
-  /* The name. The dot before "mu" is a lit point. */
-  .wordmark {
-    font-family: var(--font-display);
-    font-stretch: 125%;
-    font-weight: 700;
-    font-size: 1.1875rem;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: var(--color-ink);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: baseline;
-  }
-  /* The full stop is there for a reader and a screen reader; what is seen is the lit point. */
-  .wordmark .dot {
-    display: inline-block;
-    width: 0.4rem;
-    height: 0.4rem;
-    margin: 0 0.0875rem;
-    border-radius: 50%;
-    font-size: 0;
-    /* With no height of type its baseline is its top edge, so it is lifted to stand on the line. */
-    transform: translateY(-100%);
-    background: var(--color-signal);
-    box-shadow: 0 0 0.7rem 0.05rem color-mix(in srgb, var(--palette-saffron) 60%, transparent);
-  }
-
-  /* A ruled list: how the site shows many things. Rows between hairlines, never cards. */
+  /* A list: rows between hairlines. A result, a listing, a guide. */
   .rows {
     list-style: none;
     margin: 0;
@@ -575,9 +1109,10 @@
   .row {
     position: relative;
     display: block;
-    padding: 1.125rem 0;
+    padding: 1.25rem 0;
   }
   .row-title {
+    color: var(--color-link);
     text-decoration: none;
   }
   /* The whole row answers to its title's link, so the target is the row. */
@@ -587,19 +1122,79 @@
     inset: 0;
   }
   .row:hover .row-title,
+  .card:hover .row-title,
   .row-title:focus-visible {
-    color: var(--color-signal);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
   }
   .row a:not(.row-title),
-  .row button {
+  .row button,
+  .card a:not(.row-title),
+  .card button {
     position: relative;
     z-index: 1;
   }
+  /* A listing in a list: its kind's icon, what is known of it, and what can be done with it. */
+  .listing {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0 1rem;
+    align-items: start;
+  }
+  .listing-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    background: var(--color-panel);
+    color: var(--color-ink-subtle);
+  }
+  .listing-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .listing-acts {
+    display: flex;
+    align-items: center;
+    margin: -0.375rem -0.5rem 0 0;
+  }
+  @media (max-width: 30rem) {
+    .listing {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .listing-icon {
+      display: none;
+    }
+  }
+  /* What can be done from a row: call, open the website. Small pills. */
+  .act {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    min-height: 2.25rem;
+    padding: 0 0.8125rem 0 0.6875rem;
+    border-radius: var(--radius-full);
+    background: var(--color-panel);
+    color: var(--color-ink);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 160ms var(--ease-out);
+  }
+  .act:hover {
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
+  }
+  .act svg {
+    width: 0.9375rem;
+    height: 0.9375rem;
+    color: var(--color-ink-subtle);
+  }
 
-  /* An index: names and counts in columns, as at the back of an atlas. */
+  /* An index: names and counts in columns. */
   .index-cols {
     columns: 1;
-    column-gap: 2.5rem;
+    column-gap: 3rem;
   }
   @media (min-width: 40rem) {
     .index-cols {
@@ -617,54 +1212,59 @@
   .index-item {
     display: flex;
     align-items: baseline;
-    gap: 0.5rem;
-    min-height: 2.5rem;
-    padding: 0.4375rem 0;
-    break-inside: avoid;
-    text-decoration: none;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6875rem 0;
     border-bottom: 1px solid var(--color-line);
+    text-decoration: none;
+    break-inside: avoid;
   }
   .index-item span:first-child {
-    flex: 1;
-    min-width: 0;
+    transition: color 160ms var(--ease-out);
   }
   .index-item:hover span:first-child {
-    color: var(--color-signal);
+    color: var(--color-link);
   }
   .index-item .n {
     color: var(--color-ink-faint);
   }
   .index-group {
     break-inside: avoid;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
-  /* Ways to narrow a list: names with their counts, in a line. Links, so they look like links. */
+  /* Ways to make a list smaller, as links in a line. On a phone the line scrolls sideways. */
   .narrow {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 1.5rem;
+    gap: 0.5rem;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0.5rem 0;
   }
   .narrow a {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    min-height: 2.75rem;
+    gap: 0.375rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
+    border-radius: var(--radius-full);
+    background: var(--color-paper);
+    text-decoration: none;
     white-space: nowrap;
-    color: var(--color-ink-subtle);
-    text-decoration-color: transparent;
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
   }
   .narrow a:hover {
-    color: var(--color-ink);
-    text-decoration-color: var(--color-signal);
+    background: var(--color-panel);
+    border-color: color-mix(in srgb, var(--palette-ink) 30%, transparent);
   }
   @media (max-width: 40rem) {
     .narrow {
       flex-wrap: nowrap;
       overflow-x: auto;
+      margin-inline: calc(-1 * var(--gutter));
+      padding-inline: var(--gutter);
       scrollbar-width: none;
     }
     .narrow::-webkit-scrollbar {
@@ -672,13 +1272,14 @@
     }
   }
 
-  /* The kinds of result, and a page's sections: tabs that are links. */
+  /* Kinds of result: pills in a line. The one being shown is filled with ink. */
   .tabs {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.375rem;
     overflow-x: auto;
     scrollbar-width: none;
-    border-bottom: 1px solid var(--color-line);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0.25rem var(--gutter);
   }
   .tabs::-webkit-scrollbar {
     display: none;
@@ -686,42 +1287,51 @@
   .tab {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    min-height: 2.75rem;
-    white-space: nowrap;
+    gap: 0.4375rem;
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-full);
     color: var(--color-ink-subtle);
     text-decoration: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    white-space: nowrap;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
   .tab:hover {
+    background: var(--color-panel);
     color: var(--color-ink);
   }
   .tab[aria-current="page"] {
-    color: var(--color-ink);
-    border-color: var(--color-signal);
+    background: var(--color-ink);
+    color: var(--color-on-ink);
   }
   .tab .n {
     color: var(--color-ink-faint);
   }
+  .tab[aria-current="page"] .n {
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
+  }
 
-  /* A small word that says what kind of thing a row is. */
+  /* What kind of thing a row is: a small word in a pill. */
   .tag {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    color: var(--color-ink-faint);
+    min-height: 1.5rem;
+    padding: 0 0.5625rem;
+    border-radius: var(--radius-full);
+    background: var(--color-panel);
+    color: var(--color-ink-subtle);
   }
-  .tag::before {
+  .tag-lit {
+    background: var(--color-signal-wash);
+    color: var(--color-ink);
+  }
+  .tag-lit::before {
     content: "";
     width: 0.375rem;
     height: 0.375rem;
     border-radius: 50%;
-    background: currentColor;
-  }
-  .tag-lit {
-    color: var(--color-signal);
+    background: var(--color-signal-hover);
   }
 
   /* Facts: a name and its value, in two columns that become one on a phone. */
@@ -758,7 +1368,6 @@
   .crumbs {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -771,26 +1380,31 @@
   }
   .crumbs li + li::before {
     content: "/";
-    margin-right: 0.5rem;
-    color: var(--color-line-strong);
+    margin: 0 0.5rem;
+    color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
   }
   .crumbs a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 1.75rem;
-    text-decoration-color: transparent;
-    color: var(--color-ink-subtle);
+    text-decoration: none;
+    padding: 0.25rem 0;
   }
   .crumbs a:hover {
     color: var(--color-ink);
-    text-decoration-color: var(--color-signal);
+    text-decoration: underline;
+  }
+  .crumbs [aria-current="page"] {
+    color: var(--color-ink-subtle);
   }
 
-  /* The chart. One drawing of the island, used everywhere; see components/Chart.tsx. */
+  /* The island. One drawing, used everywhere; see components/Chart.tsx. It is the one dark panel
+     on a page: every listing a point of light at its own place, and saffron for the ones that
+     answer. */
   .chart {
     position: relative;
     width: 100%;
-    color: var(--color-ink-faint);
+    color: var(--palette-haze);
+    background: var(--palette-night);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
   }
   .chart svg,
   .chart canvas {
@@ -806,21 +1420,18 @@
     pointer-events: none;
   }
   .chart-grid {
-    stroke: color-mix(in srgb, var(--palette-limewash) 7%, transparent);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-    fill: none;
+    display: none;
   }
   .chart-coast {
-    fill: color-mix(in srgb, var(--palette-ink) 60%, transparent);
-    stroke: color-mix(in srgb, var(--palette-limewash) 37%, transparent); /* 3.24:1 on night */
+    fill: color-mix(in srgb, var(--palette-ink) 78%, transparent);
+    stroke: color-mix(in srgb, var(--palette-limewash) 30%, transparent);
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
     stroke-linejoin: round;
   }
   .chart-district {
     fill: none;
-    stroke: color-mix(in srgb, var(--palette-limewash) 12%, transparent);
+    stroke: color-mix(in srgb, var(--palette-limewash) 10%, transparent);
     stroke-width: 1;
     stroke-dasharray: 2 4;
     vector-effect: non-scaling-stroke;
@@ -836,7 +1447,7 @@
   .chart-halo {
     fill: color-mix(in srgb, var(--palette-saffron) 22%, transparent);
   }
-  /* The chart's lettering is set in the page's own type over the drawing, so it is as large on a
+  /* The island's lettering is set in the page's own type over the drawing, so it is as large on a
      phone as on a desk. */
   .chart-letters {
     position: absolute;
@@ -858,46 +1469,36 @@
     transform: translate(calc(-100% - 0.625rem), -50%);
   }
   .chart-degree {
-    color: var(--palette-tide);
-    transform: translate(0.375rem, 0.375rem);
-  }
-  .chart-degree-side {
-    transform: translate(0.25rem, calc(-100% - 0.25rem));
-  }
-  @media (max-width: 40rem) {
-    .chart-degree {
-      display: none;
-    }
+    display: none;
   }
   /* Drawn in, a small key at the corner shows which part of the island is in view. */
   .chart .chart-key {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 21%;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 20%;
     height: auto;
     background: color-mix(in srgb, var(--palette-night) 86%, transparent);
-    border: 1px solid var(--color-line-strong);
+    border: 1px solid color-mix(in srgb, var(--palette-limewash) 30%, transparent);
+    border-radius: var(--radius-sm);
   }
-  /* On a phone the chart beside a list is a small one above it, with no lettering. */
+  /* On a phone the island beside a list is a small one above it, with no lettering. */
   .chart-strip {
     width: 9.5rem;
     flex: none;
+    border-radius: var(--radius-lg);
   }
   .chart-strip .chart-letters {
     display: none;
   }
   .chart-frame {
     fill: var(--palette-night);
-    stroke: color-mix(in srgb, var(--palette-limewash) 30%, transparent);
+    stroke: color-mix(in srgb, var(--palette-limewash) 22%, transparent);
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
   }
   .chart-tick {
-    stroke: color-mix(in srgb, var(--palette-limewash) 46%, transparent);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-    fill: none;
+    display: none;
   }
   /* With script the exact points are drawn on a canvas, and the dots that stood in for them go. */
   .chart[data-live="true"] .chart-dots,
@@ -905,49 +1506,25 @@
   .chart[data-live="true"] .chart-halo {
     visibility: hidden;
   }
-
-  /* Beside a list the chart is never taller than the screen it sits in. */
+  /* Beside a list the island is never taller than the screen it sits in. */
   .chart-side {
     max-width: min(100%, calc((100dvh - 10.5rem) * 0.86));
     margin-inline: auto;
   }
 
-  /* Corner marks: the four ticks a chart's frame carries. On the first screen's chart and a panel. */
-  .ticked {
-    position: relative;
-  }
-  .ticked::before,
-  .ticked::after {
-    content: "";
-    position: absolute;
-    width: 0.75rem;
-    height: 0.75rem;
-    border: 1px solid var(--color-line-strong);
-    pointer-events: none;
-  }
-  .ticked::before {
-    top: 0;
-    left: 0;
-    border-right: 0;
-    border-bottom: 0;
-  }
-  .ticked::after {
-    bottom: 0;
-    right: 0;
-    border-left: 0;
-    border-top: 0;
-  }
-
   /* A guide's own words: long reading. */
   .prose {
-    max-width: 68ch;
+    max-width: 66ch;
   }
   .prose > * + * {
-    margin-top: 1rem;
+    margin-top: 1.125rem;
+  }
+  .prose a {
+    color: var(--color-link);
   }
   .prose ul,
   .prose ol {
-    padding-left: 1.25rem;
+    padding-left: 1.375rem;
   }
   .prose ul {
     list-style: disc;
@@ -960,33 +1537,45 @@
   }
   .prose li::marker {
     color: var(--color-ink-faint);
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
   }
+  /* The number of a source, beside the figure it supports. */
   .cite {
-    font-family: var(--font-mono);
+    display: inline-block;
+    min-width: 1.125rem;
+    padding: 0.1875rem 0.3125rem;
+    margin-left: 0.125rem;
+    border-radius: var(--radius-full);
+    background: var(--color-panel);
+    color: var(--color-link);
     font-size: 0.75rem;
+    font-weight: 600;
     line-height: 1;
-    color: var(--color-ink-faint);
+    text-align: center;
     text-decoration: none;
-    padding: 0.25rem 0.125rem;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
+    vertical-align: 0.1em;
   }
   .cite:hover,
   .cite:focus-visible {
-    color: var(--color-signal);
+    background: var(--color-link);
+    color: var(--color-on-ink);
   }
   .note {
-    border: 1px solid var(--color-line-strong);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.125rem;
-    background: var(--palette-ink);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
   }
+  .note a {
+    color: var(--color-link);
+  }
+
   /* A table that a phone can scroll sideways without the page moving. */
   .table-wrap {
     overflow-x: auto;
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     max-width: 100%;
   }
   .table-wrap:focus-visible {
@@ -1002,18 +1591,17 @@
   .table td {
     text-align: left;
     vertical-align: top;
-    padding: 0.75rem 0.875rem;
+    padding: 0.8125rem 1rem;
     border-bottom: 1px solid var(--color-line);
     min-width: 8rem;
   }
   .table thead th {
-    font-family: var(--font-mono);
     font-size: 0.75rem;
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-ink-faint);
-    background: var(--palette-ink);
+    background: var(--color-panel);
   }
   .table tbody tr:last-child td,
   .table tbody tr:last-child th {
@@ -1047,14 +1635,14 @@
     .table th,
     .table td {
       min-width: 0;
-      padding: 0.25rem 0.875rem;
+      padding: 0.25rem 1rem;
       border: 0;
     }
     .table td[data-label]::before {
       content: attr(data-label);
       display: block;
-      font-family: var(--font-mono);
       font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-ink-faint);
@@ -1070,11 +1658,42 @@
     padding-top: 1.5rem;
   }
 
+  /* A word that comes and goes at the foot of the screen: "Link copied". */
+  .toast {
+    position: fixed;
+    z-index: 90;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    border-radius: var(--radius-full);
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+    box-shadow: var(--shadow-lg);
+    white-space: nowrap;
+    animation: toast 240ms var(--ease-out);
+  }
+  .toast svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-signal);
+  }
+  @keyframes toast {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 0.5rem);
+    }
+  }
+
   /* A shape that holds a place while something is fetched. */
   .wait {
-    background: linear-gradient(90deg, var(--palette-ink) 0%, var(--palette-swell) 50%, var(--palette-ink) 100%);
+    background: linear-gradient(90deg, var(--palette-limewash) 0%, color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white)) 50%, var(--palette-limewash) 100%);
     background-size: 200% 100%;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
     animation: wait 1.2s linear infinite;
   }
   @keyframes wait {
@@ -1099,7 +1718,9 @@
 @media print {
   header,
   footer,
-  .chart canvas {
+  .chart canvas,
+  .backdrop,
+  .tabbar {
     display: none !important;
   }
   html,

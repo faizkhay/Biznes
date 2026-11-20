@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Crumbs } from "@/components/Bits";
 import Chart from "@/components/Chart";
-import { Globe, Phone, Pin } from "@/components/Icons";
+import { Globe, GroupIcon, Phone, Pin } from "@/components/Icons";
+import { SaveButton, ShareButton } from "@/components/Save";
 import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ACTIONS, CREDITS } from "@/data/site";
@@ -83,6 +84,9 @@ export default async function ListingPage({ params }: Props) {
 
       <div className="mt-6 grid gap-x-12 gap-y-10 chart:grid-cols-12">
         <div className="chart:col-span-7">
+          <span className="listing-icon mb-6" aria-hidden>
+            <GroupIcon group={category?.group} />
+          </span>
           <h1 className="heading-1">{l.name}</h1>
           <p className="body-1 mt-3 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where].filter(Boolean).join(" · ")}</p>
 
@@ -105,6 +109,10 @@ export default async function ListingPage({ params }: Props) {
               )}
             </p>
           )}
+          <p className="mt-3 flex flex-wrap gap-3 empty:hidden">
+            <SaveButton id={l.id} name={l.name} words />
+            <ShareButton title={l.name} words />
+          </p>
 
           {mapped && (
             <p className={`caption-1 mt-4 max-w-prose ${stale ? "note" : "text-ink-faint"}`}>

@@ -1,0 +1,131 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { shortUrl, telHref } from "@/lib/format";
+import { clearSaved, saveAll, useReady, useSaved } from "@/lib/saved";
+import { Bookmark, Globe, GroupIcon, Phone } from "./Icons";
+import { SaveButton, ShareButton } from "./Save";
+
+type Row = { id: string; slug: string; name: string; group?: string; what: string; phone?: string; web?: string };
+
+/**
+ * The shortlist. With `shared` it shows a list someone sent as a link, and offers to keep it;
+ * without, the visitor's own, read from their browser. The rows are looked up by id.
+ */
+export default function SavedList({ shared }: { shared?: string[] }) {
+  const ready = useReady();
+  const mine = useSaved();
+  const ids = shared ?? mine;
+  const key = ids.join(",");
+  const [rows, setRows] = useState<Row[] | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (!key) {
+      setRows([]);
+      return;
+    }
+    let on = true;
+    fetch(`/api/listings?ids=${encodeURIComponent(key)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((data: { listings: Row[] }) => on && (setRows(data.listings), setFailed(false)))
+      .catch(() => on && setFailed(true));
+    return () => {
+      on = false;
+    };
+  }, [key]);
+
+  if (!ready || (rows === null && !failed)) {
+    return (
+      <div className="grid gap-4" aria-busy="true" aria-label="Loading your saved listings">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="wait h-20" />
+        ))}
+      </div>
+    );
+  }
+  if (failed) return <p className="note body-3">The list could not be loaded just now. Try again in a moment.</p>;
+  if (!rows?.length) {
+    return (
+      <div className="card card-panel max-w-xl">
+        <span className="tile-icon bg-paper">
+          <Bookmark />
+        </span>
+        <h2 className="heading-3 mt-4">{shared ? "That list is empty" : "Nothing saved yet"}</h2>
+        <p className="body-2 mt-2 text-ink-subtle">Tap the bookmark on any listing to keep it here. The list stays in this browser, on this device; nothing about it is sent to us.</p>
+        <p className="mt-6 flex flex-wrap gap-3">
+          <Link href="/search" className="btn btn-filled button-md">
+            Search
+          </Link>
+          <Link href="/directory" className="btn btn-quiet button-md">
+            Browse the directory
+          </Link>
+        </p>
+      </div>
+    );
+  }
+  const all = rows.map((r) => r.id);
+  const kept = shared ? all.every((id) => mine.includes(id)) : false;
+  return (
+    <>
+      <p className="mb-6 flex flex-wrap items-center gap-3">
+        {shared ? (
+          <button type="button" className="btn btn-filled button-md" disabled={kept} onClick={() => saveAll(all)}>
+            <Bookmark /> {kept ? "Saved to your list" : `Save all ${rows.length} to your list`}
+          </button>
+        ) : (
+          <>
+            <ShareButton title="A shortlist from biznes.mu" path={`/saved?ids=${all.join(",")}`} words label="Share this list" />
+            <button
+              type="button"
+              className="btn btn-quiet button-md"
+              onClick={() => {
+                if (window.confirm(`Remove all ${rows.length} from your saved list?`)) clearSaved();
+              }}
+            >
+              Clear the list
+            </button>
+          </>
+        )}
+      </p>
+      <ul className="rows">
+        {rows.map((r) => (
+          <li key={r.id}>
+            <article className="row listing">
+              <span className="listing-icon" aria-hidden>
+                <GroupIcon group={r.group} />
+              </span>
+              <div className="min-w-0">
+                <h2 className="title-1">
+                  <Link prefetch={false} href={`/b/${r.slug}`} className="row-title">
+                    {r.name}
+                  </Link>
+                </h2>
+                <p className="body-3 mt-0.5 text-ink-subtle">{r.what}</p>
+                {(r.phone || r.web) && (
+                  <p className="mt-3 flex flex-wrap gap-2">
+                    {r.phone && (
+                      <a href={telHref(r.phone)} className="act data-2">
+                        <Phone /> {r.phone}
+                      </a>
+                    )}
+                    {r.web && (
+                      <a href={r.web} rel="noopener nofollow" className="act data-2">
+                        <Globe /> {shortUrl(r.web)}
+                      </a>
+                    )}
+                  </p>
+                )}
+              </div>
+              <div className="listing-acts">
+                <SaveButton id={r.id} name={r.name} />
+                <ShareButton title={r.name} path={`/b/${r.slug}`} />
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}

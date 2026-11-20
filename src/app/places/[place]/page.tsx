@@ -4,9 +4,8 @@ import { PageHead } from "@/components/Bits";
 import ListingList from "@/components/ListingList";
 import { count } from "@/lib/format";
 import { index, listingsIn } from "@/lib/index";
-import { PAGE_SIZE } from "@/lib/search";
 
-type Props = { params: Promise<{ place: string }>; searchParams: Promise<{ page?: string }> };
+type Props = { params: Promise<{ place: string }>; searchParams: Promise<{ page?: string; phone?: string; web?: string }> };
 
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -20,7 +19,6 @@ export default async function PlacePage({ params, searchParams }: Props) {
   const p = data.placeBySlug.get((await params).place);
   if (!p) notFound();
   const listings = listingsIn({ place: p.slug });
-  const page = Math.min(Math.max(1, Number((await searchParams).page) || 1), Math.max(1, Math.ceil(listings.length / PAGE_SIZE)));
 
   const cats = new Map<string, number>();
   for (const l of listings) cats.set(l.cat, (cats.get(l.cat) ?? 0) + 1);
@@ -36,7 +34,7 @@ export default async function PlacePage({ params, searchParams }: Props) {
         title={`Businesses in ${p.name}`}
         lede={`${count(listings.length)} listed${p.district && p.district !== p.name ? ` in ${p.name}, ${p.district} district` : ""}${p.kind === "area" ? `. A neighbourhood${p.within && data.placeBySlug.get(p.within) ? ` of ${data.placeBySlug.get(p.within)!.name}` : ""}, as named on the map` : ""}.`}
       />
-      <ListingList listings={listings} page={page} href={(n) => `/places/${p.slug}${n > 1 ? `?page=${n}` : ""}`} narrow={narrow} narrowLabel="Narrow to a kind of business" says={`A chart of Mauritius with the ${count(listings.length)} listings in ${p.name} lit.`} />
+      <ListingList listings={listings} path={`/places/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel="Narrow to a kind of business" says={`A chart of Mauritius with the ${count(listings.length)} listings in ${p.name} lit.`} />
     </>
   );
 }

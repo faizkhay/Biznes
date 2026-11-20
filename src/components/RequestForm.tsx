@@ -33,8 +33,8 @@ const ASKS: Record<Topic, string> = {
  * and never loses a request quietly: if it cannot be delivered, it says so and gives the phone,
  * WhatsApp and email instead.
  */
-export default function RequestForm({ listing, compose = false }: { listing?: { id: string; name: string; path: string }; /** No delivery route is set on the server: the request is written out and sent from the visitor's own WhatsApp or email. */ compose?: boolean }) {
-  const [values, setValues] = useState<Enquiry>({ topic: listing ? "correct" : "add", listing: listing?.id, business: listing?.name ?? "", message: "", name: "", phone: "", email: "", reply: "email", website: "" });
+export default function RequestForm({ listing, compose = false, start = "" }: { listing?: { id: string; name: string; path: string }; /** No delivery route is set on the server: the request is written out and sent from the visitor's own WhatsApp or email. */ compose?: boolean; /** Words to begin the message with, when the form is opened for a plan. */ start?: string }) {
+  const [values, setValues] = useState<Enquiry>({ topic: listing ? "correct" : "add", listing: listing?.id, business: listing?.name ?? "", message: start, name: "", phone: "", email: "", reply: "email", website: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [state, setState] = useState<State>("idle");
   const form = useRef<HTMLFormElement>(null);
@@ -95,7 +95,7 @@ export default function RequestForm({ listing, compose = false }: { listing?: { 
   if (state === "sent") {
     return (
       <div ref={done} tabIndex={-1} role="status" className="note outline-none">
-        <Tick className="size-8 text-signal" />
+        <Tick className="size-8 text-link" />
         <h2 className="heading-3 mt-4">Thank you, {values.name.trim()}</h2>
         <p className="body-3 measure mt-3 text-ink-subtle">
           We have your request{values.business ? ` about ${values.business.trim()}` : ""}. We will reply by {values.reply === "email" ? `email, to ${values.email}` : `${values.reply === "phone" ? "phone" : "WhatsApp"}, on ${values.phone}`}.

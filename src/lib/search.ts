@@ -54,6 +54,11 @@ export type Answer = {
   official: Official[];
   sites: Site[];
   counts: Record<Kind, number>;
+  /**
+   * What the listings that answer could be narrowed by, counted before any narrowing: how many
+   * have a telephone number, how many a website, and the towns they are in.
+   */
+  facets: Facets;
   /** Ways in to the directory that match the question. */
   ways: Way[];
   /** Where the matching listings are on the chart: positions in chartPoints(). */
@@ -207,9 +212,35 @@ export function understand(query: string): { text: string; place?: Place; catego
 
 export const PAGE_SIZE = 20;
 
-type Options = { kind?: Kind; page?: number; plain?: boolean };
+/** Ways to narrow a list of listings: only those with a telephone number, with a website, in one town. */
+export type Narrow = { phone?: boolean; web?: boolean; town?: string };
+export type Facets = { all: number; phone: number; web: number; towns: { slug: string; name: string; n: number }[] };
 
-export function search(query: string, { kind, page = 1, plain = false }: Options = {}): Answer {
+/** Reads the narrowing out of a page's address. */
+export const narrowOf = (params: { phone?: string; web?: string; town?: string }): Narrow => ({ phone: params.phone === "1", web: params.web === "1", town: params.town ? params.town.slice(0, 80) : undefined });
+
+/** Counts what a list could be narrowed by, and narrows it. */
+export function narrowed(listings: Listing[], narrow: Narrow = {}): { facets: Facets; listings: Listing[] } {
+  const towns = new Map<string, { slug: string; name: string; n: number }>();
+  let phone = 0;
+  let web = 0;
+  for (const l of listings) {
+    if (l.phone?.length) phone++;
+    if (l.web) web++;
+    if (l.placeSlug && l.place) {
+      const town = towns.get(l.placeSlug);
+      if (town) town.n++;
+      else towns.set(l.placeSlug, { slug: l.placeSlug, name: l.place, n: 1 });
+    }
+  }
+  const facets = { all: listings.length, phone, web, towns: [...towns.values()].sort((a, b) => b.n - a.n || a.name.localeCompare(b.name)) };
+  const { phone: p, web: w, town } = narrow;
+  return { facets, listings: p || w || town ? listings.filter((l) => (!p || l.phone?.length) && (!w || l.web) && (!town || l.placeSlug === town)) : listings };
+}
+
+type Options = { kind?: Kind; page?: number; plain?: boolean; narrow?: Narrow };
+
+export function search(query: string, { kind, page = 1, plain = false, narrow }: Options = {}): Answer {
   engine ??= build();
   const e = engine;
   const data = index();
@@ -241,7 +272,7 @@ export function search(query: string, { kind, page = 1, plain = false }: Options
     }
     if (!ranked.length && !plain) {
       // Read as a town or a kind and nothing fits. The words may be a name: search them plainly.
-      const named = search(query, { kind, page, plain: true });
+      const named = search(query, { kind, page, plain: true, narrow });
       if (named.counts.listing > 0 || !rest) return named;
       // Not a name either. Answer the part that was understood, and say which words were left out.
       for (const l of data.listings) if (fits(l)) ranked.push({ l, score: l.full });
@@ -303,6 +334,14 @@ export function search(query: string, { kind, page = 1, plain = false }: Options
     sites = of("site", text, "OR").slice(0, 20).map((r) => data.sites[Number((r.id as string).slice(2))]);
   }
 
+  // Narrowing is the visitor's own choice, made after the question is answered: it takes listings
+  // out, and never changes their order.
+  const { facets, listings: keep } = narrowed(ranked.map((r) => r.l), narrow);
+  if (keep.length !== ranked.length) {
+    const kept = new Set(keep);
+    ranked = ranked.filter((r) => kept.has(r.l));
+  }
+
   const counts: Record<Kind, number> = { listing: ranked.length, guide: leads.length, official: official.length, site: sites.length };
   const { at } = chartPoints();
   const points: number[] = [];
@@ -348,6 +387,7 @@ export function search(query: string, { kind, page = 1, plain = false }: Options
     official: cut(official, 4, "official"),
     sites: cut(sites, 4, "site"),
     counts,
+    facets,
     ways,
     points,
   };

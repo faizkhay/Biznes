@@ -66,6 +66,7 @@ export const MORE = [
 export const ACTIONS = {
   search: "Search",
   add: "Add or correct a listing",
+  list: "List your business",
   send: "Send",
   call: "Call",
   website: "Visit website",
@@ -75,6 +76,24 @@ export const ACTIONS = {
 
 /** Questions the first screen offers, each a real search. Chosen to show the three things it answers. */
 export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a company", "VAT", "restaurants in Grand Baie"] as const;
+
+/**
+ * The plans a business can be listed on (U, 20 November 2026): their names, their prices in rupees
+ * a month for each business, and what each gives, in the owner's words. How a plan is paid for is
+ * not yet decided: to confirm. Until it is, a business asks for a plan and a person answers.
+ */
+export const PLANS = [
+  { id: "free", name: "Biznes Free", price: 0, line: "A basic listing, free for good.", gives: ["A listing in the directory and in search", "Your name, what you do, where you are and how to reach you", "Correct it or take it out whenever you ask"] },
+  { id: "go", name: "Biznes Go", price: 550, line: "Verified, and listed with priority.", gives: ["Everything in Biznes Free", "A verified mark, once we have checked the business is real", "Listed with priority, and marked as such"] },
+  { id: "grow", name: "Biznes Grow", price: 1250, line: "Take bookings and sell your services online.", gives: ["Manage your bookings in one place", "Sell your services online", "Your own page to send customers to"] },
+] as const;
+export type PlanId = (typeof PLANS)[number]["id"];
+
+/**
+ * What the site holds itself to, in a line each. Each is said at length, with how it is kept, on
+ * the page "Where the data comes from" and in PRODUCT.md ("Product Principles").
+ */
+export const PROMISES = ["Every listing says where it came from.", "Every figure in a guide names its source.", "A listing that pays to come first is marked as one.", "Our crawler takes no email addresses."] as const;
 
 /** The sources of the index, as they must be credited. */
 export const CREDITS = {

@@ -1,22 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import localFont from "next/font/local";
 import HeaderBar from "@/components/HeaderBar";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
+import { themeFor } from "@/lib/theme";
+import TabBar from "@/components/TabBar";
 import "./globals.css";
 
-// Archivo, one file with a width axis: the site sets it wide for its name and its titles. SIL OFL
-// 1.1; the licence is beside the file in src/fonts.
-const archivo = localFont({
-  src: "../fonts/archivo-latin-wdth-normal.woff2",
-  weight: "100 900",
-  variable: "--font-archivo",
+// Manrope, one file with a weight axis: the site's one face. SIL OFL 1.1; the licence is beside
+// the file in src/fonts.
+const manrope = localFont({
+  src: "../fonts/manrope-latin-wght-normal.woff2",
+  weight: "200 800",
+  variable: "--font-manrope",
   display: "swap",
-  declarations: [{ prop: "font-stretch", value: "62% 125%" }],
-  fallback: ["Arial", "sans-serif"],
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -26,16 +25,22 @@ export const metadata: Metadata = {
   applicationName: site.name,
   // Until the owner has confirmed the guides, no page may be indexed (`launched` in src/data/site.ts).
   robots: site.launched ? { index: true, follow: true } : { index: false, follow: false },
-  openGraph: { type: "website", siteName: site.name, locale: site.locale, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${site.name}: ${site.line}. A chart of Mauritius drawn by its listings.` }] },
+  openGraph: { type: "website", siteName: site.name, locale: site.locale, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${site.name}: ${site.line}.` }] },
   twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = { themeColor: "#050a1a", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: "#fdf9ec", colorScheme: "light", viewportFit: "cover" };
+
+// The picture behind the page follows the calendar, so every page is made again at most once an
+// hour and takes the day's look with it.
+export const revalidate = 3600;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const theme = themeFor();
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${archivo.variable}`}>
+    <html lang="en" className={manrope.variable} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
       <body>
+        <div className="backdrop" aria-hidden />
         <a href="#main" className="skip-link button-sm">
           Skip to the page
         </a>
@@ -44,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <SiteFooter />
+        <TabBar />
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ export default function LitCount() {
     return () => window.removeEventListener(CHART_EVENT, on);
   }, []);
   return (
-    <span className="data-2 text-signal" role="status">
+    <span className="data-2 font-semibold text-ink" role="status">
       {n > 0 ? `${count(n)} lit for your question` : ""}
     </span>
   );

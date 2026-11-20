@@ -4,9 +4,8 @@ import { PageHead } from "@/components/Bits";
 import ListingList from "@/components/ListingList";
 import { count } from "@/lib/format";
 import { index, listingsIn } from "@/lib/index";
-import { PAGE_SIZE } from "@/lib/search";
 
-type Props = { params: Promise<{ cat: string; place: string }>; searchParams: Promise<{ page?: string }> };
+type Props = { params: Promise<{ cat: string; place: string }>; searchParams: Promise<{ page?: string; phone?: string; web?: string }> };
 
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,7 +26,6 @@ export default async function CategoryPlacePage({ params, searchParams }: Props)
   if (!c || !p) notFound();
   const listings = listingsIn({ cat, place });
   if (!listings.length) notFound();
-  const page = Math.min(Math.max(1, Number((await searchParams).page) || 1), Math.max(1, Math.ceil(listings.length / PAGE_SIZE)));
 
   // What else this town has, most first.
   const others = new Map<string, number>();
@@ -44,7 +42,7 @@ export default async function CategoryPlacePage({ params, searchParams }: Props)
         title={`${c.label} in ${p.name}`}
         lede={`${count(listings.length)} listed in ${p.name}${p.district && p.district !== p.name ? `, ${p.district} district` : ""}.`}
       />
-      <ListingList listings={listings} page={page} href={(n) => `/directory/${c.id}/${p.slug}${n > 1 ? `?page=${n}` : ""}`} narrow={narrow} narrowLabel={`Also in ${p.name}`} says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed in ${p.name} lit.`} />
+      <ListingList listings={listings} path={`/directory/${c.id}/${p.slug}`} params={await searchParams} narrow={narrow} narrowLabel={`Also in ${p.name}`} says={`A chart of Mauritius with the ${count(listings.length)} ${c.label.toLowerCase()} listed in ${p.name} lit.`} />
     </>
   );
 }

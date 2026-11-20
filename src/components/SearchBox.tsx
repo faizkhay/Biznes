@@ -5,7 +5,9 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ACTIONS } from "@/data/site";
 import type { Suggestion } from "@/lib/search";
 import { CHART_EVENT, type ChartLit } from "./ChartLive";
-import { Glass } from "./Icons";
+import { Arrow, Book, Glass, Globe, Landmark, Store } from "./Icons";
+
+const KIND_ICON = { listing: Store, guide: Book, official: Landmark, site: Globe, way: Arrow } as const;
 
 type Found = { suggestions: Suggestion[]; points: number[]; n: number };
 
@@ -139,7 +141,7 @@ export default function SearchBox({
             go(items[active]);
           }
         }}
-        placeholder={size === "lg" ? "A business, a service, or a question" : "Search"}
+        placeholder={size === "lg" ? "What are you looking for?" : "Search"}
         aria-label="Search businesses, guides and official pages"
         autoComplete="off"
         autoCorrect="off"
@@ -153,7 +155,8 @@ export default function SearchBox({
         autoFocus={autoFocus}
       />
       <button type="submit" className={`btn btn-filled search-go ${size === "lg" ? "button-md" : "button-sm"}`}>
-        {ACTIONS.search}
+        <Glass strokeWidth={2} />
+        <span>{ACTIONS.search}</span>
       </button>
       {items.length > 0 && (
         <ul id={listId} role="listbox" aria-label="Suggestions" className="suggest">
@@ -170,6 +173,10 @@ export default function SearchBox({
                 go(s);
               }}
             >
+              <span className="suggest-icon">{(() => {
+                const Icon = KIND_ICON[s.kind];
+                return <Icon />;
+              })()}</span>
               <span className="suggest-label body-3">{s.label}</span>
               <span className="suggest-note data-2">{s.note}</span>
             </li>

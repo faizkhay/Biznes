@@ -24,3 +24,6 @@ scripts/_*
 
 # What the crawler fetched: downloads and pages, kept between runs.
 .crawl/
+
+# The design skill's working files: mock-ups and its build record. Not part of the site.
+.impeccable/

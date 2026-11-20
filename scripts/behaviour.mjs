@@ -45,7 +45,8 @@ const text = (selector) => page.locator(selector).first().innerText();
 
 // 1. The first screen, and the chart.
 await page.goto(origin, { waitUntil: "networkidle" });
-check("home: one h1, the owner's line", (await page.locator("h1").count()) === 1 && /search engine/i.test(await text("h1")));
+check("home: one h1, and the owner's line under it", (await page.locator("h1").count()) === 1 && /search engine/i.test(await text("main section p.body-1")));
+check("home: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
 await page.waitForFunction(() => document.querySelector(".chart")?.dataset.live === "true", null, { timeout: 15000 }).catch(() => {});
 check("home: the chart goes live with script", (await page.locator('.chart[data-live="true"]').count()) === 1);
 const pts = await (await page.request.get(`${origin}/points.json`)).json();
@@ -77,7 +78,7 @@ check("reads: Kreol", /Pharmacies/.test(await reads("farmasi")));
 check("reads: French", /Hardware/.test(await reads("quincaillerie")));
 check("reads: one half of a town of two names", /Beau Bassin-Rose Hill/.test(await reads("restaurants rose hill")));
 await reads("vat threshold");
-check("a question about how is answered by the fact itself, first", /Value Added Tax/i.test(await text("main article h3")) && /threshold: MUR 3 million/i.test(await text("main article p.body-3")));
+check("a question about how is answered by the fact itself, first", /Value Added Tax/i.test(await text("main article h3")) && /threshold: MUR 3 million/i.test(await text("main article p.body-2")));
 await reads("vat calculator");
 check("a tool is found by its name", (await page.locator('main article a[href="/tools/vat"]').count()) === 1);
 await reads("BRN");
@@ -207,15 +208,53 @@ await still.goto(`${origin}/add`, { waitUntil: "domcontentloaded" });
 check("no script: the form says so and gives the other routes", /needs JavaScript/.test(await still.content()) && /\+230 5450 8600/.test(await still.content()));
 await plain.close();
 
+// 8b. Narrowing, saving, sharing, and the plans.
+await page.goto(`${origin}/search?q=restaurants`, { waitUntil: "networkidle" });
+const allRestaurants = Number((await page.locator('main p[role="status"]').first().innerText()).replace(/,/g, "").match(/(\d+) results?/)?.[1] ?? 0);
+await page.locator('nav[aria-label="Narrow these listings"] a', { hasText: "With a telephone number" }).click();
+await page.waitForURL(/phone=1/);
+const withPhone = Number((await page.locator('main p[role="status"]').first().innerText()).replace(/,/g, "").match(/(\d+) results?/)?.[1] ?? 0);
+const rows = await page.locator("main article.listing").count();
+const rowsWithTel = await page.locator('main article.listing:has(a[href^="tel:"])').count();
+check("narrowing: with a telephone number leaves fewer, and every one has a number", withPhone > 0 && withPhone < allRestaurants && rows > 0 && rows === rowsWithTel, `${withPhone} of ${allRestaurants}, ${rowsWithTel}/${rows}`);
+check("narrowing: the one that is on is marked, and can be cleared", (await page.locator('a.filter[aria-current="true"]').count()) === 1 && (await page.locator('nav[aria-label="Narrow these listings"] a', { hasText: "Clear" }).count()) === 1);
+await page.locator("details.menu summary").click();
+await page.locator("details.menu .menu-list a").first().click();
+await page.waitForURL(/town=/);
+const townName = (await page.locator("details.menu summary").innerText()).trim();
+check("narrowing: by town", townName.length > 0 && !/Any town/.test(townName) && (await page.locator("main article.listing").count()) > 0, townName);
+
+await page.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "networkidle" });
+const firstName = await page.locator("main article.listing h3").first().innerText();
+await page.locator('main article.listing button[aria-pressed="false"]').first().click();
+check("saving: the bookmark is pressed and the menu counts one", (await page.locator('main article.listing button[aria-pressed="true"]').count()) === 1 && /Saved, 1/.test((await page.locator('header a[href="/saved"]').getAttribute("aria-label")) ?? ""));
+await page.goto(`${origin}/saved`, { waitUntil: "networkidle" });
+await page.waitForSelector("main article.listing");
+check("saving: the saved page lists it", (await page.locator("main article.listing h2").first().innerText()) === firstName, firstName);
+await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+await page.locator("main button", { hasText: "Share this list" }).click();
+const copied = await page.evaluate(() => navigator.clipboard.readText());
+check("sharing: a saved list is a link that can be sent", /\/saved\?ids=/.test(copied) && (await page.locator(".toast").innerText()).includes("Link copied"), copied);
+const stranger = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+const other = await stranger.newPage();
+await other.goto(copied, { waitUntil: "networkidle" });
+await other.waitForSelector("main article.listing");
+check("sharing: the link shows the same list to someone else", (await other.locator("main article.listing h2").first().innerText()) === firstName && (await other.locator("main button", { hasText: "Save all" }).count()) === 1);
+await stranger.close();
+
+await page.goto(`${origin}/pricing`, { waitUntil: "domcontentloaded" });
+const plans = await page.locator("main article").allInnerTexts();
+check("plans: free, Rs 550 and Rs 1,250 a month", plans.length === 3 && /Biznes Free/.test(plans[0]) && /Rs 550/.test(plans[1]) && /Rs 1,250/.test(plans[2]));
+
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 const small = await phone.newPage();
-for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/directory", "/tools/verify"]) {
+for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/directory", "/tools/verify", "/pricing", "/saved"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
   const over = await small.evaluate(() => document.documentElement.scrollWidth - innerWidth);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
-check("phone: the four ways in are on show", (await small.locator('header nav[aria-label="Main"] a:visible').count()) === 4);
+check("phone: the five ways in are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").count()) === 5);
 await small.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcontentloaded" });
 check("phone: results have a small chart above them", await small.locator(".chart-strip").first().isVisible());
 await small.goto(`${origin}/learn/vat`, { waitUntil: "domcontentloaded" });
