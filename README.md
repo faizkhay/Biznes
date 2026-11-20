@@ -1,337 +1,270 @@
-# biznes.mu, the website
+# biznes.mu, the search engine
 
-A website for biznes.mu, a Khay Digital Ltd project (Mauritius) that sells ready-to-launch
-businesses: each with its name and identity, its domain, its website and its strategy, sold to one
-owner. One job: turn a visitor into a request about one business.
+A search engine for business in Mauritius: a directory of businesses and services across the
+island, plain guides to starting and running a business with every fact sourced, and the official
+registers to check a business against. Built and run by Khay Digital.
 
-The offer, the contact details and LePalatier come from the owner and from Khay Digital's own
-published facts. The design, the identity of biznes.mu, each listing's look and the copy are Khay
-Digital's, made under the owner's carte blanche. This is the third telling. The owner judged the
-first ("the rail", 16 November 2026) not good enough, chose "the street" from the directions put to
-them on 17 November 2026 and approved its mock-up (`.impeccable/mocks/comp-b-perspective.png`). The
-street was first built as live 3D, which the owner rejected the same day ("3d is shit, i need
-better aesthetic please"). It is now painted.
+The site is built with KOS, Khay Digital's method and standards (`faizkhay/Khay-Original-Skill`).
+Four documents describe this build:
 
-The home page is a street. Every business is a finished shopfront on a Mauritian shop street at
-blue hour: its sign painted and lit, its shutter down, waiting for its one owner. The street is
-five paintings in the style of the approved mock-up, and the scroll moves through four of them: it
-walks one shopfront, LePalatier, from its sign to the room behind its shutter, in eight stops. The
-fifth, the whole terrace front-on, is the list of businesses. Every sign board, plaque, screen and
-paper was painted blank, and what is true is set over the paint in code, from the data: each
-listing's own lettering, its town, its number, a sample's tag. What the data cannot say stays
-blank. Without script the same
-eight stops are plain sections, each with a still of the stage and its words.
+| Document | Says |
+|---|---|
+| `PRODUCT.md` | Who it is for, what it does and does not do, the evidence on hand |
+| `STORY.md` | The one picture the site is built on, and the round that made it |
+| `DESIGN.md` | Every colour, text style and component, with its source and its measured contrast |
+| `REVENUE.md` | How the site can earn, for the owner to decide. Nothing in it is built |
 
-| Stop or section | Where | What it sells |
-| --- | --- | --- |
-| The street | The whole street at an angle, LePalatier's shutter raised over its lit room | What the site is, and where |
-| The sign | Up at the sign, under its two lamps | The name and the identity |
-| The address | The town plaque and the letterbox on the pier | The domain and the social media names |
-| Behind the shutter | Facing the shop: its shutter rolls up on a screen on the back wall | The website |
-| The counter | Close on the counter: the plan, a bound document | The business strategy |
-| The wall | Close on the wall: a frame, its paper still blank | Help with incorporation |
-| The room | The shop whole, its room lit | What stays with the buyer: the room is theirs to fill |
-| The whole street | Further along the street: the five shops beyond the first, the lamp, the afterglow | Each business is sold once |
-| On the street now | Dusk: the terrace of all six shopfronts, front-on, as one painting | The businesses themselves |
-| From the street to opening day | A saffron wall | How a sale runs, in four steps |
-| The line | Dusk | "The sign is painted / The shutter is yours to raise" |
-| Questions people ask | Limewash | Nine answers, and who builds every business |
+It replaces the site that sold ready-made businesses (in the repository's history before commit
+`a7d4ea3`). Its old addresses lead to the directory, the data page and the form.
 
-`STORY.md` has the full story; `PRODUCT.md` has the product truth; `DESIGN.md` has the design
-system.
+## What is in it
 
----
+- **The crawler** (`crawler/`): builds the index from OpenStreetMap, Wikidata, the front page of
+  each business's own website, the member lists of chambers and associations, and the official
+  pages the guides point to.
+- **The index** (`data/index`): 7,179 listings in 273 towns and villages and 69 categories, 217
+  Mauritian websites, 153 official pages. Written by the crawler; never edited by hand.
+- **The search** (`src/lib/search.ts`): one question over listings, guides, official pages and
+  websites. It reads a town and a kind of business out of a question, in English, French or Kreol.
+- **The guides** (`content/guides`): thirteen, with 334 sources between them, checked on 20 November
+  2026. A glossary of 90 terms (`content/glossary.json`) is drawn from them.
+- **The tools**: check a business, a VAT calculator, a comparison of legal structures, the glossary.
+  Each takes its figures from a guide and holds none of its own.
 
 ## Running it
 
-```bash
-npm install
-npm run dev         # http://localhost:3000
-npm run build       # production build, every page prerendered
-npm run start       # serve the production build
-npm run typecheck
-```
-
 Node 20 or newer.
 
-| Query | Effect |
-| --- | --- |
-| `?still` | No smooth scroll, for captures |
-| `?plain` | The stage stays a still picture and the walk stays plain sections, as without script |
-| `?debug` | Lets a script place the stage at a stop exactly (`window.__walk(stop)`), for the stills |
-| `/enquire?business=<slug>` | The request form arrives with that business chosen |
+```
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # the production build
+npm start            # serves it
+```
 
-Other scripts:
+The index is in the repository, so the site runs without crawling first.
 
-| Script | What it does |
-| --- | --- |
-| `npm run wordmarks` | Redraws each listing's lettering as vector outlines into `src/data/wordmarks.ts` |
-| `npm run plates` | Cuts the painted masters (`assets/plates`) into what the site ships: each plate at two widths, the terrace's painted band, one crop per shop from it (cut inside its piers), the first shop's shutter and room. Writes a record beside every file |
-| `node scripts/measure-plates.mjs <plate> <name:x,y> ...` | Finds a blank painted board, plaque or paper on a plate from one point inside it and prints its corners, for `src/data/plates.ts` |
-| `npm run stills` | Captures the stage at each of the eight stops, for a desk and a phone, and the link preview card (`public/og.jpg`). Needs the production server on port 3100. Run it after any change to the stage, the first screen or the list of businesses |
-| `npm run copy`, `npm run tokens` | The house style and the token checks |
-| `npm run contrast` | Measures every colour pair in `scripts/contrast.pairs.json` |
-| `npm run screenshots`, `npm run reveals`, `npm run a11y` | The checks against a production server on port 3100 |
-| `npm run behaviour` | The phone menu, the form end to end, the endpoint, the page without script, the walk live and plain, the shopfronts and the machine-facing files, against the same server |
+## The crawler
+
+```
+npm run crawl                 # everything: the map, Wikidata, the websites, the official pages
+npm run crawl -- --no-web     # the map and Wikidata only; the last crawl of websites is kept
+```
+
+A full run takes about ten minutes. It keeps what it fetched in `.crawl` (not committed), so a
+second run asks only for what has grown old: a day for the map, a week for a web page. Then build
+and deploy: the site reads `data/index` when it starts.
+
+**What it reads, and how it behaves** is in `crawler/config.mjs`, and the site's own `/bot` page
+says the same to anyone who finds it in their server log:
+
+- One page a site: the front page. On the sixteen hubs in `crawler/seeds.mjs` (chambers,
+  associations, regulators), also up to 24 of their own pages that list members.
+- robots.txt is read first and obeyed. A site whose robots.txt cannot be read is left alone.
+- At least 1.5 seconds between two requests to one site; a site's own crawl delay is honoured.
+- HTML only, the first 900 KB, a 15 second limit. No forms, no logins, no scripts run.
+- It takes a page's title, its own description, its language, what it declares in schema.org
+  markup, a telephone link and its social profiles. **It never takes an email address.**
+- A site found by a link is visited if its address ends in `.mu`, or if a hub named it. It is kept
+  only if its address ends in `.mu` or its own page says it is in Mauritius.
+
+**How it names itself.** Set two variables once the site is live and `/bot` can be read:
+
+```
+CRAWLER_USER_AGENT="BiznesBot/1.0 (+https://biznes.mu/bot)"
+CRAWLER_ROBOTS_TOKEN="BiznesBot"
+```
+
+Without them it says only that it is a directory crawler, which is how the runs in this repository
+were made. A crawler should say who it is: set them before the first run from your own machine.
+
+**Adding a source.** A new kind of business is a row in `crawler/taxonomy.mjs`. A new hub is a line
+in `crawler/seeds.mjs`. A new source of listings is a file in `crawler/sources` that returns
+listings in the shape `crawler/build.mjs` reads.
+
+**How often.** Not decided. The map changes daily; once a week is a sensible start. It can run on
+any machine with Node, or on a schedule in CI that commits `data/index`.
 
 ## Deploying
 
-Vercel: import the repository and accept the defaults. Every page is prerendered; only
-`/api/enquiry` runs on a server.
+The search, the paged lists and the form need a server, so this is not a static export. It runs on
+any Node host; on Vercel it needs no configuration. `next.config.ts` makes sure `data/index` and
+`content` travel with the server.
 
-| Variable | What it does |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | The address the site is served from (`https://biznes.mu`), for canonical links, the sitemap and link previews. On Vercel it falls back to the project's production address. |
+| Variable | For |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | The site's own address, for canonical links, the sitemap and structured data |
+| `ENQUIRY_WEBHOOK_URL` | Where the form's requests are posted, as JSON |
+| `RESEND_API_KEY`, `ENQUIRY_TO`, `ENQUIRY_FROM` | Or: email them through Resend |
 
 ### Before the site can be found
 
-`launched` in `src/data/site.ts` is `false`. While it is, every page asks not to be indexed and
-`robots.txt` closes the site, because five of the six listings are samples. Set it to `true` once
-the samples are replaced or removed.
+`launched` in `src/data/site.ts` is `false`. While it is, every page asks search engines not to
+index it and `robots.txt` closes the site. Set it to `true` when the confirm list below is closed.
+The results of a search are never indexed, launched or not.
 
 ### Where requests go
 
-| Variable | Route |
-| --- | --- |
-| `ENQUIRY_WEBHOOK_URL` | POST the request as JSON (Zapier, Make, a CRM, an Apps Script). Takes precedence. |
-| `RESEND_API_KEY` | Email it with Resend to `ENQUIRY_TO`, from `ENQUIRY_FROM`. |
-
-**With neither set, the form cannot deliver.** In production it then answers 503 and the form says
-so, giving the phone, WhatsApp and email instead. In development the request is written to the
-server log. Choose a route before launch. The rate limit (5 requests per connection per 10 minutes)
-lives in memory, so it is per server instance.
+The form at `/add` (add a business, correct a listing, remove one) delivers by the first route
+configured: a webhook, or email through Resend. With neither set, a production server refuses the
+request and the form offers the telephone, WhatsApp and email instead. No request is lost quietly.
+Choose a route before launch.
 
 ## Where the content lives
 
-Everything the owner will want to change is data, not markup.
+Everything the owner will change is data. No fact is written into a component.
 
-| File | Contains |
-| --- | --- |
-| `src/data/site.ts` | The name, the line, the contact routes, the builder's facts, `launched`, `showPrices`, the navigation and the action labels |
-| `src/data/businesses.ts` | The businesses: number, name, sector, places, price, status, the idea, the brand's colours, what the buyer brings |
-| `src/data/pack.ts` | The six things every business comes with, the four steps, what stays with the buyer, the tagline, the questions |
-| `src/data/walk.ts` | The eight stops of the walk: where the visitor stands, the heading and the line at each |
-| `src/components/stage/views.ts` | What the stage shows at each stop: which painting, which part of it and where, for a desk and for a phone |
-| `src/data/plates.ts` | The paintings, and where each blank board, plaque and shutter stands on them. Measured, not guessed |
-| `src/data/wordmarks.ts` | Generated: each listing's lettering as outlines. Never edited by hand |
+| To change | Edit |
+|---|---|
+| The site's name, line, contact details, the header's pages, the first screen's example searches | `src/data/site.ts` |
+| A listing | Its source (OpenStreetMap, Wikidata, the business's own site), then `npm run crawl`. Or the crawler |
+| The categories, and the words each answers to in English, French and Kreol | `crawler/taxonomy.mjs`, then `npm run crawl` |
+| A guide | Its file in `content/guides`, and its `checked` date |
+| The glossary | `content/glossary.json` |
+| The tools' names and descriptions | `src/lib/tools.ts` |
+| A figure a tool uses | The guide it reads it from. A tool holds none |
+| The crawler's rules | `crawler/config.mjs`, `crawler/seeds.mjs` |
 
-To add a business: add an entry to `BUSINESSES` in `src/data/businesses.ts`, add its lettering to
-`MARKS` in `scripts/make-wordmarks.mjs`, run `npm run wordmarks`, and add its two colours to
-`scripts/contrast.pairs.json`. The catalogue, its page, the form, the sitemap, the structured data
-and `llms.txt` pick it up. A business without lettering fails the build.
-
-The paintings show six shopfronts, one for each listing in `PAINTED` (`src/data/plates.ts`), in
-order. A listing that replaces one of the six takes over that shopfront: change its slug in
-`PAINTED` and in `SHOPS` (`scripts/prepare-plates.mjs`), run `npm run plates` and `npm run stills`,
-and its own lettering is on the sign and its number on the plaque. Its wall keeps the painted colour, so choose the shop whose
-colour suits it, or have that shop repainted. A seventh listing has no painted shopfront: it is
-drawn in code instead (`DrawnShopfront.tsx`) wherever one business is shown, and the painted
-street does not show it until the street is repainted.
-
-To mark one sold: set its `status` to `"sold"`. It leaves the street, the catalogue, the form and
-the sitemap. To hide every price: set `showPrices` to `false`.
+A guide is one JSON file: a title, a summary, the day it was checked, facts, sections of blocks
+(paragraph, list, steps, table, note), its sources, the pages to go to next, and what it could not
+confirm. Every fact and block names the sources it was written from, by id. The site shows those
+as numbered marks.
 
 ### Where it came from
 
-| Source | What it gave |
-| --- | --- |
-| The owner, in conversation, 15 to 17 November 2026 | The offer and its six parts, LePalatier (a restaurant and café, for Moka, Grand Baie or Tamarin, proposed at 350k), the request for five samples, carte blanche on creative direction; on 17 November the choice of "the street" and of mock-up B, and then the rejection of the 3D built from it |
-| The approved mock-up, `.impeccable/mocks/comp-b-perspective.png` (generated 17 November 2026; its prompt is beside it) | The composition of the first screen, the palette (every colour was sampled from it by region, `scripts/sample-comp.mjs`) and the measure of the first words |
-| Five painted plates in `assets/plates` (generated 17 November 2026 with the owner's mock-ups as their references; each has its prompt and its record beside it) | Every picture of the street: the street at an angle, the first shop open, the document on the counter, the certificate's frame, the terrace |
-| https://www.khay.digital/llms.txt, read 16 November 2026 | Khay Digital's legal name, BRN, founding date, founder, belief, phone, email and hours |
-| Open-licence typefaces (SIL OFL 1.1), from `@fontsource` | The outlines of the six wordmarks: Cormorant Garamond, Fredoka, Jost, Playfair Display, Barlow Condensed, Outfit |
-| Barlow Condensed (SIL OFL 1.1), in `src/fonts`, and Geist (SIL OFL 1.1), from the `geist` package | The site's own type |
+| Part | Source | Licence or basis | When |
+|---|---|---|---|
+| Listings: names, places, addresses, telephone numbers, websites, hours | OpenStreetMap, the Mauritius extract from download.openstreetmap.fr | Open Database Licence 1.0; credited on every page | Map as of 17 November 2026 |
+| The coast, the districts, the council areas, the towns | The same | The same | The same |
+| A company's description, founding year, industry, exchange | Wikidata | CC0 1.0 | 20 November 2026 |
+| A business's own description; a telephone number where the map had none | Its own front page, read by the crawler | Its own words, shown as such and linked | 20 November 2026 |
+| Mauritian websites | Found by following links from listings' sites and from sixteen hubs | Each site's own title and description | 20 November 2026 |
+| The guides | Official pages and Acts, listed in each guide | Written for this site from sources read one by one | 20 November 2026 |
+| The glossary | The guides | Each meaning checked against the guide it names | 20 November 2026 |
+| Market figures in `REVENUE.md` | `content/market.json`, each with its page | Read on 20 November 2026 | |
+| Colours | biznes.mu's approved mock-up of 17 November 2026 | Sampled; see `DESIGN.md` | |
+| Typefaces | Archivo, Geist, Geist Mono | SIL OFL 1.1; `src/fonts` and the `geist` package | |
 
-There are no photographs, no testimonials and no figures on the site, because none exist yet. The
-pictures of the street are generated illustrations, not photographs of a real place, and every
-file says so in the record beside it. They were painted with every sign, plaque, screen and paper
-blank: the lettering, the towns, the numbers and the tags a visitor sees on them are set in code,
-from the data. The certificate's paper is left blank, because the company is the owner's to
-register.
-The stills (`public/img/walk`) and the link preview card (`public/og.jpg`) are captures of this
-site's own stage.
+The last crawl visited 800 websites: 605 were read, 17 were left alone because their robots.txt
+asked, and 166 did not answer. Many of the 166 are the fault of the line the crawl ran on, not of
+the sites, so nothing is said about them on the site. Only a site that itself answered "not found"
+is noted on its listing (21 of them).
 
-Image generation cost 29.25 Higgsfield credits in all: 8.25 for the three mock-ups the owner chose
-from, 18.25 for the five painted plates (three at 4K, two at 2K), and 2.75 for a sky painted for
-the 3D street, which the painted street has no use for and which was removed with it.
+`data/index` is derived from OpenStreetMap, so it is itself under the Open Database Licence:
+`data/README.md` says so. There are no photographs and no generated pictures on the site.
+
+**How the guides were researched.** Four researchers worked in parallel to one brief: nothing from
+memory; every figure confirmed on a page actually read; official sources first; a professional
+firm's summary only as a cross-check, and labelled; anything that could not be confirmed listed
+under "unverified" and left out of the prose; the period stated on every figure. Where an official
+page and the Act disagreed, the guide follows the Act and says so in a note.
 
 ### To confirm with the owner before launch
 
-1. **The five samples.** Lakrem, Souffle, Bouké, Larout and Kazprop are placeholders: their names,
-   looks and prices are invented for this build and marked "Sample". Replace each with a
-   real business or remove it, then set `launched` to `true`.
-2. **LePalatier's price. A launch blocker.** MUR 350,000 is the figure proposed in conversation, and
-   the site shows it as the price. Confirm it and say whether VAT applies before `launched` is set;
-   nothing on the site mentions VAT. Until then `showPrices` hides every price in one switch.
-3. **LePalatier's look.** Bordeaux, ivory and brass, in Cormorant Garamond, is Khay Digital's first
-   direction. Confirm it or replace it; the page says "already made".
-4. **The domains.** None of `lepalatier.mu`, `lakrem.mu`, `souffle.mu`, `bouke.mu`, `larout.mu` or
-   `kazprop.mu` resolved on 16 November 2026, so the site prints no domain for any business.
-   Register `lepalatier.mu`, then add `domain` to its entry.
-5. **The social media names.** The site says they are "secured for the brand". Instagram's terms do
-   not allow an account or its username to be sold or transferred. Decide how the names are handed
-   over, and keep the wording within it.
-6. **A trademark filing.** It is not among the six things, because it was Khay Digital's advice and
-   not part of the owner's list. Adding it is one entry in `INCLUDED`.
-7. **Where requests go.** No delivery route is set, so the form refuses and offers the other routes.
-   Choose the webhook or Resend.
-8. **The contact routes.** The phone, WhatsApp, email and hours are Khay Digital's own. Confirm they
-   are right for biznes.mu, or give its own.
-9. **How a business is paid for and held, and how long the handover takes.** The site says only
-   "once you have paid". Whether a deposit holds a business, how payment is taken and how long
-   the handover takes are what a buyer asks next; each answer belongs in `FAQS`. Until something
-   holds a business, its action is "Ask about this business", not "Reserve".
-10. **Help with incorporation.** The site promises help. Whether offering it as a paid service needs
-    its own registration was not confirmed; a company secretary or accountant can answer.
-11. **The tagline.** "The sign is painted / The shutter is yours to raise" was written by Khay
-    Digital. Confirm it or give the line.
-12. **The privacy notice.** It is new and describes only what this site does. Approve it.
-13. **Analytics.** There are none. If a provider is chosen, the privacy notice must say so.
-14. **Sold once, yours once paid, and the care plan.** The site says each business is sold once, to
-    one owner; that the brand is the buyer's in full once paid for; and that a Khay Digital care
-    plan can follow. The first was proposed to the owner in conversation and built on; the second
-    is Khay Digital's rule for a website; the third is its published service. Confirm all three as
-    terms of this offer.
-15. **The street as a picture of Mauritius.** The paintings were generated from the approved
-    mock-up: tin roofs, the cut fringe under them (the lambrequin), enamel plaques, plastered
-    walls. A local eye should confirm they read as home, not as a postcard, and that nothing in
-    them is wrong for the island.
-16. **The Kreol in the samples' notes.** "Lakrem", "larout", "kaz" and "prop" are glossed in English
-    on the samples' pages. A native reading should confirm each before any becomes a real listing.
-17. **The paintings as the site's pictures.** They are generated illustrations. Each file's record
-    says so, and the footer of every page says the shopfronts are illustrations and that a business
-    comes without premises (`pictures` in `src/data/site.ts`). Say whether that wording suits
-    biznes.mu. A commissioned illustrator could repaint the same plates later: the code only needs
-    the blanks in the same places.
-18. **Each sample's shopfront colour.** The painted walls follow the samples' first colours
-    (amber, teal, coral, lagoon, sky). When a real business replaces a sample, its shopfront may
-    want repainting in its own colour.
+1. **The guides are general information written from sources, not checked by a practitioner.** Have
+   a qualified accountant read the tax, VAT and employment guides, and a lawyer the company, data
+   protection and immigration ones, before `launched` is set to `true`. Each guide lists what it
+   could not confirm: 128 points across the thirteen, shown on each guide's page.
+2. **Several official sites could not be read from the build machine**: the Financial Services
+   Commission (it refuses automated readers), the Bank of Mauritius, the Budget site, the
+   Construction Industry Authority. The global business guide has only ten sources for that reason,
+   and the registers of those bodies are missing from "Check a business". Read them by hand and add
+   them.
+3. **Rules change with each Finance Act.** The guides state the position on 20 November 2026, after
+   the Finance Act 2026. Decide who re-reads them and when.
+4. **Contact details** are Khay Digital's own (+230 5450 8600, faiz@khay.digital). Does biznes.mu
+   get its own?
+5. **Where requests go**: a webhook or an email address.
+6. **The crawler's name**: "BiznesBot" is proposed. Set the two variables before crawling from your
+   own machine.
+7. **How often the crawl runs, and where.**
+8. **Who answers a request to correct or remove a listing, and how fast.** The site promises a
+   person reads every one.
+9. **Privacy**: the page says the site sets no cookies and runs no analytics. If counting visits is
+   added (`REVENUE.md` asks for it), the page must change first.
+10. **The line**: "The search engine for business in Mauritius" is the owner's phrase, tidied.
+11. **The category names**, and the French and Kreol words each answers to, were written by Khay
+    Digital. A Kreol speaker should read `crawler/taxonomy.mjs`.
 
-## The brand
+## The design
 
-biznes.mu had no earlier material to sample. Its identity now comes from the mock-up the owner
-approved: every colour was measured from it, and each carries its contrast in `DESIGN.md`.
-
-| Token | Value | Where it came from | Use |
-| --- | --- | --- | --- |
-| `dusk` | `#0e328f` | Sampled: the sky behind the headline | The page's ground |
-| `dusk-deep` | `#082478` | Sampled: the navigation band | The header, the footer |
-| `saffron` | `#f8c618` | Sampled: the pill buttons | The one filled action; the ground of one whole section |
-| `saffron-deep` | `#e3b30d` | Derived from saffron | The action on hover and press |
-| `limewash` | `#f7f7f8` | Sampled: the white lettering | Words on dusk; the ground of reading sections |
-| `ink` | `#0a1639` | Sampled: the dark text on the pills | Words on saffron and on limewash |
-| `haze` | `#b6c0db` | Derived from limewash toward dusk | Secondary words on dusk |
-| `coral` | `#f14949` | Sampled: the shade under the headline | The shade under the hero's capitals. Never words |
-| `enamel` | `#0b2b8e` | Sampled: the second blue of the mock-up's sky | A plaque's plate, and a card on the walk |
-
-Barlow Condensed speaks the way a painted sign does: headings, plaques, prices. Geist carries every
-sentence. The signature shapes are the shopfront with its roller shutter, the enamel plaque, and
-the lambrequin, the cut fringe under a tin roof, which hangs wherever one ground gives way to the
-next.
-Each listing wears its own wall, sign and lettering, from the data. The design system, with every
-token and its contrast: `DESIGN.md`.
+The night chart: the island drawn only by what is listed on it, each listing a point of light at
+its own place, and saffron for whatever answers a question. `DESIGN.md` has every token; `STORY.md`
+says why.
 
 ## Pages
 
-| Route | What |
-| --- | --- |
-| `/` | The walk through the painted street, the painted terrace of businesses, the steps, the line, the questions |
-| `/businesses` | The street as a catalogue: six painted shopfronts |
-| `/businesses/[slug]` | One business: its painted shopfront (a real one's stands open, a sample's shut and tagged), its brand, what it is, what comes with it, what the buyer brings |
-| `/how-it-works` | The four steps and the questions |
-| `/enquire` | The request form and the direct routes |
-| `/privacy` | The privacy notice |
-| `/api/enquiry` | The form's endpoint |
-
-Plus `sitemap.xml`, `robots.txt`, `llms.txt`, the icon and the 404.
+| Address | What it is | Made |
+|---|---|---|
+| `/` | The search, the chart, the whole directory as an index | Ahead of time |
+| `/search?q=` | Results: guides, listings, official pages, websites | On each request |
+| `/b/[slug]` | One listing, and where each part of it came from | The first time it is asked for, then kept |
+| `/directory`, `/directory/[cat]`, `/directory/[cat]/[place]` | The directory by category, and a category in a town | Ahead; on request |
+| `/places`, `/places/[place]` | The directory by town | Ahead; on request |
+| `/learn`, `/learn/[slug]`, `/learn/glossary` | The guides and the glossary | Ahead of time |
+| `/tools`, `/tools/verify`, `/tools/vat`, `/tools/structures` | The tools | Ahead of time |
+| `/official` | The official pages the guides point to | Ahead of time |
+| `/data`, `/bot`, `/privacy` | The sources and licences, the crawler's rules, privacy | Ahead of time |
+| `/add` | Add a business, correct a listing, remove one | On each request |
+| `/api/suggest`, `/points.json`, `/api/enquiry` | Suggestions, the chart's points, the form | |
+| `/robots.txt`, `/sitemap.xml`, `/llms.txt` | For machines | Ahead of time |
 
 ## Verification
 
-Run on 17 November 2026 against `next start` on port 3100, on the painted build, after the design
-review's fixes.
+Run on 20 November 2026 against a production build served on port 3100.
 
-- TypeScript strict and the production build: clean. Every page prerendered except `/api/enquiry`.
-- `npm run copy`: 0 fail, 0 warn. `npm run tokens`: 0 fail, 1 warn (the one italic, the headline's
-  slant, which is the brand's one italic device and is set in a face with a true italic).
-- `npm run contrast`: every pair passes for its role (the table is in `DESIGN.md`). White words on
-  the painted sky were measured on the plate: 4.61:1 or better above 0.55 of its height, as little
-  as 3.09:1 on the afterglow below it, so the first screen's sentences are held above that line.
-- `npm run screenshots`: nine page kinds (the home page live and plain) at 1440 x 900 and
-  390 x 844, no horizontal overflow, no page errors. The stitched pages are in `review/screens`,
-  and were read.
-- `npm run reveals`, with motion on: every reveal fired on every page at both sizes.
-- `npm run a11y`: axe-core against WCAG 2.2 A/AA, every page kind at both sizes, clean.
-- `npm run behaviour`: 42 of 42. The skip link, the phone menu as a dialog, the form end to end, the
-  endpoint (422, 503, 429, the honeypot, no samples), the page without script, and the
-  machine-facing files before launch. For the painted street: the walk goes live and holds its
-  plates; the street carries six signs and five sample tags; the walk starts at its first stop and
-  reaches its last; after a jump to the walk's end the stage is never empty (sampled for four
-  seconds); nothing throws; with `?plain` the walk stays plain, every stop showing its still and
-  its words; without script the walk is eight plain sections; with reduced motion on a phone the
-  headline is on the first screen; a real business's page shows its shop open on its own plate; a
-  sample's page shows its shopfront shut and tagged with no shutter to raise; in the catalogue a
-  real business's shutter rests down and rises when pointed at. The states it met are saved in
-  `review/screens/states`. Restart the server between runs: the endpoint's limit is per
-  connection, per ten minutes.
-- The first words' fit was measured at eight sizes with motion on and with reduced motion: the
-  same headline at each. (It had differed: under reduced motion a size set in script did not read
-  back in the same moment, so the fit measured the step before. Found while `DESIGN.md` was being
-  recorded.)
-- The walk was read at every stop, live, at 1440 x 900 and 390 x 844, and the first screen at
-  fifteen sizes from 360 x 640 to 3440 x 1440: at each the words stand in the sky, clear of the
-  roofs.
-- Against the approved mock-up, at the mock-up's own size (`.impeccable/review/diff/final`): the
-  first screen measures 71.7 per cent, and the street itself 76.2, where the 3D measured 51.
-  impeccable's plates gate, which the 3D could not pass, passes. Its first-screen gate asks for
-  72, a hair more, and the refusal it records is another matter: it looks for the plate's own file
-  named in the page's source, and the site ships that plate as WebP cut from it by
-  `npm run plates`. No override was made, so that phase stays open in
-  `.impeccable/build/state.json`. It closes on the owner's word: that the first screen is
-  accepted as built.
-- Every raster carries a record of where it came from: 46 of 46 across `public` and `assets`.
-- A fresh agent reviewed the painted build and found for it on the two questions that mattered:
-  it reproduces the approved mock-up in medium, composition, light and lettering, and it is
-  honest. It answered "fix" with eight points. Its verdict pass scored six resolved and two
-  partial; the first of those (a roof post's head left on five shop pictures) is fixed since and
-  measured (no pixel above any roof line), and the second is the build record above, which is the
-  owner's to close. `STORY.md`, "The design review, painted street", has each point; the review
-  is `.impeccable/review/finish-review-painted.md`.
-- `npm run design`: `DESIGN.md` lints with 0 errors and 0 warnings, and its sections check clean.
-- Not yet run: any phone or tablet in the hand; a keyboard pass by hand on a real device; a screen
-  reader; Lighthouse. The dissolve from one painting to the next was judged from captures at rest,
-  not as it moves. Hover and pressed states were read in code and, for the shutter, measured; they
-  were not captured. No old addresses exist to redirect.
+| Check | Command | Result |
+|---|---|---|
+| Types | `npm run typecheck` | Clean |
+| Build | `npm run build` | Clean |
+| House style | `npm run copy` | 0 failures. Warnings are source titles quoted as their sites write them |
+| Tokens | `npm run tokens` | 0 failures, 1 warning (a one-pixel offset on the guide's contents rail) |
+| Contrast | `npm run contrast` | 18 pairs: every text pair passes AA for body text, every edge 3:1 |
+| Design record | `npm run design` | 0 errors, 3 warnings (line colours the format cannot attach to a component) |
+| Behaviour | `npm run behaviour` | 57 of 57 |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on 24 kinds of page at 1440 by 900 and 390 by 844 |
+| Captures | `npm run screenshots` | 24 kinds of page at both sizes: no page wider than its screen, no page errors |
+
+The behaviour check starts the form's own receiver, so the form is tested end to end. Serve the
+build for it like this:
+
+```
+npm run build
+ENQUIRY_WEBHOOK_URL=http://127.0.0.1:3199/hook npx next start -p 3100 &
+npm run behaviour && npm run a11y && npm run screenshots
+```
+
+What the behaviour check covers: the chart going live; suggestions and their keyboard; a question
+read as a kind and a town, in Kreol, in French, and by one half of a town of two names; a tax
+question answered by a guide first; nothing found; a second page; a listing reached by its id, its
+sources, its telephone link and its structured data; the four old addresses; robots, the sitemap
+and llms.txt; a guide's citations; the VAT sums; the two tools drawn from guides; the form's
+errors, its delivery, its honeypot and its rate limit; the site with no script; and six pages on a
+phone.
+
+Captures of six kinds of page are kept in `review/screens`. The rest are made again by the command.
+
+**Not run, and why:**
+
+- **A reading by a practitioner.** The first item on the confirm list. This is the gap that matters.
+- **Speed measurements** (Lighthouse, real devices on a mobile network). Not run in this session.
+- **A screen reader, by ear.** axe-core passes; nobody has listened to it.
+- **Real phones in daylight.** The contrast is high by measurement; it has not been looked at
+  outdoors.
+- **The crawler under its own name.** Every run so far used the generic name.
+- **A crawl from a normal connection.** The build machine reaches the web through a proxy that
+  dropped many connections, which is why 166 sites "did not answer".
 
 ## Known gaps
 
-1. English only. French and Kreol are not built; the routes are not yet under a language folder.
-2. The paintings are generated illustrations. They follow the approved mock-up, and nothing on
-   them is lettered by the generator; but a painting's small details (a bracket, a fretwork tooth)
-   were not drawn by a hand that knows the island. The terrace and the street are two paintings
-   of the same six shops and differ in small things: the first shop stands at the left of one and
-   the right of the other, and a sign board's corners are cut differently.
-3. The home page loads about 2 MB of paintings at their full size: the street first (730 KB), the
-   others once it has drawn, the terrace as it comes into view. A phone at 1x was measured at
-   967 KB for the walk; a phone at 3x takes the full files, because a stop that goes close needs
-   them.
-4. The stills and the link preview card do not rebuild themselves: after a change to the stage,
-   the first screen or the list of businesses, run `npm run stills`.
-5. The street is painted with six shops. A seventh business is drawn in code where it is shown by
-   itself and is not on the painted street or terrace until they are repainted. A sold business
-   leaves the list, and its shop stands in the paintings with its sign blank; if it is LePalatier,
-   the walk goes into a blank shop until the walk is retold for another business.
-6. The piers of the painted terrace stand on its party walls, so a shop shown by itself is cut
-   inside its piers and has none.
-7. On a very wide screen (21:9) the sky above the roofs is small, and the headline steps down to
-   fit it; there the first words stand at the screen's left edge while the header stays centred.
-8. The enquiry form needs script. Without it the page says so and gives the phone, WhatsApp and
-   email.
-9. The link preview card is one card for every page; a business has no card of its own.
-10. There is no security policy for content (CSP) yet; the other security headers are set in
-    `next.config.ts`.
-11. The request form has no confirmation email to the visitor.
-12. What `DESIGN.md` found in the build and left as it is, is listed under its "Known Gaps".
-
----
-
-A Digital Experience by **Khay Digital**.
+- **Coverage is what the open map holds**: fullest for shops, food, places to stay and public
+  services; thin for offices and trades. Only 525 listings have a telephone number and 425 a
+  website. The registry counts 126,453 live entities; the index holds 7,179 listings.
+- **No French or Kreol pages.** A question in either is understood.
+- **No accounts**: a business cannot claim and edit its own listing. It asks through the form.
+- **No light palette**, no link preview picture, and the chart cannot be explored (`DESIGN.md`,
+  "Known Gaps").
+- **"Open now" is not offered.** Hours are shown as the map holds them, for 355 listings.
+- **A listing's website is checked only at its front page.**
+- **The search has no memory of what people ask**, so nothing yet says which searches find nothing.
+- **Names are shown as the map writes them**, capitals and all.

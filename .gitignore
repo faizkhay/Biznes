@@ -7,8 +7,17 @@ next-env.d.ts
 .DS_Store
 contrast.json
 
-# The viewport slices are working files; the stitched pages in review/screens are the evidence.
-review/screens/slices/
+# Captures are made again by `npm run screenshots`. Six kinds of page are kept as the record of how
+# the site looked when it was checked; the rest, and the viewport slices, are working files.
+review/screens/*
+!review/screens/home-*.jpg
+!review/screens/search-desktop.jpg
+!review/screens/search-mobile.jpg
+!review/screens/listing-*.jpg
+!review/screens/category-desktop.jpg
+!review/screens/category-mobile.jpg
+!review/screens/guide-*.jpg
+!review/screens/tool-vat-*.jpg
 
 # Helpers for one session's checks.
 scripts/_*

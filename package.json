@@ -9,7 +9,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "crawl": "node crawler/run.mjs",
-    "screenshots": "node scripts/screenshots.mjs",
+    "screenshots": "node scripts/screenshots.mjs && node scripts/shrink-screens.mjs",
     "a11y": "node scripts/a11y.mjs",
     "behaviour": "node scripts/behaviour.mjs",
     "copy": "node scripts/check-copy.mjs src crawler content README.md PRODUCT.md STORY.md DESIGN.md REVENUE.md",
