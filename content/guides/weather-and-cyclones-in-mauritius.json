@@ -1,0 +1,620 @@
+{
+  "slug": "weather-and-cyclones-in-mauritius",
+  "shelf": "mauritius",
+  "title": "Weather, seasons and cyclones in Mauritius",
+  "summary": "The climate of Mauritius in the figures of the Mauritius Meteorological Services: the two seasons, temperature and rainfall, the cyclone season, what each cyclone warning class means and what to do, the heavy rain and torrential rain warnings, and where bulletins are published. Checked on 20 November 2026.",
+  "audience": "Anyone who lives in Mauritius or is planning a visit and wants to know what the weather does and what a warning means.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Summer",
+      "value": "November to April",
+      "detail": "Warm and humid. May and October are transition months.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Winter",
+      "value": "June to September",
+      "detail": "Relatively cool and dry.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Mean temperature",
+      "value": "24.7 °C in summer, 20.4 °C in winter",
+      "detail": "Average day maximum of 29.2 °C in January and February. Average night minimum of 16.4 °C in July and August.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Rain in a year",
+      "value": "2,019 mm",
+      "detail": "Long-term mean for 1991 to 2020: 1,352 mm in summer and 668 mm in winter.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Wettest and driest months",
+      "value": "February, 322 mm. October, 75 mm",
+      "detail": "Monthly means for 1991 to 2020.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Cyclone season",
+      "value": "1 November to 15 May",
+      "detail": "The official season. Storms may also form outside it.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Named storms expected in 2026 to 2027",
+      "value": "Five to seven",
+      "detail": "In the South West Indian Ocean basin, in the seasonal outlook of 27 October 2026.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Cyclone warning class I",
+      "value": "36 to 48 hours before gusts of 120 km/h",
+      "detail": "Class IV means gusts of 120 km/h have been recorded in some places and are expected to continue.",
+      "sources": [
+        "S5",
+        "S9"
+      ]
+    },
+    {
+      "label": "Torrential rain warning",
+      "value": "100 mm of rain in a region",
+      "detail": "Reached, or likely to be reached within the next hour, with the rain expected to continue.",
+      "sources": [
+        "S7",
+        "S9"
+      ]
+    },
+    {
+      "label": "Heavy rain",
+      "value": "25 mm in 30 minutes",
+      "detail": "The definition in the Warnings Regulations 2023. A heavy rain watch is issued 12 to 24 hours ahead.",
+      "sources": [
+        "S9"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What is the weather like in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius has a mild tropical maritime climate all year. The Mauritius Meteorological Services describe two seasons: a warm, humid summer from November to April and a relatively cool, dry winter from June to September. May and October are transition months. Most rain falls in summer, though there is no marked rainy season.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The mean temperature is 24.7 degrees Celsius in summer and 20.4 degrees in winter, a difference of 4.3 degrees. January and February are the warmest months, with average day maximums of 29.2 degrees. July and August are the coolest, when average night minimums fall to 16.4 degrees.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The island gets about 6.5 to more than 8 hours of bright sunshine a day. The coast is sunnier than the high ground. In winter the Central Plateau gets about 5 hours a day and the coast more than 7.5.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How much does it rain in Mauritius, and when?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Averaged over 1991 to 2020, Mauritius receives 2,019 mm of rain a year: 1,352 mm in summer and 668 mm in winter. February is the wettest month and October the driest.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Month",
+            "Mean rainfall, 1991 to 2020"
+          ],
+          "rows": [
+            [
+              "January",
+              "280 mm"
+            ],
+            [
+              "February",
+              "322 mm"
+            ],
+            [
+              "March",
+              "294 mm"
+            ],
+            [
+              "April",
+              "206 mm"
+            ],
+            [
+              "May",
+              "149 mm"
+            ],
+            [
+              "June",
+              "118 mm"
+            ],
+            [
+              "July",
+              "132 mm"
+            ],
+            [
+              "August",
+              "108 mm"
+            ],
+            [
+              "September",
+              "87 mm"
+            ],
+            [
+              "October",
+              "75 mm"
+            ],
+            [
+              "November",
+              "85 mm"
+            ],
+            [
+              "December",
+              "164 mm"
+            ]
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Climate of Mauritius page still quotes the older average for 1971 to 2000: 2,010 mm a year, 67% of it in summer. Thunderstorms occur mostly from December to April.",
+          "sources": [
+            "S1",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Is the weather in Rodrigues different?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rodrigues is warmer and drier. Its mean temperature is 25.9 degrees in summer and about 22.3 degrees in winter. The long-term mean rainfall, measured over 1961 to 2007, is 1,116 mm a year, about 65% of it in summer. February is the wettest month, and September and October are the driest. The trade winds blow all year.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When is cyclone season in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The official cyclone season runs from 1 November to 15 May of the following year. Storms can also form outside those dates. For summer 2026 to 2027 the Meteorological Services expect between five and seven named storms in the South West Indian Ocean basin. The first of the season, Moderate Tropical Storm Agueda, was named by Meteo Madagascar on 20 October 2026. The next names on the 2026 to 2027 list are Bertrand, Celiwe, Dira and Emmie.",
+          "sources": [
+            "S4",
+            "S14"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The same outlook expects about 1,100 mm of summer rain over Mauritius, 80% of the long-term mean, with the summer rains setting in during the last week of November 2026. Temperatures are expected to be above normal. On some days the maximum may reach about 36 degrees along the western coast.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Name of the system",
+            "Average wind speed"
+          ],
+          "rows": [
+            [
+              "Tropical depression",
+              "51 to 62 km/h"
+            ],
+            [
+              "Moderate tropical storm",
+              "63 to 88 km/h"
+            ],
+            [
+              "Severe tropical storm",
+              "89 to 117 km/h"
+            ],
+            [
+              "Tropical cyclone",
+              "118 to 165 km/h"
+            ],
+            [
+              "Intense tropical cyclone",
+              "166 to 212 km/h"
+            ],
+            [
+              "Very intense tropical cyclone",
+              "More than 212 km/h"
+            ]
+          ],
+          "sources": [
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What do the cyclone warning classes mean?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius and Rodrigues use four cyclone warning classes. Each is defined by how soon gusts of 120 km/h are expected, so the class tells you how much time is left to prepare. The rules are set in the Mauritius Meteorological Services (Warnings) Regulations 2023.",
+          "sources": [
+            "S5",
+            "S9"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Class",
+            "When it is issued",
+            "What to do"
+          ],
+          "rows": [
+            [
+              "Class I",
+              "Not less than 36 hours and not more than 48 hours before gusts of 120 km/h",
+              "Make sure your emergency kit is ready. Follow the cyclone bulletins on radio and television. Get ready to secure doors and windows with shutters."
+            ],
+            [
+              "Class II",
+              "So as to allow, as far as practicable, 12 hours of daylight before gusts of 120 km/h",
+              "Check that the kit holds all the essentials. Store enough drinking water. Keep following the bulletins."
+            ],
+            [
+              "Class III",
+              "So as to allow, as far as practicable, 6 hours of daylight before gusts of 120 km/h",
+              "Finish all preparations: fix shutters, secure doors and windows, store loose objects. Shelter domestic animals and secure vehicles. Keep away from places prone to storm surge and flooding. Avoid going out."
+            ],
+            [
+              "Class IV",
+              "When gusts of 120 km/h are recorded in some places and are expected to continue",
+              "Stay inside, in the safest part of the house. Disconnect all electrical appliances. Keep listening to the bulletins and advice."
+            ]
+          ],
+          "sources": [
+            "S5",
+            "S6",
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "After a class III or class IV warning, once the risk of gusts of 120 km/h has passed and the cyclone is moving away, the Meteorological Services issue a safety bulletin. It lifts the warning and tells the public about any severe weather and other risks that remain. A termination bulletin follows, after advice from the National Crisis Committee, when the risks outdoors have considerably decreased. A termination bulletin also ends a class I or class II warning.",
+          "sources": [
+            "S5",
+            "S9",
+            "S13"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Before the season: check that the house can withstand cyclone gusts, trim branches near the house and the power and telephone lines, clear loose objects from the yard and find out where the nearest cyclone refugee centre is.",
+            "If your home is unsafe, leave early for a refugee centre when a class III warning is in force, and take your emergency kit.",
+            "During the eye of the cyclone, do not assume the cyclone is over. The calm is followed by violent winds from the opposite direction.",
+            "Afterwards, stay in shelter until the authorities give the all-clear. Watch for fallen power lines, damaged buildings and flooded rivers. Boil water before drinking it."
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The National Disaster Risk Reduction and Management Centre lists what an emergency kit should hold. It includes a battery radio and a torch with spare batteries, candles and matches, drinking water, a first aid kit, non-perishable food and a can opener, what infants need, blankets and warm clothes, a list of emergency numbers, identity papers and some money.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Under the Public Holidays Act, a day on which a class III warning is in force is treated like a public holiday for two purposes. Bills of exchange that fall due are payable the next day, and acts due before a court or a Government official may be done the next day.",
+          "sources": [
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the heavy rain and torrential rain warnings?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The regulations define heavy rain as at least 25 mm of rain in 30 minutes. A heavy rain watch is a communique issued not less than 12 hours and not more than 24 hours before heavy rain. A heavy rain warning is issued, as far as practicable, between 30 minutes and 6 hours before it.",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A torrential rain warning is issued when observations show that rainfall in a region has reached 100 mm, or is likely to reach 100 mm within the next hour, and the rain is expected to continue. It is repeated at regular intervals on the MBC and private radio stations. As soon as it is in force, the Meteorological Services advise the public as follows.",
+          "sources": [
+            "S7",
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep schoolchildren indoors and do not send them to school.",
+            "Stay away from flooded rivers, streams and overflowing bridges.",
+            "Avoid long trips by vehicle, above all in flood-prone areas. Do not cross flooded bridges or submerged areas on foot or by vehicle.",
+            "In flood-prone areas, secure your belongings. Leave the area if the water keeps rising.",
+            "Keep away from hill and mountain slopes prone to landslides."
+          ],
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Meteorological Services also issue heavy swell warnings, about 12 hours before swells of 4 metres or more are likely, as well as storm surge and strong wind warnings.",
+          "sources": [
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where are weather bulletins published?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Meteorological Services publish forecasts and warnings on their website. It carries the forecast bulletin in English and French, a 7 day forecast, special weather bulletins, torrential rain warning bulletins, and cyclone warning bulletins for Mauritius and for Rodrigues in English, French and Creole. Warnings are also broadcast on radio and television. The forecast office in Vacoas answers on +230 651 5105.",
+          "sources": [
+            "S10",
+            "S11",
+            "S6",
+            "S7"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Climate of Mauritius",
+      "url": "http://metservice.intnet.mu/climate-services/climate-of-mauritius.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Monthly Rainfall Climatology",
+      "url": "http://metservice.intnet.mu/climate-services/monthly-rainfall-climatology.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "Long-term mean 1991 to 2020",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Climate of Rodrigues and Islands",
+      "url": "http://metservice.intnet.mu/climate-services/climate-of-rodrigues-and-islands.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Seasonal Outlook for Summer 2026-2027",
+      "url": "http://metservice.intnet.mu/climate-services/seasonal-climate-forecast.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "27 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Tropical cyclone: Warning System and General Info",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/warning-system.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Tropical cyclone: Precautions",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/precautions.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Torrential rain: Warning System and General Info",
+      "url": "http://metservice.intnet.mu/torrential-rain/torrential-rain-warning-system.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Torrential rain: Precautions",
+      "url": "http://metservice.intnet.mu/torrential-rain/precautions.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Mauritius Meteorological Services (Warnings) Regulations 2023 (Government Notice No. 8 of 2023)",
+      "url": "https://faolex.fao.org/docs/pdf/mat224103.pdf",
+      "publisher": "Government Gazette of Mauritius, copy held in the FAOLEX database of the Food and Agriculture Organization of the United Nations",
+      "published": "14 January 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Mauritius Meteorological Services, home page and list of bulletins",
+      "url": "http://metservice.intnet.mu/",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Contact Us",
+      "url": "http://metservice.intnet.mu/contact-us.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Emergency Kit",
+      "url": "https://ndrrmc.govmu.org/Pages/emergencykit.aspx",
+      "publisher": "National Disaster Risk Reduction and Management Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "National Crisis Committee (NCC)",
+      "url": "https://ndrrmc.govmu.org/Pages/nationalcrisiscommittee.aspx",
+      "publisher": "National Disaster Risk Reduction and Management Centre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Cyclone Names, season 2026-2027",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/cyclone-names.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "3 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Frequently Asked Questions",
+      "url": "http://metservice.intnet.mu/faq/frequently-asked-questions.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Public Holidays Act (Act 22 of 1968)",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/P/Pu/PUBLIC%20HOLIDAYS%20ACT%2c%20No.%2022%20of%201968.pdf",
+      "publisher": "Attorney General's Office, Revised Laws of Mauritius",
+      "published": "Listed among Acts as at 30 June 2017",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Cyclone Warning Bulletin, Mauritius",
+      "url": "http://metservice.intnet.mu/cyclone-bulletin-english-mauritius.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Read the current cyclone bulletin in English when a warning is in force."
+    },
+    {
+      "title": "Current Storm or Cyclone",
+      "url": "http://metservice.intnet.mu/current-cyclone.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "See whether a storm is being tracked and where it is."
+    },
+    {
+      "title": "Forecast Bulletin",
+      "url": "http://metservice.intnet.mu/forecast-bulletin-english-mauritius.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Read today's forecast for Mauritius in English."
+    },
+    {
+      "title": "7 Day Forecast",
+      "url": "http://metservice.intnet.mu/probabilistic-forecast.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Look at the week ahead."
+    },
+    {
+      "title": "Torrential Rain Warning Bulletin",
+      "url": "http://metservice.intnet.mu/warning-bulletin-torrential-rain-warning.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Check whether a torrential rain warning is in force."
+    },
+    {
+      "title": "Special Weather Bulletin",
+      "url": "http://metservice.intnet.mu/warning-bulletin-special-weather.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Read special bulletins, such as those on heavy rain."
+    },
+    {
+      "title": "Seasonal Climate Forecast",
+      "url": "http://metservice.intnet.mu/climate-services/seasonal-climate-forecast.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Read the outlook for the coming summer or winter."
+    },
+    {
+      "title": "Tropical cyclone precautions",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/precautions.php",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Go through the full list of precautions for each warning class."
+    },
+    {
+      "title": "Emergency Kit",
+      "url": "https://ndrrmc.govmu.org/Pages/emergencykit.aspx",
+      "publisher": "National Disaster Risk Reduction and Management Centre",
+      "what": "Check your kit against the official list before the season."
+    },
+    {
+      "title": "Emergency numbers",
+      "url": "/emergency",
+      "publisher": "biznes.mu",
+      "what": "Our page of the numbers to call: police, ambulance, fire, coast guard, electricity and water."
+    },
+    {
+      "title": "Visiting Mauritius",
+      "url": "/learn/visiting-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for visitors, to read with the seasons in mind."
+    },
+    {
+      "title": "Household bills and services",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to electricity, water and the other services a storm can interrupt."
+    }
+  ],
+  "unverified": [
+    "Climate figures by region. The Meteorological Services give them in separate files for the West, North, East, South and Centre, which were not read. This article gives island-wide averages only.",
+    "The highest and lowest temperatures on record, and sea temperatures. No page read on 20 November 2026 gave them.",
+    "The weather telephone lines 171 and 96. The Mauritius Tourism Promotion Authority lists them, but the contact page of the Meteorological Services does not, so they were left out.",
+    "The list and addresses of emergency shelters. The shelters page of the National Disaster Risk Reduction and Management Centre showed no list.",
+    "When schools close in heavy rain. The Ministry of Education's own protocol was not found. The Meteorological Services only advise keeping children at home once a torrential rain warning is in force.",
+    "Whether the warning rules have changed since the Regulations of 2023. The copy read is the text as gazetted on 14 January 2023, and the web pages of the Meteorological Services agree with it for cyclones and torrential rain.",
+    "Whether section 6 of the Public Holidays Act, on class III warning days, has been amended. The copy read is in the Attorney General's list of Acts as at 30 June 2017."
+  ]
+}

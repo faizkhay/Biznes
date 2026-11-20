@@ -52,7 +52,7 @@ export default function ShopPage() {
                 </Link>
                 <span className="heading-3 tabular">{p.price ? `Rs ${count(p.price)}` : "Price to be announced"}</span>
               </p>
-              <p className="caption-1 mt-3 max-w-prose text-ink-faint">Paying online is not open yet. Ask for the guide and we will send it and tell you how to pay.</p>
+              <p className="caption-1 mt-3 max-w-prose text-ink-faint">Paying online is not open yet. Ask for the guide and we will send it and tell you how to pay. More guides are being made, and a bundle of them all will cost less than buying each.</p>
               <h3 className="heading-3 mt-12">A look inside</h3>
               <div className="mt-4 grid max-w-xl grid-cols-2 gap-4">
                 {["opener", "sample"].map((name) => (

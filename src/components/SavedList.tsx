@@ -7,6 +7,8 @@ import { clearSaved, saveAll, useReady, useSaved } from "@/lib/saved";
 import { Bookmark, Globe, GroupIcon, Phone } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
 
+const ROWS_KEY = "biznes:saved-rows";
+
 type Row = { id: string; slug: string; name: string; group?: string; what: string; phone?: string; web?: string };
 
 /**
@@ -18,6 +20,7 @@ export default function SavedList({ shared }: { shared?: string[] }) {
   const mine = useSaved();
   const ids = shared ?? mine;
   const key = ids.join(",");
+  const sent = shared !== undefined;
   const [rows, setRows] = useState<Row[] | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -29,12 +32,33 @@ export default function SavedList({ shared }: { shared?: string[] }) {
     let on = true;
     fetch(`/api/listings?ids=${encodeURIComponent(key)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data: { listings: Row[] }) => on && (setRows(data.listings), setFailed(false)))
-      .catch(() => on && setFailed(true));
+      .then((data: { listings: Row[] }) => {
+        if (!on) return;
+        setRows(data.listings);
+        setFailed(false);
+        // The rows are kept beside the list itself, so the list still opens with no connection.
+        try {
+          if (!sent) window.localStorage.setItem(ROWS_KEY, JSON.stringify(data.listings));
+        } catch {
+          // Storage is closed to the page: the list simply needs a connection.
+        }
+      })
+      .catch(() => {
+        if (!on) return;
+        try {
+          const kept = JSON.parse(window.localStorage.getItem(ROWS_KEY) ?? "[]") as Row[];
+          const wanted = new Set(key.split(","));
+          const rows = kept.filter((row) => wanted.has(row.id));
+          if (rows.length) return setRows(rows);
+        } catch {
+          // Nothing kept: say the list could not be loaded.
+        }
+        setFailed(true);
+      });
     return () => {
       on = false;
     };
-  }, [key]);
+  }, [key, sent]);
 
   if (!ready || (rows === null && !failed)) {
     return (

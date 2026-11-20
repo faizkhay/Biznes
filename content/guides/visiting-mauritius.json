@@ -1,0 +1,1414 @@
+{
+  "slug": "visiting-mauritius",
+  "title": "Visiting Mauritius: what to know before you come",
+  "summary": "What a visitor should know before flying to Mauritius: the entry rules and the arrival form, the airport, customs allowances, money, getting around, the seasons and the cyclone season, public holidays, health, safety and the numbers to call. Every fact comes from an official page, named in the sources and read on 20 November 2026.",
+  "audience": "People planning a holiday or a short visit to Mauritius, and the hosts, hotels and guides who answer their questions.",
+  "checked": "2026-11-20",
+  "shelf": "visitors",
+  "facts": [
+    {
+      "label": "Passport",
+      "value": "Valid beyond your intended stay",
+      "detail": "The rule on the Passport and Immigration Office page. The airport operator's arrival page asks for an expiry date more than 6 months beyond the stay.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Arrival form",
+      "value": "Mauritius All in One Travel Form",
+      "detail": "Filled in online before travel at safemauritius.govmu.org. It is free and gives a QR code to show on arrival.",
+      "sources": [
+        "S3",
+        "S2"
+      ]
+    },
+    {
+      "label": "Cost of a visa",
+      "value": "Free",
+      "detail": "Visas and extensions of stay are issued free of charge.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Currency",
+      "value": "Mauritian rupee (Rs), divided into 100 cents",
+      "detail": "ATMs and currency exchange desks are at the airport as you leave baggage reclaim.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Duty-free goods for a foreign passport holder",
+      "value": "Up to Rs 15,000",
+      "detail": "Other accompanied goods on an international flight, with no age limit. Alcohol and tobacco have their own allowance for travellers aged 18 or over.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Time zone",
+      "value": "UTC +4",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Electricity",
+      "value": "220/230 V",
+      "detail": "British three-square-pin plugs and two-round-pin plugs are used.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Driving",
+      "value": "On the left",
+      "detail": "Drivers give way to vehicles coming from the right. A visitor with a valid driving licence may drive during the stay.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Size of the island",
+      "value": "2,030 sq km",
+      "detail": "About 61 km from north to south and 45 km from east to west.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Seasons",
+      "value": "Summer November to April, winter June to September",
+      "detail": "May and October are the transition months.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Official cyclone season",
+      "value": "1 November to 15 May",
+      "detail": "Tropical storms may form and be named outside this period.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "Emergency numbers",
+      "value": "Police 999 or 112, fire 995 or 115, SAMU ambulance 114",
+      "detail": "As listed by the tourism promotion authority. The police site shows 999 as its emergency line.",
+      "sources": [
+        "S5",
+        "S10"
+      ]
+    },
+    {
+      "label": "International dialling code",
+      "value": "+230",
+      "sources": [
+        "S5"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Entry rules",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Anyone entering or leaving Mauritius must show a valid passport, or another government travel document that proves nationality and identity, to the Passport Officer. The Passport and Immigration Office lists what every person entering Mauritius must have.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A passport or other recognised travel document that is valid beyond the intended period of stay.",
+            "A valid return ticket to the country of origin or residence.",
+            "The right to re-enter that country.",
+            "Adequate funds to meet the cost of the stay.",
+            "A confirmed hotel booking, or a sponsor for accommodation.",
+            "No paid work. A visitor may not engage in any gainful activity without a valid residence permit."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Some travellers need a visa and some do not. Among those exempt are holders of passports issued by countries of the European Union, the spouse of a citizen of Mauritius, and people who stay only while the ship they arrived on is in port. A tourist visa allows a short visit on holiday. It may be granted for up to six months in a calendar year, case by case. A business visa allows up to 120 days in a calendar year and no more than 90 days on each trip. Visas and extensions of stay are issued free of charge.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A visa lets you travel to a port of entry. It does not guarantee admission. The Immigration Officer decides at the border whether to admit a visitor and for how long.",
+            "A traveller who needs a visa and arrives without one may be sent back at the carrier's cost.",
+            "Staying after the period granted has expired is an offence.",
+            "Nationals of Guyana must obtain a visa before they travel.",
+            "A person coming to Mauritius to live or work needs an entry residence permit."
+          ],
+          "sources": [
+            "S4",
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Passports issued by Taiwan, by the Turkish Republic of Northern Cyprus and for the British Indian Ocean Territory are not recognised as valid travel documents. Their holders, stateless persons, refugees and holders of travel documents must obtain an entry visa before travelling. Holders of a Taiwan passport may be granted a sixty-day visa on arrival.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The airport operator's arrival page words two of the conditions more strictly than the immigration page. It asks for a passport with an expiry date more than 6 months beyond the intended stay, and for proof of funds of at least USD 100 a day. If your passport is close to expiry, check with your airline or the Passport and Immigration Office before you book.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The arrival form",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius uses one digital form for arriving passengers, the Mauritius All in One Travel Form. You fill it in online before you travel. It produces a PDF with a QR code. The form is free and the traveller completes it personally. The only genuine address is safemauritius.govmu.org.",
+          "sources": [
+            "S3",
+            "S2"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The tourism promotion authority recommends that all travellers fill in the form before travel, print a copy and present it to the Health Officials on arrival. It says a foreign national who has not filled it in must complete an Immigration Disembarkation Card at the airport.",
+            "The airport operator says the form needs to be completed for every passenger, minors included, and that the QR code is shown at the Immigration and Health counters, on a phone or on paper. Leaving the aircraft and clearing the counters takes longer without it.",
+            "A travel advisory on the airport site, in force from 8 June 2026 until further notice, says all passengers must complete and present the form before boarding their flight to Mauritius.",
+            "Both sites warn against fraudulent websites. Any third party that charges to process the form is not endorsed by the Mauritian authorities."
+          ],
+          "sources": [
+            "S3",
+            "S2",
+            "S11"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Before you leave the aircraft, have ready your passport, the QR code from the form, and your hotel voucher, health insurance and vaccination card if they apply to you.",
+            "Pass the temperature screening carried out by Health Officers before the Immigration Hall.",
+            "Clear Immigration. Screens above the counters show where residents, visitors and crew queue.",
+            "Show the QR code and your passport at the Health Counter.",
+            "Take the escalator down to Level 1 and collect your luggage. Oversize items such as golf clubs and surfboards arrive on a separate belt next to Belt 1.",
+            "Clear Customs through the Green Channel if you have nothing to declare, or the Red Channel if you have.",
+            "Meet your tour operator after Customs, or go on to the car rental desks, the airport taxis or the public buses."
+          ],
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The airport",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius has one international airport, Sir Seewoosagur Ramgoolam International Airport, known as SSR. It is at Plaine Magnien in the south-east of the island. Many flight booking apps show it as Port Louis, but the capital is in the north-west, about 50 minutes away. Airports of Mauritius Co. Ltd owns the airport and holds the licence to operate it.",
+          "sources": [
+            "S12",
+            "S5",
+            "S13"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Cash machines of MCB, SBM and ABSA Bank are on Level 0 in the arrivals area, and there is an MCB machine in the baggage reclaim hall.",
+            "When you leave Mauritius, currency exchange is in Check-in Halls A and B only. There is none after Immigration.",
+            "There is no luggage storage at the airport.",
+            "The passenger terminal is non-smoking. Smoking zones are outside, before the Check-in Hall.",
+            "Pets are not allowed in the terminal building or the car park."
+          ],
+          "sources": [
+            "S14",
+            "S15",
+            "S2",
+            "S16"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Onward transport",
+            "What the airport site says"
+          ],
+          "rows": [
+            [
+              "Bus 09",
+              "Runs daily every 10 minutes between Mahebourg Bus Station and Curepipe Jan Palach South Bus Station by way of the airport. The whole route takes about 70 minutes."
+            ],
+            [
+              "Bus 10",
+              "Runs daily every 20 minutes between Mahebourg Traffic Centre and Rivière des Gallets by way of the airport. The whole route takes about 105 minutes."
+            ],
+            [
+              "Bus 198",
+              "Runs daily every 15 minutes between Port Louis Victoria Square Bus Station and Mahebourg Bus Station by way of the airport. The whole route takes about 85 minutes."
+            ],
+            [
+              "Bus stop",
+              "In the airport car park."
+            ],
+            [
+              "Airport taxi",
+              "The service counter is on Level 0 in the Tour Operators Hall, opposite the exit from the Customs zone. The site offers an official airport taxi fare list to download."
+            ],
+            [
+              "Car hire",
+              "Twelve companies have counters at the Car Rental Booth on Level 0: Hertz, Sixt, Dollar Thrifty, First Car Rental, Europcar, Pingouin, Budget, Avis, OLA, AKD, Royal and Race."
+            ]
+          ],
+          "sources": [
+            "S17",
+            "S18",
+            "S19"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An advisory on the airport site dated 14 October 2026 asks all departing passengers to reach the airport at least 3 hours before their flight. Passengers for Rodrigues flights are dropped off at Level 0 of the same terminal, and Air Mauritius has a Rodrigues ticket counter on that level.",
+          "sources": [
+            "S11",
+            "S16",
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Customs: what you may bring in",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Customs at the airport and the port works on a Red and Green Channel system. Take the Green Channel if you have nothing to declare. Take the Red Channel if you carry restricted goods, goods above your allowance, goods for sale, or currency and valuables worth more than Rs 500,000. If you are unsure, use the Red Channel. Bags may be searched in either.",
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The clothes, toiletries and personal jewellery you bring for your own use come in free of duty and VAT. A traveller aged 18 or over may also bring alcohol and tobacco free of duty, choosing only one of the three options below. They have applied since 1 September 2025.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Option",
+            "Tobacco, including cigars and cigarettes",
+            "Spirits",
+            "Wine, ale or beer"
+          ],
+          "rows": [
+            [
+              "A",
+              "Up to 250 grammes",
+              "Up to 1 litre",
+              "Up to 2 litres"
+            ],
+            [
+              "B",
+              "Up to 250 grammes",
+              "Up to 2 litres",
+              "None"
+            ],
+            [
+              "C",
+              "Up to 250 grammes",
+              "None",
+              "Up to 4 litres"
+            ]
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A foreign passport holder arriving on an international flight may also bring other goods worth up to Rs 15,000, whatever their age. The goods must travel with the passenger. Arms, tobacco, wines, spirits and goods for sale do not count towards this allowance.",
+            "A tourist may bring the tools and instruments of his or her profession without paying duty.",
+            "Duty, excise duty and VAT are charged on anything above the allowances."
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Declare all plants, cuttings, flowers, seeds, fresh fruit and vegetables, and animal products. Plants need a plant import permit and are checked by the Ministry of Agro-Industry.",
+            "Pets need an import permit from the Veterinary Service before they travel and are kept in quarantine for one month on arrival. They must travel as manifested cargo. Pets may not be brought as accompanied baggage or in the cabin.",
+            "Carry prescription medicines in their original containers with a legible prescription. The limit is three months' supply of prescription medicines and one month's supply of controlled drugs. Controlled medicines also need approval from the Government Pharmacist.",
+            "Declare cash, bearer negotiable instruments, precious stones and metals, works of art and other goods of high value worth more than Rs 500,000, or the same in foreign currency. This applies when you enter and when you leave.",
+            "Hard coral, including coral found on the beach, giant clams, tortoise and turtle products and other wildlife items may be covered by the CITES rules on trade in endangered species."
+          ],
+          "sources": [
+            "S21",
+            "S20",
+            "S22",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Money",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The currency is the Mauritian rupee, written Rs. One rupee divides into 100 cents. The rupee is not used anywhere else. The tourism promotion authority says you will generally get a better rate if you change your money once you have arrived.",
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tips are not mandatory but are welcome. Some high-end restaurants add a service charge of 10 to 15% as standard, so check the bill before you tip.",
+            "In marketplaces you are welcome to bargain with the stallholder. Always confirm the price before you buy.",
+            "On beaches, do not buy from unauthorised sellers. If in doubt, ask to see their operating licence."
+          ],
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Metro Express ticket machines accept payment by bank card or in cash.",
+            "The Chamarel 7 Coloured Earth Geopark accepts Mauritian rupees in cash, debit and credit cards other than Diners Club, and local mobile payment apps. It does not accept foreign currency in cash.",
+            "The L'Aventure du Sucre museum accepts bank cards and cash in Mauritian rupees, euros and US dollars."
+          ],
+          "sources": [
+            "S23",
+            "S24",
+            "S25"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Foreign visitors may claim back the VAT paid on shopping in Mauritius. It applies only to purchases from shops authorised by the Mauritius Revenue Authority and registered with the Mauritius Chamber of Commerce and Industry (MCCI). Before you check in, show the goods and have your sales receipts, known as DF5, approved at the VAT Refund counter in International Check-In Hall B. After Immigration and security, collect the refund at the MCCI Tax Refund Counter opposite Boarding Gate 19. No refund is made where the amount for one shop is below Rs 300. An administrative charge of 2% of the sales value is deducted. Refunds are paid in euros, pounds sterling, US dollars or South African rand.",
+          "sources": [
+            "S16",
+            "S26"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Getting around",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius is small. It is about 61 km from north to south, around 1 hour 20 minutes by car, and about 45 km from east to west, around 1 hour 15 minutes. The island covers 2,030 sq km.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Way of travelling",
+            "What the tourism promotion authority says"
+          ],
+          "rows": [
+            [
+              "Bus",
+              "Bus networks cross the whole island and are inexpensive. There are standard buses and express buses, which are faster and air-conditioned. In town buses run from 5.30am to 8pm, and in rural areas from 6.30am to 6.30pm. A late service between Port Louis and Curepipe runs until 11pm. The two main bus stations in Port Louis are at Victoria Square and Immigration Square."
+            ],
+            [
+              "Metro Express",
+              "A light rail line from Port Louis to Curepipe. You travel with a prepaid MECard or a single-use ticket bought at the machines in the stations."
+            ],
+            [
+              "Taxi",
+              "Found outside hotels and shopping malls. Agree the fare before the journey starts. There is no Uber in Mauritius. Apps such as Yugo let you book a taxi at a fixed price."
+            ],
+            [
+              "Car hire",
+              "International car rental companies are at the airport and some firms deliver to hotels. Bring a valid driving licence and a map or GPS."
+            ],
+            [
+              "Organised excursions",
+              "Half-day and full-day tours by minibus, or a private driver guide, often booked through hotels. Use companies that hold an official licence."
+            ],
+            [
+              "Boat",
+              "Water taxis and group or private boat trips reach the offshore islands. A regular boat shuttle runs to Ile aux Cerfs."
+            ],
+            [
+              "Bicycle",
+              "Many hotels rent bicycles or e-bikes, and some companies run mountain bike tours."
+            ],
+            [
+              "On foot",
+              "In Port Louis, Le Caudan Waterfront, the Central Market, Aapravasi Ghat and Chinatown are within walking distance of each other."
+            ]
+          ],
+          "sources": [
+            "S7",
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Traffic drives on the left and gives way to vehicles coming from the right.",
+            "Visitors who hold a valid driving licence issued by the relevant authorities have the right to drive while staying in Mauritius."
+          ],
+          "sources": [
+            "S5",
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Metro Express has 20 stations between Port Louis and Curepipe. Six main stations stand next to bus stations.",
+            "Its website says trains run every day, public holidays included, from 6:00 to 19:00, every 10 minutes. The hours may change at the company's discretion.",
+            "The adult MECard and single-use tickets are sold at the self-service machines in every station. Fares depend on the number of zones travelled and are 5 to 10% lower with an MECard.",
+            "Tap your card or ticket on the scanner when you board and again when you get off. Travelling without paying the right fare is an offence, with a fine of up to Rs 5,000.",
+            "The MECard cannot be used on buses."
+          ],
+          "sources": [
+            "S27",
+            "S23"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Tourism Authority issues four kinds of licence: the Tourist Accommodation Certificate, the Tourist Enterprise Licence, the Pleasure Craft Licence and the Skipper's Licence. A boat that carries passengers commercially has a registration number beginning with PC. Wear the lifejacket provided and do not sit on the bow of a motorboat.",
+          "sources": [
+            "S7",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Seasons and weather",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius has a mild tropical maritime climate all year. The Mauritius Meteorological Services describe two seasons: a warm, humid summer from November to April and a relatively cool, dry winter from June to September. October and May are the transition months.",
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Measure",
+            "Summer",
+            "Winter"
+          ],
+          "rows": [
+            [
+              "Mean temperature over the island",
+              "24.7°C",
+              "20.4°C"
+            ],
+            [
+              "Warmest and coolest months",
+              "January and February are the warmest months, with average daytime highs of 29.2°C",
+              "July and August are the coolest, with average night-time lows of 16.4°C"
+            ],
+            [
+              "Mean rainfall, 1971 to 2000",
+              "1,344 mm, 67% of the year's rain",
+              "666 mm"
+            ],
+            [
+              "Daytime temperature on the coast, as the tourism authority gives it",
+              "28 to 33°C",
+              "22 to 28°C"
+            ],
+            [
+              "Sea temperature, as the tourism authority gives it",
+              "26 to 30°C",
+              "22 to 25°C"
+            ]
+          ],
+          "sources": [
+            "S8",
+            "S28"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mean rainfall over the island is 2,010 mm a year, on the 1971 to 2000 average. February and March are the wettest months and October is the driest. There is no marked rainy season, but most rain falls in summer.",
+            "The coast is usually hotter than the central plateau. The coast gets 7.5 to more than 8 hours of bright sunshine a day, while the high ground gets about 6 hours in summer and about 5 in winter.",
+            "The tourism authority notes that the breeze picks up in winter, particularly on the east and south coasts, and that the kitesurfing season runs from April to November.",
+            "Rodrigues has persistent trade winds all year. Its mean temperature is 25.9°C in summer and about 22.3°C in winter, and it is drier than Mauritius, with 1,116 mm of rain a year on average."
+          ],
+          "sources": [
+            "S8",
+            "S28",
+            "S29"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The cyclone season",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The official cyclone season runs from 1 November to 15 May, when the risk of a tropical cyclone forming is highest. Storms may form and be named outside this period. For summer 2026 to 2027 the Meteorological Services expect between five and seven named storms in the South West Indian Ocean basin, and stress that a named storm will not necessarily affect the islands of the Republic of Mauritius.",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Cyclone warning",
+            "When it is issued"
+          ],
+          "rows": [
+            [
+              "Class I",
+              "Between 36 and 48 hours before gusts of 120 km/h are expected."
+            ],
+            [
+              "Class II",
+              "So as to allow, as far as practicable, 12 hours of daylight before gusts of 120 km/h."
+            ],
+            [
+              "Class III",
+              "So as to allow, as far as practicable, 6 hours of daylight before gusts of 120 km/h."
+            ],
+            [
+              "Class IV",
+              "When gusts of 120 km/h have been recorded in some places and are expected to continue."
+            ],
+            [
+              "Safety bulletin and termination",
+              "A safety bulletin lifts a Class III or IV warning and tells the public of any remaining risks. A termination bulletin follows once outdoor risks have considerably decreased."
+            ]
+          ],
+          "sources": [
+            "S30"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The airport stays open during a Class I or Class II warning, though flights may be brought forward, delayed or rescheduled.",
+            "The airport closes within 3 hours of a Class III warning. Passengers and the public may not stay at the airport during a Class III or IV warning, and its shops and food outlets close.",
+            "The airport's FAQ adds that driving is prohibited three hours after a Class III warning is issued.",
+            "The airport generally reopens within three hours of the termination of a Class III or IV warning. Contact your airline before you set out.",
+            "The mountain trail at Le Morne is closed from cyclone warning Class II, and during heavy or torrential rain warnings."
+          ],
+          "sources": [
+            "S15",
+            "S31"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "During a cyclone, stay inside and shelter in the safest part of the building.",
+            "Listen to the cyclone bulletins and advice on radio and television.",
+            "Beware of the passage of the eye. The calm is followed by violent winds from the opposite direction.",
+            "Do not leave your shelter until the authorities have given the all-clear. Afterwards, beware of fallen power lines, damaged buildings and trees, and flooded watercourses.",
+            "The weather line is 171, and 96 gives cyclone reports."
+          ],
+          "sources": [
+            "S32",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Public holidays",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Prime Minister's Office publishes the list of public holidays each year as a General Notice. The list for 2027 is General Notice No. 1088 of 2026, dated 31 August 2026. Several holidays follow the lunar or religious calendars, so their dates change from year to year. Use the notice itself for the exact dates.",
+          "sources": [
+            "S33",
+            "S34"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Public holiday in the 2027 notice",
+            "When"
+          ],
+          "rows": [
+            [
+              "New Year",
+              "1 and 2 January"
+            ],
+            [
+              "Thaipoosam Cavadee",
+              "Between January and February, by the Tamil calendar"
+            ],
+            [
+              "Abolition of Slavery",
+              "1 February"
+            ],
+            [
+              "Chinese Spring Festival",
+              "January or February, by the lunar calendar"
+            ],
+            [
+              "Maha Shivaratree",
+              "Usually between February and March"
+            ],
+            [
+              "Eid-Ul-Fitr",
+              "At the end of Ramadan. The notice says the exact date depends on the visibility of the moon"
+            ],
+            [
+              "Independence Day and Republic Day",
+              "12 March"
+            ],
+            [
+              "Ougadi",
+              "Usually in March or April"
+            ],
+            [
+              "Labour Day",
+              "1 May in the 2027 notice"
+            ],
+            [
+              "Ganesh Chaturthi",
+              "Usually in August or September"
+            ],
+            [
+              "Divali",
+              "October or November"
+            ],
+            [
+              "All Saints Day",
+              "1 November in the 2027 notice"
+            ],
+            [
+              "Arrival of Indentured Labourers",
+              "2 November in the 2027 notice"
+            ],
+            [
+              "Christmas",
+              "25 December"
+            ]
+          ],
+          "sources": [
+            "S33",
+            "S34"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "In 2027 Ganesh Chaturthi falls on a Sunday, and the notice makes the Monday after it a public holiday as well, under section 3(3) of the Public Holidays Act.",
+            "Many businesses close for a few days after New Year's Eve.",
+            "Opening on public holidays varies from place to place. The Natural History Museum, the Blue Penny Museum and the Aapravasi Ghat site close. The Pamplemousses botanic garden, Casela Nature Parks and La Vanille Nature Park stay open. The companion guide on things to do gives the hours of each place."
+          ],
+          "sources": [
+            "S33",
+            "S34",
+            "S35",
+            "S36",
+            "S37",
+            "S38",
+            "S39",
+            "S40"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Health",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "The tourism promotion authority says tap water can be drunk. Since 2012 the water supplied by the Central Water Authority has been treated to meet the World Health Organization's standards for drinking water.",
+            "A yellow fever vaccination certificate is required of travellers over 1 year of age who come from areas that may be infected.",
+            "Travel insurance is advisable but not mandatory.",
+            "For medical help, call the SAMU ambulance service on 114.",
+            "The tourism promotion authority says there are no dangerous, deadly or poisonous animals in Mauritius, though wasps and bees can give painful stings.",
+            "In the sea, stonefish and lionfish have very painful stings, and sea urchins and jellyfish can cause a nasty reaction. See a doctor if you are stung. The lagoons are protected by reefs, so the risk from sharks is low.",
+            "For divers, a decompression chamber is at the Victoria Hospital in Candos, next to Quatre Bornes, on +230 427 5131."
+          ],
+          "sources": [
+            "S5",
+            "S2",
+            "S41",
+            "S42"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Since 8 June 2026 airlines may not carry to Mauritius a passenger who has been in or passed through the Democratic Republic of Congo, Uganda or South Sudan in the previous 21 days. Mauritian citizens and holders of certain permits are excepted, and are quarantined and monitored on arrival. The measure, taken because of Ebola Virus Disease, stays in force until further notice.",
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Safety",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Keep valuables, passport and money out of sight and use the safe in your room. Close windows and doors when you go out.",
+            "On the beach, keep valuables out of sight and ask the price before you buy anything.",
+            "Book excursions, boat trips and private drivers with companies that hold an official licence from the Tourism Authority.",
+            "On a boat, check the registration number begins with PC, wear the lifejacket and follow the skipper's instructions.",
+            "When hiking, wear proper shoes and sunscreen, carry plenty of water and tell someone where you are going. A local, certified guide is recommended."
+          ],
+          "sources": [
+            "S5",
+            "S7"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "On 13 October 2026, after incidents during the night of 12 to 13 October, an overnight curfew was ordered in 15 designated zones, from 8.30pm to 6am. A further curfew from 10pm to 4.30am applied in specific areas on the nights of 16, 17 and 18 October. On 19 October the tourism promotion authority announced that the authorities had lifted the curfew across the island. Its communiqués say the airport stayed open throughout and that no tourists were affected. Check the authority's website for any later notice.",
+          "sources": [
+            "S43",
+            "S44",
+            "S45",
+            "S46",
+            "S47"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Emergency numbers and the tourist police",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Service",
+            "Number"
+          ],
+          "rows": [
+            [
+              "Police",
+              "999 or 112"
+            ],
+            [
+              "Police hotline, anonymous",
+              "148"
+            ],
+            [
+              "Fire services",
+              "995 or 115"
+            ],
+            [
+              "SAMU ambulance",
+              "114"
+            ],
+            [
+              "Tourist information",
+              "152"
+            ],
+            [
+              "Weather",
+              "171, and 96 for cyclone reports"
+            ],
+            [
+              "National directory",
+              "150"
+            ]
+          ],
+          "sources": [
+            "S5",
+            "S10",
+            "S31"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Mauritius Police Force has a unit for visitors, the Police du Tourisme, set up on 29 September 2003. Its mission is to provide for the safety and security of tourists and to help the local police investigate complaints made by tourists, keeping them informed of progress. It patrols tourist sites, checks beach hawkers and works with hotels and tour operators. The police site lists these offices.",
+          "sources": [
+            "S48"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Division",
+            "Office",
+            "Telephone"
+          ],
+          "rows": [
+            [
+              "Metropolitan",
+              "Line Barracks, Port Louis",
+              "5 727 6281"
+            ],
+            [
+              "Northern",
+              "Grand Bay Police Station",
+              "5 727 6282"
+            ],
+            [
+              "Western",
+              "La Gaulette Police Station",
+              "5 728 2845"
+            ],
+            [
+              "Southern",
+              "Blue Bay Police Station",
+              "5 727 5994"
+            ],
+            [
+              "Eastern",
+              "Belle Mare Police Station",
+              "5 727 6284"
+            ],
+            [
+              "Central",
+              "Plaine Champagne Police Post",
+              "5 728 0721"
+            ]
+          ],
+          "sources": [
+            "S48"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Local customs and manners",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "English is the official language, and Mauritians also speak French and Creole.",
+            "All beaches are public. In front of hotels and private houses the public may only stand or walk within the high water mark.",
+            "Le Morne Brabant is regarded as a spiritual and sacred site, in memory of the enslaved people who took refuge there. Loud music and noise on the mountain are considered disrespectful. Smoking, fires and camping are not allowed.",
+            "The Pamplemousses botanic garden asks visitors to be decently dressed, to keep to the paths and not to pick flowers or feed the animals.",
+            "Watching dolphins is regulated. You must go with a licensed operator. Nobody may feed or touch a dolphin, make noise to attract one or circle around a pod, and no more than three swimmers may be in the water at once."
+          ],
+          "sources": [
+            "S5",
+            "S31",
+            "S49",
+            "S50"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Travel Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=587",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Arrival Travel Tips",
+      "url": "https://mauritius-airport.atol.aero/passengers/travel-tips/arrival",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Mauritius travel advice: the All in One Travel Form",
+      "url": "https://mauritiusnow.com/mauritius-travel-advice/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Visa Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=605",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Allowances: Personal Effects",
+      "url": "https://www.mra.mu/index.php/customs1/travellers/allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Getting around Mauritius",
+      "url": "https://mauritiusnow.com/getting-around-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Climate of Mauritius",
+      "url": "http://metservice.intnet.mu/climate-services/climate-of-mauritius.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Seasonal Climate Forecast: Summer 2026-2027 outlook for Mauritius and Rodrigues",
+      "url": "http://metservice.intnet.mu/climate-services/seasonal-climate-forecast.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "Outlook for summer 2026-2027",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Mauritius Police Force, home page",
+      "url": "https://police.govmu.org/police/",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Travel Advisories",
+      "url": "https://mauritius-airport.atol.aero/passengers/flights/travel-advisories",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "Advisories dated 8 June 2026 and 14 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "About Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-island/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Airports of Mauritius Co. Ltd (AML), home page",
+      "url": "https://aml.mru.aero/",
+      "publisher": "Airports of Mauritius Co. Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Services and Facilities",
+      "url": "https://mauritius-airport.atol.aero/passengers/airport-guide/services-facilities",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "General FAQ",
+      "url": "https://mauritius-airport.atol.aero/passengers/travel-tips/general-faq",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Departure Travel Tips",
+      "url": "https://mauritius-airport.atol.aero/passengers/travel-tips/departure",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Public Bus",
+      "url": "https://mauritius-airport.atol.aero/passengers/to-from-airport/public-bus",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Airport Taxi",
+      "url": "https://mauritius-airport.atol.aero/passengers/to-from-airport/airport-taxi",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Hire a car",
+      "url": "https://mauritius-airport.atol.aero/passengers/to-from-airport/hire-a-car",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Travellers: On Arrival",
+      "url": "https://www.mra.mu/index.php/customs1/travellers?view=article&id=146:on-arrival&catid=13:customs",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Travellers: Import Restrictions",
+      "url": "https://www.mra.mu/index.php/customs1/travellers?view=article&id=150:import-restrictions&catid=13:customs",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Currency Declaration",
+      "url": "https://www.mra.mu/index.php/customs1/travellers/currency-declaration",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "FAQ",
+      "url": "https://mauritiusmetroexpress.mu/faq-metro-express/?lang=en",
+      "publisher": "Metro Express Limited",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Frequently Asked Questions",
+      "url": "https://chamarel7colouredearth.com/faqs/",
+      "publisher": "Chamarel 7 Coloured Earth Geopark",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Practical information",
+      "url": "https://aventuredusucre.com/practical-information/",
+      "publisher": "L'Aventure du Sucre",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Refund of Duty and VAT on purchases made in VAT free supply shops",
+      "url": "https://www.mra.mu/index.php/customs1/travellers?view=article&id=154:refund-of-vat-on-purchases-made&catid=13:customs",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "My Journey",
+      "url": "https://mauritiusmetroexpress.mu/my-journey/?lang=en",
+      "publisher": "Metro Express Limited",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Mauritius Weather",
+      "url": "https://mauritiusnow.com/mauritius-weather/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Climate of Rodrigues and other islands",
+      "url": "http://metservice.intnet.mu/climate-services/climate-of-rodrigues-and-islands.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "Tropical cyclone: warning system and general information",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/warning-system.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Le Morne Cultural Landscape World Heritage Site: General Practical Information for Visitors",
+      "url": "https://lemorneheritage.govmu.org/lmh/wp-content/uploads/2023/07/General-practical-information.pdf",
+      "publisher": "Le Morne Heritage Trust Fund",
+      "published": "July 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "Preparedness and precautions in the event of a cyclone",
+      "url": "http://metservice.intnet.mu/tropical-cyclone/precautions.php",
+      "publisher": "Mauritius Meteorological Services",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S33",
+      "title": "Public Holidays 2027 (General Notice No. 1088 of 2026)",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S34",
+      "title": "Festivals in Mauritius",
+      "url": "https://mauritiusnow.com/blog/things-to-do/festivals-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S35",
+      "title": "Natural History Museum: Contact Info and Visiting Hours",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1876",
+      "publisher": "Mauritius Museums Council",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S36",
+      "title": "Blue Penny Museum: Art and History of Mauritius",
+      "url": "https://www.bluepennymuseum.com/",
+      "publisher": "Blue Penny Museum",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S37",
+      "title": "Plan Your Visit",
+      "url": "https://aapravasi.govmu.org/aapravasi/?page_id=816",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S38",
+      "title": "Visitors' Information: Opening Hours and Entrance Fee",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1581",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S39",
+      "title": "Frequently Asked Questions",
+      "url": "https://caselaparks.com/frequently-asked-questions/",
+      "publisher": "Casela Nature Parks",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S40",
+      "title": "Planifier votre visite",
+      "url": "https://www.lavanillenaturepark.com/planifier-votre-visite",
+      "publisher": "La Vanille Nature Park",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S41",
+      "title": "Frequently Asked Questions",
+      "url": "https://mauritiusnow.com/faqs/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S42",
+      "title": "Scuba diving in Mauritius",
+      "url": "https://mauritiusnow.com/blog/things-to-do/scuba-diving-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S43",
+      "title": "Communiqué: Incidents in Mauritius",
+      "url": "https://www.tourismauthority.mu/communique-incidents-in-mauritius/",
+      "publisher": "Tourism Authority",
+      "published": "13 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S44",
+      "title": "Communiqué: Curfew",
+      "url": "https://www.tourismauthority.mu/communique-curfew/",
+      "publisher": "Tourism Authority",
+      "published": "13 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S45",
+      "title": "Communiqué: Mauritius keeps welcoming its visitors",
+      "url": "https://mymauritius.travel/news/communique-mauritius-keeps-welcoming-its-visitors",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "14 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S46",
+      "title": "Mauritius confirms week-end measures: Communiqué",
+      "url": "https://mymauritius.travel/news/mauritius-confirms-week-end-measures-communique",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "16 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S47",
+      "title": "Mauritius returns to full normal activities: Communiqué",
+      "url": "https://mymauritius.travel/news/mauritius-returns-full-normal-activities-communique",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "19 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S48",
+      "title": "Police du Tourisme",
+      "url": "https://police.govmu.org/police/?page_id=4914",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S49",
+      "title": "Do's and Don'ts",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1649",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S50",
+      "title": "Dolphins in Mauritius",
+      "url": "https://mauritiusnow.com/blog/things-to-do/dolphins-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Mauritius All in One Travel Form",
+      "url": "https://safemauritius.govmu.org/",
+      "publisher": "Government of Mauritius",
+      "what": "Fill in the free arrival form before you travel and get your QR code."
+    },
+    {
+      "title": "Travel Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=587",
+      "publisher": "Passport and Immigration Office",
+      "what": "Read what every person entering Mauritius must hold."
+    },
+    {
+      "title": "Visa Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=605",
+      "publisher": "Passport and Immigration Office",
+      "what": "Check who needs a visa, the kinds of visa and how long each allows."
+    },
+    {
+      "title": "SSR International Airport, passenger site",
+      "url": "https://mauritius-airport.atol.aero/",
+      "publisher": "Airport Terminal Operations Ltd",
+      "what": "See flight times, travel advisories, and the arrival and departure steps."
+    },
+    {
+      "title": "Travellers: allowances",
+      "url": "https://www.mra.mu/index.php/customs1/travellers/allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check the duty-free allowances before you pack."
+    },
+    {
+      "title": "Mauritius Meteorological Services",
+      "url": "http://metservice.intnet.mu/",
+      "publisher": "Mauritius Meteorological Services",
+      "what": "Read the daily forecast and any cyclone, heavy rain or high wave warning."
+    },
+    {
+      "title": "Public Holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "what": "See the official dates of the public holidays in 2027."
+    },
+    {
+      "title": "Metro Express: My Journey",
+      "url": "https://mauritiusmetroexpress.mu/my-journey/?lang=en",
+      "publisher": "Metro Express Limited",
+      "what": "Plan a journey between Port Louis and Curepipe and check fares."
+    },
+    {
+      "title": "Police du Tourisme",
+      "url": "https://police.govmu.org/police/?page_id=4914",
+      "publisher": "Mauritius Police Force",
+      "what": "Find the tourist police office and telephone number for each region."
+    },
+    {
+      "title": "Mauritius travel advice",
+      "url": "https://mauritiusnow.com/mauritius-travel-advice/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Read the tourism authority's current advice for travellers."
+    },
+    {
+      "title": "Tourism Authority",
+      "url": "https://www.tourismauthority.mu/",
+      "publisher": "Tourism Authority",
+      "what": "Read about the licences that tourist operators, boats and skippers must hold."
+    }
+  ],
+  "unverified": [
+    "Which nationalities need a visa and how long each may stay. The Passport and Immigration Office page has a country-by-country section, but its list did not appear in the page text that was read.",
+    "The passport validity rule. The immigration page says valid beyond the intended stay. The airport operator's page says more than 6 months beyond it. The guide gives both.",
+    "The figure of USD 100 a day in funds. It appears only on the airport operator's arrival page, not on the immigration page.",
+    "Whether the All in One Travel Form is compulsory. The tourism authority says recommended, the airport operator says it must be completed. The form's own site is an application whose text could not be read.",
+    "Banknote and coin denominations and exchange rates. The Bank of Mauritius website could not be reached on 20 November 2026, so they were left out.",
+    "How widely bank cards are accepted. No official page read gives a general statement, so the guide quotes three named places only.",
+    "Whether an International Driving Permit is needed, the minimum age to hire a car, speed limits and the drink-driving limit. None was on the transport, police or tourism pages read.",
+    "Bus fares, taxi fares and the official airport taxi fare list, which is a download that was not read.",
+    "Metro Express fares and card prices. The fare table is interactive and could not be read, and the site gives the adult MECard as Rs 150 on one page and Rs 200 on another. The site's pages are dated 2021, so the 6:00 to 19:00 hours should be checked.",
+    "Public holidays for the rest of 2026. The link to the 2026 notice on the government portal was broken, so only the 2027 notice was read.",
+    "The countries treated as yellow fever risk areas. The Ministry of Health page with the list was not found.",
+    "Recommended vaccinations and other medical advice. No official health page setting them out for visitors was read.",
+    "Dress and conduct at temples, mosques and churches. No official tourism page read sets this out, so it was left out.",
+    "Whether any measure followed the lifting of the curfew on 19 October 2026. The 19 October communiqué was read through a summarising fetch, as the page itself returned a verification screen.",
+    "Whether the Police du Tourisme telephone numbers are current. The page that lists them also carries an action plan for 2020 to 2021.",
+    "The tourist information line 152 and the national directory 150. They appear only on the tourism authority's tips page.",
+    "The request to arrive 3 hours before departure. It is in an airport advisory issued during the October 2026 curfew and may not be standing advice."
+  ]
+}

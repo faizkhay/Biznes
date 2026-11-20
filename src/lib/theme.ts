@@ -34,7 +34,8 @@ export function themeFor(day = todayInMauritius()): Theme {
   for (const h of readHolidays()) {
     const away = daysBetween(day, h.date);
     const look = HOLIDAY_LOOKS.find((l) => l.match.test(h.name));
-    if (away === 0) return of("holiday", look?.picture ?? base, look?.greeting ?? `Today is ${h.name}`, h.name);
+    // A day of remembrance has no greeting of its own: the everyday one stands.
+    if (away === 0) return of("holiday", look?.picture ?? base, look?.greeting ?? GREETING, h.name);
     if (look?.lead && away > 0 && away <= look.lead) return of("holiday", look.picture ?? base, look.greeting, h.name);
   }
   return of(season?.id ?? "everyday", base, GREETING);

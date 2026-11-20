@@ -15,14 +15,14 @@
   --palette-white: #ffffff; /* chosen: a card, a field, the menu. What stands on the paper */
   --palette-cream: #fdf9ec; /* derived, saffron 8% on white: the sheet of paper the page is written on */
   --palette-sand: #f5efe0; /* derived from cream, deeper: a tile, a chip, a quiet panel */
-  --palette-limewash: #f7f7f8; /* sampled: the brand's white. Points on the island's dark panel */
+  --palette-limewash: #f7f7f8; /* sampled: the brand's white. A shape that holds a place while something loads */
   --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.69:1 on white, 16.8:1 on cream, 15.42:1 on sand */
   --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer */
   --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.9:1 on white, 8.45:1 on cream, 7.76:1 on sand */
   --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.7:1 on sand */
   --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.02:1 */
   --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.03:1 */
-  --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 8.3:1 */
+  --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 7.81:1 */
   --palette-saffron-wash: #fef6d9; /* derived, saffron 16% on white: an answer's ground, a chosen thing; ink on it 16.34:1 */
   --palette-royal: #0d36a7; /* sampled from the mock-up approved on 20 November 2026: what answers. 9.98:1 on white, 9.48:1 on cream */
   --palette-shallows: #dcefeb; /* derived: the lagoon picture's water (#7bbcb3, sampled) at 27% on white. The sea on the island's map */
@@ -1092,6 +1092,11 @@
     background: var(--color-ink);
     border-color: transparent;
     color: var(--color-on-ink);
+  }
+  /* On ink the focus ring is saffron: the royal ring would be lost there (1.77:1). */
+  .card-ink,
+  .site-footer {
+    --color-focus: var(--palette-saffron);
   }
   .card-ink .row-title,
   .card-ink a:not(.btn, .cite) {

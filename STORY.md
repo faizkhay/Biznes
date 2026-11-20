@@ -47,18 +47,18 @@ whole site.
 
 The directions considered, and why this one. Four mock-ups of different directions were shown
 first, and the owner's answer was "none, more modern. less is more. inspire from our other websites
-we've built, inspire form /kos". Three more followed in a pared-back manner, taking their manner
-from a capture of one of Khay Digital's own builds; the owner chose the one called "2 · Centred",
-and then set it aside: "i still need better logo and aesthetic, its grossier, see our competitis
-bonjour.mu how they are." The pared-back page had answered "too dark" and left "too plain"
-standing. The postcard came from the owner's own three references, and it is warm where the other
-was bare.
+we've built, inspire form /kos". Three more followed, pared back, taking their manner from a
+capture of one of Khay Digital's own builds; the owner chose the one called "2 · Centred", and
+then set it aside: "i still need better logo and aesthetic, its grossier, see our competitis
+bonjour.mu how they are." Khay Digital's reading is that the pared-back page answered the first
+complaint, that the site was too dark, and left the second standing, that it was too plain. The
+postcard came from the owner's own three references, and it is warm where the other was bare.
 
 ## The person, and the action
 
 Someone with a question about Mauritius: where is a business, how do I start one, is this one real,
 who do I call, what is there to see. The action is to ask it. The search box is in the middle of
-the first screen and on every page.
+the first screen, and the menu carries it on every other page.
 
 The second person is a business owner. Their action is "List your business", which leads to the
 three plans.
@@ -70,7 +70,7 @@ There are no chapters. Each kind of page does one job.
 | Page | Its job | How the postcard shows there |
 |---|---|---|
 | The first screen | Take the question | The day's picture, full, with the greeting, the question and the search in the middle. The sheet of paper begins under it: the directory's groups, the towns beside the island, the guides, the tools, and where it all comes from |
-| Results (`/search`) | Answer: listings when the question is about who and where, the guides' own facts when it is about how | On the sheet. Each listing is a card. Filters above the list, the island beside it with the answers lit |
+| Results (`/search`) | Answer: listings when the question is about who and where; when it is about how, the answer itself first, in the site's own words, with the guide it is from | On the sheet. Each listing is a card. Filters above the list, the island beside it with the answers lit. Pages on other sites are folded away as references |
 | A listing (`/b/...`) | Say what is known about one business, and where each part came from | The business's own card opens the page, with a strip of the day's picture across its top. The island marks where it is |
 | A category, a town | Walk the directory: narrow a kind of business to a town, or a town to a kind | Cards, filters, the island with that list lit |
 | The guides (`/learn`), and a guide | Explain one subject, every figure with its source | Shelves of cards; a reading page that ends with what to read next, then its references |
@@ -184,9 +184,9 @@ vibrant mark to show they these are real verified and paid business listings."
 - **"Save, filter and share"**: results narrowed by telephone number, by website and by town, as
   links; a shortlist kept in the visitor's own browser and shared as a link; a listing or a search
   shared.
-- **"Our own style of business listing and page"**: the biznes card, and a business's page that
+- **"our own style of business listing and page"**: the biznes card, and a business's page that
   opens with its own card.
-- **"A very vibrant mark"**: the verified mark, and the ring and glow of a paid card. Nothing else
+- **"a very vibrant mark"**: the verified mark, and the ring and glow of a paid card. Nothing else
   on the site may look like them.
 - **The plans** are the owner's: Biznes Free, Biznes Go at Rs 550 a month for each business, and
   Biznes Grow at Rs 1,250 a month for each business.
@@ -212,11 +212,14 @@ principle was rewritten with it.
 - The biznes card, the business page's card, and the verified mark.
 - `/pricing`, with the three plans and what paying changes.
 - `/emergency`: 43 services in ten groups, each number from an official page that is named.
-- The guides on shelves, for business, for visitors, for newcomers and for everyday life, with a
-  shelf about Mauritius itself added during the round. A guide now ends with what to read next on
-  the site, and then its references.
-- `/shop`, and the script that lays out the first pocket guide as an A5 PDF (`scripts/pdf.mjs`).
-  It is to be sold on request until payments exist.
+- The guides on shelves: nineteen at the time of writing, thirteen on business and two each for
+  visitors, for newcomers and on everyday life. The site also calls them articles. A guide now
+  ends with what to read next on the site, and then its references.
+- A question about how is answered first in the site's own words, under the search box, and the
+  official pages and websites that also answer are folded away as references.
+- `/shop`, and the first pocket guide, laid out by `scripts/pdf.mjs` as an A5 PDF of 51 pages: 60
+  places in nine parts of the island, 13 days out, and 110 sources at the back. It is to be sold
+  on request until payments exist.
 - `npm run leads`, which writes the listings with no website on record to `reports/`, not
   committed: 6,754 of 7,179, of which 273 are businesses with a telephone number.
 - A quiet word for Khay Digital in the footer ("No website yet?") and the usual credit. Nothing
@@ -231,10 +234,10 @@ and none is described as done anywhere in these documents.
 - Bookings and services, for Biznes Grow.
 - The verified mark and priority joined to the search. The mark is drawn, but no listing carries
   it, and results are still ordered by answer and fullness alone.
-- The site as an app: a manifest, a service worker, an offer to install, and an offline page.
+- The site as an app. Its first parts are in the repository (a manifest, the icons, a service
+  worker, an offline page), and the offer to install was being put on the page.
 - A superadmin's own choice of picture, over the calendar's.
-- The guides for the new shelves, and the list of places the pocket guide is laid out from. They
-  were arriving from researchers as this was written.
+- A fifth shelf of guides, about Mauritius itself. It has no article yet.
 
 **Not decided: for the owner.**
 
@@ -243,16 +246,16 @@ and none is described as done anywhere in these documents.
 3. Whether Biznes Grow includes Biznes Go's verified mark and priority.
 4. The Supabase project.
 5. Who the first superadmin is. The proposal is the first account registered.
-6. The owner's reading of the new guides, as of the first thirteen.
+6. The owner's reading of the new guides and of the pocket guide, as of the first thirteen.
 
 **Departures from the plan, and why.** The mock-up the owner chose was not built, because the owner
 set it aside. The island was to stay dark, and was redrawn light, for the reason above. A fifth
-shelf was added to the four in the brief.
+shelf was begun beside the four in the brief.
 
 **Checked so far.** Types are clean. The house style check and the token check report no failures.
 The 25 colour pairs measured all pass. The behaviour check passed 82 of 82 before the listing card
-was restyled, and has not been recorded since. axe-core was clean on every kind of page at phone
-size. The final checks are run at the end of the round and recorded in the README.
+was restyled. axe-core was clean on every kind of page at phone size. The final checks are run at
+the end of the round and recorded in the README.
 
 ### Round 3, 20 November 2026: the search engine
 

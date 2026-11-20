@@ -118,6 +118,7 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
 .back .words { position: absolute; left: 14mm; right: 14mm; top: 44mm; }
 .back h2 { font-size: 24pt; line-height: 1.05; letter-spacing: -0.04em; font-weight: 700; }
 .back p { margin-top: 4mm; font-size: 10.5pt; color: #404965; max-width: 100mm; }
+@media screen { #sample { padding: 16mm 14mm 0; background: #fff; } }
 .back .small { position: absolute; left: 14mm; right: 14mm; bottom: 14mm; font-size: 7.4pt; color: #626a80; line-height: 1.5; }
 </style></head><body>
 
@@ -133,7 +134,7 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
 
 <h2 class="head">How to use this guide</h2>
 <p class="lede">This guide lists ${data.places.length} places and things to do across Mauritius and Rodrigues, region by region.</p>
-<p class="lede">Everything in it comes from an official page that was read on ${day(data.checked)}: the tourism authority, the parks service, the museums, UNESCO, and each place's own site. The small numbers beside a line lead to the source at the back.</p>
+<p class="lede">Everything in it comes from an official page that was read on ${day(data.checked)}: the tourism authority, the parks service, the museums and the trusts that keep each place, and each place's own site. The small numbers beside a line lead to the source at the back.</p>
 <p class="lede">Where a page did not state an opening time or a price, none is given here. Check before you set out: hours change, and the sea and the weather have the last word.</p>
 ${firstAid.length ? `<div class="box"><h3>Numbers to keep</h3><table>${firstAid.map((i) => `<tr><td>${esc(i.name)}</td><td>${esc(i.number)}</td></tr>`).join("")}</table></div>` : ""}
 

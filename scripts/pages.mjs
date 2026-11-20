@@ -34,6 +34,7 @@ export const PAGES = [
   ["saved", "/saved"],
   ["emergency", "/emergency"],
   ["shop", "/shop"],
+  ["offline", "/offline"],
   ["missing", "/no-such-page"],
 ];
 

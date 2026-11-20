@@ -83,6 +83,18 @@ self.addEventListener("fetch", (event) => {
 async function page(event) {
   try {
     const response = await fetch(event.request);
+    // A redirect comes back sealed, and the server can give its address twice on a page's first
+    // making, which a browser forgives and a worker's sealed copy does not. So the worker asks
+    // where the address leads and sends the browser there itself.
+    if (response.type === "opaqueredirect") {
+      try {
+        const led = await fetch(event.request.url, { redirect: "follow", credentials: "same-origin", headers: { Accept: "text/html" } });
+        if (led.redirected && new URL(led.url).origin === self.location.origin) return Response.redirect(led.url, 302);
+      } catch {
+        // No better answer: the sealed redirect stands.
+      }
+      return response;
+    }
     // A download answers a navigation too, and is not a page to keep.
     if (response.ok && (response.headers.get("Content-Type") || "").includes("text/html")) keep(event, PAGES, response);
     return response;

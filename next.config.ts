@@ -26,7 +26,11 @@ const config: NextConfig = {
     ];
   },
   async headers() {
-    return [{ source: "/:path*", headers: security }];
+    return [
+      { source: "/:path*", headers: security },
+      // The service worker is always asked for afresh, so a new version of the site is never held back by an old one.
+      { source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] },
+    ];
   },
 };
 

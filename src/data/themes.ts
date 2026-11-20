@@ -24,7 +24,8 @@ export const SEASONS: { id: string; picture: PictureId; from: string; to: string
 
 /**
  * How a public holiday looks, matched on its official name. `lead` is how many days before it the
- * look begins. A holiday with no line here still gets its name in the greeting on its day.
+ * look begins. A holiday with no line here keeps the everyday greeting: a day of remembrance is not
+ * wished happy.
  */
 export const HOLIDAY_LOOKS: { match: RegExp; greeting: string; picture?: PictureId; lead?: number }[] = [
   { match: /divali|deepavali|diwali/i, greeting: "Happy Divali", picture: "lights", lead: 2 },
@@ -36,7 +37,7 @@ export const HOLIDAY_LOOKS: { match: RegExp; greeting: string; picture?: Picture
   { match: /labour/i, greeting: "Happy Labour Day" },
   { match: /ganesh/i, greeting: "Happy Ganesh Chaturthi" },
   { match: /shivarat/i, greeting: "Happy Maha Shivaratree" },
-  { match: /ugadi|ougadi/i, greeting: "Happy Ugadi" },
+  { match: /ugaa?di|ougadi/i, greeting: "Happy Ugadi" },
 ];
 
 /** The everyday greeting: hello, in Kreol. */

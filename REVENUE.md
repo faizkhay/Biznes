@@ -28,7 +28,7 @@ The owner's streams, in the owner's words of 20 November 2026:
 | Biznes Free | Free | Shown on `/pricing`. A business asks through the form |
 | Biznes Go | Rs 550 a month for each business | Shown on `/pricing`. The verified mark is drawn; joining it to the search, and accounts, are being built |
 | Biznes Grow | Rs 1,250 a month for each business | Shown on `/pricing`. Bookings and services are being built |
-| Pocket guides, as PDFs | Not yet set by the owner | `/shop` and the script that lays the guide out are written; the first guide's places are being researched |
+| Pocket guides, as PDFs | Not yet set by the owner | The first is made: 51 pages, 60 places, 110 sources. `/shop` shows it and takes requests |
 | Websites through Khay Digital | Quoted by the agency | `npm run leads` writes the list: 6,754 listings with no website on record, 273 of them businesses with a telephone number |
 
 Nothing can be paid for on the site yet. No payment gateway is chosen; a plan or a guide is asked
@@ -43,10 +43,10 @@ more directory.
 
 ## Where we stand today
 
-- **What we own:** 7,179 listings in 129 towns and villages, guides written from official sources
-  on four shelves (business, visiting, moving here, living here), a page of emergency numbers, a
-  glossary, the tools, and a crawler that rebuilds the index on demand (`data/index/meta.json`, 20
-  November 2026).
+- **What we own:** 7,179 listings in 129 towns and villages (`data/index/meta.json`, 20 November
+  2026); nineteen guides at the time of writing, written from official sources, for business,
+  visitors, newcomers and everyday life; a page of emergency numbers; a first pocket guide; a
+  glossary, the tools, and a crawler that rebuilds the index on demand.
 - **What we do not have yet:** visitors, accounts, or a way to take money. The site is not launched
   and has no traffic, so every sum below is arithmetic on an assumption, not a measurement.
 - **What the listings lack:** 6,754 of the 7,179 listings have no website on record, and only 525
@@ -104,7 +104,9 @@ give them to Biznes Go. The site's pages at present say that either paid plan co
 
 **What they buy:** a PDF for a phone, A5, made to be read on the road with no signal: places to see
 and things to do, region by region, each fact from an official page, with the sources listed at
-the back. The pictures in it are illustrations made for biznes.mu, and it says so.
+the back. The first, "Mauritius: places to see and things to do", is made: 51 pages, 60 places in
+nine parts of the island, 13 days out and 110 sources. The pictures in it are illustrations made
+for biznes.mu, and it says so.
 
 **Price:** not yet set by the owner. Until it is, the shop says so and takes requests.
 
@@ -112,8 +114,8 @@ the back. The pictures in it are illustrations made for biznes.mu, and it says s
 many of them would find the site, and how many of those would buy a guide, is not known and is not
 guessed here.
 
-**What it needs:** the first guide finished (its places are being researched), a price, and a way
-to pay and to deliver the file. The file is kept out of the public folder, because it is sold.
+**What it needs:** a price, and a way to pay and to deliver the file. The file is kept out of the
+public folder, because it is sold. The owner should read it before the first one is sent.
 
 **The care it needs:** the guides on the site stay free. They are how people will find the site.
 The pocket guide is a different thing, made to be carried, and it must be as well sourced as the
@@ -336,7 +338,7 @@ projects are the largest line in the first year. The plans are the lines that re
 
 - Accounts, and free claiming of listings. This grows the index with what no one else has.
 - Biznes Go, sold to businesses that have claimed and been checked.
-- The first pocket guide.
+- The first pocket guide, sold on request.
 - Count what matters, without tracking people: searches, searches that found nothing, listings
   opened, "Call" pressed, guides read. The privacy page says the site runs no analytics, so that
   page changes first.

@@ -68,7 +68,9 @@ One box answers three kinds of question:
 
 - **Who and where:** a directory of businesses and services, by category and by town.
 - **How:** guides, each fact with its source and its date. They began with starting and running a
-  business, and now stand on four shelves: business, visiting, moving here, living here.
+  business, and now stand on shelves: business, visiting, moving here and living here, with a
+  fifth about Mauritius itself begun. A question about how is answered first in the site's own
+  words, with the guide it comes from.
 - **Is it real:** the official registers to check a business against, and what each shows.
 
 Around the box, by the owner's brief of 20 November 2026:
@@ -76,7 +78,7 @@ Around the box, by the owner's brief of 20 November 2026:
 - **Save, filter and share.** A list of results can be narrowed, a listing kept on a shortlist,
   and a listing, a search or a shortlist sent to someone.
 - **Emergency numbers**, each from an official page.
-- **Pocket guides** as PDFs, sold.
+- **Pocket guides** as PDFs, to be sold.
 - **Plans for businesses:** a free listing and two paid ones.
 
 The one action on every page is the search. A visit has worked when the person finds what they
@@ -132,7 +134,7 @@ shows them.
 
 | Plan | Price | In the owner's words | What the site lists |
 |---|---|---|---|
-| Biznes Free | Free | "businesses can list their business for free (Biznes Free) basic listing" | A listing in the directory and in search; name, what the business does, where it is and how to reach it; corrected or taken out on request |
+| Biznes Free | Free | "businesses can list their business for free (Biznes Free) basic listing" | Already there if the crawler found the business on the open map; claimed, to show whose it is and to keep it right; name, what the business does, where it is and how to reach it |
 | Biznes Go | Rs 550 a month for each business | "Biznes Go for 550rs per month per business (verified business and listed with priority)" | Everything in Biznes Free; a verified mark, once the business has been checked to be real; listed with priority, and marked as such |
 | Biznes Grow | Rs 1,250 a month for each business | "businesses can use the platform to manage bookings and sell services online (these come at a 1250mur per month per biznes (Biznes Grow)" | Bookings managed in one place; services sold online; a page of the business's own to send customers to |
 
@@ -147,6 +149,8 @@ To confirm with the owner:
   wording of what selling services online needs. It is not in the owner's words.
 - **What "verified" checks.** The site says only that the business has been checked to be real.
   Against what, and by whom, is not written down.
+- **Claiming a listing**, which the site lists under Biznes Free, waits on the accounts. Until
+  they open, a business says a listing is its own through the form.
 
 ### What is built
 
@@ -158,11 +162,19 @@ To confirm with the owner:
   and by town; each is a link, so it works with no script. A shortlist is kept in the visitor's own
   browser and nowhere else, and is shared as a link (`/saved?ids=`). A listing or a search is
   shared through the phone's own share sheet, or its link is copied.
-- **The guides** stand on four shelves (`SHELVES` in `src/data/site.ts`). At the time of writing
-  there are fourteen: the thirteen on business, each written from official pages and the Acts, read
-  one by one on 20 November 2026, and the first for newcomers, on the ways to live in Mauritius.
-  Each carries its sources, the day it was checked, and a list of what could not be confirmed. The
-  shelves for visitors and for everyday life have no guide yet; they are being researched.
+- **The guides** stand on shelves (`SHELVES` in `src/data/site.ts`). At the time of writing there
+  are nineteen: the thirteen on business, and two each for visitors, for newcomers and on everyday
+  life. All are written from official pages, and each gives 20 November 2026 as the day it was
+  checked. Each carries its sources and a list of what could not be confirmed. The site also
+  calls them articles. A fifth shelf, about Mauritius itself, was added during the round and has
+  no article yet.
+- **The pocket guide** (`/shop`, `scripts/pdf.mjs`): "Mauritius: places to see and things to do",
+  an A5 PDF of 51 pages made for a phone. It holds 60 places in nine parts of the island and 13
+  days out, each fact with the official page it was read on, and its 110 sources listed at the
+  back. Sixteen points that could not be confirmed are listed in its data
+  (`content/pdf/places.json`) and left out of the guide's words. The file is written to
+  `reports/`, which is not committed and not served, because it is to be sold. It is sold on
+  request until payments exist, and its price is the owner's to set.
 - **Emergency numbers** (`/emergency`, `content/emergency.json`): 43 services in ten groups, each
   number from an official page, named, read on 20 November 2026. What could not be confirmed is
   listed on the page.
@@ -174,18 +186,16 @@ To confirm with the owner:
 
 ### Being built at the time of writing
 
-- **The pocket guide** (`/shop`, `scripts/pdf.mjs`): an A5 PDF of places to see and things to do,
-  region by region, each fact from an official page. The product is named and the script that lays
-  it out is written; the list of places it reads (`content/pdf/places.json`) had not arrived when
-  this was written, so the shop says the first guide is being made. It will be sold on request
-  until payments exist. Its price is the owner's to set.
 - **Accounts**, with the three roles; a dashboard for a business's owner; screens for admins.
 - **Bookings and services** for Biznes Grow.
 - **The verified mark and priority, joined to the search.** The mark and the paid card are drawn
   (`DESIGN.md`); no listing carries them yet, and the order of results is still by answer and
   fullness alone.
-- **The site as an app** on iOS, Android and a desk, as the owner asked ("fully pwa enabled"): a
-  manifest, a service worker, an offer to install and an offline page.
+- **The site as an app** on iOS, Android and a desk, as the owner asked ("fully pwa enabled").
+  Its first parts are in the repository: a manifest, the icons, a service worker and an offline
+  page. The offer to install was being put on the page as this was written. It is not recorded
+  as done: its checks belong to the end of the round.
+- **The articles about Mauritius itself**, for the fifth shelf.
 - **A superadmin's own choice of picture**, over the calendar's. Until then the owner changes a
   picture by replacing a file or a line in `src/data/themes.ts`.
 
@@ -244,6 +254,7 @@ holds the system.
 | Official pages and Acts, listed in each guide | 20 November 2026 | Every figure in the guides |
 | Official pages listed on `/emergency` | 20 November 2026 | Every emergency number and helpline |
 | The Prime Minister's Office's notices of public holidays, listed in `content/holidays.json` | 20 November 2026 | The public holidays of 2026 and 2027 |
+| Official pages listed at the back of the pocket guide (`content/pdf/places.json`) | 20 November 2026 | Every place and fact in the pocket guide |
 | The four pictures, with a record beside each in `public/themes` | made 20 November 2026 | The picture behind the page. Generated illustrations, not evidence of any place |
 
 Absent, and not fabricated: reviews, photographs, opening hours the map does not hold, any measure

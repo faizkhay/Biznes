@@ -1,0 +1,1719 @@
+{
+  "checked": "2026-11-20",
+  "places": [
+    {
+      "name": "Sir Seewoosagur Ramgoolam Botanic Garden",
+      "region": "north",
+      "kind": "garden",
+      "where": "Pamplemousses",
+      "what": "The garden covers 33 hectares in the village of Pamplemousses, about ten kilometres north-east of Port Louis. It is a plant conservatory with 823 species, among them 80 palms, as well as a place to walk. Visitors see the pond of giant Amazon water lilies, the lotus ponds and the lake called Grand Bassin.",
+      "practical": "Open every day, public holidays included, from 08:30 to 17:30. Non-Mauritian visitors aged 5 and over pay Rs 300 and children under 5 enter free. Authorised guides are paid directly after the tour, at the rates on the Trust's services page. A golf cart with driver takes up to three people for 45 minutes, at Rs 300 for those over 12 and Rs 100 for children of 5 to 12. Parking is free.",
+      "tip": "Keep your ticket, which must be shown on demand, and keep to the paths. Feeding the animals, picking flowers or fruit and throwing coins in the ponds are not allowed.",
+      "sources": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "L'Aventure du Sucre",
+      "region": "north",
+      "kind": "museum",
+      "where": "Beau Plan, Pamplemousses",
+      "what": "A museum of sugar set inside a former sugar mill, right next to the Pamplemousses botanic garden. It tells how the history of Mauritius is bound up with sugar cane. The ticket includes tastings of more than 30 sugarcane products in the Village Boutik.",
+      "practical": "Open Monday to Saturday, public holidays included, from 10am to 4pm. Closed on Sundays. The museum recommends a last entry at 3pm and the ticket office closes at 3:15pm. Adult Rs 1,200. Child of 6 to 13, youth of 13 to 18 and student Rs 600. Children under 6 enter free. A guided tour costs Rs 300 more per person from the age of 15. Allow 45 minutes to three hours. Closed from 24 to 26 December and from 31 December to 2 January.",
+      "tip": "The museum suggests pairing it with the botanic garden as a half-day outing: about 1 hour for the garden and 1.5 hours for the museum.",
+      "sources": [
+        6,
+        7
+      ]
+    },
+    {
+      "name": "Château de Labourdonnais",
+      "region": "north",
+      "kind": "heritage",
+      "where": "Mapou",
+      "what": "A restored 19th-century mansion at the heart of the Domaine de Labourdonnais estate, now a museum, with gardens around it. Visitors tour the house, taste the estate's rums, fruit juices, jams and fruit jellies, and see the small animal farm.",
+      "practical": "The Château is open Monday to Sunday from 9am to 4pm. General access to the estate is free. There is an entry fee for the Château and for tastings, which the estate's site does not list: its ticketing office is on +230 266 3007. Walk-in visitors are accepted and guided tours are given in English and French. Parking is free.",
+      "tip": null,
+      "sources": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "Maheswarnath Mandir",
+      "region": "north",
+      "kind": "heritage",
+      "where": "Triolet",
+      "what": "A Hindu temple dedicated to Lord Shiva, founded in 1888. The tourism authority describes it as the largest Hindu temple in Mauritius and one of the oldest. Visitors see its white pillars, floral designs and sculptures, and several smaller temples within the same complex.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        11,
+        10
+      ]
+    },
+    {
+      "name": "Grand Baie",
+      "region": "north",
+      "kind": "town",
+      "where": "Grand Baie",
+      "what": "A village on a sheltered, horseshoe-shaped bay on the north-west coast. People come for the shops and the Grand Bazar market, for the cafés and restaurants, around 50 of which line the bay and the coast road to Pereybère, and for live music, Sega performances and nightclubs in the evening. Boats and catamarans leave from here for the northern islands.",
+      "practical": "The nightclubs are mainly open on Friday and Saturday nights.",
+      "tip": null,
+      "sources": [
+        12,
+        10
+      ]
+    },
+    {
+      "name": "Mont Choisy beach",
+      "region": "north",
+      "kind": "beach",
+      "where": "Mont Choisy",
+      "what": "A long curve of white sand around a bay in the north-west, fringed by casuarina trees. It is a proclaimed public beach of about 16.7 hectares. You swim and snorkel in the calm lagoon and try watersports, and food stalls sometimes set up under the trees.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "Trou aux Biches beach",
+      "region": "north",
+      "kind": "beach",
+      "where": "Trou aux Biches",
+      "what": "A beach in the north that runs alongside the town of the same name, with proclaimed public stretches. You snorkel or dive, with a choice of diving schools close by, take a long walk in the shade of the casuarinas and watch the sunset.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        15,
+        14
+      ]
+    },
+    {
+      "name": "Cap Malheureux church",
+      "region": "north",
+      "kind": "heritage",
+      "where": "Cap Malheureux",
+      "what": "Notre Dame Auxiliatrice, the red-roofed church of a fishing village on the northern tip of the island, with the island of Coin de Mire behind it. Visitors are welcome to go in, to join mass or to see the holy water basin made from a giant clam shell.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        16,
+        10
+      ]
+    },
+    {
+      "name": "Coin de Mire",
+      "region": "islets",
+      "kind": "sea",
+      "where": "Off the north coast, by speedboat or catamaran",
+      "what": "An offshore island in the north, also called Gunner's Quoin. It is a protected nature reserve, so landing is not allowed. People go by boat to see the cliffs and the seabirds, such as the red-tailed tropicbird, and to snorkel and dive around it.",
+      "practical": "Stepping onto the islet is not allowed. The visit is made from the water.",
+      "tip": null,
+      "sources": [
+        17,
+        18
+      ]
+    },
+    {
+      "name": "Ilot Gabriel and Ile Plate",
+      "region": "islets",
+      "kind": "sea",
+      "where": "Off the north coast, by boat or catamaran from Grand Baie or Pereybère",
+      "what": "Two of the northern islands. Ilot Gabriel is known for its white sandbar and calm water, and for seabirds such as the white-tailed tropicbird. Ile Plate, or Flat Island, lies five minutes away. It is uninhabited, served as a quarantine station from the mid-19th century to the 1930s and still has a lighthouse. Divers visit the Shark Pit near Pigeon Rock.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        19,
+        18
+      ]
+    },
+    {
+      "name": "Aapravasi Ghat World Heritage Site",
+      "region": "port-louis",
+      "kind": "heritage",
+      "where": "Quay Street, Port Louis",
+      "what": "The remains of the Immigration Depot built in 1849 to receive indentured labourers, who came from India, Eastern Africa, Madagascar, China and Southeast Asia to work on the sugar estates. The site was inscribed on the World Heritage List in 2006. The visit starts at the Beekrumsing Ramlallah Interpretation Centre, whose exhibition explains the indenture system, and goes on to the stone buildings and steps of the depot.",
+      "practical": "Entrance is free. Open Monday to Friday from 9:00 to 16:00 and Saturday from 9:00 to 12:00. Closed on Sundays and public holidays, and closes at noon on 24 and 31 December. The visit lasts about one hour: 30 to 40 minutes in the Interpretation Centre and 20 minutes on the site. Guided visits are offered on prior booking, on 217 7770. The site is accessible by wheelchair.",
+      "tip": "The Interpretation Centre has no visitor parking. The Trust says to park at the Granary or at Le Caudan Waterfront.",
+      "sources": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "name": "Blue Penny Museum",
+      "region": "port-louis",
+      "kind": "museum",
+      "where": "Le Caudan Waterfront, Port Louis",
+      "what": "An art and history museum devoted to Mauritius. Its rooms cover the age of discovery, the colonial history of the island, old maps and images of Port Louis, the story of Paul and Virginie and the history of the post. It holds the Post Office stamps for which Mauritius is known.",
+      "practical": "Open Monday to Saturday from 9.30am to 4pm. Closed on Sundays and public holidays, and from 1 to 3 January. It closes at 1pm on 24 and 31 December. Non-residents pay Rs 325 for an adult and Rs 200 for a child or student. A family ticket for two adults and two children is Rs 820.",
+      "tip": "The Post Office stamps are lit for only 10 minutes, at a quarter past each hour, to protect them. Photography is allowed except in the stamps room.",
+      "sources": [
+        23
+      ]
+    },
+    {
+      "name": "Natural History Museum",
+      "region": "port-louis",
+      "kind": "museum",
+      "where": "Mauritius Institute Building, Chaussée, Port Louis",
+      "what": "Four galleries on the natural history of Mauritius over the past 500 years: birds, mammals and reptiles, marine life, geology and insects, and the dodo. The dodo gallery shows a model of the bird and a skeleton collected in 1900 whose bones all come from one bird. Visitors can also try an augmented reality display of the dodo.",
+      "practical": "Entrance is free. Open Monday, Tuesday, Thursday and Friday from 09:00 to 16:00, Wednesday from 11:00 to 16:00 and Saturday from 09:00 to 12:00. Closed on Sundays and public holidays.",
+      "tip": null,
+      "sources": [
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "name": "Port Louis Central Market",
+      "region": "port-louis",
+      "kind": "market",
+      "where": "Port Louis",
+      "what": "The market in the centre of the capital, also called the Bazaar Port Louis, where local people shop for fruit and vegetables. Visitors walk the stalls, eat street food such as samosas and dholl puri at the kiosks, try a glass of alouda and look for locally made crafts on the first floor. Stalls outside sell clothes and bags.",
+      "practical": "The market is a short walk from Le Caudan Waterfront and next to Chinatown.",
+      "tip": null,
+      "sources": [
+        27,
+        28
+      ]
+    },
+    {
+      "name": "Le Caudan Waterfront",
+      "region": "port-louis",
+      "kind": "town",
+      "where": "Port Louis harbour",
+      "what": "A place for shopping, eating and culture beside the harbour. A walkway hung with coloured umbrellas leads past boutiques, a food court, cafés and restaurants. The Caudan Arts Centre stages theatre and concerts, and the Blue Penny Museum and a cinema are here too.",
+      "practical": null,
+      "tip": "The tourism authority suggests starting a visit to Port Louis here, as there is plenty of parking.",
+      "sources": [
+        29,
+        28
+      ]
+    },
+    {
+      "name": "Chinatown and the street art of Port Louis",
+      "region": "port-louis",
+      "kind": "food",
+      "where": "Royal Road area, Port Louis",
+      "what": "The Chinese quarter of the capital, close to the waterfront and the Central Market. You walk its narrow streets of old family shops and eat: biscuits, Chinese cakes and steamed dim sum. It is also one of the places to see the murals of Port Louis, on Royal Road, Emmanuel Anquetil Street and Venpin Street.",
+      "practical": "The Chinatown Food and Culture Festival is held each year in May.",
+      "tip": null,
+      "sources": [
+        30,
+        31,
+        28
+      ]
+    },
+    {
+      "name": "La Citadel (Fort Adelaide)",
+      "region": "port-louis",
+      "kind": "viewpoint",
+      "where": "Port Louis",
+      "what": "A stone fortress on a hill, built by the British to defend the capital between 1830 and 1840. It gives views all round over Port Louis. It now houses shops and is a venue for shows and cultural events, and children like the old cannons.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        32
+      ]
+    },
+    {
+      "name": "Kwan Tee Pagoda",
+      "region": "port-louis",
+      "kind": "heritage",
+      "where": "Les Salines, Port Louis",
+      "what": "A pagoda built by the Chinese community in 1842 and listed as a National Heritage Site. It is painted red with touches of yellow and green, faces the sea and is backed by mountains. Visitors step inside, may leave an offering at the altars and walk in the gardens.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        33
+      ]
+    },
+    {
+      "name": "Odysseo Oceanarium",
+      "region": "port-louis",
+      "kind": "family",
+      "where": "Les Salines, Harbour Waterfront, Port Louis",
+      "what": "An indoor oceanarium showing species from the Indian Ocean, with about 3,500 specimens. Visitors walk through at their own pace, can rent an audio guide in English, French or German, watch feeding sessions and can add a virtual reality film or a guided tour.",
+      "practical": "Open every day from 9am to 5pm, with last entry at 4:15pm. Closed on 1 January. Non-residents pay Rs 1,280 for an adult and Rs 960 for a child of 4 to 12. Children under 4 enter free. Tickets can be booked online. Parking is free and covered. It is a 5-minute walk from Victoria Bus Station by the Caudan pedestrian bridge.",
+      "tip": null,
+      "sources": [
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "name": "Trou aux Cerfs",
+      "region": "centre",
+      "kind": "viewpoint",
+      "where": "Curepipe",
+      "what": "The crater of a dormant volcano near the town of Curepipe, 605 metres above sea level, ringed by forest and with a small lake at its centre. You walk around it for the view, which takes in Rempart mountain, Trois Mamelles and the Moka range.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        37,
+        38
+      ]
+    },
+    {
+      "name": "Eureka House",
+      "region": "centre",
+      "kind": "heritage",
+      "where": "Moka",
+      "what": "A mansion dating from around 1836, built of local ebony and mahogany and now a museum, with 109 doors and windows. Visitors take a guided tour of the rooms and their period furniture, eat at the museum's restaurant and walk in the grounds, which have gardens and waterfalls.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        39,
+        38
+      ]
+    },
+    {
+      "name": "Le Pouce",
+      "region": "centre",
+      "kind": "hike",
+      "where": "Centre of the island, above Port Louis",
+      "what": "A thumb-shaped mountain of 812 metres, the third highest in Mauritius. A marked trail leads to the summit, with a rocky final scramble, for views all round, including over Port Louis.",
+      "practical": "The tourism authority gives three to four hours to hike to the top and back.",
+      "tip": "Start early to avoid the heat and wear suitable footwear for the rocky ground.",
+      "sources": [
+        40,
+        38
+      ]
+    },
+    {
+      "name": "Pieter Both",
+      "region": "centre",
+      "kind": "hike",
+      "where": "La Laura, Moka range",
+      "what": "The second highest mountain on the island, known for the large rock balanced at its top. The hike starts in the village of La Laura and ends with views over the island and Port Louis.",
+      "practical": null,
+      "tip": "The tourism authority says this trail should only be attempted with the right equipment and a local professional guide.",
+      "sources": [
+        41,
+        38
+      ]
+    },
+    {
+      "name": "The Tea Route",
+      "region": "south",
+      "kind": "food",
+      "where": "Curepipe, Bois Chéri and Saint Aubin",
+      "what": "A route through three estates, also called La Route du Thé, to see tea plantations, visit a tea museum and walk through spice gardens. Domaine des Aubineaux in Curepipe is a colonial house built in 1872. Bois Chéri has the island's oldest tea plantation, where a guided walk explains how tea is made and a tasting follows. Saint Aubin, near Rivière des Anguilles, has an old colonial house preserved as a National Heritage Site, a rum distillery and a dining room that serves lunch.",
+      "practical": null,
+      "tip": "The route can be followed on an organised coach trip or with a private driver guide.",
+      "sources": [
+        42,
+        43,
+        38
+      ]
+    },
+    {
+      "name": "Belle Mare beach",
+      "region": "east",
+      "kind": "beach",
+      "where": "Belle Mare",
+      "what": "One of the longest beaches on the island, on the east coast, with proclaimed public stretches. You walk it at sunrise, swim, snorkel and dive, and dry off in the shade of the casuarina trees.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        44,
+        14,
+        45
+      ]
+    },
+    {
+      "name": "Ile aux Cerfs",
+      "region": "islets",
+      "kind": "beach",
+      "where": "Off Trou d'Eau Douce, by boat shuttle from Pointe Maurice",
+      "what": "An island of 87 hectares off the east coast, with white beaches, a lagoon, restaurants and beach bars. You spend the day on the sand, try parasailing and other water sports, or play the 18-hole golf course designed by Bernhard Langer.",
+      "practical": "The leisure island is open every day from 09:00 to 18:00. A boat shuttle runs every 30 minutes from 09:30 to 18:00 between the jetty at Pointe Maurice, which has a secured parking area, and the Masala Jetty on the island. The golf club is open from 07:00 to 20:00 and has its own shuttle every 20 minutes.",
+      "tip": "The tourism authority advises checking the island's website for the latest opening and shuttle times.",
+      "sources": [
+        46,
+        47
+      ]
+    },
+    {
+      "name": "Central Flacq Market",
+      "region": "east",
+      "kind": "market",
+      "where": "Central Flacq",
+      "what": "The largest outdoor market in Mauritius. Local people shop here for fresh produce, and visitors browse stalls of souvenirs and clothing and eat freshly cooked street food.",
+      "practical": null,
+      "tip": "The tourism authority suggests Wednesdays and Sundays, when all the stalls are open.",
+      "sources": [
+        48,
+        45
+      ]
+    },
+    {
+      "name": "Bras d'Eau National Park",
+      "region": "east",
+      "kind": "nature",
+      "where": "Bras d'Eau, near Poste Lafayette",
+      "what": "The second national park on land, proclaimed on 25 October 2011, covering 497.2 hectares in the north-east. It has a visitor centre, the ruins of an old sugar mill settlement, and two trails through the forest. Mare Sarcelle, a mangrove wetland within the park, is a place for hiking and bird watching.",
+      "practical": "The Coq des Bois Trail is 5 km return from the visitor centre and fairly easy. The park has picnic tables.",
+      "tip": "Call at the visitor centre first to learn about the trails, the ruins and the wildlife.",
+      "sources": [
+        49,
+        50
+      ]
+    },
+    {
+      "name": "Roches Noires lava tubes",
+      "region": "east",
+      "kind": "nature",
+      "where": "Roches Noires",
+      "what": "A small nature reserve of volcanic caves close to the village of Roches Noires, in the north-east. Visitors follow the cave trail to the main cavern, Princess Margaret Cave, go down its wide staircase to connecting chambers and freshwater pools, and visit the museum that explains how the tubes formed.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        51
+      ]
+    },
+    {
+      "name": "La Vallée de Ferney",
+      "region": "east",
+      "kind": "wildlife",
+      "where": "Ferney, in the Bambou mountains north of Mahébourg",
+      "what": "A conservation park of 200 hectares of native forest in the south-east, home to the Mauritius kestrel. You walk or cycle the trails, join a guided walk in the forest or take a 4x4 tour, and can eat at the restaurant, which looks over the ocean.",
+      "practical": "The reserve is open 7 days a week, from 8:30am to 2pm for activities and until 5pm for the reception. Access to the valley is limited on certain dates between June and September and during private events. The 13 km and 18 km tracks are not suitable for children under 12. Picnics and pets are not allowed.",
+      "tip": "The reserve recommends booking in advance, and bringing sun cream, mosquito repellent, water, sports shoes and a hat.",
+      "sources": [
+        52,
+        53,
+        54
+      ]
+    },
+    {
+      "name": "Blue Bay Marine Park",
+      "region": "south",
+      "kind": "sea",
+      "where": "Blue Bay",
+      "what": "A marine park of 353 hectares in the south-east, declared in June 2000 for its coral reefs and listed as a Ramsar wetland of international importance since 31 January 2008. You snorkel in its calm, shallow water or see the coral garden from a glass-bottom boat. Blue Bay beach, a proclaimed public beach shaded by casuarinas, is the way in.",
+      "practical": "The ministry regulates activities in the park through permits and runs the Blue Bay Marine Park Centre, which has an exhibition on marine ecosystems for students and the public.",
+      "tip": null,
+      "sources": [
+        55,
+        56,
+        57,
+        14
+      ]
+    },
+    {
+      "name": "Ile aux Aigrettes",
+      "region": "islets",
+      "kind": "wildlife",
+      "where": "Off the south-east coast",
+      "what": "A small islet ringed by coral and covered in ebony forest, declared a nature reserve in 1965. Conservation work has brought back rare species. Visitors take a guided tour and look for the pink pigeon, the Mauritius fody and the Mauritius olive white-eye, as well as tortoises, reptiles and rare plants.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        58,
+        59
+      ]
+    },
+    {
+      "name": "Frederik Hendrik Museum and Vieux Grand Port",
+      "region": "south",
+      "kind": "museum",
+      "where": "Old Grand Port (Vieux Grand Port)",
+      "what": "The historic site where the Dutch first settled, on the south-east coast. The buildings above ground are French, built after 1753 on the ruins of the Dutch Fort Frederik Hendrik: a lodge, a prison, a bakery and a blacksmith's workshop. The museum shows what archaeologists have found here, from musket balls and clay pipes to coins and pottery, and a model of a Dutch East Indiaman.",
+      "practical": "Entrance is free. Open Monday, Tuesday, Thursday, Friday and Saturday from 09:00 to 16:00, Wednesday from 11:00 to 16:00 and Sunday from 09:00 to 12:00. Closed on public holidays.",
+      "tip": null,
+      "sources": [
+        60,
+        61,
+        62
+      ]
+    },
+    {
+      "name": "National History Museum",
+      "region": "south",
+      "kind": "museum",
+      "where": "Royal Road, Mahébourg",
+      "what": "A museum of the island's history from its discovery by the Portuguese to the end of the 19th century, in a mansion built at the end of the 18th century. Its rooms cover the Dutch, French and British periods, with old maps, finds from shipwrecks, the bell of the Saint-Géran and objects from the naval battle of Grand Port in 1810.",
+      "practical": "The Museums Council's page says the museum has been temporarily closed for renovation works since 15 December 2025. When open, entrance is free and the hours are 09:00 to 16:00 on Monday, Tuesday, Thursday, Friday and Saturday, 11:00 to 16:00 on Wednesday and 09:00 to 12:00 on Sundays and public holidays.",
+      "tip": null,
+      "sources": [
+        63,
+        64,
+        65
+      ]
+    },
+    {
+      "name": "Pont Naturel",
+      "region": "south",
+      "kind": "viewpoint",
+      "where": "Between Le Souffleur and Le Bouchon",
+      "what": "A natural bridge of volcanic rock on the south coast, with the sea swirling beneath it. You come to watch the waves break against the cliffs and to take photographs. The road to it is bumpy.",
+      "practical": null,
+      "tip": "The sea here is strong and it is not a place to swim.",
+      "sources": [
+        66,
+        59
+      ]
+    },
+    {
+      "name": "Gris Gris and La Roche qui Pleure",
+      "region": "south",
+      "kind": "viewpoint",
+      "where": "Souillac",
+      "what": "A proclaimed public beach near Souillac, at the southernmost part of the island, with a view of the cliffs. It is not a beach for swimming or snorkelling, because of strong currents and large waves. You walk, look at the cliffs and follow the path to La Roche qui Pleure to watch the waves break on the rocks.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        67,
+        14
+      ]
+    },
+    {
+      "name": "Rochester Falls",
+      "region": "south",
+      "kind": "nature",
+      "where": "2.5 km from Souillac",
+      "what": "A waterfall about 10 metres high, known for the rectangular rocks of its cliff face. You swim in the pool on a hot day and picnic beside it.",
+      "practical": null,
+      "tip": "The tourism authority recommends not visiting during or after heavy rain, when the rocks are slippery and the water can rise.",
+      "sources": [
+        68
+      ]
+    },
+    {
+      "name": "Cascade Léon",
+      "region": "south",
+      "kind": "nature",
+      "where": "Rivière des Anguilles, close to Souillac",
+      "what": "A waterfall of about 20 feet, also called Exil Waterfall, reached by a path through forest and a few rocks to step over. You picnic, swim in the pool and can swim behind the fall to a hidden cave.",
+      "practical": null,
+      "tip": "Pack lunch, plenty of water and swimwear.",
+      "sources": [
+        69
+      ]
+    },
+    {
+      "name": "Robert Edward Hart Memorial Museum",
+      "region": "south",
+      "kind": "museum",
+      "where": "Autard Street, Souillac",
+      "what": "The house of the Mauritian poet Robert Edward Hart, with its rooms recreated as he lived in them. Visitors see his desk and library, his manuscripts, violin and typewriter, and a documentary on his life.",
+      "practical": "Entrance is free. Open Monday, Tuesday, Thursday and Friday from 09:00 to 16:00, Wednesday from 11:00 to 16:00 and Saturday from 09:00 to 12:00. Closed on Sundays and public holidays.",
+      "tip": null,
+      "sources": [
+        70,
+        71
+      ]
+    },
+    {
+      "name": "La Vanille Nature Park",
+      "region": "south",
+      "kind": "wildlife",
+      "where": "Rivière des Anguilles",
+      "what": "A wildlife park founded in 1985, known for its Aldabra giant tortoises, of which it keeps more than 1,000, and its Nile crocodiles. Visitors see the tortoises roaming free, watch the crocodiles being fed, see lemurs, iguanas and bats, and visit the insectarium and the fossil museum.",
+      "practical": "Open every day from 9am to 5pm, public holidays included. Closed on 25 December and 1 January. Non-residents pay Rs 950 for an adult and Rs 665 for a child. The park gives 3 to 12 as the child age and 2 to 3 hours as the average visit. Animal encounters can be added when booking.",
+      "tip": null,
+      "sources": [
+        72,
+        73,
+        74
+      ]
+    },
+    {
+      "name": "Ganga Talao (Grand Bassin)",
+      "region": "south",
+      "kind": "heritage",
+      "where": "Grand Bassin, in the mountains of Savanne",
+      "what": "A crater lake that is an important Hindu site. A statue of Shiva 33 metres high stands at the gateway. You walk around the shore, past the shrines at the water's edge, and may see monkeys. During the festival of Maha Shivaratri pilgrims walk here from all over the island.",
+      "practical": null,
+      "tip": "To see the lake at its busiest, visit during Maha Shivaratri, which usually falls between February and March.",
+      "sources": [
+        75,
+        59,
+        76
+      ]
+    },
+    {
+      "name": "Bel Ombre and the World of Seashells Museum",
+      "region": "south",
+      "kind": "museum",
+      "where": "Bel Ombre",
+      "what": "A quiet stretch of the south coast, backed by forest, with white beaches for swimming and snorkelling. In the village, the World of Seashells Museum shows a collection of about 8,000 shells from 1,500 species, with a small laboratory where children design their own.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        77,
+        78,
+        59
+      ]
+    },
+    {
+      "name": "Black River Gorges National Park",
+      "region": "south-west",
+      "kind": "nature",
+      "where": "Pétrin, Plaine Champagne and the Black River Lower Gorges",
+      "what": "The largest national park in Mauritius, proclaimed on 15 June 1994 and covering 6,574 hectares of forest in the south-west. Some 60 km of trails cross it, from damp upland forest in the east to drier lowland forest in the west. The highest point of the island, Piton de la Rivière Noire at 828 metres, is inside the park, and so is the viewpoint over Alexandra Falls.",
+      "practical": "The park service lists eight popular trails. They include the easy Savanne Trail, 6 km return, the moderate Black River Peak Trail, 9 km return, the moderate Machabée Forest Loop from Pétrin, 14 km return, and the strenuous Parakeet Trail from Plaine Champagne to the Lower Gorges, 8 km.",
+      "tip": null,
+      "sources": [
+        79,
+        80
+      ]
+    },
+    {
+      "name": "Le Morne Brabant mountain trail",
+      "region": "south-west",
+      "kind": "hike",
+      "where": "Le Morne",
+      "what": "The mountain at the south-western tip of the island, where people who escaped slavery took refuge. Le Morne Cultural Landscape has been a World Heritage Site since 10 July 2008. The trail has two sections. The first is an easy climb of 2.53 km to a viewpoint at 260 metres. The second is a steep 760 metres of rock and loose stones, ending at a metal cross at 492 metres.",
+      "practical": "The trail is open every day, public holidays included, from 9.00 to 16.00. The latest time to start up is 14.30. Sign the visitor record book at the trailhead. A release of liability form must be filled in before the second section, which children under 13 should not climb. The trail closes for heavy or torrential rain warnings, from cyclone warning Class II, and after landslides or rockfalls.",
+      "tip": "The Trust recommends a qualified guide for the second section. Wear suitable clothing, a cap and sports shoes, and carry drinking water and dry food. The mountain is a smoke-free and sacred site: no fires, no camping and no loud music.",
+      "sources": [
+        81,
+        82,
+        83
+      ]
+    },
+    {
+      "name": "Trou Chenille Open Air Museum",
+      "region": "south-west",
+      "kind": "heritage",
+      "where": "Le Morne, at the foot of the mountain",
+      "what": "A replica of the former village of Trou Chenille, where descendants of enslaved people lived after abolition. It opened on 1 February 2020. Five traditional huts, built with straw roofs, each show one side of daily life: the kitchen, sega, crafts and occupations, fishing and traditional healing.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        84
+      ]
+    },
+    {
+      "name": "Le Morne beach",
+      "region": "south-west",
+      "kind": "beach",
+      "where": "Le Morne",
+      "what": "A beach of white sand and coconut trees at the foot of Le Morne Brabant, with proclaimed public stretches. The trade winds are strong and steady here, especially between April and November, so it is a place to learn to kitesurf, with a choice of schools. One Eye, at Pointe du Morne, is a well-known kitesurfing spot. Others come to rest on the sand and stay for the sunset.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        85,
+        86,
+        14
+      ]
+    },
+    {
+      "name": "Chamarel 7 Coloured Earth Geopark and Chamarel Waterfall",
+      "region": "south-west",
+      "kind": "nature",
+      "where": "Chamarel",
+      "what": "Dunes of sand in shades of red, brown, violet, green, blue, purple and yellow, with two viewpoints over Chamarel Waterfall on the way in. The waterfall drops about 100 metres and is the tallest on the island. The ticket also covers the park of Aldabra giant tortoises. The visit is self-guided, by car or on foot, over the 3 km from the gate to the dunes.",
+      "practical": "Open every day, Sundays and public holidays included. From October to May the hours are 8.30am to 5.30pm, with the last ticket sold at 5pm. From June to September they are 8.30am to 5pm. Non-residents pay Rs 800 for an adult and Rs 400 for a child of 5 to 11. Children under 5 enter free. Payment is in Mauritian rupees, in cash or by card. Allow 45 minutes to 2 hours. Picnics, pets and drones are not allowed.",
+      "tip": "The tourism authority says the waterfall flows at its best between December and April.",
+      "sources": [
+        87,
+        88,
+        89,
+        90
+      ]
+    },
+    {
+      "name": "La Rhumerie de Chamarel",
+      "region": "south-west",
+      "kind": "food",
+      "where": "Royal Road, Chamarel",
+      "what": "A rum distillery set among sugar cane fields about 300 metres above the south-west coast. Guides take visitors through the making of the rum, past the copper stills and the cellars of oak barrels, and the visit ends with a tasting.",
+      "practical": "Visits and tastings run Monday to Saturday from 9:30am to 4:30pm. Closed on Sundays. The visit costs Rs 800 a person and Rs 400 for those aged 16 or 17. The site also lists a visit and tasting at Rs 1,500 a person, Monday to Saturday from 9:30am to 3:30pm, and private tours limited to 15 people a time slot. It notes a wait of 20 minutes at reception.",
+      "tip": null,
+      "sources": [
+        91,
+        92
+      ]
+    },
+    {
+      "name": "Ebony Forest",
+      "region": "south-west",
+      "kind": "wildlife",
+      "where": "Chamarel",
+      "what": "A conservation project that has been weeding and replanting native forest since 2006. Visitors walk a raised walkway through the forest, take a safari jeep tour with a guide, join a birdwatching walk to look for the pink pigeon, the echo parakeet and the Mauritius kestrel, and can plant a tree.",
+      "practical": "The reserve's site lists the jeep tour as leaving at 9:30, 11:30, 13:30 and 15:30, and the birdwatching walk and guided trek as starting at 9am.",
+      "tip": null,
+      "sources": [
+        93,
+        94
+      ]
+    },
+    {
+      "name": "Flic en Flac beach",
+      "region": "west",
+      "kind": "beach",
+      "where": "Flic en Flac",
+      "what": "A beach about eight kilometres long on the west coast, lined with casuarina trees, with several proclaimed public stretches. You swim and snorkel in the lagoon, eat at the street food stands and set out from here on diving trips.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        95,
+        14
+      ]
+    },
+    {
+      "name": "The Cathedral dive site",
+      "region": "west",
+      "kind": "sea",
+      "where": "Off Flic en Flac",
+      "what": "A dive site off the west coast where a sheer drop-off meets large boulders, making caves and arches. Divers go down to nearly 30 metres to a cavern lit by sunlight from above. The tourism authority counts more than 100 dive sites around the island.",
+      "practical": null,
+      "tip": "A list of approved diving centres is published by the Mauritius Scuba Diving Association. A decompression chamber is at the Victoria Hospital in Candos.",
+      "sources": [
+        96,
+        97
+      ]
+    },
+    {
+      "name": "Casela Nature Parks",
+      "region": "west",
+      "kind": "family",
+      "where": "Royal Road, Cascavelle",
+      "what": "A nature and leisure park of 350 hectares on the west coast. Visitors go on safari to see giraffes, rhinos and lions, visit the bird aviaries and the petting farm, and try zip lines, quad bikes and a toboggan run called Tulawaka.",
+      "practical": "Open every day from 9am to 5pm, public holidays included. Closed on 25 December and 1 January. The park recommends a whole day. Animal interaction activities end at 3:30pm and the restaurants close at 4pm. Outside food is not permitted. A notice on the site on 20 November 2026 said animal feeding was suspended as a precaution against foot-and-mouth disease, with the park still open.",
+      "tip": "The park recommends arriving between 9am and noon, booking activities in advance, and wearing closed shoes and light long sleeves.",
+      "sources": [
+        98,
+        99,
+        100
+      ]
+    },
+    {
+      "name": "Tamarin salt pans",
+      "region": "west",
+      "kind": "heritage",
+      "where": "Tamarin",
+      "what": "The last working salt pans on the island, at the foot of La Tourelle mountain by the entrance to Tamarin village. Workers still harvest salt with techniques that have not changed in some 200 years. Visitors watch the harvest and call at the small shop.",
+      "practical": null,
+      "tip": "Go early in the morning to see the workers in action.",
+      "sources": [
+        101
+      ]
+    },
+    {
+      "name": "La Preneuse beach and its Martello tower",
+      "region": "west",
+      "kind": "beach",
+      "where": "La Preneuse, Black River",
+      "what": "A quiet beach on the west coast, best known for a well-preserved Martello tower, a small defensive fort, and the cannons along the sand. It is a beach for a walk and for the sunset, with Le Morne Brabant in the distance. Many boat trips leave from this area.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        102,
+        14
+      ]
+    },
+    {
+      "name": "Dolphin and whale watching off the west coast",
+      "region": "west",
+      "kind": "sea",
+      "where": "West coast, by licensed boat",
+      "what": "Bottlenose and spinner dolphins are regularly seen off the west coast, often in pods of 20. Sperm whales can be seen all year and humpback whales pass through from July to November. You go out by boat with a licensed operator.",
+      "practical": null,
+      "tip": "The Tourism Authority (Dolphin and Whale Watching) Regulations 2012 apply. Boats approach from the side at no-wake speed. Nobody may feed or touch a dolphin, and no more than three swimmers may be in the water at once.",
+      "sources": [
+        103,
+        104
+      ]
+    },
+    {
+      "name": "Île aux Bénitiers",
+      "region": "islets",
+      "kind": "sea",
+      "where": "By boat from La Gaulette or Case Noyale",
+      "what": "An uninhabited island about 2 kilometres long and 500 metres wide, in the lagoon near Le Morne. A day here is for a picnic on the beach, bird watching and a look at the small coconut farm. You can snorkel to Crystal Rock nearby.",
+      "practical": "Local fishing boats cross from La Gaulette or Case Noyale. Organised day trips by catamaran or speedboat often include a barbecue lunch.",
+      "tip": null,
+      "sources": [
+        105,
+        106
+      ]
+    },
+    {
+      "name": "François Leguat Reserve",
+      "region": "rodrigues",
+      "kind": "wildlife",
+      "where": "Anse Quitor, Rodrigues",
+      "what": "A reserve of 20 hectares in the south-west of Rodrigues. A guided tour leads through a valley with hundreds of giant tortoises and tens of thousands of native trees, then into Grande Caverne, a limestone cave fitted with raised walkways and lighting. There is also a museum of four galleries on the natural history of Rodrigues, a shop and a restaurant.",
+      "practical": "Open 7 days a week from 09h00 to 17h00. Visits are by guided tour only, at 9:30, 10:30, 13:30 and 14:30.",
+      "tip": null,
+      "sources": [
+        107,
+        108,
+        109
+      ]
+    },
+    {
+      "name": "Ile aux Cocos",
+      "region": "rodrigues",
+      "kind": "wildlife",
+      "where": "Off Rodrigues, a short boat trip",
+      "what": "A small islet nature reserve off the coast of Rodrigues, with white sand and coconut trees, known for its seabirds. Birdwatchers and beach lovers go across by boat.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        109
+      ]
+    },
+    {
+      "name": "Trou d'Argent",
+      "region": "rodrigues",
+      "kind": "hike",
+      "where": "Rodrigues, reached on foot by the coastal path",
+      "what": "An isolated beach on Rodrigues, set between two low cliffs. It can only be reached on foot, by the coastal path.",
+      "practical": null,
+      "tip": null,
+      "sources": [
+        109
+      ]
+    },
+    {
+      "name": "The lagoon of Rodrigues",
+      "region": "rodrigues",
+      "kind": "sea",
+      "where": "Rodrigues",
+      "what": "Rodrigues is ringed by coral reefs and a wide lagoon. You snorkel and dive, join a fisherman for a line fishing trip, and kitesurf in the south-east, where the island hosts an International Kitesurf Festival. Twelve public beaches are listed on the island, among them Pointe Cotton, St. Francois, Mourouk and Anse aux Anglais.",
+      "practical": "Rodrigues is about 1 hour 30 minutes by air from Mauritius.",
+      "tip": null,
+      "sources": [
+        109,
+        110
+      ]
+    }
+  ],
+  "itineraries": [
+    {
+      "title": "Port Louis on foot",
+      "stops": [
+        "Le Caudan Waterfront",
+        "Blue Penny Museum",
+        "Port Louis Central Market",
+        "Aapravasi Ghat World Heritage Site",
+        "Chinatown and the street art of Port Louis"
+      ],
+      "note": "The tourism authority says the waterfront, the Central Market, Aapravasi Ghat and Chinatown are within walking distance of each other. Go on a weekday or a Saturday morning, when the museum and the heritage site are open."
+    },
+    {
+      "title": "Pamplemousses and the old sugar estates",
+      "stops": [
+        "Sir Seewoosagur Ramgoolam Botanic Garden",
+        "L'Aventure du Sucre",
+        "Château de Labourdonnais"
+      ],
+      "note": "The sugar museum stands right next to the botanic garden and suggests about 1 hour for the garden and 1.5 hours for the museum. It is closed on Sundays."
+    },
+    {
+      "title": "The north coast",
+      "stops": [
+        "Maheswarnath Mandir",
+        "Trou aux Biches beach",
+        "Mont Choisy beach",
+        "Grand Baie",
+        "Cap Malheureux church"
+      ],
+      "note": "A temple, two public beaches, the village of Grand Baie and the red-roofed church at the northern tip, all in the north."
+    },
+    {
+      "title": "A boat day to the northern islands",
+      "stops": [
+        "Grand Baie",
+        "Coin de Mire",
+        "Ilot Gabriel and Ile Plate"
+      ],
+      "note": "Boats and catamarans leave from Grand Baie or Pereybère. Landing on Coin de Mire is not allowed, so that part of the day is spent on and in the water."
+    },
+    {
+      "title": "The centre: a crater, a mansion and a mountain",
+      "stops": [
+        "Trou aux Cerfs",
+        "Eureka House",
+        "Le Pouce"
+      ],
+      "note": "All three are in the centre of the island. The tourism authority gives three to four hours for Le Pouce there and back, and advises an early start."
+    },
+    {
+      "title": "The east coast",
+      "stops": [
+        "Central Flacq Market",
+        "Belle Mare beach",
+        "Ile aux Cerfs",
+        "Bras d'Eau National Park"
+      ],
+      "note": "The market has all its stalls open on Wednesdays and Sundays. The boat shuttle to Ile aux Cerfs runs every 30 minutes from Pointe Maurice."
+    },
+    {
+      "title": "Mahébourg and the south-east lagoon",
+      "stops": [
+        "Blue Bay Marine Park",
+        "Ile aux Aigrettes",
+        "Frederik Hendrik Museum and Vieux Grand Port",
+        "La Vallée de Ferney"
+      ],
+      "note": "All four are on or off the south-east coast. The National History Museum in Mahébourg was closed for renovation when this was checked."
+    },
+    {
+      "title": "Souillac and the south coast",
+      "stops": [
+        "Rochester Falls",
+        "Gris Gris and La Roche qui Pleure",
+        "Robert Edward Hart Memorial Museum",
+        "Cascade Léon",
+        "La Vanille Nature Park"
+      ],
+      "note": "The falls, the cliffs and the poet's house are all at or near Souillac, and La Vanille is at Rivière des Anguilles. Gris Gris is for the view, not for swimming."
+    },
+    {
+      "title": "The Tea Route and the sacred lake",
+      "stops": [
+        "Trou aux Cerfs",
+        "The Tea Route",
+        "Ganga Talao (Grand Bassin)"
+      ],
+      "note": "The three estates of the Tea Route run from Domaine des Aubineaux in Curepipe, the town of the Trou aux Cerfs crater, to Saint Aubin near the south coast. Ganga Talao is in the south too."
+    },
+    {
+      "title": "Chamarel and the gorges",
+      "stops": [
+        "Black River Gorges National Park",
+        "Chamarel 7 Coloured Earth Geopark and Chamarel Waterfall",
+        "La Rhumerie de Chamarel",
+        "Ebony Forest"
+      ],
+      "note": "The geopark, the distillery and Ebony Forest are all at Chamarel. The geopark says to allow 45 minutes to 2 hours, and the distillery is closed on Sundays."
+    },
+    {
+      "title": "Le Morne",
+      "stops": [
+        "Le Morne Brabant mountain trail",
+        "Trou Chenille Open Air Museum",
+        "Le Morne beach"
+      ],
+      "note": "The trail opens at 9.00 and the latest start is 14.30. The open air museum is at the foot of the mountain, near the way up."
+    },
+    {
+      "title": "The west coast",
+      "stops": [
+        "Tamarin salt pans",
+        "Casela Nature Parks",
+        "Flic en Flac beach",
+        "La Preneuse beach and its Martello tower"
+      ],
+      "note": "The salt pans are best seen early in the morning. Casela recommends a whole day, so choose between it and the beaches if time is short."
+    },
+    {
+      "title": "Rodrigues",
+      "stops": [
+        "François Leguat Reserve",
+        "Ile aux Cocos",
+        "Trou d'Argent",
+        "The lagoon of Rodrigues"
+      ],
+      "note": "The tourism authority suggests adding 5 to 7 days on Rodrigues to a holiday in Mauritius. The reserve is visited by guided tour only."
+    }
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "About the Garden",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=2",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 2,
+      "title": "Visitors' Information: Opening Hours and Entrance Fee",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1581",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 3,
+      "title": "Services",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1624",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 4,
+      "title": "Ponds and the Grand Bassin",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1873",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 5,
+      "title": "Do's and Don'ts",
+      "publisher": "Sir Seewoosagur Ramgoolam Botanic Garden Trust",
+      "url": "https://ssrbg.govmu.org/ssrbg/?page_id=1649",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 6,
+      "title": "Practical information",
+      "publisher": "L'Aventure du Sucre",
+      "url": "https://aventuredusucre.com/practical-information/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 7,
+      "title": "L'Aventure du Sucre",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/laventure-du-sucre/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 8,
+      "title": "FAQ",
+      "publisher": "Domaine de Labourdonnais",
+      "url": "https://domainedelabourdonnais.com/faq/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 9,
+      "title": "Domaine de Labourdonnais",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/domaine-de-labourdonnais/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 10,
+      "title": "North Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/north-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 11,
+      "title": "Maheswarnath Mandir",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/maheswarnath-mandir/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 12,
+      "title": "Grand Baie",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/grand-baie/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 13,
+      "title": "Mont Choisy Beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mont-choisy-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 14,
+      "title": "List of proclaimed public beaches in Mauritius",
+      "publisher": "Beach Authority",
+      "url": "https://www.beachauthority.mu/pdf/beaches/List2025.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 15,
+      "title": "Trou aux Biches beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/trou-aux-biches-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 16,
+      "title": "Cap Malheureux Church",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/cap-malheureux-church/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 17,
+      "title": "Coin de Mire",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/coin-de-mire/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 18,
+      "title": "Mauritius northern islands",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritius-northern-islands/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 19,
+      "title": "Offshore islands",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/offshore-islands/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 20,
+      "title": "Plan Your Visit",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "url": "https://aapravasi.govmu.org/aapravasi/?page_id=816",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 21,
+      "title": "Aapravasi Ghat World Heritage Property",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "url": "https://aapravasi.govmu.org/aapravasi/?page_id=794",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 22,
+      "title": "Aapravasi Ghat",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/aapravasi-ghat/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 23,
+      "title": "Blue Penny Museum: Art and History of Mauritius",
+      "publisher": "Blue Penny Museum",
+      "url": "https://www.bluepennymuseum.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 24,
+      "title": "Natural History Museum: About The Museum",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1847",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 25,
+      "title": "Natural History Museum: Contact Info and Visiting Hours",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1876",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 26,
+      "title": "Mauritius Museums Council, home page",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 27,
+      "title": "Port Louis market",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/port-louis-market/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 28,
+      "title": "Port Louis in Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/port-louis-in-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 29,
+      "title": "Le Caudan Waterfront",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/le-caudan-waterfront/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 30,
+      "title": "Chinatown in Port Louis",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/chinatown-in-port-louis/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 31,
+      "title": "Street art in Port Louis",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/street-art-in-port-louis/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 32,
+      "title": "La Citadel",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/la-citadel/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 33,
+      "title": "Kwan Tee Pagoda",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/kwan-tee-pagoda/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 34,
+      "title": "Plan your visit",
+      "publisher": "Odysseo Oceanarium",
+      "url": "https://odysseomauritius.com/plan-your-visit/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 35,
+      "title": "Odysseo Oceanarium, home page",
+      "publisher": "Odysseo Oceanarium",
+      "url": "https://odysseomauritius.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 36,
+      "title": "Odysseo Oceanarium",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/odysseo-oceanarium/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 37,
+      "title": "Trou aux Cerfs volcano",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/trou-aux-cerfs-volcano/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 38,
+      "title": "Centre of Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/centre-of-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 39,
+      "title": "Eureka House",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/eureka-house/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 40,
+      "title": "Le Pouce",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/le-pouce/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 41,
+      "title": "Pieter Both",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/pieter-both/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 42,
+      "title": "The Tea Route",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/the-tea-route/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 43,
+      "title": "Le Domaine de Saint Aubin",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/le-domaine-de-saint-aubin/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 44,
+      "title": "Belle Mare Beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/belle-mare-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 45,
+      "title": "East Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/east-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 46,
+      "title": "Ile aux Cerfs Leisure Island, official site",
+      "publisher": "Ile aux Cerfs Leisure Island",
+      "url": "https://www.ileauxcerfsleisureisland.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 47,
+      "title": "Ile aux Cerfs",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/ile-aux-cerfs/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 48,
+      "title": "Central Flacq Market",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/central-flacq-market/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 49,
+      "title": "Bras D'Eau National Park",
+      "publisher": "National Parks and Conservation Service",
+      "url": "https://npcs.govmu.org/Pages/National%20Parks/Bras-D%27Eau.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 50,
+      "title": "Bras d'Eau National Park",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/national-parks/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 51,
+      "title": "Roches Noires Lava Tubes",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/roches-noires-lava-tubes/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 52,
+      "title": "La Vallée de Ferney: Hiking and Biking Trails",
+      "publisher": "La Vallée de Ferney",
+      "url": "https://ferney.mu/activities/hiking-trail/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 53,
+      "title": "Activities in Ferney",
+      "publisher": "La Vallée de Ferney",
+      "url": "https://ferney.mu/activities-in-ferney/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 54,
+      "title": "La Vallée de Ferney",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/la-vallee-de-ferney/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 55,
+      "title": "Marine Conservation Division: Blue Bay Marine Park",
+      "publisher": "Ministry of Agro-Industry, Food Security, Blue Economy and Fisheries",
+      "url": "https://blueconomy.govmu.org/Pages/Departments/Albion%20Fisheries%20Research%20Centre%20(AFRC)/Marine%20Conservation%20Division/Marine-Conservation-Division.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 56,
+      "title": "Blue Bay Marine Park",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/blue-bay-marine-park/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 57,
+      "title": "Blue Bay Beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/blue-bay-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 58,
+      "title": "Ile aux Aigrettes",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/ile-aux-aigrettes/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 59,
+      "title": "South Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/south-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 60,
+      "title": "Frederik Hendrik Museum: About The Museum",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1822",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 61,
+      "title": "Frederik Hendrik Museum: Contact Info and Visiting Hours",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1824",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 62,
+      "title": "Vieux Grand Port",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/vieux-grand-port/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 63,
+      "title": "National History Museum: About The Museum",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1843",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 64,
+      "title": "National History Museum: Contact Info and Visiting Hours",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1875",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 65,
+      "title": "Mahebourg Museum",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mahebourg-museum/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 66,
+      "title": "Pont Naturel",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/pont-naturel/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 67,
+      "title": "Gris Gris beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/gris-gris-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 68,
+      "title": "Rochester Falls",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/chutes-de-rochester/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 69,
+      "title": "Cascade Léon",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/cascade-leon/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 70,
+      "title": "Robert Edward Hart Memorial Museum: About The Museum",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1844",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 71,
+      "title": "Robert Edward Hart Memorial Museum: Contact Info and Visiting Hours",
+      "publisher": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/mauritiusmuseums/?page_id=1877",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 72,
+      "title": "Planifier votre visite",
+      "publisher": "La Vanille Nature Park",
+      "url": "https://www.lavanillenaturepark.com/planifier-votre-visite",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 73,
+      "title": "La Vanille Nature Park, home page",
+      "publisher": "La Vanille Nature Park",
+      "url": "https://www.lavanillenaturepark.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 74,
+      "title": "La Vanille Nature Park",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/la-vanille-nature-park/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 75,
+      "title": "Ganga Talao",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/ganga-talao/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 76,
+      "title": "Festivals in Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/festivals-in-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 77,
+      "title": "Belle Ombre",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/belle-ombre/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 78,
+      "title": "World of Seashells Museum",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/world-of-seashells-museum/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 79,
+      "title": "Black River Gorges National Park",
+      "publisher": "National Parks and Conservation Service",
+      "url": "https://npcs.govmu.org/Pages/National%20Parks/Black-River-Gorges-National-Parks.aspx",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 80,
+      "title": "Black River Gorges National Park",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/black-river-gorges-national-park/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 81,
+      "title": "Le Morne Cultural Landscape World Heritage Site: General Practical Information for Visitors",
+      "publisher": "Le Morne Heritage Trust Fund",
+      "url": "https://lemorneheritage.govmu.org/lmh/wp-content/uploads/2023/07/General-practical-information.pdf",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 82,
+      "title": "Le Morne Cultural Landscape",
+      "publisher": "Le Morne Heritage Trust Fund",
+      "url": "https://lemorneheritage.govmu.org/lmh/?page_id=1269",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 83,
+      "title": "Le Morne Mountain",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mountains/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 84,
+      "title": "Your Visit: Trou Chenille Open Air Museum",
+      "publisher": "Le Morne Heritage Trust Fund",
+      "url": "https://lemorneheritage.govmu.org/lmh/?page_id=1475",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 85,
+      "title": "Le Morne Beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/le-morne-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 86,
+      "title": "Kitesurfing in Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/kitesurfing-in-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 87,
+      "title": "Frequently Asked Questions",
+      "publisher": "Chamarel 7 Coloured Earth Geopark",
+      "url": "https://chamarel7colouredearth.com/faqs/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 88,
+      "title": "Geopark Entrance Ticket",
+      "publisher": "Chamarel 7 Coloured Earth Geopark",
+      "url": "https://chamarel7colouredearth.com/offers/geopark-entrance-ticket/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 89,
+      "title": "7 Coloured Earth",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/7-coloured-earth/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 90,
+      "title": "Chamarel Waterfall",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/chamarel-waterfall/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 91,
+      "title": "The guided tour: visits and tasting",
+      "publisher": "La Rhumerie de Chamarel",
+      "url": "https://www.rhumeriedechamarel.com/en/la-visite-guidee/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 92,
+      "title": "La Rhumerie de Chamarel, home page",
+      "publisher": "La Rhumerie de Chamarel",
+      "url": "https://www.rhumeriedechamarel.com/en/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 93,
+      "title": "Ebony Forest",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/ebony-forest/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 94,
+      "title": "Visit Ebony",
+      "publisher": "Ebony Forest Reserve Chamarel",
+      "url": "https://www.ebonyforest.com/visit-ebony/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 95,
+      "title": "Flic en Flac beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/flic-en-flac-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 96,
+      "title": "The Cathedral Dive Site",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/cathederal/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 97,
+      "title": "Scuba diving in Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/scuba-diving-in-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 98,
+      "title": "Frequently Asked Questions",
+      "publisher": "Casela Nature Parks",
+      "url": "https://caselaparks.com/frequently-asked-questions/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 99,
+      "title": "Casela Nature Parks, home page",
+      "publisher": "Casela Nature Parks",
+      "url": "https://caselaparks.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 100,
+      "title": "Casela Nature Parks",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/casela-nature-parks/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 101,
+      "title": "Tamarin Salt Pans",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/tamarin-salt-pans/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 102,
+      "title": "La Preneuse Beach",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/la-preneuse-beach/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 103,
+      "title": "Dolphins in Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/dolphins-in-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 104,
+      "title": "Whale Watching",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/whalewatching/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 105,
+      "title": "Île aux Bénitiers",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/ile-aux-benitiers/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 106,
+      "title": "West Mauritius",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/mauritius-map/west-mauritius/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 107,
+      "title": "François Leguat Reserve, home page",
+      "publisher": "François Leguat Ltd",
+      "url": "https://www.francoisleguatreserve.com/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 108,
+      "title": "Caves",
+      "publisher": "François Leguat Ltd",
+      "url": "https://www.francoisleguatreserve.com/en/caves",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 109,
+      "title": "Rodrigues Island",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "url": "https://mauritiusnow.com/blog/things-to-do/rodrigues-island/",
+      "read": "2026-11-20"
+    },
+    {
+      "n": 110,
+      "title": "List of Public Beaches in Rodrigues",
+      "publisher": "Beach Authority",
+      "url": "https://www.beachauthority.mu/pdf/beaches/ListofPublicBeachesRodrigues.pdf",
+      "read": "2026-11-20"
+    }
+  ],
+  "unverified": [
+    "Prices, tour times and booking for Ile aux Aigrettes. The Mauritian Wildlife Foundation website could not be reached on 20 November 2026, so the entry rests on the tourism authority's page.",
+    "The UNESCO World Heritage pages for Le Morne Cultural Landscape and Aapravasi Ghat. They returned a verification screen and were not read. Inscription dates come from the two trust funds.",
+    "Entry fees for the Château de Labourdonnais, Eureka House, the World of Seashells Museum, the Tamarin salt pans, the Roches Noires lava tubes and La Vallée de Ferney. None is stated clearly on a page that was read.",
+    "Opening hours for Eureka House, La Citadelle, Kwan Tee Pagoda, Maheswarnath Mandir, the Port Louis and Flacq markets, the World of Seashells Museum, the Roches Noires lava tubes, Trou Chenille Open Air Museum and the estates of the Tea Route. No official page with hours was read.",
+    "Ebony Forest tour times. The reserve's site was read through a summarising fetch only, as a direct fetch returned a verification screen. Its prices were left out for that reason.",
+    "Whether the National History Museum in Mahébourg has reopened. The Museums Council's page still showed it closed for renovation from 15 December 2025.",
+    "Whether the suspension of animal feeding at Casela is still in force. It was on the park's site on 20 November 2026 with no end date.",
+    "The length of Belle Mare beach and of the trail network in Black River Gorges. The tourism authority gives about six miles of sand and more than 50 km of trails, while the Beach Authority lists a main beach with 1,500 metres of sea frontage and the park service gives some 60 km of trails.",
+    "The number of holes on the Ile aux Cerfs golf course. The island's own site says 18 and the tourism authority says 19. The dataset follows the island's site.",
+    "The size of the Chamarel geopark and the number of species at Odysseo. The official and tourism pages disagree, so the figures were left out.",
+    "The village nearest Le Pouce, the fees and access rules for the islets of the north, and boat prices to Île aux Bénitiers and Ile aux Cocos. They are not on the pages read.",
+    "Resident and child rates other than those quoted. Several places charge Mauritian residents less. Only the non-resident rates are given here, as a visitor's guide.",
+    "Whether a permit or guide is needed for Pieter Both, the 7 Cascades and Le Pouce, and current trail conditions in the national parks. The park service's page lists trails but gives no conditions.",
+    "Rodrigues in general. The Rodrigues tourism website could not be reached, so the island's entries rest on the tourism promotion authority's page, the François Leguat Reserve's own site and the Beach Authority's list.",
+    "The Intercontinental Slavery Museum in Port Louis. Its official site was read but gives no visiting hours, so it was left out.",
+    "The Belle Mare page of the tourism authority places the beach close to Mahébourg. The Beach Authority lists Belle Mare in the eastern region, and the detail was left out."
+  ]
+}

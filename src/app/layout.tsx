@@ -5,6 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
 import { themeFor } from "@/lib/theme";
+import Pwa from "@/components/Pwa";
 import TabBar from "@/components/TabBar";
 import "./globals.css";
 
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
   title: { default: `${site.name} · ${site.line}`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
+  // On an iPhone or iPad, opened from the home screen, the site runs as an app of its own.
+  appleWebApp: { capable: true, title: site.name, statusBarStyle: "default" },
   // Until the owner has confirmed the guides, no page may be indexed (`launched` in src/data/site.ts).
   robots: site.launched ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: { type: "website", siteName: site.name, locale: site.locale, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${site.name}: ${site.line}.` }] },
@@ -50,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <SiteFooter />
         <TabBar />
+        <Pwa />
       </body>
     </html>
   );

@@ -124,13 +124,15 @@ export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a co
 
 /**
  * The plans a business can be listed on (U, 20 November 2026): their names, their prices in rupees
- * a month for each business, and what each gives, in the owner's words. How a plan is paid for is
- * not yet decided: to confirm. Until it is, a business asks for a plan and a person answers.
+ * a month for each business, and what each gives, in the owner's words. Biznes Grow holds everything in Biznes
+ * Go. Plans will be paid for through Stripe, which is not connected yet: until it is, a business
+ * asks for a plan and a person answers. A customer pays a business directly, by MCB Juice, from
+ * the details the business shows; the site takes no part in that payment.
  */
 export const PLANS = [
   { id: "free", name: "Biznes Free", price: 0, line: "A basic listing, free for good.", gives: ["Already yours if our crawler found you: every business on the open map is listed", "Claim the listing to show it is yours and keep it right", "Your name, what you do, where you are and how to reach you"] },
   { id: "go", name: "Biznes Go", price: 550, line: "Verified, and listed with priority.", gives: ["Everything in Biznes Free", "A verified mark, once we have checked the business is real", "Listed with priority, and marked as such"] },
-  { id: "grow", name: "Biznes Grow", price: 1250, line: "Take bookings and sell your services online.", gives: ["Manage your bookings in one place", "Sell your services online", "Your own page to send customers to"] },
+  { id: "grow", name: "Biznes Grow", price: 1250, line: "Everything in Go, with bookings and sales.", gives: ["Everything in Biznes Go", "Manage your bookings in one place", "Sell your services online", "Show your MCB Juice details, so customers can pay you"] },
 ] as const;
 export type PlanId = (typeof PLANS)[number]["id"];
 
