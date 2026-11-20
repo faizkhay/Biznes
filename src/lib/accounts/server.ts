@@ -43,6 +43,9 @@ let visitor: SupabaseClient | undefined;
 export function publicDb(): SupabaseClient {
   return (visitor ??= createSupabaseClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+    // A public page must not wait on a database that is down: one try, a short one. The reads
+    // above this fall back and try again later (owned.ts).
+    db: { retry: false },
     global: { fetch: (input, init) => fetch(input, { ...init, signal: init?.signal ?? AbortSignal.timeout(PATIENCE_MS) }) },
   }));
 }

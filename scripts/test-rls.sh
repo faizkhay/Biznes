@@ -10,10 +10,21 @@
 # root, as on the build machine; start the server first: `pg_ctlcluster 16 main start`). To use
 # another server, set PSQL to a psql command that connects as a superuser, for example
 #   PSQL="psql -h 127.0.0.1 -U postgres" npm run test:rls
+#
+# To run the same claims on Supabase's own Postgres, with its real roles and grants, start the local
+# stack from empty and point this at it. Nothing is kept: the tests roll themselves back.
+#   bash scripts/accounts-stack.sh reset
+#   RLS_TEST_URL=postgres://postgres:postgres@127.0.0.1:54322/postgres npm run test:rls
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 DB="${RLS_TEST_DB:-biznes_rls_test}"
+
+if [ -n "${RLS_TEST_URL:-}" ]; then
+  echo "# Tests: supabase/tests/rls.sql, on a database that already has the migrations and no accounts"
+  psql "$RLS_TEST_URL" -X -q -v ON_ERROR_STOP=1 -f supabase/tests/rls.sql
+  exit
+fi
 
 if [ -n "${PSQL:-}" ]; then
   run() { $PSQL -X -q -v ON_ERROR_STOP=1 "$@"; }

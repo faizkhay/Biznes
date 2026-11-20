@@ -282,3 +282,174 @@ five things left undone. Every check above was run again after the fixes.
 - **A listing's website is checked only at its front page.**
 - **The search has no memory of what people ask**, so nothing yet says which searches find nothing.
 - **Names are shown as the map writes them**, capitals and all.
+
+## Accounts
+
+Built on 20 November 2026 on the `accounts` branch, to the owner's brief of that day: users,
+admins and a superadmin; a business listed free (Biznes Free), or on Biznes Go at Rs 550 a month
+(verified, and listed with priority), or on Biznes Grow at Rs 1,250 a month (everything in Go,
+with bookings and services). Two of the "Known gaps" above are answered by it, once it is switched
+on: there are accounts, and a business can claim its listing and keep it current.
+
+Accounts run on a Supabase project: Supabase Auth for signing in, and its Postgres for everything
+else, reached through `@supabase/supabase-js` and `@supabase/ssr`. **There is no service-role key
+anywhere in the site.** Every privilege is decided in the database, so the publishable key the
+browser can see opens nothing that is not meant to be open.
+
+### Switching them on
+
+| Variable | For |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | The project's address |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Its publishable key (the "anon" key, or a key that begins `sb_publishable_`) |
+| `NEXT_PUBLIC_SITE_URL` | Already asked for above. Here it is also the address in the emails Auth sends: set it |
+
+With either of the first two missing, **accounts are off**: the site builds and behaves as it did
+before they existed, and each account page says "Accounts open soon" with the way to the form at
+`/add`. `accountsOn` in `src/lib/accounts/config.ts` is the one switch every part reads. The three
+pages that word a sentence differently with accounts on (`/pricing`, `/data`, `/privacy`) were
+compared with the build before this work, with accounts off: all 38 public addresses tried answer
+byte for byte the same, build file names aside.
+
+### Setting up the project
+
+1. **Create the project**, and **apply the migrations** in `supabase/migrations`, in order. With
+   the Supabase CLI: `supabase link --project-ref <ref>`, then `supabase db push`. Without it:
+   paste the four files into the SQL editor, one after the other.
+2. **Auth, URL configuration.** Site URL: the site's own address. Redirect URLs: the same address
+   followed by `/**` (and `http://localhost:3000/**` to work on it).
+3. **Auth, email templates.** Point the links at this site, so that a link opened on another
+   device still works:
+   - Confirm signup: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email`
+   - Reset password: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/account/update-password`
+
+   Left as Supabase ships them, the links still work, but only in the browser that asked.
+4. **Auth, email.** Supabase's own sender is for trying things out and sends only a few messages an
+   hour. Give the project an SMTP sender before launch.
+5. **Set the variables and deploy.**
+6. **Register first.** See the next heading.
+
+### The first superadmin
+
+**The first person ever to sign up becomes the superadmin.** Everyone after is a regular user. So
+the owner registers before the address is given to anyone, then checks `/admin/people`. If someone
+else got there first, change the two roles in the SQL editor. There is always a superadmin: the
+database refuses to demote or delete the last one, by any route, the SQL editor included. To hand
+over, make the new person a superadmin first.
+
+### Who can do what
+
+| | Visitor | User | Admin | Superadmin |
+|---|---|---|---|---|
+| Search, read a listing, ask a business on Grow for a booking | yes | yes | yes | yes |
+| Keep their own bookings, and cancel one | | yes | yes | yes |
+| List a business, or claim a listing in the open index | | yes | yes | yes |
+| Change their own business's details; take it out | | yes | yes | yes |
+| Ask for Biznes Go or Biznes Grow | | yes | yes | yes |
+| On Grow: services, MCB Juice details, confirm or decline bookings | | yes | yes | yes |
+| Approve, reject, suspend a business; give or take the verified mark | | | yes | yes |
+| Switch a plan on, with its last day; answer a request for one | | | yes | yes |
+| See everyone's businesses and bookings, the record of admin actions, the list of listings with no website | | | yes | yes |
+| Change roles | | | | yes |
+| Set the picture and the greeting by hand | | | | yes |
+
+A user's own role, plan, plan end, verified mark and status are never theirs to write.
+
+### How it is held
+
+- **Listings from the crawler need nothing.** Every listing in the open index is live and counts as
+  Biznes Free with no row in the database. An owner claims one ("Claim this listing"); the claim is
+  a business row with `listing_id` set, pending until an admin approves it. Until then the public
+  page does not change.
+- **A new business always starts pending, free and unverified**, whatever the request says. The
+  database sets it, not the form.
+- **Grants, then guards.** Supabase grants everything on a new table to the API roles; each
+  migration takes that back and grants only the columns a role may touch. A trigger on each table
+  repeats the rule, so a careless grant later does not open a door.
+- **Admin work goes through functions** (`admin_set_status`, `admin_set_plan`,
+  `admin_set_verified`, `admin_handle_plan_request`, `set_role`) that check who is asking. What
+  they change is written to `audit_log` by triggers: who, what, when.
+- **Plans are switched on by hand.** How a plan is paid for is not built: an owner asks, an admin
+  arranges payment and switches the plan on with the last day it is paid for. After that day the
+  business counts as free again, by itself. Switching a paid plan on marks the business verified.
+  The interface says payment is arranged directly and that paying online is on its way. There is
+  no payment code.
+- **Marks.** The vivid mark (`src/components/Verified.tsx`) is only for a business on Go or Grow
+  that an admin has verified. A claimed listing on the free plan says "Claimed by its owner", in
+  the quiet `tag`. A paid place is never shown without its mark.
+- **The order of results** changes in one way, and `/data` says so: a verified business on a paid
+  plan is shown first among the listings that answer. A search for a business by its own name
+  still shows that business first.
+- **Bookings are requests.** Anyone may ask a live business on Grow, with a name and a telephone
+  number. The database refuses a time that has passed, a fourth request in an hour from one number,
+  and a flood to one business. The form has a honeypot. The business confirms, declines or marks it
+  done. Payment is between the customer and the business.
+- **MCB Juice is details only**: a mobile number and the name the account is under, written by the
+  owner, shown beside the services and after a booking request while the business is on Grow. No
+  integration; the site takes no part in a payment and says so.
+- **The session** is kept in cookies no script can read. `src/proxy.ts` renews it, for the account
+  pages only (`/account`, `/dashboard`, `/admin`, `/auth`): every other page is untouched, so the
+  public pages stay cacheable. The header learns who is signed in from the browser, and asks the
+  server only when a marker cookie says someone is.
+- **Public reads are kept for five minutes** and tagged, so an admin's or an owner's change shows
+  at once. With accounts on, the fixed pages are made again at most every five minutes, not every
+  hour, because the picture behind the page may have been chosen by hand.
+- **`/privacy` changes with accounts on**: it says what an account keeps, and that signing in sets
+  cookies.
+
+### Its pages
+
+| Address | What it is |
+|---|---|
+| `/account/sign-in`, `/account/sign-up`, `/account/reset`, `/account/update-password` | Signing in, a new account, a forgotten password |
+| `/auth/confirm` | Where the link in an email lands |
+| `/account` | A person's details, their bookings, the way to their businesses and, by role, to the admin pages |
+| `/dashboard`, `/dashboard/new`, `/dashboard/[id]` | An owner's businesses; list one or claim one (`?listing=<id>`, `?plan=go`); one business: details, plan, services, bookings |
+| `/admin`, `/admin/leads`, `/admin/people`, `/admin/settings` | The queue, plan requests, every business, the record; listings with no website, with a CSV file; roles; the look. Anyone who is not an admin is told the page is not there |
+| `/biz/[slug]` | The page of a business its owner listed that is not in the open index |
+| `/b/[slug]` | A listing's page gains its owner's details once a claim is approved, or the link to claim it |
+
+### Checking it
+
+| Check | Command | Result on 20 November 2026 |
+|---|---|---|
+| Row level security | `npm run test:rls` | 186 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` | 117 of 117, with axe-core (WCAG 2.2 AA) clean on 23 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
+| Accounts off | Build with neither variable set | Builds; public pages unchanged |
+| No network at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy` | Builds; the reads that fail fall back to the calendar's look |
+
+`scripts/accounts-stack.sh` runs a Supabase project in miniature in Docker: Supabase's own Postgres
+image (15.8.1.085), Supabase Auth (v2.176.1) and PostgREST (v12.2.8), with a small gateway and a
+mail sink beside them (`supabase/local`). The browser check signs up, opens the link in the email,
+signs in and out, claims a listing, lists a business, approves it as an admin, switches a plan on,
+adds a service, asks for a booking as a visitor and as a customer, answers it as the owner, changes
+roles and the look as the superadmin, and resets a password.
+
+**Not run, and why:**
+
+- **A hosted Supabase project.** None existed. Everything above ran against the same three
+  programs a project runs, but not against Supabase's own gateway, its key checks, its email
+  sender or its limits on sign-ups and emails. The email templates in step 3 were tried as links
+  of that shape, not by editing a template in a dashboard.
+- **Tokens signed the newer way.** The local stack signs tokens with a shared secret. A new project
+  signs them with a key pair, which `getClaims()` in the proxy then checks without a round trip.
+  That path is the library's own and was not run here.
+- **A deployment.** Not run on Vercel or any host: the proxy, the cookies over HTTPS, and the cache
+  shared between several servers were tried on one local server only.
+- **Real email.** Delivery, spam folders and the wording of the messages are the project's.
+- **Many people at once.** Nothing was measured under load.
+- **A screen reader, by ear.** As for the rest of the site.
+
+**Not built:**
+
+- **Payment.** Plans are switched on by hand. Paying online is planned, through Stripe, and is not
+  connected.
+- **Owners' own businesses in the browsing lists.** A business listed from scratch is found by the
+  search and has its own page, but is not yet in the lists under `/directory` and `/places`, in the
+  suggestions under the search box, or in the sitemap. A claimed listing is, being a listing.
+- **Changing an email address, deleting an account, signing in with Google or a phone.** Ask us,
+  for now.
+- **An email to the owner or the customer when something changes.** The site sends none of its
+  own: Auth's two messages are the only email.
+- **Opening hours and photographs** for an owner's business.

@@ -61,6 +61,8 @@ const faults = [];
 /** The page as it stands, checked at a desk and on a phone: axe, its width, and a capture. */
 async function audit(page, name) {
   const desk = page.viewportSize();
+  // After a form is answered the page is drawn again, and its title with it: wait for that to finish.
+  await page.waitForFunction(() => document.title.length > 0, null, { timeout: 5000 }).catch(() => {});
   for (const [vp, size] of VIEWPORTS) {
     await page.setViewportSize(size);
     await page.waitForTimeout(150);
@@ -242,7 +244,7 @@ let scratch = "";
   await go(page, `${origin}/dashboard/new`);
   await page.fill("#find-name", "keiffel tours");
   await Promise.all([page.waitForURL(/find=/, { timeout: 15000 }), page.locator("main form[method=get] button").click()]);
-  const mine = page.locator("main").getByRole("link", { name: /Claim this listing: /i }).first();
+  const mine = page.locator("main").getByRole("link", { name: /Claim this listing\s*:\s*Keiffel/i }).first();
   check("claim: the listing is found by name", (await mine.count()) === 1);
   await audit(page, "new-found");
   await Promise.all([page.waitForURL(/listing=/, { timeout: 15000 }), mine.click()]);

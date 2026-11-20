@@ -180,23 +180,27 @@ function build(data: Read): OwnedIndex {
   };
 }
 
-let held: { at: number; index: OwnedIndex } | undefined;
-let failedAt = 0;
 /** After a failed read, how long to wait before asking again. */
 const REST_MS = 30_000;
+
+// What was last read, and when a read last failed. Kept for the life of the server, as the index
+// is, and shared by every page however the server's code is split.
+type Kept = { owned?: { at: number; index: OwnedIndex }; ownedFailedAt: number; ownedAsked?: Promise<Read>; look?: Look; lookFailedAt: number; lookAsked?: Promise<Look> };
+const kept = ((globalThis as { __biznesAccounts?: Kept }).__biznesAccounts ??= { ownedFailedAt: 0, lookFailedAt: 0 });
 
 /** Every live business listed by its owner. Empty when accounts are off. */
 export async function owned(): Promise<OwnedIndex> {
   if (!accountsOn) return NONE;
-  if (Date.now() - failedAt < REST_MS) return held?.index ?? NONE;
+  if (Date.now() - kept.ownedFailedAt < REST_MS) return kept.owned?.index ?? NONE;
   try {
-    const data = await read();
-    if (held?.at !== data.at) held = { at: data.at, index: build(data) };
-    return held.index;
+    // Pages made at the same moment share one read.
+    const data = await (kept.ownedAsked ??= read().finally(() => (kept.ownedAsked = undefined)));
+    if (kept.owned?.at !== data.at) kept.owned = { at: data.at, index: build(data) };
+    return kept.owned.index;
   } catch (err) {
-    failedAt = Date.now();
+    kept.ownedFailedAt = Date.now();
     console.warn(`[accounts] the owners' businesses could not be read: ${err instanceof Error ? err.message : err}`);
-    return held?.index ?? NONE;
+    return kept.owned?.index ?? NONE;
   }
 }
 
@@ -216,20 +220,17 @@ const readLook = unstable_cache(
   { revalidate: KEEP, tags: [TAG_SETTINGS] },
 );
 
-let heldLook: Look | undefined;
-let lookFailedAt = 0;
-
 /** The look chosen by hand, or nulls: when accounts are off, or the database cannot be reached. */
 export async function chosenLook(): Promise<Look> {
   const none = { picture: null, greeting: null };
   if (!accountsOn) return none;
-  if (Date.now() - lookFailedAt < REST_MS) return heldLook ?? none;
+  if (Date.now() - kept.lookFailedAt < REST_MS) return kept.look ?? none;
   try {
-    const { picture, greeting } = await readLook();
-    return (heldLook = { picture, greeting });
+    const { picture, greeting } = await (kept.lookAsked ??= readLook().finally(() => (kept.lookAsked = undefined)));
+    return (kept.look = { picture, greeting });
   } catch (err) {
-    lookFailedAt = Date.now();
+    kept.lookFailedAt = Date.now();
     console.warn(`[accounts] the site's settings could not be read: ${err instanceof Error ? err.message : err}`);
-    return heldLook ?? none;
+    return kept.look ?? none;
   }
 }

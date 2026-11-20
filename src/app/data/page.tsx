@@ -103,7 +103,7 @@ export default function DataPage() {
           <div className="prose body-2 mt-4">
             <ul>
               <li>No email addresses. They are not taken from any source, so the index cannot be mined for them.</li>
-              <li>No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one{accountsOn ? ". The one place that is paid for is always marked: see above." : ", and that is the only order there is."}</li>
+              <li>{accountsOn ? "No reviews or ratings of our own. A fuller listing is shown before a barer one. The one place that is paid for is always marked: see above." : "No reviews, ratings or rankings of our own. A fuller listing is shown before a barer one, and that is the only order there is."}</li>
               <li>No promise that a listing is current. Each one is as the map last recorded it, and says when that was. Most were last edited more than two years ago.</li>
               <li>Not every business. The map is fullest for shops, food and places to stay, and thin for offices and trades.</li>
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>

@@ -18,9 +18,7 @@ export default function PrivacyPage() {
       <div className="shell">
         <div className="prose body-2">
           <h2 className="heading-3">If you only look</h2>
-          <p>
-            {accountsOn ? "The site sets no cookies unless you sign in, and runs no analytics or advertising scripts." : "The site sets no cookies and runs no analytics or advertising scripts."} A search is sent to our server to be answered and is not stored against you. Our hosting provider keeps ordinary server logs, as every website&rsquo;s does.
-          </p>
+          <p>{`${accountsOn ? "The site sets no cookies unless you sign in, and runs no analytics or advertising scripts." : "The site sets no cookies and runs no analytics or advertising scripts."} A search is sent to our server to be answered and is not stored against you. Our hosting provider keeps ordinary server logs, as every website’s does.`}</p>
           {accountsOn && (
             <>
               <h2 className="heading-3 mt-8">If you create an account</h2>
