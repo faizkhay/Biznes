@@ -1,0 +1,478 @@
+{
+  "slug": "shopping-in-mauritius",
+  "shelf": "everyday",
+  "title": "Shopping in Mauritius: supermarkets, malls, markets and hours",
+  "summary": "The kinds of shop, the malls and markets that official pages name, what is known about opening hours, how prices must be shown, whether you can bargain, how visitors get VAT back on what they buy, and the duty-free allowances. Checked on 20 November 2026.",
+  "audience": "Visitors planning what to buy and how to claim tax back, and newcomers finding out how shopping works on the island.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Who can claim a tax refund",
+      "value": "Visitors holding a valid foreign passport, leaving by air or by sea",
+      "detail": "On goods bought in shops that display the Tax Free Shopping logo.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Smallest purchase that qualifies",
+      "value": "Rs 2,300 per visitor from a registered store",
+      "detail": "No maximum. No refund is paid where the tax to be refunded is under Rs 300.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Charge taken from a refund",
+      "value": "2% of the sale value, at least Rs 200",
+      "detail": "Plus 4% where the sale value is Rs 3,000 or more. Sale value is counted before duty and taxes.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Refund paid in",
+      "value": "Euro, pound sterling, US dollar or South African rand",
+      "detail": "In cash, depending on availability, or to a card in US dollars or euros.",
+      "sources": [
+        "S8",
+        "S9"
+      ]
+    },
+    {
+      "label": "Duty-free allowance, visitor on an international flight",
+      "value": "Goods worth up to Rs 15,000",
+      "detail": "Rs 30,000 for a Mauritian passport holder aged 12 or over, Rs 15,000 under 12. Tobacco, wines and spirits are counted separately.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Alcohol and tobacco allowance",
+      "value": "250 g of tobacco, with 1 litre of spirits and 2 litres of wine, ale or beer",
+      "detail": "Or 2 litres of spirits and no wine, or 4 litres of wine, ale or beer and no spirits. Passengers aged 18 or over, from 1 September 2025.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Alcohol from a shop",
+      "value": "8 am to 9 pm on weekdays, to 10 pm on Saturdays, to 6 pm on Sundays and public holidays",
+      "detail": "The authorised hours of a retail licence for consumption off the premises.",
+      "sources": [
+        "S15"
+      ]
+    },
+    {
+      "label": "Port Louis Central Market",
+      "value": "Monday to Saturday until 6 pm, Sundays and public holidays until noon",
+      "detail": "It opens at 5 am in summer and 5.30 am in winter.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Bargaining",
+      "value": "Welcome in marketplaces",
+      "detail": "The tourism authority's advice. Always confirm the price before you buy.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Prices",
+      "value": "Shown in rupees, VAT included",
+      "detail": "A trader may not sell above the labelled price.",
+      "sources": [
+        "S13"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Where do people shop in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In three kinds of place: public markets and fairs, shops and supermarkets, and shopping malls. Markets and fairs are run by the municipal and district councils and sell fresh food, clothes and household goods. The law that lists trades for the councils' fees has separate entries for a general retailer of foodstuff and non-foodstuff, a supermarket and a hypermarket.",
+          "sources": [
+            "S7",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which malls and shopping areas do official pages name?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Tourism Promotion Authority names these. It does not rank them, and neither do we.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Port Louis: Le Caudan Waterfront, a harbourside place for shopping, dining and culture with a food court, and the Victoria Urban Terminal shopping mall. The Central Market and Chinatown are a short walk away.",
+            "The centre: Les Arcades Currimjee, Bagatelle Mall and Tribeca Central, with La City Trianon and Phoenix Mall, which the authority says are easy to reach on the Metro Express.",
+            "The west: Cascavelle Shopping Mall at Flic en Flac, with boutiques, groceries, a bank, opticians, a pharmacy and a large food court.",
+            "The north: boutiques, malls, shops and markets, including the Grand Bazar in Grand Baie.",
+            "The east: the Central Flacq market, which the authority calls one of the biggest markets in Mauritius."
+          ],
+          "sources": [
+            "S3",
+            "S4",
+            "S1",
+            "S6",
+            "S2",
+            "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When are shops and markets open?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For shops and malls, no law fixing opening hours was found. The Local Government Act, under which councils control trades, sets none. Each mall and shop keeps its own hours, so check before a Sunday or a public holiday.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Markets are different, because the councils publish their hours. The Port Louis Central Market is open Monday to Saturday from 5 am in summer, or 5.30 am in winter, until 6 pm, and until noon on Sundays and public holidays. The Quatre Bornes market runs from 6 am to 6 pm, and to noon on Sundays and public holidays. The Flacq market and fairs keep the same hours and close at noon on public holidays. Fairs are held on set days. Our guide to street food and markets has the full table.",
+          "sources": [
+            "S7",
+            "S19",
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One set of hours is fixed by law: the sale of alcohol. A shop licensed to sell alcohol to take away may sell it from 8 am to 9 pm from Monday to Friday, to 10 pm on Saturdays and to 6 pm on Sundays and public holidays. It may not sell to anyone under 18. Smoking is banned in markets, shopping malls and retail and wholesale shops.",
+          "sources": [
+            "S15",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How must prices be shown, and can you bargain?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In a shop the price is on a label near the goods, in Mauritian rupees, and it already includes VAT. A trader may not sell above it. A shop that accepts foreign currency must also show the price in that currency or its conversion rate, with any commission. Since 1 July 2026 many pre-packed groceries must show a unit price for a kilogramme or a litre as well, so you can compare packs.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In marketplaces, the tourism authority says, you are welcome to bargain with the stallholder. It adds one rule for every purchase: confirm the price before you buy. On the beach, do not buy from unauthorised persons, and ask to see an operating licence if in doubt.",
+          "sources": [
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do visitors get VAT back on their shopping?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Through Tax Free Shopping, a system run by the Mauritius Chamber of Commerce and Industry with the customs service of the Mauritius Revenue Authority. A visitor with a valid foreign passport who leaves by air or by sea can claim back the VAT, and any customs duty, paid on goods for personal use that leave the country with them. The shop must display the Tax Free Shopping logo, and the purchase must be at least Rs 2,300 from a registered store.",
+          "sources": [
+            "S8",
+            "S11"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "In the shop, show your passport and travel details and ask for a VAT Paid Supplies to Visitor sales receipt. Or register on the MCCI Tax Free Shopping mobile app and show its code when you pay.",
+            "At the airport, before you check in, take the goods, the receipt or code and your passport to the MRA customs counter. The airport's website places it in International Check-In Hall B. Arrive early, as the goods may be inspected.",
+            "After check-in, immigration and security, collect the refund at the MCCI counter in the departure hall, which the airport places opposite Gate 19. The port has a counter at the Port Louis Cruise Terminal."
+          ],
+          "sources": [
+            "S8",
+            "S9",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The charge is 2% of the sale value before duty and taxes, with a minimum of Rs 200, plus a further 4% where that value is Rs 3,000 or more.",
+            "The refund is paid in cash in euros, pounds sterling, US dollars or South African rand, or to a card in US dollars or euros, which may bring bank charges.",
+            "Services and consumables are excluded. Spirits, wine and tobacco get no refund.",
+            "No refund is paid if the tax to be refunded is under Rs 300, if the shop does not display the logo, or if customs has not approved the receipt."
+          ],
+          "sources": [
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the duty-free rules?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Leaving, a visitor or a Mauritian travelling abroad can buy goods free of duty and VAT in shops that offer airport or cruise delivery. The taxes are taken off at the till, and the goods are handed over at the MCCI counter after security. Spirits, wine and tobacco can be bought this way. The airport's website counts around fifty shops with duty-free or duty-paid facilities.",
+          "sources": [
+            "S8",
+            "S9",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Arriving, your clothing and personal effects come in free. A passenger aged 18 or over may also bring 250 g of tobacco with one of three choices: 1 litre of spirits and 2 litres of wine, ale or beer, or 2 litres of spirits, or 4 litres of wine, ale or beer. Other goods are free up to Rs 15,000 for a foreign passport holder on an international flight. A Mauritian passport holder has Rs 30,000 from the age of 12 and Rs 15,000 below it. Duty, excise duty and VAT are due on anything above.",
+          "sources": [
+            "S12"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Centre of Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/centre-of-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "North Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/north-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Port Louis in Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/port-louis-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Le Caudan Waterfront",
+      "url": "https://mauritiusnow.com/blog/things-to-do/le-caudan-waterfront/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Cascavelle Shopping Mall",
+      "url": "https://mauritiusnow.com/blog/things-to-do/cascavelle-shopping-mall/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Markets & Fairs",
+      "url": "https://mccpl.mu/?p=257",
+      "publisher": "City Council of Port Louis",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Tax Free Shopping: Frequently Asked Questions",
+      "url": "https://taxfreeshopping.mu/faq/",
+      "publisher": "Mauritius Chamber of Commerce and Industry",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Departure Travel Tips",
+      "url": "https://mauritius-airport.atol.aero/passengers/travel-tips/departure",
+      "publisher": "Airport Terminal Operations Ltd, SSR International Airport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Services and Facilities",
+      "url": "https://mauritius-airport.atol.aero/passengers/airport-guide/services-facilities",
+      "publisher": "Airport Terminal Operations Ltd, SSR International Airport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Refund of Duty and VAT or collection of goods on purchases made in VAT free supply shops and Deferred Duty and Tax Scheme shops",
+      "url": "https://www.mra.mu/index.php/customs1/travellers?view=article&id=154:refund-of-vat-on-purchases-made&catid=13:customs",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Allowances: Personal Effects",
+      "url": "https://www.mra.mu/index.php/customs1/travellers/allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Consumer Protection (Price and Supplies Control) Act (Act 12 of 1998), updated text",
+      "url": "https://commerce.govmu.org/Documents/___Legislations/%20Consumer%20Protection%20%28Price%20and%20Supplies%20Control%29%20Act%2024.09.24%20updated%20%281%29.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "Text updated to 24 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Consumer Protection (Price Label) Regulations 2026 (Government Notice No. 60 of 2026)",
+      "url": "https://commerce.govmu.org/Documents/Departments/Consumer%20Affairs%20unit/60_The%20Cons%20Prot_Price%20Label_%20Reg%2026.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "23 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Guidelines: Issue, Transfer and Renewal of Licence to sell by Retail or Wholesale Liquor and Alcoholic Products",
+      "url": "https://www.mra.mu/download/RumNLiquor.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Public Health (Restrictions on Tobacco Products) Regulations 2022 (Government Notice No. 139 of 2022)",
+      "url": "https://www.importlicensing.wto.org/sites/default/files/members/96/Public%20Health%20%28Restrictions%20on%20Tobacco%20Products%29%20Regulations%202022_10.06.2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy held by the World Trade Organization",
+      "published": "10 June 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Local Government Act (Act 36 of 2011), consolidated text: Twelfth Schedule, classified trades",
+      "url": "https://www.mra.mu/download/TheLocalGovernmentAct2011.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "East Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/east-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Public Health: Market and Fairs",
+      "url": "https://mcqb.mu/public-health/",
+      "publisher": "Municipal Council of Quatre Bornes",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Public Health Department: Market and Fairs",
+      "url": "https://flacqdc.mu/public-health-department/",
+      "publisher": "District Council of Flacq",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Tax Free Shopping",
+      "url": "https://taxfreeshopping.mu/faq/",
+      "publisher": "Mauritius Chamber of Commerce and Industry",
+      "what": "Read the full questions and answers on refunds, and find the registered shops."
+    },
+    {
+      "title": "Departure Travel Tips",
+      "url": "https://mauritius-airport.atol.aero/passengers/travel-tips/departure",
+      "publisher": "Airport Terminal Operations Ltd",
+      "what": "See where the refund counters are in the airport."
+    },
+    {
+      "title": "Allowances",
+      "url": "https://www.mra.mu/index.php/customs1/travellers/allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check what you may bring in free of duty."
+    },
+    {
+      "title": "Street food and markets in Mauritius",
+      "url": "/learn/street-food-and-markets-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the markets, with the days and hours the councils publish."
+    },
+    {
+      "title": "Prices and consumer rights in Mauritius",
+      "url": "/learn/prices-and-consumer-rights-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to fixed prices, price labels, your rights and complaints."
+    },
+    {
+      "title": "Visiting Mauritius",
+      "url": "/learn/visiting-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for visitors, with customs on arrival."
+    },
+    {
+      "title": "Public holidays",
+      "url": "/holidays",
+      "publisher": "biznes.mu",
+      "what": "The dates on which markets close at noon and shops may keep other hours."
+    },
+    {
+      "title": "Supermarkets",
+      "url": "/directory/supermarkets",
+      "publisher": "biznes.mu",
+      "what": "Supermarkets listed on this site, by place."
+    },
+    {
+      "title": "Malls",
+      "url": "/directory/malls",
+      "publisher": "biznes.mu",
+      "what": "Shopping malls listed on this site, by place."
+    },
+    {
+      "title": "Markets",
+      "url": "/directory/markets",
+      "publisher": "biznes.mu",
+      "what": "Markets listed on this site, by place."
+    }
+  ],
+  "unverified": [
+    "Whether any law fixes shop opening hours or restricts trading on Sundays and public holidays. None was found in the Local Government Act or on the ministry pages read. Rules on pay for work on those days were not researched.",
+    "The opening hours of malls, supermarkets and shops. They are set by each business and were not collected. Our own listings may carry them.",
+    "The charge taken from a tax refund. The Chamber of Commerce gives 2% with a minimum of Rs 200, plus 4% from Rs 3,000. The airport's website gives 2% only. The Chamber runs the scheme, so its figure is used.",
+    "Whether the Rs 2,300 minimum is per shop, per receipt or per stay. The Chamber's wording is per visitor from a registered store.",
+    "The list of registered Tax Free Shopping stores. The Chamber's site shows it in a search tool that was not read.",
+    "The number of shops with duty-free facilities. The airport's website says around fifty, without a date.",
+    "What a resident may bring back beyond the allowances, and the rates of duty on the excess.",
+    "The Port Louis council's markets page was read through a fetching tool, because the site turned away a direct download."
+  ]
+}

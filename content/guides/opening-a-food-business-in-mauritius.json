@@ -1,0 +1,592 @@
+{
+  "slug": "opening-a-food-business-in-mauritius",
+  "shelf": "food",
+  "title": "Opening a restaurant or snack in Mauritius",
+  "summary": "The permits a food business needs and who issues each one: business registration, the Building and Land Use Permit, the trade fee, the Food Handler's Certificate, the fire certificate, the Tourism Authority's licence for restaurants, tables d'hôte and pubs, and the alcohol licence. With the fees that official pages state. Checked on 20 November 2026.",
+  "audience": "Anyone planning to open a snack, a restaurant, a table d'hôte, a bakery or a food stall in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Building and Land Use Permit: time for a decision",
+      "value": "14 working days",
+      "detail": "From the effective date of the application. 3 working days for a micro or small enterprise registered under the Small and Medium Enterprises Act 2017. No application fee.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Food Handler's Certificate",
+      "value": "Rs 300, valid for 3 years",
+      "detail": "For issue or renewal. Needed by every person who handles food for sale.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Fire certificate",
+      "value": "Rs 1,000 for premises up to 1,000 m2",
+      "detail": "No application fee. Rs 1,000 more for each additional 1,000 m2 or part, up to Rs 25,000. Valid for 1 to 3 years.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "Tourist Enterprise Licence: application fee",
+      "value": "Rs 1,500",
+      "detail": "The licence is valid for 12 months.",
+      "sources": [
+        "S12",
+        "S11"
+      ]
+    },
+    {
+      "label": "Tourist Enterprise Licence fee for a restaurant",
+      "value": "Rs 5,000 up to 40 covers, Rs 10,000 above 40 covers",
+      "detail": "From the fee schedule the Tourism Authority publishes, a Government Notice of 2015. A pub pays Rs 10,000.",
+      "sources": [
+        "S15"
+      ]
+    },
+    {
+      "label": "Tourist Enterprise Licence fee for a table d'hôte",
+      "value": "Rs 3,000",
+      "detail": "Same schedule.",
+      "sources": [
+        "S15"
+      ]
+    },
+    {
+      "label": "Alcohol licence for a restaurant, year 2026",
+      "value": "Rs 8,000 a year",
+      "detail": "Plus a processing fee of Rs 1,500 on the application. A pub pays Rs 8,000 and a table d'hôte Rs 4,000.",
+      "sources": [
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "label": "Trade fee for a victualler",
+      "value": "Rs 3,000 a year",
+      "detail": "From the schedule of 2019 published by the business registry. A bakery pays Rs 3,000 and a pastry shop Rs 2,000.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "When the first trade fee is due",
+      "value": "2 financial years after the business is registered",
+      "detail": "Then every financial year. Late payment carries a surcharge of 50 per cent.",
+      "sources": [
+        "S3"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What do you need to open a restaurant or snack?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Up to seven things, each from a different body: a business registration, a Building and Land Use Permit for the premises, a trade fee, a Food Handler's Certificate for everyone who touches food, a fire certificate, a Tourist Enterprise Licence if you open a restaurant, a table d'hôte or a pub, and an alcohol licence if you serve drink. This guide gives the steps and fees those bodies publish. It is not legal advice.",
+          "sources": [
+            "S1",
+            "S3",
+            "S7",
+            "S9",
+            "S11",
+            "S17"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "What",
+            "Who issues it",
+            "Fee stated"
+          ],
+          "rows": [
+            [
+              "Business registration",
+              "Corporate and Business Registration Department",
+              "See our guide to registering a business"
+            ],
+            [
+              "Building and Land Use Permit",
+              "The municipal or district council, through the National Electronic Licensing System",
+              "No application fee. Each council sets a fee on issue"
+            ],
+            [
+              "Trade fee",
+              "The council, paid through the Registrar of Companies",
+              "Victualler Rs 3,000 a year"
+            ],
+            [
+              "Food Handler's Certificate",
+              "Ministry of Health and Wellness",
+              "Rs 300, valid 3 years"
+            ],
+            [
+              "Fire certificate",
+              "Mauritius Fire and Rescue Service",
+              "Rs 1,000 up to 1,000 m2"
+            ],
+            [
+              "Tourist Enterprise Licence",
+              "Tourism Authority",
+              "Rs 1,500 to apply. Restaurant Rs 5,000 or Rs 10,000 a year"
+            ],
+            [
+              "Alcohol licence",
+              "Mauritius Revenue Authority",
+              "Rs 1,500 to apply. Restaurant Rs 8,000 a year"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S3",
+            "S6",
+            "S7",
+            "S9",
+            "S12",
+            "S15",
+            "S18",
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do you register a food business?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Food Act 2022 says no person may operate a food business without being registered under the Business Registration Act. A food business includes food services, catering and the sale of food. An individual registers with the Corporate and Business Registration Department on form BRF1 or online, and picks an activity from its list of trade codes. Some activities need an approval first: selling foodstuffs along the road, from a mobile unit or in markets and fairs needs the Ministry of Local Government, selling on the beach needs the Ministry of Tourism, and selling liquor needs the Mauritius Revenue Authority.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Do you need a Building and Land Use Permit?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Usually, yes. The City Council of Port Louis lists starting up a business and changing the use of a building among the cases that need one. Under the Local Government Act you apply to your municipal or district council through the National Electronic Licensing System. There is no application fee, though a council may charge a fee when it issues the permit. The council's committee must decide within 14 working days of the effective date of the application, or within 3 working days for a micro or small enterprise registered under the Small and Medium Enterprises Act 2017.",
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Get this permit early. The Tourism Authority asks for it, in the applicant's name, before it licenses a restaurant, and the Mauritius Revenue Authority asks for it with an alcohol licence application.",
+          "sources": [
+            "S12",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the trade fee for a food business?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Food trades are classified trades under the Local Government Act. The yearly fee goes to the council and is paid through the Registrar of Companies. It is first due 2 financial years after the business is registered, then every financial year. For 2026 to 2027 the first instalment is payable until 20 January 2027 and the second by 30 June 2027. A late payment carries a surcharge of 50 per cent.",
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Victualler: Rs 3,000.",
+            "Bakery: Rs 3,000. Bread seller: Rs 500.",
+            "Pastry shop or manufacturer: Rs 2,000, or Rs 1,000 for an individual.",
+            "Caterer without a canteen: Rs 2,000. Caterer or canteen employing fewer than 10 persons: Rs 3,000. Employing 10 or more: Rs 10,000.",
+            "Mobile seller of foodstuff and non-foodstuff, except on public beaches: Rs 1,500."
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "These amounts come from a schedule in the Government Notices of 2019 that the business registry still publishes as its list of trade fees. Our guide to licences and permits explains the relief the Act gives to small operators.",
+          "sources": [
+            "S6",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who needs a Food Handler's Certificate, and what must the kitchen have?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Everyone engaged in selling, preparing, cooking, serving, packing, carrying or delivering food for sale must hold a valid certificate at all times, and you may not employ anyone who lacks one. The application goes to the Ministry of Health and Wellness. The certificate follows a medical examination by a Government Medical Officer and an approved course in food safety and hygiene. It costs Rs 300, lasts 3 years and is renewed at least 30 days before it expires, or a surcharge of 50 per cent applies. The fee provisions were set to start on 1 September 2025.",
+          "sources": [
+            "S7",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Food Regulations 2024 also set the design of food premises. They must have potable water at all times, hand washing facilities within easy reach of food handlers, covered bins emptied at least daily, enough ventilation with a hood over every cooking point, and floors that drain and do not absorb grease. No sewage pipe, drain or inspection chamber may sit where food is prepared. Food may not be prepared in a room that opens directly onto a bedroom, bathroom or toilet.",
+          "sources": [
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do you get a fire certificate?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You apply to the Mauritius Fire and Rescue Service on the National Electronic Licensing System, where every application and renewal has been filed since 13 September 2021. There is no application fee. The certificate costs Rs 1,000 for premises of up to 1,000 m2, and Rs 1,000 for each additional 1,000 m2 or part, up to Rs 25,000. The certificate is valid for 1 to 3 years, depending on the risk assessment, and the owner applies to renew it 60 days before it expires.",
+          "sources": [
+            "S9",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When do you need a Tourism Authority licence?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Tourism Authority issues a Tourist Enterprise Licence to an establishment that provides services or goods to tourists for reward. Its list of tourist enterprises includes restaurants, tables d'hôte, pubs, nightclubs and private clubs. The licence is valid for 12 months. The restaurant checklist of 15 May 2025 asks for the business registration card, the title deed or lease, site and layout plans, the Building and Land Use Permit, the proposed menu and a certificate of character, with an application fee of Rs 1,500.",
+          "sources": [
+            "S11",
+            "S12",
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A restaurant needs at least a reception or bar area, a common dining area, a kitchen, a scullery separate from the kitchen, toilets and parking.",
+            "One parking slot is required for every 8 m2 of dining area.",
+            "A restaurant of more than 40 covers needs a generator or another back-up supply. All need water tanks, a first-aid kit and a fire extinguisher.",
+            "A table d'hôte serves local cuisine in the licensee's home, with a dining area of at least 1 m2 for each guest, and opens from 10.00 to 22.00.",
+            "A pub needs a floor area of at least 50 m2 and is authorised only in a shopping mall or a business or commercial area."
+          ],
+          "sources": [
+            "S13",
+            "S14",
+            "S16",
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do you get a licence to sell alcohol?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Nobody may sell liquor or alcoholic products without a licence from the Director-General of the Mauritius Revenue Authority. You file the form with a processing fee of Rs 1,500, which is not refunded. The documents include the Tourist Enterprise Licence for a restaurant, pub or table d'hôte, the Building and Land Use Permit, the business registration card and a recent certificate of character from the Director of Public Prosecutions. Officers visit the premises, and a licensing committee decides. The licence runs from the day you pay to 31 December. For 2026 a restaurant or a pub pays Rs 8,000 and a table d'hôte Rs 4,000.",
+          "sources": [
+            "S17",
+            "S18",
+            "S19"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A licensee may not sell alcohol to anyone under 18 and must keep to the authorised hours. Our guide to eating out lists them.",
+          "sources": [
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What extra rules apply to bakeries, food vehicles and street stalls?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Bakeries. Regulations in force since 11 April 2026 list the types of bread a baker may make and their maximum prices, such as Rs 3.90 for a 100 g maison loaf. Another type needs the council's approval. The bakery displays a notice of the type, weight and price of its bread and keeps a stamped scale for customers.",
+            "Food vehicles. The driver's cabin is sealed off from the food. The vehicle carries a sink with potable water, a wash-hand basin, refrigeration, a covered bin and a waste water tank.",
+            "Street stalls. The stall, cart, bicycle or tricycle must be designed or adapted for the food sold, and the food stays covered. A hawker needs an authorisation from the council.",
+            "Everyone. The price shown to a customer must include VAT."
+          ],
+          "sources": [
+            "S22",
+            "S7",
+            "S3",
+            "S23"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Food Act 2022 (Act No. 12 of 2022)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/06/Food-Act-2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "6 July 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Business Registration Individual",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Local Government Act (Act 36 of 2011), consolidated text",
+      "url": "https://www.mra.mu/download/TheLocalGovernmentAct2011.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Building and Land Use Permits",
+      "url": "https://mccpl.mu/services/land-use-planning/building-and-land-use-permits/",
+      "publisher": "City Council of Port Louis",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Payment of Trade Fees 2026-2027",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/07/CBRD-Payment-of-Trade-Fees-2026-2027_.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "30 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Updated list of classified trades and trade fees (schedule of leviable fees, Government Notices 2019)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/11/tradefees_govtNotices2019.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "2019",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Food Regulations 2024 (Government Notice No. 142 of 2024)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/09/FOOD-REGULATIONS-2024.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "7 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Food (Amendment) Regulations 2025 (Government Notice No. 19 of 2025)",
+      "url": "https://faolex.fao.org/docs/pdf/mat234222.pdf",
+      "publisher": "Government Gazette of Mauritius, copy held in the FAOLEX database of the Food and Agriculture Organization of the United Nations",
+      "published": "1 March 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Guideline for Online Application of Fire Certificate",
+      "url": "https://mfrs.govmu.org/Documents/Guideline%20for%20making%20application%20for%20Fire%20Certificate.pdf",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Communiqué: Online application for a Fire Certificate on the National Electronic Licensing System (NELS) Platform",
+      "url": "https://mfrs.govmu.org/Documents/Communique/Communique-Fire%20Certificate%20-%20final.pdf",
+      "publisher": "Mauritius Fire and Rescue Service",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Application for a Tourist Enterprise Licence: Restaurant, Checklist",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2025/05/Restaurant.pdf",
+      "publisher": "Tourism Authority",
+      "published": "15 May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Guidelines: Restaurant",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2025/06/AMENDED-RESTAURANT-GUIDELINES.pdf",
+      "publisher": "Tourism Authority",
+      "published": "16 June 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Guidelines for Table d'Hôte",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2023/04/Guidelines-for-TABLE-DHOTE.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Tourist Enterprise Licence operating fees (First and Second Schedules, Government Notices 2015)",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2024/06/NEW-TEL-OPERATING-FEES.pdf",
+      "publisher": "Tourism Authority",
+      "published": "2015",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Guidelines: Pub",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2023/04/Guidelines-Pub.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Guidelines: Issue, Transfer and Renewal of Licence to sell by Retail or Wholesale Liquor and Alcoholic Products",
+      "url": "https://www.mra.mu/download/RumNLiquor.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Communiqué: Renewal of Licences for Sale of Beer, Rum, Liquor and Alcoholic Products for the Year 2026",
+      "url": "https://www.mra.mu/download/Renewal121225.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "12 December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Communiqué: Processing Fee Payable on Application for the Issue or Transfer of a Part II Licence",
+      "url": "https://www.mra.mu/download/Communique281025.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "List of Tourist Enterprises",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2023/04/List-of-Tourist-Enterprises.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Application for a Tourist Enterprise Licence: Table d'Hôte, Checklist",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2025/05/Table-Dhote.pdf",
+      "publisher": "Tourism Authority",
+      "published": "15 May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Consumer Protection (Control of Manufacture and Sale of Bread) Regulations 2026 (Government Notice No. 38 of 2026)",
+      "url": "https://commerce.govmu.org/Documents/Departments/Price%20Fixing%20Unit/Legislations/GN%20No%2038%20of%202026%20-%20Consumer%20Protection%20%28Control%20of%20Manufacture%20and%20Sale%20of%20Bread%29%20Reg26.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "10 April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Consumer Protection (Price and Supplies Control) Act (Act 12 of 1998), updated text",
+      "url": "https://commerce.govmu.org/Documents/___Legislations/%20Consumer%20Protection%20%28Price%20and%20Supplies%20Control%29%20Act%2024.09.24%20updated%20%281%29.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "Text updated to 24 September 2024",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Register a business",
+      "url": "/learn/register-a-business",
+      "publisher": "biznes.mu",
+      "what": "Our guide to registering with the Corporate and Business Registration Department, with fees and forms."
+    },
+    {
+      "title": "Licences and permits",
+      "url": "/learn/licences-and-permits",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the Building and Land Use Permit, trade fees, the licensing platform and sector licences."
+    },
+    {
+      "title": "VAT",
+      "url": "/learn/vat",
+      "publisher": "biznes.mu",
+      "what": "Our guide to when a business must register for VAT and how it is charged."
+    },
+    {
+      "title": "Eating out in Mauritius: what to expect",
+      "url": "/learn/eating-out-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "The customer's side: the bill, alcohol hours and smoking rules."
+    },
+    {
+      "title": "Baz Manzer",
+      "url": "/baz-manzer",
+      "publisher": "biznes.mu",
+      "what": "The home of food businesses on this site."
+    },
+    {
+      "title": "National Electronic Licensing System",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board",
+      "what": "Apply for the Building and Land Use Permit and the fire certificate."
+    },
+    {
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "what": "Download the application form, the checklists and the guidelines for restaurants, tables d'hôte and pubs."
+    },
+    {
+      "title": "Food Handler's Certificate",
+      "url": "https://health.govmu.org/health/?page_id=6532",
+      "publisher": "Ministry of Health and Wellness",
+      "what": "Find the application form and the map of health offices."
+    },
+    {
+      "title": "Guidelines on liquor licences",
+      "url": "https://www.mra.mu/download/RumNLiquor.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the documents to file, the grounds for refusal and the authorised hours."
+    },
+    {
+      "title": "Trade Fees",
+      "url": "https://companies.govmu.org/cbrd/trade-fees/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Open the list of classified trades and pay the trade fee."
+    }
+  ],
+  "unverified": [
+    "What a snack is in law, and which classified trade a small eating place falls under. The trade fee list has victualler, caterer and pastry shop, with no definitions. Ask the council or the business registry which one applies.",
+    "Whether a restaurant pays a trade fee. The Twelfth Schedule to the Local Government Act names a restaurant without liquor or entertainment as a classified trade, but the fee list of 2019 read on the registry's site shows no fee for it.",
+    "Whether the trade fee amounts of 2019 have been amended. The registry publishes a scanned copy that had to be read as images.",
+    "Whether a small eating place that serves no alcohol and no tourists needs a Tourist Enterprise Licence. The Tourism Authority's pages do not say.",
+    "Whether the Tourist Enterprise Licence fees of 2015 are still in force. The Tourism Authority's file is named as its new operating fees, but the scan is of Government Notices 2015.",
+    "The fee each council charges when it issues a Building and Land Use Permit, and the documents its guide asks for.",
+    "How to book the medical examination and the course for the Food Handler's Certificate, and what the course costs. A ministry notice of 21 January 2016 asks first-time applicants for a stool examination and a chest X-ray, and gives a validity of two years, which the Food Regulations 2024 have since replaced with three.",
+    "Whether a health clearance separate from the Food Handler's Certificate is needed before opening. The Tourism Authority's guidelines mention a health clearance, but no Ministry of Health page describing one was found.",
+    "Alcohol licence fees for 2027. The Mauritius Revenue Authority's notice for 2027 was not yet published on 20 November 2026.",
+    "Whether the fire certificate fees in the fire service's guideline are current. The guideline is undated.",
+    "The Port Louis council's permit page was read through a fetching tool, because the site turned away a direct download."
+  ]
+}

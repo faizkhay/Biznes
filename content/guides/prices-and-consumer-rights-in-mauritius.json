@@ -1,0 +1,502 @@
+{
+  "slug": "prices-and-consumer-rights-in-mauritius",
+  "shelf": "everyday",
+  "title": "Prices and consumer rights in Mauritius",
+  "summary": "The goods whose prices the Government fixes and what they cost today: bread, ration rice, flour, cooking gas, petrol and diesel. The goods with a capped mark-up, what a price tag must show, your rights when you buy, and where to complain. Checked on 20 November 2026.",
+  "audience": "Anyone who shops in Mauritius and wants to know what a thing should cost, what the shop owes them and who to call.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Petrol",
+      "value": "Rs 77.70 a litre",
+      "detail": "Since 29 September 2026. The State Trading Corporation calls it Mogas.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "label": "Diesel",
+      "value": "Rs 78.35 a litre",
+      "detail": "Since 29 September 2026. The State Trading Corporation calls it Gas Oil.",
+      "sources": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "label": "Cooking gas, 12 kg cylinder",
+      "value": "Rs 250",
+      "detail": "Since 28 March 2026. Rs 125 for 6 kg and Rs 105 for 5 kg.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Bread, 100 g maison or rond",
+      "value": "Rs 3.90",
+      "detail": "Maximum retail price since 11 April 2026. A 100 g baguette is Rs 4.00.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Ration rice",
+      "value": "Rs 5.40 for half a kilo",
+      "detail": "Long grain white rice. Rs 28.00 for a 2.5 kg packet.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Flour",
+      "value": "Rs 4.85 for half a kilo",
+      "detail": "White wheat flour. Brown bread flour is Rs 4.00 for half a kilo.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Prices on labels",
+      "value": "Must include VAT",
+      "detail": "And be in Mauritian rupees. A trader may not sell above the labelled price.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Unit price",
+      "value": "Required on 21 kinds of pre-packed goods since 1 July 2026",
+      "detail": "The price for one kilogramme or one litre. Not required of a trader who is not registered for VAT.",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "label": "Consumer Affairs Unit hotline",
+      "value": "185",
+      "detail": "Office line 460 2500. Ministry of Commerce and Consumer Protection.",
+      "sources": [
+        "S13",
+        "S11"
+      ]
+    },
+    {
+      "label": "Second-hand car warranty",
+      "value": "At least 2 months from purchase",
+      "detail": "From an authorised dealer, covering faulty parts, labour and materials.",
+      "sources": [
+        "S11"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Which prices does the Government fix?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Government fixes the price of bread, ration rice, flour, cooking gas, petrol and diesel. The Consumer Protection (Price and Supplies Control) Act lets the Minister fix the price of listed goods by regulations, and makes it an offence to sell above it. The Ministry of Commerce and Consumer Protection uses three systems: a maximum price, a maximum mark-up and a maximum recommended retail price.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The State Trading Corporation, the Government's trading arm, imports all petroleum products and cooking gas, and supplies ration rice and flour. It says the Government fixes all its selling prices. Rice and flour are sold below their landed cost, and a subsidy makes up the difference.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Product",
+            "Fixed retail price",
+            "Since"
+          ],
+          "rows": [
+            [
+              "Petrol (Mogas), a litre",
+              "Rs 77.70",
+              "29 September 2026"
+            ],
+            [
+              "Diesel (Gas Oil), a litre",
+              "Rs 78.35",
+              "29 September 2026"
+            ],
+            [
+              "Cooking gas, cylinder of 12 kg",
+              "Rs 250.00",
+              "28 March 2026"
+            ],
+            [
+              "Cooking gas, cylinder of 6 kg",
+              "Rs 125.00",
+              "28 March 2026"
+            ],
+            [
+              "Cooking gas, cylinder of 5 kg",
+              "Rs 105.00",
+              "28 March 2026"
+            ],
+            [
+              "Ration rice, half a kilo",
+              "Rs 5.40",
+              "Not stated"
+            ],
+            [
+              "Ration rice, packet of 2.5 kg",
+              "Rs 28.00",
+              "Not stated"
+            ],
+            [
+              "White wheat flour, half a kilo",
+              "Rs 4.85",
+              "Not stated"
+            ],
+            [
+              "Brown bread flour, half a kilo",
+              "Rs 4.00",
+              "Not stated"
+            ],
+            [
+              "Bread, maison or rond, 100 g",
+              "Rs 3.90",
+              "11 April 2026"
+            ],
+            [
+              "Bread, baguette, 100 g and 200 g",
+              "Rs 4.00 and Rs 8.00",
+              "11 April 2026"
+            ],
+            [
+              "Bread, moule, 200 g and 500 g",
+              "Rs 7.80 and Rs 19.50",
+              "11 April 2026"
+            ]
+          ],
+          "sources": [
+            "S3",
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Ministry's list of maximum fixed prices also shows onions and potatoes at Rs 50 a kilo and iodised table salt at Rs 3.00 for 125 g. The list is undated. The prices in the table are for Mauritius and Rodrigues alike.",
+          "sources": [
+            "S9",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How are petrol and diesel prices set?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A Petroleum Pricing Committee sets them under regulations of 2011, using average world prices over six months: the last three and the next three. Both fuels rose three times in 2026. Petrol went from Rs 58.45 to Rs 64.25 on 16 April, to Rs 70.65 on 15 August and to Rs 77.70 on 29 September. Diesel went from Rs 58.95 to Rs 64.80 on 25 March, to Rs 71.25 on 16 April and to Rs 78.35 on 29 September. At the last review the calculated increase was about 18%, but the regulations capped it at 10% because the Price Stabilisation Account was in deficit.",
+          "sources": [
+            "S5",
+            "S6",
+            "S15"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Corporation publishes what makes up the price. Of the Rs 77.70 for a litre of petrol, Rs 10.13 is VAT at 15%, Rs 9.87 is excise duty, Rs 7.20 is a contribution to the subsidy on cooking gas, flour and rice, and Rs 3.00 is the retail margin of the filling station.",
+          "sources": [
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which goods have a capped mark-up?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For about thirty kinds of goods the Ministry does not fix a price but limits the percentage a trader may add. Its list for the island of Mauritius includes milk powder at 24%, infant milk powder at 17%, edible oil at 22%, pulses at 24%, basmati and long grain rice at 20%, canned fish at 20%, pasta at 25%, baby diapers at 23%, butter and margarine at 28%, and sanitary pads at 20%. Pharmaceutical products have a regressive maximum mark-up. Rodrigues has its own list, with separate wholesale and retail percentages.",
+          "sources": [
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What must a price tag show?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Every trader must put a label on a specimen of the goods showing the selling price. It must say that the amount includes VAT, or that VAT is zero or nil.",
+            "The label is placed close to the goods, in Mauritian rupees.",
+            "A trader may not sell above the price on the label. If more than one price is displayed at once, you pay the lowest.",
+            "A trader who refuses to sell goods on display at the displayed price commits an offence. So does one who gives a misleading indication of price.",
+            "An announced price reduction must show the prior price, meaning the lowest price charged in the 30 days before. Perishable goods are excepted.",
+            "A trader is not bound by an obvious and inadvertent error, once it is corrected and the buyer is told.",
+            "Since 1 July 2026 the label on 21 kinds of pre-packed goods, among them rice, flour, edible oil, milk powder, sugar, pulses and detergents, must also show the unit price for a kilogramme or a litre. The letters MRP mark a maximum retail price and SP a fixed subsidy."
+          ],
+          "sources": [
+            "S2",
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Failing to label a price is an offence that can bring a fine of up to Rs 500,000. For listed offences an officer or a police officer serves a fixed penalty notice, payable at the District Court within 21 days.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are your rights when you buy something?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Ministry's advice page states two. Goods must be of satisfactory quality: the standard a reasonable person would accept, given the description and the price, and free from defects unless these were pointed out at the time of sale. And goods must be as described, on the packaging, on a display notice or by the seller. Its consumer guide of 2024 lists eight consumer rights, among them the rights to safety, to information, to choose, to be heard and to redress.",
+          "sources": [
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A manufacturer's guarantee comes on top of these statutory rights, and the Ministry says a trader should not discourage you from using them. Ask for the guarantee certificate with all its conditions in writing, and keep every receipt. A second-hand car from an authorised dealer must carry a warranty of at least 2 months that covers faulty parts, labour and materials.",
+          "sources": [
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If you buy on hire purchase or credit, the Ministry tells you to read the contract before signing and to obtain a receipt for any deposit, a copy of the signed contract and a schedule of repayments. To cancel, give the trader written notice by registered post.",
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where and how do you complain?",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Tell the seller first, in writing if you can, as soon as possible, and keep a copy. If you phone, note the date, the time and the name of the person you spoke to.",
+            "If that fails, contact the Consumer Affairs Unit of the Ministry of Commerce and Consumer Protection: hotline 185, office line 460 2500, the MOPRI mobile application or the Citizen Support Portal.",
+            "The Unit handles complaints, checks trade premises and tries to settle disputes between traders and consumers by mutual agreement. In case of deadlock the matter goes to court."
+          ],
+          "sources": [
+            "S11",
+            "S12",
+            "S1",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you cannot find ration rice, the State Trading Corporation set up a complaints line in September 2026: 5944 3434, on weekdays from 9 am to 4 pm.",
+          "sources": [
+            "S14"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Consumer Affairs Unit",
+      "url": "https://commerce.govmu.org/Pages/Departments/CAU.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Consumer Protection (Price and Supplies Control) Act (Act 12 of 1998), updated text",
+      "url": "https://commerce.govmu.org/Documents/___Legislations/%20Consumer%20Protection%20%28Price%20and%20Supplies%20Control%29%20Act%2024.09.24%20updated%20%281%29.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "Text updated to 24 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Consumer Protection (Control of Manufacture and Sale of Bread) Regulations 2026 (Government Notice No. 38 of 2026)",
+      "url": "https://commerce.govmu.org/Documents/Departments/Price%20Fixing%20Unit/Legislations/GN%20No%2038%20of%202026%20-%20Consumer%20Protection%20%28Control%20of%20Manufacture%20and%20Sale%20of%20Bread%29%20Reg26.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "10 April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Prices of Commodities",
+      "url": "https://www.stcmu.com/news-and-information/prices-of-commodities",
+      "publisher": "State Trading Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Retail Prices of Mogas and Gas Oil",
+      "url": "https://www.stcmu.com/ppm/retail-prices",
+      "publisher": "State Trading Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Press Release (PPM), 28 September 2026",
+      "url": "https://www.stcmu.com/ppm/press-release",
+      "publisher": "State Trading Corporation",
+      "published": "28 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "State Trading Corporation: home page, STC at a glance",
+      "url": "https://www.stcmu.com/",
+      "publisher": "State Trading Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "List of Controlled Products (Annex 1): maximum mark-up",
+      "url": "https://commerce.govmu.org/Documents/Departments/Price%20Fixing%20Unit/List%20of%20Controlled%20Products%20(Annex%201).pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "List of Products under subsidy (Annex 2): maximum fixed price for Mauritius and Rodrigues",
+      "url": "https://commerce.govmu.org/Documents/Departments/Price%20Fixing%20Unit/List%20of%20Products%20under%20subsidy%20(Annex%202).pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Consumer Protection (Price Label) Regulations 2026 (Government Notice No. 60 of 2026)",
+      "url": "https://commerce.govmu.org/Documents/Departments/Consumer%20Affairs%20unit/60_The%20Cons%20Prot_Price%20Label_%20Reg%2026.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "23 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "FAQs and Advice to Customers: Know Your Rights",
+      "url": "https://commerce.govmu.org/Pages/FAQs/FAQs.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Guide du Consommateur",
+      "url": "https://commerce.govmu.org/Documents/Downloads/612-24-Guide%20du%20consomateur-blue-proof%203.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Contact Us",
+      "url": "https://commerce.govmu.org/Pages/AboutUs/Contact-Us.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Communiqué to the Public: Long Grain White Rice (Ration Rice), Management of Available Stocks",
+      "url": "https://www.stcmu.com/assets/pdf/STC_Commu_RRice_23Sep26.pdf",
+      "publisher": "State Trading Corporation",
+      "published": "23 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Brief on the Petroleum Pricing Mechanism",
+      "url": "https://www.stcmu.com/ppm/summary",
+      "publisher": "State Trading Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Prices of Commodities",
+      "url": "https://www.stcmu.com/news-and-information/prices-of-commodities",
+      "publisher": "State Trading Corporation",
+      "what": "Check today's price of rice, flour, petrol, diesel and cooking gas."
+    },
+    {
+      "title": "Press releases of the Petroleum Pricing Committee",
+      "url": "https://www.stcmu.com/ppm/press-release",
+      "publisher": "State Trading Corporation",
+      "what": "Read why the price of petrol or diesel last changed, with the full price structure."
+    },
+    {
+      "title": "FAQs and Advice to Customers",
+      "url": "https://commerce.govmu.org/Pages/FAQs/FAQs.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "what": "Read the Ministry's advice on your rights, guarantees, credit and second-hand cars."
+    },
+    {
+      "title": "Consumer Affairs Unit",
+      "url": "https://commerce.govmu.org/Pages/Departments/CAU.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "what": "See what the unit does with a complaint."
+    },
+    {
+      "title": "Citizen Support Portal",
+      "url": "https://www.csu.mu/",
+      "publisher": "Citizen Support Unit",
+      "what": "File a complaint online, one of the routes the Ministry's consumer guide names."
+    },
+    {
+      "title": "Shopping in Mauritius: supermarkets, malls, markets and hours",
+      "url": "/learn/shopping-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the kinds of shop, tax refunds for visitors and duty-free allowances."
+    },
+    {
+      "title": "Household bills and services",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to electricity, water and the other bills of a home."
+    },
+    {
+      "title": "Pharmacies and medicines in Mauritius",
+      "url": "/learn/pharmacies-and-medicines-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to pharmacies, prescriptions and the price of medicines."
+    },
+    {
+      "title": "VAT",
+      "url": "/learn/vat",
+      "publisher": "biznes.mu",
+      "what": "Our guide to value added tax, for businesses."
+    }
+  ],
+  "unverified": [
+    "Whether the law gives a right to a refund, a repair or a replacement, and within what time. The Ministry's advice page describes your rights and how to complain, but does not state the remedy. The Consumer Protection Act itself could not be opened on the Attorney General's site.",
+    "The price of kerosene. The State Trading Corporation shows Rs 75.70 a litre and the Ministry's undated list Rs 68.65, so neither is quoted in the article.",
+    "The dates from which the prices of ration rice and flour apply, and the date of the Ministry's lists of controlled and subsidised goods.",
+    "Whether fuel or cooking gas prices changed between 29 September and 20 November 2026 without the Corporation's pages being updated. The newest press release on its site is dated 28 September 2026.",
+    "The price of cement, which the Ministry's list says is fixed by region, and the maximum recommended retail prices set under the code of practice.",
+    "The amounts of the fixed penalties for each offence. The regulations of 2020 that list them were not read.",
+    "The interest and charges allowed on hire purchase, and the cooling-off period, if any. The Hire Purchase and Credit Sale Act was not read.",
+    "How long the Consumer Affairs Unit takes to handle a complaint, and whether it can order a refund. Its page speaks of settlement by mutual agreement or through a court.",
+    "The web address of the Citizen Support Portal is taken from the Ministry's printed consumer guide. The portal itself was not opened."
+  ]
+}

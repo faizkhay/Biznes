@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url("/places", built, 0.8),
     url("/learn", built, 0.9),
     url("/tools", built, 0.7),
+    url("/about", built, 0.5),
     url("/emergency", built, 0.8),
     url("/holidays", built, 0.7),
     url("/pricing", built, 0.6),

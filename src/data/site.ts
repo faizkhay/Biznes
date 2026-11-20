@@ -25,9 +25,10 @@ export const site = {
   /** The crawler, as it names itself once the site is live (crawler/config.mjs). */
   bot: { name: "BiznesBot", path: "/bot" },
 
-  /** The agency that builds and runs the site (K). */
+  /** The agency that builds and runs the site (K), and who developed it (U, 20 November 2026). */
   builder: {
     name: "Khay Digital",
+    developer: "Faiz Khayrattee",
     legalName: "Khay Digital Ltd",
     brn: "C22187903",
     url: "https://khay.digital",
@@ -118,6 +119,7 @@ export const ARTICLE_BUSINESSES = {
 
 /** The quieter pages, for the footer. */
 export const MORE = [
+  { href: "/about", label: "About" },
   { href: "/emergency", label: "Emergency numbers" },
   { href: "/holidays", label: "Public holidays" },
   { href: "/pricing", label: "List your business" },
@@ -194,3 +196,14 @@ export const STREET_MAP = {
   /** The main island alone, for a map opened with nothing lit. */
   island: [57.28, -20.54, 57.83, -19.96],
 } as const;
+
+/**
+ * The site's own pages that a search should find by name: who makes it, how to list a business,
+ * the pocket guide. Each answers in a line of its own. `words` are what people type for it.
+ */
+export const PAGES = [
+  { href: "/about", title: "About biznes.mu and Khay Digital", line: "biznes.mu is a product of Khay Digital, a Mauritian digital agency, and was developed by Faiz Khayrattee. Khay Digital builds websites and digital experiences.", words: "khay digital khaydigital faiz khayrattee agency web design website developer who made built owner about us contact" },
+  { href: "/pricing", title: "List your business on biznes.mu", line: "Biznes Free is a basic listing at no cost. Biznes Go is Rs 550 a month: verified, and listed with priority. Biznes Grow is Rs 1,250 a month: everything in Go, with bookings and sales.", words: "list my business add business advertise price pricing plans biznes free go grow subscription verified claim" },
+  { href: "/shop", title: "The biznes.mu pocket guide", line: "A guide to Mauritius for your phone, place by place, renewed every month, with every fact from an official source.", words: "pocket guide pdf magazine places to visit things to do sponsor sponsorship advert" },
+  { href: "/data", title: "Where the data comes from", line: "Listings come from the open map and Wikidata, each saying its source. A paid place in the results is always marked.", words: "sources data openstreetmap wikidata order of results ranking correct remove privacy crawler" },
+] as const;

@@ -25,7 +25,7 @@
  * The index is MiniSearch, built in memory from data/index the first time it is needed.
  */
 import MiniSearch from "minisearch";
-import { ARTICLE_BUSINESSES } from "@/data/site";
+import { ARTICLE_BUSINESSES, PAGES } from "@/data/site";
 import { chartPoints } from "./chart";
 import { emergency } from "./emergency";
 import { anchorOf, count, day } from "./format";
@@ -43,7 +43,7 @@ export const KINDS: { id: Kind; label: string }[] = [
 
 /** An answer from the guides: a guide, the fact in it that answers, a glossary term, or a tool. */
 export type Lead = {
-  tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday";
+  tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday" | "Page";
   title: string;
   href: string;
   line: string;
@@ -69,6 +69,8 @@ export type Answer = {
   who: boolean;
   /** True when nothing matched as written and close spellings are shown instead. */
   spelling: boolean;
+  /** True when nothing held every word of the question, and what holds any one of them is shown instead. */
+  loose: boolean;
   listings: Listing[];
   /** The pages of this site that answer: shown first. In the view of articles alone, every one that answers or mentions, a page at a time. */
   leads: Lead[];
@@ -306,6 +308,8 @@ function build(): Engine {
     lead("h:all", { name: "Public holidays in Mauritius", alt: "bank holidays calendar jours feries konze piblik", what: years.join(" "), text: "" }, { lead: { tag: "Holiday", title: "Public holidays in Mauritius", href: "/holidays", line: `Every public holiday of ${years.join(" and ")}, with the day of the week it falls on.`, meta: `Checked ${day(dates.checked)}` }, guide: "holidays", weight: 4, whole: true, exact: true, key: ["public bank holidays calendar dates list next", "jours feries konze piblik", ...years], need: ["holiday", "holidays", "calendar", "feries", "konze"] });
   }
   glossary.forEach((t, i) => lead(`t:${i}`, { name: `${t.term} ${t.full ?? ""}`, alt: "", what: "", text: t.meaning }, { lead: { tag: "Glossary", title: t.full ? `${t.term}: ${t.full}` : t.term, href: `/learn/glossary#${anchorOf(t.term)}`, line: t.meaning }, weight: 1.4, whole: true, key: [t.term, t.full ?? "", "meaning definition"] }));
+  // The site's own pages, found by name: who makes it, the plans, the pocket guide, where the data comes from.
+  PAGES.forEach((page, i) => lead(`p:${i}`, { name: page.title, alt: page.words, what: page.line, text: "" }, { lead: { tag: "Page", title: page.title, href: page.href, line: page.line }, weight: 3, whole: true, key: [page.title, page.words] }));
   TOOLS.forEach((t, i) => lead(`x:${i}`, { name: t.title, alt: "calculator tool", what: t.what, text: "" }, { lead: { tag: "Tool", title: t.title, href: t.href, line: t.what }, weight: 1.3, whole: true, key: [t.title, t.what, "calculator tool"] }));
 
   official.forEach((o, i) => docs.push({ id: `o:${i}`, kind: "official", name: o.title, alt: o.publisher, what: o.what, where: "", text: o.host ?? "" }));
@@ -610,8 +614,12 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     sites = [];
   }
 
-  // Nothing at all for every word together: show what any of the words that say something finds.
+  // Nothing at all for every word together: show what any of the words that say something finds,
+  // and say so. A page that holds only some of the words has not answered the question, so none
+  // of them is shown as the answer.
+  let loose = false;
   if (!ranked.length && !leads.length && !official.length && !sites.length && text.includes(" ")) {
+    loose = true;
     const any = text
       .split(" ")
       .filter((word) => word && !PADDING.has(word) && !ASKS.has(word))
@@ -620,7 +628,9 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
       const l = byId((r.id as string).slice(2));
       if (l) ranked.push({ l, score: r.score });
     }
-    leads = collect(of("guide", words, "OR").slice(0, 40)).slice(0, 6);
+    leads = collect(of("guide", words, "OR").slice(0, 40))
+      .slice(0, 6)
+      .map((found) => ({ ...found, soft: true }));
     official = of("official", words, "OR").slice(0, 20).map((r) => data.official[Number((r.id as string).slice(2))]);
     sites = of("site", any, "OR").slice(0, 20).map((r) => data.sites[Number((r.id as string).slice(2))]);
   }
@@ -737,6 +747,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     near: read.hint && !category && !hard.length ? { href: `/directory/${read.hint.category.id}`, label: read.hint.category.label, n: read.hint.category.n, word: read.hint.word } : undefined,
     who: who || named,
     spelling,
+    loose: loose && ranked.length + leads.length + official.length + sites.length > 0,
     listings: kind && kind !== "listing" ? [] : ranked.slice(start, start + PAGE_SIZE).map((r) => r.l),
     leads: kind === "guide" ? leads.slice(start, start + PAGE_SIZE) : kind ? [] : hard.slice(0, who ? 2 : 3),
     mentions: kind ? [] : soft.slice(0, who || named ? 2 : 3),
