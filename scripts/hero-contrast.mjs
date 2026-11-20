@@ -1,14 +1,20 @@
 // Measures the words of the first screen against each picture behind them: `node scripts/hero-contrast.mjs [origin]`.
 //
 // A picture is not one colour, so the contrast script cannot vouch for words set on it. This takes
-// each picture in turn, hides the words, reads the pixels where the headline and the line under it
-// stand, and reports the lowest WCAG ratio found for each, at a desk and on a phone.
+// each picture in public/themes in turn, hides the words, reads the pixels where the headline and
+// the line under it stand, and reports the lowest WCAG ratio found for each, at a desk and on a
+// phone. A picture named in src/data/themes.ts whose file has not arrived is said to be missing.
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import sharp from "sharp";
 import { browserPath } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
-const PICTURES = ["lagoon", "flamboyant", "cane", "lights"];
+const root = fileURLToPath(new URL("..", import.meta.url));
+const PICTURES = readdirSync(`${root}public/themes`).filter((name) => /^[a-z]+\.jpg$/.test(name)).map((name) => name.slice(0, -4)).sort();
+const named = [...readFileSync(`${root}src/data/themes.ts`, "utf8").matchAll(/src: "\/themes\/([a-z]+)\.jpg"/g)].map((m) => m[1]);
+for (const id of named) if (!existsSync(`${root}public/themes/${id}.jpg`)) console.log(`miss  ${id}: named in src/data/themes.ts, and its file is not in public/themes yet, so it was not measured`);
 const lum = ([r, g, b]) => {
   const f = (v) => ((v /= 255) <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
   return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);

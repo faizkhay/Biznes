@@ -4,8 +4,14 @@
 //   ENQUIRY_WEBHOOK_URL=http://127.0.0.1:3199/hook npx next start -p 3100 &
 //   node scripts/behaviour.mjs [origin]        (default http://localhost:3100)
 //
-// It listens on port 3199 for the request form's delivery, so the form is tested end to end: typed
-// in a browser, validated, sent, and received. Exits 1 if any check fails.
+// It listens on a port of its own for the request form's delivery, so the form is tested end to
+// end: typed in a browser, validated, sent, and received. It also starts a second server with no
+// route for requests set. Both ports can be moved, so two people can run it on one machine:
+//
+//   HOOK_PORT   where the form's delivery lands (default 3199; the server's ENQUIRY_WEBHOOK_URL must name it)
+//   ALT_PORT    the second server's port (default 3101)
+//
+// Exits 1 if any check fails.
 //
 // Needs: playwright (devDependency).
 import { createServer } from "node:http";
@@ -13,6 +19,9 @@ import { chromium } from "playwright";
 import { browserPath } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
+const HOOK_PORT = Number(process.env.HOOK_PORT) || 3199;
+const ALT_PORT = Number(process.env.ALT_PORT) || 3101;
+const alt = `http://localhost:${ALT_PORT}`;
 let failed = 0;
 let passed = 0;
 const check = (name, ok, detail = "") => {
@@ -34,7 +43,7 @@ const hook = createServer((req, res) => {
     }
     res.writeHead(200).end("ok");
   });
-}).listen(3199, "127.0.0.1");
+}).listen(HOOK_PORT, "127.0.0.1");
 
 const browser = await chromium.launch({ executablePath: browserPath() });
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -46,7 +55,7 @@ const text = (selector) => page.locator(selector).first().innerText();
 // 1. The first screen, and the chart.
 await page.goto(origin, { waitUntil: "networkidle" });
 check("home: one h1, and the owner's line under it", (await page.locator("h1").count()) === 1 && /search engine/i.test(await text("main section p.body-1")));
-check("home: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
+check("home: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights|market|teafields|chamarel|harbour|village|sunset)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
 await page.waitForFunction(() => document.querySelector(".chart")?.dataset.live === "true", null, { timeout: 15000 }).catch(() => {});
 check("home: the chart goes live with script", (await page.locator('.chart[data-live="true"]').count()) === 1);
 const pts = await (await page.request.get(`${origin}/points.json`)).json();
@@ -167,14 +176,14 @@ check("form: the sixth request in ten minutes is refused", last === 429, `${last
   const env = { ...process.env };
   delete env.ENQUIRY_WEBHOOK_URL;
   delete env.RESEND_API_KEY;
-  const bare = spawn("npx", ["next", "start", "-p", "3101"], { env, stdio: "ignore", detached: true });
+  const bare = spawn("npx", ["next", "start", "-p", String(ALT_PORT)], { env, stdio: "ignore", detached: true });
   let up = false;
   for (let i = 0; i < 40 && !up; i++) {
     await new Promise((r) => setTimeout(r, 500));
-    up = await page.request.get("http://localhost:3101/add").then((r) => r.ok(), () => false);
+    up = await page.request.get(`${alt}/add`).then((r) => r.ok(), () => false);
   }
   if (up) {
-    await page.goto("http://localhost:3101/add", { waitUntil: "networkidle" });
+    await page.goto(`${alt}/add`, { waitUntil: "networkidle" });
     check("form, no route: it offers WhatsApp and email, not a send that would fail", (await page.locator("main button", { hasText: "Send by WhatsApp" }).count()) === 1 && (await page.locator("#email").count()) === 0);
     await page.fill("#business", "Test Shop");
     await page.fill("#message", "Please add it.");

@@ -1,5 +1,6 @@
 import { holidays } from "./holidays";
-import { DEFAULT_PICTURE, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type PictureId } from "@/data/themes";
+import { DEFAULT_PICTURE, EVERYDAY_PICTURES, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type PictureId } from "@/data/themes";
+import { picturesOnHand } from "./pictures";
 import { accountsOn } from "@/lib/accounts/config";
 import { chosenLook } from "@/lib/accounts/owned";
 
@@ -13,12 +14,17 @@ export const todayInMauritius = (now = Date.now()) => new Date(now + 4 * 3600e3)
 
 const daysBetween = (from: string, to: string) => Math.round((Date.parse(to) - Date.parse(from)) / 864e5);
 
-/** The look for a day: a holiday's on its day (and its lead-in), else the season's, else the default. */
+/**
+ * The look for a day: a holiday's on its day (and its lead-in); on any other day one of the
+ * season's pictures. The day's picture goes round the season's set by the count of days, so it
+ * changes every day and is the same for everyone on a given day.
+ */
 export function themeFor(day = todayInMauritius()): Theme {
   const of = (id: string, picture: PictureId, greeting: string, holiday?: string): Theme => ({ id, picture, src: PICTURES[picture].src, small: PICTURES[picture].small, greeting, holiday });
   const md = day.slice(5);
   const season = SEASONS.find((s) => (s.from <= s.to ? md >= s.from && md <= s.to : md >= s.from || md <= s.to));
-  const base = season?.picture ?? DEFAULT_PICTURE;
+  const turn = picturesOnHand(season ? [season.picture, ...season.also] : EVERYDAY_PICTURES);
+  const base = turn.length ? turn[Math.floor(Date.parse(day) / 864e5) % turn.length] : DEFAULT_PICTURE;
   for (const h of readHolidays()) {
     const away = daysBetween(day, h.date);
     const look = HOLIDAY_LOOKS.find((l) => l.match.test(h.name));

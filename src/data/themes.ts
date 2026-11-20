@@ -1,5 +1,6 @@
 // The picture behind the page, and when each one is shown. The site picks today's by itself
-// (src/lib/theme.ts): a public holiday's look on its day, else the season's, else the lagoon.
+// (src/lib/theme.ts): a public holiday's look on its day; on any other day one of the season's
+// pictures, a different one each day and the same for everyone on that day.
 // To change a picture, put a new file in public/themes and name it here. To add a look for a
 // holiday, add a line to HOLIDAY_LOOKS; the dates themselves come from content/holidays.json,
 // which is written from the official notice and never by hand here.
@@ -10,17 +11,29 @@ export const PICTURES = {
   flamboyant: { src: "/themes/flamboyant.jpg", small: "/themes/flamboyant-sm.jpg", label: "Flamboyants in bloom" },
   cane: { src: "/themes/cane.jpg", small: "/themes/cane-sm.jpg", label: "Cane in flower" },
   lights: { src: "/themes/lights.jpg", small: "/themes/lights-sm.jpg", label: "Festival of lights" },
+  market: { src: "/themes/market.jpg", small: "/themes/market-sm.jpg", label: "Market day" },
+  teafields: { src: "/themes/teafields.jpg", small: "/themes/teafields-sm.jpg", label: "Tea fields" },
+  chamarel: { src: "/themes/chamarel.jpg", small: "/themes/chamarel-sm.jpg", label: "Chamarel" },
+  harbour: { src: "/themes/harbour.jpg", small: "/themes/harbour-sm.jpg", label: "The harbour" },
+  village: { src: "/themes/village.jpg", small: "/themes/village-sm.jpg", label: "A village" },
+  sunset: { src: "/themes/sunset.jpg", small: "/themes/sunset-sm.jpg", label: "Sunset" },
 } as const;
 export type PictureId = keyof typeof PICTURES;
 
-/** The picture when nothing else applies. */
+/** The picture when nothing else applies, and the one a missing file falls back to. */
 export const DEFAULT_PICTURE: PictureId = "lagoon";
 
-/** The seasons, as month and day. A season may run over the new year. */
-export const SEASONS: { id: string; picture: PictureId; from: string; to: string }[] = [
-  { id: "summer", picture: "flamboyant", from: "11-15", to: "02-15" },
-  { id: "harvest", picture: "cane", from: "06-15", to: "09-30" },
+/**
+ * The seasons, as month and day. A season may run over the new year. `picture` is the season's own;
+ * `also` are the others it is shown in turn with, a different one each day.
+ */
+export const SEASONS: { id: string; picture: PictureId; also: PictureId[]; from: string; to: string }[] = [
+  { id: "summer", picture: "flamboyant", also: ["sunset", "market", "harbour", "lagoon"], from: "11-15", to: "02-15" },
+  { id: "harvest", picture: "cane", also: ["teafields", "village", "chamarel"], from: "06-15", to: "09-30" },
 ];
+
+/** Outside the seasons: the pictures of any day of the year, in turn. The first is the default. */
+export const EVERYDAY_PICTURES: PictureId[] = [DEFAULT_PICTURE, "chamarel", "harbour", "village", "market", "teafields", "sunset"];
 
 /**
  * How a public holiday looks, matched on its official name. `lead` is how many days before it the

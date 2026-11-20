@@ -63,10 +63,14 @@
   --color-line-strong: color-mix(in srgb, var(--palette-ink) 50%, transparent); /* a field's edge: 3.4:1 on white */
   --color-focus: var(--palette-royal);
 
-  /* One face: Manrope (SIL OFL 1.1), from the list KOS keeps for a brand with no face of its own.
-     It carries the name, every title and every sentence. Figures are set tabular where they are
-     measured or looked up. Served from this site. */
+  /* Two faces, both SIL OFL 1.1 and served from this site. Manrope, from the list KOS keeps for a
+     brand with no face of its own, carries the name, every sentence and every control; figures
+     are set tabular where they are measured or looked up. Bricolage Grotesque, asked for by the
+     design review of Round 4 and chosen by Khay Digital, carries the titles alone: display-1,
+     heading-1 and heading-2. It has an optical-size axis, so a large title is drawn finer than a
+     small one. */
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -180,24 +184,28 @@
   }
 }
 
-/* Type. One face, one scale; every size on the site is one of these. Nothing is under 12px. */
+/* Type. One scale; every size on the site is one of these. Nothing is under 12px. The three
+   largest styles are the titles and are set in the display face; everything else is Manrope. */
 @utility display-1 {
-  font-weight: 650;
-  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.625rem, 1.4rem + 4.9vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 @utility heading-1 {
-  font-weight: 600;
-  font-size: clamp(1.875rem, 1.5rem + 1.4vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(2rem, 1.55rem + 1.7vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.024em;
 }
 @utility heading-2 {
-  font-weight: 600;
-  font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(1.5rem, 1.33rem + 0.65vw, 1.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
 }
 @utility heading-3 {
   font-weight: 600;
@@ -2025,6 +2033,155 @@
       text-transform: uppercase;
       color: var(--color-ink-faint);
     }
+  }
+
+  /* An article beside a list of businesses: a short card, so the list it stands before starts
+     near the top of a phone's screen. */
+  .listing-brief {
+    padding-block: 0.875rem;
+  }
+  .listing-brief .listing-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  /* What the index holds for a question about who and where, in a sentence of its own counts. */
+  .tally {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.875rem 1.125rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    font-weight: 500;
+  }
+  .tally svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+    margin-top: 0.1875rem;
+    color: var(--color-link);
+  }
+  /* "People also ask": the questions the answering article has for headings, each a way into it. */
+  .asks {
+    padding: 1.125rem 1.25rem 1rem;
+    border-radius: var(--radius-xl);
+    background: var(--color-panel);
+  }
+  .asks ul {
+    list-style: none;
+    margin: 0.5rem 0 0.625rem;
+    padding: 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .asks li {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .asks a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0;
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .asks a:hover span {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .asks a svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--color-ink-faint);
+    transform: rotate(-90deg);
+  }
+
+  /* The street map: opened on request in the island's place (MapSwitch). The frame is the
+     island's; the map inside it is MapLibre's, and its own styles come with it. */
+  .street {
+    position: relative;
+    width: 100%;
+    height: min(34rem, 72dvh);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 12%, transparent);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--palette-shallows);
+    isolation: isolate;
+  }
+  /* MapLibre sets its own position on the element it is given, so the frame is filled by size. */
+  .street-map {
+    width: 100%;
+    height: 100%;
+    font: inherit;
+  }
+  .street-zoom {
+    position: absolute;
+    z-index: 2;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: grid;
+    gap: 0.375rem;
+  }
+  .street-zoom .icon-btn {
+    background: var(--color-paper);
+    border-color: color-mix(in srgb, var(--palette-ink) 14%, transparent);
+    box-shadow: var(--shadow-sm);
+  }
+  .street-zoom .icon-btn:hover {
+    background: var(--color-panel);
+  }
+  /* The credit the map's tiles ask for, written on the map and never folded away. */
+  .street-credit {
+    position: absolute;
+    z-index: 2;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: fit-content;
+    max-width: calc(100% - 1rem);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--palette-white) 90%, transparent);
+    color: var(--color-ink-subtle);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  .street-credit a {
+    color: var(--color-ink);
+  }
+  .street-failed {
+    height: auto;
+    border: 0;
+  }
+  /* What a tapped point says: the listing's name, as the way to its page, and its kind. */
+  .street .maplibregl-popup-content {
+    padding: 0.75rem 2.25rem 0.75rem 0.875rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+  }
+  .street .maplibregl-popup-content a {
+    color: var(--color-link);
+  }
+  .street .maplibregl-popup-content p {
+    margin: 0.125rem 0 0;
+    color: var(--color-ink-subtle);
+  }
+  .street .maplibregl-popup-close-button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+    color: var(--color-ink-subtle);
+    border-radius: var(--radius-sm);
+  }
+  .street .maplibregl-cooperative-gesture-screen {
+    font-family: var(--font-sans);
+    font-size: 1rem;
   }
 
   /* The pages of a long list. */

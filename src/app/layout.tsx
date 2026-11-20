@@ -9,12 +9,23 @@ import Pwa from "@/components/Pwa";
 import TabBar from "@/components/TabBar";
 import "./globals.css";
 
-// Manrope, one file with a weight axis: the site's one face. SIL OFL 1.1; the licence is beside
-// the file in src/fonts.
+// Manrope, one file with a weight axis: the face of every sentence, every control and the name.
+// SIL OFL 1.1; the licence is beside the file in src/fonts.
 const manrope = localFont({
   src: "../fonts/manrope-latin-wght-normal.woff2",
   weight: "200 800",
   variable: "--font-manrope",
+  display: "swap",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+// Bricolage Grotesque, one file with a weight axis and an optical-size axis: the warmer face of
+// the titles alone (display-1, heading-1, heading-2 in globals.css). SIL OFL 1.1; the file is the
+// latin one from @fontsource-variable/bricolage-grotesque 5.3.0, with its licence beside it.
+const bricolage = localFont({
+  src: "../fonts/bricolage-grotesque-latin-opsz-normal.woff2",
+  weight: "200 800",
+  variable: "--font-bricolage",
   display: "swap",
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
@@ -41,7 +52,7 @@ export const revalidate = 3600;
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const theme = await themeNow();
   return (
-    <html lang="en" className={manrope.variable} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
       <body>
         <div className="backdrop" aria-hidden />
         <a href="#main" className="skip-link button-sm">
