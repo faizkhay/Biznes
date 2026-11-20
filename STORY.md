@@ -76,7 +76,7 @@ There are no chapters. Each kind of page does one job.
 | The guides (`/learn`), and a guide | Explain one subject, every figure with its source | Shelves of cards; a reading page that ends with what to read next, then its references |
 | Emergency numbers (`/emergency`) | Who to call, each number from an official page | The first three numbers on dark cards, each a button that dials |
 | List your business (`/pricing`) | The three plans, and what paying changes | Three cards, Biznes Go the dark one |
-| Pocket guides (`/shop`) | Sell the PDF guides | The cover, what is inside, and a way to ask for it |
+| Pocket Guide (`/shop`) | Sell the one guide, and places in it | The cover, what is inside, the price and when it is free, what a sponsor can take, and the cart |
 | Saved (`/saved`) | The visitor's shortlist, or one they were sent | Cards, with a way to share the list |
 
 The picture shows round the sheet on every page, and the footer is a dark card that sits on it.
@@ -126,6 +126,73 @@ transition.
   emergency number carries the number of its source.
 
 ## Rounds
+
+### Round 5, 20 November 2026: useful first
+
+**The owner's notes, in their own words.**
+
+"i want better display on biznes pages. searches are limited, we should display our ai articles
+first, then biznes or other links for same, we are a search engine, improve our usability, we
+should be useful. it should be a powerhouse for mauritius individuals and bizneses. special
+category for food biznesses, we should have the best Baz Manzer on our apps. improve our footer,
+logo is hiden. we should have different background images, be dynamic in that manner. biznes.mu is
+a product of khay digital, developed by Faiz Khayrattee. paid listings should have a more beautiful
+biznes page. food outlets using biznes go (at least) can list their menu."
+
+On the pocket guide: "sponsorship, fees are good, we have max 4 pages per guide, do we have 1 guide
+or many? i suggest 1 big guide, like a biznes.mu pocket guide and later we will have 1 biznes.mu
+biznes magazine, where we list biznesses of the month etc, manual monthly e-magazine release for
+free (for that we need a subcribers list for that and for our pocket guide). free weeks target:
+yes, if we hit 8k per edition, its free for 2 weeks, if we hit 10k its free for 3 weeks, if we hit
+12k its free for the month."
+
+Later the same day: "add a cart and user icons in header bar by default", and "ensure that our seo,
+aeo and geo are up to date, we need to have proper image that shows up when people paste our link
+anywhere".
+
+**What the round decided, and why.**
+
+- **A page of results has one order, and says so.** Our own pages that truly answer come first,
+  then businesses, then parts of articles that only mention the words, then pages elsewhere. The
+  owner asked for articles first; the line that had to be held was "truly". A paragraph that
+  merely contains a word is not an answer, and showing it as one is what made the earlier search
+  feel limited. So an answer must hold every word asked, a partial match is said to be partial,
+  and a name the index does not hold is said not to be held.
+- **The search was taught by real questions.** Forty-seven searches a Mauritian would type, in
+  English, French and Kreol, were run, read and fixed one by one, and each is now a check. What
+  they taught: a dish is not a category ("pizza" is looked for in a place's own words); the first
+  kind named in a question is the one meant; a question about how is never a kind of business; a
+  French or Kreol phrase is put into English before it is read; and a health listing with no
+  number is of little use at the top.
+- **Baz Manzer is a place of its own**, not a filter. Food is what people look for most, so it has
+  its own address, its own front (the awning, the one use of the brand's red), and its own ways
+  in: by kind of place, by kind of food, by town. Its lists are counted from the index.
+- **One page for a business, and it grows with the plan.** A free page is calm and complete: what
+  is known, set out in blocks, the way to call on the first screen. A paid page adds only what the
+  owner has given (a cover, pictures, a line, hours, a menu, services, a booking) and wears the
+  mark. No part is drawn empty, and nothing paid is shown on a free page.
+- **A street map, on request.** The island stays, because it is the site's own and costs nothing.
+  A real map is one press away, loaded only then, from a free service whose terms were read first.
+- **Two faces.** Bricolage Grotesque for titles alone; Manrope for everything else.
+- **The footer says whose product this is**, in the owner's words, and its mark stands whole.
+- **Ten pictures, a different one each day.** The season still chooses the set.
+- **One guide.** The biznes.mu Pocket Guide, with at most four pages of sponsors, refused in the
+  data and not at the printer; free by the steps the owner gave; and a magazine announced, with a
+  list to join.
+- **A cart, without a till.** What can be bought goes in a cart; the order is sent, and a person
+  replies. The site never says more about paying than is true.
+- **Found, and quoted.** Every page has its own card for a pasted link, its own title and
+  description, and structured data written from its own content. Articles are offered whole to
+  assistants, as Markdown, with their sources.
+- **Lighter.** The island was being sent twice on every list page, once for each size of screen.
+  It is drawn once now.
+
+**Not done, and why.**
+
+- **Weather on the first screen.** No source was chosen that could be named and kept current, so
+  none is shown.
+- **The magazine.** Announced only.
+- **Paying online.** Not connected; the owner has not chosen how.
 
 ### Round 4, 20 November 2026: the postcard, and a wider product
 
@@ -325,15 +392,10 @@ first screen on a desk met the brief and the phone did not. What was done:
 
 Not done, and why:
 
-- **A map with streets, zoom and markers that can be tapped.** The island is drawn from the
-  listings' own positions; a street map is a different piece of work, and a tile service is a
-  dependency the owner has not chosen.
-- **A second, warmer face for titles.** The reviewer found the pages under the first screen close
-  to a template. One face is the house rule; a display face is the owner's to ask for.
-- **A shorter places page and a search within it.**
-- **The current part marked in an article's contents, and businesses that go with an article.**
-- **Listings with a number first in health categories.** The order is by answer and fullness, and
-  a number already counts toward fullness.
+All five were taken up in Round 5, when the owner said of them "do it for me. you know best": the
+street map, a second face for titles, the shorter places page with a box that finds a town, the
+part being read marked in an article with the businesses that go with it, and listings with a
+telephone number first in the health categories.
 
 ### Round 3, 20 November 2026: the search engine
 

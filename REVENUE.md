@@ -28,7 +28,7 @@ The owner's streams, in the owner's words of 20 November 2026:
 | Biznes Free | Free | Shown on `/pricing`. A business asks through the form |
 | Biznes Go | Rs 550 a month for each business | Shown on `/pricing`. The verified mark is drawn; joining it to the search, and accounts, are being built |
 | Biznes Grow | Rs 1,250 a month for each business | Shown on `/pricing`. Bookings and services are being built |
-| Pocket guides, as PDFs | Not yet set by the owner | The first is made: 51 pages, 60 places, 110 sources. `/shop` shows it and takes requests |
+| The biznes.mu Pocket Guide, a PDF | Rs 150 an edition; sponsors pay Rs 500, Rs 1,500 or Rs 4,000 a month for a place in it | Made: 53 pages, 60 places, 110 sources. `/shop` sells it through the cart, and hands it out free in the weeks its sponsors have paid for |
 | Websites through Khay Digital | Quoted by the agency | `npm run leads` writes the list: 6,754 listings with no website on record, 273 of them businesses with a telephone number |
 
 Nothing can be paid for on the site yet. The owner has chosen Stripe (20 November 2026) and has
@@ -100,28 +100,52 @@ work, so it is kept for verified businesses and nothing else on the site may loo
 **Open:** whether Biznes Grow includes Biznes Go's verified mark and priority. The owner's words
 give them to Biznes Go. The site's pages at present say that either paid plan comes first.
 
-### 2. Pocket guides
+### 2. The pocket guide, and its sponsors
 
-**Who pays:** a visitor, or someone with visitors coming.
+**There is one guide** (the owner, 20 November 2026): the biznes.mu Pocket Guide, renewed every
+month. It earns in two ways.
 
-**What they buy:** a PDF for a phone, A5, made to be read on the road with no signal: places to see
+**From readers.** A PDF for a phone, A5, made to be read on the road with no signal: places to see
 and things to do, region by region, each fact from an official page, with the sources listed at
-the back. The first, "Mauritius: places to see and things to do", is made: 51 pages, 60 places in
-nine parts of the island, 13 days out and 110 sources. The pictures in it are illustrations made
-for biznes.mu, and it says so.
+the back. 53 pages, 60 places in nine parts of the island, 13 days out and 110 sources. The
+pictures in it are illustrations made for biznes.mu, and it says so. It is Rs 150 an edition.
 
-**Price:** not yet set by the owner. Until it is, the shop says so and takes requests.
+**From sponsors.** A business pays to be on the sponsors' pages of a coming edition. The fees are
+the owner's, confirmed on 20 November 2026:
+
+| Option | Fee a month | Share of a page |
+|---|---|---|
+| A sponsored listing | Rs 500 | An eighth |
+| A sponsored panel | Rs 1,500 | A quarter |
+| A sponsored page | Rs 4,000 | A whole page |
+
+An edition holds at most four pages of sponsors. Four full pages are therefore the most one
+edition can earn from sponsors: Rs 16,000. Filled with panels alone it would be sixteen panels and
+Rs 24,000; with listings alone, thirty-two and Rs 16,000. These are the ceilings the owner's rule
+sets, not a forecast.
+
+**When sponsors make it free.** By what an edition's sponsors have together paid: Rs 8,000, and it
+is free for the first two weeks of its month; Rs 10,000, three weeks; Rs 12,000, the whole month.
+A free edition is read by more people, which is what a sponsor pays for; a sold one earns from
+readers. The steps are in `content/pdf/sponsorship.json`, and the shop applies them by itself.
+
+**The magazine, later.** The owner intends a free monthly magazine, the biznes.mu Biznes Magazine,
+with the businesses of the month. It and the guide go to one list of subscribers, which the site
+now gathers. It is not made, and nothing is earned from it yet.
 
 **The size:** 1,436,250 tourists arrived in 2025 (Statistics Mauritius, in the table below). How
 many of them would find the site, and how many of those would buy a guide, is not known and is not
 guessed here.
 
-**What it needs:** a price, and a way to pay and to deliver the file. The file is kept out of the
-public folder, because it is sold. The owner should read it before the first one is sent.
+**What it needs:** a way to pay and to deliver the file. Until then the guide and a place in it are
+ordered through the cart, and a person replies. The owner should read the guide before the first
+one is sent.
 
 **The care it needs:** the guides on the site stay free. They are how people will find the site.
 The pocket guide is a different thing, made to be carried, and it must be as well sourced as the
-rest. A wrong opening time in a paid guide costs more than one in a free one.
+rest. A wrong opening time in a paid guide costs more than one in a free one. A sponsor buys a
+place on the sponsors' pages and nothing else: no place is in the guide because of a sponsor, and
+the guide says so.
 
 ### 3. Websites, through Khay Digital
 
@@ -296,7 +320,7 @@ twelve months; a business that joins part of the way through the year pays for l
 | Websites through Khay Digital, at MUR 60,000 | 4: MUR 240,000 | 12: MUR 720,000 | 30: MUR 1,800,000 |
 | Biznes Go, at Rs 6,600 a year | 15: Rs 99,000 | 60: Rs 396,000 | 180: Rs 1,188,000 |
 | Biznes Grow, at Rs 15,000 a year | 5: Rs 75,000 | 20: Rs 300,000 | 60: Rs 900,000 |
-| Pocket guides | No price is set, so no sum | | |
+| The pocket guide | Rs 150 an edition; how many will sell is not known, so no sum | | |
 | **The owner's streams** | **Rs 414,000** | **Rs 1,416,000** | **Rs 3,888,000** |
 | Introductions, if taken up, at MUR 2,000 on average | 60: MUR 120,000 | 240: MUR 480,000 | 720: MUR 1,440,000 |
 | **With introductions** | **Rs 534,000** | **Rs 1,896,000** | **Rs 5,328,000** |
@@ -386,8 +410,8 @@ are four in the index, that is where the next crawl, and the next sales call, sh
 ## Decisions for the owner
 
 1. How are plans and pocket guides paid for? Answered: through Stripe, to be connected.
-2. What is the pocket guide's price? Answered: Rs 150 a guide, with a bundle of
-   every guide at about 60 per cent off once there are 50 to 100 of them.
+2. What is the pocket guide's price? Answered: Rs 150 an edition. The owner first spoke of 50 to
+   100 guides and a bundle, then chose one big guide, with sponsors and a free magazine to follow.
 3. Does Biznes Grow include Biznes Go's verified mark and priority? Answered: yes, everything in
    Go, with bookings and service sales.
 4. What does "verified" check, and who does the checking?

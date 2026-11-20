@@ -36,25 +36,36 @@ It replaces the site that sold ready-made businesses (in the repository's histor
 - **The index** (`data/index`): 7,179 listings in 129 towns and villages (and 144 neighbourhoods
   within them) and 70 categories, 217 Mauritian websites, 153 official pages. Written by the
   crawler; never edited by hand. It can be downloaded from the site's own data page.
-- **The search** (`src/lib/search.ts`): one question over listings, articles, official pages and
-  websites. It reads a town and a kind of business out of a question, in English, French or Kreol.
-  A question about how is answered first, in the site's own words, with the article it comes
-  from; pages on other sites are folded away as "References elsewhere". It never passes a wider
-  category off as the answer to a narrower word.
+- **The search** (`src/lib/search.ts`): one question over listings, articles, the site's own
+  pages, official pages and websites. It reads a town, a kind of business or a dish out of a
+  question, in English, French or Kreol. A page of results is in four parts, always in this
+  order: our own pages that answer, businesses, parts of articles that only mention the words,
+  and pages elsewhere, folded away as "References elsewhere". It never passes a wider category off
+  as the answer to a narrower word, and a partial match is said to be one ("The order of results").
 - **Narrowing, saving and sharing**: a list of listings is narrowed by telephone number, by
   website and by town, each as a link. A shortlist is kept in the visitor's own browser and shared
   as a link. A listing or a search can be shared.
-- **The articles and guides** (`content/guides`): 23 when this was written, on five shelves, with
-  more arriving. Each fact names its source, and each article ends with what to read next on the
-  site and then its list of references. A glossary of 90 terms (`content/glossary.json`) is drawn
-  from the business guides.
+- **The articles and guides** (`content/guides`): 39 when this was written, on six shelves. Each
+  fact names its source, and each article ends with the kinds of business that go with it (where
+  the tie is plain), what to read next on the site, and its list of references. Each is also
+  served as Markdown. A glossary of 90 terms (`content/glossary.json`) is drawn from the business
+  guides.
 - **The tools**: check a business, a VAT calculator, a personal income tax calculator, a business
   tax estimator, a comparison of legal structures, the glossary. Each takes its figures from a
   guide and holds none of its own (`src/lib/figures.ts` reads them by a fact's label, and
   `src/lib/sums.ts` does the arithmetic for the two tax tools and their no-script examples).
 - **Emergency numbers** (`content/emergency.json`): 43 numbers from 29 sources, each named.
-- **The pocket guide** (`content/pdf`, `npm run pdf`): the first of the PDF guides to be sold, 51
-  pages.
+- **Baz Manzer** (`/baz-manzer`, `src/lib/food.ts`): the places to eat and drink as a section of
+  their own, by kind of place, by kind of food and by town, with a paid outlet's menu on its row.
+- **A business's page** (`src/components/BusinessPage.tsx`): one component for a listing from the
+  index (`/b/...`) and for a business its owner listed (`/biz/...`). Calm when free; with a cover,
+  pictures, hours, a menu and a way to book when the owner pays and has added them.
+- **The street map** (`src/components/StreetMapView.tsx`): a real map of streets in the island's
+  place, loaded only when a visitor asks for it ("The street map").
+- **The biznes.mu Pocket Guide** (`content/pdf`, `npm run pdf`): one guide, renewed every month,
+  53 pages, with at most four pages of sponsors.
+- **The cart** (`/cart`, `src/lib/cart.ts`): the guide, a place in it, or a plan, kept in the
+  visitor's browser until the order is sent.
 - **The plans** (`PLANS` in `src/data/site.ts`): Biznes Free, Biznes Go and Biznes Grow, on
   `/pricing`.
 - **The installable app**: a manifest, a service worker, an offline page and a card that offers to
@@ -150,8 +161,36 @@ addresses to their new pages, and serves `/sw.js` so that it is never held in a 
 ### Before the site can be found
 
 `launched` in `src/data/site.ts` is `false`. While it is, every page asks search engines not to
-index it and `robots.txt` closes the site. Set it to `true` when the confirm list below is closed.
-The results of a search, a shortlist and the offline page are never indexed, launched or not.
+index it and `robots.txt` closes the site to them (the fetchers that draw a link's preview are let
+in, so a pasted link shows its card). Set it to `true` when the confirm list below is closed. The
+results of a search, a shortlist, the cart, an account and the offline page are never indexed,
+launched or not.
+
+What the code does for search engines and for assistants that answer from the web:
+
+- **Every page** has its own title and description, a canonical address, and the Open Graph and
+  Twitter tags (`pageMeta` in `src/lib/meta.ts`). `npm run seo` fails if one is missing.
+- **A link pasted anywhere** shows a card drawn for that page (`opengraph-image.tsx` beside the
+  page, all through `ogCard` in `src/lib/og.tsx`): an article, a listing, an owner's business, a
+  category, a category in a town, a town, Baz Manzer, the emergency numbers, the holidays, the
+  plans and the shop. Every other page shows `public/og.jpg`.
+- **Structured data** is written from the page's own content and never from anything else
+  (`src/lib/schema.ts`): the organisation and the site with its search, the trail of every page,
+  an article with its citations and its questions, a list of listings, and a business as the kind
+  it is, with its hours and its menu when it has them.
+- **For assistants**: `/llms.txt` lists what the site holds, `/llms-full.txt` gives every article
+  whole, and each article is served as Markdown at its own address with `.md` after it.
+  `robots.txt` names the crawlers of the answer engines that are let in, and the one that is not.
+- **The sitemap** lists every public page with the day its content last changed.
+
+What only the owner can do, outside the code, once `launched` is `true` and the site is on its own
+domain:
+
+1. Verify the domain in Google Search Console and in Bing Webmaster Tools, and give each the
+   sitemap: `https://biznes.mu/sitemap.xml`.
+2. Make a Google Business Profile for biznes.mu itself, under Khay Digital's address and number.
+3. Set `NEXT_PUBLIC_SITE_URL` to the real address on the host. Without it every canonical link, card
+   and sitemap entry points at localhost, and the server says so when it starts.
 
 ### Where requests go
 
@@ -480,7 +519,7 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 | `/admin/people`, `/admin/settings` | The superadmin's: roles; the picture behind the page |
 | `/unsubscribe` | Where a subscriber's link lands |
 | `/biz/[slug]` | The page of a business its owner listed that is not in the open index |
-| `/b/[slug]` | A listing's page gains its owner's details once a claim is approved, or the link to claim it |
+| `/b/[slug]`, `/biz/[slug]` | One business: a listing from the index, or one its owner listed. The same component draws both: its head with the ways to reach it, what is known in blocks, its hours day by day, the island and the street map, where each part came from, the same kind nearby. A paying owner's page adds a cover, pictures, a menu, services and a way to book. A listing's id alone leads to its full address | The first time it is asked for, then kept |
 
 The pieces the public pages use, each with its own notes in the file: `showcaseOf(businessId)`
 (`src/lib/accounts/showcase.ts`), `<AdSlot place>` and `AdCard`
@@ -609,6 +648,31 @@ Still open, and for the owner or the host to close:
   against leaked passwords; only the site's own address among the redirect addresses once it is
   live.
 
+## The street map
+
+The island beside a list is a drawing of what is listed. A visitor who needs streets presses
+"Open the street map", and a real map takes the island's place, with the same listings on it.
+
+- **What draws it.** MapLibre GL JS 6.19.0 (`maplibre-gl`, BSD 3-Clause), the one dependency this
+  adds. It is fetched only when the button is pressed: the code, its style sheet and its worker
+  are not in any page until then (the behaviour check holds this).
+- **Whose map it is.** OpenFreeMap's "liberty" style, from `https://tiles.openfreemap.org`. Its
+  own site says, as read on 20 November 2026: no key, no registration, no limit on views,
+  commercial use allowed, and the credit must be shown. The credit is on the map at all times:
+  "OpenFreeMap © OpenMapTiles Data from OpenStreetMap" (`STREET_MAP.credit` in `src/data/site.ts`).
+  The map data is OpenStreetMap's, under the ODbL.
+- **Its limits.** OpenFreeMap is run on donations, with no promise of service: it is given as it
+  is and may stop. If it does not answer, the island stays, and the visitor is offered the same
+  place on openstreetmap.org. To move to another supplier, change `STREET_MAP.style` and
+  `STREET_MAP.host`, and the map's host in `next.config.ts`.
+- **What the browser is allowed to reach.** The security policy names one host for the map,
+  `tiles.openfreemap.org`, for the style, the tiles, the lettering and the symbols. The map's
+  worker is the site's own file.
+- **What it shows.** Every placed listing, from `/markers.json`, as a point of ink; the ones that
+  answer in saffron. A point opens the listing's name as a link to its page.
+- **What it costs a build.** The library's files are copied into the build (about 5.5 MB on disk).
+  None is sent to a visitor who does not open the map.
+
 ## Where the content lives
 
 Everything the owner will change is data. No fact is written into a component.
@@ -670,22 +734,76 @@ field; one with none is on the business shelf. The order of articles on the site
 in `src/lib/index.ts`; one that is not named there comes last. A shelf with no article is not
 shown.
 
+### The order of results
+
+`search()` in `src/lib/search.ts` returns the four parts of a page of results, and
+`src/app/search/page.tsx` shows them in that order and no other. `/data` says the same to visitors:
+change the page first if the order ever changes.
+
+1. **Our own pages that answer**: an emergency number, a holiday's date, an article's own words,
+   one of the site's pages (`PAGES` in `src/data/site.ts`). An answer must hold every word asked.
+2. **Businesses**: by how well a listing answers and how full it is. A verified business on a paid
+   plan comes first among equal answers and is marked. In the health categories a listing with a
+   telephone number comes before one without.
+3. **Parts of articles that only mention the words**, under "Also mentioned in our articles".
+4. **Pages elsewhere**: official pages and websites, folded under "References elsewhere".
+
+Where nothing holds all of a question, the page says so and shows what holds some of it, marked as
+such. Under an answer, "People also ask" is the question headings of the article it came from.
+"Related searches" are the same kind in the nearest towns and in the larger ones, each with its
+count. The line above the results is made from counts ("18 pharmacies in Curepipe; 1 has a
+telephone number on record") and is never written by hand.
+
+The words the search understands are in the same file: `SAID_PHRASES` and `SAID` (French and Kreol
+to English), `PADDING` (words that carry no meaning), and `DISHES` (a dish is looked for in a
+place's own words, across every kind of place to eat, and never read as a category). Forty-seven
+searches are kept as checks in `scripts/behaviour.mjs`; add one whenever a search goes wrong.
+
+### Baz Manzer
+
+`BAZ` in `src/data/site.ts` holds its words, and `src/lib/food.ts` its lists: the kinds of place
+are the categories of the "eat" group, and the kinds of food are counted from what the map
+records for each place. Nothing is typed in. A verified outlet on a paid plan comes first and is
+marked; its menu, when it has given one, shows on its row and in full on its own page.
+
+### What goes with an article
+
+`ARTICLE_BUSINESSES` in `src/data/site.ts` ties an article to the categories it is plainly about
+(money to banks, cash machines and money changers; getting around to taxis and car hire). The
+article then ends with those, and the search leads such a category with its article. An article
+with no line there has no such part: none is made up for it.
+
+### The cart
+
+What can be bought is the pocket guide, a place on its sponsors' pages, and Biznes Go or Grow.
+Each "Add to cart" button builds its item from the data files, so a price is never typed into a
+component. The cart is kept in the browser (`biznes:cart`) and sent nowhere until the visitor
+orders. With accounts on, the accounts' checkout places the order, priced again on the server;
+with accounts off, it hands the cart, in words, to the request form. Nothing is paid on the site.
+
 ### The pictures and the calendar
 
-`src/data/themes.ts` names the four pictures, the seasons and each holiday's look. The site picks
-the day's by itself (`src/lib/theme.ts`), by the date in Mauritius.
+`src/data/themes.ts` names the ten pictures, the seasons and each holiday's look. The site picks
+the day's by itself (`src/lib/theme.ts`), by the date in Mauritius: a holiday's look on its day,
+and on any other day one of the season's pictures, a different one each day and the same for
+everyone on that day.
 
 | Picture | Shown |
 |---|---|
-| `lagoon` | When nothing else applies |
-| `flamboyant` | The summer, 15 November to 15 February |
-| `cane` | The harvest, 15 June to 30 September |
+| `flamboyant`, `sunset`, `market`, `harbour`, `lagoon` | In turn through the summer, 15 November to 15 February |
+| `cane`, `teafields`, `village`, `chamarel` | In turn through the harvest, 15 June to 30 September |
+| `lagoon`, `chamarel`, `harbour`, `village`, `market`, `teafields`, `sunset` | In turn through the rest of the year |
 | `lights` | Divali and the two days before it; Christmas and the three days before it |
 
+- **A superadmin can overrule the calendar** from the admin pages: one picture, fixed, or a round
+  of chosen pictures, their own uploads among them (`themeNow()`; see "Accounts").
+- **To add a picture**, put its two files in `public/themes`, name it in `PICTURES`, and add it to
+  a season's `also` or to `EVERYDAY_PICTURES`. `npm run hero` then measures the first screen's
+  words against it, and it must pass before the picture is used.
 - **To change a picture**, replace its two files in `public/themes` (the full one, and the `-sm`
   one for a phone) and bring the `.json` record beside each up to date. Then raise `VERSION` in
   `public/sw.js`, or name the new files differently and point `PICTURES` at them.
-- **Every picture has a record** that says what it is, what made it and when. The four here are
+- **Every picture has a record** that says what it is, what made it and when. The ten here are
   illustrations generated for the site on 20 November 2026. They are never captioned as
   photographs.
 - **To give a holiday a look**, add a line to `HOLIDAY_LOOKS`: a pattern for its official name, a
@@ -732,13 +850,13 @@ named on the confirm list.
 | File | Holds |
 |---|---|
 | `content/pdf/places.json` | The places, each with its region, what it is, what to know before going and its sources; the days out; the sources; what could not be confirmed. 60 places and 110 sources at present |
-| `content/pdf/product.json` | The guide's title, the words on its cover, and its price: Rs 150 |
-| `content/pdf/sponsorship.json` | How a guide is sponsored: the three options and their prices, the sum that makes an edition free, and for how many days. Khay Digital's suggestion until the owner confirms it (`"confirmed": false`) |
+| `content/pdf/product.json` | The guide's address (`biznes-pocket-guide`), its title ("biznes.mu Pocket Guide"), the words on its cover, its price (Rs 150), and the sponsors written in by hand |
+| `content/pdf/sponsorship.json` | How the guide is sponsored, in the owner's words of 20 November 2026 (`"confirmed": true`): the three options with their fees and the share of a page each takes, the most pages an edition holds, and the steps at which it is free |
 | `content/pdf/built.json` | What the last build held, with its edition. Written by the script; the shop shows a guide only once this exists |
 
 `npm run pdf` reads these and writes:
 
-- `content/pdf/editions/<slug>.pdf`: this month's edition, A5, 52 pages at present. It is kept
+- `content/pdf/editions/<slug>.pdf`: this month's edition, A5, 53 pages at present. It is kept
   with the content and never in `public/`, because the guide is sold: only the shop's own route
   (`/shop/<slug>/download`) hands it out, and only while it is free.
 - `public/shop/<slug>-cover.jpg`, `-opener.jpg` and `-sample.jpg`: the cover and two pages, for
@@ -754,23 +872,51 @@ read its facts again, correct `places.json` and its `checked` date, add that mon
 `product.json`, run `npm run pdf` (or `npm run pdf -- 2026-12` to make a named month's edition),
 and commit what it wrote.
 
-**Sponsors.** Each edition has a sponsors' page, with how to reach us to be on the next one. A
-business that has paid goes in `product.json` under `sponsors`, with the option it bought and the
-months it paid for:
+**There is one guide.** The owner chose one big guide over many small ones: the biznes.mu Pocket
+Guide. A monthly magazine, the biznes.mu Biznes Magazine, is to follow, free, with the businesses
+of the month; it is announced on `/shop` and nothing of it is built. Both go to a list of
+subscribers, which the accounts keep: the form is on `/shop` and at the foot of every page.
 
-```json
-{ "name": "A business", "line": "What it does, in a line", "town": "Curepipe", "phone": "+230 000 0000", "option": "listing", "months": ["2026-12", "2027-01"] }
-```
+**Sponsors.** A business pays to be on the sponsors' pages of a coming edition, never the one
+running. The three options (`sponsorship.json`):
 
-Sponsorship is sold for a coming month or months only, never the one running. When the sponsors
-of a month have together paid the target in `sponsorship.json`, that edition is free on the site
-for the first three weeks of the month (to the 21st) and sold in the last. The shop works this
-out by itself each day (`offer()` in `src/lib/shop.ts`).
+| Option | Fee a month | Share of a page |
+|---|---|---|
+| A sponsored listing (`listing`) | Rs 500 | An eighth |
+| A sponsored panel (`panel`) | Rs 1,500 | A quarter |
+| A sponsored page (`page`) | Rs 4,000 | A whole page |
 
-The price is the owner's: Rs 150 a guide. The owner intends 50 to 100 guides, and later a bundle
-of them all at about 60 per cent off. Only one guide exists, and the script and the shop hold
-one: a second needs both to learn to hold several. Until Stripe is connected a guide is asked for
-through the form, and a person sends it; sponsorship is asked for the same way.
+An edition holds **at most four pages of sponsors**. The script adds up the shares of every sponsor
+named for a month and refuses to make an edition that goes over: it names the sponsor that would
+be the fifth page and stops. `npm run pdf -- --check` does only that sum, on the guide's own file
+or on one named after it. The accounts' database refuses the same thing when a place is booked.
+
+Sponsors come from two places, and one named in both is counted once:
+
+- written by hand in `product.json` under `sponsors`:
+
+  ```json
+  { "name": "A business", "line": "What it does, in a line", "town": "Curepipe", "phone": "+230 000 0000", "option": "listing", "months": ["2026-12", "2027-01"] }
+  ```
+
+- booked through an owner's account, approved by an admin and marked paid. The shop and the
+  download read these by themselves (`withBooked` in `src/lib/shop.ts`). The script reads them when
+  `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are in its environment, and says
+  which it did.
+
+**When the guide is free.** By what an edition's sponsors have together paid:
+
+| They have paid | The edition is free |
+|---|---|
+| Rs 8,000 | For the first two weeks of its month |
+| Rs 10,000 | For the first three weeks |
+| Rs 12,000 | All month |
+
+The rest of the month it is sold. The shop works this out each day (`offer()` in
+`src/lib/shop.ts`) and the download route hands the file out only while it is free.
+
+The price is the owner's: Rs 150 an edition. Until payment is connected the guide is ordered
+through the cart, and a person sends it and says how to pay; a place in it is ordered the same way.
 
 ### The list of businesses with no website
 
@@ -847,9 +993,10 @@ The articles, the plans and the money:
    The wording of each line on `/pricing` is Khay Digital's (`PLANS`), for example "free for good"
    and "A verified mark, once we have checked the business is real". The owner should read each
    one. What the check behind "verified" is has not been written down.
-6. **The pocket guide's bundle.** One guide exists, at Rs 150. The bundle of all at about 60 per
-   cent off is planned for when there are more. Until Stripe is connected, how a guide is paid for
-   and sent is for the owner to say.
+6. **How the pocket guide is paid for and sent.** There is one guide, at Rs 150 an edition (the
+   owner first spoke of many guides and a bundle, then chose one big guide on 20 November 2026).
+   Until a payment is connected, an order from the cart is answered by a person; how that person
+   takes the money and sends the file is for the owner to say.
 7. **Who the first superadmin is.** The rule proposed is the first account registered.
 8. **"Bonzour".** The everyday greeting on the first screen is Kreol for hello. Keep it, or choose
    another (`GREETING`).
@@ -902,7 +1049,9 @@ Running the site:
 
 The postcard: a painted picture of the island behind the page, a sheet of warm paper laid on it,
 and one question in the middle. Ink for words, a royal blue for what answers, and saffron for the
-one lit point and the one filled action. One face, Manrope. The island beside a list is a light
+one lit point and the one filled action. Two faces: Manrope for every sentence and control, and
+Bricolage Grotesque for the titles alone (both SIL OFL, both in `src/fonts`). Coral appears in one
+place, the awning over Baz Manzer. The island beside a list is a light
 map drawn only by what is listed on it: a pale lagoon, white land, a point of ink for every
 listing, and saffron for the ones that answer. `DESIGN.md` has every token and its contrast;
 `STORY.md` says why.
@@ -911,24 +1060,27 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 
 | Address | What it does | Made |
 |---|---|---|
-| `/` | The first screen: the greeting, the question, the search. Then the directory's groups, the towns beside the island, the guides, the tools, where it all comes from | Ahead of time, and again at most once an hour |
-| `/search?q=` | Results. A question about how is answered first in the site's own words; listings are cards that can be narrowed (`phone=1`, `web=1`, `town=`); official pages and websites are folded under "References elsewhere"; `kind=` shows one kind, `page=` the next page | On each request |
+| `/` | The first screen: the greeting, the question, the search. Then ways in to what Mauritians ask most (food, emergency numbers, public holidays, the directory, the towns, the articles), Baz Manzer, the directory's groups, the towns beside the island, the guides, the tools, where it all comes from | Ahead of time, and again at most once an hour |
+| `/search?q=` | Results, in four parts in a fixed order: our own pages that answer, businesses (cards that can be narrowed with `phone=1`, `web=1`, `town=`), parts of articles that mention the words, and pages elsewhere folded under "References elsewhere". `kind=` shows one kind alone | On each request |
 | `/b/[slug]` | One listing: its own card, what is known, where each part came from, the same kind nearby. A listing's id alone leads to its full address | The first time it is asked for, then kept |
 | `/directory` | Every category, group by group | Ahead of time |
 | `/directory/[cat]`, `/directory/[cat]/[place]` | A category, and a category in one town, with the filters and the island | On each request |
-| `/places` | Every town and village, district by district | Ahead of time |
+| `/places` | Every town and village: a box that finds a town as it is typed, the districts as ways to jump, and each town's neighbourhoods folded under it | Ahead of time |
 | `/places/[place]` | One town: what is listed there, by kind | On each request |
 | `/learn` | The articles and guides, shelf by shelf | Ahead of time |
-| `/learn/[slug]` | One article, with its contents, its sources, "Keep reading" and "References" | Ahead of time |
+| `/learn/[slug]` | One article, with its contents (the part being read is marked), its sources, the kinds of business that go with it, "Keep reading" and "References". The same address with `.md` after it gives the article as Markdown | Ahead of time |
 | `/learn/glossary` | The glossary, with a letter index | Ahead of time |
 | `/tools`, `/tools/verify`, `/tools/vat`, `/tools/structures` | The tools: check a business, the VAT calculator, legal structures compared | Ahead of time |
 | `/tools/income-tax`, `/tools/business-tax` | The personal income tax calculator and the business tax estimator, each from its guide's facts. `?profit=` on the first carries a sole trader's profit over from the second | Ahead of time |
 | `/official` | The official pages the guides point to | Ahead of time |
 | `/emergency` | The emergency numbers, each a link that dials, each with its source | Ahead of time |
 | `/pricing` | The three plans, and what paying changes | Ahead of time |
-| `/shop` | The pocket guides: the cover, what is inside, the price, a way to ask for one | Ahead of time |
+| `/shop` | The biznes.mu Pocket Guide: the cover, what is inside, the price, when it is free, the places a business can take in it, and the magazine to come. `/shop/[slug]/download` hands the edition out only while it is free | Ahead of time |
+| `/baz-manzer` | Places to eat and drink: by kind of place (`type=`), kind of food (`food=`) and town (`town=`), with the filters, the island and the articles on food | On each request |
+| `/cart` | What the visitor means to buy, with the total, and the way to send the order. Never indexed | Ahead of time; its contents are read in the browser |
+| `/about` | Who makes the site | Ahead of time |
 | `/saved` | The visitor's shortlist, read from their browser. `/saved?ids=` shows a list someone sent | On each request |
-| `/add` | The request form. `?listing=`, `?plan=` and `?product=` open it on a listing, a plan or a guide | On each request |
+| `/add` | The request form. `?listing=`, `?claim=`, `?plan=`, `?product=` and `?sponsor=` open it on a listing, a claim, a plan, the guide or a place in it; `?message=` begins the request with words the cart wrote | On each request |
 | `/data` | Where the data comes from, how results are ordered, what is never taken, the index to download | Ahead of time |
 | `/data/[file]` | The seven files of the index, as downloads | Ahead of time |
 | `/bot` | How the crawler behaves, and how to keep it out | Ahead of time |
@@ -937,12 +1089,15 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/api/suggest` | The search box's suggestions, and the points the island lights | On each request |
 | `/api/listings` | What a shortlist needs to show its listings, by id. It keeps nothing | On each request |
 | `/api/enquiry` | Takes the form's requests and delivers them | On each request |
-| `/points.json` | Where every listing sits on the island | Ahead of time |
-| `/robots.txt`, `/sitemap.xml`, `/llms.txt` | For machines | Ahead of time |
+| `/points.json`, `/markers.json` | Where every listing sits on the island; and, for the street map, each placed listing with its name and kind | Ahead of time |
+| `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt` | For machines: who may crawl, every public page, what the site holds, and every article whole | Ahead of time |
 | `/manifest.webmanifest`, `/sw.js` | For the installable app | Ahead of time |
 
-Plus the icons, the link preview card and the 404, which carries the search box. A page named
-`*.dev.tsx` is a page only under `npm run dev`: `/og` is the one, and `npm run og` captures it.
+Plus the icons, the link preview cards (one drawn for each kind of page that has its own) and the
+404, which carries the search box. A page named `*.dev.tsx` is a page only under `npm run dev`:
+`/og`, which `npm run og` captures, and `/preview/business`, a paid business's page with made-up
+content that says on its face it is not real (`?as=go`, `?as=free` and `?as=claim` show the other
+states). No paid business exists yet, so this is where that design is seen and checked.
 
 The old site's addresses lead on for good: `/businesses` and `/businesses/...` to `/directory`,
 `/how-it-works` to `/data`, `/enquire` to `/add`.
@@ -955,14 +1110,16 @@ this list.
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 176 files |
-| Tokens | `npm run tokens` | 0 failures |
+| House style | `npm run copy` | 0 failures, 261 files |
+| Tokens | `npm run tokens` | 0 failures, 192 files |
 | Contrast | `npm run contrast` | Every pair passes |
-| Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all four pictures at a desk and on a phone: the lowest is 5.77:1 |
+| Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all ten pictures at a desk and on a phone: the lowest is 5.36:1 |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 106 of 106, against a production server with accounts off |
+| Behaviour | `npm run behaviour` | 193 of 193, against a production server with accounts off |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
-| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on every kind of public page, at a desk and on a phone |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 42 kinds of public page, at a desk and on a phone. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
+| Being found | `npm run seo` | 0 failures on 42 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
+| What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
 | The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |
 | The accounts in a browser | `node scripts/accounts-e2e.mjs` | 118 of 118, against Supabase's own database, sign-in and API services run on this machine (`scripts/accounts-stack.sh`), including axe-core on the account pages. On the hosted project only reading has been tried (see Accounts) |
@@ -973,8 +1130,18 @@ behaviour check starts the form's own receiver, so the form is tested end to end
 ```
 npm run build
 ENQUIRY_WEBHOOK_URL=http://127.0.0.1:3199/hook npx next start -p 3100 &
-npm run behaviour && npm run a11y && npm run screenshots && npm run hero
+npm run behaviour && npm run a11y && npm run screenshots && npm run hero && npm run seo
 ```
+
+Two people can run them on one machine: each check takes the server's address as its argument, and
+the behaviour check's own two ports move with `HOOK_PORT` (where the form's delivery lands, which
+the server's `ENQUIRY_WEBHOOK_URL` must name) and `ALT_PORT` (the second server it starts).
+
+**Why the checks turn the browser's cache off** (`steady` in `scripts/pages.mjs`). Next answers a
+link fetched ahead with "stale-while-revalidate". On a second visit to a page the browser hands
+over the copy it kept and asks again in the background, and that background request is never
+reported to the test as finished, so a wait for an idle network never ended. Nothing was wrong with
+the page. The checks now ask for each file once.
 
 What the behaviour check covers, from its own list: the first screen and the day's picture; the
 island going live and lighting what is typed; suggestions and their keyboard; a question read as a
@@ -994,6 +1161,16 @@ saved page and a shared list; the three plans and their prices; the pocket guide
 sponsors and that it is not handed out while it is sold; and, on a phone, fourteen pages no wider
 than the screen itself, the tab bar on the first screen, the menu, the emergency numbers one tap
 from the first screen, and an article's contents.
+
+Added in Round 5: the four parts of a page of results and their order; the line of counts; "People
+also ask" and that each question is an article's own heading; related searches; forty-seven
+searches a Mauritian would type, in English, French and Kreol, each with what it must be read as
+and what must lead; a partial match said to be one; the site's own maker found by name; a
+business's page (its head, its blocks, its hours, the claim card, no paid features on a free
+listing); Baz Manzer and its narrowing; the street map (nothing of it fetched until asked for, its
+credit, the way back); the places page's box; an article's rail and its closing businesses; the
+Markdown of an article; the footer and the header; the cart from the first button to an order
+placed; the security policy in a real browser; and the same pages with no script.
 
 **Two fixes worth knowing,** both in `public/sw.js`. On a page's first making the server gives a
 redirect's address twice. A browser forgives that; a service worker's sealed copy of the redirect
@@ -1018,7 +1195,14 @@ the five things left, are in `STORY.md` ("The design review of Round 4").
   first to register becomes the superadmin, and that must be the owner. The whole flow has been
   run only against the local copy.
 - **A reading by a practitioner.** The first item on the confirm list. This is the gap that matters.
-- **Speed measurements** (Lighthouse, real devices on a mobile network). Not run in this session.
+- **Speed measurements** by Lighthouse, or on real devices on a mobile network. Lighthouse is not
+  on the build machine. What could be measured is below.
+- **The paid business page with a real business.** None exists. The design is checked in its
+  preview, with made-up content.
+- **The street map on a real phone**, and under a slow connection.
+- **An order placed, a subscriber joined, an advertisement shown.** These need accounts on; the
+  accounts' own checks cover them. With accounts off, the public checks hold that each place is
+  empty and that the cart hands its words to the request form.
 - **A screen reader, by ear.** axe-core passes; nobody has listened to it.
 - **Real phones in daylight.** The contrast is high by measurement; it has not been looked at
   outdoors.
@@ -1026,10 +1210,35 @@ the five things left, are in `STORY.md` ("The design review of Round 4").
 - **A crawl from a normal connection.** The build machine reaches the web through a proxy that
   dropped many connections, which is why 166 sites "did not answer".
 
+### What a page weighs
+
+`npm run weights` opens one page of each kind on a phone-sized screen with nothing kept, and adds
+up what crossed the network, compressed. On 20 November 2026, on the build machine:
+
+| Page | Whole | Its HTML | Script | Pictures | Fonts | Layout shift | Largest single file |
+|---|---|---|---|---|---|---|---|
+| First screen | 508 kB | 53 kB | 163 kB | 78 kB | 102 kB | 0.000 | The day's picture, 78 kB |
+| Search results | 512 kB | 52 kB | 166 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| A search that is answered | 448 kB | 17 kB | 166 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| A business | 529 kB | 71 kB | 166 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| A category | 518 kB | 53 kB | 166 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| The towns | 463 kB | 33 kB | 163 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| Baz Manzer | 533 kB | 69 kB | 166 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| An article | 475 kB | 40 kB | 167 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+| The shop | 526 kB | 16 kB | 163 kB | 164 kB | 102 kB | 0.000 | The guide's cover, 86 kB |
+| The cart | 435 kB | 11 kB | 163 kB | 78 kB | 102 kB | 0.000 | The day's picture |
+
+What was done for speed: the day's picture is asked for at once, at the size the screen needs;
+both typefaces are one file each, kept by the browser for good; nothing on any page moves after it
+is drawn; the island is drawn once on a page and not once for each size of screen (a page of
+results was a third heavier before); the street map costs nothing until it is opened; and links
+in long lists are not fetched ahead. What is left: the two typefaces are a fifth of every page,
+and the island's drawing is most of a list page's HTML.
+
 ## Known gaps
 
-- **Nothing can be paid for on the site.** Stripe is not connected. A plan or a pocket guide is
-  asked for through the form.
+- **Nothing can be paid for on the site.** No payment is connected. A plan, the pocket guide or a
+  place in it is ordered through the cart, and a person replies with how to pay.
 - **No listing is verified or on a paid plan yet**, so the mark and the priority are drawn and not
   yet seen. Claiming a listing waits on the accounts.
 - **Coverage is what the open map holds**: fullest for shops, food, places to stay and public
@@ -1038,15 +1247,21 @@ the five things left, are in `STORY.md` ("The design review of Round 4").
 - **Most records are old.** Nine in ten of the map's listings were last edited more than two years
   ago. Each listing says when, and warns when it is over two years. Claimed listings would cure
   this.
-- **One pocket guide.** The script and the shop hold one guide; the bundle is not built.
+- **The magazine is announced and not made.** The list of subscribers is kept by the accounts;
+  with accounts off the form is not shown.
+- **No paid business exists**, so a paid page, a menu on Baz Manzer and an advertisement are seen
+  only in the preview and in the accounts' own checks.
+- **The street map depends on a free service** with no promise of service ("The street map").
+- **A dish is found only where the map names it.** Few places record what they serve, so a search
+  for a dish finds fewer places than serve it, and says how many it found.
 - **A chain is one card a branch.**
 - **No French or Kreol pages.** A question in either is understood.
-- **A superadmin cannot yet choose the picture**: the calendar does, and the owner changes a file.
 - **"Open now" is not offered.** Hours are shown as the map holds them, for 355 listings.
 - **A listing's website is checked only at its front page.**
 - **The search has no memory of what people ask**, so nothing yet says which searches find nothing.
 - **Names are shown as the map writes them**, capitals and all.
-- **The island cannot be explored by hand**: a point cannot be opened (`DESIGN.md`, "Known Gaps").
+- **The island itself cannot be explored by hand**: a point on it cannot be opened. The street
+  map can, and is one press away.
 
 ---
 

@@ -148,7 +148,8 @@ To confirm with the owner:
   and services sale management tools": everything in Biznes Go, with bookings and service sales.
   So a business on either paid plan carries the mark and comes first, as `/pricing` and `/data` say.
 - **The pocket guide's price: answered, 20 November 2026.** Rs 150 a guide (first given as about USD 1.99, then set at Rs 150). The
-  owner intends 50 to 100 guides and a bundle of them all at about 60 per cent off.
+  owner first intended 50 to 100 guides and a bundle; on the same day they chose one big guide
+  instead, the biznes.mu Pocket Guide, with a free monthly magazine to follow.
 - **What "verified" checks.** The site says only that the business has been checked to be real.
   Against what, and by whom, is not written down.
 - **Claiming a listing**, which the site lists under Biznes Free, waits on the accounts. Until
@@ -170,13 +171,20 @@ To confirm with the owner:
   checked. Each carries its sources and a list of what could not be confirmed. The site also
   calls them articles. A fifth shelf, about Mauritius itself, was added during the round and has
   no article yet.
-- **The pocket guide** (`/shop`, `scripts/pdf.mjs`): "Mauritius: places to see and things to do",
-  an A5 PDF of 51 pages made for a phone. It holds 60 places in nine parts of the island and 13
-  days out, each fact with the official page it was read on, and its 110 sources listed at the
-  back. Sixteen points that could not be confirmed are listed in its data
-  (`content/pdf/places.json`) and left out of the guide's words. The file is written to
-  `reports/`, which is not committed and not served, because it is to be sold. It is sold on
-  request until payments exist, and its price is the owner's to set.
+- **The biznes.mu Pocket Guide** (`/shop`, `scripts/pdf.mjs`): one guide, renewed every month, an
+  A5 PDF of 53 pages made for a phone. It holds 60 places in nine parts of the island and 13 days
+  out, each fact with the official page it was read on, and its 110 sources listed at the back.
+  Sixteen points that could not be confirmed are listed in its data (`content/pdf/places.json`)
+  and left out of the guide's words. It is Rs 150 an edition, and free in the weeks its sponsors
+  have paid for. An edition holds at most four pages of sponsors. The file is kept with the
+  content and not in the public folder; only the shop's own route hands it out, while it is free.
+- **A page of results in a fixed order**: our own pages that answer, businesses, parts of articles
+  that mention the words, pages elsewhere. `/data` says so to visitors.
+- **Baz Manzer** (`/baz-manzer`): places to eat and drink, by kind of place, kind of food and town.
+- **A business's page**, one design for every business, richer when its owner pays and has added
+  pictures, hours, a menu or services.
+- **A street map**, opened on request in the island's place.
+- **A cart** for the guide, a place in it and the two paid plans. Nothing is paid on the site.
 - **Emergency numbers** (`/emergency`, `content/emergency.json`): 43 services in ten groups, each
   number from an official page, named, read on 20 November 2026. What could not be confirmed is
   listed on the page.
@@ -198,8 +206,8 @@ To confirm with the owner:
   page. The offer to install was being put on the page as this was written. It is not recorded
   as done: its checks belong to the end of the round.
 - **The articles about Mauritius itself**, for the fifth shelf.
-- **A superadmin's own choice of picture**, over the calendar's. Until then the owner changes a
-  picture by replacing a file or a line in `src/data/themes.ts`.
+- **The biznes.mu Biznes Magazine**: a free monthly magazine with the businesses of the month. It
+  is announced on `/shop`, with a list to join, and nothing of it is made yet.
 
 ### Constraints
 

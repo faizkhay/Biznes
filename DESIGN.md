@@ -8,8 +8,8 @@ description: "The postcard: a painted picture of the island behind the page, a s
 # sampled value, with the direction and the reason) or 'chosen' (what the brand lacked).
 # Each key is the code's --palette-* name, except primary, primary-dark and on-primary, which the
 # format asks for: they are --palette-saffron, --palette-saffron-deep and --palette-ink.
-# One palette value is in the code and used by nothing, so it is not a token here: coral, the
-# brand's red (Known Gaps). The line-* values are the code's own color-mix() with the variable
+# One palette value is in the code and carries no words, so it is not a token here: coral, the
+# brand's red, used once as decoration (the awning over Baz Manzer). The line-* values are the code's own color-mix() with the variable
 # written out.
 colors:
   primary: "#f8c618"        # S1 sampled: the brand's action. --palette-saffron. A fill, never words; carries ink at 11.02:1
@@ -35,9 +35,9 @@ colors:
   line-strong: "color-mix(in srgb, #0a1639 50%, transparent)"  # derived: ink at 50%, a field's edge; 3.40:1 on white
 typography:                 # named as the text styles in src/app/globals.css; fontSize is the clamp() maximum, the full clamp() is in Typography
   # One face. label-1 is capitals by text-transform. data-1 and data-2 are the same face with figures that line up.
-  display-1: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 4.25rem, fontWeight: 650, lineHeight: 1.02, letterSpacing: "-0.045em" }
-  heading-1: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 2.5rem, fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.035em" }
-  heading-2: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 1.625rem, fontWeight: 600, lineHeight: 1.2, letterSpacing: "-0.025em" }
+  display-1: { fontFamily: "Bricolage Grotesque, Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 4.5rem, fontWeight: 700, lineHeight: 1, letterSpacing: "-0.03em" }
+  heading-1: { fontFamily: "Bricolage Grotesque, Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 2.75rem, fontWeight: 650, lineHeight: 1.08, letterSpacing: "-0.024em" }
+  heading-2: { fontFamily: "Bricolage Grotesque, Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 1.75rem, fontWeight: 650, lineHeight: 1.18, letterSpacing: "-0.018em" }
   heading-3: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 1.125rem, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.015em" }
   title-1: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 1.0625rem, fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.012em" }
   title-2: { fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 0.875rem, fontWeight: 600, lineHeight: 1.4, letterSpacing: "-0.005em" }
@@ -186,7 +186,8 @@ state. The first screen alone is allowed the display size and the full picture.
 **Key characteristics**
 
 - A fixed picture behind everything, and a sheet of `cream` with 32px corners laid on it.
-- One face, Manrope, for the name, every title and every sentence.
+- Two faces: Manrope for the name, every sentence and every control; Bricolage Grotesque for the
+  titles alone.
 - Pills: the menu, the search box, every button, filter and tab.
 - Ink tiles with a saffron icon: a directory group, a tool, a listing, the business's own page.
 - Royal blue for what answers. Saffron for the one lit point and the one filled action.
@@ -208,9 +209,12 @@ state. The first screen alone is allowed the display size and the full picture.
 | S2 | The mock-up the owner chose on 20 November 2026, "2 · Centred" of three. A generated picture, kept in the design skill's working files (`.impeccable/mocks/comp-2-centred.png`), which are not committed | sampled 20 November 2026 | Royal `#0d36a7`, lagoon `#aebadf` |
 | S3 | The owner, 20 November 2026, in conversation, with three reference images (a golf club's site, an invoicing site, a design tool's site) | in conversation; the images are not in the repository | The manner: paper over a picture, a floating pill menu, dark tiles, a dark footer with the emblem on its edge, the search in the middle, a picture that follows the calendar, a vivid mark for a paid business |
 | S4 | Manrope, by the Manrope Project Authors, SIL Open Font Licence 1.1 | the file and its licence in `src/fonts` | The one face, and the outlines of the name's letters |
-| S5 | The four pictures, generated as illustrations for the site (Higgsfield, model gpt_image_2_6, 20 November 2026) | the record beside each file in `public/themes` | The picture behind the page. The lagoon picture's water gave `#7bbcb3` |
+| S5 | The ten pictures, generated as illustrations for the site (Higgsfield, model gpt_image_2_6, 20 November 2026) | the record beside each file in `public/themes` | The picture behind the page. The lagoon picture's water gave `#7bbcb3` |
 | S6 | OpenStreetMap, the Mauritius extract | the date in `data/index/meta.json` | The coast, the districts and every point on the island's map |
 | S7 | The Prime Minister's Office's notices of public holidays, as listed in `content/holidays.json` | 20 November 2026 | The days on which a holiday's look is shown |
+| S8 | Bricolage Grotesque, by the Bricolage Grotesque Project Authors, SIL Open Font Licence 1.1 | the latin file from `@fontsource-variable/bricolage-grotesque` 5.3.0 and its licence, in `src/fonts` | The face of the titles |
+| S9 | The owner, 20 November 2026, on Round 5: "paid listings should have a more beautiful biznes page", "improve our footer, logo is hiden", "we should have different background images", "special category for food biznesses" | in conversation | The paid page, the footer, the ten pictures, Baz Manzer |
+| S10 | OpenFreeMap's own site (its terms, read 20 November 2026) | `STREET_MAP` in `src/data/site.ts` | The street map's style and the credit it must carry |
 
 What the brand lacked was a face and a light ground. Both are recorded as chosen or derived: Manrope
 comes from the list KOS keeps for a brand with no face of its own, white is chosen, and cream and
@@ -339,9 +343,9 @@ and not yet in `scripts/contrast.pairs.json`:
 **Words on the picture.** A picture is not one colour, so no pair can vouch for words set on it.
 Two things keep them readable: a veil of cream over the picture's sky on every page, and on the
 first screen a soft light of cream behind the question. `scripts/hero-contrast.mjs` reads the
-pixels behind the headline and the line under it on each of the four pictures, at a desk and on a
-phone, and fails under 3:1 for the headline or 4.5:1 for the line. It needs a running server and
-its result is not recorded here.
+pixels behind the headline and the line under it on each of the ten pictures, at a desk and on a
+phone, and fails under 3:1 for the headline or 4.5:1 for the line. On 20 November 2026 the lowest
+of all was 5.36:1. It needs a running server.
 
 **Gaps (recorded, not rules).**
 
@@ -354,21 +358,24 @@ its result is not recorded here.
 
 ## Typography
 
-**One face:** Manrope (S4), one file with a weight axis from 200 to 800
-(`src/fonts/manrope-latin-wght-normal.woff2`), served from this site through `next/font`.
+**Two faces.** Manrope (S4) says every sentence, every control and the name: one file with a
+weight axis from 200 to 800 (`src/fonts/manrope-latin-wght-normal.woff2`). Bricolage Grotesque (S8)
+says the titles and nothing else: one file with a weight axis and an optical-size axis
+(`src/fonts/bricolage-grotesque-latin-opsz-normal.woff2`). Both are served from this site through
+`next/font`, each fetched once and shown at once in a fallback until it arrives.
 
-**Character:** a round, open sans that reads as friendly at a headline's size and stays clear at a
-caption's. It was chosen from the list KOS keeps for a brand with no face of its own (Geist,
-Manrope, Poppins), because the owner found the earlier faces generic and asked for an easy feeling.
-Archivo, Geist and Geist Mono are gone.
-
-### Hierarchy
+**Character:** Manrope is a round, open sans that reads as friendly at a headline's size and stays
+clear at a caption's. It was chosen from the list KOS keeps for a brand with no face of its own
+(Geist, Manrope, Poppins), because the owner found the earlier faces generic and asked for an easy
+feeling. Bricolage Grotesque was added in Round 5 for warmth where the page speaks loudest: its
+letters narrow and its joins soften as it grows, so a title looks made by hand beside the plain
+sentences under it. Archivo, Geist and Geist Mono are gone.
 
 | Style | Size | Weight | Line | Tracking | Used for |
 |---|---|---|---|---|---|
-| `display-1` | `clamp(2.5rem, 1.4rem + 4.4vw, 4.25rem)` | 650 | 1.02 | -0.045em | The first screen's question, once |
-| `heading-1` | `clamp(1.875rem, 1.5rem + 1.4vw, 2.5rem)` | 600 | 1.1 | -0.035em | A page's title; a plan's price |
-| `heading-2` | `clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem)` | 600 | 1.2 | -0.025em | A section's heading |
+| `display-1` | `clamp(2.625rem, 1.4rem + 4.9vw, 4.5rem)` | 700 | 1 | -0.03em | The first screen's question, once. Bricolage Grotesque |
+| `heading-1` | `clamp(2rem, 1.55rem + 1.7vw, 2.75rem)` | 650 | 1.08 | -0.024em | A page's title; a plan's price. Bricolage Grotesque |
+| `heading-2` | `clamp(1.5rem, 1.33rem + 0.65vw, 1.75rem)` | 650 | 1.18 | -0.018em | A section's heading. Bricolage Grotesque |
 | `heading-3` | 1.125rem | 600 | 1.3 | -0.015em | A sub-heading; a plan's name; an emergency number |
 | `title-1` | 1.0625rem | 600 | 1.35 | -0.012em | A card's title |
 | `title-2` | 0.875rem | 600 | 1.4 | -0.005em | A label, a group of the menu, a tab |
@@ -393,8 +400,10 @@ styles: the tab bar's words (0.75rem at 600), a count badge (0.75rem at 700), th
 
 ### Named Rules
 
-**The One Face Rule.** Manrope says everything. What is measured or looked up (a count, a telephone
-number, a date) is the same face with tabular figures, never a second face.
+**The Two Faces Rule.** Bricolage Grotesque is for `display-1`, `heading-1` and `heading-2`, and for
+nothing else: no button, no label, no number, no sentence. Manrope says the rest. What is measured
+or looked up (a count, a telephone number, a date) is Manrope with tabular figures, never a third
+face.
 
 **The Capitals Rule.** Capitals come only from `label-1`, by `text-transform`, and only for a small
 heading over a list. No sentence is set in capitals.
@@ -648,18 +657,71 @@ opens with it.
   thirty days. It was being put on the page as this was written (Known Gaps).
 - **The pocket guide** (`scripts/pdf.mjs`) wears the same system on A5 paper: Manrope, ink on
   white, the b on its cover over the lagoon picture, each part of the island opening on an ink
-  page under one of the four pictures, source numbers as royal on sand, and the sources at the
+  page under one of the pictures, source numbers as royal on sand, and the sources at the
   back.
 - **The wait** (`.wait`): a moving band, for a shape that holds a place.
 - **The skip link**: an ink pill that appears on focus.
 
+### A business's page
+
+`BusinessPage.tsx`, for a listing from the index and for a business its owner listed alike.
+
+- **The head** (`.biz-head`): a strip of the island at the business's own place (or the owner's
+  cover picture, or a plain band where there is neither), the ink tile with its icon, the name in
+  `heading-1`, what it is and where, today's hours in a line, then the actions. One is filled: the
+  call, when there is a number. On a phone it is as wide as the card and on the first screen.
+- **What is known** (`.known`): a card for each kind of fact (contact, where, hours, about), each
+  with a small sand tile and its icon. Hours are set out day by day, today marked, when the map's
+  record can be read that way; otherwise as written.
+- **Free** is calm: white cards, hairlines, and one card that asks "Is this your business?".
+- **Paid** (`.biz-paid`) wears the ring and the glow of a paid card and the verified mark, and adds
+  what the owner has given: a line of their own (`.biz-tagline`), a gallery (`.biz-gallery`), a
+  menu for a place to eat (`.dishes`: the dish, its line, and its price set against the right
+  edge in tabular figures), and on Biznes Grow services and a way to book. Nothing paid is drawn
+  empty: a part with nothing in it is not there.
+- **Beside it**, from the chart's breakpoint up, the island and the way to the street map stay in
+  view while the page scrolls.
+
+### Baz Manzer
+
+`/baz-manzer`. The one place coral is used: an awning of coral and cream stripes with round ends
+(`.baz-awning`) over an ink card, like the front of a snack. It is decoration and carries no
+words. Under it the kinds of place are tiles (`.baz-types`), the kinds of food and the towns are
+chips, and a chosen one is ink with its count in white at 72%. A paid outlet's row shows the first
+lines of its menu on the saffron wash (`.menu-peek`).
+
+### The street map
+
+`MapSwitch.tsx`, `StreetMapView.tsx`. A quiet pill under the island, "Open the street map", puts a
+real map in the island's frame, at the same corners; the same pill then reads "Back to the
+island". Listings are points of ink, the ones that answer saffron ringed in ink, as on the island.
+The zoom buttons are the site's own. The map's credit is always on it, in `caption-1`
+on solid paper at its foot. If the map cannot load, the frame says so in a sentence and offers the
+same place on openstreetmap.org.
+
+### Ways in, and the cart
+
+- **The start tiles** (`.start-tile`), under the first screen's search: white cards with a small
+  ink tile and a saffron icon, a title and a line. On hover the card lifts and its tile turns
+  saffron.
+- **The island beside a list** is drawn once (`IslandBeside.tsx`, `.chart-fit`): a strip after the
+  list on a phone, the tall chart beside it from the chart's breakpoint up.
+- **The header** carries three soft square buttons at every width, in this order: the shortlist
+  (from the wide layout up), the cart with its count on a saffron badge, and the account.
+- **The cart** (`.cart-item`): a white card for each thing, its price in `data-1`, round buttons to
+  count a thing that is bought by the number, and a quiet cross to take it out. The total is in
+  `heading-1`. The filled action belongs to the checkout under it.
+
 ### The footer card
 
 `SiteFooter.tsx`, `.site-footer`. An ink card with 32px corners that sits on the picture below the
-sheet. The b stands on its top edge, in the middle: ink, with a white point, on a 72px saffron tile
-tilted six degrees. Inside: the name and the line, with the map's credit as its licence asks; the
-pages; "Is something wrong or missing?" with the filled action; one quiet line for Khay Digital
-("No website yet?"); the telephone and the email. Its last row is the disclaimer and the credit.
+sheet, above it in the stack so that its mark is never half hidden. The b stands whole on its top
+edge, in the middle: ink, with a white point, on a 72px saffron tile tilted six degrees. Inside:
+the name large in white with its point in saffron (`.footer-name`), the line, and whose product it
+is, in the owner's words; the ways to reach us (`.footer-reach`); every page in four columns
+(`.footer-cols`: Explore, Learn, For business, About); a light card to join the list for the
+guide and the magazine (`.footer-join`, shown only when the form is); the map's credit as its
+licence asks; and, last, "A Digital Experience by Khay Digital". Secondary words are white at 78%.
 
 ### Named Rules
 
@@ -676,9 +738,9 @@ another site's is sand.
 
 | Picture | Its name | Shown |
 |---|---|---|
-| `lagoon` | Lagoon morning | When nothing else applies. Also the link preview card and the pocket guide's cover, whatever the day |
-| `flamboyant` | Flamboyants in bloom | The summer: 15 November to 15 February |
-| `cane` | Cane in flower | The harvest: 15 June to 30 September |
+| `flamboyant`, `sunset`, `market`, `harbour`, `lagoon` | Flamboyants in bloom, Sunset, Market day, The harbour, Lagoon morning | In turn through the summer: 15 November to 15 February |
+| `cane`, `teafields`, `village`, `chamarel` | Cane in flower, Tea fields, A village, Chamarel | In turn through the harvest: 15 June to 30 September |
+| `lagoon`, `chamarel`, `harbour`, `village`, `market`, `teafields`, `sunset` | | In turn through the rest of the year. `lagoon` is also the link preview card and the pocket guide's cover, whatever the day |
 | `lights` | Festival of lights | Divali and the two days before it; Christmas and the three days before it |
 
 - **What they are.** Generated illustrations, made for the site with Higgsfield (model
@@ -688,7 +750,9 @@ another site's is sand.
 - **Two sizes each.** The full picture, and a small one (`-sm`) for a screen under 40rem and for
   the strip on a business's card.
 - **How the day's look is chosen** (`themeFor`), by today's date in Mauritius:
-  1. The season gives the picture: summer, harvest, or else the lagoon.
+  1. The season gives the day's picture: one of the season's set, a different one each day by the
+     count of days, and the same for everyone on that day. A superadmin may fix one picture or set
+     a round of their own instead (`themeNow`).
   2. On a public holiday the greeting is the holiday's ("Happy Divali", "Eid Mubarak"), and the
      picture is the holiday's own if it has one. A holiday with no line of its own is greeted by
      its official name.
@@ -734,8 +798,8 @@ was redrawn as a light map in the page's own colours.
   island that is.
 - **Ringed**: the card under the pointer or the keyboard has its point ringed in ink.
 - **A business's mark**: a saffron point ringed in ink inside a wider ring.
-- **On a phone** the island beside a list is a small one above it (`.chart-strip`), with no
-  lettering.
+- **On a phone** the island beside a list is a small one after it (`.chart-fit`), with no
+  lettering. It is the same drawing as the tall one on a desk, never a second copy.
 - **Rodrigues** is in an inset at the south-east corner at 72% of the main scale, with a note of
   its distance, which is worked out from the two islands' positions.
 - **Lettering**: the largest places in view whose names do not run into one another, set in the
@@ -893,8 +957,6 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
 
 - **The focus ring cannot be seen well enough on ink**: 1.77:1 on the footer card and on a dark
   card. The `focus` role needs a value for a dark ground.
-- **Words on the picture are measured by a script whose result is not recorded here**
-  (`scripts/hero-contrast.mjs`).
 - **The verified mark and the paid card are drawn, and no listing wears them.** Joining them to
   the index and to the order of results is being built with the accounts. Until then the order is
   by answer and fullness alone.
@@ -903,16 +965,17 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
 - **The site as an app is being built.** The manifest, the icons, the service worker and the
   offline page are in the repository; the card that offers to install was being put on the page.
   None of it is recorded here as checked.
-- **A superadmin's own choice of picture is not built.** The calendar chooses, and the owner
-  changes a file.
+- **A picture a superadmin uploads is not measured.** `npm run hero` measures the ten the site is
+  built with; an uploaded one is shown as it is.
+- **The paid business page has no real business in it.** It is designed and checked in its
+  preview (`/preview/business`, under `npm run dev` only), with made-up content.
 - **The link preview card** on disk reads "13 guides". Its page now counts the articles the site
   holds, so `npm run og` is due again.
 - **The contrast file is behind the build.** It holds one pair the site no longer has, and lacks
   the eleven measured above. The comment on ember in `globals.css` gives a ratio that is too high.
-- **Declared and unused**: `--palette-coral`, and the `.card-wash` class.
+- **Declared and unused**: the `.card-wash` class.
 - **Off the scales**: the footer's tile and a business's icon tile have 22px corners, which is not
-  a step of the ladder. `display-1` is tracked at -0.045em, tighter than the -0.04em KOS allows.
-  Some components set their own type size (Typography).
+  a step of the ladder. Some components set their own type size (Typography).
 - **Small targets**: the small pills on a card are 36px and filters are 40px, under the 44px the
   house asks for.
 - **The pictures are four.** Only two seasons and one kind of holiday have their own. The owner
