@@ -126,16 +126,16 @@ check("compare structures: the table, from the guide", (await page.locator("tabl
 // 7. The form, end to end.
 await page.goto(`${origin}/add?listing=n5651200767`, { waitUntil: "networkidle" });
 check("form: opened from a listing, it names it", (await page.inputValue("#business")) === "Keiffel Tours");
-await page.click('button[type="submit"]');
+await page.click('main button[type="submit"]');
 check("form: an empty send says what is missing, on the fields", (await page.locator('[id$="-error"]').count()) >= 3);
 check("form: and moves to the first of them", (await page.evaluate(() => document.activeElement?.id)) === "message");
 await page.fill("#message", "The telephone number has changed.");
 await page.fill("#name", "A Tester");
 await page.fill("#email", "not-an-address");
-await page.click('button[type="submit"]');
+await page.click('main button[type="submit"]');
 check("form: a bad email address is refused in words", /does not look right/.test(await text("#email-error")));
 await page.fill("#email", "tester@example.com");
-await page.click('button[type="submit"]');
+await page.click('main button[type="submit"]');
 await page.waitForSelector('[role="status"] h2', { timeout: 10000 }).catch(() => {});
 check("form: sent, and it says so", /Thank you, A Tester/.test(await page.locator('main [role="status"]').first().innerText().catch(() => "")));
 check("form: delivered whole", received.length === 1 && received[0]?.listing === "n5651200767" && /Keiffel Tours \(\/b\//.test(received[0]?.text ?? ""), JSON.stringify(received[0])?.slice(0, 200));

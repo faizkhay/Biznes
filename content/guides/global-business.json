@@ -231,18 +231,13 @@
             "It keeps its accounting records at its registered office in Mauritius.",
             "It prepares its statutory financial statements and has them audited in Mauritius.",
             "Its board meetings include at least 2 directors from Mauritius.",
-            "From 1 September 2026, its bank accounts are operated under a bank signatory arrangement that follows guidelines issued by the FSC."
+            "From 1 September 2026, its bank accounts are operated under a bank signatory arrangement that follows guidelines issued by the FSC.",
+            "Since 9 August 2025, it must notify the FSC of any statutory filing on a change of directors within 7 days of the filing.",
+            "If it fails to comply with FSC Rules or guidelines, the FSC may direct it to stop part or all of its business or to take remedial action."
           ],
           "sources": [
             "S1",
             "S2"
-          ]
-        },
-        {
-          "type": "p",
-          "text": "The licence holder must notify the FSC of any statutory filing on a change of directors within 7 days of the filing. This duty was added with effect from 9 August 2025. If a holder fails to comply with FSC Rules or guidelines, the FSC may direct it to stop part or all of its business or to take remedial action.",
-          "sources": [
-            "S1"
           ]
         },
         {
@@ -291,14 +286,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "A company holding a Global Business Licence is resident in Mauritius and is taxed like any other company. The standard rate of income tax on companies is 15 per cent in 2026. There is no capital gains tax. A licence holder may claim either the partial exemption or a credit for foreign tax actually paid on the same income, not both.",
-          "sources": [
-            "S5"
-          ]
-        },
-        {
-          "type": "p",
-          "text": "Under the partial exemption, 80 per cent of certain income is exempt from income tax, so tax at 15 per cent falls on the remaining 20 per cent. The Income Tax Act lists the categories in Part II of its Second Schedule. Some of them are shown below. Each is subject to the substance conditions described above.",
+          "text": "A company holding a Global Business Licence is resident in Mauritius and is taxed like any other company. The standard rate of income tax on companies is 15 per cent in 2026. There is no capital gains tax. A licence holder may claim either the partial exemption or a credit for foreign tax actually paid on the same income, not both. Under the partial exemption, 80 per cent of certain income is exempt from income tax, so tax at 15 per cent falls on the remaining 20 per cent. The Income Tax Act lists the categories in Part II of its Second Schedule. Some of them are shown below. Most carry the substance conditions described above.",
           "sources": [
             "S3",
             "S4",
@@ -309,7 +297,7 @@
           "type": "list",
           "items": [
             "Foreign source dividend derived by a company, provided the dividend was not allowed as a deduction in the country of source.",
-            "Interest derived by a company other than a bank, a non-bank deposit taking institution, a money changer and certain other financial institutions.",
+            "Interest derived by a company other than a bank, a non-bank deposit taking institution, a money changer and the other institutions listed in the Act.",
             "Profit attributable to a permanent establishment that a resident company has in a foreign country.",
             "Income, other than interest, derived by a collective investment scheme or closed end fund licensed or approved by the FSC, and income of a CIS manager, CIS administrator, investment adviser, investment dealer or asset manager licensed by the FSC.",
             "Income derived by companies engaged in the leasing of ships, aircraft, locomotives and trains."
@@ -370,7 +358,8 @@
           "sources": [
             "S1",
             "S6",
-            "S7"
+            "S7",
+            "S10"
           ]
         },
         {

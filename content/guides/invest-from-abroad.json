@@ -245,6 +245,7 @@
           "text": "What changed on 13 August 2026: the USD 50,000 investor option was removed, the professional salary threshold rose from MUR 30,000 to MUR 50,000 for all sectors, the Expert Pass and ProPass labels were dropped, the self-employed income tests were raised, and the Family Occupation Permit (a USD 250,000 contribution) was abolished. A new technical category for workers under Government-to-Government agreements is in the Act but starts only on a date to be fixed by Proclamation.",
           "sources": [
             "S3",
+            "S4",
             "S32",
             "S22"
           ]
@@ -582,13 +583,19 @@
             "S13",
             "S19"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "heading": "Property duties, and buying outside the schemes",
+      "blocks": [
         {
-          "type": "note",
-          "text": "Duties in 2026: the Finance Act 2025 had set a 10 per cent rate of registration duty and land transfer tax on sales of residential property to non-citizens from 1 July 2026. The Finance Act 2026 repealed those provisions, and KPMG's summary states that the general 5 per cent rate continues. The Finance Act 2026 also introduced an additional duty of 10 per cent, paid by the seller, on the transfer to a non-citizen of residential property on State land or Pas Géométriques, unless a presale agreement was signed before a notary before 19 June 2026.",
+          "type": "p",
+          "text": "Duties in 2026: the Finance Act 2025 had set a 10 per cent rate of registration duty and land transfer tax on sales of residential property to non-citizens from 1 July 2026. The Finance Act 2026 repealed those provisions, and KPMG's summary states that the general 5 per cent rate continues. The Finance Act 2026 also introduced an additional duty of 10 per cent, paid by the seller, on the transfer to a non-citizen of residential property on State land or Pas Géométriques, unless a presale agreement was signed before a notary before 19 June 2026. The EDB buyer guidelines of January 2025 show registration duty paid by the purchaser at 5 per cent of the value of the property, or USD 70,000 if lower on a first purchase from an IRS company.",
           "sources": [
             "S21",
-            "S22"
+            "S22",
+            "S19"
           ]
         },
         {

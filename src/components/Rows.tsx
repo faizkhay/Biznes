@@ -44,7 +44,7 @@ export function GuideRow({ hit }: { hit: GuideHit }) {
           {guide.title}
         </Link>
       </h3>
-      <p className="body-3 mt-1 max-w-prose text-ink-subtle">{guide.summary}</p>
+      <p className="body-3 mt-1 line-clamp-3 max-w-prose text-ink-subtle">{guide.summary}</p>
       <p className="data-2 mt-3 text-ink-faint">
         {section ? `In it: ${section}. ` : ""}Checked {day(guide.checked)}
       </p>

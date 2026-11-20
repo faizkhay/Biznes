@@ -23,8 +23,8 @@ export default function HeaderBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper">
       <div className="shell flex h-(--nav-h) items-center gap-4 lg:gap-8">
-        <Link href="/" className="wordmark shrink-0" aria-label={`${site.name}, home`}>
-          biznes<i aria-hidden />mu
+        <Link href="/" className="wordmark shrink-0">
+          biznes<span className="dot">.</span>mu
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
           {links}

@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-20T04:39:06.317Z",
+  "generated": "2026-11-20T05:28:59.163Z",
   "map": {
     "stamp": "2026-11-17T01:30:20.000Z",
-    "from": "cache",
+    "from": "download.openstreetmap.fr",
     "nodes": 1395343,
     "ways": 144023,
     "candidates": 6915,
@@ -14,29 +14,29 @@
     "onTheMap": 6819,
     "fromWikidata": 360,
     "joinedToWikidata": 119,
-    "withPhone": 531,
+    "withPhone": 525,
     "withWebsite": 425,
     "withHours": 355,
-    "withAbout": 647
+    "withAbout": 648
   },
   "web": {
     "named": 378,
     "hubs": 16,
     "hubPages": 97,
     "visited": 800,
-    "read": 596,
-    "refused": 16,
-    "unreachable": 179,
-    "notHtml": 9,
-    "fromCache": 348,
+    "read": 605,
+    "refused": 17,
+    "unreachable": 166,
+    "notHtml": 12,
+    "fromCache": 564,
     "discovered": 408,
-    "enriched": 244,
-    "sites": 214
+    "enriched": 239,
+    "sites": 217
   },
   "places": 273,
   "categories": 69,
-  "guides": 7,
-  "official": 85,
+  "guides": 13,
+  "official": 153,
   "crawler": {
     "robots": "BiznesBot",
     "pause": 1500,

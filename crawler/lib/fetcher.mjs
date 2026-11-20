@@ -180,13 +180,17 @@ export async function pool(items, size, work) {
 
 /** A plain download to a file, for the map extract: tries each address until one works. */
 export async function download(urls, file, maxAgeHours) {
-  if (fresh(file, maxAgeHours)) return { file, from: "cache" };
+  // Where a kept copy came from is written beside it, so the index can still say.
+  const note = `${file}.from`;
+  const kept = () => (existsSync(note) ? readFileSync(note, "utf8").trim() : "an earlier download");
+  if (fresh(file, maxAgeHours)) return { file, from: kept() };
   for (const url of urls) {
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
         const res = await fetch(url, { headers: { "user-agent": config.userAgent } });
         if (!res.ok) throw new Error(`answered ${res.status}`);
         writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+        writeFileSync(note, url);
         return { file, from: url };
       } catch (error) {
         console.log(`  ${url}: ${error?.cause?.code ?? error.message} (try ${attempt})`);
@@ -194,6 +198,6 @@ export async function download(urls, file, maxAgeHours) {
       }
     }
   }
-  if (existsSync(file)) return { file, from: "an older copy: no mirror answered" };
+  if (existsSync(file)) return { file, from: kept() };
   throw new Error("No mirror answered and there is no earlier copy.");
 }

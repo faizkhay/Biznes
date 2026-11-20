@@ -7,7 +7,7 @@ import { index } from "@/lib/index";
 
 export const metadata: Metadata = {
   title: "Glossary of business terms in Mauritius",
-  description: "BRN, TAN, CSG, BLUP, GBC and the other names and initials a business in Mauritius meets, each explained in a sentence with the guide that covers it.",
+  description: "BRN, TAN, CSG, PAYE, GBC and the other names and initials a business in Mauritius meets, each explained in a sentence with the guide that covers it.",
   alternates: { canonical: "/learn/glossary" },
 };
 

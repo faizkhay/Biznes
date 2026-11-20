@@ -1,0 +1,747 @@
+{
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "topic": "businesses",
+      "claim": "The companies registry counted 126,453 live business entities in October 2026 (companies, foundations and partnerships; sole traders are not in this count).",
+      "value": "Total Live count: 126453",
+      "period": "As at October 2026",
+      "source": {
+        "title": "2026 Statistical Highlights: Monthly Business Entity Count (as at October 2026), chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/11/Updated-Monthly-Business-Entity-Count-as-at-October-2026.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Of the live entities in October 2026, 89,759 were private domestic companies, 345 were public domestic companies and 163 sat in the chart's 'Foreign' row of the domestic group.",
+      "value": "DOMESTIC: Private 89759; Public 345; Foreign 163",
+      "period": "As at October 2026",
+      "source": {
+        "title": "2026 Statistical Highlights: Monthly Business Entity Count (as at October 2026), chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/11/Updated-Monthly-Business-Entity-Count-as-at-October-2026.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "The October 2026 live count also held 15,705 private Global Business Companies, 7,357 Authorised Companies, 10,496 civil partnerships and 718 foundations.",
+      "value": "GBC Private 15705; AUTH Private 7357; PARTNERSHIP CIVIL Domestic 10496; FOUNDATION 718",
+      "period": "As at October 2026",
+      "source": {
+        "title": "2026 Statistical Highlights: Monthly Business Entity Count (as at October 2026), chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/11/Updated-Monthly-Business-Entity-Count-as-at-October-2026.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "At the end of 2025 the registry counted 119,055 live entities, of which 83,736 were private domestic companies.",
+      "value": "count: 119055; DOMESTIC Private 83736",
+      "period": "As at December 2025",
+      "source": {
+        "title": "2025 Statistical Highlights: Monthly Business Entity Count (as at December 2025), chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/2025-Statistical-Highlights-Monthly-Business-Entity-Count-as-at-December-2025.png",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "11,259 new private domestic companies were registered in 2025, plus 1,296 private Global Business Companies and 782 Authorised Companies.",
+      "value": "DOMESTIC Private Total 11259; GBC Private Total 1296; Authorised Private Total 782",
+      "period": "Calendar year 2025",
+      "source": {
+        "title": "Monthly statistics: Newly registered entities for year 2025, chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/Monthly-statistics-newly-registered-entities-for-year-2025.png",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Newly registered entities of all types ran between 931 and 1,322 a month in 2025; the twelve monthly totals add up to 13,753 (sum worked out here, the chart prints no annual total).",
+      "value": "Monthly totals: 931, 1060, 1252, 1317, 1322, 1126, 1274, 1096, 1226, 1146, 1057, 946",
+      "period": "January to December 2025",
+      "source": {
+        "title": "Monthly statistics: Newly registered entities for year 2025, chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/05/Monthly-statistics-newly-registered-entities-for-year-2025.png",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Companies incorporated online numbered 3,145, 3,579, 3,460 and 3,026 in the four quarters of 2025, and 3,050, 3,427 and 3,335 in the first three quarters of 2026.",
+      "value": "Jan-Mar 25: 3145; Apr-June 25: 3579; Jul-Sept 25: 3460; Oct-Dec 25: 3026; Jan-Mar 26: 3050; Apr-June 26: 3427; Jul-Sept 26: 3335",
+      "period": "Quarters from January 2025 to September 2026",
+      "source": {
+        "title": "Companies Incorporated, Quarterly Stats, Jan 2021 to Sept 2026, chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/10/Companies-Incorporated-quarterly-stats-up-to-sept-26.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "There were 12,676 business registrations by individuals (sole traders) in 2025, against 13,506 in 2024, 12,774 in 2023 and 12,429 in 2022.",
+      "value": "Business Registration Individual totals: 2022: 12429; 2023: 12774; 2024: 13506; 2025: 12676",
+      "period": "Calendar years 2022 to 2025",
+      "source": {
+        "title": "Business Registration Individual for year 2022 to 2026, chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/11/Business-Registration-Individual-for-year-2022-2026-051126.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "There were 11,478 business registrations by individuals in the first ten months of 2026.",
+      "value": "Business Registration Individual 2026 total (Jan to Oct): 11478",
+      "period": "January to October 2026",
+      "source": {
+        "title": "Business Registration Individual for year 2022 to 2026, chart on the CBRD Statistics page (companies.govmu.org/cbrd/statistics/)",
+        "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/11/Business-Registration-Individual-for-year-2022-2026-051126.jpg",
+        "publisher": "Corporate and Business Registration Department (CBRD), Ministry of Finance",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Statistics Mauritius counts 24,571 enterprise registrations in 2025, up from 19,831 in 2016 (its four quarterly figures for 2025 add up to the same number).",
+      "value": "From 2016 to 2025, the total number of enterprises grew by 24%, from 19,831 to 24,571",
+      "period": "Calendar year 2025 (and 2016)",
+      "source": {
+        "title": "Business Statistics, Quarter 4, 2025 (dated 4 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/Businesses/BusinessStatistics4Qtr25_040226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "New enterprise registrations by quarter in 2025 were 5,972, 6,843, 6,335 and 5,421.",
+      "value": "2025: Q1 5,972; Q2 6,843; Q3 6,335; Q4 5,421 (2024: 5,227; 6,717; 7,209; 5,412)",
+      "period": "Quarters of 2025 and 2024",
+      "source": {
+        "title": "Business Statistics, Quarter 4, 2025 (dated 4 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/Businesses/BusinessStatistics4Qtr25_040226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "In the fourth quarter of 2025, 38% of newly registered enterprises were in wholesale and retail trade, 10% in manufacturing, 10% in accommodation and food service and 8% in professional, scientific and technical activities.",
+      "value": "G: 2055 (38%); C: 551 (10%); I: 491 (10%); M: 442 (8%); Total 5421",
+      "period": "Fourth quarter 2025",
+      "source": {
+        "title": "Business Statistics, Quarter 4, 2025 (dated 4 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/Businesses/BusinessStatistics4Qtr25_040226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Micro, small and medium enterprises employed 274,977 people in 2023, a 48.2% share of total employment of 570,900 (provisional).",
+      "value": "Employment in MSMEs 2023: 274977; Total Employment: 570900; Share of MSMEs in total employment: 0.482",
+      "period": "2023 (provisional)",
+      "source": {
+        "title": "MSME data series, Year 2018 to 2023 (based on 2018 Census of Economic Activities), linked from the Small and Medium Enterprises subject page",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/SME/DS_SME_2018-2023_061025.xls",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "Micro, small and medium enterprises produced MUR 195,410 million of value added in 2023, 35.4% of gross value added.",
+      "value": "Value added of MSMEs 2023: Rs 195410 Million; Contribution of MSMEs to GVA: 35.4%",
+      "period": "2023 (revised)",
+      "source": {
+        "title": "MSME data series, Year 2018 to 2023 (based on 2018 Census of Economic Activities), linked from the Small and Medium Enterprises subject page",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/SME/DS_SME_2018-2023_061025.xls",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "businesses",
+      "claim": "In 2023, the largest MSME employers by industry were wholesale and retail trade (69,589 people), manufacturing (43,692), construction (31,180) and accommodation and food service (24,532).",
+      "value": "Wholesale and retail trade 69589; Manufacturing 43692; Construction 31180; Accommodation and food service activities 24532",
+      "period": "2023 (provisional)",
+      "source": {
+        "title": "MSME data series, Year 2018 to 2023 (based on 2018 Census of Economic Activities), linked from the Small and Medium Enterprises subject page",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/By_Subject/SME/DS_SME_2018-2023_061025.xls",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "Mauritius had 2,241,100 internet subscriptions in 2025, up 1.1% from 2,216,400 in 2024.",
+      "value": "the number of internet subscriptions grew by 1.1% from 2,216,400 to 2,241,100",
+      "period": "2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "Mobile internet subscriptions were 1,885,100 in 2025 and fixed internet subscriptions 356,000.",
+      "value": "mobile internet subscriptions (from 1,860,800 to 1,885,100); fixed internet subscriptions (from 355,600 to 356,000)",
+      "period": "2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "There were 180.5 internet subscriptions per 100 inhabitants in 2025.",
+      "value": "internet subscriptions per 100 inhabitants ... from 178.1 to 180.5",
+      "period": "2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "There were 2,155,400 mobile phone subscriptions in 2025, or 173.6 per 100 inhabitants.",
+      "value": "mobile cellular subscriptions decreased by 1.8% from 2,195,100 to 2,155,400; mobidensity from 176.4 to 173.6",
+      "period": "2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "83.2% of people aged 12 and over used the internet in 2024, up from 68.3% in 2020.",
+      "value": "83.2% persons aged twelve years and above were internet users, compared to 68.3% in 2020",
+      "period": "2024",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "85.8% of households had internet access in 2024 and 88.6% had a smartphone.",
+      "value": "proportion of households with: smartphones: 81.4% to 88.6%; internet access: 72.6% to 85.8%",
+      "period": "2024 (compared with 2020)",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "internet",
+      "claim": "Broadband made up 99.5% of internet subscriptions in 2025, with 2,230,900 broadband subscriptions.",
+      "value": "Broadband Internet subscriptions constituting 99.5% of total internet subscriptions ... 2,230,900",
+      "period": "2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1939: ICT Statistics, Year 2025 (released 10 July 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "tourism",
+      "claim": "Mauritius received 1,436,250 tourists in 2025, up 3.9% from 1,382,177 in 2024.",
+      "value": "tourist arrivals increased by 3.9% from 1,382,177 in the year 2024 to 1,436,250 in the year 2025",
+      "period": "Calendar year 2025",
+      "source": {
+        "title": "International Travel and Tourism, Year 2025: Highlights",
+        "url": "https://statsmauritius.govmu.org/Pages/Statistics/ESI/Tourism/Tourism_Yr25.aspx",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "tourism",
+      "claim": "The largest source markets in 2025 were France (337,502 arrivals), the United Kingdom (154,990), Reunion Island (145,029), Germany (122,166), South Africa (110,287) and India (75,808).",
+      "value": "France 337,502; United Kingdom 154,990; Reunion Island 145,029; Germany 122,166; South Africa, Rep. of 110,287; India 75,808",
+      "period": "Calendar year 2025",
+      "source": {
+        "title": "International Travel and Tourism, Year 2025: Highlights",
+        "url": "https://statsmauritius.govmu.org/Pages/Statistics/ESI/Tourism/Tourism_Yr25.aspx",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "tourism",
+      "claim": "Tourism earnings were MUR 103,351 million in 2025 (provisional, Bank of Mauritius figure), against MUR 93,574 million in 2024.",
+      "value": "Tourism earnings (Rs Mn): 2024 Year 93,574; 2025 Year 103,351",
+      "period": "Calendar year 2025 (provisional)",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025 (released 27 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "tourism",
+      "claim": "There were 111 licensed hotels on the island of Mauritius at the end of December 2025, of which 109 were operating with 14,112 rooms and 31,952 bed places.",
+      "value": "111 licensed hotels ... The total room capacity of the 109 hotels in operation was 14,112 with 31,952 bed places",
+      "period": "As at end of December 2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025 (released 27 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "tourism",
+      "claim": "In the first half of 2025, 73.4% of tourists stayed in hotels, 9.4% in a tourist residence, 2.3% in a guest house and 13.7% with friends or relatives.",
+      "value": "73.4% of tourists preferred to stay in hotels ... 13.7% of tourists stayed with friends and/or relatives, 9.4% stayed in tourist residence and some 2.3% in guest house",
+      "period": "First semester 2025",
+      "source": {
+        "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025 (released 27 February 2026)",
+        "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+        "publisher": "Statistics Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "Yelo Mauritius states that it holds 11,344 company listings and 858 business reviews.",
+      "value": "Company listings 11,344; Business reviews 858",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Mauritius Business Directory: Yelo (home page)",
+        "url": "https://www.yelo.mu/",
+        "publisher": "Yelo Mauritius, operated by Global Business Directory LLC",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "Yelo Mauritius sells a basic listing for USD 20 as a one-time payment (regular price USD 40), a premium listing for USD 65 a year (regular price USD 130) and a lifetime listing for USD 145 as a one-time payment (regular price USD 290).",
+      "value": "basic 20 USD (regular price 40 USD, one-time payment); premium 65 USD (regular price 130 USD, annual subscription); lifetime 145 USD (regular price 290 USD, one-time payment); each marked -50%",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Mauritius Business Directory: Yelo (home page)",
+        "url": "https://www.yelo.mu/",
+        "publisher": "Yelo Mauritius, operated by Global Business Directory LLC",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "Yellow.mu says it offers free and premium listing options but shows no prices on its home page.",
+      "value": "We offer free and premium listing options to suit businesses of all sizes",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Yellow.mu: Your Ultimate Business Directory (home page)",
+        "url": "https://www.yellow.mu/",
+        "publisher": "Yellow.mu (The MYP Network)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "The Mauritius Chamber of Commerce and Industry gives members a free entry in its Membership Directory.",
+      "value": "Providing a free subscription to Members in the MCCI Membership Directory and free access to the MCCI Business Club",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Benefits of Becoming a Member of MCCI",
+        "url": "https://mcci.org/en/membership/why-join-the-mcci/",
+        "publisher": "Mauritius Chamber of Commerce and Industry (MCCI)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "MCCI membership subscription fees run from MUR 8,000 for turnover up to MUR 5,000,000 to MUR 110,000 for turnover above MUR 1 billion (the form does not state the period the fee covers).",
+      "value": "Rs.8,000 for turnover up to Rs 5,000,000; Rs.10,000 up to Rs10,000,000; Rs.20,000 between Rs10,000,000 and Rs25,000,000; Rs.35,000 between Rs25,000,000 and Rs100,000,000; Rs.60,000 between Rs100,000,000 and Rs200,000,000; Rs.75,000 between Rs200,000,000 and Rs 500,000,000; Rs.90,000 between Rs 500,000,000 and Rs 1 billion; Rs.110,000 above Rs 1 billion",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Membership: Register to become a member of the MCCI",
+        "url": "https://www.mcci.org/en/membership/membership-form/",
+        "publisher": "Mauritius Chamber of Commerce and Industry (MCCI)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "The Economic Development Board's e-Export Directory lists Mauritian exporters free of charge.",
+      "value": "the e-Export Directory, hosted by the Economic Development Board (EDB), provides Mauritian companies with global visibility at no cost",
+      "period": "Article dated 30 September 2025",
+      "source": {
+        "title": "The e-Export Directory: Your Gateway to Global Markets (30 September 2025)",
+        "url": "https://edbmauritius.org/newsroom/the-e-export-directory-your-gateway-to-global-markets",
+        "publisher": "Economic Development Board (EDB) Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "directories",
+      "claim": "Expat.com runs a Mauritius business directory with listings marked Premium and an 'Add your business' option; no price is shown on the public page.",
+      "value": "Add your business; listings labelled Premium; no price shown",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Business directory: Mauritius",
+        "url": "https://www.expat.com/en/business/africa/mauritius/",
+        "publisher": "Expat.com",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Stonehage Fleming lists incorporation or transfer in of a domestic company at a minimum of USD 2,100 in 2026, or a minimum of USD 5,000 where the shareholder is an individual or not an entity it administers.",
+      "value": "Incorporation / Transfer in of Domestic Company: 2,100 (min) USD (2026); note D: minimum fee is USD 5,000 where the shareholder is an individual or not a Stonehage Fleming administered entity",
+      "period": "2026 fee schedule (family office clients)",
+      "source": {
+        "title": "Fiduciary Mauritius 2026 Fee Schedule: Family Office",
+        "url": "https://cdnwww.stonehagefleming.com/assets/schedule/6.-Fiduciary-Fee-Schedule_Mauritius-2026.pdf",
+        "publisher": "Stonehage Fleming",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Stonehage Fleming lists registered office and secretarial services for an ongoing Mauritius company (global business or domestic) at USD 2,400 in 2026.",
+      "value": "Registered Office and Secretarial: 2,400 USD (2026); 2,300 USD (2025)",
+      "period": "2026 fee schedule (family office clients); listed under ongoing services, which the schedule elsewhere calls fixed annual charges",
+      "source": {
+        "title": "Fiduciary Mauritius 2026 Fee Schedule: Family Office",
+        "url": "https://cdnwww.stonehagefleming.com/assets/schedule/6.-Fiduciary-Fee-Schedule_Mauritius-2026.pdf",
+        "publisher": "Stonehage Fleming",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Stonehage Fleming lists a resident company director at a minimum of USD 2,900 per director in 2026.",
+      "value": "Provision of Resident Company Director (per director): 2,900 (min) USD",
+      "period": "2026 fee schedule (family office clients)",
+      "source": {
+        "title": "Fiduciary Mauritius 2026 Fee Schedule: Family Office",
+        "url": "https://cdnwww.stonehagefleming.com/assets/schedule/6.-Fiduciary-Fee-Schedule_Mauritius-2026.pdf",
+        "publisher": "Stonehage Fleming",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Stonehage Fleming lists corporate tax returns at a minimum of USD 775, VAT registration at a minimum of USD 400 and VAT returns at a minimum of USD 475 a quarter in 2026.",
+      "value": "Corporate Tax Returns: 775 (min); VAT Registration: 400 (min); VAT Returns (per quarter): 475 (min), all USD",
+      "period": "2026 fee schedule (family office clients)",
+      "source": {
+        "title": "Fiduciary Mauritius 2026 Fee Schedule: Family Office",
+        "url": "https://cdnwww.stonehagefleming.com/assets/schedule/6.-Fiduciary-Fee-Schedule_Mauritius-2026.pdf",
+        "publisher": "Stonehage Fleming",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Stonehage Fleming lists an occupation permit application at a minimum of USD 1,010 in 2026.",
+      "value": "Occupation Permit Application: 1,010 (min) USD",
+      "period": "2026 fee schedule (family office clients)",
+      "source": {
+        "title": "Fiduciary Mauritius 2026 Fee Schedule: Family Office",
+        "url": "https://cdnwww.stonehagefleming.com/assets/schedule/6.-Fiduciary-Fee-Schedule_Mauritius-2026.pdf",
+        "publisher": "Stonehage Fleming",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Expanship sells incorporation of a Mauritius Authorised Company (a structure for non-residents, not a domestic company) at USD 2,849 for its Basic package and USD 3,799 for Premium, government fees and first-year registered agent and office included.",
+      "value": "The Basic package is US$2,849 and the Premium package is US$3,799",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Mauritius Company Setup Cost: Packages and What's Included",
+        "url": "https://www.expanship.com/mu/incorporation/pricing",
+        "publisher": "Expanship",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Expanship charges USD 2,699 a year from year two for annual compliance of an Authorised Company, covering the licence renewal, Registrar fee, registered agent and office and the annual filings.",
+      "value": "The yearly compliance package is US$2,699",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Mauritius Company Compliance Pricing: Single Annual Fee",
+        "url": "https://www.expanship.com/mu/compliance/pricing",
+        "publisher": "Expanship",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "iGERENT charges USD 950 to register a trade mark in Mauritius in one class and USD 450 for each further class, official filing fees and its service fee included.",
+      "value": "US$ 950 for the first class, plus US$ 450 for each additional class",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Trademark Registration in Mauritius",
+        "url": "https://igerent.com/trademark-registration-mauritius",
+        "publisher": "iGERENT",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Nemesys, a Mauritian web agency, advertises a single page website at MUR 4,999; its 3, 5 and 7 page packages are shown without prices.",
+      "value": "our single page website at MUR 4,999",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Web Design",
+        "url": "https://www.nemesys.mu/web-design",
+        "publisher": "Nemesys",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Nemesys lists web hosting at MUR 1,388, MUR 2,976 and MUR 16,592 a year for its three plans.",
+      "value": "Hermes MUR 1,388 /Per Year; Athena MUR 2,976 /Per Year; Demeter MUR 16,592 /Per Year",
+      "period": "As shown on 20 November 2026",
+      "source": {
+        "title": "Nemesys (home page)",
+        "url": "https://www.nemesys.mu/",
+        "publisher": "Nemesys",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "Carril Agency's 2026 guide puts a freelancer-built website in Mauritius at MUR 25,000 to MUR 90,000 and a small agency or studio build at MUR 90,000 to MUR 250,000 (an agency's own market guide, not a rate card).",
+      "value": "Tier 2: Freelancer build (MUR 25,000 to MUR 90,000); Tier 3: Small agency or studio (MUR 90,000 to MUR 250,000)",
+      "period": "Guide dated 20 August 2026",
+      "source": {
+        "title": "How Much Does a Website Cost in Mauritius? (2026 Guide), dated 20 August 2026",
+        "url": "https://www.carrilagency.com/blog/how-much-does-a-website-cost-in-mauritius",
+        "publisher": "Carril Agency",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "service-prices",
+      "claim": "The same guide puts do-it-yourself website builders at MUR 800 to MUR 2,500 a month, a full-service senior agency at MUR 250,000 to MUR 900,000 or more, and a template-based build at roughly MUR 90,000 to MUR 130,000.",
+      "value": "Tier 1: DIY builders (MUR 800 to MUR 2,500/month); Tier 4: Full-service senior agency (MUR 250,000 to MUR 900,000+); template-based Webflow build roughly MUR 90,000 to MUR 130,000",
+      "period": "Guide dated 20 August 2026",
+      "source": {
+        "title": "How Much Does a Website Cost in Mauritius? (2026 Guide), dated 20 August 2026",
+        "url": "https://www.carrilagency.com/blog/how-much-does-a-website-cost-in-mauritius",
+        "publisher": "Carril Agency",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "investors",
+      "claim": "Occupation permit applications rose from 3,710 in 2018 to 10,550 in 2025.",
+      "value": "Occupation Permit applications increased from 3,710 in 2018 to 10,550 in 2025",
+      "period": "Calendar year 2025 (applications, not permits issued)",
+      "source": {
+        "title": "EDB Board Approves Key Measures to Accelerate Investment, Exports and Economic Transformation (7 August 2026)",
+        "url": "https://edbmauritius.org/newsroom/edb-board-approves-key-measures-to-accelerate-investment-exports-and-economic-transformation",
+        "publisher": "Economic Development Board (EDB) Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "investors",
+      "claim": "The Economic Development Board targets MUR 38 to 40 billion of foreign direct investment in the 2026/2027 financial year (a target, not an outcome).",
+      "value": "Attracting Rs 38-40 billion in Foreign Direct Investment (FDI)",
+      "period": "Financial year 2026/2027 target",
+      "source": {
+        "title": "EDB Board Approves Key Measures to Accelerate Investment, Exports and Economic Transformation (7 August 2026)",
+        "url": "https://edbmauritius.org/newsroom/edb-board-approves-key-measures-to-accelerate-investment-exports-and-economic-transformation",
+        "publisher": "Economic Development Board (EDB) Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "investors",
+      "claim": "The Economic Development Board approved 63 investment projects worth MUR 159.3 billion between April 2025 and May 2026.",
+      "value": "63 projects were approved, representing a total investment value of Rs 159.3 billion",
+      "period": "April 2025 to May 2026",
+      "source": {
+        "title": "Press release: EDB Board Advances Policy Measures to Strengthen Skills, Investment and Innovation (issued 30 June 2026)",
+        "url": "https://edbmauritius.org/wp-content/uploads/2026/07/EDB-Board-Decisions-30-June-2026.pdf",
+        "publisher": "Economic Development Board (EDB) Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "investors",
+      "claim": "An Investor Occupation Permit now needs a minimum initial investment of USD 100,000, and a Professional Occupation Permit a minimum basic monthly salary of MUR 50,000.",
+      "value": "minimum initial investment of USD 100,000; minimum basic monthly salary of MUR 50,000",
+      "period": "Rules as described on the page read on 20 November 2026",
+      "source": {
+        "title": "What's New in Occupation and Residence Permits (EDB monthly newsletter)",
+        "url": "https://edbmauritius.org/newsletter-august-2026-op",
+        "publisher": "Economic Development Board (EDB) Mauritius",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, lexpress.mu charged from MUR 12,000 a day or MUR 60,000 a week for a homepage takeover, excluding VAT.",
+      "value": "Homepage Takeover (From Rs 12,000/day, Rs 60,000/week); prices exclusive of VAT at 15%",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, sponsored content on lexpress.mu cost MUR 30,000 for a single article and MUR 105,600 for a series of four, excluding VAT.",
+      "value": "Single article 30,000; Series of four articles 105,600 (Rs)",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, a site-wide billboard banner on lexpress.mu shown in Mauritius only cost MUR 6,750 a day, MUR 35,000 a week or MUR 123,200 a month, excluding VAT.",
+      "value": "Billboard (970x250 px + 320x100 px), Entire Site, Mauritius only: Per day 6,750; Per week 35,000; Per month 123,200; International per week 70,000",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, a site-wide leaderboard on lexpress.mu cost MUR 4,000 a day, MUR 21,000 a week or MUR 75,700 a month, and a site-wide side banner MUR 4,500 a day, MUR 27,500 a week or MUR 96,800 a month, excluding VAT.",
+      "value": "Leaderboard (728x90 px + 320x50), Entire site: 4,000 / 21,000 / 75,700; Side Banner (300x250 px), Entire site: 4,500 / 27,500 / 96,800 (per day / per week / per month, Mauritius only)",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, a banner on one section of lexpress.mu cost MUR 4,500 a week as a billboard or MUR 3,000 a week as a side banner, and a homepage side banner MUR 14,750 a week, excluding VAT.",
+      "value": "Billboard Per-Section (rubrique) per week 4,500; Homepage per week 17,500; Side Banner Homepage per week 14,750; Per-section per week 3,000",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, newsletter sponsorship on lexpress.mu cost MUR 3,000 a week or MUR 10,560 a month, and one mobile app sponsorship slot MUR 15,000 a month, excluding VAT.",
+      "value": "Newsletter Sponsorship: Weekly 3,000; Monthly 10,560; Mobile Sponsorship, price of 1 slot: Monthly 15,000",
+      "period": "Rate card dated March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    },
+    {
+      "topic": "advertising",
+      "claim": "In March 2018, lexpress.mu reported 1.2 million unique users a month, 11.9 million views and 175,471 average visits a day.",
+      "value": "11.9 million views; 1.2 million unique users/month; 175,471 average visits/day",
+      "period": "Data as at 31 March 2018",
+      "source": {
+        "title": "Digital Products and Rate Card, March 2018 (lexpress.mu)",
+        "url": "https://lasentinelle.mu/sites/default/files/statistics/lsldigital_ratecard_March_18.pdf",
+        "publisher": "LSL Digital Ltd (La Sentinelle)",
+        "accessed": "2026-11-20"
+      }
+    }
+  ],
+  "directories": [
+    {
+      "name": "Yelo Mauritius",
+      "url": "https://www.yelo.mu/",
+      "offers": "General business directory, running since 2009, with 11,344 company listings and 858 reviews. Profiles carry contact details, opening hours, map location, photos, products and job offers. It also sells a 'Data Hub', a searchable table of its business contacts.",
+      "pricing": "Paid. Basic listing USD 20, one-time payment (regular price USD 40). Premium listing USD 65 a year (regular price USD 130). Lifetime listing USD 145, one-time payment (regular price USD 290). All three were shown at 50% off on 20 November 2026. No free tier is shown on the home page. Data Hub prices are on a separate page that was not read.",
+      "source_url": "https://www.yelo.mu/"
+    },
+    {
+      "name": "Yellow.mu (Mauritius Yellow Pages, The MYP Network)",
+      "url": "https://www.yellow.mu/",
+      "offers": "Business directory for Mauritius. The home page says it offers free and premium listing options and links to yellowpagesmauritius.com for search and registration. It carries banner advertising.",
+      "pricing": "Free and premium listings; prices not published on the page read. The main site, yellowpagesmauritius.com, disallows AI agents in its robots.txt, so its pages were not read.",
+      "source_url": "https://www.yellow.mu/"
+    },
+    {
+      "name": "MCCI Members Directory (Mauritius Chamber of Commerce and Industry)",
+      "url": "https://www.mcci.org/en/membership/members-directory/",
+      "offers": "Directory of chamber members. Members get a free entry in the MCCI Membership Directory and free access to the MCCI Business Club (stated at https://mcci.org/en/membership/why-join-the-mcci/). The chamber also runs an SME Marketplace for members.",
+      "pricing": "Listing is free for members; membership is paid. Subscription fees by gross annual turnover: MUR 8,000 (up to MUR 5,000,000), MUR 10,000 (up to MUR 10,000,000), MUR 20,000 (MUR 10,000,000 to MUR 25,000,000), MUR 35,000 (MUR 25,000,000 to MUR 100,000,000), MUR 60,000 (MUR 100,000,000 to MUR 200,000,000), MUR 75,000 (MUR 200,000,000 to MUR 500,000,000), MUR 90,000 (MUR 500,000,000 to MUR 1 billion), MUR 110,000 (above MUR 1 billion). The form does not state the period the fee covers.",
+      "source_url": "https://www.mcci.org/en/membership/membership-form/"
+    },
+    {
+      "name": "Expat.com business directory, Mauritius",
+      "url": "https://www.expat.com/en/business/africa/mauritius/",
+      "offers": "Directory of companies and professionals by category, aimed at expatriates. Some listings are marked Premium. Businesses can be added or recommended by members.",
+      "pricing": "Prices not published. The 'Add your business' page redirects to the directory home for visitors without an account.",
+      "source_url": "https://www.expat.com/en/business/africa/mauritius/"
+    },
+    {
+      "name": "EDB e-Export Directory",
+      "url": "https://export.edbmauritius.org/",
+      "offers": "Government directory run by the Economic Development Board where Mauritian exporters list their profiles, products and services for foreign buyers. The directory itself was not opened; the description is from the EDB article.",
+      "pricing": "Free of charge.",
+      "source_url": "https://edbmauritius.org/newsroom/the-e-export-directory-your-gateway-to-global-markets"
+    }
+  ],
+  "not_found": [
+    "Number of establishments or number of SMEs (stock): not confirmed. The Statistics Mauritius SME series gives employment, value added and exports only. The Census of Economic Activities 2018 establishment count and the SME Mauritius register were not read.",
+    "Total number of registered sole traders (stock): not published on the CBRD statistics page, which gives new individual business registrations by year only. The CBRD live count covers companies, foundations and partnerships.",
+    "CBRD annual report: not read. Figures are from the CBRD Statistics page charts.",
+    "Mauritius Yellow Pages prices (yellowpagesmauritius.com): not read. Its robots.txt disallows AI agents, so the site was left alone after one request that returned 404. Yellow.mu states free and premium listings without prices.",
+    "MT Yellow Pages (mtyellowpages.mu, named in a search result as the Mauritius Telecom directory): the site did not respond (502). Nothing confirmed.",
+    "Expat.com premium listing price: not shown to visitors without an account.",
+    "Yelo Data Hub prices: page not read.",
+    "Classified and listing sites (for example the classifieds of the main news groups): not examined within the fetch limit.",
+    "List prices in MUR from Mauritian providers for incorporating a domestic company, for registered office or company secretarial packages for a small domestic company, and for accounting or bookkeeping packages: none found. Six searches returned firms that quote on request. The only published schedules found are in USD and aimed at international or family office clients (Stonehage Fleming, Expanship).",
+    "Trade mark filing through an agent: one published price only (iGERENT). Kaizen CPA's Mauritius trade mark page now says to request a quotation. Official Industrial Property Office filing fees were not read.",
+    "Basic business website prices: only Nemesys (single page site MUR 4,999) and the Carril Agency guide ranges were confirmed. mauritius.biz is blocked by its robots.txt and gws-technologies.com returned 403, so prices seen for them in search results on a third-party listing site were not used.",
+    "Official registration fees (CBRD 'Fees Payable to the Registrar'): not read in this task.",
+    "Occupation permits issued a year: not found. Only the number of applications is published in the EDB board decisions (10,550 in 2025).",
+    "Premium visas issued: not found.",
+    "Foreign direct investment inflow for 2025: not confirmed. The Bank of Mauritius release 'Preliminary Gross Direct Investment Flows: 2025' (bom.mu/sites/default/files/di_2025_webrelease_0.pdf) could not be read because bom.mu failed TLS certificate verification from this environment. Secondary reports were not used. Only the EDB target for 2026/2027 is recorded.",
+    "ICTA's own indicators: not read. Internet and mobile figures are from Statistics Mauritius.",
+    "Number of licensed tourist residences, guest houses, tour operators and other tourism operators (Tourism Authority): not read. Only licensed hotels are confirmed.",
+    "Total advertising spend or digital advertising spend in Mauritius: no published figure found.",
+    "Current display or sponsored content rate card for a large Mauritian news or classifieds site: not found. The only public rate card found is LSL Digital's for lexpress.mu dated March 2018, so its prices are over eight years old."
+  ]
+}

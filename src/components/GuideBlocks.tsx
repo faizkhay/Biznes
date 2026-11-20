@@ -4,14 +4,18 @@ import type { Block, Guide } from "@/lib/index";
 export function Cites({ ids, guide }: { ids?: string[]; guide: Guide }) {
   if (!ids?.length) return null;
   return (
-    <span className="ml-1 whitespace-nowrap">
-      {ids.map((id) => {
+    <span className="ml-1">
+      {ids.map((id, i) => {
         const n = guide.sources.findIndex((s) => s.id === id) + 1;
         if (!n) return null;
         return (
-          <a key={id} href={`#source-${n}`} className="cite" aria-label={`Source ${n}`}>
-            [{n}]
-          </a>
+          // A space between two marks lets a long run of them wrap on a narrow screen.
+          <span key={id}>
+            {i > 0 && " "}
+            <a href={`#source-${n}`} className="cite" aria-label={`Source ${n}`}>
+              [{n}]
+            </a>
+          </span>
         );
       })}
     </span>

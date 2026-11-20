@@ -1,0 +1,777 @@
+{
+  "slug": "verify-a-business",
+  "title": "Check that a business in Mauritius is what it says it is",
+  "summary": "The official registers and published lists that show whether a company, trader, professional or licensed operator in Mauritius is registered, what each one shows, what it costs and where it is, as checked on 20 November 2026.",
+  "audience": "Anyone about to buy from, hire, work for or contract with a business in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Company and business search",
+      "value": "Free online",
+      "detail": "The Corporate and Business Registration Department links to its online search as free of charge.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Inspecting a full company file",
+      "value": "MUR 100 per entity",
+      "detail": "Charged for a search of a domestic company, global business company, société, business or limited partnership at the registry, per the Customer Charter updated on 10 August 2026.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Business Registration Number (BRN)",
+      "value": "9 characters, letters and digits",
+      "detail": "Field width and characters given in a Mauritius Revenue Authority file specification. In the MRA's VAT list nearly every BRN is one capital letter followed by eight digits.",
+      "sources": [
+        "S9",
+        "S5"
+      ]
+    },
+    {
+      "label": "VAT register",
+      "value": "Published list, as at 30 September 2026",
+      "detail": "A PDF of about 36,000 entries showing VAT registration number, BRN, name and trade name.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Global business and Authorised Companies",
+      "value": "Only name, registered office and management company or registered agent are public",
+      "detail": "Limit stated in the registry's Customer Charter.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Data Protection Register",
+      "value": "Open to inspection by any person, free of charge",
+      "detail": "Section 20(3) of the Data Protection Act 2017. No public online search was found.",
+      "sources": [
+        "S19"
+      ]
+    },
+    {
+      "label": "SME registration certificate",
+      "value": "Valid for 5 years",
+      "detail": "Issued by the SME Registration Unit. It is not a permit or a licence.",
+      "sources": [
+        "S18"
+      ]
+    },
+    {
+      "label": "Real estate agents",
+      "value": "Registration with the Real Estate Agent Authority began on 1 August 2026",
+      "detail": "Phase 1 covers agents buying and selling property, land promoters and property developers.",
+      "sources": [
+        "S22"
+      ]
+    },
+    {
+      "label": "Engineers' roll",
+      "value": "Published each year as at 31 December of the preceding year",
+      "detail": "Council of Registered Professional Engineers.",
+      "sources": [
+        "S14"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Start with the Business Registration Number",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Every business in Mauritius and Rodrigues that trades for profit or gain is registered under the Business Registration Act 2002 and receives a Business Registration Number (BRN). The registry describes the BRN as a unique identification number. Companies and commercial sociétés have one. So do ministries, statutory bodies, associations, trade unions and cooperative societies, which must register to obtain it. The number is printed on the Business Registration Card issued by the Corporate and Business Registration Department.",
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Length: a Mauritius Revenue Authority file specification gives the BRN as a field of 9 characters, made of the letters A to Z and the digits 0 to 9.",
+            "Pattern: in the MRA's list of VAT registered persons as at 30 September 2026, nearly every BRN is one capital letter followed by eight digits.",
+            "First letter: in that list about 84 per cent of BRNs begin with C and about 14 per cent begin with I. A small number begin with F, P or L.",
+            "Where to find it: a VAT registered supplier must show its BRN and its VAT registration number on every VAT invoice. A person in business who invoices a registered business must also show the purchaser's BRN."
+          ],
+          "sources": [
+            "S9",
+            "S5",
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "No official document read for this guide explains what the first letter of a BRN means. The figures above are counts from the MRA's published list, not an official definition. The registry itself is the place to confirm what kind of entity a number belongs to.",
+          "sources": [
+            "S5",
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Some people do not need to register a business, so will have no BRN. The registry lists an office or employment, a craftsman who works from home and has no business premises, and a person cultivating not more than 10 arpents (4.2208 hectares) of land.",
+          "sources": [
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The company and business register",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Corporate and Business Registration Department (CBRD), a department of the Ministry of Finance, keeps the record of every company incorporated and every business, société, limited partnership and foundation registered in Mauritius. Its website links to an online search described as free of charge. The search runs at onlinesearch.mns.global; the older address onlinesearch.mns.mu redirects there.",
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "What the register holds: date of incorporation, constitutive documents, financial statements, lists of shareholders and directors, and the nature and place of business.",
+            "Online: the Customer Charter says that a summarised company search and an extract of file of companies are available online free of charge, and that basic information on businesses can also be obtained.",
+            "At the registry: any person may inspect the file of a domestic company, global business company, société, business or limited partnership on payment of MUR 100 per entity, on paper or at terminals in the search room.",
+            "Copies: uncertified copies of documents are delivered within 2 working days and certified copies within 3 working days of payment.",
+            "Insolvency: the registry also keeps a register of undischarged bankrupts and of persons subject to a summary instalment order for public search, and a register of insolvency practitioners."
+          ],
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "For a private company holding a Global Business Licence and for an Authorised Company, the information open to the public is limited to the company's name, its registered office and its management company or registered agent. An extract of file or a certificate of current standing for such a company can be requested by its management company or registered agent, a director, a shareholder, a representative or a qualified company secretary.",
+          "sources": [
+            "S3",
+            "S24"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Tax lists published by the Mauritius Revenue Authority",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "List of VAT Registered Persons: a PDF on the VAT page of the MRA site. The version read was as at 30 September 2026, 455 pages, about 36,000 entries. Each line gives the VAT registration number, the BRN, the name of the registered person and the trade name where there is one. Free to download.",
+            "VAT registered persons not submitting return: a page of dated lists. The most recent list on 20 November 2026 was for the month or quarter ended 30 June 2025. Free.",
+            "Charitable Institutions: a list in alphabetical order, one page per letter, on the MRA site. Free."
+          ],
+          "sources": [
+            "S5",
+            "S6",
+            "S7",
+            "S28"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The VAT list lets a reader match a supplier's name, BRN and VAT registration number against each other. This guide did not confirm how often the list is updated, so a recent registration may not appear in it.",
+          "sources": [
+            "S5",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Financial businesses: the Financial Services Commission and the Bank of Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Non-bank financial services and global business, including management companies, are licensed by the Financial Services Commission (FSC). The Financial Services Act requires the FSC's Chief Executive to keep a register of licensees and make it available for public inspection. The register must show each licensee's name and business address, the type and category of licence and the activity authorised, the date the licence was granted, and any agent or representative. The company registry states that the list of licensed management companies is available on the FSC website.",
+          "sources": [
+            "S23",
+            "S24"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Banks are licensed by the Bank of Mauritius.",
+          "sources": [
+            "S29"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Neither regulator's website could be opened for this guide on 20 November 2026, so their register addresses are not given here and are not in the table below. See the list of unverified items.",
+          "sources": [
+            "S23"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Professionals",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Doctors: the Medical Council of Mauritius publishes a List of Registered General Practitioner and a List of Registered Specialists, each with a search by name. It also lists temporary registrations, approved visiting practitioners and medical institutions.",
+            "Accountants: the Mauritius Institute of Professional Accountants (MIPA), established under the Financial Reporting Act 2004, publishes a register of professional accountants, public accountants and member firms registered with it. On 20 November 2026 the register page showed 2,815 professional accountants, 402 public accountants and 262 member firms.",
+            "Engineers: the Council of Registered Professional Engineers publishes a directory and a current roll. Each entry gives a registration number, first name, last name and branch of engineering. The roll is published each year as at 31 December of the preceding year."
+          ],
+          "sources": [
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "No working official online register was confirmed for law practitioners, architects, dentists or other health professions. They are listed under unverified items rather than in the table.",
+          "sources": [
+            "S10",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sector lists: recruitment, cooperatives, property, tourism and construction",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Private recruitment agencies: the Employment Division publishes a PDF list of agencies authorised to recruit citizens of Mauritius for employment in Mauritius. The version read was as at 18 November 2026 and shows the licensee, its directors, office address, email and the validity period of the licence. Free.",
+            "Labour contractors in agriculture: a PDF list of registered labour contractors in the agricultural sector, as at 30 October 2026, with address, email and validity dates. Free.",
+            "Cooperatives: the Cooperatives Division publishes a Directory of Cooperative Products and Services, arranged by product and service category. It is a directory of what cooperatives sell, not the statutory register of societies.",
+            "Real estate agents: no person may act as a real estate agent unless registered with the Real Estate Agent Authority (section 16(1) of the Real Estate Agent Authority Act 2020). Registration opened on 1 August 2026 for agents buying and selling property, land promoters and property developers, and is done on the NELS platform. No public list of registered agents was found on the Authority's site.",
+            "Tourism: the Tourism Authority issues Tourist Enterprise Licences, pleasure craft licences and skipper's licences. Its site publishes a list of the kinds of tourist enterprise that need a licence. No public list of licensed operators was found.",
+            "Construction: contractors hold a certificate from the Construction Industry Authority, formerly the CIDB. The Ministry of Labour asks for a valid certificate when a construction employer applies for work permits."
+          ],
+          "sources": [
+            "S15",
+            "S16",
+            "S17",
+            "S22",
+            "S26",
+            "S27",
+            "S25",
+            "S31",
+            "S32"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Where no public list exists, the licence or certificate held by the business is the evidence. A Tourist Enterprise Licence must be renewed, and the application is made within 3 months before it expires.",
+          "sources": [
+            "S26"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "SME certificates and data protection registration",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A business that describes itself as a registered SME should hold a registration certificate from the SME Registration Unit of the Ministry of Industry, SME and Cooperatives. The certificate is valid for 5 years from the date of issue. It is not a permit or a licence. No public online register of registered SMEs was found.",
+          "sources": [
+            "S18",
+            "S30"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Controllers and processors of personal data register with the Data Protection Office. The Data Protection Act 2017 requires the Commissioner to keep a Data Protection Register, which must be available at all reasonable times for inspection by any person free of charge. A certified copy of an entry can be obtained for a prescribed fee. Registration itself is done on the DPO Portal at dpo.govmu.org, which requires a login. No public online search of the register was found.",
+          "sources": [
+            "S19",
+            "S20",
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The registers at a glance",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "What you want to check",
+            "Register",
+            "Who runs it",
+            "URL"
+          ],
+          "rows": [
+            [
+              "That a company, société, partnership, foundation or business is registered, and its basic details",
+              "CBRD Online Search (free)",
+              "Corporate and Business Registration Department",
+              "https://onlinesearch.mns.global/"
+            ],
+            [
+              "A VAT registration number and the BRN and name that go with it",
+              "List of VAT Registered Persons (PDF, free)",
+              "Mauritius Revenue Authority",
+              "https://www.mra.mu/download/ListofVATRegPersons.pdf"
+            ],
+            [
+              "Whether a VAT registered person has been listed for not submitting returns",
+              "Lists of VAT registered persons not submitting return (free)",
+              "Mauritius Revenue Authority",
+              "https://www.mra.mu/index.php/vat/list-of-vat-registered-persons-not-submitting-return"
+            ],
+            [
+              "That an organisation is on the MRA's list of charitable institutions",
+              "Charitable Institutions (free)",
+              "Mauritius Revenue Authority",
+              "https://www.mra.mu/index.php/taxes-duties/charitable-institutions"
+            ],
+            [
+              "That a general practitioner is registered",
+              "List of Registered General Practitioner (free, search by name)",
+              "Medical Council of Mauritius",
+              "https://medicalcouncilmu.org/doctors-list/"
+            ],
+            [
+              "That a specialist doctor is registered",
+              "List of Registered Specialists (free, search by name)",
+              "Medical Council of Mauritius",
+              "https://medicalcouncilmu.org/list-of-registered-specialists/"
+            ],
+            [
+              "That an accountant, public accountant or accounting firm is registered",
+              "Register of PFA, PBA and Member Firms (free)",
+              "Mauritius Institute of Professional Accountants",
+              "https://www.mipa.mu/home/register_of_members"
+            ],
+            [
+              "That an engineer is registered, and in which branch",
+              "Directory of registered engineers (free)",
+              "Council of Registered Professional Engineers",
+              "https://crpemauritius.com/directory/"
+            ],
+            [
+              "That an engineer is on the current year's roll",
+              "Current Roll (free)",
+              "Council of Registered Professional Engineers",
+              "https://crpemauritius.com/current-roll/"
+            ],
+            [
+              "That a recruitment agency is licensed, and until when",
+              "List of Private Recruitment Agencies (PDF, free)",
+              "Ministry of Labour and Industrial Relations, Employment Division",
+              "https://empment-labour.govmu.org/Documents/Recruitment/List%20of%20Recruitment%20Agencies.pdf"
+            ],
+            [
+              "That an agricultural labour contractor is registered, and until when",
+              "List of Registered Labour Contractor, Agricultural Sector (PDF, free)",
+              "Ministry of Labour and Industrial Relations, Employment Division",
+              "https://empment-labour.govmu.org/Documents/LContractor/LIST%20OF%20REGISTERED%20LABOUR%20CONTRACTOR.pdf"
+            ],
+            [
+              "Which cooperative societies supply a product or service",
+              "Directory of Cooperative Products and Services (free)",
+              "Cooperatives Division, Ministry of Industry, SME and Cooperatives",
+              "https://cooperatives.govmu.org/pages/directory/product-category.aspx"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S5",
+            "S28",
+            "S7",
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S14",
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Every address in this table was fetched on 20 November 2026 and returned a page or file. Registers that could not be opened, or for which no public list was found, are left out and listed under unverified items.",
+          "sources": [
+            "S2",
+            "S5"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Home - Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "CBRD Online Search",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Corporate and Business Registration Department (service run with Mauritius Network Services Ltd)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "Updated 10 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Frequently Asked Questions: Business Registration",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Business_Registration.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "File uploaded August 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "List of VAT Registered Persons as at 30.09.2026",
+      "url": "https://www.mra.mu/download/ListofVATRegPersons.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "As at 30 September 2026; file last modified 30 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "VAT - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/mvat",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Charitable Institutions - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/taxes-duties/charitable-institutions",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Communique: Invoicing and Records Keeping",
+      "url": "https://www.mra.mu/download/Invoicing291118.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "29 November 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Specifications/Format for file used for: Annual Return of Employees",
+      "url": "https://www.mra.mu/download/SpecificationAnnualROE_2025IT.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "List of Registered General Practitioner - Medical Council of Mauritius",
+      "url": "https://medicalcouncilmu.org/doctors-list/",
+      "publisher": "Medical Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "List of Registered Specialists - Medical Council of Mauritius",
+      "url": "https://medicalcouncilmu.org/list-of-registered-specialists/",
+      "publisher": "Medical Council of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Register of PFA, PBA and Member Firms Registered with MIPA",
+      "url": "https://www.mipa.mu/home/register_of_members",
+      "publisher": "Mauritius Institute of Professional Accountants",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Directory | Council of Registered Professional Engineers",
+      "url": "https://crpemauritius.com/directory/",
+      "publisher": "Council of Registered Professional Engineers",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Current Roll | Council of Registered Professional Engineers",
+      "url": "https://crpemauritius.com/current-roll/",
+      "publisher": "Council of Registered Professional Engineers",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "List of Private Recruitment Agencies authorised to recruit Citizens of Mauritius for Employment in Mauritius as at 18 November 2026",
+      "url": "https://empment-labour.govmu.org/Documents/Recruitment/List%20of%20Recruitment%20Agencies.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "As at 18 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "List of Registered Labour Contractor (Agricultural Sector) as at 30 October 2026",
+      "url": "https://empment-labour.govmu.org/Documents/LContractor/LIST%20OF%20REGISTERED%20LABOUR%20CONTRACTOR.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "As at 30 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Directory of Cooperative Products and Services",
+      "url": "https://cooperatives.govmu.org/pages/directory/product-category.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (Cooperatives Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Frequently Asked Questions",
+      "url": "https://enterbusiness.govmu.org/Pages/New-FAQ.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Data Protection Act 2017",
+      "url": "https://dataprotection.govmu.org/Documents/DPA_2017.pdf",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "eDPO",
+      "url": "https://dataprotection.govmu.org/Pages/eDPO.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Registration (Controllers and Processors)",
+      "url": "https://dataprotection.govmu.org/Pages/Controllers%20and%20Processors/Registration.aspx",
+      "publisher": "Data Protection Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Real Estate Agent Authority of Mauritius",
+      "url": "https://www.reaamauritius.org/",
+      "publisher": "Real Estate Agent Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Financial Services Act (Act 14 of 2007), consolidated text",
+      "url": "https://stockexchangeofmauritius.com/media/12664/2026-financial-services-act.pdf",
+      "publisher": "Stock Exchange of Mauritius (copy of the consolidated Act; the Financial Services Commission site refused automated requests)",
+      "published": "Amendments noted up to Act 3 of 2026; file last modified 22 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Frequently Asked Questions: Global Business Company (GBC)",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2025/08/FAQs_Global_Business_Company.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "File uploaded August 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Work Permit Information Sheet: Summary of Main Procedures and Checklist of Documents",
+      "url": "https://empment-labour.govmu.org/Documents/Downloads/Workpermit%20Infosheet.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Tourist Enterprise Licence - Mauritius Tourism Authority",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "List of Tourist Enterprises (Annex 1)",
+      "url": "https://tourismauthority.mu/wp-content/uploads/2023/03/Annex-1-List-of-Tourist-Enterprises.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "List of VAT Registered persons not submitting return - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/vat/list-of-vat-registered-persons-not-submitting-return",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Banks - Residency in Mauritius",
+      "url": "https://residency.mu/practical-information/banks/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "Register your SME for free and unlock key benefits (SME Registration Unit leaflet)",
+      "url": "https://enterbusiness.govmu.org/Documents/Useful%20Documents/Updated_Leaflet_SME_Registration_Unit.pdf",
+      "publisher": "Ministry of Industry, SME and Cooperatives (SME Division)",
+      "published": "File last modified 2 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Ministry of Housing and Lands: home page",
+      "url": "https://housing.govmu.org/SitePages/Index.aspx",
+      "publisher": "Ministry of Housing and Lands",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "Home: Employment Division",
+      "url": "https://empment-labour.govmu.org/Pages/default.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations (Employment Division)",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "CBRD Online Search",
+      "url": "https://onlinesearch.mns.global/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Search the company and business register free of charge."
+    },
+    {
+      "title": "Corporate and Business Registration Department",
+      "url": "https://companies.govmu.org/cbrd/",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Find the online search, the request for documents service, forms and notices."
+    },
+    {
+      "title": "CBRD Customer Charter",
+      "url": "https://companies.govmu.org/cbrd/wp-content/uploads/2026/08/CBRD_Customer-Charter-UPDATED_10-08-2026.pdf",
+      "publisher": "Corporate and Business Registration Department",
+      "what": "Read what the registry holds, what is public and what a search costs."
+    },
+    {
+      "title": "List of VAT Registered Persons",
+      "url": "https://www.mra.mu/download/ListofVATRegPersons.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Look up a VAT registration number, BRN and name in the published list."
+    },
+    {
+      "title": "VAT page",
+      "url": "https://www.mra.mu/index.php/mvat",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Find the current VAT list and the lists of persons not submitting returns."
+    },
+    {
+      "title": "Charitable Institutions",
+      "url": "https://www.mra.mu/index.php/taxes-duties/charitable-institutions",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check whether an organisation is on the MRA's list of charitable institutions."
+    },
+    {
+      "title": "List of Registered General Practitioner",
+      "url": "https://medicalcouncilmu.org/doctors-list/",
+      "publisher": "Medical Council of Mauritius",
+      "what": "Search for a registered general practitioner by name."
+    },
+    {
+      "title": "List of Registered Specialists",
+      "url": "https://medicalcouncilmu.org/list-of-registered-specialists/",
+      "publisher": "Medical Council of Mauritius",
+      "what": "Search for a registered specialist doctor by name."
+    },
+    {
+      "title": "MIPA register",
+      "url": "https://www.mipa.mu/home/register_of_members",
+      "publisher": "Mauritius Institute of Professional Accountants",
+      "what": "View the registers of professional accountants, public accountants and member firms."
+    },
+    {
+      "title": "CRPE directory of registered engineers",
+      "url": "https://crpemauritius.com/directory/",
+      "publisher": "Council of Registered Professional Engineers",
+      "what": "Look up an engineer's registration number and branch."
+    },
+    {
+      "title": "List of Private Recruitment Agencies",
+      "url": "https://empment-labour.govmu.org/Documents/Recruitment/List%20of%20Recruitment%20Agencies.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Check that a recruitment agency holds a valid licence."
+    },
+    {
+      "title": "Directory of Cooperative Products and Services",
+      "url": "https://cooperatives.govmu.org/pages/directory/product-category.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Find cooperative societies by the product or service they supply."
+    },
+    {
+      "title": "Real Estate Agent Authority",
+      "url": "https://www.reaamauritius.org/",
+      "publisher": "Real Estate Agent Authority",
+      "what": "Read who must register as a real estate agent and how registration works."
+    },
+    {
+      "title": "Data Protection Office: registration",
+      "url": "https://dataprotection.govmu.org/Pages/Controllers%20and%20Processors/Registration.aspx",
+      "publisher": "Data Protection Office",
+      "what": "Read about registration of controllers and processors and the Data Protection Register."
+    },
+    {
+      "title": "SME Registration Unit",
+      "url": "https://enterbusiness.govmu.org/Pages/SME-Registration-Unit.aspx",
+      "publisher": "Ministry of Industry, SME and Cooperatives",
+      "what": "Contact the unit that issues SME registration certificates."
+    }
+  ],
+  "unverified": [
+    "What the first letter of a Business Registration Number means. No official document was found that defines it. Third-party sites say C is for companies, I for individuals and P for partnerships; this was not confirmed on an official page, so the guide reports only the letters seen in the MRA's VAT list.",
+    "The exact fields the CBRD Online Search returns for a company or a business. The search is a JavaScript application and no search was run; the guide relies on the registry's Customer Charter.",
+    "The Financial Services Commission register of licensees and its address. The site fscmauritius.org returned HTTP 403 to every request, so it is left out of the table.",
+    "The Bank of Mauritius lists of licensed banks, non-bank deposit taking institutions, cash dealers and payment service providers. The site bom.mu could not be opened (certificate error by direct request, HTTP 503 through the fetch tool), so it is left out of the table.",
+    "The Construction Industry Authority register of contractors and consultants. The address cidb.mu showed unrelated gambling content on 20 November 2026, and cidb.govmu.org, named in an MRA tender document, did not resolve. Left out of the table.",
+    "A Tourism Authority list of licensed operators. None was found. The link on its licence page described as the list of all licensed tourist enterprises opens a list of licence categories. The Tourism Authority site also carried unrelated gambling posts among its pages on 20 November 2026.",
+    "An official online roll of law practitioners (barristers, attorneys and notaries). None was found on the Supreme Court site or the Mauritius Bar Association site.",
+    "Registers of architects (pac.mu did not resolve) and dentists (dentalcouncilmu.org returned HTTP 403), and registers kept by other health councils, which were not checked.",
+    "A public list of registered real estate agents. The Real Estate Agent Authority site describes registration but no list was found.",
+    "A public register of registered SMEs, and a public online search of the Data Protection Register. Neither was found.",
+    "The MRA lists of registered tax agents. The links on the MRA e-services page (eservices36.mra.mu) did not load.",
+    "An online address for the registers of undischarged bankrupts and of insolvency practitioners mentioned in the CBRD Customer Charter.",
+    "How often the MRA updates the List of VAT Registered Persons, and the legal basis on which institutions appear on the Charitable Institutions list.",
+    "The statutory register of cooperative societies. Only the product and service directory was found online."
+  ]
+}

@@ -16,7 +16,7 @@ export default function SiteFooter() {
       <div className="shell grid gap-10 py-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="wordmark">
-            biznes<i aria-hidden />mu
+            biznes<span className="dot">.</span>mu
           </p>
           <p className="body-3 mt-4 max-w-sm text-ink-subtle">{site.line}. Listings come from open data and each one says where; guides are written from official sources and each one lists them.</p>
           <p className="caption-1 mt-6 max-w-sm text-ink-faint">
@@ -48,11 +48,13 @@ export default function SiteFooter() {
             {ACTIONS.add}
           </Link>
           <p className="body-3 mt-6 text-ink-subtle">
-            <a href={contact.phoneHref} className="data-1 whitespace-nowrap">
+            <a href={contact.phoneHref} className="data-1 inline-flex min-h-8 items-center whitespace-nowrap">
               {contact.phone}
             </a>
             <br />
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={`mailto:${contact.email}`} className="inline-flex min-h-8 items-center">
+              {contact.email}
+            </a>
           </p>
         </div>
       </div>

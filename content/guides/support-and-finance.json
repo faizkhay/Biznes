@@ -144,7 +144,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Registration is done by the SME Registration Unit of the Ministry of Industry, SME and Cooperatives, not by SME Mauritius Ltd. It is free. It is not compulsory, but the registration certificate is required to benefit from Government assistance to SMEs. Any legal business activity with a projected annual turnover of less than MUR 250 million can apply. The certificate is valid for 5 years.",
+          "text": "Registration is done by the SME Registration Unit of the Ministry of Industry, SME and Cooperatives, not by SME Mauritius Ltd. It is free. It is not compulsory, but the registration certificate is required to benefit from Government assistance to SMEs. Any legal business activity with a projected annual turnover of less than MUR 250 million can apply. The certificate is valid for 5 years. It is not a permit or a licence: authorisations for the activity itself still have to be obtained from the relevant regulator.",
           "sources": [
             "S2",
             "S3",
@@ -162,7 +162,8 @@
           ],
           "sources": [
             "S2",
-            "S3"
+            "S3",
+            "S27"
           ]
         },
         {
@@ -181,13 +182,6 @@
           "text": "The Ministry's leaflet of February 2026 lists what registration opens up. A new small company registered as an SME may qualify for a 4 year income tax holiday, except in ICT, financial services, certain professional services, activities needing a tourist enterprise licence and training services. A local SME with annual turnover of not more than MUR 100 million can have a margin of preference of up to 40 per cent in public procurement. Registered SMEs can also apply for SME Mauritius grants, DBM loans, and some duty and tax concessions on vehicles and land conversion, each with its own conditions.",
           "sources": [
             "S2"
-          ]
-        },
-        {
-          "type": "note",
-          "text": "The registration certificate is not a permit or a licence. Authorisations for the activity itself still have to be obtained from the relevant regulator.",
-          "sources": [
-            "S3"
           ]
         }
       ]

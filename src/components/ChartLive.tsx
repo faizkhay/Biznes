@@ -47,7 +47,8 @@ export default function ChartLive({ height, lit, follow, focus }: { height: numb
         canvas.height = tall;
       }
       const k = width / 10000;
-      const t = still ? 1 : Math.min(1, (now - started) / 360);
+      // A frame's own time can be a moment earlier than the time the change was asked for.
+      const t = still ? 1 : Math.max(0, Math.min(1, (now - started) / 360));
       const ease = 1 - Math.pow(1 - t, 3);
       const some = current.size > 0;
       ctx.clearRect(0, 0, width, tall);

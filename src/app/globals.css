@@ -14,12 +14,12 @@
   --palette-night: #050a1a; /* derived from ink, darker: the sea at night. The page's ground */
   --palette-ink: #0a1639; /* sampled: the brand's dark. The header, a panel, a field */
   --palette-swell: #14224f; /* derived from ink, lighter: a control under the pointer, a chosen row */
-  --palette-saffron: #f8c618; /* sampled: the brand's action. What answers a question: a lit point, the one filled action, focus */
+  --palette-saffron: #f8c618; /* sampled: the brand's action. What answers a question: a lit point, the one filled action, focus; 12.28:1 on night, and night on it the same */
   --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer */
-  --palette-limewash: #f7f7f8; /* sampled: the brand's white. Words on night (18.39:1) and on ink (16.52:1) */
-  --palette-haze: #b6c0db; /* derived from limewash toward ink: secondary words, 10.51:1 on night, 9.44:1 on ink */
-  --palette-tide: #8794bb; /* derived from haze toward night: a chart's own lettering, captions; 6.38:1 on night, 5.73:1 on ink */
-  --palette-coral: #f14949; /* sampled: the brand's red. An error's words and mark: 5.38:1 on night, 4.83:1 on ink */
+  --palette-limewash: #f7f7f8; /* sampled: the brand's white. Words on night (18.42:1) and on ink (16.52:1) */
+  --palette-haze: #b6c0db; /* derived from limewash toward ink: secondary words, 10.84:1 on night, 9.73:1 on ink */
+  --palette-tide: #8794bb; /* derived from haze toward night: a chart's own lettering, captions; 6.55:1 on night, 5.88:1 on ink, 5.09:1 on swell */
+  --palette-coral: #f14949; /* sampled: the brand's red. An error's words and mark: 5.43:1 on night, 4.87:1 on ink */
 
   --gutter: clamp(1rem, 4vw, 3rem);
   --nav-h: 64px;
@@ -40,7 +40,7 @@
   --color-on-signal: var(--palette-night);
   --color-alert: var(--palette-coral);
   --color-line: color-mix(in srgb, var(--palette-limewash) 13%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 46%, transparent); /* an edge: 4.4:1 on night */
+  --color-line-strong: color-mix(in srgb, var(--palette-limewash) 46%, transparent); /* an edge: 4.40:1 on night, 4.36:1 on ink */
   --color-focus: var(--palette-saffron);
 
   /* Archivo at its widest speaks for the site: the name, a page's title. It is one file with a
@@ -521,14 +521,16 @@
     display: inline-flex;
     align-items: baseline;
   }
-  .wordmark i {
+  /* The full stop is there for a reader and a screen reader; what is seen is the lit point. */
+  .wordmark .dot {
     display: inline-block;
-    width: 0.34em;
-    height: 0.34em;
-    margin: 0 0.07em;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 0 0.0875rem;
     border-radius: 50%;
+    font-size: 0;
     background: var(--color-signal);
-    box-shadow: 0 0 0.6em 0.05em color-mix(in srgb, var(--palette-saffron) 60%, transparent);
+    box-shadow: 0 0 0.7rem 0.05rem color-mix(in srgb, var(--palette-saffron) 60%, transparent);
   }
 
   /* A ruled list: how the site shows many things. Rows between hairlines, never cards. */
@@ -749,7 +751,7 @@
   }
   .chart-coast {
     fill: color-mix(in srgb, var(--palette-ink) 60%, transparent);
-    stroke: color-mix(in srgb, var(--palette-limewash) 34%, transparent);
+    stroke: color-mix(in srgb, var(--palette-limewash) 37%, transparent); /* 3.24:1 on night */
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
     stroke-linejoin: round;

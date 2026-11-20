@@ -1,0 +1,483 @@
+[
+  {
+    "term": ".mu domain name",
+    "meaning": "A domain name under the .mu country-code top-level domain, registered through an accredited registrar and not with the registry, MU-NIC, directly. It gives the registrant a licence to use the name, subject to the registry's acceptable user policy.",
+    "guide": "protect-a-brand"
+  },
+  {
+    "term": "annual registration fee",
+    "meaning": "A fee a company pays for every year after incorporation while it stays on the register, due not later than 20 January. For 2026 it runs from MUR 500 for a small private company with turnover not exceeding MUR 30 million to MUR 27,000 for a public or foreign company.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "annual return",
+    "meaning": "A return a company files with the Registrar within 28 days of its annual meeting, signed by a director or secretary. A small private company need not file one unless its shareholding, directors or related particulars changed.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "APS",
+    "full": "Advance Payment System",
+    "meaning": "The system under which a company files a statement and pays tax for each of the first three quarters of its accounting year, set against the tax due on its annual return. No statement is due where gross income in the previous accounting year was MUR 10 million or less.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "Authorised Company",
+    "meaning": "A company incorporated under the Companies Act that is mainly owned or controlled by non-citizens, does business principally outside Mauritius and has its central management and control outside Mauritius. It is treated as non-resident for income tax and must have a registered agent in Mauritius.",
+    "guide": "global-business"
+  },
+  {
+    "term": "BRN",
+    "full": "Business Registration Number",
+    "meaning": "The number the Registrar of Businesses allocates when a business is entered in the Central Business Registration Database. A person has one BRN only and must use it on every document in every transaction.",
+    "guide": "register-a-business"
+  },
+  {
+    "term": "Building and Land Use Permit",
+    "meaning": "A permit from the council for the area, needed before development works such as putting up, extending, altering or changing the use of a building. The decision is due within 14 working days of the effective date of the application, under the Act as at 13 October 2025.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "business name",
+    "meaning": "The name or style under which a registered person carries on business, recorded by the Registrar of Businesses under the Business Registration Act 2002. A registered person may not trade under a business name that is not registered.",
+    "guide": "protect-a-brand"
+  },
+  {
+    "term": "Business Registration Card",
+    "meaning": "The card the Registrar issues to a registered business, showing its BRN, the person's name, any business name, the nature of the business and its places of business. Unless the contrary is proved, it is conclusive evidence that the business is registered.",
+    "guide": "register-a-business"
+  },
+  {
+    "term": "CBRD",
+    "full": "Corporate and Business Registration Department",
+    "meaning": "The office of the Registrar of Companies, who is also the Registrar of Businesses. It registers businesses and sociétés, issues the Business Registration Card and collects trade fees on behalf of local authorities.",
+    "guide": "register-a-business"
+  },
+  {
+    "term": "CBRD Online Search",
+    "meaning": "The online search of the company and business register, which the Corporate and Business Registration Department describes as free of charge. A summarised company search, an extract of file of companies and basic information on businesses are available online.",
+    "guide": "verify-a-business"
+  },
+  {
+    "term": "CBRIS",
+    "full": "Companies and Businesses Registration Integrated System",
+    "meaning": "The online system through which a person applies to the CBRD to register a business. A person can also apply for VAT registration when registering a business through it.",
+    "guide": "register-a-business"
+  },
+  {
+    "term": "CCR levy",
+    "full": "Corporate Climate Responsibility levy",
+    "meaning": "A levy of 2% of chargeable income on companies with turnover above MUR 50 million. It applies from the year of assessment that started on 1 July 2024.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "chargeable income",
+    "meaning": "Gross income less allowable deductions, where gross income is all income other than exempt income. Companies pay income tax on it.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "classified trade",
+    "meaning": "A business listed in the Twelfth Schedule to the Local Government Act. The Corporate and Business Registration Department publishes the list of classified trades and the trade fee for each one.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "co-operative society",
+    "meaning": "A society registered by the Registrar of Co-operative Societies under the Co-operatives Act 2016, with the object of promoting the economic and social betterment of its members. It is a body corporate from the date of its certificate of registration.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "company income tax",
+    "meaning": "The income tax that companies, trusts, foundations, collective investment schemes and non-resident sociétés pay on chargeable income. The standard rate is 15%, in force on 20 November 2026.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "controller",
+    "meaning": "A person or public body that, alone or jointly with others, determines the purposes and means of the processing of personal data and has decision-making power over it. No person may act as controller unless registered with the Data Protection Commissioner.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "CPS",
+    "full": "Current Payment System",
+    "meaning": "The system under which an individual with business or rental income files a quarterly statement and pays tax. No statement is due where gross income under CPS in the previous income year was MUR 4 million or less.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "CSG",
+    "full": "Contribution Sociale Généralisée",
+    "meaning": "A social contribution charged on basic wage or salary, with no ceiling. The employer pays 3% and the employee 1.5% where monthly basic pay is MUR 50,000 or less, and 6% and 3% above that, at the rates in force on 20 November 2026.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "CSR Fund",
+    "full": "Corporate Social Responsibility Fund",
+    "meaning": "A fund a company must set up each year, equal to 2% of its chargeable income of the previous year, at the rate in force on 20 November 2026. Part is paid to the MRA and the rest is spent on a CSR programme or given to a non-governmental organisation running one.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "Data Protection Office",
+    "meaning": "The office with which controllers and processors of personal data register, on the DPO Portal. A registration certificate is valid for 3 years, and the fee is MUR 1,000, MUR 1,500 or MUR 2,500 by number of employees, under the Fees Regulations 2020.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "data protection officer",
+    "meaning": "The officer every controller must designate as responsible for data protection compliance. Under regulations in operation on 1 January 2027, the officer is a member of the controller's staff and the Data Protection Office is told within 14 days of the designation.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "Data Protection Register",
+    "meaning": "The register the Data Protection Commissioner must keep under the Data Protection Act 2017. It must be available at all reasonable times for inspection by any person free of charge.",
+    "guide": "verify-a-business"
+  },
+  {
+    "term": "DBM",
+    "full": "Development Bank of Mauritius",
+    "meaning": "A development bank that lends to small businesses. In November 2026 its business loan schemes each finance 90% of the project cost, and the largest, the Business Loan Scheme, lends up to MUR 25 million.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "e-invoicing",
+    "meaning": "The MRA system under which a business sends each invoice, debit note and credit note from its Electronic Billing System (EBS) to the MRA in real time and receives an Invoice Registration Number and a QR code. From 1 September 2026 it is mandatory for annual turnover above MUR 40 million.",
+    "guide": "vat"
+  },
+  {
+    "term": "EDB",
+    "full": "Economic Development Board",
+    "meaning": "The Government agency that promotes Mauritius as a place to invest and do business, set up under the Economic Development Board Act 2017. It acts as the single interface with investors, registers them and runs the National Electronic Licensing System.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "EIA licence",
+    "full": "Environmental Impact Assessment licence",
+    "meaning": "The licence needed under the Environment Act 2024 before a proponent starts, alters or modifies an undertaking listed in Part B of the Sixth Schedule. Examples are an asphalt plant, a landfill and the manufacture of batteries.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "ERN",
+    "full": "Employer Registration Number",
+    "meaning": "The number the MRA sends, with a password, to a person it registers as an employer. It is the user ID for filing the monthly returns electronically.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "excise licence",
+    "meaning": "A licence needed to carry on a business listed in the Second Schedule to the Excise Act, such as making excisable goods or selling liquor and alcoholic products. The licensing authority is the Director-General of the Mauritius Revenue Authority.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "exempt supply",
+    "meaning": "A supply that carries no VAT, listed in the First Schedule to the VAT Act. No input tax can be claimed on goods or services used to make it.",
+    "guide": "vat"
+  },
+  {
+    "term": "Fair Share Contribution",
+    "meaning": "A contribution paid by a company with chargeable income above MUR 24 million in an accounting year. The rate is 5% of chargeable income, or 2% for a company taxed at 3%, on income derived from 1 July 2025 to 30 June 2028.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "fire certificate",
+    "meaning": "A certificate from the Mauritius Fire and Rescue Service, required for premises such as commercial and industrial premises and any other premises to which the public has access. It is valid for at least one year and at most 3 years, depending on the risk assessment of the premises.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "Food Handler's Certificate",
+    "meaning": "A certificate that every person handling food for sale must hold, stating that the holder has had a medical examination and followed an approved food safety and hygiene training course. It is valid for 3 years, and the fee set by the Food Regulations 2024 is MUR 300.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "foreign company",
+    "meaning": "A company incorporated outside Mauritius that has a place of business or carries on business in Mauritius. It must file for registration under Part XXII of the Companies Act within one month, and the Registrar registers the foreign company itself.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "foundation",
+    "meaning": "A legal form that may have charitable objects, non-charitable objects or both, for the benefit of persons or to carry out a purpose. It has separate legal personality from the date its certificate of registration is issued by the Registrar of Foundations.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "FSC",
+    "full": "Financial Services Commission",
+    "meaning": "The integrated regulator for the non-bank financial services sector and global business, established in 2001. It issues the licences and authorisations, makes FSC Rules and guidelines, and keeps the register of licensees.",
+    "guide": "global-business"
+  },
+  {
+    "term": "GBC",
+    "full": "Global Business Company",
+    "meaning": "A corporation holding a Global Business Licence. It must carry out its core income generating activities in or from Mauritius, be managed and controlled from Mauritius and be administered by a management company.",
+    "guide": "global-business"
+  },
+  {
+    "term": "Global Business Licence",
+    "meaning": "A licence from the Financial Services Commission that a resident corporation must apply for where it is mainly owned or controlled by non-citizens and does business principally outside Mauritius. The application is made through a management company.",
+    "guide": "global-business"
+  },
+  {
+    "term": "Golden Visa",
+    "meaning": "A visa, new in 2026, for high net worth investors and entrepreneurs who undertake in writing to invest at least USD 1 million in qualifying sectors within 12 months of the visa being issued. It is valid for up to 2 years and is renewable.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "HRDC",
+    "full": "Human Resource Development Council",
+    "meaning": "The body that runs the Training Grant System, which refunds training costs. Only employers that pay the training levy each month are eligible, and only for courses approved in advance.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "IFCM",
+    "full": "Industrial Finance Corporation of Mauritius",
+    "meaning": "A corporation set up following the 2020-2021 Budget to help enterprises modernise. In November 2026 it offers leasing of up to 85% of the cost of an asset and factoring of up to 90% of an invoice amount.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "input tax",
+    "meaning": "The VAT a registered business is charged on purchases from other registered suppliers. In each return it deducts the allowable input tax from its output tax, the VAT it charges on its sales, and pays the difference to the MRA.",
+    "guide": "vat"
+  },
+  {
+    "term": "IPOM",
+    "full": "Industrial Property Office of Mauritius",
+    "meaning": "The office that administers the Industrial Property Act 2019 and registers trade marks. An application to register a mark costs MUR 6,000 for the first class and MUR 2,000 for each additional class, under the Industrial Property Regulations 2022.",
+    "guide": "protect-a-brand"
+  },
+  {
+    "term": "List of VAT Registered Persons",
+    "meaning": "A list the MRA publishes as a PDF, free to download, giving each registered person's VAT registration number, BRN, name and any trade name. The version read was as at 30 September 2026, with about 36,000 entries.",
+    "guide": "verify-a-business"
+  },
+  {
+    "term": "LLP",
+    "full": "Limited liability partnership",
+    "meaning": "A body corporate with legal personality separate from its partners, under the Limited Liability Partnerships Act 2016, with at least 2 partners and a manager resident in Mauritius. A partner is not liable for its debts beyond the agreed contribution, except for his or her own wrongful act or omission.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "LP",
+    "full": "Limited partnership",
+    "meaning": "A partnership under the Limited Partnerships Act 2011 with one or more general partners and one or more limited partners. General partners are liable for all its debts without limit, and limited partners are not liable beyond what they contributed or agreed to contribute.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "management company",
+    "meaning": "A company that holds a management licence from the Financial Services Commission. Its main activity is to set up, administer and manage corporations that hold or apply for a Global Business Licence, and Authorised Companies.",
+    "guide": "global-business"
+  },
+  {
+    "term": "MRA",
+    "full": "Mauritius Revenue Authority",
+    "meaning": "The body that runs the taxes a business meets on its profits, on a self-assessment basis. The business works out its own tax, files a return and pays what it shows, and the MRA can audit the return.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "MRIC",
+    "full": "Mauritius Research and Innovation Council",
+    "meaning": "The body that funds research and innovation projects through calls for proposals. On 20 November 2026 two of its schemes were accepting applications, the National SME Incubator Scheme and the Intellectual Property Promotion Scheme.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "national minimum wage",
+    "meaning": "The minimum monthly wage for every worker other than a part-time worker. It is MUR 17,745 a month from 1 January 2026, a figure that includes the additional remuneration payable for 2026.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "NELS",
+    "full": "National Electronic Licensing System",
+    "meaning": "An online platform run by the Economic Development Board. The Board describes it as a single entry point for the application, payment, processing and determination of business-related licences.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "NSF",
+    "full": "National Savings Fund",
+    "meaning": "A fund to which contributions are paid on an employee's basic wage or salary. The employer pays 2.5% and the employee 1%, on pay up to MUR 29,710 a month from 1 July 2026.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "Occupation Permit",
+    "meaning": "A combined work and residence permit that lets a non-citizen work, invest and live in Mauritius, in three main categories: investor, professional and self-employed. An investor needs an initial investment of USD 100,000 under the rules in force since 13 August 2026.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "partial exemption",
+    "meaning": "An exemption of 80%, or 95% in some cases, on listed types of income such as foreign dividends. The company must carry out its core income generating activities in Mauritius, employ enough suitably qualified people and incur a minimum level of expenditure.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "PAYE",
+    "full": "Pay As You Earn",
+    "meaning": "The system under which an employer withholds income tax from emoluments when they are paid and sends it to the MRA each month. The tax is worked out on a cumulative basis over the income year, which runs from 1 July to 30 June.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "PER licence",
+    "full": "Preliminary Environmental Report licence",
+    "meaning": "The licence needed under the Environment Act 2024 before a proponent starts, alters or modifies an undertaking listed in Part A of the Sixth Schedule. Examples are a sawmill, a slaughter house and a recycling plant.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "Permanent Residence Permit",
+    "meaning": "A permit that lasts 20 years. It is open to holders of an Occupation Permit or a retired non-citizen residence permit who have held it for at least 5 years and meet the test for their category.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "personal data",
+    "meaning": "Any information relating to an identified or identifiable individual. Individual means a living individual.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "personal data breach",
+    "meaning": "A breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, personal data. The controller notifies the Data Protection Commissioner without undue delay and, where feasible, not later than 72 hours after becoming aware of it.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "PIO",
+    "full": "Passport and Immigration Office",
+    "meaning": "A branch of the Mauritius Police Force under the Prime Minister's Office. It issues the permits and visas.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "Premium Visa",
+    "meaning": "A visa for a non-citizen who wants to stay longer than a tourist, as a visitor, a retiree or a professional working remotely. It is valid for more than six months and up to one year, is renewable and carries no fee, and the holder must not enter the Mauritian labour market.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "presumptive tax",
+    "meaning": "An optional tax of 1% of gross income that a small enterprise can elect to pay in place of tax on chargeable income. It is open to businesses in farming, manufacturing, retail or wholesale of goods with gross income of MUR 10 million or less in the income year.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "PRGF",
+    "full": "Portable Retirement Gratuity Fund",
+    "meaning": "A fund to which the employer pays 4.5% of a worker's monthly remuneration, at the rate in force on 20 November 2026. No contribution is due for a worker for whom the employer contributes to an approved private pension scheme.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "private company",
+    "meaning": "A company stated to be private in its application for incorporation or its constitution. It has not more than 50 shareholders and may not offer shares or debentures to the public.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "processor",
+    "meaning": "A person or public body that processes personal data on behalf of a controller, for example a company that hosts and manages the servers of an e-commerce business. No person may act as processor unless registered with the Data Protection Commissioner.",
+    "guide": "data-protection"
+  },
+  {
+    "term": "public company",
+    "meaning": "Any company not stated to be private. Its board must include at least one woman and at least 2 independent directors.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "register of beneficial owners",
+    "meaning": "A separate register in which every company must record its beneficial owners, with details such as name, address, identity or passport number and nationality. The information is lodged with the Registrar, and a change in shareholding is filed within 14 days.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "residence permit",
+    "meaning": "A permit that gives the right to live in Mauritius. A non-citizen can hold one as the dependant of a permit holder, as a retired non-citizen aged 50 or over, or as the owner of a qualifying property bought for at least USD 375,000.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "salary compensation",
+    "meaning": "Additional remuneration paid under the Workers' Rights Act. From 1 January 2026 every employer pays MUR 635 a month to each full-time worker whose monthly basic wage or salary is MUR 50,000 or less.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "small private company",
+    "meaning": "A private company with turnover under MUR 100 million in its last accounting period, with no Global Business Licence and not listed in the First Schedule to the Financial Reporting Act. It needs no company secretary and files a financial summary or financial statements.",
+    "guide": "incorporate-a-company"
+  },
+  {
+    "term": "SME",
+    "full": "Small and medium enterprise",
+    "meaning": "Under the Small and Medium Enterprises Act 2017, a small or medium enterprise, including a microenterprise, in classes set by annual turnover. Individual schemes set their own limits, which do not always match the Act.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "SME Mauritius",
+    "meaning": "A private company incorporated in 2017 and fully owned by the Government of Mauritius, which supports small businesses with advice, training and grant schemes. Its grants cover 80% of the approved cost of a project, up to a cap of MUR 50,000 to MUR 250,000 set by the category of the business.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "SME registration certificate",
+    "meaning": "A free certificate issued by the SME Registration Unit of the Ministry of Industry, SME and Cooperatives, valid for 5 years and required to benefit from Government assistance to SMEs. It is not a permit or a licence.",
+    "guide": "support-and-finance"
+  },
+  {
+    "term": "société",
+    "meaning": "A partnership formed by two or more persons who agree to contribute to a common undertaking with the intention of sharing profits. The partners also undertake to share the losses, and the statuts must be in writing.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "société civile",
+    "meaning": "Any société that the law does not treat as commercial, governed by the Code Civil Mauricien. The partners answer for its debts without limit, in proportion to their share of the capital, and it pays no registration fee and no annual fee.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "société commerciale",
+    "meaning": "A partnership that trades, governed by the Code de Commerce, which includes the société en nom collectif and the société en commandite simple. It pays MUR 9,000 at registration and an annual fee of MUR 9,000 for 2026 when paid by the due date.",
+    "guide": "register-a-business"
+  },
+  {
+    "term": "sole trader",
+    "meaning": "An individual business, owned and run by one natural person in his or her own name or under a business name. It has no separate legal personality, and the owner is personally liable for all its debts and obligations.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "TAN",
+    "full": "Tax Account Number",
+    "meaning": "The number by which the MRA identifies taxpayers. A company uses its TAN as the user ID to file returns on MRA e-services, with a password issued by the MRA.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "TDS",
+    "full": "Tax deducted at source",
+    "meaning": "Tax that the payer deducts from some payments to a business and sends to the MRA. It is an advance payment and is set against the recipient's income tax.",
+    "guide": "business-taxes"
+  },
+  {
+    "term": "Tourist Enterprise Licence",
+    "meaning": "A licence from the Tourism Authority for an establishment or activity run to provide services or goods to tourists for reward, such as a restaurant, pub, tour operator or travel agency. It is valid for 12 months from the date of issue, or a shorter period set by the Authority.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "trade fee",
+    "meaning": "A yearly fee, not a licence, that a person carrying out a classified trade pays to the council for the area, through the Corporate and Business Registration Department. For financial year 2026/2027 the two instalments are due by 20 January 2027 and 30 June 2027.",
+    "guide": "licences-and-permits"
+  },
+  {
+    "term": "trade mark",
+    "meaning": "A mark is a visually perceptible sign, or combination of signs, capable of distinguishing the goods or services of one enterprise from those of others. Registration gives the exclusive right to use it for the goods and services covered, for 10 years from the filing date, and is renewable.",
+    "guide": "protect-a-brand"
+  },
+  {
+    "term": "training levy",
+    "meaning": "A levy of 1.5% of total basic wage or salary, paid by the employer for every employee other than a household worker. The rate has applied since July 2021.",
+    "guide": "employing-people"
+  },
+  {
+    "term": "trust",
+    "meaning": "A trust exists where a trustee holds property, of which the trustee is not the owner in his or her own right, with a duty to use it for beneficiaries or for a purpose. It is created by a written instrument and has not more than 4 trustees, at least one of them a qualified trustee.",
+    "guide": "choose-a-structure"
+  },
+  {
+    "term": "VAT",
+    "full": "Value Added Tax",
+    "meaning": "A tax on goods and services, charged on taxable supplies made in Mauritius by a taxable person in the course of business and on goods imported into Mauritius. The standard rate is 15%, in force on 20 November 2026.",
+    "guide": "vat"
+  },
+  {
+    "term": "VAT invoice",
+    "meaning": "The invoice a registered person must issue for a taxable supply, showing the words VAT INVOICE, the supplier's VAT Registration Number and BRN, the value of the supply, the VAT charged and the rate. Only a registered person may issue one.",
+    "guide": "vat"
+  },
+  {
+    "term": "VAT registration",
+    "meaning": "A person who makes taxable supplies must apply to register when the turnover of taxable supplies exceeds, or is likely to exceed, MUR 3 million a year, the threshold since 1 October 2025. Listed professions and businesses register whatever their turnover.",
+    "guide": "vat"
+  },
+  {
+    "term": "work permit",
+    "meaning": "The permit a non-citizen needs to be employed in Mauritius without an Occupation Permit or another exempting permit, issued by the Employment Division of the Ministry of Labour and Industrial Relations. The employer applies, online on NELS, and the permit is tied to that employer.",
+    "guide": "invest-from-abroad"
+  },
+  {
+    "term": "zero-rated supply",
+    "meaning": "A taxable supply charged at 0%, listed in the Fifth Schedule to the VAT Act. The supplier charges no VAT and can still claim input tax.",
+    "guide": "vat"
+  }
+]

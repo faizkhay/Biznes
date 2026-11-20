@@ -79,8 +79,11 @@ export default function SearchBox({ size = "md", initial = "", light = false, au
         }}
         onFocus={() => setOpen(true)}
         onKeyDown={(e) => {
-          if (e.key === "Escape") setOpen(false);
-          else if (e.key === "ArrowDown" && items.length) {
+          if (e.key === "Escape") {
+            // A search field's own Escape empties it. While the list is open, Escape only closes the list.
+            if (items.length) e.preventDefault();
+            setOpen(false);
+          } else if (e.key === "ArrowDown" && items.length) {
             e.preventDefault();
             setActive((i) => (i + 1) % items.length);
           } else if (e.key === "ArrowUp" && items.length) {
@@ -91,7 +94,7 @@ export default function SearchBox({ size = "md", initial = "", light = false, au
             go(items[active]);
           }
         }}
-        placeholder={size === "lg" ? "A business, a service, or a question" : "Search biznes.mu"}
+        placeholder={size === "lg" ? "A business, a service, or a question" : "Search"}
         aria-label="Search businesses, guides and official pages"
         autoComplete="off"
         autoCorrect="off"
