@@ -167,6 +167,33 @@ export function Chips({ name, legend, choices, defaultValue = "" }: { name: stri
   );
 }
 
+/** Several of a few, as pills: the site's own tick boxes. What was ticked comes back to the form as one value, with commas between. */
+export function Ticks({ name, legend, hint, choices, defaultValue = [] }: { name: string; legend: string; hint?: React.ReactNode; choices: Choice[]; defaultValue?: string[] }) {
+  const state = useContext(Answer);
+  const id = useId();
+  const error = state.errors?.[name];
+  const on = state.values?.[name] != null ? state.values[name].split(",") : defaultValue;
+  return (
+    <fieldset aria-describedby={[hint ? `${id}-hint` : "", error ? `${id}-error` : ""].filter(Boolean).join(" ") || undefined}>
+      <legend className="title-2">{legend}</legend>
+      {hint && (
+        <p id={`${id}-hint`} className="caption-1 mt-1 text-ink-faint">
+          {hint}
+        </p>
+      )}
+      <div key={on.join(",")} className="mt-2 flex flex-wrap gap-2">
+        {choices.map((c, i) => (
+          <label key={c.value} className="chip body-3">
+            <input type="checkbox" name={name} value={c.value} defaultChecked={on.includes(c.value)} aria-invalid={error && i === 0 ? true : undefined} className="sr-only" />
+            {c.label}
+          </label>
+        ))}
+      </div>
+      <Said id={id} error={error} />
+    </fieldset>
+  );
+}
+
 /** A box to tick. */
 export function Check({ name, label, defaultChecked = false }: { name: string; label: string; defaultChecked?: boolean }) {
   const state = useContext(Answer);

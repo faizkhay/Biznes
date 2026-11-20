@@ -85,7 +85,7 @@ const PAGE = 1000;
 const MOST = 20000;
 
 /** Every row of a public read, a thousand at a time: the API gives no more in one answer. */
-async function every<T>(table: string, columns: string, order: string, narrow?: [string, string | boolean]): Promise<T[]> {
+export async function every<T>(table: string, columns: string, order: string, narrow?: [string, string | boolean]): Promise<T[]> {
   const rows: T[] = [];
   for (let from = 0; from < MOST; from += PAGE) {
     const all = publicDb().from(table).select(columns);
@@ -111,7 +111,7 @@ const read = unstable_cache(
 );
 
 /** A part that could not be read is empty, not fatal: the businesses themselves are still shown. */
-const orNone = <T>(rows: Promise<T[]>): Promise<T[]> => rows.catch(() => []);
+export const orNone = <T>(rows: Promise<T[]>): Promise<T[]> => rows.catch(() => []);
 
 // The showcases and the menus. Kept apart from the read above, so that a database which does not
 // have their tables yet (the later migrations not applied) still shows every business.

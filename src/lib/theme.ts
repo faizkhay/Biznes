@@ -3,7 +3,17 @@ import { DEFAULT_PICTURE, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type Pictu
 import { accountsOn } from "@/lib/accounts/config";
 import { chosenLook } from "@/lib/accounts/owned";
 
-export type Theme = { id: string; picture: PictureId; src: string; small: string; greeting: string; holiday?: string };
+export type Theme = {
+  id: string;
+  /** The picture the calendar gives, by its id among the site's own. A picture chosen by hand leaves this as it is. */
+  picture: PictureId;
+  src: string;
+  small: string;
+  greeting: string;
+  holiday?: string;
+  /** The id of the picture showing, when the superadmin has chosen one by hand: one of the site's own, or one that was uploaded. */
+  chosen?: string;
+};
 
 /** The public holidays of every year on the notices, as one list. */
 const readHolidays = () => Object.values(holidays()?.years ?? {}).flat();
@@ -33,17 +43,27 @@ export function themeFor(day = todayInMauritius()): Theme {
 export const isPicture = (id: unknown): id is PictureId => typeof id === "string" && Object.hasOwn(PICTURES, id);
 
 /**
- * Today's look, with what the superadmin has chosen by hand laid over it: a picture, a greeting,
- * both or neither (the `site_settings` row, read as a visitor and kept for five minutes). With
- * accounts off, or with nothing chosen, it is the calendar's look and nothing is fetched.
+ * Today's look, with what the superadmin has chosen by hand laid over it (the `site_settings` row
+ * and the pictures they have uploaded, read as a visitor and kept for five minutes).
+ *
+ * The picture is chosen one of three ways: by the calendar, as it always was; one picture, fixed;
+ * or a round of chosen pictures, a new one each day in their order. A chosen picture is one the
+ * site is built with or one that was uploaded: an uploaded one has a single size, used on a phone
+ * and on a desk alike. The greeting is the calendar's unless one has been written. With accounts
+ * off, or with nothing chosen, this is the calendar's look and nothing is fetched.
  */
 export async function themeNow(): Promise<Theme> {
   const theme = themeFor();
   if (!accountsOn) return theme;
-  const { picture, greeting } = await chosenLook();
+  const look = await chosenLook();
+  const round = look.mode === "rotation" ? look.pictures.filter((id) => isPicture(id) || look.uploaded.some((u) => u.id === id)) : [];
+  // The day's turn in the round: the days since 1970, so everyone sees the same picture on the same day.
+  const today = Math.floor(Date.parse(todayInMauritius()) / 864e5);
+  const chosen = look.mode === "fixed" ? look.picture : round.length ? round[today % round.length] : null;
+  const uploaded = look.uploaded.find((u) => u.id === chosen);
   return {
     ...theme,
-    ...(isPicture(picture) ? { picture, src: PICTURES[picture].src, small: PICTURES[picture].small } : {}),
-    ...(greeting ? { greeting } : {}),
+    ...(isPicture(chosen) ? { picture: chosen, src: PICTURES[chosen].src, small: PICTURES[chosen].small, chosen } : uploaded ? { src: uploaded.src, small: uploaded.src, chosen: uploaded.id } : {}),
+    ...(look.greeting ? { greeting: look.greeting } : {}),
   };
 }
