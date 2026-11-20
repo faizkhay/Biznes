@@ -1,0 +1,487 @@
+{
+  "slug": "mauritian-food",
+  "shelf": "food",
+  "title": "Mauritian food: the dishes to know",
+  "summary": "The dishes that official sources present as Mauritian food, what each one is made of and where the sources say it comes from: dholl puri, roti and farata, gateau piment, mine frit, boulettes, briani, rougaille, cari, vindaye, the sweets and the drinks. Checked on 20 November 2026.",
+  "audience": "Visitors who want to know what to order, and anyone curious about what is on a Mauritian plate and why.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "What shapes Mauritian food",
+      "value": "Indian, Chinese, African and European cooking",
+      "detail": "The wording of the Mauritius Tourism Promotion Authority. The Government portal names the traditions of France, India, China and Africa.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Dholl puri",
+      "value": "A flatbread stuffed with ground split peas",
+      "detail": "Sold as street food almost everywhere. The national inventory traces it to northern India and calls it the most popular Mauritian fast food.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Gateau piment",
+      "value": "Deep-fried balls of crushed split peas and chilli",
+      "detail": "Written gateaux piments by the tourism authority and gato pima in the national inventory.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Briani",
+      "value": "Spiced rice cooked with meat and potatoes",
+      "detail": "Also written biryani and briyani. Usually served on festive occasions.",
+      "sources": [
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "Mine frit",
+      "value": "Noodles stir-fried with meat, vegetables, eggs and soy sauce",
+      "detail": "Minn frir in the national inventory. Minn boui is the boiled version.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Rougaille",
+      "value": "Tomatoes cooked with onions, garlic, ginger, thyme and chilli",
+      "detail": "Made plain or with fish, prawns, meat, sausages or eggs.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Vindaye",
+      "value": "Fried fish cooked in oil with turmeric and mustard seed",
+      "detail": "The national inventory calls it a kind of fish pickle that keeps for days.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Boulettes",
+      "value": "Small steamed dumplings served in broth",
+      "detail": "Sold by street vendors all over the island.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Alouda",
+      "value": "Cold milk with syrup and soaked basil seeds",
+      "detail": "The Port Louis market is known for it. Ice cream is now often added.",
+      "sources": [
+        "S3",
+        "S5"
+      ]
+    },
+    {
+      "label": "Napolitaine",
+      "value": "Two slices of shortbread with jam, under icing",
+      "detail": "Sold in patisseries, supermarkets, food courts and tabagie shops.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What is Mauritian food?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritian food is the cooking of several peoples on one small island. The Mauritius Tourism Promotion Authority says it is influenced by the island's mix of Indian, Chinese, African and European cultures. The Government portal names the culinary traditions of France, India, China and Africa, and says each community has adapted and mixed the others' cooking to its liking. The result is what it calls Mauritian cuisine.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The portal repeats a well-worn story: a Mauritian starts the day with a continental breakfast, has an Indian lunch and ends with a Chinese dinner. The names below are spelt as the sources spell them, with the Kreol spelling of the national inventory of intangible cultural heritage where it gives one.",
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Dish",
+            "What it is",
+            "Where the sources place it"
+          ],
+          "rows": [
+            [
+              "Dholl puri (dal puri)",
+              "Flatbread stuffed with ground split peas, cooked on a hot plate",
+              "Northern India, brought by indentured labourers"
+            ],
+            [
+              "Farata and roti",
+              "Flatbread of flour and water, oiled in layers and cooked on a tawa",
+              "Not stated"
+            ],
+            [
+              "Gateau piment (gato pima)",
+              "Deep-fried balls of crushed split peas, chilli, onion and coriander",
+              "Not stated"
+            ],
+            [
+              "Briani (biryani, briyani)",
+              "Spiced rice with meat and potatoes",
+              "The Indian subcontinent. The Government portal says Mughal origins"
+            ],
+            [
+              "Mine frit (minn frir)",
+              "Noodles stir-fried with meat, vegetables, eggs and soy sauce",
+              "Fried noodles are listed with the dishes of Chinese migrants"
+            ],
+            [
+              "Bol renversé",
+              "Rice and chop suey turned out of a bowl, with a fried egg",
+              "A local creation"
+            ],
+            [
+              "Rougaille (rougay)",
+              "Tomatoes cooked with onions, garlic, ginger, thyme and chilli",
+              "Creole cooking"
+            ],
+            [
+              "Cari (kari)",
+              "A dish in a sauce of mixed spices and herbs, usually with chilli",
+              "India and other South and South-east Asian countries"
+            ],
+            [
+              "Vindaye (vinnday)",
+              "Fried fish cooked in oil with turmeric, mustard seed, chilli and onion",
+              "Not stated"
+            ],
+            [
+              "Boulettes (boulet sinwa)",
+              "Small steamed dumplings and balls served in broth",
+              "Not stated"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is dholl puri?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Dholl puri is a soft flatbread with a filling of ground pulses. The tourism authority calls it a popular street food that you can find almost everywhere. It describes a flatbread made from yellow split peas ground into flour, stuffed with cooked yellow split peas, chutney and pickles, and often served with curry. The national inventory spells it dal puri. It describes a flour dough stuffed with dal, rolled out and heated on a hot plate, mostly served with bean curry, rougaille or another curry.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The inventory traces dholl puri to northern India. Indentured labourers brought it, and at first it was eaten only on festive days. It then became what the inventory calls the most popular Mauritian fast food. The Government portal suggests a pair of dhollpuri with a large glass of alouda or tamarind juice for a genuine taste of the island.",
+          "sources": [
+            "S2",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are roti and farata?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The inventory lists farata and roti together as a type of flatbread, and says the square farata is very common in Mauritius. The dough is flour and water. It is flattened with a rolling pin, oiled layer by layer, folded and flattened again. Then it is cooked on a tawa, a large metal plate, until golden brown with a few dark spots. Kari is often eaten with farata, and a shrimp rougaille is sometimes served inside one.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is gateau piment?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Gateau piment is a small fried ball of crushed pulses and chilli. The tourism authority writes gateaux piments and describes crisp fritters of split peas, chillies and coriander. The inventory uses the Kreol name gato pima. The dal is soaked and crushed to a paste, mixed with salt, onions, chilli, coriander leaves and spring onions, shaped into balls and deep fried. They are sold everywhere in Mauritius.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Samousa: a fritter that the inventory says comes from India. In Mauritius it is filled with cheese, chicken, fish or vegetables.",
+            "Gato brinzel: aubergine in batter, fried in oil. The same idea gives gato zonion with onions and gato pomdeter with potatoes.",
+            "Bhajjia: fried batter on its own, eaten with chilli."
+          ],
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are briani, mine frit and bol renversé?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Briani is spiced rice cooked with meat. The Government portal says biryani has Mughal origins and is prepared by the Muslim community, with meat, spiced rice and potatoes. The inventory writes briyani. It says the dish is usually served on festive occasions and was introduced by Indian immigrants, then adapted so far that the Mauritian version is found nowhere else. The tourism authority followed a cook who layers saffron chicken, potatoes, yoghurt, crisp shallots and rice in a deg, a shallow pot, over a wood fire.",
+          "sources": [
+            "S2",
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Mine frit, minn frir in the inventory, is noodles stir-fried with meat, vegetables, eggs and soy sauce. The inventory records a belief that noodles bring luck and wealth, which is why they are eaten on birthdays. The Government portal says fried noodles, fried rice, chop suey and spring rolls came with Chinese migrants and are now eaten by everyone.",
+          "sources": [
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Bol renversé means upside-down bowl. Rice, stir-fried vegetables and meat or seafood are packed into a bowl, then turned out onto a plate with a fried egg on top. The inventory says the recipe looks Chinese but is a typical Mauritian dish and a local creation.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are rougaille, cari and vindaye?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rougaille is a tomato sauce. The inventory lists oil, onions, garlic, ginger, thyme, parsley, tomatoes, chilli, salt and pepper. It can be vegetarian or made with fish, prawns, beef, chicken, sausages or eggs. The Government portal calls the creole rougaille ever-present, served with achards, which are pickles, or with dhals and rice.",
+          "sources": [
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Cari, written kari in the inventory, is the local word for curry: a mixture of spices and herbs, usually with fresh or dried chilli. Clove, pepper, cinnamon, cardamom and cumin are among the spices. Potatoes are often added. Chicken curry is treated as a Sunday meal, and seven kari are traditionally served at a Hindu wedding.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Vindaye is fish that is fried, then cooked in oil with turmeric, mustard seed, chilli and onion. The inventory calls it a kind of fish pickle that can be kept for days.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are boulettes?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Boulettes are small steamed dumplings. The tourism authority lists fillings such as shrimp, lamb, squash, chicken, fish, tofu and calamari. They come in a hot broth with vegetables and noodles and are sold as street food all over the island. The inventory files them under boulet sinwa: meat balls called niuk yan, fish balls, and saw mai made with chouchou. Street vendors usually sell them with a bouyon. In Port Louis the tourism authority points to Chinatown, close to the Central Market, for steaming dim sums.",
+          "sources": [
+            "S1",
+            "S3",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What sweets and cakes do Mauritians eat?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Napolitaine: two slices of shortbread sandwiched with jam under a layer of icing sugar. The inventory says it is eaten at tea time and offered at a child's christening.",
+            "Poudine maïs: a pudding of cornmeal and milk with spices, topped with grated coconut.",
+            "Gato patate: sweet potato dough filled with grated coconut and sugar, then fried. The inventory calls it a very important cake to share at Divali.",
+            "Kulfi malay: an ice cream of cream, milk, cardamom and pistachios. Its sellers walk the streets in the evening calling its name.",
+            "Fruit with chilli salt: half-ripe mango or pineapple with chilli and salt, sometimes with tamarind sauce. The tourism authority describes cups of jamalac, a sweet watery fruit, sold the same way at street and beach stalls."
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What do people drink?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Alouda, also written falouda, is the drink the sources name most. The inventory describes a kind of milkshake: milk mixed with syrup, with soaked basil seeds called tukmaria, kept cold. It says the Port Louis market is a famous place for alouda and that ice cream is now added. Tamarind juice, zi tamarin, is ripe tamarind with water and sugar, served chilled in summer. Dite morisie is a cup of black tea, plain or vanilla, with sugar and powdered milk.",
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Among alcoholic drinks the inventory lists rom, a rum distilled from sugarcane molasses or sugarcane juice. Rom aranze is rum in which fruit, vanilla and sugar have been left for several days.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where can you try these dishes?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Street stalls are the usual place for dholl puri, gateau piment and boulettes. The tourism authority sends visitors to the street food kiosks of the Port Louis Central Market for samosas, dholl puri, sweet pastries and a glass of alouda. It also lists yearly events such as the Moka Street Food Festival and the Chinatown Food Festival. Our guide to street food and markets gives the market days and hours that the councils publish.",
+          "sources": [
+            "S1",
+            "S5",
+            "S6"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Mauritian food",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritian-food/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Explore Mauritius: Mauritian Cuisine",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius, national portal",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "National Inventory for Intangible Cultural Heritage, Republic of Mauritius, updated version: Traditional food and way of cooking, and Traditional drinks",
+      "url": "https://govmu.org/FR/infoservices/arts/Documents/NATIONAL%20INVENTORY%20FOR%20INTANGIBLE%20CULTURAL%20HERITAGE-%20REPUBLIC%20OF%20MAURITIUS%20-%20UPDATED%20VERSION.PDF",
+      "publisher": "National Heritage Fund and Ministry of Arts and Culture",
+      "published": "Entries dated 2012 to 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Mauritius Biryani",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritius-biryani/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Port Louis market",
+      "url": "https://mauritiusnow.com/blog/things-to-do/port-louis-market/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Food festivals in Mauritius",
+      "url": "https://mauritiusnow.com/events/food-festivals/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Port Louis in Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/port-louis-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Street food and markets in Mauritius",
+      "url": "/learn/street-food-and-markets-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the markets, their days and hours, and the hygiene rules for sellers."
+    },
+    {
+      "title": "Eating out in Mauritius: what to expect",
+      "url": "/learn/eating-out-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the kinds of place, the bill, tipping and the rules on alcohol."
+    },
+    {
+      "title": "Baz Manzer",
+      "url": "/baz-manzer",
+      "publisher": "biznes.mu",
+      "what": "The home of food businesses on this site."
+    },
+    {
+      "title": "Restaurants",
+      "url": "/directory/restaurants",
+      "publisher": "biznes.mu",
+      "what": "Restaurants listed on this site, by place."
+    },
+    {
+      "title": "Mauritian food",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritian-food/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "See the tourism authority's own pick of dishes, with photographs."
+    },
+    {
+      "title": "Food festivals in Mauritius",
+      "url": "https://mauritiusnow.com/events/food-festivals/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Check which food festivals the tourism authority lists."
+    },
+    {
+      "title": "National Inventory for Intangible Cultural Heritage",
+      "url": "https://govmu.org/FR/infoservices/arts/Documents/NATIONAL%20INVENTORY%20FOR%20INTANGIBLE%20CULTURAL%20HERITAGE-%20REPUBLIC%20OF%20MAURITIUS%20-%20UPDATED%20VERSION.PDF",
+      "publisher": "National Heritage Fund and Ministry of Arts and Culture",
+      "what": "Read the full lists of traditional dishes, cakes, snacks and drinks, in the category on culinary traditions."
+    },
+    {
+      "title": "Public holidays",
+      "url": "/holidays",
+      "publisher": "biznes.mu",
+      "what": "The dates of Divali and the other festivals at which some of these cakes are shared."
+    }
+  ],
+  "unverified": [
+    "One agreed spelling for each dish. The sources differ: dholl puri, dal puri and dhollpuri; gateaux piments and gato pima; biryani, briyani and briani; vindaye and vinnday. This article uses the names the site's readers search for and shows the sources' spellings beside them.",
+    "Which pulse goes into dholl puri and gateau piment. The tourism authority says yellow split peas. The national inventory says dal and gives the botanical name of the pigeon pea. Neither was checked against a cook or a miller.",
+    "Whether roti and farata are two different breads. The national inventory lists them as one entry and describes only the farata.",
+    "Whether dholl puri has any official status as a national dish. No official page read on 20 November 2026 says so.",
+    "The origin of gateau piment, vindaye, boulettes and farata. The sources read do not state one, so the table says so.",
+    "Prices of street food. No official page gives them.",
+    "Whether the food festivals listed by the tourism authority still run every year, and their dates. The page gives no dates.",
+    "Whether the national inventory has been revised since the copy read, a file dated 23 March 2018 with entries dated 2012 to 2018."
+  ]
+}

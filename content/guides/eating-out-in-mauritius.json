@@ -1,0 +1,525 @@
+{
+  "slug": "eating-out-in-mauritius",
+  "shelf": "food",
+  "title": "Eating out in Mauritius: what to expect",
+  "summary": "The kinds of place that serve food, the licences they must hold, what the Food Handler's Certificate is, how VAT, service charge and tips work on a bill, what the law says about halal and vegetarian labels, and the rules on alcohol and smoking. Checked on 20 November 2026.",
+  "audience": "Visitors and residents who eat out and want to know what a restaurant, a table d'hôte or a street stall owes them.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "VAT on the bill",
+      "value": "15%",
+      "detail": "The standard rate. The law requires the price shown to the customer to include VAT already.",
+      "sources": [
+        "S10",
+        "S9"
+      ]
+    },
+    {
+      "label": "Tipping",
+      "value": "Not mandatory",
+      "detail": "Welcome if you appreciated the service, says the tourism authority.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Service charge",
+      "value": "10 to 15% in some high-end restaurants",
+      "detail": "The tourism authority's figure. No law read for this article sets a service charge.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Minimum age to be served alcohol",
+      "value": "18",
+      "detail": "Excise Act, section 15. The licensee must display a notice saying so.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "Alcohol in a restaurant",
+      "value": "Every day from 8 am until 2 am the next morning",
+      "detail": "The authorised hours of a restaurant licence. A pub may serve from 5 pm until 2 am, a table d'hôte from 10 am to 10 pm.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Alcohol to take away from a shop",
+      "value": "Until 9 pm on weekdays, 10 pm on Saturdays, 6 pm on Sundays and public holidays",
+      "detail": "From 8 am. The authorised hours of a retail licence for consumption off the premises.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Smoking",
+      "value": "Banned inside and on the outdoor premises of restaurants, cafés, bars, nightclubs and hotels",
+      "detail": "Fine of up to Rs 10,000 and up to 12 months in prison.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "label": "Food Handler's Certificate",
+      "value": "Required of everyone who prepares, serves or sells food",
+      "detail": "Valid for 3 years. It covers a medical examination and a food safety and hygiene course.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Tourist Enterprise Licence",
+      "value": "Valid for 12 months",
+      "detail": "Held by restaurants, tables d'hôte, pubs, nightclubs and private clubs.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Consumer Affairs Unit hotline",
+      "value": "185",
+      "detail": "Ministry of Commerce and Consumer Protection.",
+      "sources": [
+        "S18"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What kinds of places serve food in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You can eat at a street stall, in a market food court, in a restaurant, at a table d'hôte in a family home, or in a hotel. The Mauritius Tourism Promotion Authority says you can taste your way around the island on home-cooked food, street food or gourmet food, and that fine dining is found both in luxury hotels and resorts and in independent restaurants.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Street stalls and food courts. Vendors sell from stalls, carts and food vehicles. Councils run food courts in public markets. The one at Quatre Bornes is open every day from 6 am to 6 pm.",
+            "Restaurants. The Tourism Authority defines a restaurant as premises adapted and used to supply prepared meals and drinks to the public, against payment, to eat there or to take away.",
+            "Tables d'hôte. A table d'hôte is preferably part of a family home. A host or family members serve mainly local cuisine from a fixed menu. The Tourism Authority's guidelines set its hours from 10.00 to 22.00.",
+            "Pubs, nightclubs and private clubs. With restaurants and tables d'hôte, these make up the places providing food, drink and entertainment that the Tourism Authority licenses.",
+            "Hotel restaurants. The same authority issues the Tourist Accommodation Certificate for places to stay."
+          ],
+          "sources": [
+            "S7",
+            "S19",
+            "S3",
+            "S4",
+            "S2",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What licences must a food outlet hold?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Three papers matter most to a customer. Every food business must be registered under the Business Registration Act. Every person who prepares, serves or sells the food must hold a Food Handler's Certificate. And a restaurant, table d'hôte, pub, nightclub or private club holds a Tourist Enterprise Licence, which is valid for twelve months.",
+          "sources": [
+            "S8",
+            "S7",
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The tourism authority recommends using suppliers that hold an official licence. A place that sells alcohol also needs a licence from the Mauritius Revenue Authority. It must display a signboard with the licensee's name and a notice that alcohol will not be sold to a person under 18.",
+          "sources": [
+            "S5",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Tourism Authority's restaurant guidelines, dated 16 June 2025, show what an inspector looks for: a menu list with all prices, separate and clearly marked toilets for ladies and gents with soap and hand drying, a clean kitchen with covered bins, a first-aid kit and a fire extinguisher within easy reach.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the Food Handler's Certificate?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "It is a certificate issued under the Food Regulations 2024 by the Ministry of Health and Wellness. It states that the holder has been examined by a Government Medical Officer, has no infectious or communicable disease, is fit to work in a food establishment and has followed an approved course in food safety and hygiene. It is valid for 3 years and can be renewed. Nobody may be employed in a food business without one. If a Government Medical Officer certifies that a holder has an infectious disease, the certificate is suspended at once.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The same regulations explain things you may notice. Ready to eat food is picked up with tongs. Staff wear a clean overall and a hair covering, and no rings or watch. Plates, glasses and cutlery must not be chipped, cracked or rusty. Drinking straws are never reused.",
+          "sources": [
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is on the bill: VAT, service charge and tips?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "VAT is 15%, and the price you are shown should already include it. The Consumer Protection (Price and Supplies Control) Act says a trader who supplies a taxable service must make the price available to the customer before the service, and indicate that it includes VAT. Prices are shown in Mauritian rupees. Where two prices are displayed at once, the customer pays the lower. A trader who charges VAT that is not due, or more VAT than is due, commits an offence.",
+          "sources": [
+            "S9",
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No law read for this article sets a service charge. The tourism authority says some high-end restaurants may add a service charge of 10 to 15% as standard, so check the bill before you leave a tip. For a table d'hôte, the Tourism Authority's guidelines require the prices of drinks, including VAT and any surcharges, to be clearly displayed in rupees or listed on the menu card.",
+          "sources": [
+            "S5",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Tips are not mandatory in Mauritius. They are welcome, the tourism authority says, based on your appreciation.",
+          "sources": [
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Is halal or vegetarian food labelled?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "On packaged food, in part. The Food Regulations 2024 require the label of a pre-packed food to say so where it contains beef or pork, or their derivatives. Animal fat must be named with the animal it comes from, and so must gelatine. The label must also declare ingredients likely to cause hypersensitivity: cereals containing gluten, crustaceans, eggs, fish, peanuts and soybeans, milk, tree nuts, and sulphite above a set level.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These rules cover packaged food, not a restaurant menu. The Mauritius Food Standards Agency lists among its objectives the development of standards and procedures for certifying vegetarian food and halal food. No official list of certified restaurants was found. The tourism authority says hotels and caterers are used to meeting vegetarian, vegan, Jain and halal requirements. The national inventory of traditional food notes that rougaille and curry are both cooked in vegetarian versions. Ask before you order.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the rules on alcohol?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You must be 18. The Excise Act forbids a licensee to sell alcohol to anyone under 18, or to let them drink it on the licensed premises. A licensee who breaks the rule faces a fine of up to Rs 50,000 and up to 2 years in prison. Each kind of licence also has authorised hours, set out by the Mauritius Revenue Authority in guidelines dated April 2026.",
+          "sources": [
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Licence",
+            "Authorised hours for alcohol"
+          ],
+          "rows": [
+            [
+              "Restaurant",
+              "Every day, from midnight to 2 am and from 8 am to midnight"
+            ],
+            [
+              "Pub",
+              "Every day, from midnight to 2 am and from 5 pm to midnight"
+            ],
+            [
+              "Table d'hôte",
+              "Monday to Sunday, from 10 am to 10 pm"
+            ],
+            [
+              "Hotel and guest house",
+              "At all times, to residents"
+            ],
+            [
+              "Night club",
+              "Monday to Saturday, from midnight to 2 am and from 9 pm to midnight. Sundays and public holidays, from midnight to 3 am and from 9 pm to midnight"
+            ],
+            [
+              "Shop selling alcohol to take away",
+              "Monday to Friday 8 am to 9 pm. Saturdays 8 am to 10 pm. Sundays and public holidays 8 am to 6 pm"
+            ]
+          ],
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Drinking in public places is restricted. A notice of the University of Mauritius, quoting the 2021 amendment to the public health regulations on alcoholic drinks, says consumption in public places is prohibited. It adds that a public place includes a workplace, a health or educational institution, a sports complex, a public fair, a public concert and a public conveyance. The penalty it quotes is a fine of up to Rs 10,000 and up to 12 months in prison.",
+          "sources": [
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Can you smoke in a restaurant?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No. The Public Health (Restrictions on Tobacco Products) Regulations 2022 ban smoking in public places. The list includes the indoor areas and outdoor premises of cafés, bars, nightclubs, hotels and restaurants. The person in charge must ask a smoker to stop, then to leave, and call the police if the smoker refuses. The notice that such places display warns of a fine of up to Rs 10,000 and up to 12 months in prison.",
+          "sources": [
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What if something goes wrong?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For a price that does not match the menu, or VAT added on top of a displayed price, call the Consumer Affairs Unit of the Ministry of Commerce and Consumer Protection on its hotline, 185. Food hygiene is enforced by authorised officers of the Ministry of Health and Wellness, who can order a business to stop an activity that is a hazard to health. The Tourism Authority's website carries a suggestion and complaint form.",
+          "sources": [
+            "S18",
+            "S8",
+            "S1"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "List of Tourist Enterprises",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2023/04/List-of-Tourist-Enterprises.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Guidelines: Restaurant",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2025/06/AMENDED-RESTAURANT-GUIDELINES.pdf",
+      "publisher": "Tourism Authority",
+      "published": "16 June 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Guidelines for Table d'Hôte",
+      "url": "https://www.tourismauthority.mu/wp-content/uploads/2023/04/Guidelines-for-TABLE-DHOTE.pdf",
+      "publisher": "Tourism Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Mauritian food",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritian-food/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Food Regulations 2024 (Government Notice No. 142 of 2024)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/09/FOOD-REGULATIONS-2024.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "7 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Food Act 2022 (Act No. 12 of 2022)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/06/Food-Act-2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "6 July 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Consumer Protection (Price and Supplies Control) Act (Act 12 of 1998), updated text",
+      "url": "https://commerce.govmu.org/Documents/___Legislations/%20Consumer%20Protection%20%28Price%20and%20Supplies%20Control%29%20Act%2024.09.24%20updated%20%281%29.pdf",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "Text updated to 24 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "FAQs VAT: Frequently Asked Questions, Value Added Tax",
+      "url": "https://www.mra.mu/download/VATFAQs.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "The Excise Act (version for information purposes)",
+      "url": "https://www.mra.mu/download/ExciseAct.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Version dated 1 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Guidelines: Issue, Transfer and Renewal of Licence to sell by Retail or Wholesale Liquor and Alcoholic Products",
+      "url": "https://www.mra.mu/download/RumNLiquor.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "April 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Public Health (Restrictions on Tobacco Products) Regulations 2022 (Government Notice No. 139 of 2022)",
+      "url": "https://www.importlicensing.wto.org/sites/default/files/members/96/Public%20Health%20%28Restrictions%20on%20Tobacco%20Products%29%20Regulations%202022_10.06.2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy held by the World Trade Organization",
+      "published": "10 June 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Notice to Staff, Students and Visitors: Prohibition of Smoking and of Consuming Alcoholic Drinks on UoM Premises",
+      "url": "https://www.uom.ac.mu/images/files/facilities/SmokeNAlcoholonCampus.pdf",
+      "publisher": "University of Mauritius",
+      "published": "31 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Powers, Objectives and Functions",
+      "url": "https://mfsa.govmu.org/mfsa/?page_id=1527",
+      "publisher": "Mauritius Food Standards Agency",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Destination weddings",
+      "url": "https://mauritiusnow.com/destination-weddings/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "National Inventory for Intangible Cultural Heritage, Republic of Mauritius, updated version: Traditional food and way of cooking",
+      "url": "https://govmu.org/FR/infoservices/arts/Documents/NATIONAL%20INVENTORY%20FOR%20INTANGIBLE%20CULTURAL%20HERITAGE-%20REPUBLIC%20OF%20MAURITIUS%20-%20UPDATED%20VERSION.PDF",
+      "publisher": "National Heritage Fund and Ministry of Arts and Culture",
+      "published": "Entries dated 2012 to 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Contact Us",
+      "url": "https://commerce.govmu.org/Pages/AboutUs/Contact-Us.aspx",
+      "publisher": "Ministry of Commerce and Consumer Protection",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Public Health: Market and Fairs",
+      "url": "https://mcqb.mu/public-health/",
+      "publisher": "Municipal Council of Quatre Bornes",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Baz Manzer",
+      "url": "/baz-manzer",
+      "publisher": "biznes.mu",
+      "what": "The home of food businesses on this site."
+    },
+    {
+      "title": "Restaurants",
+      "url": "/directory/restaurants",
+      "publisher": "biznes.mu",
+      "what": "Restaurants listed on this site, by place."
+    },
+    {
+      "title": "Mauritian food: the dishes to know",
+      "url": "/learn/mauritian-food",
+      "publisher": "biznes.mu",
+      "what": "Our guide to what is on the menu."
+    },
+    {
+      "title": "Street food and markets in Mauritius",
+      "url": "/learn/street-food-and-markets-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to markets, food courts and the hygiene rules for sellers."
+    },
+    {
+      "title": "Prices and consumer rights in Mauritius",
+      "url": "/learn/prices-and-consumer-rights-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to price display, your rights and where to complain."
+    },
+    {
+      "title": "Emergency numbers",
+      "url": "/emergency",
+      "publisher": "biznes.mu",
+      "what": "The numbers to call if someone falls ill."
+    },
+    {
+      "title": "Tourist Enterprise Licence",
+      "url": "https://www.tourismauthority.mu/tourist-enterprise-licence/",
+      "publisher": "Tourism Authority",
+      "what": "Open the list of licensed tourist enterprises, and the suggestion and complaint form."
+    },
+    {
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Read the tourism authority's advice on tipping, bargaining and licensed suppliers."
+    },
+    {
+      "title": "Guidelines on liquor licences",
+      "url": "https://www.mra.mu/download/RumNLiquor.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check the authorised hours for each kind of alcohol licence, in Annex 1."
+    }
+  ],
+  "unverified": [
+    "What a snack is in law. No official text read for this article defines the word as a kind of eating place. The list of classified trades uses the word victualler.",
+    "Whether every restaurant must hold a Tourist Enterprise Licence, or only those serving tourists. The Tourism Authority lists restaurants among tourist enterprises, and the Mauritius Revenue Authority asks for that licence before it grants a restaurant alcohol licence. A rule for places with no alcohol and no tourist trade was not found.",
+    "Any rule on service charge: whether it may be added, at what rate and how it must be shown. Only the tourism authority's remark was found.",
+    "The text of the public health regulations on alcoholic drinks of 2008 and their 2021 amendment. They were read only as quoted by the University of Mauritius, so the list of public places may be incomplete.",
+    "A register of halal or vegetarian certified restaurants, and whether the Mauritius Food Standards Agency has yet issued its certification standards.",
+    "Whether a restaurant menu must declare allergens. The labelling rules read apply to pre-packed food.",
+    "How to report a food hygiene complaint to the Ministry of Health and Wellness. No page with a number or form for it was found.",
+    "The Tourism Authority's table d'hôte guidelines still refer to the Food Act 1998, which the Food Act 2022 replaced. Whether the guidelines have been updated was not confirmed.",
+    "The Tourism Authority's website carried unrelated advertising posts on 20 November 2026. Only its licence pages and documents were used."
+  ]
+}
