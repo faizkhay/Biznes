@@ -123,6 +123,13 @@ for (const [from, to] of [["/businesses", "/directory"], ["/businesses/lepalatie
 }
 const robots = await (await page.request.get(`${origin}/robots.txt`)).text();
 check("robots.txt: closed until launch", /Disallow: \/\s*$/m.test(robots));
+check("robots.txt: the fetchers that draw a link's card are let in, so a shared link shows its picture", /User-Agent: facebookexternalhit[\s\S]*?Allow: \//.test(robots) && /User-Agent: \*\s+Disallow: \/\s*$/m.test(robots));
+const articleHtml = await (await page.request.get(`${origin}/learn/vat`)).text();
+const cardUrl = articleHtml.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? "";
+const card = await page.request.get(`${origin}${new URL(cardUrl, origin).pathname}`);
+check("an article has a card of its own for when its link is pasted", /\/learn\/vat\/opengraph-image/.test(cardUrl) && card.status() === 200 && /image\/png/.test(card.headers()["content-type"] ?? "") && (await card.body()).length < 300000, cardUrl);
+const homeHtml = await (await page.request.get(origin)).text();
+check("the first screen's card is the picture, with its size and a description", /<meta property="og:image" content="[^"]*\/og\.jpg"/.test(homeHtml) && /og:image:width" content="1200"/.test(homeHtml) && /twitter:card" content="summary_large_image"/.test(homeHtml));
 const sitemap = await (await page.request.get(`${origin}/sitemap.xml`)).text();
 check("sitemap: listings, guides, towns", (sitemap.match(/<loc>/g) ?? []).length > 7000 && /\/learn\/vat</.test(sitemap) && /\/places\/curepipe</.test(sitemap));
 const llms = await (await page.request.get(`${origin}/llms.txt`)).text();

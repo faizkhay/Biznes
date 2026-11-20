@@ -1,0 +1,588 @@
+{
+  "slug": "street-food-and-markets-in-mauritius",
+  "shelf": "food",
+  "title": "Street food and markets in Mauritius",
+  "summary": "Where the markets are and when they are open, as the councils that run them state: Port Louis, Flacq, Quatre Bornes, Curepipe, Rose Hill, Beau Bassin, Vacoas, Goodlands and Mahebourg. What is sold, where the food courts are, and the hygiene rules that bind anyone who sells food. Checked on 20 November 2026.",
+  "audience": "Visitors and residents planning a trip to a market, and anyone who wants to know what rules a food seller has to follow.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Port Louis Central Market, Monday to Saturday",
+      "value": "5 am to 6 pm in summer, 5.30 am to 6 pm in winter",
+      "detail": "On Sundays and public holidays it closes at noon. Hours as published by the City Council of Port Louis.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Central Flacq fair days",
+      "value": "Wednesdays and Sundays",
+      "detail": "The fixed market beside it is open every day. Hours are 6 am to 6 pm, and 6 am to noon on public holidays.",
+      "sources": [
+        "S4",
+        "S3"
+      ]
+    },
+    {
+      "label": "Quatre Bornes fairs",
+      "value": "Haberdashery on Tuesdays, Thursdays, Fridays and Sundays. Vegetables on Wednesdays and Saturdays",
+      "detail": "6 am to 6 pm. The food court is open every day at the same hours.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Goodlands market",
+      "value": "General merchandise on Tuesdays and Fridays. Vegetables on Wednesdays and Saturdays",
+      "detail": "Not open on Sundays.",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "label": "Curepipe market",
+      "value": "Every day, 6 am to 6 pm",
+      "detail": "Sundays and public holidays included. Fair days are Wednesdays and Saturdays.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "label": "Rose Hill and Beau Bassin markets",
+      "value": "Weekdays 6 am to 6 pm",
+      "detail": "Sundays and public holidays 6 am to noon.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Food Handler's Certificate",
+      "value": "Required of everyone who sells, prepares or serves food for sale",
+      "detail": "Valid for 3 years. It certifies a medical examination and a food safety and hygiene course.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Temperature for perishable food",
+      "value": "Not above 4 °C, or not below 60 °C",
+      "detail": "Or another temperature at which, according to the operator, the food is not adversely affected. Applies to cooked rice, meat, dairy, seafood and cut fruit, among others.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Penalty under the Food Act 2022",
+      "value": "A fine of up to Rs 100,000 and up to 2 years in prison",
+      "detail": "For an offence under the Act or its regulations.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "label": "Bargaining",
+      "value": "Welcome in marketplaces",
+      "detail": "The tourism authority's advice. Always confirm the price before you buy.",
+      "sources": [
+        "S15"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Where do you find street food in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You find it at street stalls, in the food kiosks and food courts of the public markets, and at fairs. The Mauritius Tourism Promotion Authority says the island has an incredible street food scene and calls Port Louis one of the best cities in the world for street food. Its first address is the Port Louis Central Market, where kiosks sell samosas, dholl puri, sweet pastries and alouda.",
+          "sources": [
+            "S1",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Public markets and fairs are run by the municipal and district councils, which enforce their own market regulations and post health inspectors. The fixed markets are open every day. The fairs are held on set days of the week. The days and hours below are the ones a council states on its own website. Where a council states none, we say so.",
+          "sources": [
+            "S2",
+            "S4",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When is the Port Louis Central Market open?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The City Council of Port Louis gives these hours for the Central Market: Monday to Saturday from 5 am to 6 pm in summer and from 5.30 am to 6 pm in winter. On Sundays and public holidays it opens at the same time and closes at noon. The Jinnah Market keeps the same hours.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The tourism authority also calls it the Bazaar Port Louis and says this is where the locals shop. Stalls are piled with tropical fruit and vegetables, the street food kiosks are inside, stalls just outside sell clothes and bags, and the first floor sells locally made crafts. The market is a short walk from the Caudan Waterfront and next to Chinatown.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Abercrombie Market and Fair, at Sainte Croix: Tuesdays, Thursdays and Saturdays, 5.30 am to 6 pm.",
+            "Ibrahim Abdoollah Market and Fair: Tuesdays, Thursdays and Saturdays, 6 am to 6 pm.",
+            "Pointe aux Sables Market and Fair: Sundays only, 5.30 am to noon.",
+            "Monneron Fair: Monday to Sunday. The council gives no hours."
+          ],
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When are the other markets open?",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Market or fair",
+            "Days",
+            "Hours"
+          ],
+          "rows": [
+            [
+              "Central Flacq, fixed market",
+              "Every day",
+              "6 am to 6 pm. Public holidays 6 am to noon"
+            ],
+            [
+              "Central Flacq Fair",
+              "Wednesdays and Sundays for vegetables, fruit, haberdashery and general retail. Haberdashery every day except Mondays",
+              "6 am to 6 pm. Public holidays 6 am to noon"
+            ],
+            [
+              "Lallmatie Fair",
+              "Wednesdays and Saturdays",
+              "6 am to 6 pm. Public holidays 6 am to noon"
+            ],
+            [
+              "Quatre Bornes market",
+              "Every day",
+              "6 am to 6 pm. Sundays and public holidays 6 am to noon"
+            ],
+            [
+              "Quatre Bornes haberdashery fair",
+              "Tuesdays, Thursdays, Fridays and Sundays",
+              "6 am to 6 pm"
+            ],
+            [
+              "Quatre Bornes vegetable fair",
+              "Wednesdays and Saturdays",
+              "6 am to 6 pm"
+            ],
+            [
+              "Doyen Fair, Belle Rose",
+              "Sundays only",
+              "6 am to noon"
+            ],
+            [
+              "Curepipe market",
+              "Every day, with fair days on Wednesdays and Saturdays",
+              "6 am to 6 pm"
+            ],
+            [
+              "Rose Hill market and Beau Bassin market",
+              "Weekdays, and mornings on Sundays and public holidays",
+              "Weekdays 6 am to 6 pm. Sundays and public holidays 6 am to noon"
+            ],
+            [
+              "Plaisance Fair, Rose Hill",
+              "Wednesdays and Saturdays",
+              "6 am to 6 pm. Noon if the day is a public holiday"
+            ],
+            [
+              "Goodlands market",
+              "General merchandise on Tuesdays and Fridays. Vegetables on Wednesdays and Saturdays. Closed on Sundays",
+              "Not stated"
+            ],
+            [
+              "Rivière du Rempart market",
+              "General merchandise on Saturdays. Vegetables on Sundays. Closed Monday to Friday",
+              "Not stated"
+            ]
+          ],
+          "sources": [
+            "S4",
+            "S5",
+            "S6",
+            "S7",
+            "S8",
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The tourism authority calls Central Flacq the largest outdoor market in Mauritius and says Wednesdays and Sundays are the best days to go, because all the stalls are open. The Municipal Council of Vacoas-Phoenix says its fair in the town centre is one of the biggest in the country, with more than 1,300 stalls and spaces, but gives no days on the page. The District Council of Grand Port runs three markets and fairs, at Mahebourg, Plaine Magnien and Rose Belle, and the District Council of Savanne runs five markets and five fairs. Neither states the days.",
+          "sources": [
+            "S3",
+            "S9",
+            "S11",
+            "S19"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The same council page for Beau Bassin and Rose Hill lists six markets and fairs: Rose Hill, Beau Bassin, Da Patten, Plaisance, Chebel and New Arab Town. Da Patten and Chebel open at 7 am, the others at 6 am.",
+          "sources": [
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is sold, and where are the food courts?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The fixed markets sell fresh food by section. Flacq lists poultry, fish, goat, pork, beef, venison, vegetables, fruit and general retail, with a separate craft market. Rose Hill keeps fish, meat, pork and poultry in one section and vegetables, bread, cakes and flowers in another. Vacoas has stalls for goat and mutton, beef, fish and poultry, and an auction space where vegetables from all over the country are sold to traders. The fairs add haberdashery and general retail.",
+          "sources": [
+            "S4",
+            "S6",
+            "S9"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Quatre Bornes: a food court open every day from 6 am to 6 pm.",
+            "Flacq: a food court in the fixed market, and another at the Lallmatie Fair.",
+            "Vacoas: a food court with three booths and a dining hall.",
+            "Plaisance Fair, Rose Hill: a kiosk in the yard for cakes and non-alcoholic drinks.",
+            "Port Louis: the street food kiosks of the Central Market."
+          ],
+          "sources": [
+            "S5",
+            "S4",
+            "S9",
+            "S6",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What hygiene rules bind people who sell food?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The same law covers a market stall, a food cart and a hotel kitchen. The Food Act 2022 defines food premises widely enough to include a street, an open space, a bicycle, a tricycle and any vehicle used to prepare or sell food. The Food Regulations 2024, in force since 9 September 2024, set the daily rules. They are enforced by authorised officers of the Ministry of Health and Wellness, who may enter premises, take samples, and seize or destroy food.",
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Everyone who sells, prepares, cooks, serves or delivers food for sale must hold a valid Food Handler's Certificate at all times.",
+            "Food ready to eat must be packed, wrapped or covered against flies, dust and contamination. Wrapping paper may carry no printing or writing apart from the label.",
+            "A seller may not blow into a paper bag or wet a finger with saliva to open one.",
+            "Ready to eat food is picked up with tongs or another device, unless the nature of the food makes that impracticable.",
+            "A street food vendor's stall, table, bicycle, tricycle or cart must be designed or adapted for the food sold. The food travels in a clean receptacle that stays covered except while it is being sold.",
+            "A food vehicle needs a sink with potable water, a wash-hand basin with soap, refrigeration for perishable food, a covered bin and a waste water tank. Ready to eat food is sold in disposable containers.",
+            "Perishable food, such as cooked rice, meat, seafood, dairy and cut fruit, is kept at 4 °C or below, or at 60 °C or above, or at another temperature at which, according to the operator, the food is not adversely affected.",
+            "Food handlers keep hands, hair, nails and clothing clean, wear a clean overall and a hair covering, and wear no rings, watch or nail varnish. They may not eat, smoke or spit while handling food.",
+            "No food may be prepared or sold near public toilets or in an insanitary place, and single-use containers and drinking straws may not be reused."
+          ],
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An officer can serve an improvement notice, or a prohibition order where food is a hazard to health. The seller has 7 days to appeal against an order. A person who commits an offence under the Act or the regulations faces a fine of up to Rs 100,000 and up to 2 years in prison. Smoking is also banned in markets, and by anyone preparing, serving or selling food in premises open to the public.",
+          "sources": [
+            "S13",
+            "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who may sell food on the street or in a market?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Food Act says no person may operate a food business without being registered under the Business Registration Act. The business registry lists the sale of foodstuffs along the road, from a mobile unit or in markets and fairs among the activities that need approval from the Ministry of Local Government, and sale on the beach among those that need approval from the Ministry of Tourism. Under the Local Government Act a hawker may not trade without an authorisation from the council.",
+          "sources": [
+            "S13",
+            "S14",
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Market stalls are not sold freely. Beau Bassin-Rose Hill and Vacoas-Phoenix both say vacant stalls are advertised in the press, and that an applicant must live in the town, be unemployed and work on the stall in person.",
+          "sources": [
+            "S6",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Can you bargain, and what should you check?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The tourism authority says you are welcome to bargain with a stallholder in a marketplace, and should always confirm the price before you buy. On the beach it advises against buying from unauthorised persons: if in doubt, ask to see the operating licence. If a stall worries you, the council's market office is the first place to complain. Curepipe gives 676 2407 and Beau Bassin-Rose Hill gives 413 7600 for information and complaints.",
+          "sources": [
+            "S15",
+            "S7",
+            "S6"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Port Louis market",
+      "url": "https://mauritiusnow.com/blog/things-to-do/port-louis-market/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Markets & Fairs",
+      "url": "https://mccpl.mu/?p=257",
+      "publisher": "City Council of Port Louis",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Central Flacq Market",
+      "url": "https://mauritiusnow.com/blog/things-to-do/central-flacq-market/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Public Health Department: Market and Fairs",
+      "url": "https://flacqdc.mu/public-health-department/",
+      "publisher": "District Council of Flacq",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Public Health: Market and Fairs",
+      "url": "https://mcqb.mu/public-health/",
+      "publisher": "Municipal Council of Quatre Bornes",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "The Public Health Department: markets and fairs",
+      "url": "https://bbrh.org/the-public-health-department/",
+      "publisher": "Municipal Council of Beau Bassin-Rose Hill",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Management of Curepipe Market",
+      "url": "https://www.municipal-curepipe.org/management-of-curepipe-market/",
+      "publisher": "Municipal Council of Curepipe",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Public Health Department",
+      "url": "https://www.municipal-curepipe.org/public-health-department/",
+      "publisher": "Municipal Council of Curepipe",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Markets and fairs",
+      "url": "https://vacoasphoenix.org/health4.php",
+      "publisher": "Municipal Council of Vacoas-Phoenix",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Public Health Department",
+      "url": "https://dcrempart.mu/?p=105",
+      "publisher": "District Council of Rivière du Rempart",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Public Health Department",
+      "url": "https://dcgp.mu/public-health-department/",
+      "publisher": "District Council of Grand Port",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Food Regulations 2024 (Government Notice No. 142 of 2024)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/09/FOOD-REGULATIONS-2024.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "7 September 2024",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Food Act 2022 (Act No. 12 of 2022)",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/06/Food-Act-2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy published by the Mauritius Food Standards Agency",
+      "published": "6 July 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Business Registration Individual",
+      "url": "https://companies.govmu.org/cbrd/business-registration-individual/",
+      "publisher": "Corporate and Business Registration Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Mauritian food",
+      "url": "https://mauritiusnow.com/blog/things-to-do/mauritian-food/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Port Louis in Mauritius",
+      "url": "https://mauritiusnow.com/mauritius-map/port-louis-in-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Public Health (Restrictions on Tobacco Products) Regulations 2022 (Government Notice No. 139 of 2022)",
+      "url": "https://www.importlicensing.wto.org/sites/default/files/members/96/Public%20Health%20%28Restrictions%20on%20Tobacco%20Products%29%20Regulations%202022_10.06.2022.pdf",
+      "publisher": "Government Gazette of Mauritius, copy held by the World Trade Organization",
+      "published": "10 June 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Public Health Department",
+      "url": "https://dcsavanne.mu/our-departments-2/public-health/",
+      "publisher": "District Council of Savanne",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Local Government Act (Act 36 of 2011), consolidated text",
+      "url": "https://www.mra.mu/download/TheLocalGovernmentAct2011.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Mauritian food: the dishes to know",
+      "url": "/learn/mauritian-food",
+      "publisher": "biznes.mu",
+      "what": "Our guide to what the dishes on a street stall are."
+    },
+    {
+      "title": "Markets",
+      "url": "/directory/markets",
+      "publisher": "biznes.mu",
+      "what": "Markets listed on this site, by place."
+    },
+    {
+      "title": "Baz Manzer",
+      "url": "/baz-manzer",
+      "publisher": "biznes.mu",
+      "what": "The home of food businesses on this site."
+    },
+    {
+      "title": "Opening a restaurant or snack in Mauritius",
+      "url": "/learn/opening-a-food-business-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the permits a food seller needs."
+    },
+    {
+      "title": "Public holidays",
+      "url": "/holidays",
+      "publisher": "biznes.mu",
+      "what": "Check whether your market day is a public holiday, when most markets close at noon."
+    },
+    {
+      "title": "Markets & Fairs",
+      "url": "https://mccpl.mu/?p=257",
+      "publisher": "City Council of Port Louis",
+      "what": "Check the hours of the Central Market and the other Port Louis markets."
+    },
+    {
+      "title": "Public Health Department",
+      "url": "https://flacqdc.mu/public-health-department/",
+      "publisher": "District Council of Flacq",
+      "what": "See the days of the Flacq and Lallmatie fairs."
+    },
+    {
+      "title": "Public Health",
+      "url": "https://mcqb.mu/public-health/",
+      "publisher": "Municipal Council of Quatre Bornes",
+      "what": "See the days of the Quatre Bornes fairs and food court."
+    },
+    {
+      "title": "The Public Health Department",
+      "url": "https://bbrh.org/the-public-health-department/",
+      "publisher": "Municipal Council of Beau Bassin-Rose Hill",
+      "what": "See the hours of the six markets and fairs of Beau Bassin and Rose Hill."
+    },
+    {
+      "title": "Food Regulations 2024",
+      "url": "https://mfsa.govmu.org/mfsa/wp-content/uploads/2024/09/FOOD-REGULATIONS-2024.pdf",
+      "publisher": "Mauritius Food Standards Agency",
+      "what": "Read the food hygiene rules in full, in Part V."
+    }
+  ],
+  "unverified": [
+    "The days and hours of the Mahebourg market. The District Council of Grand Port names the market but gives no days. Travel sites speak of a Monday market, which no official page read confirms.",
+    "The days of the Vacoas fair and of the markets and fairs of Savanne, Pamplemousses, Moka and Black River. Their councils' pages give none, or could not be reached.",
+    "The opening hours of the Goodlands and Rivière du Rempart markets, and whether Goodlands has moved. The council's page says a new market of about 800 stalls is to be built near Belmont to replace the present one. The page is undated.",
+    "Which months count as summer time and winter time for the Port Louis markets. The City Council does not say.",
+    "Whether the hours on the council pages are current. None of the pages is dated. The Quatre Bornes page still lists cooperative fairs for 2018.",
+    "The Port Louis council's page was read through a fetching tool, because the site turned away a direct download. The hours were read twice and agreed.",
+    "How to report unsafe food to the Ministry of Health and Wellness. No page with a telephone number or form for food complaints was found.",
+    "Whether the Food Regulations 2024 have been amended since Government Notice No. 19 of 2025, which only changed a start date.",
+    "The Agricultural Marketing Board and the wholesale produce auction. The Board's website could not be reached on 20 November 2026."
+  ]
+}
