@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PartHead } from "@/components/account/Bits";
 import Checkout, { type CartItem } from "@/components/account/Checkout";
-import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
 import { Arrow } from "@/components/Icons";
 import { siteCatalogue, type Sold } from "@/lib/accounts/catalogue";
-import { accountsOn } from "@/lib/accounts/config";
 import { rupees } from "@/lib/accounts/types";
 
 export const metadata: Metadata = { title: "Place an order", robots: { index: false, follow: false } };
@@ -25,9 +23,9 @@ const priceOf = (s: Pick<Sold, "price" | "per">) => (s.price == null ? "Price on
  * the checkout for whatever the address names (`?item=plan:go&item=sponsor:listing*2`). Anyone may
  * order, signed in or not. What is shown comes from the site's own data, never from the address:
  * a thing the site does not sell is left out, and the order is priced again when it is placed.
+ * With accounts off the checkout is a link to the request form, which carries the order in words.
  */
 export default async function OrderPage({ searchParams }: { searchParams: Promise<{ item?: string | string[] }> }) {
-  if (!accountsOn) return <AccountsSoon title="Place an order" />;
   const asked = [(await searchParams).item ?? []].flat().slice(0, 20);
   const sold = siteCatalogue();
   const byId = new Map(sold.map((s) => [s.id, s]));

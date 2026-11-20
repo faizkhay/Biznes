@@ -25,6 +25,19 @@ function inWords(items: CartItem[]): string {
   return `I would like to order: ${items.map((i) => `${i.qty} x ${i.name}${i.detail ? ` (${i.detail})` : ""}${i.price != null ? `, ${money(i.price)} each` : ", price on request"}`).join("; ")}.`;
 }
 
+/**
+ * Where the cart goes when accounts are off: the request form, with the cart in words. A cart of
+ * one plan or one guide also names it the way the form already knows, so the form opens on it.
+ */
+function askHref(items: CartItem[]): string {
+  const query = new URLSearchParams({ message: inWords(items) });
+  const [only] = items;
+  const own = (id: string, kind: string) => (id.startsWith(`${kind}:`) ? id.slice(kind.length + 1) : id);
+  if (items.length === 1 && only.kind === "plan") query.set("plan", own(only.id, "plan"));
+  if (items.length === 1 && only.kind === "guide") query.set("product", own(only.id, "guide"));
+  return `/add?${query}`;
+}
+
 type Me = { in: boolean; name?: string; given?: string; email?: string; phone?: string };
 
 /**
@@ -72,7 +85,7 @@ export default function Checkout(props: { items: CartItem[] }) {
       <div className="card card-panel">
         <p className="body-2">Ordering on the site is not open yet. Send us what is in your cart, and a person replies with how to pay.</p>
         <p className="mt-4">
-          <Link href={`/add?message=${encodeURIComponent(inWords(items))}`} className="btn btn-filled button-md">
+          <Link href={askHref(items)} className="btn btn-filled button-md">
             Ask for these
           </Link>
         </p>
