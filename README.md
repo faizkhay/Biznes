@@ -415,6 +415,56 @@ roles and the look as the superadmin, and resets a password.
   own: Auth's two messages are the only email.
 - **Opening hours and photographs** for an owner's business.
 
+## Security
+
+Reviewed on 20 November 2026, as an attacker would go at it. What was found and fixed is in the
+commits of that day; this is what holds now, and what does not.
+
+- **The framework.** Next.js 16.4.6, which clears the advisories open against 16.3.5 (one of them
+  critical). `npm audit` reports nothing. Keep to the newest 16.x: run `npm audit` before a deploy.
+- **The headers** are set for every address in `next.config.ts`: a Content-Security-Policy, no
+  framing at all, no sniffing of content types, HTTPS only for two years, a referrer that names
+  the site and nothing more, and no camera, microphone, location, payment or USB. Private pages
+  and the endpoints also carry `X-Robots-Tag: noindex`.
+- **The policy** lets a page load from the site itself, from the accounts' Supabase project (its
+  address is read from `NEXT_PUBLIC_SUPABASE_URL` when the site is built), and from the street
+  map's two hosts, `tiles.openfreemap.org` and `*.tile.openstreetmap.org`. Nothing else. To let a
+  page load something new, add its host to the one directive that needs it, in `next.config.ts`.
+- **What the policy does not do.** Next writes each page's data into the page as inline script,
+  and a page made ahead of time cannot carry a nonce, so the policy allows inline script: a
+  `<script>` injected into a page would still run. Script from another site, script in an
+  attribute, plugins, frames, and a base or a form that points away are all refused. Closing the
+  last gap means a nonce on every page, which means making every page on each request; or moving
+  the signed-in pages to an address of their own, where that price is paid only by them.
+- **Nothing is rendered as HTML but the structured data**, which is escaped
+  (`src/components/JsonLd.tsx`). React refuses a `javascript:` address in a link; the crawler
+  and the database each refuse a web address that does not begin `http` or `https`.
+- **The form's endpoint** takes JSON only, from this site's own pages only, of 32 KB at most, and
+  line breaks typed into a one-line field are taken out before anything is sent on. Its rate
+  limit, and the booking form's, are kept in the server's memory: on a host that runs many
+  instances each keeps its own count, and both count by the address the host's proxy reports. A
+  limit that holds needs the host's own rate limiting, or a store every instance shares.
+- **Accounts.** The publishable key opens nothing that is not meant to be open: `npm run
+  test:rls` proves it, and proves that every table has row level security and every function
+  that runs as its owner fixes its search path. `public.rls_auto_enable()`, which the project
+  ships with, is closed to the API by the last migration; apply it to the hosted project.
+- **The service worker** never keeps or answers anything under `/api`, `/account`, `/admin`,
+  `/dashboard` or `/auth`, nor an answer that was led on to one of them. A new private address
+  must be added to `PRIVATE` in `public/sw.js` and in `next.config.ts`.
+
+Still open, and for the owner or the host to close:
+
+- **Register the first account now, or switch sign-ups off in the project until you do.** The
+  first person to sign up becomes the superadmin, and the project's address and public key are
+  in this file.
+- **A page is kept for every address asked for under `/b/` and `/biz/`,** found or not, about
+  60 KB each. On a server of our own a stranger could fill the disk by asking for addresses that
+  do not exist. Limit requests at the host, or check the address in `src/proxy.ts` before a page
+  is made, or keep the pages made on demand in memory only.
+- **In the Supabase dashboard:** a CAPTCHA on sign-up, sign-in and password reset; the check
+  against leaked passwords; only the site's own address among the redirect addresses once it is
+  live.
+
 ## Where the content lives
 
 Everything the owner will change is data. No fact is written into a component.

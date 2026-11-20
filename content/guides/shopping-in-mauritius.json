@@ -94,7 +94,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "In three kinds of place: public markets and fairs, shops and supermarkets, and shopping malls. Markets and fairs are run by the municipal and district councils and sell fresh food, clothes and household goods. The law that lists trades for the councils' fees has separate entries for a general retailer of foodstuff and non-foodstuff, a supermarket and a hypermarket.",
+          "text": "In three kinds of place: public markets and fairs, shops and supermarkets, and shopping malls. Markets and fairs are run by the municipal and district councils and sell fresh food, haberdashery and general retail goods. The law that lists trades for the councils' fees has separate entries for a general retailer of foodstuff and non-foodstuff, a supermarket and a hypermarket.",
           "sources": [
             "S7",
             "S17"
@@ -137,7 +137,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "For shops and malls, no law fixing opening hours was found. The Local Government Act, under which councils control trades, sets none. Each mall and shop keeps its own hours, so check before a Sunday or a public holiday.",
+          "text": "For shops and malls, no law fixing opening hours was found. The Local Government Act, under which councils control trades, sets none. Check with the shop or mall before a Sunday or a public holiday.",
           "sources": [
             "S17"
           ]
@@ -293,7 +293,7 @@
     {
       "id": "S7",
       "title": "Markets & Fairs",
-      "url": "https://mccpl.mu/?p=257",
+      "url": "https://mccpl.mu/services/public-health/markets-fairs/",
       "publisher": "City Council of Port Louis",
       "published": "",
       "accessed": "2026-11-20"
@@ -472,7 +472,6 @@
     "Whether the Rs 2,300 minimum is per shop, per receipt or per stay. The Chamber's wording is per visitor from a registered store.",
     "The list of registered Tax Free Shopping stores. The Chamber's site shows it in a search tool that was not read.",
     "The number of shops with duty-free facilities. The airport's website says around fifty, without a date.",
-    "What a resident may bring back beyond the allowances, and the rates of duty on the excess.",
-    "The Port Louis council's markets page was read through a fetching tool, because the site turned away a direct download."
+    "What a resident may bring back beyond the allowances, and the rates of duty on the excess."
   ]
 }

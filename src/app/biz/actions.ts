@@ -23,6 +23,8 @@ function limited(ip: string) {
   recent.push(now);
   hits.set(ip, recent);
   if (hits.size > 5000) for (const [key, times] of hits) if (times.every((t) => now - t >= WINDOW_MS)) hits.delete(key);
+  // Under a flood from made-up addresses the list is emptied before it can grow without end.
+  if (hits.size > 50_000) hits.clear();
   return recent.length > LIMIT;
 }
 
@@ -33,7 +35,7 @@ export async function requestBooking(_: FormState, data: FormData): Promise<Form
   const values = typed(data, FIELDS);
   // A filled honeypot gets a quiet success: the bot learns nothing.
   if (field(data, "website")) return { ok: true, message: "Your request has been sent." };
-  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  const ip = ((await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "local").slice(0, 64);
   if (limited(ip)) return { message: "Too many requests have come from this connection. Wait a few minutes, or call the business.", values };
 
   const id = field(data, "business");

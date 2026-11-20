@@ -92,6 +92,7 @@ export const MENU = [
 /** The shelves of the guides page: who each set of guides is for. */
 export const SHELVES = [
   { id: "mauritius", label: "About Mauritius", line: "The island, its people, its money, its weather and how it runs." },
+  { id: "food", label: "Food and eating out", line: "The dishes, the markets, eating out, and opening a food business." },
   { id: "business", label: "Starting and running a business", line: "Registration, companies, tax, VAT, staff, licences and the rest." },
   { id: "visitors", label: "Visiting Mauritius", line: "What to know before you come, and what there is to see and do." },
   { id: "newcomers", label: "Moving here", line: "The ways to live in Mauritius, and settling in once you have arrived." },
