@@ -319,7 +319,9 @@ check("people also ask: the questions the answering article has for headings, ea
 const SEARCHES = [
   ["pharmacie rose hill", { read: /Pharmacies in Beau Bassin-Rose Hill/ }],
   ["dokter", { read: /Doctors and clinics/ }],
-  ["lopital", { read: /Hospitals/, not: /New Mauritius Hotels/ }],
+  ["lopital", { read: /Hospitals/, answer: /SAMU ambulance: 114/, not: /New Mauritius Hotels/ }],
+  ["hopital", { read: /Hospitals/, answer: /SAMU ambulance: 114/ }],
+  ["farmasi curepipe", { read: /Pharmacies in Curepipe/ }],
   ["hospital", { answer: /SAMU ambulance: 114/ }],
   ["lapolis", { answer: /Police emergency: 999 or 112/ }],
   ["CEB number", { answer: /Central Electricity Board helpdesk: 130/ }],

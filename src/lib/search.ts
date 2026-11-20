@@ -163,7 +163,7 @@ const SAID: Record<string, string> = {
   gouvernement: "government", gouvernman: "government", loyer: "rent", louer: "rent",
   electricite: "electricity", kouran: "electricity", eau: "water", delo: "water", facture: "bill",
   banque: "bank", labank: "bank", urgence: "emergency", irzans: "emergency", pompiers: "fire", pompier: "fire", ponpie: "fire",
-  lapolis: "police", lanbilans: "ambulance", patente: "licence", marque: "trade mark", conge: "holiday", konze: "holiday",
+  lapolis: "police", lanbilans: "ambulance", lopital: "hospital", hopital: "hospital", dokter: "doctor", docteur: "doctor", medecin: "doctor", farmasi: "pharmacy", pharmacie: "pharmacy", patente: "licence", marque: "trade mark", conge: "holiday", konze: "holiday",
 };
 /** A question with its French and Kreol phrases put into English: "ki pou fer" is "things to do". */
 function phrased(text: string): string {

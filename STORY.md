@@ -158,7 +158,7 @@ anywhere".
   merely contains a word is not an answer, and showing it as one is what made the earlier search
   feel limited. So an answer must hold every word asked, a partial match is said to be partial,
   and a name the index does not hold is said not to be held.
-- **The search was taught by real questions.** Forty-seven searches a Mauritian would type, in
+- **The search was taught by real questions.** Forty-nine searches a Mauritian would type, in
   English, French and Kreol, were run, read and fixed one by one, and each is now a check. What
   they taught: a dish is not a category ("pizza" is looked for in a place's own words); the first
   kind named in a question is the one meant; a question about how is never a kind of business; a

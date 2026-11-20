@@ -756,7 +756,7 @@ telephone number on record") and is never written by hand.
 
 The words the search understands are in the same file: `SAID_PHRASES` and `SAID` (French and Kreol
 to English), `PADDING` (words that carry no meaning), and `DISHES` (a dish is looked for in a
-place's own words, across every kind of place to eat, and never read as a category). Forty-seven
+place's own words, across every kind of place to eat, and never read as a category). Forty-nine
 searches are kept as checks in `scripts/behaviour.mjs`; add one whenever a search goes wrong.
 
 ### Baz Manzer
@@ -1163,7 +1163,7 @@ than the screen itself, the tab bar on the first screen, the menu, the emergency
 from the first screen, and an article's contents.
 
 Added in Round 5: the four parts of a page of results and their order; the line of counts; "People
-also ask" and that each question is an article's own heading; related searches; forty-seven
+also ask" and that each question is an article's own heading; related searches; forty-nine
 searches a Mauritian would type, in English, French and Kreol, each with what it must be read as
 and what must lead; a partial match said to be one; the site's own maker found by name; a
 business's page (its head, its blocks, its hours, the claim card, no paid features on a free
