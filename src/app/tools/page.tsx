@@ -5,7 +5,7 @@ import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Business tools",
-  description: "Free tools for business in Mauritius: check a business against the official registers, work out VAT, compare legal structures, and look up a term.",
+  description: "Free tools for business and everyday life in Mauritius: check a business against the official registers, work out VAT, income tax and the taxes on a business, compare legal structures, and look up a term.",
   alternates: { canonical: "/tools" },
 };
 

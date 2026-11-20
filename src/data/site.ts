@@ -74,7 +74,7 @@ export const MENU = [
     label: "Learn",
     items: [
       { href: "/learn", label: "Articles", line: "Mauritius explained, with its sources" },
-      { href: "/tools", label: "Tools", line: "VAT, legal structures, checking a business" },
+      { href: "/tools", label: "Tools", line: "Income tax, VAT, checking a business" },
       { href: "/learn/glossary", label: "Glossary", line: "BRN, TAN, CSG and the other initials" },
       { href: "/official", label: "Official pages", line: "The registers and the forms themselves" },
     ],
