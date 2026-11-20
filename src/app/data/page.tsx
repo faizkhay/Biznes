@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function DataPage() {
-  const { meta } = index();
+  const { meta, guides } = index();
   const w = meta.web;
   return (
     <>
@@ -51,8 +51,8 @@ export default function DataPage() {
             ) : null}
             <dt>Mauritian websites indexed</dt>
             <dd className="data-1">{count(w.sites)}</dd>
-            <dt>Guides</dt>
-            <dd className="data-1">{count(meta.guides)}</dd>
+            <dt>Articles and guides</dt>
+            <dd className="data-1">{count(guides.length)}</dd>
             <dt>Official pages</dt>
             <dd className="data-1">{count(meta.official)}</dd>
           </dl>

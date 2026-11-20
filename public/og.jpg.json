@@ -1,7 +1,7 @@
 {
   "file": "/og.jpg",
-  "is": "The link preview card: the site's name, its line and its chart of Mauritius, on which each point is one listing from data/index at its own place. A capture of this site's own page, not a photograph and not a generated picture.",
+  "is": "The link preview card: the site's name and its line with the index's own counts, set on the lagoon picture. The picture is an illustration generated for this site (public/themes/lagoon.jpg.json), not a photograph of a place.",
   "made": "scripts/og.mjs, from src/app/og/page.dev.tsx under next dev",
   "size": "1200 x 630",
-  "prompt": "Origin: a capture of this site's own chart (src/components/Chart.tsx), drawn in code from OpenStreetMap data, © OpenStreetMap contributors, Open Database Licence 1.0. No image was generated."
+  "prompt": "Origin: a capture of this site's own page. Its background is public/themes/lagoon.jpg, a generated illustration; see the note beside that file."
 }
