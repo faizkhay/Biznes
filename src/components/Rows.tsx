@@ -14,7 +14,7 @@ export function ListingRow({ listing: l, note }: { listing: Listing; /** A word 
   const category = index().categoryById.get(l.cat);
   const where = whereOf(l);
   return (
-    <article className="row listing" data-point={chartPoints().at.get(l.id)}>
+    <article className="row listing" data-listing={l.id} data-point={chartPoints().at.get(l.id)}>
       <span className="listing-icon" aria-hidden>
         <GroupIcon group={category?.group} />
       </span>
@@ -51,21 +51,27 @@ export function ListingRow({ listing: l, note }: { listing: Listing; /** A word 
 
 const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc } as const;
 
-/** An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or a tool. */
+/**
+ * An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or
+ * a tool. A card like a listing's, with a blue tile: saffron is kept for a verified business.
+ */
 export function LeadRow({ lead }: { lead: Lead }) {
   const Icon = LEAD_ICON[lead.tag];
   return (
-    <article className="card card-wash">
-      <p className="label-1 flex items-center gap-2 text-ink-subtle">
-        <Icon className="size-4" /> {lead.tag}
-      </p>
-      <h3 className="title-1 mt-2">
-        <Link prefetch={false} href={lead.href} className="row-title">
-          {lead.title}
-        </Link>
-      </h3>
-      <p className="body-2 mt-2 line-clamp-4 max-w-prose">{lead.line}</p>
-      {lead.meta && <p className="caption-1 mt-3 text-ink-subtle">{lead.meta}</p>}
+    <article className="row listing">
+      <span className="listing-icon listing-icon-guide" aria-hidden>
+        <Icon />
+      </span>
+      <div className="min-w-0">
+        <p className="label-1 text-ink-faint">{lead.tag}</p>
+        <h3 className="title-1 mt-1">
+          <Link prefetch={false} href={lead.href} className="row-title">
+            {lead.title}
+          </Link>
+        </h3>
+        <p className="body-2 mt-2 line-clamp-4 max-w-prose">{lead.line}</p>
+        {lead.meta && <p className="caption-1 mt-3 text-ink-faint">{lead.meta}</p>}
+      </div>
     </article>
   );
 }
@@ -74,7 +80,7 @@ export function LeadRow({ lead }: { lead: Lead }) {
 export function OfficialRow({ official: o }: { official: Official }) {
   return (
     <article className="row listing">
-      <span className="listing-icon" aria-hidden>
+      <span className="listing-icon listing-icon-quiet" aria-hidden>
         <Landmark />
       </span>
       <div className="min-w-0">
@@ -97,7 +103,7 @@ export function OfficialRow({ official: o }: { official: Official }) {
 export function SiteRow({ site: s }: { site: Site }) {
   return (
     <article className="row listing">
-      <span className="listing-icon" aria-hidden>
+      <span className="listing-icon listing-icon-quiet" aria-hidden>
         <Globe />
       </span>
       <div className="min-w-0">

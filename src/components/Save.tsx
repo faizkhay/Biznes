@@ -84,7 +84,7 @@ export function ShareButton({ title, path, words = false, label }: { title: stri
 export function SavedLink() {
   const n = useSaved().length;
   return (
-    <Link href="/saved" className="icon-btn" aria-label={n ? `Saved, ${n}` : "Saved"} title="Saved">
+    <Link href="/saved" className="icon-btn icon-btn-sq" aria-label={n ? `Saved, ${n}` : "Saved"} title="Saved">
       <Bookmark />
       {n > 0 && (
         <span className="badge" aria-hidden>

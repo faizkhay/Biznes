@@ -37,7 +37,7 @@ export default function ChartLive({ lit, follow, focus, view }: { lit?: number[]
     let alive = true;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const style = getComputedStyle(document.documentElement);
-    const pale = style.getPropertyValue("--palette-limewash").trim() || "#f7f7f8";
+    const ink = style.getPropertyValue("--palette-ink").trim() || "#0a1639";
     const signal = style.getPropertyValue("--palette-saffron").trim() || "#f8c618";
 
     const draw = (now: number) => {
@@ -60,8 +60,8 @@ export default function ChartLive({ lit, follow, focus, view }: { lit?: number[]
       const some = current.size > 0;
       ctx.clearRect(0, 0, width, tall);
       const dot = Math.max(1, 1.5 * ratio);
-      ctx.fillStyle = pale;
-      ctx.globalAlpha = some ? 0.66 - 0.36 * ease : focus ? 0.42 : 0.8;
+      ctx.fillStyle = ink;
+      ctx.globalAlpha = some ? 0.5 - 0.3 * ease : focus ? 0.3 : 0.55;
       for (let i = 0; i < all.length / 2; i++) {
         if (some && current.has(i)) continue;
         const px = x(i);
@@ -70,11 +70,14 @@ export default function ChartLive({ lit, follow, focus, view }: { lit?: number[]
         ctx.fillRect(px - dot / 2, py - dot / 2, dot, dot);
       }
       if (some) {
-        ctx.fillStyle = signal;
-        for (const [radius, alpha] of [
-          [5.5 * ratio * ease, 0.16 * ease],
-          [1.9 * ratio, 0.35 + 0.65 * ease],
-        ]) {
+        // A point that answers: a soft saffron light, then a saffron point ringed in ink, so it
+        // reads on the white of the land as well as among the other points.
+        for (const [radius, alpha, colour] of [
+          [6.5 * ratio * ease, 0.32 * ease, signal],
+          [3.1 * ratio, 0.35 + 0.65 * ease, ink],
+          [2.1 * ratio, 0.35 + 0.65 * ease, signal],
+        ] as const) {
+          ctx.fillStyle = colour;
           ctx.globalAlpha = alpha;
           ctx.beginPath();
           for (const i of current) {
@@ -86,11 +89,15 @@ export default function ChartLive({ lit, follow, focus, view }: { lit?: number[]
       }
       if (ringed >= 0 && ringed * 2 < all.length) {
         ctx.globalAlpha = 1;
-        ctx.strokeStyle = signal;
-        ctx.lineWidth = 1.5 * ratio;
+        ctx.strokeStyle = ink;
+        ctx.lineWidth = 2 * ratio;
         ctx.beginPath();
-        ctx.arc(x(ringed), y(ringed), 10 * ratio, 0, Math.PI * 2);
+        ctx.arc(x(ringed), y(ringed), 11 * ratio, 0, Math.PI * 2);
         ctx.stroke();
+        ctx.fillStyle = ink;
+        ctx.beginPath();
+        ctx.arc(x(ringed), y(ringed), 4.4 * ratio, 0, Math.PI * 2);
+        ctx.fill();
         ctx.fillStyle = signal;
         ctx.beginPath();
         ctx.arc(x(ringed), y(ringed), 3 * ratio, 0, Math.PI * 2);

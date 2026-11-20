@@ -192,3 +192,8 @@ export function GroupIcon({ group, ...p }: P & { group?: string }) {
   const Icon = (group && GROUP_ICONS[group]) || Store;
   return <Icon {...p} />;
 }
+export const List = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M4 7h16M4 12h16M4 17h10" />
+  </svg>
+);

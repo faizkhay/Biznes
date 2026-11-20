@@ -65,7 +65,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <h2 id="r-guides" className="label-1 pb-3 text-ink-faint">
         {a.who ? "Also, from the guides" : "From the guides"}
       </h2>
-      <ul className="grid gap-3">
+      <ul className="rows">
         {a.leads.map((lead) => (
           <li key={lead.href}>
             <LeadRow lead={lead} />

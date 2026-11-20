@@ -17,8 +17,7 @@
   --palette-sand: #f5efe0; /* derived from cream, deeper: a tile, a chip, a quiet panel */
   --palette-limewash: #f7f7f8; /* sampled: the brand's white. Points on the island's dark panel */
   --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.69:1 on white, 16.8:1 on cream, 15.42:1 on sand */
-  --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer, land on the chart */
-  --palette-night: #050a1a; /* derived from ink, darker: the sea on the chart */
+  --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer */
   --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.9:1 on white, 8.45:1 on cream, 7.76:1 on sand */
   --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.7:1 on sand */
   --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.02:1 */
@@ -26,8 +25,10 @@
   --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 8.3:1 */
   --palette-saffron-wash: #fef6d9; /* derived, saffron 16% on white: an answer's ground, a chosen thing; ink on it 16.34:1 */
   --palette-royal: #0d36a7; /* sampled from the mock-up approved on 20 November 2026: what answers. 9.98:1 on white, 9.48:1 on cream */
+  --palette-shallows: #dcefeb; /* derived: the lagoon picture's water (#7bbcb3, sampled) at 27% on white. The sea on the island's map */
+  --palette-lagoon-deep: #7bbcb3; /* sampled from the lagoon picture's water: the map's coastline */
   --palette-lagoon: #aebadf; /* sampled from the same mock-up: the pale blue of the glow behind the question */
-  --palette-haze: #b6c0db; /* derived from limewash toward ink: words on the chart; 9.73:1 on ink */
+  --palette-haze: #b6c0db; /* derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink */
   --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Never words on white or cream */
   --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.78:1 on white, 5.48:1 on cream */
 
@@ -385,6 +386,85 @@
     background: var(--color-signal);
   }
 
+  /* A group of the menu: a word that opens a list of pages, each with a line about it. */
+  .menu-group {
+    position: relative;
+  }
+  .menu-group > summary.nav-link {
+    gap: 0.25rem;
+    padding: 0 0.75rem;
+    border-radius: var(--radius-full);
+  }
+  .menu-group > summary.nav-link svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    transition: transform 200ms var(--ease-out);
+  }
+  .menu-group > summary.nav-link:hover,
+  .menu-group[open] > summary.nav-link {
+    background: var(--color-panel);
+    color: var(--color-ink);
+  }
+  .menu-group[open] > summary.nav-link svg {
+    transform: rotate(180deg);
+  }
+  /* The group that holds the page you are on carries the lit point. */
+  .menu-group > summary.nav-link[data-current] {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .menu-group > summary.nav-link[data-current]::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0.25rem;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-left: -0.15625rem;
+    border-radius: 50%;
+    background: var(--color-signal);
+  }
+  .menu-panel {
+    position: absolute;
+    z-index: 60;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    width: 20rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+  .menu-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-panel-all {
+    left: auto;
+    right: 0;
+    width: min(21rem, calc(100vw - 2 * var(--edge)));
+    max-height: min(34rem, calc(100dvh - 11rem));
+    overflow-y: auto;
+  }
+  .menu-item {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background-color 160ms var(--ease-out);
+  }
+  .menu-item:hover,
+  .menu-item:focus-visible {
+    background: var(--color-panel);
+  }
+  .menu-item[aria-current="page"] {
+    background: var(--color-signal-wash);
+  }
+
   /* Buttons: pills. One filled action per group; the others are ink or quiet. */
   .btn {
     display: inline-flex;
@@ -473,6 +553,15 @@
   }
   .icon-btn[aria-pressed="true"] svg {
     fill: var(--color-signal);
+  }
+  /* In the menu the icon buttons are soft squares. */
+  .icon-btn-sq {
+    border-radius: var(--radius-lg);
+    background: var(--color-panel);
+    color: var(--color-ink);
+  }
+  .icon-btn-sq:hover {
+    background: color-mix(in srgb, var(--palette-ink) 10%, var(--palette-white));
   }
   .icon-btn-edge {
     border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
@@ -1197,6 +1286,15 @@
     background: var(--color-ink);
     color: var(--color-signal);
   }
+  /* A guide's tile is blue, an official page's and a website's are quiet. */
+  .listing-icon-guide {
+    background: color-mix(in srgb, var(--palette-lagoon) 45%, var(--palette-white));
+    color: var(--color-link);
+  }
+  .listing-icon-quiet {
+    background: var(--color-panel);
+    color: var(--color-ink-subtle);
+  }
   /* A business that is verified and pays for its place: the card is ringed in saffron and glows,
      and it carries the mark. Nothing else on the site looks like it. */
   .listing-paid,
@@ -1545,14 +1643,15 @@
     color: var(--color-ink-subtle);
   }
 
-  /* The island. One drawing, used everywhere; see components/Chart.tsx. It is the one dark panel
-     on a page: every listing a point of light at its own place, and saffron for the ones that
-     answer. */
+  /* The island. One drawing, used everywhere; see components/Chart.tsx. A light map in the page's
+     own colours: a pale lagoon for the sea, the paper for the land, every listing a point of ink at
+     its own place, and saffron ringed in ink for the ones that answer. */
   .chart {
     position: relative;
     width: 100%;
-    color: var(--palette-haze);
-    background: var(--palette-night);
+    color: var(--color-ink-subtle);
+    background: var(--palette-shallows);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-xl);
     overflow: hidden;
   }
@@ -1573,29 +1672,33 @@
     display: none;
   }
   .chart-coast {
-    fill: color-mix(in srgb, var(--palette-ink) 78%, transparent);
-    stroke: color-mix(in srgb, var(--palette-limewash) 30%, transparent);
-    stroke-width: 1;
+    fill: var(--palette-white);
+    stroke: color-mix(in srgb, var(--palette-lagoon-deep) 55%, transparent);
+    stroke-width: 1.25;
     vector-effect: non-scaling-stroke;
     stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--palette-lagoon-deep) 38%, transparent));
   }
   .chart-district {
     fill: none;
-    stroke: color-mix(in srgb, var(--palette-limewash) 10%, transparent);
+    stroke: color-mix(in srgb, var(--palette-ink) 13%, transparent);
     stroke-width: 1;
     stroke-dasharray: 2 4;
     vector-effect: non-scaling-stroke;
   }
   .chart-dots {
     fill: none;
-    stroke: var(--palette-limewash);
+    stroke: color-mix(in srgb, var(--palette-ink) 62%, transparent);
     stroke-linecap: round;
   }
   .chart-lit {
     fill: var(--palette-saffron);
+    stroke: var(--palette-ink);
+    stroke-width: 1.25;
+    vector-effect: non-scaling-stroke;
   }
   .chart-halo {
-    fill: color-mix(in srgb, var(--palette-saffron) 22%, transparent);
+    fill: color-mix(in srgb, var(--palette-saffron) 42%, transparent);
   }
   /* The island's lettering is set in the page's own type over the drawing, so it is as large on a
      phone as on a desk. */
@@ -1611,9 +1714,9 @@
     white-space: nowrap;
   }
   .chart-town {
-    color: var(--palette-haze);
+    color: var(--palette-ink);
     transform: translate(0.625rem, -50%);
-    text-shadow: 0 0 0.25rem var(--palette-night), 0 0 0.25rem var(--palette-night), 0 0 0.5rem var(--palette-night);
+    text-shadow: 0 0 0.1875rem var(--palette-white), 0 0 0.1875rem var(--palette-white), 0 0 0.375rem var(--palette-white), 0 0 0.5rem var(--palette-white);
   }
   .chart-town-left {
     transform: translate(calc(-100% - 0.625rem), -50%);
@@ -1628,9 +1731,10 @@
     right: 0.75rem;
     width: 20%;
     height: auto;
-    background: color-mix(in srgb, var(--palette-night) 86%, transparent);
-    border: 1px solid color-mix(in srgb, var(--palette-limewash) 30%, transparent);
-    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--palette-white) 88%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
   }
   /* On a phone the island beside a list is a small one above it, with no lettering. */
   .chart-strip {
@@ -1642,8 +1746,8 @@
     display: none;
   }
   .chart-frame {
-    fill: var(--palette-night);
-    stroke: color-mix(in srgb, var(--palette-limewash) 22%, transparent);
+    fill: color-mix(in srgb, var(--palette-white) 45%, transparent);
+    stroke: color-mix(in srgb, var(--palette-ink) 16%, transparent);
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
   }

@@ -54,8 +54,42 @@ export const NAV = [
   { href: "/tools", label: "Tools" },
 ] as const;
 
+/**
+ * The menu, grouped: what a visitor may be after, in three words. Each line says what is behind it.
+ * The header opens these as lists; the footer and the phone's tab bar use NAV.
+ */
+export const MENU = [
+  {
+    label: "Explore",
+    items: [
+      { href: "/directory", label: "Directory", line: "Every kind of business, by category" },
+      { href: "/places", label: "Places", line: "Town by town, village by village" },
+      { href: "/emergency", label: "Emergency numbers", line: "Who to call, from official pages" },
+      { href: "/shop", label: "Pocket guides", line: "Guides to keep on your phone" },
+    ],
+  },
+  {
+    label: "Learn",
+    items: [
+      { href: "/learn", label: "Articles and guides", line: "Mauritius explained, with its sources" },
+      { href: "/tools", label: "Tools", line: "VAT, legal structures, checking a business" },
+      { href: "/learn/glossary", label: "Glossary", line: "BRN, TAN, CSG and the other initials" },
+      { href: "/official", label: "Official pages", line: "The registers and the forms themselves" },
+    ],
+  },
+  {
+    label: "For business",
+    items: [
+      { href: "/pricing", label: "List your business", line: "Biznes Free, Go and Grow" },
+      { href: "/add", label: "Add or correct a listing", line: "Put a listing right, or take it out" },
+      { href: "/data", label: "Where the data comes from", line: "Sources, order, and what is never taken" },
+    ],
+  },
+] as const;
+
 /** The shelves of the guides page: who each set of guides is for. */
 export const SHELVES = [
+  { id: "mauritius", label: "About Mauritius", line: "The island, its people, its money, its weather and how it runs." },
   { id: "business", label: "Starting and running a business", line: "Registration, companies, tax, VAT, staff, licences and the rest." },
   { id: "visitors", label: "Visiting Mauritius", line: "What to know before you come, and what there is to see and do." },
   { id: "newcomers", label: "Moving here", line: "The ways to live in Mauritius, and settling in once you have arrived." },
@@ -94,7 +128,7 @@ export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a co
  * not yet decided: to confirm. Until it is, a business asks for a plan and a person answers.
  */
 export const PLANS = [
-  { id: "free", name: "Biznes Free", price: 0, line: "A basic listing, free for good.", gives: ["A listing in the directory and in search", "Your name, what you do, where you are and how to reach you", "Correct it or take it out whenever you ask"] },
+  { id: "free", name: "Biznes Free", price: 0, line: "A basic listing, free for good.", gives: ["Already yours if our crawler found you: every business on the open map is listed", "Claim the listing to show it is yours and keep it right", "Your name, what you do, where you are and how to reach you"] },
   { id: "go", name: "Biznes Go", price: 550, line: "Verified, and listed with priority.", gives: ["Everything in Biznes Free", "A verified mark, once we have checked the business is real", "Listed with priority, and marked as such"] },
   { id: "grow", name: "Biznes Grow", price: 1250, line: "Take bookings and sell your services online.", gives: ["Manage your bookings in one place", "Sell your services online", "Your own page to send customers to"] },
 ] as const;

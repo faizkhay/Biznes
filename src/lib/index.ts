@@ -95,7 +95,7 @@ export type Guide = {
   summary: string;
   audience?: string;
   /** Who it is for, as a shelf of the guides page (src/data/site.ts, SHELVES). None means business. */
-  shelf?: "business" | "visitors" | "newcomers" | "everyday";
+  shelf?: "mauritius" | "business" | "visitors" | "newcomers" | "everyday";
   /** The day its facts were last read against their sources. */
   checked: string;
   facts: { label: string; value: string; detail?: string; sources?: string[] }[];
@@ -141,6 +141,17 @@ const GUIDE_ORDER = [
   "invest-from-abroad",
   "global-business",
   "verify-a-business",
+  "mauritius-at-a-glance",
+  "districts-and-towns-of-mauritius",
+  "people-and-languages-of-mauritius",
+  "history-of-mauritius",
+  "how-mauritius-is-governed",
+  "weather-and-cyclones-in-mauritius",
+  "money-and-banking-in-mauritius",
+  "the-economy-of-mauritius",
+  "getting-around-mauritius",
+  "schools-and-universities-in-mauritius",
+  "everyday-facts-about-mauritius",
   "visiting-mauritius",
   "things-to-do-in-mauritius",
   "moving-to-mauritius",

@@ -208,29 +208,39 @@ await still.goto(`${origin}/add`, { waitUntil: "domcontentloaded" });
 check("no script: the form says so and gives the other routes", /needs JavaScript/.test(await still.content()) && /\+230 5450 8600/.test(await still.content()));
 await plain.close();
 
+// 8a. The menu: a group opens, shows its pages, and closes when one is chosen.
+await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
+await page.locator("header summary", { hasText: "Learn" }).click();
+check("menu: a group opens to its pages", (await page.locator("header details[open] .menu-item:visible").count()) === 4);
+await page.locator("header summary", { hasText: "Explore" }).click();
+check("menu: only one group is open at a time", (await page.locator("header details[open]").count()) === 1);
+await page.locator("header details[open] .menu-item", { hasText: "Emergency numbers" }).click();
+await page.waitForURL(/\/emergency/);
+check("menu: choosing a page goes there and closes the group", (await page.locator("header details[open]").count()) === 0 && /999/.test(await page.locator("main").innerText()));
+
 // 8b. Narrowing, saving, sharing, and the plans.
 await page.goto(`${origin}/search?q=restaurants`, { waitUntil: "networkidle" });
 const allRestaurants = Number((await page.locator('main p[role="status"]').first().innerText()).replace(/,/g, "").match(/(\d+) results?/)?.[1] ?? 0);
 await page.locator('nav[aria-label="Narrow these listings"] a', { hasText: "With a telephone number" }).click();
 await page.waitForURL(/phone=1/);
 const withPhone = Number((await page.locator('main p[role="status"]').first().innerText()).replace(/,/g, "").match(/(\d+) results?/)?.[1] ?? 0);
-const rows = await page.locator("main article.listing").count();
-const rowsWithTel = await page.locator('main article.listing:has(a[href^="tel:"])').count();
+const rows = await page.locator("main article[data-listing]").count();
+const rowsWithTel = await page.locator('main article[data-listing]:has(a[href^="tel:"])').count();
 check("narrowing: with a telephone number leaves fewer, and every one has a number", withPhone > 0 && withPhone < allRestaurants && rows > 0 && rows === rowsWithTel, `${withPhone} of ${allRestaurants}, ${rowsWithTel}/${rows}`);
 check("narrowing: the one that is on is marked, and can be cleared", (await page.locator('a.filter[aria-current="true"]').count()) === 1 && (await page.locator('nav[aria-label="Narrow these listings"] a', { hasText: "Clear" }).count()) === 1);
 await page.locator("details.menu summary").click();
 await page.locator("details.menu .menu-list a").first().click();
 await page.waitForURL(/town=/);
 const townName = (await page.locator("details.menu summary").innerText()).trim();
-check("narrowing: by town", townName.length > 0 && !/Any town/.test(townName) && (await page.locator("main article.listing").count()) > 0, townName);
+check("narrowing: by town", townName.length > 0 && !/Any town/.test(townName) && (await page.locator("main article[data-listing]").count()) > 0, townName);
 
 await page.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "networkidle" });
-const firstName = await page.locator("main article.listing h3").first().innerText();
-await page.locator('main article.listing button[aria-pressed="false"]').first().click();
-check("saving: the bookmark is pressed and the menu counts one", (await page.locator('main article.listing button[aria-pressed="true"]').count()) === 1 && /Saved, 1/.test((await page.locator('header a[href="/saved"]').getAttribute("aria-label")) ?? ""));
+const firstName = await page.locator("main article[data-listing] h3").first().innerText();
+await page.locator('main article[data-listing] button[aria-pressed="false"]').first().click();
+check("saving: the bookmark is pressed and the menu counts one", (await page.locator('main article[data-listing] button[aria-pressed="true"]').count()) === 1 && /Saved, 1/.test((await page.locator('header a[href="/saved"]').getAttribute("aria-label")) ?? ""));
 await page.goto(`${origin}/saved`, { waitUntil: "networkidle" });
-await page.waitForSelector("main article.listing");
-check("saving: the saved page lists it", (await page.locator("main article.listing h2").first().innerText()) === firstName, firstName);
+await page.waitForSelector("main article[data-listing]");
+check("saving: the saved page lists it", (await page.locator("main article[data-listing] h2").first().innerText()) === firstName, firstName);
 await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 await page.locator("main button", { hasText: "Share this list" }).click();
 const copied = await page.evaluate(() => navigator.clipboard.readText());
@@ -238,8 +248,8 @@ check("sharing: a saved list is a link that can be sent", /\/saved\?ids=/.test(c
 const stranger = await browser.newContext({ viewport: { width: 1440, height: 900 } });
 const other = await stranger.newPage();
 await other.goto(copied, { waitUntil: "networkidle" });
-await other.waitForSelector("main article.listing");
-check("sharing: the link shows the same list to someone else", (await other.locator("main article.listing h2").first().innerText()) === firstName && (await other.locator("main button", { hasText: "Save all" }).count()) === 1);
+await other.waitForSelector("main article[data-listing]");
+check("sharing: the link shows the same list to someone else", (await other.locator("main article[data-listing] h2").first().innerText()) === firstName && (await other.locator("main button", { hasText: "Save all" }).count()) === 1);
 await stranger.close();
 
 await page.goto(`${origin}/pricing`, { waitUntil: "domcontentloaded" });
@@ -255,10 +265,13 @@ for (const path of ["/", "/search?q=bank", "/learn/vat", "/b/n5651200767", "/dir
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
 check("phone: the five ways in are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").count()) === 5);
+await small.locator('header summary[aria-label="Menu"]').click();
+check("phone: the menu opens every group of pages", (await small.locator("header .menu-panel-all a:visible").count()) >= 10);
+await small.keyboard.press("Escape");
 await small.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcontentloaded" });
 check("phone: results have a small chart above them", await small.locator(".chart-strip").first().isVisible());
 await small.goto(`${origin}/learn/vat`, { waitUntil: "domcontentloaded" });
-check("phone: a guide's contents open as a list", (await small.locator("details summary").first().isVisible()) && (await small.locator("table.table thead").first().evaluate((el) => el.getBoundingClientRect().width <= 2)));
+check("phone: a guide's contents open as a list", (await small.locator("main details summary").first().isVisible()) && (await small.locator("table.table thead").first().evaluate((el) => el.getBoundingClientRect().width <= 2)));
 await phone.close();
 
 check("no page errors", errors.length === 0, errors.slice(0, 2).join(" | "));

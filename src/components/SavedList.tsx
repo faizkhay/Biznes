@@ -92,7 +92,7 @@ export default function SavedList({ shared }: { shared?: string[] }) {
       <ul className="rows">
         {rows.map((r) => (
           <li key={r.id}>
-            <article className="row listing">
+            <article className="row listing" data-listing={r.id}>
               <span className="listing-icon" aria-hidden>
                 <GroupIcon group={r.group} />
               </span>

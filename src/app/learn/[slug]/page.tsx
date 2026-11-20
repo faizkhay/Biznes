@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import { site } from "@/data/site";
 import { anchorOf, day, shortUrl } from "@/lib/format";
 import { TOOLS } from "@/lib/tools";
+import { SHELVES } from "@/data/site";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
 
@@ -29,7 +30,15 @@ export default async function GuidePage({ params }: Props) {
   const g = data.guideBySlug.get((await params).slug);
   if (!g) notFound();
   const at = data.guides.indexOf(g);
-  const next = data.guides[at + 1];
+  // What follows on: the other articles of the same shelf, in their order from this one, then the
+  // rest. And the article's own pointers, split into this site's pages and the official ones.
+  const after = [...data.guides.slice(at + 1), ...data.guides.slice(0, at)];
+  const shelf = g.shelf ?? "business";
+  const inside = g.resources.filter((r) => r.url.startsWith("/")).slice(0, 2);
+  const related = [...after.filter((o) => (o.shelf ?? "business") === shelf), ...after.filter((o) => (o.shelf ?? "business") !== shelf)].slice(0, 4 - inside.length);
+  const outside = g.resources.filter((r) => !r.url.startsWith("/"));
+  const words = g.sections.reduce((n, section) => n + JSON.stringify(section.blocks).split(/\s+/).length, 0);
+  const minutes = Math.max(1, Math.round(words / 220));
   const tool = TOOLS.find((t) => t.guide === g.slug);
 
   return (
@@ -51,7 +60,7 @@ export default async function GuidePage({ params }: Props) {
       <h1 className="heading-1 mt-4 max-w-4xl">{g.title}</h1>
       <p className="body-1 measure mt-4 text-ink-subtle">{g.summary}</p>
       <p className="caption-1 mt-6 text-ink-faint">
-        Checked {day(g.checked)} against {g.sources.length} sources. General information, not legal or tax advice.
+        {minutes} minute read. Checked {day(g.checked)} against {g.sources.length} sources. General information, not legal or tax advice.
       </p>
       {tool && (
         <p className="mt-6">
@@ -65,7 +74,7 @@ export default async function GuidePage({ params }: Props) {
       <details className="note mt-8 lg:hidden">
         <summary className="title-2 cursor-pointer">In this guide</summary>
         <ol className="mt-3 grid gap-1">
-          {[...g.sections.map((s) => s.heading), "Sources"].map((heading) => (
+          {[...g.sections.map((s) => s.heading), "References"].map((heading) => (
             <li key={heading}>
               <a href={`#${anchor(heading)}`} className="body-3 inline-flex min-h-11 items-center text-ink-subtle">
                 {heading}
@@ -100,7 +109,7 @@ export default async function GuidePage({ params }: Props) {
           <div className="sticky top-24">
             <h2 className="label-1 pb-3 text-ink-faint">In this guide</h2>
             <ol className="grid gap-1 border-l border-line">
-              {[...g.sections.map((s) => s.heading), "Sources"].map((heading) => (
+              {[...g.sections.map((s) => s.heading), "References"].map((heading) => (
                 <li key={heading}>
                   <a href={`#${anchor(heading)}`} className="body-3 -ml-px block border-l border-transparent py-1 pl-4 text-ink-subtle no-underline hover:border-signal hover:text-ink">
                     {heading}
@@ -123,26 +132,40 @@ export default async function GuidePage({ params }: Props) {
             </section>
           ))}
 
-          {g.resources.length > 0 && (
-            <section aria-labelledby="next-steps" className="mb-12">
-              <h2 id="next-steps" className="heading-2">
-                Where to go next
-              </h2>
-              <ul className="rows mt-4 max-w-prose">
-                {g.resources.map((r) => (
-                  <li key={r.url}>
-                    <div className="row">
-                      <a href={r.url} rel="noopener" className="row-title title-2 inline-flex items-baseline gap-2">
-                        {r.title} <Out className="size-4 shrink-0 self-center text-ink-faint" />
-                      </a>
-                      <p className="body-3 mt-1 text-ink-subtle">{r.what}</p>
-                      <p className="data-2 mt-2 text-ink-faint">{r.publisher}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {/* Keep reading: the pages of this site that follow on, before any way out of it. */}
+          <section aria-labelledby="keep-reading" className="mb-12">
+            <h2 id="keep-reading" className="heading-2">
+              Keep reading
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {inside.map((r) => (
+                <li key={r.url}>
+                  <article className="card h-full">
+                    <p className="label-1 text-ink-faint">On biznes.mu</p>
+                    <h3 className="title-1 mt-2">
+                      <Link href={r.url} className="row-title text-ink">
+                        {r.title}
+                      </Link>
+                    </h3>
+                    <p className="body-3 mt-2 line-clamp-2 text-ink-subtle">{r.what}</p>
+                  </article>
+                </li>
+              ))}
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <article className="card h-full">
+                    <p className="label-1 text-ink-faint">{SHELVES.find((shelf) => shelf.id === (r.shelf ?? "business"))?.label}</p>
+                    <h3 className="title-1 mt-2">
+                      <Link href={`/learn/${r.slug}`} className="row-title text-ink">
+                        {r.title}
+                      </Link>
+                    </h3>
+                    <p className="body-3 mt-2 line-clamp-2 text-ink-subtle">{r.summary}</p>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           {g.unverified && g.unverified.length > 0 && (
             <section aria-labelledby="open" className="mb-12 max-w-prose">
@@ -158,11 +181,14 @@ export default async function GuidePage({ params }: Props) {
             </section>
           )}
 
-          <section aria-labelledby="sources" className="max-w-prose">
-            <h2 id="sources" className="heading-3">
-              Sources
+          {/* The references: where every figure came from, and the official pages themselves, for
+              whoever wants to check or go further. They close the page; they are not its way on. */}
+          <section aria-labelledby="references" className="max-w-prose border-t border-line pt-8">
+            <h2 id="references" className="heading-3">
+              References
             </h2>
-            <ol className="mt-3 grid gap-3">
+            <p className="body-3 mt-2 text-ink-subtle">Every figure above carries the number of the page it was read on.</p>
+            <ol className="mt-4 grid gap-3">
               {g.sources.map((s, i) => (
                 <li key={s.id} id={`source-${i + 1}`} className="body-3 grid grid-cols-[2.5rem_1fr] text-ink-subtle">
                   <span className="data-2 pt-0.5 text-ink-faint">[{i + 1}]</span>
@@ -176,14 +202,22 @@ export default async function GuidePage({ params }: Props) {
                 </li>
               ))}
             </ol>
+            {outside.length > 0 && (
+              <>
+                <h3 className="title-1 mt-8">The official pages to go to</h3>
+                <ul className="mt-3 grid gap-3">
+                  {outside.map((r) => (
+                    <li key={r.url} className="body-3 text-ink-subtle">
+                      <a href={r.url} rel="noopener" className="inline-flex items-baseline gap-2 text-ink">
+                        {r.title} <Out className="size-4 shrink-0 self-center text-ink-faint" />
+                      </a>
+                      . {r.what} <span className="text-ink-faint">{r.publisher}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </section>
-
-          {next && (
-            <p className="body-2 mt-12 border-t border-line pt-6">
-              <span className="caption-1 block text-ink-faint">Next guide</span>
-              <Link href={`/learn/${next.slug}`}>{next.title}</Link>
-            </p>
-          )}
         </div>
       </div>
     </article>

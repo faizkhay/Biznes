@@ -133,8 +133,8 @@ export default function Chart({
       {mark && (
         <svg viewBox={`0 0 ${CHART_W} ${c.h}`} aria-hidden focusable="false" className="chart-over">
           <path className="chart-tick" d={`M${mark[0].toFixed(1)} 0V${(mark[1] - 22).toFixed(1)}M${mark[0].toFixed(1)} ${(mark[1] + 22).toFixed(1)}V${c.h}M0 ${mark[1].toFixed(1)}H${(mark[0] - 22).toFixed(1)}M${(mark[0] + 22).toFixed(1)} ${mark[1].toFixed(1)}H${CHART_W}`} />
-          <circle cx={mark[0]} cy={mark[1]} r={22} fill="none" stroke="var(--palette-saffron)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
-          <circle cx={mark[0]} cy={mark[1]} r={5} fill="var(--palette-saffron)" />
+          <circle cx={mark[0]} cy={mark[1]} r={22} fill="color-mix(in srgb, var(--palette-saffron) 30%, transparent)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+          <circle cx={mark[0]} cy={mark[1]} r={6} fill="var(--palette-saffron)" stroke="var(--palette-ink)" strokeWidth={2} vectorEffect="non-scaling-stroke" />
         </svg>
       )}
       <div className="chart-letters" aria-hidden>
@@ -166,7 +166,7 @@ export default function Chart({
       {drawnIn && (
         <svg viewBox={`0 0 ${CHART_W} ${c.h}`} aria-hidden focusable="false" className="chart-key">
           <path className="chart-coast" d={ringsPath([geo.mauritius.coast[0]], c.main)} />
-          <rect x={view.x} y={view.y} width={view.w} height={view.h} fill="color-mix(in srgb, var(--palette-saffron) 28%, transparent)" stroke="var(--palette-saffron)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
+          <rect x={view.x} y={view.y} width={view.w} height={view.h} fill="color-mix(in srgb, var(--palette-saffron) 45%, transparent)" stroke="var(--palette-ink)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
         </svg>
       )}
     </div>
