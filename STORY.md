@@ -263,6 +263,78 @@ The 25 colour pairs measured all pass. The behaviour check passed 82 of 82 befor
 was restyled. axe-core was clean on every kind of page at phone size. The final checks are run at
 the end of the round and recorded in the README.
 
+### Later the same day: the owner's further notes
+
+After the first postcard build the owner wrote again, three times:
+
+- "for now, any existing business listed from crawlers are automatically in free plan, owners can
+  claim and verify the listings. we need to have them already there tho. the dark map is not
+  attractive and fitting in the aesthetic. search engines shouldn't just be showig businesses,
+  should also operate like a basic proper search engine function, we need our own articles based on
+  general knowledge we can gather, we need to keep people maximum time on our platform, if they want
+  to read sources then they can jhave reference list from where we got out sources from. see how
+  bonjour.mu's header is, we can do similar, dont carbon copy please".
+- On the pocket guide: "The gradient between pixtures and text in pocket guide isnt showing, its an
+  ugly sharp line, also price it al 150rs instead per guide, each guide add contact to add sponsored
+  listings and adverts. We renew our guides every month. Add that options for paying users to pay to
+  add their add or business in the sponsored page of the guide, suggest an appropriate fee, if per
+  month we geg enough sponsors for our guides, then the guides will be free for the first 3 weeks of
+  the month and paid thr last week of that month, sponsorship can be bought for the coming month or
+  months only."
+
+What was done:
+
+- The island was redrawn as a light map: a pale lagoon, white land, ink points, saffron ringed in
+  ink for the ones that answer.
+- The menu became three groups that open (Explore, Learn, For business), with soft square icon
+  buttons and, on a phone, one button that opens them all.
+- The search became an answer engine over the site's own pages. Eleven articles about Mauritius
+  were researched and written, with a page of public holidays. A question is answered first, in
+  the site's own words: a fact, an article's opening, an emergency number as a button that calls
+  it, a holiday's date. Pages on other sites are folded away as "References elsewhere". An article
+  ends with its references and then with what to read next on the site.
+- The pocket guide is renewed every month, at Rs 150, with a sponsors' page and how to reach us to
+  be on it. A business may ask to sponsor a coming month at one of three prices, which are Khay
+  Digital's suggestion until the owner confirms them (Rs 500 for a listing, Rs 1,500 for a panel,
+  Rs 4,000 for a page). When a month's sponsors together cover the edition (the suggested sum is
+  Rs 6,000), it is free on the site until the 21st and sold after. The fades between the guide's
+  pictures and its pages are painted into the pictures, so no reader shows a hard line.
+
+### The design review of Round 4, 20 November 2026
+
+A reviewer who had not built the site went through a built copy at both sizes, with a keyboard and
+twenty-two searches. Twenty-three findings: one blocker, thirteen major. Its verdict was that the
+first screen on a desk met the brief and the phone did not. What was done:
+
+| Finding | Done |
+|---|---|
+| On a phone the first screen could pan sideways, and the tab bar fell off it (the soft light behind the words was wider than the screen) | The light is clipped to the screen, nothing may widen the page, and the check now measures a phone's page against the screen itself |
+| A long website address on a card widened the page | A card shows the site's name alone, and a chip never outgrows its card |
+| Questions were answered badly: "register a company" led with a company, "MCB" with a paragraph about the airport | A question about how is not read as a kind of business. Only a page that truly answers is shown as the answer; a part of an article that merely mentions the words is listed, not crowned. A business's own name leads with businesses |
+| The emergency answer was buried on a phone and could not be tapped | The answer comes straight under the search box, a number is a button that calls it, and the first screen has a way to the emergency numbers |
+| A toy map and stacked filters pushed the first card down a phone's screen | On a phone the map comes after the list, and the filters stand in one row |
+| A business's page opened with the day's picture, which read as a picture of the business | It opens with a map of its own neighbourhood, with its mark; on a phone the call button is full width |
+| The verified mark could be seen nowhere | The plans page shows an example card, marked as an example |
+| Asking for a paid plan landed on a form that said "It costs nothing" | The form knows what it was opened for: the plan, its price, and that paying online is not open yet. The plans page says the same |
+| The tap that closed a menu also opened what lay beneath; the phone menu ran off the screen | A clear sheet takes the closing tap; the phone menu fits between the header and the tab bar, with the way to list a business first |
+| "List your business" was hidden on a phone | A line for business owners sits under the first screen, and the phone menu leads with it |
+| Suggestions were cut off by the footer; the header's list was too narrow to read | The page's own lists open over the footer; the header's list is wide, with the note under the name |
+| Most listings have no number, and a card without one offered nothing to do | Such a card offers the way there, and a way to add the number |
+| An article ended on links away from the site | It ends with what to read next; "Articles" is now the one name for them |
+| Smaller faults: the age of a record ("over two years" for nine), past holidays before the next one, the guide's two names, an indented saved list, targets under 44px, text reading through the floating bars | Each fixed |
+
+Not done, and why:
+
+- **A map with streets, zoom and markers that can be tapped.** The island is drawn from the
+  listings' own positions; a street map is a different piece of work, and a tile service is a
+  dependency the owner has not chosen.
+- **A second, warmer face for titles.** The reviewer found the pages under the first screen close
+  to a template. One face is the house rule; a display face is the owner's to ask for.
+- **A shorter places page and a search within it.**
+- **The current part marked in an article's contents, and businesses that go with an article.**
+- **Listings with a number first in health categories.** The order is by answer and fullness, and
+  a number already counts toward fullness.
+
 ### Round 3, 20 November 2026: the search engine
 
 The owner's note, in full: "Scrap it all. Turn biznes.mu into THE SEARCH ENGINE FOR MAURITIAN
