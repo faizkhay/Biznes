@@ -322,7 +322,10 @@ cart in its message.
    - Confirm signup: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email`
    - Reset password: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/account/update-password`
 
-   Left as Supabase ships them, the links still work, but only in the browser that asked.
+   Left as Supabase ships them, the links still work, but only in the browser that asked, and a
+   mail program that opens every link in a message before its reader does can use one up. With
+   the two templates above, opening a link uses nothing: it waits at `/auth/continue` for the
+   person to press one button, and the token is spent then.
 4. **Auth, email.** Supabase's own sender is for trying things out and sends only a few messages an
    hour. Give the project an SMTP sender before launch.
 5. **Set the variables and deploy.**
@@ -468,7 +471,8 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 | Address | What it is |
 |---|---|
 | `/account/sign-in`, `/account/sign-up`, `/account/reset`, `/account/update-password` | Signing in, a new account, a forgotten password: one card each, in the middle of the sheet |
-| `/auth/confirm` | Where the link in an email lands |
+| `/auth/confirm` | Where the link in an email lands. A link with a token is handed on to the next page, unused |
+| `/auth/continue` | One button: pressing it spends the link's token and signs the person in, or goes on to choose a new password |
 | `/account` | A welcome by name with the role as a tag; where everything is, by role; "Your plans", "Your orders", "Your bookings"; their details; the form to join the list |
 | `/account/order` | What the site sells, and the checkout for what the address names (`?item=plan:go&item=sponsor:listing*2`). For anyone, signed in or not |
 | `/dashboard`, `/dashboard/new` | An owner's businesses as cards; list one or claim one (`?listing=<id>`, `?plan=go`) |
@@ -592,15 +596,17 @@ commits of that day; this is what holds now, and what does not.
   test:rls` proves it, and proves that every table has row level security and every function
   that runs as its owner fixes its search path. `public.rls_auto_enable()`, which the project
   ships with, is closed to the API by the last migration; apply it to the hosted project.
+- **A link in an email is not spent by being opened.** Some mail programs open every link in a
+  message to look for harm. A link that carries a token waits at `/auth/continue` until its
+  reader presses the button there (step 3 of "Setting up the project" gives the two templates).
+- **The checks' own database** (`scripts/accounts-stack.sh`) answers only to the machine it runs
+  on: its ports are published on 127.0.0.1.
 - **The service worker** never keeps or answers anything under `/api`, `/account`, `/admin`,
   `/dashboard` or `/auth`, nor an answer that was led on to one of them. A new private address
   must be added to `PRIVATE` in `public/sw.js` and in `next.config.ts`.
 
 Still open, and for the owner or the host to close:
 
-- **Register the first account now, or switch sign-ups off in the project until you do.** The
-  first person to sign up becomes the superadmin, and the project's address and public key are
-  in this file.
 - **A page is kept for every address asked for under `/b/` and `/biz/`,** found or not, about
   60 KB each. On a server of our own a stranger could fill the disk by asking for addresses that
   do not exist. Limit requests at the host, or check the address in `src/proxy.ts` before a page

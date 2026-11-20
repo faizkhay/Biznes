@@ -172,6 +172,16 @@ async function go(page, url) {
   await page.waitForLoadState("networkidle", { timeout: 2500 }).catch(() => {});
   return response;
 }
+/**
+ * Open a link from an email as its reader would. A link that carries a token waits on a page of
+ * its own (/auth/continue) until the button there is pressed, so the button is pressed.
+ */
+async function openLink(page, url) {
+  await go(page, url);
+  if (new URL(page.url()).pathname !== "/auth/continue") return;
+  await Promise.all([page.waitForURL((to) => to.pathname !== "/auth/continue", { timeout: 20000 }).catch(() => {}), page.locator("main form button[type=submit]").click()]);
+  await page.waitForLoadState("networkidle", { timeout: 2500 }).catch(() => {});
+}
 const said = async (page) => (await page.locator('main [role="alert"], main [role="status"]').allInnerTexts()).join(" | ");
 const fill = async (page, fields) => {
   for (const [name, value] of Object.entries(fields)) await page.fill(`main [name="${name}"]`, value);
@@ -300,12 +310,19 @@ const alice = await person();
   await page.waitForSelector('main [role="status"]', { timeout: 20000 }).catch(() => {});
   const hash = sql(`select confirmation_token from auth.users where email = '${ALICE.email}'`);
   const fresh = await person();
+  // A mail program that opens every link before its reader does: it asks for the address, follows
+  // where it leads, and presses nothing. The link must still work for the person afterwards.
+  const scanned = await fetch(`${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`, { redirect: "follow" });
+  check("confirm: a link that is only opened waits on a page with a button, and is not used up", scanned.ok && new URL(scanned.url).pathname === "/auth/continue" && /Confirm and sign in/.test(await scanned.text()) && sql(`select (email_confirmed_at is null)::text from auth.users where email = '${ALICE.email}'`) === "true", scanned.url);
   await go(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`);
+  check("confirm: nobody is signed in until the button is pressed", new URL(fresh.page.url()).pathname === "/auth/continue" && !(await fresh.context.cookies()).some((c) => c.name === "biznes-in"), fresh.page.url());
+  await audit(fresh.page, "confirm-continue");
+  await openLink(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email&next=/dashboard/new`);
   check("confirm: a token_hash link works in a browser that never asked for it", new URL(fresh.page.url()).pathname === "/dashboard/new", fresh.page.url());
-  await go(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
+  await openLink(fresh.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
   await fresh.context.close();
   const again = await person();
-  await go(again.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
+  await openLink(again.page, `${origin}/auth/confirm?token_hash=${hash}&type=email`);
   check("confirm: a link used twice is refused, with a way on", new URL(again.page.url()).pathname === "/account/sign-in" && /expired|already been used/i.test(await said(again.page)), again.page.url());
   await again.context.close();
 
@@ -1302,7 +1319,7 @@ let adId = "";
   await asker.page.waitForSelector('main form [role="status"]', { timeout: 20000 }).catch(() => {});
   const hash = sql(`select recovery_token from auth.users where email = '${CAROL.email}'`);
   const other = await person();
-  await go(other.page, `${origin}/auth/confirm?token_hash=${hash}&type=recovery&next=/account/update-password`);
+  await openLink(other.page, `${origin}/auth/confirm?token_hash=${hash}&type=recovery&next=/account/update-password`);
   check("reset: a token_hash link opens the page to choose a new password, in another browser", Boolean(hash) && new URL(other.page.url()).pathname === "/account/update-password" && /carol@biznes\.test/.test(await other.page.locator("main").innerText()), other.page.url());
   await asker.context.close();
   await other.context.close();

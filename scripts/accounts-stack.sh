@@ -59,7 +59,7 @@ up() {
   mkdir -p "$RUN/mail"
   docker network create biznes-accounts >/dev/null
 
-  docker run -d --name biznes-db --network biznes-accounts -p "$DB_PORT:5432" -e POSTGRES_PASSWORD=postgres -e JWT_SECRET="$SECRET" supabase/postgres:15.8.1.085 >/dev/null
+  docker run -d --name biznes-db --network biznes-accounts -p "127.0.0.1:$DB_PORT:5432" -e POSTGRES_PASSWORD=postgres -e JWT_SECRET="$SECRET" supabase/postgres:15.8.1.085 >/dev/null
   echo "# Waiting for Postgres"
   for _ in $(seq 60); do
     PGPASSWORD=postgres psql "$DB" -X -Atc "select 1" >/dev/null 2>&1 && break
@@ -71,7 +71,7 @@ up() {
   setsid nohup node supabase/local/mail-sink.mjs "$RUN/mail" "$MAIL_PORT" >"$RUN/mail.log" 2>&1 </dev/null &
   echo $! >"$RUN/mail.pid"
 
-  docker run -d --name biznes-auth --network biznes-accounts -p "$AUTH_PORT:9999" --add-host=host.docker.internal:host-gateway \
+  docker run -d --name biznes-auth --network biznes-accounts -p "127.0.0.1:$AUTH_PORT:9999" --add-host=host.docker.internal:host-gateway \
     -e GOTRUE_API_HOST=0.0.0.0 -e GOTRUE_API_PORT=9999 -e API_EXTERNAL_URL="http://127.0.0.1:$API_PORT" \
     -e GOTRUE_DB_DRIVER=postgres -e GOTRUE_DB_DATABASE_URL="postgres://supabase_auth_admin:postgres@biznes-db:5432/postgres" \
     -e GOTRUE_SITE_URL="$SITE" -e GOTRUE_URI_ALLOW_LIST="$SITE/**" \
@@ -89,7 +89,7 @@ up() {
 
   # Storage makes its own tables when it starts, as on a project, so it comes before the migrations
   # that set its bucket and its policies.
-  docker run -d --name biznes-storage --network biznes-accounts -p "$STORAGE_PORT:5000" \
+  docker run -d --name biznes-storage --network biznes-accounts -p "127.0.0.1:$STORAGE_PORT:5000" \
     -e ANON_KEY="$(anon_key)" -e SERVICE_KEY="$(key_for service_role)" -e AUTH_JWT_SECRET="$SECRET" -e PGRST_JWT_SECRET="$SECRET" \
     -e DATABASE_URL="postgres://supabase_storage_admin:postgres@biznes-db:5432/postgres" -e POSTGREST_URL="http://biznes-rest:3000" \
     -e STORAGE_BACKEND=file -e FILE_STORAGE_BACKEND_PATH=/var/lib/storage -e FILE_SIZE_LIMIT=52428800 \
@@ -107,7 +107,7 @@ up() {
     PGPASSWORD=postgres psql "$DB" -X -q -v ON_ERROR_STOP=1 -f "$migration"
   done
 
-  docker run -d --name biznes-rest --network biznes-accounts -p "$REST_PORT:3000" \
+  docker run -d --name biznes-rest --network biznes-accounts -p "127.0.0.1:$REST_PORT:3000" \
     -e PGRST_DB_URI="postgres://authenticator:postgres@biznes-db:5432/postgres" -e PGRST_DB_SCHEMAS=public -e PGRST_DB_ANON_ROLE=anon \
     -e PGRST_JWT_SECRET="$SECRET" -e PGRST_DB_USE_LEGACY_GUCS=false \
     postgrest/postgrest:v12.2.8 >/dev/null
