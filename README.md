@@ -212,33 +212,69 @@ device.
 
 ## Accounts
 
-Built on 20 November 2026 on the `accounts` branch, to the owner's brief of that day: users,
-admins and a superadmin; a business listed free (Biznes Free), or on Biznes Go at Rs 550 a month
-(verified, and listed with priority), or on Biznes Grow at Rs 1,250 a month (everything in Go,
-with bookings and services). Two of the "Known gaps" above are answered by it, once it is switched
-on: there are accounts, and a business can claim its listing and keep it current.
+Built on 20 November 2026 in two rounds, both to the owner's briefs of that day.
 
-Accounts run on a Supabase project: Supabase Auth for signing in, and its Postgres for everything
-else, reached through `@supabase/supabase-js` and `@supabase/ssr`. **There is no service-role key
-anywhere in the site.** Every privilege is decided in the database, so the publishable key the
-browser can see opens nothing that is not meant to be open.
+The first round (the `accounts` branch): users, admins and a superadmin; a business listed free
+(Biznes Free), or on Biznes Go at Rs 550 a month (verified, and listed with priority), or on Biznes
+Grow at Rs 1,250 a month (everything in Go, with bookings and services).
+
+The second round (the `accounts2` branch): for a paid plan, a fuller page (a line of its own,
+opening hours, a cover and photographs) and, for a food outlet, a menu; for Biznes Grow, the
+owner's own records (bookings, customers, services and products, a ledger of payments); a way to
+ask for a change of plan or to stop one; advertisements an owner makes and an admin approves; the
+list of subscribers to the pocket guide and the magazine; orders from the cart; pictures of the
+superadmin's own behind the page; and every account page drawn again in the site's manner.
+
+Accounts run on a Supabase project: Supabase Auth for signing in, its Postgres for everything
+else, and its Storage for pictures, reached through `@supabase/supabase-js` and `@supabase/ssr`.
+**There is no service-role key anywhere in the site.** Every privilege is decided in the database,
+so the publishable key the browser can see opens nothing that is not meant to be open.
+
+### How to get in
+
+- **Anyone.** The square button with a person's outline, at the right of the header on every page,
+  on a phone and on a desk, leads to `/account/sign-in`. "Create an account" is one link from
+  there. Once signed in the button shows the person's initial and leads to `/account`. The footer
+  and the phone's menu carry "Your account" as well.
+- **A user** lands on `/account`: a welcome by name, and tiles to their businesses, their plans,
+  their orders and their bookings.
+- **An owner** is a user with a business. "Your businesses" on `/account` leads to `/dashboard`,
+  a card for each business with its plan, where it stands and the next thing to do. A card opens
+  `/dashboard/[id]`, with a bar of that business's parts: Overview always; Bookings, Customers,
+  Services and Payments on Biznes Grow; "Its page" on any paid plan; Menu for a food outlet on a
+  paid plan; Advertising once the business is live. To begin, "List your business" on `/pricing`
+  or on `/dashboard`, or "Claim this listing" on a listing's own page.
+- **An admin** sees a second set of tiles on `/account`, "Running the site": Admin (`/admin`),
+  Advertisements (`/admin/ads`), Orders (`/admin/orders`), Subscribers (`/admin/subscribers`), No
+  website (`/admin/leads`). The same pages are tabs across the top of each admin page.
+- **The superadmin** is the first person who ever registered (see "The first superadmin"). They
+  sign in like anyone else and have two more tiles and tabs: People (`/admin/people`), to make
+  someone an admin, and The look (`/admin/settings`), for the picture behind every page.
+
+Nobody is given an address to remember: every page above is one or two presses from the button
+in the header. A page that is not for the person asking says it is not there.
 
 ### The hosted project
 
 The owner created the Supabase project on 20 November 2026: "Biznes", in the organisation's
-Ireland region, with the reference `pcopgncmtgkojrtuiqud`. The four migrations were applied to it
-that day, whole and unchanged, and checked:
+Ireland region, with the reference `pcopgncmtgkojrtuiqud`. The first four migrations were applied
+to it that day, whole and unchanged, and checked:
 
 - Eight tables in `public`, row level security on every one, twenty-six policies, and the trigger
-  that makes a profile on sign-up. No account exists yet, so the first to register is the
-  superadmin.
+  that makes a profile on sign-up. The owner has since registered, and is its superadmin.
 - Asked with the public key, as a visitor would be: live businesses, services and payment details
   answer (with nothing, as there is none yet); the settings answer with the columns the site reads;
   profiles and the audit log are refused.
 - The site, built and served against it and not yet deployed: the first screen, a search and a
   listing open; the sign-in and sign-up pages open; the plans lead to the dashboard; the dashboard
-  and the admin pages send a visitor who is not signed in to sign in. Nobody was registered, on
-  purpose.
+  and the admin pages send a visitor who is not signed in to sign in.
+
+**Migrations 5 to 10 are not on it yet.** They are the second round's, written as files
+(`supabase/migrations/20261120000005_subscribers.sql` to `...10_orders.sql`) and applied to
+nothing but the local stack. Apply them in order after the merge. Until then the site still runs
+against the project as it is: the reads the new parts make are separate and forgiving, so an
+owner's business does not vanish, and the new pages show nothing or say "try again". Migration 9
+makes the `media` bucket and its rules itself: there is nothing to set in the Storage dashboard.
 
 Its two public values, which are meant to be seen (they ship to every browser):
 
@@ -251,13 +287,13 @@ Still to do on the project itself, in its dashboard: the site's address and the 
 the two email templates and an email sender (all under "Setting up the project" below). And two
 things to know:
 
-- **Supabase's security adviser** lists the five admin functions as callable by a signed-in user.
+- **Supabase's security adviser** lists the admin functions as callable by a signed-in user.
   That is by design: each checks the caller's role before it does anything, and a visitor cannot
   call them. It also lists `public.rls_auto_enable()`, which is the project's own and not ours;
   `revoke execute on function public.rls_auto_enable() from public, anon, authenticated;` clears it.
 - **The migrations' history** on the project carries the time each was applied, not the files' own
   numbers. Before using the Supabase CLI against it, bring the two into line with `supabase
-  migration repair`, or a later `db push` will try to apply the four files again.
+  migration repair`, or a later `db push` will try to apply the first four files again.
 
 ### Switching them on
 
@@ -265,20 +301,20 @@ things to know:
 |---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | The project's address |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Its publishable key (the "anon" key, or a key that begins `sb_publishable_`) |
-| `NEXT_PUBLIC_SITE_URL` | Already asked for above. Here it is also the address in the emails Auth sends: set it |
+| `NEXT_PUBLIC_SITE_URL` | Already asked for above. Here it is also the address in the emails Auth sends, and in each subscriber's link to leave the list: set it |
 
 With either of the first two missing, **accounts are off**: the site builds and behaves as it did
 before they existed, and each account page says "Accounts open soon" with the way to the form at
-`/add`. `accountsOn` in `src/lib/accounts/config.ts` is the one switch every part reads. The three
-pages that word a sentence differently with accounts on (`/pricing`, `/data`, `/privacy`) were
-compared with the build before this work, with accounts off: all 38 public addresses tried answer
-byte for byte the same, build file names aside.
+`/add`. `accountsOn` in `src/lib/accounts/config.ts` is the one switch every part reads. With
+accounts off the shared pieces are nothing at all or a plain link: `showcaseOf` gives nothing,
+`AdSlot` and `SubscribeForm` render nothing, and `Checkout` is a link to `/add` that carries the
+cart in its message.
 
 ### Setting up the project
 
 1. **Create the project**, and **apply the migrations** in `supabase/migrations`, in order. With
    the Supabase CLI: `supabase link --project-ref <ref>`, then `supabase db push`. Without it:
-   paste the four files into the SQL editor, one after the other.
+   paste the ten files into the SQL editor, one after the other.
 2. **Auth, URL configuration.** Site URL: the site's own address. Redirect URLs: the same address
    followed by `/**` (and `http://localhost:3000/**` to work on it).
 3. **Auth, email templates.** Point the links at this site, so that a link opened on another
@@ -291,6 +327,11 @@ byte for byte the same, build file names aside.
    hour. Give the project an SMTP sender before launch.
 5. **Set the variables and deploy.**
 6. **Register first.** See the next heading.
+7. **Look at `/admin/orders` once.** The database prices every order from its own `catalogue`
+   table, seeded with the prices of 20 November 2026. If the site's own data has moved since (a
+   guide's price or title, a sponsor option, a plan), the page says where the two differ and the
+   superadmin brings them level with one button. Until they are level, what differs cannot be
+   ordered.
 
 ### The first superadmin
 
@@ -305,18 +346,27 @@ over, make the new person a superadmin first.
 | | Visitor | User | Admin | Superadmin |
 |---|---|---|---|---|
 | Search, read a listing, ask a business on Grow for a booking | yes | yes | yes | yes |
-| Keep their own bookings, and cancel one | | yes | yes | yes |
+| Join the list of subscribers, and leave it by the link they were sent | yes | yes | yes | yes |
+| Place an order (a guest gives a name and a way to reach them) | yes | yes | yes | yes |
+| See their own orders and bookings; cancel a booking | | yes | yes | yes |
 | List a business, or claim a listing in the open index | | yes | yes | yes |
 | Change their own business's details; take it out | | yes | yes | yes |
-| Ask for Biznes Go or Biznes Grow | | yes | yes | yes |
-| On Grow: services, MCB Juice details, confirm or decline bookings | | yes | yes | yes |
+| Ask for Biznes Go or Biznes Grow, for a change of plan, or to stop at the end of the period | | yes | yes | yes |
+| On a paid plan: a line, opening hours, a cover and up to eight photographs; a menu for a food outlet | | yes | yes | yes |
+| On Grow: services and products, MCB Juice details, bookings, customers, a ledger of payments | | yes | yes | yes |
+| Once live: draft an advertisement, give it a picture, send it in, take it back | | yes | yes | yes |
 | Approve, reject, suspend a business; give or take the verified mark | | | yes | yes |
-| Switch a plan on, with its last day; answer a request for one | | | yes | yes |
+| Switch a plan on, with its last day; answer a request for one, or to stop one | | | yes | yes |
+| Approve or decline an advertisement; mark it paid | | | yes | yes |
+| Move an order on: awaiting payment, paid, fulfilled, cancelled | | | yes | yes |
+| Read the list of subscribers, take it as a file, take an address off | | | yes | yes |
 | See everyone's businesses and bookings, the record of admin actions, the list of listings with no website | | | yes | yes |
 | Change roles | | | | yes |
-| Set the picture and the greeting by hand | | | | yes |
+| Choose the picture behind the page (the calendar's, one kept, or a round), upload pictures, set the greeting | | | | yes |
+| Bring the catalogue of prices level with the site | | | | yes |
 
-A user's own role, plan, plan end, verified mark and status are never theirs to write.
+A user's own role, plan, plan end, verified mark and status are never theirs to write. An owner's
+customers, notes and ledger are theirs alone: an admin cannot read them.
 
 ### How it is held
 
@@ -330,13 +380,17 @@ A user's own role, plan, plan end, verified mark and status are never theirs to 
   migration takes that back and grants only the columns a role may touch. A trigger on each table
   repeats the rule, so a careless grant later does not open a door.
 - **Admin work goes through functions** (`admin_set_status`, `admin_set_plan`,
-  `admin_set_verified`, `admin_handle_plan_request`, `set_role`) that check who is asking. What
-  they change is written to `audit_log` by triggers: who, what, when.
+  `admin_set_verified`, `admin_handle_plan_request`, `admin_review_ad`, `admin_set_ad_paid`,
+  `admin_set_order`, `set_role`, `set_catalogue`) that check who is asking. What they change is
+  written to `audit_log` by triggers: who, what, when.
 - **Plans are switched on by hand.** How a plan is paid for is not built: an owner asks, an admin
   arranges payment and switches the plan on with the last day it is paid for. After that day the
-  business counts as free again, by itself. Switching a paid plan on marks the business verified.
-  The interface says payment is arranged directly and that paying online is on its way. There is
-  no payment code.
+  business counts as free again, by itself, and what the plan gave goes with it: the public is
+  given no showcase, no menu and no services of a business whose plan has run out. Switching a
+  paid plan on marks the business verified. An owner on a paid plan may ask for the other plan or
+  to stop at the end of the period; a stop, once an admin confirms it, leaves the plan its last
+  day and changes nothing else. The interface says payment is arranged directly and that paying
+  online is on its way. There is no payment code.
 - **Marks.** The vivid mark (`src/components/Verified.tsx`) is only for a business on Go or Grow
   that an admin has verified. A claimed listing on the free plan says "Claimed by its owner", in
   the quiet `tag`. A paid place is never shown without its mark.
@@ -346,10 +400,59 @@ A user's own role, plan, plan end, verified mark and status are never theirs to 
 - **Bookings are requests.** Anyone may ask a live business on Grow, with a name and a telephone
   number. The database refuses a time that has passed, a fourth request in an hour from one number,
   and a flood to one business. The form has a honeypot. The business confirms, declines or marks it
-  done. Payment is between the customer and the business.
+  done, keeps a note of its own on it, and may mark it paid. Payment is between the customer and
+  the business.
 - **MCB Juice is details only**: a mobile number and the name the account is under, written by the
   owner, shown beside the services and after a booking request while the business is on Grow. No
   integration; the site takes no part in a payment and says so.
+- **The owner's records are a notebook, not a till.** Customers are the telephone numbers that
+  have booked, counted by the database, and anyone the owner adds by hand. The ledger is a list of
+  payments the owner writes down (the day, who, what for, how much, and how: MCB Juice, cash, card
+  or bank transfer), added up by the month. The site takes no payment and checks none, and the
+  pages say so.
+- **A paid plan's page** (`showcases`, `menu_sections`, `menu_items`): the owner writes them, and
+  the public reads them only while the business is live and its plan is good today. A menu is for
+  a business in a food category (the index's "eat" group, held in the database as
+  `food_categories`). Twenty sections and three hundred items at most.
+- **Pictures** are kept in one public bucket of Supabase Storage, `media`: JPEG, PNG or WebP, three
+  megabytes at most, enforced by the bucket and again by the form. Who may put what where is the
+  bucket's own rule: `business/<business id>/` for the owner of a live or pending business on a
+  paid plan (twelve files); `ads/<advertisement id>/` for its owner while it is a draft or was not
+  accepted; `site/` for the superadmin alone. An upload is a plain form posted to a route of this
+  site (`.../upload/route.ts`), which checks where the form came from and the picture's own first
+  bytes, then hands it to Storage as the person signed in. A server action is not used because it
+  takes one megabyte at most. A record names only a picture in its own folder.
+- **Advertisements.** An owner of a live business drafts one: a headline of sixty characters, a
+  line of 120, where it leads (their page here, or their own website), a picture, a place, and the
+  months it should run, which are months to come and never the one that has begun. The places are
+  six on the site (the first screen, search results, a listing's page, food and drink, the guides,
+  the directory), three on the pocket guide's sponsors' pages, and the magazine. The guide's three
+  are priced from `content/pdf/sponsorship.json`; the rest say "Price on request", because the
+  owner has set no price for them. An admin approves or declines with a reason, and marks an
+  approved one paid. Only an approved, paid advertisement of a live business is given to the
+  public, and only in a month it names. A place on the site holds one at a time (`AdSlot`): when
+  several run in a month they take turns by the day. An edition of the guide carries four
+  sponsored pages at most, and the database refuses a fifth. "Running" and "ended" are read off
+  the calendar, not stored.
+- **The guide's sponsors** are read from the view `guide_sponsors` (month, option, name, line,
+  town, phone, website, artwork), as a visitor: `guideSponsors(month)` in
+  `src/lib/accounts/ads.ts`, or over the API for a script.
+- **Subscribers.** An address joins through a function (`subscribe`), with what it wants: the
+  pocket guide, the magazine, or both. Joining twice keeps one row. The site reads the list only
+  as an admin, so the form never says whether an address was already on it. Each row has a token;
+  `/unsubscribe?token=...` shows one button, and pressing it deletes the row. **The site sends no
+  email**: an admin takes the list as a file, with each person's own link to leave, and sends from
+  a mail service of their own.
+- **Orders are requests too.** The cart sends only what is wanted and how many. The server prices
+  each line from the site's own data (`src/lib/accounts/catalogue.ts`: the guides, the sponsor
+  options, the plans, and advertisement places with no price), then the database prices it again
+  from its `catalogue` table and writes the order with that price (`place_order`). The two must
+  agree, or nothing is placed. A thing the site does not sell is refused. Five orders an hour from
+  one telephone number or address. The answer is "We have your order. A person will contact you
+  with how to pay", and nothing is said about how. An admin moves it on by hand.
+- **The look.** The picture behind the page is the calendar's, or one picture kept, or a round of
+  pictures with a new one each day (`themeNow()` in `src/lib/theme.ts`). A picture is one the site
+  is built with or one the superadmin uploaded; an uploaded one has a single size.
 - **The session** is kept in cookies no script can read. `src/proxy.ts` renews it, for the account
   pages only (`/account`, `/dashboard`, `/admin`, `/auth`): every other page is untouched, so the
   public pages stay cacheable. The header learns who is signed in from the browser, and asks the
@@ -358,64 +461,103 @@ A user's own role, plan, plan end, verified mark and status are never theirs to 
   at once. With accounts on, the fixed pages are made again at most every five minutes, not every
   hour, because the picture behind the page may have been chosen by hand.
 - **`/privacy` changes with accounts on**: it says what an account keeps, and that signing in sets
-  cookies.
+  cookies. It does not yet speak of subscribers or of orders: see "Not built".
 
 ### Its pages
 
 | Address | What it is |
 |---|---|
-| `/account/sign-in`, `/account/sign-up`, `/account/reset`, `/account/update-password` | Signing in, a new account, a forgotten password |
+| `/account/sign-in`, `/account/sign-up`, `/account/reset`, `/account/update-password` | Signing in, a new account, a forgotten password: one card each, in the middle of the sheet |
 | `/auth/confirm` | Where the link in an email lands |
-| `/account` | A person's details, their bookings, the way to their businesses and, by role, to the admin pages |
-| `/dashboard`, `/dashboard/new`, `/dashboard/[id]` | An owner's businesses; list one or claim one (`?listing=<id>`, `?plan=go`); one business: details, plan, services, bookings |
-| `/admin`, `/admin/leads`, `/admin/people`, `/admin/settings` | The queue, plan requests, every business, the record; listings with no website, with a CSV file; roles; the look. Anyone who is not an admin is told the page is not there |
+| `/account` | A welcome by name with the role as a tag; where everything is, by role; "Your plans", "Your orders", "Your bookings"; their details; the form to join the list |
+| `/account/order` | What the site sells, and the checkout for what the address names (`?item=plan:go&item=sponsor:listing*2`). For anyone, signed in or not |
+| `/dashboard`, `/dashboard/new` | An owner's businesses as cards; list one or claim one (`?listing=<id>`, `?plan=go`) |
+| `/dashboard/[id]` | One business: where it stands, its details, its plan and how to change or stop it |
+| `/dashboard/[id]/bookings`, `/customers`, `/services`, `/payments` | Biznes Grow's own: bookings by day, customers, services and products with MCB Juice details, the ledger |
+| `/dashboard/[id]/showcase`, `/menu` | A paid plan's page: its line, hours and pictures; a food outlet's menu |
+| `/dashboard/[id]/ads` | The owner's advertisements |
+| `/admin`, `/admin/ads`, `/admin/orders`, `/admin/subscribers`, `/admin/leads` | Businesses to check, plan requests, every business, the record; advertisements to check and what each place shows today; orders; subscribers, with a CSV file; listings with no website, with a CSV file. Anyone who is not an admin is told the page is not there |
+| `/admin/people`, `/admin/settings` | The superadmin's: roles; the picture behind the page |
+| `/unsubscribe` | Where a subscriber's link lands |
 | `/biz/[slug]` | The page of a business its owner listed that is not in the open index |
 | `/b/[slug]` | A listing's page gains its owner's details once a claim is approved, or the link to claim it |
+
+The pieces the public pages use, each with its own notes in the file: `showcaseOf(businessId)`
+(`src/lib/accounts/showcase.ts`), `<AdSlot place>` and `AdCard`
+(`src/components/account/AdSlot.tsx`), `<SubscribeForm>` (`src/components/account/SubscribeForm.tsx`),
+`<Checkout items>` (`src/components/account/Checkout.tsx`) and `guideSponsors(month)`.
 
 ### Checking it
 
 | Check | Command | Result on 20 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | 186 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
-| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` | 117 of 117, with axe-core (WCAG 2.2 AA) clean on 23 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| Row level security | `npm run test:rls` | 372 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` with the same two set | 236 of 236, with axe-core (WCAG 2.2 AA) clean on 53 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
 | A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
-| Accounts off | Build with neither variable set | Builds; public pages unchanged |
-| No network at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy` | Builds; the reads that fail fall back to the calendar's look |
+| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon", and `/account/order` hands the order to the form at `/add` |
+| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses |
 
 `scripts/accounts-stack.sh` runs a Supabase project in miniature in Docker: Supabase's own Postgres
-image (15.8.1.085), Supabase Auth (v2.176.1) and PostgREST (v12.2.8), with a small gateway and a
-mail sink beside them (`supabase/local`). The browser check signs up, opens the link in the email,
-signs in and out, claims a listing, lists a business, approves it as an admin, switches a plan on,
-adds a service, asks for a booking as a visitor and as a customer, answers it as the owner, changes
-roles and the look as the superadmin, and resets a password.
+image (15.8.1.085), Supabase Auth (v2.176.1), PostgREST (v12.2.8) and Supabase Storage (v1.25.7),
+with a small gateway and a mail sink beside them (`supabase/local`). The browser check signs up,
+opens the link in the email, signs in and out, claims a listing, lists a business, approves it as
+an admin, switches a plan on, adds a service and a product, asks for a booking as a visitor and as
+a customer, answers it as the owner with a note and a payment, keeps customers and a ledger,
+writes a line and opening hours, uploads a cover and photographs (and is refused a file that is
+not a picture, another person's upload, and a form from another site), asks to stop a plan, keeps
+a menu for a food outlet and loses it when the plan runs out, drafts an advertisement, has it
+declined, approved and marked paid and sees it in its place through `AdSlot`, joins and leaves the
+list of subscribers and takes it as a file, places an order as a guest and signed in with the
+browser's own prices ignored, moves the orders on as an admin, brings the catalogue level, changes
+roles, sets the look three ways with a picture of the superadmin's own, and resets a password. Along
+the way it asks the database, as a visitor and as each person, what it will hand over.
 
 **Not run, and why:**
 
-- **A hosted Supabase project.** None existed. Everything above ran against the same three
-  programs a project runs, but not against Supabase's own gateway, its key checks, its email
-  sender or its limits on sign-ups and emails. The email templates in step 3 were tried as links
-  of that shape, not by editing a template in a dashboard.
+- **The hosted project, for the second round.** Migrations 5 to 10 have been applied to the local
+  stack only: Supabase's own Postgres image and its own Storage program, but not the hosted
+  project, its gateway, or its Storage as hosted. In particular, that the migration may create a
+  bucket and write policies on `storage.objects` as the role the SQL editor and the CLI use is
+  true of the image and is assumed of the hosted project.
+- **Supabase's hosted services, for the first round.** As before: its key checks, its email
+  sender and its limits on sign-ups and emails were not exercised. The email templates in step 3
+  were tried as links of that shape, not by editing a template in a dashboard.
 - **Tokens signed the newer way.** The local stack signs tokens with a shared secret. A new project
   signs them with a key pair, which `getClaims()` in the proxy then checks without a round trip.
   That path is the library's own and was not run here.
-- **A deployment.** Not run on Vercel or any host: the proxy, the cookies over HTTPS, and the cache
-  shared between several servers were tried on one local server only.
+- **A deployment.** Not run on Vercel or any host: the proxy, the cookies over HTTPS, uploads
+  through a host's own limit on the size of a request, and the cache shared between several
+  servers were tried on one local server only.
+- **Large and odd pictures.** Uploads were tried with small PNG files made by the check, and by
+  hand with a JPEG, a WebP, one over three megabytes and one that was not a picture. Nothing
+  resizes a picture: it is shown as it was uploaded.
+- **The public pages' use of the new pieces.** `showcaseOf`, `AdSlot`, `SubscribeForm` and
+  `Checkout` are checked on the account pages (the owner's pages say what a visitor is given,
+  `/admin/ads` shows each place through `AdSlot`, `/account` carries the form, `/account/order`
+  the checkout). Where the public pages place them is the public side's work.
 - **Real email.** Delivery, spam folders and the wording of the messages are the project's.
-- **Many people at once.** Nothing was measured under load.
+- **Many people at once.** Nothing was measured under load. The limits on bookings, subscribers
+  and orders are counted in the database; the limit by connection is kept in one server's memory.
 - **A screen reader, by ear.** As for the rest of the site.
 
 **Not built:**
 
-- **Payment.** Plans are switched on by hand. Paying online is planned, through Stripe, and is not
-  connected.
+- **Payment.** Plans, advertisements and orders are arranged and marked paid by hand. Paying
+  online is planned, through Stripe, and is not connected.
+- **Email from the site.** It sends none: not to subscribers, not to an owner whose advertisement
+  was declined, not to a person whose order moved. Auth's two messages are the only email. There
+  is no confirming of a subscriber's address by a link either (the `confirmed_at` column is there
+  for it and is not used).
+- **`/privacy` on subscribers and orders.** The page says what an account keeps. It should also
+  say that a subscriber's address and an order's name, number and address are kept, and for what.
+- **Resizing pictures**, and a second size for an uploaded backdrop.
 - **Owners' own businesses in the browsing lists.** A business listed from scratch is found by the
   search and has its own page, but is not yet in the lists under `/directory` and `/places`, in the
   suggestions under the search box, or in the sitemap. A claimed listing is, being a listing.
 - **Changing an email address, deleting an account, signing in with Google or a phone.** Ask us,
   for now.
-- **An email to the owner or the customer when something changes.** The site sends none of its
-  own: Auth's two messages are the only email.
-- **Opening hours and photographs** for an owner's business.
+- **A price for an advertisement on the site or in the magazine.** The owner has set none, so each
+  says "Price on request".
 
 ## Security
 

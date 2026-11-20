@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AuthCard, Notice } from "@/components/account/Bits";
 import { ActionForm, Field, Submit } from "@/components/account/Form";
 import AccountsSoon from "@/components/account/Soon";
-import { PageHead } from "@/components/Bits";
 import { ACTIONS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { safeNext } from "@/lib/accounts/form";
@@ -23,35 +23,38 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
   if (await getViewer()) redirect(next ?? "/account");
   const onward = next ? `?next=${encodeURIComponent(next)}` : "";
   return (
-    <>
-      <PageHead title={ACTIONS.signIn} lede="For your bookings, and for the businesses you list." />
-      <div className="shell">
-        <div className="max-w-md">
-          {params.problem && PROBLEMS[params.problem] && (
-            <p role="alert" className="note body-3 mb-6">
-              {PROBLEMS[params.problem]}
-            </p>
-          )}
-          <ActionForm action={signIn}>
-            <input type="hidden" name="next" value={next ?? ""} />
-            <Field name="email" label="Email address" type="email" autoComplete="email" inputMode="email" />
-            <Field name="password" label="Password" type="password" autoComplete="current-password" />
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <Submit busy="Signing in">{ACTIONS.signIn}</Submit>
-              <Link prefetch={false} href="/account/reset" className="body-3 inline-flex min-h-11 items-center text-link">
-                Forgotten your password?
-              </Link>
-            </div>
-          </ActionForm>
-          <p className="body-3 mt-8 text-ink-subtle">
-            No account yet?{" "}
-            <Link prefetch={false} href={`/account/sign-up${onward}`} className="text-link">
-              {ACTIONS.signUp}
-            </Link>
-            . It is free.
-          </p>
+    <AuthCard
+      title="Welcome back"
+      line="Sign in to look after your business, your bookings and your orders."
+      path={[{ label: ACTIONS.signIn }]}
+      foot={
+        <>
+          New here?{" "}
+          <Link prefetch={false} href={`/account/sign-up${onward}`} className="font-semibold text-link">
+            {ACTIONS.signUp}
+          </Link>
+          . It is free.
+        </>
+      }
+    >
+      {params.problem && PROBLEMS[params.problem] && (
+        <Notice bad className="mb-6">
+          {PROBLEMS[params.problem]}
+        </Notice>
+      )}
+      <ActionForm action={signIn}>
+        <input type="hidden" name="next" value={next ?? ""} />
+        <Field name="email" label="Email address" type="email" autoComplete="email" inputMode="email" />
+        <Field name="password" label="Password" type="password" autoComplete="current-password" />
+        <div className="grid gap-3">
+          <Submit busy="Signing in" className="btn btn-filled button-md w-full">
+            {ACTIONS.signIn}
+          </Submit>
+          <Link prefetch={false} href="/account/reset" className="body-3 inline-flex min-h-11 items-center justify-center text-link">
+            Forgotten your password?
+          </Link>
         </div>
-      </div>
-    </>
+      </ActionForm>
+    </AuthCard>
   );
 }

@@ -3,32 +3,42 @@ import type { Owned } from "@/lib/accounts/owned";
 import { duration, rupees } from "@/lib/accounts/types";
 import BookingForm from "./BookingForm";
 
+/** What a business sells, in two lists: what it does, and what it has to sell. */
+const SOLD = [
+  { kind: "service", id: "services", title: "Services" },
+  { kind: "product", id: "products", title: "Products" },
+] as const;
+
 /** What Biznes Grow adds to a business's page: what it sells, and a way to ask for a booking. */
 export default function OwnedExtras({ business: b }: { business: Owned }) {
   if (!b.books) return null;
   return (
     <>
-      {b.services.length > 0 && (
-        <section aria-labelledby="services" className="mt-10">
-          <h2 id="services" className="heading-3">
-            Services
-          </h2>
-          <ul className="rows mt-4">
-            {b.services.map((s) => (
-              <li key={s.id}>
-                <div className="row flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                  <div className="min-w-0">
-                    <h3 className="title-1">{s.name}</h3>
-                    {s.description && <p className="body-3 mt-0.5 max-w-prose text-ink-subtle">{s.description}</p>}
+      {SOLD.map(({ kind, id, title }) => {
+        const sold = b.services.filter((s) => s.kind === kind);
+        if (!sold.length) return null;
+        return (
+          <section key={kind} aria-labelledby={id} className="mt-10">
+            <h2 id={id} className="heading-3">
+              {title}
+            </h2>
+            <ul className="rows mt-4">
+              {sold.map((s) => (
+                <li key={s.id}>
+                  <div className="row flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <div className="min-w-0">
+                      <h3 className="title-1">{s.name}</h3>
+                      {s.description && <p className="body-3 mt-0.5 max-w-prose text-ink-subtle">{s.description}</p>}
+                    </div>
+                    <p className="data-1 whitespace-nowrap">{[s.price != null ? rupees(s.price) : "", s.minutes ? duration(s.minutes) : ""].filter(Boolean).join(" · ")}</p>
                   </div>
-                  <p className="data-1 whitespace-nowrap">{[s.price != null ? rupees(s.price) : "", s.minutes ? duration(s.minutes) : ""].filter(Boolean).join(" · ")}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <p className="caption-1 mt-3 text-ink-faint">Prices are the business&rsquo;s own, in Mauritian rupees.</p>
-        </section>
-      )}
+                </li>
+              ))}
+            </ul>
+            <p className="caption-1 mt-3 text-ink-faint">Prices are the business&rsquo;s own, in Mauritian rupees.</p>
+          </section>
+        );
+      })}
       {b.juiceNumber && (
         <section aria-labelledby="pay" className="mt-10">
           <h2 id="pay" className="heading-3">

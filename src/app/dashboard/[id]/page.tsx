@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { Notice, PartHead, Stat, Stats } from "@/components/account/Bits";
 import { ActionForm, Check, Chips, Field, Select, Submit, TextArea } from "@/components/account/Form";
 import AccountsSoon from "@/components/account/Soon";
-import { PageHead } from "@/components/Bits";
-import { Chevron, Out, Phone } from "@/components/Icons";
-import { VerifiedMark } from "@/components/Verified";
+import { Chevron, Out, Tick } from "@/components/Icons";
 import { PLANS, site } from "@/data/site";
+import { ownBusiness } from "@/lib/accounts/business";
 import { accountsOn } from "@/lib/accounts/config";
-import { UUID } from "@/lib/accounts/form";
 import { owned } from "@/lib/accounts/owned";
 import { db } from "@/lib/accounts/server";
-import { requireViewer } from "@/lib/accounts/session";
-import { BOOKING_NAMES, duration, planNow, rupees, STATUS_NAMES, when, type Booking, type Business, type PayDetails, type PlanRequest, type Service } from "@/lib/accounts/types";
-import { count, day, telHref } from "@/lib/format";
+import { rupees, STATUS_NAMES, thisMonth, type Business, type PlanRequest } from "@/lib/accounts/types";
+import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
-import { answerBooking, askForPlan, removeBusiness, removeService, saveBusiness, savePayDetails, saveService, withdrawPlanRequest } from "../actions";
+import { askForPlan, removeBusiness, saveBusiness, withdrawPlanRequest } from "../actions";
 
 export const metadata: Metadata = { title: "Your business", robots: { index: false, follow: false } };
 
@@ -34,32 +31,19 @@ const WHERE_IT_STANDS: Record<Business["status"], string> = {
 export default async function BusinessPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ said?: string }> }) {
   if (!accountsOn) return <AccountsSoon title="Your businesses" />;
   const { id } = await params;
-  if (!UUID.test(id)) notFound();
-  const viewer = await requireViewer(`/dashboard/${id}`);
+  const { business: b, plan, paid, grow } = await ownBusiness(id);
   const { said } = await searchParams;
   const supabase = await db();
-  const { data: found } = await supabase.from("businesses").select("*").eq("id", id).eq("owner_id", viewer.id).maybeSingle();
-  if (!found) notFound();
-  const b = found as Business;
-  const plan = planNow(b.plan, b.plan_until);
-  const grow = plan === "grow";
-  const lapsed = b.plan !== "free" && plan === "free";
-
-  const [{ data: requests }, { data: serviceRows }, { data: bookingRows }, { data: payRow }, shown] = await Promise.all([
+  const month = thisMonth();
+  const [{ data: requests }, { count: waiting }, { data: totals }, shown] = await Promise.all([
     supabase.from("plan_requests").select("*").eq("business_id", b.id).order("created_at", { ascending: false }).limit(5),
-    supabase.from("services").select("*").eq("business_id", b.id).order("created_at"),
-    supabase.from("bookings").select("*").eq("business_id", b.id).order("wanted_at", { ascending: false }).limit(200),
-    supabase.from("pay_details").select("business_id, juice_number, juice_name").eq("business_id", b.id).maybeSingle(),
+    grow ? supabase.from("bookings").select("id", { count: "exact", head: true }).eq("business_id", b.id).eq("status", "requested") : Promise.resolve({ count: 0 }),
+    grow ? supabase.from("payment_totals").select("month, total, payments").eq("business_id", b.id).eq("month", month) : Promise.resolve({ data: [] }),
     owned(),
   ]);
-  const pay = payRow as PayDetails | null;
   const open = ((requests ?? []) as PlanRequest[]).find((r) => r.status === "open");
   const answered = ((requests ?? []) as PlanRequest[]).find((r) => r.status !== "open");
-  const services = (serviceRows ?? []) as Service[];
-  const bookings = (bookingRows ?? []) as Booking[];
-  const waiting = bookings.filter((k) => k.status === "requested").reverse();
-  const confirmed = bookings.filter((k) => k.status === "confirmed").reverse();
-  const earlier = bookings.filter((k) => k.status !== "requested" && k.status !== "confirmed").slice(0, 40);
+  const taken = (totals ?? [])[0] as { total: number; payments: number } | undefined;
 
   const { groups, categories, places, byId } = index();
   const kinds = groups.map((g) => ({ label: g.label, choices: categories.filter((c) => c.group === g.id).map((c) => ({ value: c.id, label: c.one })) }));
@@ -67,262 +51,102 @@ export default async function BusinessPage({ params, searchParams }: { params: P
     .filter((p) => p.kind === "town" || p.slug === b.town)
     .sort((x, y) => x.name.localeCompare(y.name))
     .map((p) => ({ value: p.slug, label: p.name }));
+  const now = PLANS.find((p) => p.id === plan)!;
   const planName = (which: string) => PLANS.find((p) => p.id === which)?.name ?? which;
-  // The paid plans it is not on today. Biznes Grow holds everything in Biznes Go, so on Grow there is none to ask for.
-  const offered = plan === "grow" ? [] : PLANS.filter((p) => p.price > 0 && p.id !== plan);
+  const lapsed = b.plan !== "free" && plan === "free";
+  // What can be asked for from here: the paid plans it is not on, and, on a paid plan, to stop at the end of the period.
+  const changes = [
+    ...PLANS.filter((p) => p.price > 0 && p.id !== plan).map((p) => ({ value: p.id, label: `${p.price > now.price ? "" : "Step down to "}${p.name}, ${rupees(p.price)} a month` })),
+    ...(paid ? [{ value: "free", label: "Stop at the end of the period" }] : []),
+  ];
+  const asked = (r: PlanRequest) => (r.plan === "free" ? "to stop at the end of the period" : `for ${planName(r.plan)}`);
   const page = shown.byId.get(b.id)?.path;
   const claimed = b.listing_id ? byId.get(b.listing_id) : undefined;
-  const serviceName = (k: Booking) => services.find((s) => s.id === k.service_id)?.name;
   const { contact } = site;
 
-  const booking = (k: Booking) => (
-    <li key={k.id}>
-      <article className="row">
-        <p className="caption-1 flex flex-wrap items-center gap-2 text-ink-faint">
-          <span className={`tag ${k.status === "confirmed" ? "tag-lit" : ""}`}>{BOOKING_NAMES[k.status]}</span>
-          <span className="data-2">{when(k.wanted_at)}</span>
-        </p>
-        <h3 className="title-1 mt-2">{k.name}</h3>
-        <p className="body-3 mt-0.5 text-ink-subtle">{[serviceName(k), k.note].filter(Boolean).join(" · ")}</p>
-        <p className="mt-3 flex flex-wrap gap-2">
-          <a href={telHref(k.phone)} className="act data-2">
-            <Phone /> {k.phone}
-          </a>
-        </p>
-        {(k.status === "requested" || k.status === "confirmed") && (
-          <ActionForm action={answerBooking} quiet className="mt-3 grid gap-3">
-            <input type="hidden" name="business" value={b.id} />
-            <input type="hidden" name="booking" value={k.id} />
-            <div className="flex flex-wrap gap-2">
-              {k.status === "requested" ? (
-                <Submit name="step" value="confirmed" className="btn btn-filled btn-sm button-sm">
-                  Confirm
-                </Submit>
-              ) : (
-                <Submit name="step" value="done" className="btn btn-filled btn-sm button-sm">
-                  Mark as done
-                </Submit>
-              )}
-              <Submit name="step" value="declined" className="btn btn-quiet btn-sm button-sm">
-                Decline
-              </Submit>
-            </div>
-          </ActionForm>
-        )}
-      </article>
-    </li>
-  );
-
   return (
-    <>
-      <PageHead title={b.name} path={[{ href: "/dashboard", label: "Your businesses" }, { label: b.name }]}>
-        <p className="caption-1 mt-4 flex flex-wrap items-center gap-2">
-          <span className={`tag ${b.status === "live" ? "tag-lit" : ""}`}>{STATUS_NAMES[b.status]}</span>
-          <span className="tag">{planName(plan)}</span>
-          {b.verified && plan !== "free" ? <VerifiedMark priority /> : b.status === "live" && <span className="tag">{b.listing_id ? "Claimed by its owner" : "Listed by its owner"}</span>}
-        </p>
-      </PageHead>
-      <div className="shell grid gap-x-16 gap-y-12 lg:grid-cols-12">
-        <div className="grid gap-12 lg:col-span-7">
-          <section aria-labelledby="standing">
-            <h2 id="standing" className="sr-only">
-              Where it stands
-            </h2>
-            {said && SAID[said] && (
-              <p role="status" className="note body-3 mb-6">
-                {SAID[said]}
-              </p>
-            )}
-            <p className="body-2 max-w-prose">{WHERE_IT_STANDS[b.status]}</p>
-            {b.status_note && <p className="note body-3 mt-4">From us: {b.status_note}</p>}
-            {claimed && b.status !== "live" && (
-              <p className="body-3 mt-4 text-ink-subtle">
-                You are claiming <Link href={`/b/${claimed.slug}`}>{claimed.name}</Link>, a listing from the open map. Until the claim is approved its page stays as it is.
-              </p>
-            )}
-            {b.status === "live" && page && (
-              <p className="mt-4">
-                <Link href={page} className="btn btn-quiet button-md">
-                  See its page <Out />
-                </Link>
-              </p>
-            )}
-          </section>
+    <div className="shell grid gap-12">
+      <section aria-labelledby="standing">
+        <h2 id="standing" className="sr-only">
+          Where it stands
+        </h2>
+        {said && SAID[said] && <Notice className="mb-6">{SAID[said]}</Notice>}
+        <Stats>
+          <Stat label="Status" figure={<span className="heading-3">{STATUS_NAMES[b.status]}</span>} note={b.status === "live" ? "Anyone can find it" : b.status === "pending" ? "A person is checking it" : undefined} />
+          <Stat label="Plan" figure={<span className="heading-3">{now.name}</span>} note={paid && b.plan_until ? `Paid until ${day(b.plan_until)}` : paid ? "No last day on record" : "Free for good"} href={`/dashboard/${b.id}#plan`} />
+          {grow && <Stat label="Bookings to answer" figure={count(waiting ?? 0)} note={waiting ? "Waiting for your word" : "Nothing waiting"} href={`/dashboard/${b.id}/bookings`} />}
+          {grow && <Stat label="Paid this month" figure={rupees(taken?.total ?? 0)} note={taken ? `${count(taken.payments)} in your ledger` : "Nothing in your ledger yet"} href={`/dashboard/${b.id}/payments`} />}
+        </Stats>
+        <p className="body-2 mt-6 max-w-prose">{WHERE_IT_STANDS[b.status]}</p>
+        {b.status_note && <p className="note body-3 mt-4 max-w-prose">From us: {b.status_note}</p>}
+        {claimed && b.status !== "live" && (
+          <p className="body-3 mt-4 max-w-prose text-ink-subtle">
+            You are claiming <Link href={`/b/${claimed.slug}`}>{claimed.name}</Link>, a listing from the open map. Until the claim is approved its page stays as it is.
+          </p>
+        )}
+        {b.status === "live" && page && (
+          <p className="mt-4">
+            <Link href={page} className="btn btn-quiet button-md">
+              See its page <Out />
+            </Link>
+          </p>
+        )}
+      </section>
 
-          {grow && (
-            <section aria-labelledby="bookings">
-              <h2 id="bookings" className="heading-2">
-                Bookings
-              </h2>
-              <p className="body-3 mt-2 max-w-prose text-ink-subtle">Customers ask for a time on your page. Nothing is booked until you confirm it, and payment is between you and your customer: biznes.mu takes none.</p>
-              {waiting.length + confirmed.length === 0 && <p className="body-2 mt-4">No requests to answer.</p>}
-              {waiting.length > 0 && (
-                <>
-                  <h3 className="label-1 mt-6 pb-3 text-ink-faint">To answer, {count(waiting.length)}</h3>
-                  <ul className="rows">{waiting.map(booking)}</ul>
-                </>
-              )}
-              {confirmed.length > 0 && (
-                <>
-                  <h3 className="label-1 mt-8 pb-3 text-ink-faint">Confirmed, {count(confirmed.length)}</h3>
-                  <ul className="rows">{confirmed.map(booking)}</ul>
-                </>
-              )}
-              {earlier.length > 0 && (
-                <details className="mt-8">
-                  <summary className="body-3 inline-flex min-h-11 items-center gap-2 font-semibold text-link">
-                    Earlier bookings <Chevron className="size-4" />
-                  </summary>
-                  <ul className="rows mt-2">{earlier.map(booking)}</ul>
-                </details>
-              )}
-            </section>
-          )}
-
-          {(grow || services.length > 0) && (
-            <section aria-labelledby="services">
-              <h2 id="services" className="heading-2">
-                Services
-              </h2>
-              <p className="body-3 mt-2 max-w-prose text-ink-subtle">
-                {grow ? "What you sell, with its price. The ones switched on are shown on your page, and a customer can ask for one when they book." : "Services are part of Biznes Grow. Yours are kept, and are not shown while the business is off that plan."}
-              </p>
-              {services.length > 0 && (
-                <ul className="rows mt-4">
-                  {services.map((s) => (
-                    <li key={s.id}>
-                      <details className="row">
-                        <summary className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
-                          <span>
-                            <span className="title-1 block">{s.name}</span>
-                            <span className="body-3 block text-ink-subtle">{[s.price_mur != null ? rupees(s.price_mur) : "No price given", s.minutes ? duration(s.minutes) : "", s.active ? "" : "Switched off"].filter(Boolean).join(" · ")}</span>
-                          </span>
-                          <span className="body-3 inline-flex items-center gap-2 font-semibold text-link">
-                            Change <Chevron className="size-4" />
-                          </span>
-                        </summary>
-                        <div className="mt-4 grid gap-6">
-                          <ActionForm action={saveService}>
-                            <input type="hidden" name="business" value={b.id} />
-                            <input type="hidden" name="service" value={s.id} />
-                            <Field name="name" label="Name" defaultValue={s.name} />
-                            <div className="grid gap-6 sm:grid-cols-2">
-                              <Field name="price" label="Price, in rupees" inputMode="numeric" data optional defaultValue={s.price_mur != null ? String(s.price_mur) : ""} />
-                              <Field name="minutes" label="How long, in minutes" inputMode="numeric" data optional defaultValue={s.minutes ? String(s.minutes) : ""} />
-                            </div>
-                            <TextArea name="description" label="What it is" optional rows={3} maxLength={400} defaultValue={s.description} />
-                            <Check name="active" label="Shown on your page" defaultChecked={s.active} />
-                            <div>
-                              <Submit className="btn btn-ink button-md">Save this service</Submit>
-                            </div>
-                          </ActionForm>
-                          <ActionForm action={removeService} className="grid gap-3">
-                            <input type="hidden" name="business" value={b.id} />
-                            <input type="hidden" name="service" value={s.id} />
-                            <div>
-                              <Submit className="btn btn-quiet btn-sm button-sm" busy="Removing">
-                                Remove this service
-                              </Submit>
-                            </div>
-                          </ActionForm>
-                        </div>
-                      </details>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {grow && (
-                <div className="card card-panel mt-6">
-                  <h3 className="heading-3">Add a service</h3>
-                  <div className="mt-4">
-                    <ActionForm action={saveService}>
-                      <input type="hidden" name="business" value={b.id} />
-                      <Field name="name" label="Name" hint="As a customer would ask for it." />
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <Field name="price" label="Price, in rupees" inputMode="numeric" data optional />
-                        <Field name="minutes" label="How long, in minutes" inputMode="numeric" data optional />
-                      </div>
-                      <TextArea name="description" label="What it is" optional rows={3} maxLength={400} />
-                      <div>
-                        <Submit className="btn btn-ink button-md" busy="Adding">
-                          Add this service
-                        </Submit>
-                      </div>
-                    </ActionForm>
-                  </div>
-                </div>
-              )}
-            </section>
-          )}
-
-          {grow && (
-            <section aria-labelledby="pay">
-              <h2 id="pay" className="heading-2">
-                How customers pay you
-              </h2>
-              <p className="body-3 mt-2 max-w-prose text-ink-subtle">
-                If you take MCB Juice, give the mobile number and the name your account is under. Customers see them beside your services and after they ask for a booking, and pay you themselves: biznes.mu takes no part in the payment and never sees it. Leave both empty to show nothing.
-              </p>
-              <div className="mt-6">
-                <ActionForm action={savePayDetails}>
-                  <input type="hidden" name="business" value={b.id} />
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <Field name="juice_number" label="MCB Juice mobile number" type="tel" inputMode="tel" data optional defaultValue={pay?.juice_number ?? ""} hint="Eight digits, beginning with 5." />
-                    <Field name="juice_name" label="Name on the account" optional defaultValue={pay?.juice_name ?? ""} hint="So a customer can check they are paying the right account." />
-                  </div>
-                  <div>
-                    <Submit className="btn btn-ink button-md">Save how you are paid</Submit>
-                  </div>
-                </ActionForm>
+      <div className="grid gap-x-16 gap-y-12 lg:grid-cols-12">
+        <section aria-labelledby="details" className="lg:col-span-7">
+          <PartHead id="details" title="Its details" line="What your page says. These are your own words, and the page says so." />
+          <div className="card mt-6">
+            <ActionForm action={saveBusiness}>
+              <input type="hidden" name="business" value={b.id} />
+              <Field name="name" label="The name of the business" autoComplete="organization" defaultValue={b.name} readOnly={b.verified} hint={b.verified ? "The name of a verified business is changed by us. Ask and we will." : undefined} />
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Select name="category" label="What kind of business" groups={kinds} defaultValue={b.category} />
+                <Select name="town" label="Town or village" choices={towns} empty="Choose one" defaultValue={b.town} />
               </div>
-            </section>
-          )}
+              <Field name="address" label="Address" optional autoComplete="street-address" defaultValue={b.address} />
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Field name="phone" label="Telephone number" type="tel" autoComplete="tel" inputMode="tel" data optional defaultValue={b.phone} />
+                <Field name="website" label="Website" type="url" autoComplete="url" inputMode="url" optional defaultValue={b.website} />
+              </div>
+              <TextArea name="about" label="What the business does" optional rows={5} maxLength={1200} defaultValue={b.about} />
+              <div>
+                <Submit>Save the details</Submit>
+              </div>
+            </ActionForm>
+          </div>
+        </section>
 
-          <section aria-labelledby="details">
-            <h2 id="details" className="heading-2">
-              Its details
-            </h2>
-            <p className="body-3 mt-2 max-w-prose text-ink-subtle">What your page says. These are your own words, and the page says so.</p>
-            <div className="mt-6">
-              <ActionForm action={saveBusiness}>
-                <input type="hidden" name="business" value={b.id} />
-                <Field name="name" label="The name of the business" autoComplete="organization" defaultValue={b.name} readOnly={b.verified} hint={b.verified ? "The name of a verified business is changed by us. Ask and we will." : undefined} />
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <Select name="category" label="What kind of business" groups={kinds} defaultValue={b.category} />
-                  <Select name="town" label="Town or village" choices={towns} empty="Choose one" defaultValue={b.town} />
-                </div>
-                <Field name="address" label="Address" optional autoComplete="street-address" defaultValue={b.address} />
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <Field name="phone" label="Telephone number" type="tel" autoComplete="tel" inputMode="tel" data optional defaultValue={b.phone} />
-                  <Field name="website" label="Website" type="url" autoComplete="url" inputMode="url" optional defaultValue={b.website} />
-                </div>
-                <TextArea name="about" label="What the business does" optional rows={5} maxLength={1200} defaultValue={b.about} />
-                <div>
-                  <Submit>Save the details</Submit>
-                </div>
-              </ActionForm>
-            </div>
-          </section>
-        </div>
-
-        <aside className="lg:col-span-4 lg:col-start-9">
+        <aside className="grid content-start gap-10 lg:col-span-5">
           <section id="plan" aria-labelledby="plan-title">
             <h2 id="plan-title" className="heading-3">
               Its plan
             </h2>
-            <p className="body-2 mt-3">
-              {planName(plan)}
-              {plan !== "free" && b.plan_until ? `, paid until ${day(b.plan_until)}` : ""}.
-            </p>
+            <div className={`card mt-4 ${paid ? "card-ink" : ""}`}>
+              <p className="title-1">{now.name}</p>
+              <p className={`body-3 mt-1 ${paid ? "opacity-80" : "text-ink-subtle"}`}>
+                {paid ? `${rupees(now.price)} a month${b.plan_until ? `, paid until ${day(b.plan_until)}` : ""}.` : "A basic listing, free for good."}
+              </p>
+              <ul className="body-3 mt-4 grid gap-2">
+                {now.gives.map((g) => (
+                  <li key={g} className="flex gap-3">
+                    <span className="mt-0.5 grid size-5 flex-none place-items-center rounded-full bg-signal text-on-signal">
+                      <Tick className="size-3.5" strokeWidth={2.25} />
+                    </span>
+                    {g}
+                  </li>
+                ))}
+              </ul>
+            </div>
             {lapsed && (
-              <p className="body-3 mt-2 text-ink-subtle">
+              <p className="body-3 mt-4 text-ink-subtle">
                 {planName(b.plan)} ended on {day(b.plan_until ?? "")}. Ask for it again to carry on.
               </p>
             )}
             {open ? (
               <div className="note mt-4">
                 <p className="body-3">
-                  You asked for {planName(open.plan)} on {day(open.created_at)}. We will contact you to arrange payment, and switch the plan on once that is done.
+                  You asked {asked(open)} on {day(open.created_at)}. {open.plan === "free" ? "Once we have confirmed it, the plan runs to its last day and is not renewed." : "We will contact you to arrange payment, and make the change once that is done."}
                 </p>
                 <ActionForm action={withdrawPlanRequest} className="mt-3 grid gap-3">
                   <input type="hidden" name="business" value={b.id} />
@@ -334,35 +158,30 @@ export default async function BusinessPage({ params, searchParams }: { params: P
                   </div>
                 </ActionForm>
               </div>
-            ) : b.status === "live" && offered.length === 0 ? (
-              <p className="body-3 mt-2 text-ink-subtle">Biznes Grow holds everything in Biznes Go. To change or end the plan, write to us.</p>
             ) : b.status === "live" ? (
               <div className="mt-6">
-                {answered?.status === "declined" && <p className="body-3 mb-4 text-ink-subtle">Your last request, for {planName(answered.plan)}, was not taken up. Ask again whenever you like.</p>}
+                {answered?.status === "declined" && <p className="body-3 mb-4 text-ink-subtle">Your last request, {asked(answered)}, was not taken up. Ask again whenever you like.</p>}
                 <ActionForm action={askForPlan}>
                   <input type="hidden" name="business" value={b.id} />
-                  <Chips
-                    name="plan"
-                    legend="Ask for a plan"
-                    defaultValue={offered[0]?.id}
-                    choices={offered.map((p) => ({ value: p.id, label: `${p.name}, ${rupees(p.price)} a month` }))}
-                  />
+                  <Chips name="plan" legend={paid ? "Ask for a change" : "Ask for a plan"} defaultValue={changes[0]?.value} choices={changes} />
                   <TextArea name="note" label="Anything we should know" optional rows={3} maxLength={500} hint="The best time to call you, for one." />
                   <div>
-                    <Submit busy="Asking">Ask for this plan</Submit>
+                    <Submit busy="Asking" className="btn btn-ink button-md">
+                      {paid ? "Ask for this change" : "Ask for this plan"}
+                    </Submit>
                     <p className="caption-1 mt-3 text-ink-faint">Nothing is paid here. We will contact you to arrange payment, and the plan starts once that is done. Paying online is on its way.</p>
                   </div>
                 </ActionForm>
               </div>
             ) : (
-              <p className="body-3 mt-2 text-ink-subtle">Once the business is live you can ask for Biznes Go or Biznes Grow here.</p>
+              <p className="body-3 mt-4 text-ink-subtle">Once the business is live you can ask for Biznes Go or Biznes Grow here.</p>
             )}
             <p className="body-3 mt-6 text-ink-subtle">
               <Link href="/pricing">What each plan gives</Link>
             </p>
           </section>
 
-          <section aria-labelledby="help" className="mt-10">
+          <section aria-labelledby="help">
             <h2 id="help" className="heading-3">
               Need a hand?
             </h2>
@@ -378,7 +197,7 @@ export default async function BusinessPage({ params, searchParams }: { params: P
             </p>
           </section>
 
-          <section aria-labelledby="remove" className="mt-10">
+          <section aria-labelledby="remove">
             <h2 id="remove" className="heading-3">
               Take it out
             </h2>
@@ -387,7 +206,7 @@ export default async function BusinessPage({ params, searchParams }: { params: P
                 Remove this business <Chevron className="size-4" />
               </summary>
               <p className="body-3 mt-2 text-ink-subtle">
-                This removes the business from your account and from the site, with its services and its bookings. It cannot be undone.{claimed ? " The listing from the open map stays, as it was before you claimed it." : ""}
+                This removes the business from your account and from the site, with its services, its bookings and everything else you keep here. It cannot be undone.{claimed ? " The listing from the open map stays, as it was before you claimed it." : ""}
               </p>
               <ActionForm action={removeBusiness} className="mt-3 grid gap-3">
                 <input type="hidden" name="business" value={b.id} />
@@ -402,6 +221,6 @@ export default async function BusinessPage({ params, searchParams }: { params: P
           </section>
         </aside>
       </div>
-    </>
+    </div>
   );
 }

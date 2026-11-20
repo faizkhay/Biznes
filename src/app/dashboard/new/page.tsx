@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ActionForm, Field, Select, Submit, TextArea } from "@/components/account/Form";
 import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
+import { GroupIcon } from "@/components/Icons";
 import { ACTIONS, PLANS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { owned } from "@/lib/accounts/owned";
@@ -73,7 +74,7 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
               </p>
             </div>
           ) : (
-            <section aria-labelledby="find" className="mb-12">
+            <section aria-labelledby="find" className="card card-panel mb-10">
               <h2 id="find" className="heading-3">
                 Is it already in the directory?
               </h2>
@@ -98,7 +99,10 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
                     <ul className="rows">
                       {found.map((l) => (
                         <li key={l.id}>
-                          <div className="row flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+                          <div className="row listing items-center">
+                            <span className="listing-icon listing-icon-quiet" aria-hidden>
+                              <GroupIcon group={categoryById.get(l.cat)?.group} />
+                            </span>
                             <div className="min-w-0">
                               <p className="title-2">{l.name}</p>
                               <p className="body-3 text-ink-subtle">{[categoryById.get(l.cat)?.one, whereOf(l)].filter(Boolean).join(" · ")}</p>
@@ -131,7 +135,7 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
                 {listing ? "Check its details" : "List it from scratch"}
               </h2>
               {listing && <p className="body-3 mt-2 max-w-prose text-ink-subtle">These are filled in from the listing as the open map has it. Put right anything that is wrong: once your claim is approved, yours are the details the page shows.</p>}
-              <div className="mt-6">
+              <div className="card mt-6">
                 <ActionForm action={createBusiness}>
                   <input type="hidden" name="listing" value={listing?.id ?? ""} />
                   <input type="hidden" name="plan" value={plan ?? ""} />
@@ -157,15 +161,24 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
         </div>
 
         <aside className="lg:col-span-4 lg:col-start-9">
-          <h2 className="heading-3">What happens next</h2>
-          <ol className="body-3 mt-3 grid gap-2 text-ink-subtle">
-            <li>1. A person checks the business, usually within a working day.</li>
-            <li>2. It goes live on Biznes Free, a basic listing at no cost.</li>
-            <li>3. Once it is live you can ask for Biznes Go or Biznes Grow from your dashboard.</li>
-          </ol>
-          <p className="body-3 mt-6 text-ink-subtle">
-            <Link href="/pricing">What each plan gives</Link>
-          </p>
+          <div className="card">
+            <h2 className="heading-3">What happens next</h2>
+            <ol className="body-3 mt-4 grid gap-4">
+              {["A person checks the business, usually within a working day.", "It goes live on Biznes Free, a basic listing at no cost.", "Once it is live you can ask for Biznes Go or Biznes Grow from your dashboard."].map((step, i) => (
+                <li key={step} className="flex gap-3">
+                  <span className="data-2 grid size-6 flex-none place-items-center rounded-full bg-panel text-ink" aria-hidden>
+                    {i + 1}
+                  </span>
+                  <span className="text-ink-subtle">{step}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="body-3 mt-6">
+              <Link href="/pricing" className="text-link">
+                What each plan gives
+              </Link>
+            </p>
+          </div>
         </aside>
       </div>
     </>

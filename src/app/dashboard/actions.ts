@@ -7,7 +7,7 @@ import { field, PHONE, SOON, TRY_AGAIN, typed, UUID, type FormState } from "@/li
 import { owned } from "@/lib/accounts/owned";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
-import { isPaidPlan, mobileNumber, type Viewer } from "@/lib/accounts/types";
+import { isPaidPlan, isPlan, mobileNumber, type Viewer } from "@/lib/accounts/types";
 import { PLANS } from "@/data/site";
 import { index } from "@/lib/index";
 
@@ -126,7 +126,10 @@ export async function removeBusiness(_: FormState, data: FormData): Promise<Form
   redirect("/dashboard?said=removed");
 }
 
-/** Ask for Biznes Go or Biznes Grow. Nothing is paid here: a person answers and arranges it. */
+/**
+ * Ask for a change of plan: a step up, a step down, or to stop at the end of the period (asked for
+ * as the free plan). Nothing is paid here: a person answers, arranges payment and makes the change.
+ */
 export async function askForPlan(_: FormState, data: FormData): Promise<FormState> {
   if (!accountsOn) return { message: SOON };
   const viewer = await asOwner();
@@ -136,13 +139,15 @@ export async function askForPlan(_: FormState, data: FormData): Promise<FormStat
   const note = field(data, "note", 500);
   const values = { plan, note };
   if (!UUID.test(id)) return { message: TRY_AGAIN };
-  if (!isPaidPlan(plan)) return { errors: { plan: "Choose a plan." }, values };
+  if (!isPlan(plan)) return { errors: { plan: "Choose what you would like." }, values };
   const supabase = await db();
   const { error } = await supabase.from("plan_requests").insert({ business_id: id, plan, note });
-  if (error?.code === "23505") return { message: "You have already asked for a plan for this business. We will be in touch." };
+  if (error?.code === "23505") return { message: "You have already asked for a change of plan for this business. We will be in touch." };
   if (error) return { message: TRY_AGAIN, values };
   revalidatePath(`/dashboard/${id}`);
-  return { ok: true, message: `Asked for ${PLANS.find((p) => p.id === plan)?.name}. We will contact you to arrange payment, and switch the plan on once that is done.` };
+  revalidatePath("/account");
+  if (plan === "free") return { ok: true, message: "Asked. Once we have confirmed it, the plan runs to its last day and is not renewed." };
+  return { ok: true, message: `Asked for ${PLANS.find((p) => p.id === plan)?.name}. We will contact you to arrange payment, and make the change once that is done.` };
 }
 
 export async function withdrawPlanRequest(_: FormState, data: FormData): Promise<FormState> {
@@ -155,7 +160,7 @@ export async function withdrawPlanRequest(_: FormState, data: FormData): Promise
   const supabase = await db();
   const { data: gone, error } = await supabase.from("plan_requests").delete().eq("id", id).eq("business_id", business).eq("status", "open").select("id");
   if (error || !gone?.length) return { message: "That request could not be taken back. It may already have been answered." };
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: "Taken back." };
 }
 
@@ -174,7 +179,9 @@ export async function saveService(_: FormState, data: FormData): Promise<FormSta
   const business = field(data, "business");
   const id = field(data, "service");
   if (!UUID.test(business) || (id && !UUID.test(id))) return { message: TRY_AGAIN };
-  const values = { ...typed(data, ["name", "description", "price", "minutes"]), active: data.get("active") === "on" ? "on" : "" };
+  const values = { ...typed(data, ["name", "description", "price", "minutes", "kind", "stock"]), active: data.get("active") === "on" ? "on" : "" };
+  const kind = field(data, "kind", 8) === "product" ? "product" : "service";
+  const stock = kind === "product" ? whole(field(data, "stock", 8), 0, 1_000_000) : null;
   const name = field(data, "name", 80);
   const description = field(data, "description", 400);
   const price = whole(field(data, "price", 12), 0, 10_000_000);
@@ -183,18 +190,22 @@ export async function saveService(_: FormState, data: FormData): Promise<FormSta
   if (name.length < 2) errors.name = "Give the service a name.";
   if (price === false) errors.price = "Give the price in whole rupees, or leave it empty.";
   if (minutes === false) errors.minutes = "Give how long it takes in minutes, from 5 to 1,440, or leave it empty.";
-  if (Object.keys(errors).length || price === false || minutes === false) return { errors, values };
+  if (stock === false) errors.stock = "Give how many are in stock as a whole number, or leave it empty.";
+  if (Object.keys(errors).length || price === false || minutes === false || stock === false) return { errors, values };
 
   const supabase = await db();
-  const row = { name, description, price_mur: price, minutes, active: id ? data.get("active") === "on" : true };
-  const { data: saved, error } = id
-    ? await supabase.from("services").update(row).eq("id", id).eq("business_id", business).select("id")
-    : await supabase.from("services").insert({ ...row, business_id: business }).select("id");
+  // A product takes no time: how long is a service's.
+  const service = { name, description, price_mur: price, minutes: kind === "product" ? null : minutes, active: id ? data.get("active") === "on" : true };
+  const write = (row: typeof service & { kind?: string; stock?: number | null }) =>
+    id ? supabase.from("services").update(row).eq("id", id).eq("business_id", business).select("id") : supabase.from("services").insert({ ...row, business_id: business }).select("id");
+  let { data: saved, error } = await write({ ...service, kind, stock });
+  // A database from before there were products has neither column: a service is still a service there.
+  if (error?.code === "PGRST204" && kind === "service") ({ data: saved, error } = await write(service));
   if (error?.hint === "too_many") return { message: "A business can list sixty services. Remove one first.", values };
   if (error?.code === "42501") return { message: "Services are part of Biznes Grow, and this business is not on it today.", values };
   if (error || !saved?.length) return { message: TRY_AGAIN, values };
   updateTag(TAG_OWNED);
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}/services`);
   return id ? { ok: true, message: "Saved.", values } : { ok: true, message: `Added: ${name}.` };
 }
 
@@ -209,7 +220,7 @@ export async function removeService(_: FormState, data: FormData): Promise<FormS
   const { data: gone, error } = await supabase.from("services").delete().eq("id", id).eq("business_id", business).select("id");
   if (error || !gone?.length) return { message: TRY_AGAIN };
   updateTag(TAG_OWNED);
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: "Removed." };
 }
 
@@ -241,7 +252,7 @@ export async function savePayDetails(_: FormState, data: FormData): Promise<Form
     : await supabase.from("pay_details").delete().eq("business_id", business).select("business_id");
   if (error || (number && !saved?.length)) return { message: error?.code === "42501" ? "That business is not yours to change." : TRY_AGAIN, values };
   updateTag(TAG_OWNED);
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: number ? "Saved." : "Taken off your page.", values: { juice_number: number, juice_name: name } };
 }
 
@@ -259,6 +270,6 @@ export async function answerBooking(_: FormState, data: FormData): Promise<FormS
   const supabase = await db();
   const { data: changed, error } = await supabase.from("bookings").update({ status: step }).eq("id", id).eq("business_id", business).select("id");
   if (error || !changed?.length) return { message: "That booking could not be changed that way. It may have been cancelled." };
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: STEPS[step] };
 }

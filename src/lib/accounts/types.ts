@@ -45,7 +45,8 @@ export type Business = {
   updated_at: string;
 };
 
-export type PlanRequest = { id: string; business_id: string; requested_by: string | null; plan: PaidPlan; note: string; status: "open" | "done" | "declined"; handled_by: string | null; handled_at: string | null; created_at: string };
+/** A request for a change of plan. Asked for as the free plan, it means: stop at the end of the period. */
+export type PlanRequest = { id: string; business_id: string; requested_by: string | null; plan: PlanId; note: string; status: "open" | "done" | "declined"; handled_by: string | null; handled_at: string | null; created_at: string };
 
 /** How a business is paid by MCB Juice: details only. The site takes no part in a payment. */
 export type PayDetails = { business_id: string; juice_number: string; juice_name: string };
@@ -102,3 +103,103 @@ export function duration(minutes: number): string {
   const m = minutes % 60;
   return [h ? `${h} ${h === 1 ? "hour" : "hours"}` : "", m ? `${m} minutes` : ""].filter(Boolean).join(" ");
 }
+
+/** A month, written YYYY-MM, as it is now in Mauritius. */
+export const thisMonth = (now = Date.now()) => mauritiusToday(now).slice(0, 7);
+/** The month a number of months after another: `monthAfter("2026-12", 2)` is "2027-02". */
+export function monthAfter(month: string, by = 1): string {
+  const [y, m] = month.split("-").map(Number);
+  const at = y * 12 + (m - 1) + by;
+  return `${Math.floor(at / 12)}-${String((at % 12) + 1).padStart(2, "0")}`;
+}
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+/** A month in words: "December 2026". */
+export const monthName = (month: string) => `${MONTH_NAMES[Number(month.slice(5, 7)) - 1] ?? ""} ${month.slice(0, 4)}`.trim();
+
+/** What a paid plan adds to a business's page, as the database holds it (the pictures as paths in the bucket). */
+export type ShowcaseRow = { business_id: string; tagline: string; hours: string[]; cover: string; photos: string[] };
+export type MenuSectionRow = { id: string; business_id: string; title: string; position: number };
+export type MenuItemRow = { id: string; section_id: string; business_id: string; name: string; description: string; price_mur: number | null; position: number };
+
+/** A business's own record of a customer. */
+export type Customer = { id: string; business_id: string; name: string; phone: string; phone_key: string; notes: string; created_at: string; updated_at: string };
+/** How often a telephone number has booked with a business, counted by the database. */
+export type CustomerTally = { business_id: string; phone_key: string; name: string; phone: string; bookings: number; done: number; last_wanted: string };
+
+export const PAYMENT_METHODS = ["juice", "cash", "card", "transfer"] as const;
+export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
+export const PAYMENT_NAMES: Record<PaymentMethod, string> = { juice: "MCB Juice", cash: "Cash", card: "Card", transfer: "Bank transfer" };
+/** A line of the ledger a business keeps by hand. The site takes no payment and checks none. */
+export type Payment = { id: string; business_id: string; customer_id: string | null; booking_id: string | null; paid_on: string; payer: string; what: string; amount_mur: number; method: PaymentMethod; created_at: string };
+
+/**
+ * Where an advertisement may run: six places on the site, three on the pocket guide's sponsors'
+ * pages, and the magazine. The guide's three are priced in content/pdf/sponsorship.json; the
+ * others have no price yet and are shown as "Price on request".
+ */
+export const AD_PLACES = [
+  { id: "home", name: "The first screen", where: "site", what: "Under the search box on the first page." },
+  { id: "results", name: "Search results", where: "site", what: "Among the answers to a search." },
+  { id: "listing", name: "A listing's page", where: "site", what: "On the pages of other listings." },
+  { id: "food", name: "Food and drink", where: "site", what: "On the pages for places to eat and drink." },
+  { id: "article", name: "The guides", where: "site", what: "Beside a guide to doing business." },
+  { id: "directory", name: "The directory", where: "site", what: "On the pages that list businesses by kind and by town." },
+  { id: "guide-listing", name: "Pocket guide: a sponsored listing", where: "guide", what: "Your name, what you do, your town and your number on the sponsors' page." },
+  { id: "guide-panel", name: "Pocket guide: a sponsored panel", where: "guide", what: "A quarter of a page, with your picture and your own words." },
+  { id: "guide-page", name: "Pocket guide: a sponsored page", where: "guide", what: "A full page of the guide to yourself. An edition carries four at most." },
+  { id: "magazine", name: "The magazine", where: "magazine", what: "In the free monthly magazine, when it begins." },
+] as const;
+export type AdPlaceId = (typeof AD_PLACES)[number]["id"];
+export const isAdPlace = (v: unknown): v is AdPlaceId => AD_PLACES.some((p) => p.id === v);
+export const adPlace = (id: string) => AD_PLACES.find((p) => p.id === id);
+
+export type AdStatus = "draft" | "submitted" | "approved" | "declined";
+/** What an advertisement is doing today: its status, with "running" and "ended" read off the calendar. */
+export type AdState = AdStatus | "running" | "ended";
+export const AD_STATE_NAMES: Record<AdState, string> = { draft: "Draft", submitted: "With us to check", approved: "Approved", running: "Running", ended: "Ended", declined: "Not accepted" };
+export type Ad = {
+  id: string;
+  business_id: string;
+  headline: string;
+  line: string;
+  link_to: "page" | "website";
+  artwork: string;
+  place: AdPlaceId;
+  months: string[];
+  status: AdStatus;
+  paid: boolean;
+  reason: string;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+/** The same rule as `ad_state` in the database: approved and paid in a month it names is running; past its last month it has ended. */
+export function adState(ad: Pick<Ad, "status" | "paid" | "months">, month = thisMonth()): AdState {
+  if (ad.status !== "approved") return ad.status;
+  if (ad.months.every((m) => m < month)) return "ended";
+  return ad.paid && ad.months.includes(month) ? "running" : "approved";
+}
+
+export const ORDER_STATUSES = ["placed", "awaiting_payment", "paid", "fulfilled", "cancelled"] as const;
+export type OrderStatus = (typeof ORDER_STATUSES)[number];
+export const ORDER_NAMES: Record<OrderStatus, string> = { placed: "Placed", awaiting_payment: "Awaiting payment", paid: "Paid", fulfilled: "Fulfilled", cancelled: "Cancelled" };
+export type OrderItem = { id: number; order_id: string; item: string; kind: string; name: string; detail: string; unit_mur: number | null; per: "each" | "month"; qty: number };
+export type Order = {
+  id: string;
+  number: number;
+  customer_id: string | null;
+  name: string;
+  phone: string;
+  email: string;
+  note: string;
+  total_mur: number;
+  status: OrderStatus;
+  admin_note: string;
+  handled_by: string | null;
+  handled_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Subscriber = { id: string; email: string; wants_guide: boolean; wants_magazine: boolean; token: string; confirmed_at: string | null; created_at: string };

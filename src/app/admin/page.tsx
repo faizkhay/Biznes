@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reach, type Owner } from "@/components/account/AdminBits";
 import AdminNav from "@/components/account/AdminNav";
+import { Empty, PartHead, Stat, Stats } from "@/components/account/Bits";
 import { ActionForm, Field, Select, Submit } from "@/components/account/Form";
+import { Tag } from "@/components/account/Icons";
 import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
-import { Chevron } from "@/components/Icons";
+import { Chevron, Store } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { ACTIONS, PLANS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { db } from "@/lib/accounts/server";
 import { requireAdmin } from "@/lib/accounts/session";
-import { BOOKING_NAMES, BOOKING_STATUSES, mauritiusToday, planNow, STATUS_NAMES, STATUSES, when, type Business, type PlanRequest, type Profile } from "@/lib/accounts/types";
-import { count, day, shortUrl, telHref } from "@/lib/format";
+import { BOOKING_NAMES, BOOKING_STATUSES, mauritiusToday, ORDER_NAMES, planNow, STATUS_NAMES, STATUSES, when, type Business, type OrderStatus, type PlanRequest } from "@/lib/accounts/types";
+import { count, day, shortUrl } from "@/lib/format";
 import { index, whereOf } from "@/lib/index";
 import { answerPlanRequest, setPlan, setStatus, setVerified } from "./actions";
 
 export const metadata: Metadata = { title: "Admin", robots: { index: false, follow: false } };
 
-type Owner = Pick<Profile, "id" | "name" | "email" | "phone">;
 type Logged = { id: number; at: string; actor: string | null; action: string; detail: Record<string, unknown> };
 
 const planName = (id: string) => PLANS.find((p) => p.id === id)?.name ?? id;
@@ -48,32 +50,30 @@ function told(entry: Logged): string {
       return "The first account became the superadmin";
     case "settings.look":
       return "The site's look was changed";
+    case "ad.submitted":
+      return `${name} sent in an advertisement: ${d.headline ?? ""}`;
+    case "ad.approved":
+      return `An advertisement of ${name} was approved: ${d.headline ?? ""}`;
+    case "ad.declined":
+      return `An advertisement of ${name} was declined: ${d.headline ?? ""}`;
+    case "ad.draft":
+      return `${name} took an advertisement back: ${d.headline ?? ""}`;
+    case "ad.paid":
+      return `An advertisement of ${name} was marked paid: ${d.headline ?? ""}`;
+    case "ad.unpaid":
+      return `An advertisement of ${name} was marked not paid: ${d.headline ?? ""}`;
+    case "picture.added":
+      return `A picture was added for behind the page: ${d.label ?? ""}`;
+    case "picture.removed":
+      return `A picture for behind the page was removed: ${d.label ?? ""}`;
+    case "subscriber.removed":
+      return "An address was taken off the list of subscribers";
+    case "catalogue.set":
+      return "The catalogue was brought level with the site";
     default:
+      if (entry.action.startsWith("order.")) return `Order ${d.number ?? ""}: ${ORDER_NAMES[entry.action.slice(6) as OrderStatus]?.toLowerCase() ?? entry.action.slice(6)}`;
       return entry.action;
   }
-}
-
-function Reach({ owner }: { owner?: Owner }) {
-  if (!owner) return <span>Owner unknown</span>;
-  return (
-    <span>
-      {owner.name || "No name given"}
-      {owner.email && (
-        <>
-          {" · "}
-          <a href={`mailto:${owner.email}`}>{owner.email}</a>
-        </>
-      )}
-      {owner.phone && (
-        <>
-          {" · "}
-          <a href={telHref(owner.phone)} className="data-2 whitespace-nowrap">
-            {owner.phone}
-          </a>
-        </>
-      )}
-    </span>
-  );
 }
 
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
@@ -120,33 +120,34 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
       <div className="shell">
         <AdminNav role={viewer.role} current="/admin" />
 
-        <section aria-labelledby="glance" className="max-w-3xl">
-          <h2 id="glance" className="heading-2">
+        <section aria-labelledby="glance">
+          <h2 id="glance" className="sr-only">
             At a glance
           </h2>
-          <dl className="facts body-3 mt-6">
-            <dt>Businesses</dt>
-            <dd>{STATUSES.map((s, i) => `${n(businessCounts, i)} ${STATUS_NAMES[s].toLowerCase()}`).join(", ")}</dd>
-            <dt>Requests for a plan</dt>
-            <dd className="data-1">{count(requests.length)} open</dd>
-            <dt>Bookings</dt>
-            <dd>{BOOKING_STATUSES.map((s, i) => `${n(bookingCounts, i)} ${BOOKING_NAMES[s].toLowerCase()}`).join(", ")}</dd>
-          </dl>
+          <Stats>
+            <Stat label="To check" figure={count(pending.length)} note="New businesses and claims." href="#queue" />
+            <Stat label="Requests for a plan" figure={count(requests.length)} note="Open." href="#plans" />
+            <Stat label="Live businesses" figure={n(businessCounts, STATUSES.indexOf("live"))} note={STATUSES.filter((s) => s !== "live" && s !== "pending").map((s) => `${n(businessCounts, STATUSES.indexOf(s))} ${STATUS_NAMES[s].toLowerCase()}`).join(", ")} href="#every" />
+            <Stat label="Bookings asked for" figure={n(bookingCounts, BOOKING_STATUSES.indexOf("requested"))} note={`${n(bookingCounts, BOOKING_STATUSES.indexOf("confirmed"))} ${BOOKING_NAMES.confirmed.toLowerCase()}, ${n(bookingCounts, BOOKING_STATUSES.indexOf("done"))} ${BOOKING_NAMES.done.toLowerCase()}.`} />
+          </Stats>
         </section>
 
-        <section aria-labelledby="queue" className="mt-12 max-w-3xl">
-          <h2 id="queue" className="heading-2">
-            To check
-          </h2>
+        <section aria-labelledby="queue" className="mt-12 scroll-mt-24">
+          <PartHead id="queue" title="To check" line="New businesses and claims on a listing, the oldest first. Nothing goes live until you approve it." />
           {pending.length === 0 ? (
-            <p className="body-2 mt-4 text-ink-subtle">No business is waiting.</p>
+            <div className="mt-6">
+              <Empty icon={<Store />} title="No business is waiting">
+                When an owner lists a business or claims a listing, it waits here for you.
+              </Empty>
+            </div>
           ) : (
             <ul className="mt-6 grid gap-4">
               {pending.map((b) => {
                 const claimed = b.listing_id ? byId.get(b.listing_id) : undefined;
                 return (
                   <li key={b.id}>
-                    <article className="card">
+                    <article className="card grid gap-x-10 gap-y-6 lg:grid-cols-12">
+                      <div className="lg:col-span-7">
                       <p className="caption-1 text-ink-faint">Listed {day(b.created_at)}</p>
                       <h3 className="title-1 mt-1">{b.name}</h3>
                       <p className="body-3 mt-0.5 text-ink-subtle">{what(b)}</p>
@@ -195,7 +196,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                           <Reach owner={owners.get(b.owner_id)} />
                         </dd>
                       </dl>
-                      <ActionForm action={setStatus} className="mt-6 grid gap-4">
+                      </div>
+                      <ActionForm action={setStatus} className="grid content-start gap-4 lg:col-span-5">
                         <input type="hidden" name="business" value={b.id} />
                         <Field name="note" label="If you do not accept it, why" hint="One line. The owner is shown it, and can change the details and send it back." />
                         <div className="flex flex-wrap gap-3">
@@ -215,37 +217,51 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           )}
         </section>
 
-        <section aria-labelledby="plans" className="mt-12 max-w-3xl">
-          <h2 id="plans" className="heading-2">
-            Requests for a plan
-          </h2>
-          <p className="body-3 mt-2 max-w-prose text-ink-subtle">Nothing is paid on the site yet. Arrange payment with the owner, check the business is real, then switch the plan on with the last day it is paid for. Switching a plan on marks the business verified.</p>
+        <section aria-labelledby="plans" className="mt-12 scroll-mt-24">
+          <PartHead id="plans" title="Requests for a plan" line="Nothing is paid on the site yet. Arrange payment with the owner, check the business is real, then switch the plan on with the last day it is paid for. Switching a plan on marks the business verified. A request to stop keeps the plan to the end of its period." />
           {requests.length === 0 ? (
-            <p className="body-2 mt-4 text-ink-subtle">No request is open.</p>
+            <div className="mt-6">
+              <Empty icon={<Tag />} title="No request is open">
+                When an owner asks for a plan, to change one or to stop one, the request waits here.
+              </Empty>
+            </div>
           ) : (
             <ul className="mt-6 grid gap-4">
               {requests.map((r) => {
                 const b = businessById.get(r.business_id);
+                const stop = r.plan === "free";
                 return (
                   <li key={r.id}>
-                    <article className="card">
-                      <p className="caption-1 flex flex-wrap items-center gap-2 text-ink-faint">
-                        <span className="tag tag-lit">{planName(r.plan)}</span>
-                        Asked {day(r.created_at)}
-                        {b && <span className="tag">{STATUS_NAMES[b.status]}</span>}
-                      </p>
-                      <h3 className="title-1 mt-2">{b?.name ?? "A business"}</h3>
-                      {b && <p className="body-3 mt-0.5 text-ink-subtle">{what(b)}</p>}
-                      {r.note && <p className="body-3 mt-3 max-w-prose">Their note: {r.note}</p>}
-                      <p className="body-3 mt-3 text-ink-subtle">
-                        <Reach owner={b ? owners.get(b.owner_id) : undefined} />
-                      </p>
-                      <ActionForm action={answerPlanRequest} className="mt-6 grid gap-4">
+                    <article className="card grid gap-x-10 gap-y-6 lg:grid-cols-12">
+                      <div className="lg:col-span-7">
+                        <p className="caption-1 flex flex-wrap items-center gap-2 text-ink-faint">
+                          <span className="tag tag-lit">{stop ? "Stop the plan" : planName(r.plan)}</span>
+                          Asked {day(r.created_at)}
+                          {b && <span className="tag">{STATUS_NAMES[b.status]}</span>}
+                        </p>
+                        <h3 className="title-1 mt-2">{b?.name ?? "A business"}</h3>
+                        {b && <p className="body-3 mt-0.5 text-ink-subtle">{what(b)}</p>}
+                        {b && (
+                          <p className="body-3 mt-3">
+                            {stop
+                              ? `They asked to stop ${planName(b.plan)} at the end of its period${b.plan_until ? `, which runs to ${day(b.plan_until)}` : ""}.`
+                              : b.plan !== "free" && planNow(b.plan, b.plan_until) !== "free"
+                                ? `It is on ${planName(b.plan)}${b.plan_until ? ` to ${day(b.plan_until)}` : ""} and asks for ${planName(r.plan)}.`
+                                : `It is on Biznes Free and asks for ${planName(r.plan)}.`}
+                          </p>
+                        )}
+                        {r.note && <p className="body-3 mt-3 max-w-prose">Their note: {r.note}</p>}
+                        <p className="body-3 mt-3 text-ink-subtle">
+                          <Reach owner={b ? owners.get(b.owner_id) : undefined} />
+                        </p>
+                      </div>
+                      <ActionForm action={answerPlanRequest} className="grid content-start gap-4 lg:col-span-5">
                         <input type="hidden" name="request" value={r.id} />
-                        <Field name="until" label="Paid until" type="date" min={today} defaultValue={plusDays(today, 30)} data className="max-w-xs" />
+                        {stop && <input type="hidden" name="kind" value="stop" />}
+                        <Field name="until" label={stop ? "Its last day" : "Paid until"} type="date" min={today} defaultValue={stop && b?.plan_until && b.plan_until >= today ? b.plan_until : plusDays(today, stop ? 0 : 30)} data className="max-w-xs" hint={stop ? "The plan runs to this day, then the business is on Biznes Free." : undefined} />
                         <div className="flex flex-wrap gap-3">
-                          <Submit name="answer" value="accept" busy="Switching it on">
-                            Switch the plan on
+                          <Submit name="answer" value="accept" busy={stop ? "Confirming" : "Switching it on"}>
+                            {stop ? "Confirm the stop" : "Switch the plan on"}
                           </Submit>
                           <Submit name="answer" value="decline" className="btn btn-quiet button-md">
                             Decline
@@ -260,11 +276,9 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           )}
         </section>
 
-        <section aria-labelledby="every" className="mt-12 max-w-3xl">
-          <h2 id="every" className="heading-2">
-            Every business
-          </h2>
-          <form action="/admin" method="get" className="mt-4 flex flex-wrap items-end gap-3">
+        <section aria-labelledby="every" className="mt-12 max-w-3xl scroll-mt-24">
+          <PartHead id="every" title="Every business" line="Each business an owner has listed or claimed. Open one to verify it, suspend it or set its plan by hand." />
+          <form action="/admin" method="get" className="mt-6 flex flex-wrap items-end gap-3">
             <div className="min-w-0 flex-1">
               <label htmlFor="admin-q" className="title-2 block">
                 Find one by name
@@ -360,10 +374,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
         </section>
 
         <section aria-labelledby="record" className="mt-12 max-w-3xl">
-          <h2 id="record" className="heading-2">
-            The record
-          </h2>
-          <p className="body-3 mt-2 text-ink-subtle">The last fifteen things done, by whom and when.</p>
+          <PartHead id="record" title="The record" line="The last fifteen things done, by whom and when." />
           <ul className="rows mt-4">
             {log.map((entry) => (
               <li key={entry.id}>

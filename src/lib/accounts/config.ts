@@ -22,6 +22,16 @@ export const SIGNED_IN_COOKIE = "biznes-in";
 /** The tags the cached public reads carry, so an admin's action can make them fresh at once. */
 export const TAG_OWNED = "biznes-owned";
 export const TAG_SETTINGS = "biznes-settings";
+export const TAG_ADS = "biznes-ads";
+
+/** The one bucket of Supabase Storage every uploaded picture is kept in. Anyone may look in it. */
+export const MEDIA_BUCKET = "media";
+/** The address of a picture in the bucket, from its path there ("business/<id>/cover-1.jpg"). */
+export const mediaUrl = (path: string) => `${SUPABASE_URL}/storage/v1/object/public/${MEDIA_BUCKET}/${path}`;
+/** What may be uploaded: a JPEG, a PNG or a WebP of three megabytes at most. The bucket enforces the same. */
+export const PICTURE_BYTES = 3 * 1024 * 1024;
+export const PICTURE_TYPES: Record<string, string> = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
+export const PICTURE_RULE = "A JPEG, PNG or WebP picture, 3 MB at most.";
 
 /** How long a public read is kept, in seconds. */
 export const KEEP = 300;
