@@ -1,6 +1,7 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { accountsOn, TAG_OWNED } from "@/lib/accounts/config";
 import { UUID } from "@/lib/accounts/form";
+import { tooMany } from "@/lib/accounts/limit";
 import { backTo, dropPictures, keepPicture, pictureFrom, receiveForm } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
@@ -18,6 +19,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   if (!accountsOn || !UUID.test(id)) return backTo("/dashboard");
   const viewer = await getViewer();
   if (!viewer) return backTo(`/account/sign-in?next=${encodeURIComponent(page)}`);
+  // Thirty uploads in ten minutes from one connection is more than a person choosing pictures makes.
+  if (await tooMany("upload", 30)) return backTo(page, { problem: "busy" });
 
   const received = await receiveForm(request);
   if ("problem" in received) return backTo(page, { problem: received.problem });

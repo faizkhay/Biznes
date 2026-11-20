@@ -7,6 +7,18 @@ import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./config";
 import { SESSION_COOKIE, withMarker } from "./cookies";
 
 /**
+ * The word that says a call came through this site. The database keeps its SHA-256 and asks for
+ * the word before a visitor may join the list, leave it or place an order, so that nobody holding
+ * the publishable key can spend those limits from outside (supabase/migrations, part 11).
+ *
+ * It is read from BIZNES_SITE_PROOF, a variable of the server's alone: this file is server-only,
+ * and the name has no NEXT_PUBLIC_ in front, so the word is in no file a browser is sent. With the
+ * variable unset no header is sent, and the database asks for none until its hash is set.
+ */
+const PROOF = process.env.BIZNES_SITE_PROOF?.trim();
+const proofHeader: Record<string, string> = PROOF ? { "x-biznes-proof": PROOF } : {};
+
+/**
  * The database, as whoever is signed in. One client a request, made from the request's cookies
  * with the publishable key, so everything it reads or writes passes the row level security of the
  * person asking. Call it only where accounts are on.
@@ -18,6 +30,7 @@ export const db = cache(async (): Promise<SupabaseClient> => {
   const store = await cookies();
   return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookieOptions: SESSION_COOKIE,
+    global: { headers: proofHeader },
     cookies: {
       getAll: () => store.getAll(),
       setAll(jar) {
@@ -46,6 +59,6 @@ export function publicDb(): SupabaseClient {
     // A public page must not wait on a database that is down: one try, a short one. The reads
     // above this fall back and try again later (owned.ts).
     db: { retry: false },
-    global: { fetch: (input, init) => fetch(input, { ...init, signal: init?.signal ?? AbortSignal.timeout(PATIENCE_MS) }) },
+    global: { headers: proofHeader, fetch: (input, init) => fetch(input, { ...init, signal: init?.signal ?? AbortSignal.timeout(PATIENCE_MS) }) },
   }));
 }

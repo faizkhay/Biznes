@@ -269,12 +269,16 @@ to it that day, whole and unchanged, and checked:
   listing open; the sign-in and sign-up pages open; the plans lead to the dashboard; the dashboard
   and the admin pages send a visitor who is not signed in to sign in.
 
-**Migrations 5 to 10 are not on it yet.** They are the second round's, written as files
-(`supabase/migrations/20261120000005_subscribers.sql` to `...10_orders.sql`) and applied to
-nothing but the local stack. Apply them in order after the merge. Until then the site still runs
-against the project as it is: the reads the new parts make are separate and forgiving, so an
-owner's business does not vanish, and the new pages show nothing or say "try again". Migration 9
+Migrations 5 to 10, the second round's, have since been applied to it, unchanged. Migration 9
 makes the `media` bucket and its rules itself: there is nothing to set in the Storage dashboard.
+
+**Migration 11 is not on it yet.** `supabase/migrations/20261120000011_review.sql` is what a
+security review of the second round asked for (it is in "How it is held" below). It alters
+what parts 5 to 10 made and keeps every row; it has been applied to nothing but the local stack and
+a scratch database with rows in it. Apply it after the merge, then set the site's word (step 8
+under "Setting up the project"). Until the word is set nothing asks for it, and until the file is
+applied the site still runs: an advertisement leads to its business's page, and approving one
+says to try again.
 
 Its two public values, which are meant to be seen (they ship to every browser):
 
@@ -302,6 +306,7 @@ things to know:
 | `NEXT_PUBLIC_SUPABASE_URL` | The project's address |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Its publishable key (the "anon" key, or a key that begins `sb_publishable_`) |
 | `NEXT_PUBLIC_SITE_URL` | Already asked for above. Here it is also the address in the emails Auth sends, and in each subscriber's link to leave the list: set it |
+| `BIZNES_SITE_PROOF` | A long random word, the server's alone: never `NEXT_PUBLIC_`, never in the repository. The site sends it with a visitor's writes, and the database, which keeps only its hash, refuses those writes without it. Unset, nothing is sent; see step 8 below |
 
 With either of the first two missing, **accounts are off**: the site builds and behaves as it did
 before they existed, and each account page says "Accounts open soon" with the way to the form at
@@ -314,7 +319,7 @@ cart in its message.
 
 1. **Create the project**, and **apply the migrations** in `supabase/migrations`, in order. With
    the Supabase CLI: `supabase link --project-ref <ref>`, then `supabase db push`. Without it:
-   paste the ten files into the SQL editor, one after the other.
+   paste the files into the SQL editor, one after the other.
 2. **Auth, URL configuration.** Site URL: the site's own address. Redirect URLs: the same address
    followed by `/**` (and `http://localhost:3000/**` to work on it).
 3. **Auth, email templates.** Point the links at this site, so that a link opened on another
@@ -335,6 +340,40 @@ cart in its message.
    guide's price or title, a sponsor option, a plan), the page says where the two differ and the
    superadmin brings them level with one button. Until they are level, what differs cannot be
    ordered.
+8. **Set the site's word.** Joining the list, leaving it and placing an order are open to
+   visitors and limited by the hour for everyone together, so anyone with the public key could
+   use the limit up from outside. Choose a long random word (`openssl rand -hex 32`), set it as
+   `BIZNES_SITE_PROOF` on the host, deploy, and only then give the database its hash, in the SQL
+   editor, with the same word:
+
+   ```sql
+   insert into private.site_proof (word_hash) values (encode(sha256(convert_to('<the word>', 'utf8')), 'hex'))
+   on conflict (id) do update set word_hash = excluded.word_hash;
+   ```
+
+   From then on a call to those three functions without the word is refused. In that order
+   nothing breaks on the way; to change the word, empty the table (`delete from
+   private.site_proof`), change the variable, deploy, and set the new hash. If the site's own
+   forms start saying "try again", the two do not match: the server's log says so.
+9. **Confirm that the picture limits are counted.** How many pictures a folder holds, and how
+   many one person keeps, are counted by a function that runs as its owner. That role does not
+   own Supabase's `storage.objects`, so it sees the rows only if it passes row level security
+   there. This query changes nothing and says whether it does:
+
+   ```sql
+   select f.proowner::regrole as counted_as, r.rolsuper as is_superuser, r.rolbypassrls as bypasses_rls,
+          has_table_privilege(f.proowner, 'storage.objects', 'select') as may_select,
+          c.relowner::regrole as table_owner, c.relrowsecurity as rls_enabled, c.relforcerowsecurity as rls_forced,
+          (select string_agg(p.polname, '; ') from pg_policy p
+            where p.polrelid = c.oid and p.polcmd in ('r', '*') and (p.polroles = '{0}' or f.proowner = any (p.polroles))) as select_policies_for_that_role
+   from pg_proc f join pg_roles r on r.oid = f.proowner cross join pg_class c
+   where f.oid = 'private.may_keep_media(text, boolean)'::regprocedure and c.oid = 'storage.objects'::regclass;
+   ```
+
+   The limits hold when `may_select` is true and any one of `is_superuser`, `bypasses_rls` or a
+   policy named in the last column is there. On Supabase's own Postgres image the answer is
+   `postgres`, not a superuser, `bypasses_rls` true, `may_select` true; part 11 also adds the
+   policy "biznes media: counted by the database" for that role, so the last column names it.
 
 ### The first superadmin
 
@@ -362,6 +401,7 @@ over, make the new person a superadmin first.
 | Switch a plan on, with its last day; answer a request for one, or to stop one | | | yes | yes |
 | Approve or decline an advertisement; mark it paid | | | yes | yes |
 | Move an order on: awaiting payment, paid, fulfilled, cancelled | | | yes | yes |
+| Take a picture off an advertisement or a business's page, and remove any picture from the bucket | | | yes | yes |
 | Read the list of subscribers, take it as a file, take an address off | | | yes | yes |
 | See everyone's businesses and bookings, the record of admin actions, the list of listings with no website | | | yes | yes |
 | Change roles | | | | yes |
@@ -384,7 +424,8 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   repeats the rule, so a careless grant later does not open a door.
 - **Admin work goes through functions** (`admin_set_status`, `admin_set_plan`,
   `admin_set_verified`, `admin_handle_plan_request`, `admin_review_ad`, `admin_set_ad_paid`,
-  `admin_set_order`, `set_role`, `set_catalogue`) that check who is asking. What they change is
+  `admin_remove_ad_picture`, `admin_remove_business_picture`, `admin_set_order`, `set_role`,
+  `set_catalogue`) that check who is asking. What they change is
   written to `audit_log` by triggers: who, what, when.
 - **Plans are switched on by hand.** How a plan is paid for is not built: an owner asks, an admin
   arranges payment and switches the plan on with the last day it is paid for. After that day the
@@ -424,7 +465,15 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   accepted; `site/` for the superadmin alone. An upload is a plain form posted to a route of this
   site (`.../upload/route.ts`), which checks where the form came from and the picture's own first
   bytes, then hands it to Storage as the person signed in. A server action is not used because it
-  takes one megabyte at most. A record names only a picture in its own folder.
+  takes one megabyte at most. A record names only a picture in its own folder. The kind Storage
+  records for a picture is the one read from its bytes, not the one its sender gave. SVG must
+  never be added to the bucket's list: it can carry script. A form that does not say how large it
+  is is not read, and one connection may send thirty uploads in ten minutes. One person keeps 150
+  pictures in the bucket at most, wherever they are. A picture goes when what it belonged to goes:
+  taking out an advertisement or a business removes its files first. What is left behind anyway
+  is its uploader's to remove once its advertisement or business is gone, and an admin may remove
+  any picture: from `/admin/ads` ("Its picture"), or from a business under "Every business" on
+  `/admin`.
 - **Advertisements.** An owner of a live business drafts one: a headline of sixty characters, a
   line of 120, where it leads (their page here, or their own website), a picture, a place, and the
   months it should run, which are months to come and never the one that has begun. The places are
@@ -436,13 +485,29 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   public, and only in a month it names. A place on the site holds one at a time (`AdSlot`): when
   several run in a month they take turns by the day. An edition of the guide carries four
   sponsored pages at most, and the database refuses a fifth. "Running" and "ended" are read off
-  the calendar, not stored.
+  the calendar, not stored. A business keeps twenty advertisements at most.
+- **An admin approves what they saw.** Every write to an advertisement gives its row a new stamp
+  (`updated_at`), and so does a change to its business's name or website while it waits. The
+  admin's page sends the stamp it was drawn with; `admin_review_ad` refuses to approve if the row
+  has been written since, and the admin is asked to look again. A picture on the admin's page
+  carries the stamp in its address, so a new file under an old name is never shown from a cache.
+- **Where an approved advertisement leads is fixed at approval.** For one that leads to the
+  business's own website, the address is copied onto the advertisement (`link_url`) as it is
+  approved, and that copy is what the site and the guide's sponsors show. The owner changing the
+  business afterwards does not move it. The copy is emptied when the advertisement is declined.
+- **The record keeps what admins did with an advertisement**: approved, declined, marked paid or
+  not, its picture removed. An owner sending one in and taking it back leaves no line.
 - **The guide's sponsors** are read from the view `guide_sponsors` (month, option, name, line,
   town, phone, website, artwork), as a visitor: `guideSponsors(month)` in
-  `src/lib/accounts/ads.ts`, or over the API for a script.
+  `src/lib/accounts/ads.ts`, or over the API for a script. `website` is the address the
+  advertisement was approved with, and empty for one that leads to the business's page here.
 - **Subscribers.** An address joins through a function (`subscribe`), with what it wants: the
   pocket guide, the magazine, or both. Joining twice keeps one row. The site reads the list only
-  as an admin, so the form never says whether an address was already on it. Each row has a token;
+  as an admin, so the form never says whether an address was already on it; nor does the
+  function, which counts every call the same (two hundred an hour, two thousand a day, for
+  everyone together) and refuses before it looks at the list. An address is letters, digits and
+  `. _ % + -` and nothing else, and every cell of the file an admin takes is in quotation marks,
+  so a spreadsheet reads an address as an address whatever it splits a line on. Each row has a token;
   `/unsubscribe?token=...` shows one button, and pressing it deletes the row. **The site sends no
   email**: an admin takes the list as a file, with each person's own link to leave, and sends from
   a mail service of their own.
@@ -452,7 +517,14 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   from its `catalogue` table and writes the order with that price (`place_order`). The two must
   agree, or nothing is placed. A thing the site does not sell is refused. Five orders an hour from
   one telephone number or address. The answer is "We have your order. A person will contact you
-  with how to pay", and nothing is said about how. An admin moves it on by hand.
+  with how to pay", and nothing is said about how. An admin moves it on by hand; `/admin/orders`
+  shows the oldest three hundred that are open and says how many more wait behind them.
+- **The site's word.** `subscribe`, `unsubscribe` and `place_order` ask for a word in the header
+  `x-biznes-proof` once its hash is in `private.site_proof`. The site sends it from
+  `BIZNES_SITE_PROOF`, read in `src/lib/accounts/server.ts`, which only the server loads: the
+  word is in no file a browser is sent. So the hourly limits on those three can be reached only
+  through the site, where each connection is also limited, and not by someone calling the API
+  with the public key.
 - **The look.** The picture behind the page is the calendar's, or one picture kept, or a round of
   pictures with a new one each day (`themeNow()` in `src/lib/theme.ts`). A picture is one the site
   is built with or one the superadmin uploaded; an uploaded one has a single size.
@@ -495,8 +567,9 @@ The pieces the public pages use, each with its own notes in the file: `showcaseO
 
 | Check | Command | Result on 20 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | 372 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
-| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` with the same two set | 236 of 236, with axe-core (WCAG 2.2 AA) clean on 53 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| Row level security | `npm run test:rls` | 467 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
+| The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them, applies part 11 and what follows, and says what became of the rows | 15 claims, all pass |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the three variables it prints, `node scripts/accounts-e2e.mjs` with the same three set | 260 of 260, with axe-core (WCAG 2.2 AA) clean on 55 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
 | A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
 | Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon", and `/account/order` hands the order to the form at `/add` |
 | No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses |
@@ -516,13 +589,28 @@ browser's own prices ignored, moves the orders on as an admin, brings the catalo
 roles, sets the look three ways with a picture of the superadmin's own, and resets a password. Along
 the way it asks the database, as a visitor and as each person, what it will hand over.
 
+For the review it also: has an owner change an advertisement behind an admin's open page, and
+sees the approval refused until the admin has looked again; changes a business's website after
+its advertisement was approved, and sees the advertisement lead where it did; calls the three
+visitors' functions over the API with the public key and no word, and with the wrong one, and is
+refused; looks through the build for the word and finds it in no file a browser is sent; joins
+the list with a new address and an old one and is answered alike; forces a null into an
+advertisement's months and opens the admin's page on it; takes out a business that has a cover, an
+advertisement waiting and one approved, and finds none of their files left; uploads a PNG that
+calls itself a JPEG and finds it kept as a PNG; has an admin remove a picture from a business's
+page and from an advertisement; reads the subscribers' file cell by cell; sends an upload that
+does not say how large it is; and sends thirty-one in a row.
+
 **Not run, and why:**
 
-- **The hosted project, for the second round.** Migrations 5 to 10 have been applied to the local
-  stack only: Supabase's own Postgres image and its own Storage program, but not the hosted
-  project, its gateway, or its Storage as hosted. In particular, that the migration may create a
-  bucket and write policies on `storage.objects` as the role the SQL editor and the CLI use is
-  true of the image and is assumed of the hosted project.
+- **The hosted project, for part 11.** It has been applied to the local stack (Supabase's own
+  Postgres image and its own Storage program) and to a scratch database with rows in it, not to
+  the hosted project. Three things are true of the image and assumed of the hosted project: that
+  the role the SQL editor uses may drop and make policies on `storage.objects` (it made the ones
+  in part 9 there); that the same role passes row level security on that table, so the limits on
+  a folder and on a person are counted (step 9 under "Setting up the project" confirms it); and that the hosted gateway hands the header `x-biznes-proof` on to the database.
+- **The second round's own pages on the hosted project.** Parts 5 to 10 are on it, but nothing
+  here has uploaded a picture to its Storage or placed an order against it.
 - **Supabase's hosted services, for the first round.** As before: its key checks, its email
   sender and its limits on sign-ups and emails were not exercised. The email templates in step 3
   were tried as links of that shape, not by editing a template in a dashboard.
@@ -541,7 +629,12 @@ the way it asks the database, as a visitor and as each person, what it will hand
   the checkout). Where the public pages place them is the public side's work.
 - **Real email.** Delivery, spam folders and the wording of the messages are the project's.
 - **Many people at once.** Nothing was measured under load. The limits on bookings, subscribers
-  and orders are counted in the database; the limit by connection is kept in one server's memory.
+  and orders are counted in the database; the limit by connection, uploads included, is kept in
+  one server's memory, so on a host that runs several servers each counts for itself.
+- **A request body larger than a picture.** The upload routes refuse by the size a request says
+  it is. The server still buffers what it is sent before a route sees it, up to Next's own limit
+  for a site with a proxy (ten megabytes); `experimental.proxyClientMaxBodySize` in
+  `next.config.ts` lowers that, and is not set.
 - **A screen reader, by ear.** As for the rest of the site.
 
 **Not built:**

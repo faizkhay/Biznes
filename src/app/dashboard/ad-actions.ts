@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { accountsOn } from "@/lib/accounts/config";
 import { field, SOON, TRY_AGAIN, typed, UUID, type FormState } from "@/lib/accounts/form";
-import { dropPictures } from "@/lib/accounts/media";
+import { emptyFolder } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
 import { isAdPlace, thisMonth } from "@/lib/accounts/types";
@@ -34,6 +34,8 @@ function refusal(error: { code?: string; hint?: string | null; message?: string 
       return { message: "An approved advertisement is changed by us. Ask and we will." };
     case "ad_step":
       return { message: "That advertisement cannot be changed that way." };
+    case "too_many":
+      return { message: "A business keeps twenty advertisements at most. Take one out first." };
     default:
       return { message: error.code === "42501" ? "Only a live business can advertise, and only its owner." : TRY_AGAIN };
   }
@@ -75,11 +77,22 @@ export async function moveAd(_: FormState, data: FormData): Promise<FormState> {
   if (!UUID.test(business) || !UUID.test(id) || !["send", "back", "remove"].includes(what)) return { message: TRY_AGAIN };
   const supabase = await db();
   if (what === "remove") {
-    const { data: gone, error } = await supabase.from("ads").delete().eq("id", id).eq("business_id", business).select("artwork");
-    if (error || !gone?.length) return { message: "That advertisement could not be taken out. An approved one is changed by us: ask and we will." };
-    await dropPictures(supabase, [gone[0].artwork as string]);
+    const cannot = { message: "That advertisement could not be taken out. An approved one is changed by us: ask and we will." };
+    const { data: ad } = await supabase.from("ads").select("status, artwork").eq("id", id).eq("business_id", business).maybeSingle();
+    if (!ad || ad.status === "approved") return cannot;
+    // Its pictures go first, while the bucket still knows whose they are: it lets an owner remove
+    // them only while the advertisement is there and is a draft or was declined. One that is
+    // waiting to be checked is taken back first, for the same reason. If it cannot be taken back
+    // (its months have come), the pictures go after the row instead, as its uploader's own.
+    if (ad.status === "submitted") await supabase.from("ads").update({ status: "draft" }).eq("id", id).eq("business_id", business);
+    await emptyFolder(supabase, `ads/${id}`, [ad.artwork as string]);
+    const { data: gone, error } = await supabase.from("ads").delete().eq("id", id).eq("business_id", business).select("id");
+    if (error || !gone?.length) return cannot;
+    // Anything still there is now nobody's but its uploader's, and the bucket lets them remove that too.
+    await emptyFolder(supabase, `ads/${id}`, [ad.artwork as string]);
     revalidatePath(`/dashboard/${business}/ads`);
-    return { ok: true, message: "Taken out." };
+    revalidatePath("/admin/ads");
+    return { ok: true, message: "Taken out, with its picture." };
   }
   const { data: moved, error } = await supabase.from("ads").update({ status: what === "send" ? "submitted" : "draft" }).eq("id", id).eq("business_id", business).select("id");
   if (error) return refusal(error);

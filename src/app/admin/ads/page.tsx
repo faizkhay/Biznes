@@ -5,15 +5,17 @@ import AdSlot, { AdCard } from "@/components/account/AdSlot";
 import { Empty, PartHead, Stat, Stats } from "@/components/account/Bits";
 import { ActionForm, Field, Submit } from "@/components/account/Form";
 import { Megaphone } from "@/components/account/Icons";
+import { Chevron } from "@/components/Icons";
 import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
 import { adFor, placePrice } from "@/lib/accounts/ads";
 import { accountsOn, mediaUrl } from "@/lib/accounts/config";
+import { freshUrl } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { requireAdmin } from "@/lib/accounts/session";
-import { AD_PLACES, AD_STATE_NAMES, adPlace, adState, monthAfter, monthName, rupees, thisMonth, type Ad, type Business } from "@/lib/accounts/types";
-import { count, day } from "@/lib/format";
-import { reviewAd, setAdPaid } from "../actions";
+import { AD_PLACES, AD_STATE_NAMES, adPlace, adState, monthAfter, monthName, monthNames, rupees, soundAd, thisMonth, type Ad, type Business } from "@/lib/accounts/types";
+import { count, day, shortUrl } from "@/lib/format";
+import { removeAdPicture, reviewAd, setAdPaid } from "../actions";
 
 export const metadata: Metadata = { title: "Advertisements", robots: { index: false, follow: false } };
 
@@ -31,7 +33,7 @@ export default async function AdminAdsPage() {
   const viewer = await requireAdmin("/admin/ads");
   const supabase = await db();
   const { data: rows } = await supabase.from("ads").select("*").neq("status", "draft").order("updated_at", { ascending: false }).limit(200);
-  const ads = (rows ?? []) as Ad[];
+  const ads = ((rows ?? []) as Ad[]).map(soundAd);
   const ids = [...new Set(ads.map((a) => a.business_id))];
   const { data: businessRows } = ids.length ? await supabase.from("businesses").select("id, name, slug, website, owner_id, status").in("id", ids) : { data: [] };
   const businesses = new Map(((businessRows ?? []) as Pick<Business, "id" | "name" | "slug" | "website" | "owner_id" | "status">[]).map((b) => [b.id, b]));
@@ -50,10 +52,17 @@ export default async function AdminAdsPage() {
   // What a visitor is shown in each place today: the same read the public pages make.
   const showing = await Promise.all(ON_SITE.map((place) => adFor(place)));
 
+  /** Where an advertisement leads: the address it was approved with, or, while it waits, the one it would be approved with now. */
+  const leadsTo = (ad: Ad) => {
+    const b = businesses.get(ad.business_id);
+    const website = ad.status === "approved" ? (ad.link_url ?? "") : ad.link_to === "website" ? (b?.website ?? "") : "";
+    return /^https?:\/\//i.test(website) ? website : "";
+  };
   const preview = (ad: Ad) => {
     const b = businesses.get(ad.business_id);
-    const external = ad.link_to === "website" && Boolean(b?.website);
-    return { headline: ad.headline, line: ad.line, href: external ? b!.website : b ? `/biz/${b.slug}` : "/", external, by: b?.name ?? "A business", ...(ad.artwork ? { image: mediaUrl(ad.artwork) } : {}) };
+    const website = leadsTo(ad);
+    // The picture is asked for afresh whenever the row has changed, so a new file under an old name is never shown from a cache.
+    return { headline: ad.headline, line: ad.line, href: website || (b ? `/biz/${b.slug}` : "/"), external: Boolean(website), by: b?.name ?? "A business", ...(ad.artwork ? { image: freshUrl(mediaUrl(ad.artwork), ad.updated_at) } : {}) };
   };
   const facts = (ad: Ad) => (
     <dl className="facts body-3 mt-4">
@@ -63,7 +72,7 @@ export default async function AdminAdsPage() {
       </div>
       <div className="contents">
         <dt>Months</dt>
-        <dd>{ad.months.map(monthName).join(", ")}</dd>
+        <dd>{monthNames(ad.months)}</dd>
       </div>
       <div className="contents">
         <dt>Price</dt>
@@ -71,7 +80,21 @@ export default async function AdminAdsPage() {
       </div>
       <div className="contents">
         <dt>Leads to</dt>
-        <dd>{ad.link_to === "website" ? "Their own website" : "Their page on biznes.mu"}</dd>
+        <dd>
+          {leadsTo(ad) ? (
+            <>
+              Their own website,{" "}
+              <a href={leadsTo(ad)} rel="noopener nofollow" className="data-1 break-all">
+                {shortUrl(leadsTo(ad))}
+              </a>
+              . Approving fixes this address: a later change to the business does not move it.
+            </>
+          ) : ad.link_to === "website" ? (
+            "Their page on biznes.mu: they chose their own website, and the business has none."
+          ) : (
+            "Their page on biznes.mu"
+          )}
+        </dd>
       </div>
       <div className="contents">
         <dt>Owner</dt>
@@ -118,6 +141,8 @@ export default async function AdminAdsPage() {
                     <div className="lg:col-span-5">
                       <ActionForm action={reviewAd} className="grid gap-4">
                         <input type="hidden" name="ad" value={ad.id} />
+                        {/* The stamp of the row as it is shown here. Approval is refused if the row has been written since. */}
+                        <input type="hidden" name="seen" value={ad.updated_at} />
                         <Field name="reason" label="If you decline it, why" hint="One line. The owner is shown it, and can change the advertisement and send it again." />
                         <div className="flex flex-wrap gap-3">
                           <Submit name="answer" value="approve" busy="Approving">
@@ -158,12 +183,31 @@ export default async function AdminAdsPage() {
                         </p>
                         <h3 className="title-1 mt-2">{ad.headline}</h3>
                         <p className="body-3 mt-0.5 text-ink-subtle">
-                          {businesses.get(ad.business_id)?.name ?? "A business"} · {ad.months.map(monthName).join(", ")} · {costOf(ad)}
+                          {businesses.get(ad.business_id)?.name ?? "A business"} · {monthNames(ad.months)} · {costOf(ad)}
                         </p>
                         {ad.status === "declined" && ad.reason && <p className="body-3 mt-2 max-w-prose">Why: {ad.reason}</p>}
                         <p className="body-3 mt-2 text-ink-subtle">
                           <Reach owner={owners.get(businesses.get(ad.business_id)?.owner_id ?? "")} />
                         </p>
+                        {ad.artwork && (
+                          <details className="mt-1">
+                            <summary className="body-3 inline-flex min-h-11 items-center gap-2 font-semibold text-link">
+                              Its picture<span className="sr-only">: {ad.headline}</span> <Chevron className="size-4" />
+                            </summary>
+                            <div className="mt-2 grid max-w-md gap-4">
+                              <img src={freshUrl(mediaUrl(ad.artwork), ad.updated_at)} alt="" className="thumb thumb-wide" loading="lazy" decoding="async" />
+                              <ActionForm action={removeAdPicture} className="grid gap-3">
+                                <input type="hidden" name="ad" value={ad.id} />
+                                <Field name="why" label="Why the picture is removed" hint={ad.status === "approved" ? "One line. The advertisement comes down, and its owner is shown this." : "One line. The owner is shown it."} />
+                                <div>
+                                  <Submit className="btn btn-quiet btn-sm button-sm" busy="Removing">
+                                    Remove its picture<span className="sr-only">: {ad.headline}</span>
+                                  </Submit>
+                                </div>
+                              </ActionForm>
+                            </div>
+                          </details>
+                        )}
                       </div>
                       {ad.status === "approved" && state !== "ended" && (
                         <ActionForm action={setAdPaid} className="grid justify-items-end gap-2 self-center" quiet>

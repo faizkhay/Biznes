@@ -10,13 +10,13 @@ import { PageHead } from "@/components/Bits";
 import { Chevron, Store } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { ACTIONS, PLANS } from "@/data/site";
-import { accountsOn } from "@/lib/accounts/config";
+import { accountsOn, mediaUrl } from "@/lib/accounts/config";
 import { db } from "@/lib/accounts/server";
 import { requireAdmin } from "@/lib/accounts/session";
 import { BOOKING_NAMES, BOOKING_STATUSES, mauritiusToday, ORDER_NAMES, planNow, STATUS_NAMES, STATUSES, when, type Business, type OrderStatus, type PlanRequest } from "@/lib/accounts/types";
 import { count, day, shortUrl } from "@/lib/format";
 import { index, whereOf } from "@/lib/index";
-import { answerPlanRequest, setPlan, setStatus, setVerified } from "./actions";
+import { answerPlanRequest, removeBusinessPicture, setPlan, setStatus, setVerified } from "./actions";
 
 export const metadata: Metadata = { title: "Admin", robots: { index: false, follow: false } };
 
@@ -70,6 +70,10 @@ function told(entry: Logged): string {
       return "An address was taken off the list of subscribers";
     case "catalogue.set":
       return "The catalogue was brought level with the site";
+    case "ad.picture_removed":
+      return `The picture of an advertisement of ${name} was removed: ${d.headline ?? ""}`;
+    case "business.picture_removed":
+      return `A picture was removed from the page of ${name}`;
     default:
       if (entry.action.startsWith("order.")) return `Order ${d.number ?? ""}: ${ORDER_NAMES[entry.action.slice(6) as OrderStatus]?.toLowerCase() ?? entry.action.slice(6)}`;
       return entry.action;
@@ -99,6 +103,14 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const pending = (pendingRows ?? []) as Business[];
   const requests = (requestRows ?? []) as PlanRequest[];
   const every = (everyRows ?? []) as Business[];
+  // The pictures on each of those businesses' pages, for an admin to look at and, if need be, remove.
+  const { data: pageRows } = every.length
+    ? await supabase
+        .from("showcases")
+        .select("business_id, cover, photos")
+        .in("business_id", every.map((b) => b.id))
+    : { data: [] };
+  const picturesOf = new Map(((pageRows ?? []) as { business_id: string; cover: string; photos: string[] | null }[]).map((p) => [p.business_id, [p.cover, ...(p.photos ?? [])].filter((path): path is string => typeof path === "string" && path !== "")]));
   const log = (logRows ?? []) as Logged[];
 
   // The businesses the requests are about, and everyone who owns or did something shown here.
@@ -323,6 +335,29 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                         <Reach owner={owners.get(b.owner_id)} />
                         {b.status_note ? ` · Note to the owner: ${b.status_note}` : ""}
                       </p>
+
+                      {(picturesOf.get(b.id)?.length ?? 0) > 0 && (
+                        <div>
+                          <p className="title-2">Its pictures</p>
+                          <p className="caption-1 mt-1 text-ink-faint">The cover first, then the photographs. Removing one takes it off the page and out of storage, and is on the record.</p>
+                          <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                            {picturesOf.get(b.id)!.map((path, i) => (
+                              <li key={path} className="grid content-start gap-2">
+                                <img src={mediaUrl(path)} alt={`Picture ${i + 1} of ${b.name}`} className="thumb" loading="lazy" decoding="async" />
+                                <ActionForm action={removeBusinessPicture} className="grid" quiet>
+                                  <input type="hidden" name="business" value={b.id} />
+                                  <input type="hidden" name="path" value={path} />
+                                  <div>
+                                    <Submit className="btn btn-quiet btn-sm button-sm" busy="Removing">
+                                      Remove<span className="sr-only">: picture {i + 1} of {b.name}</span>
+                                    </Submit>
+                                  </div>
+                                </ActionForm>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                       <ActionForm action={setVerified} className="grid gap-3">
                         <input type="hidden" name="business" value={b.id} />

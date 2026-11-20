@@ -13,9 +13,19 @@ import { mauritiusToday, thisMonth, type AdPlaceId } from "./types";
  * month. Kept for five minutes, and made fresh at once when an admin approves one or marks it paid.
  */
 
-type AdRow = { id: string; business_id: string; headline: string; line: string; link_to: string; artwork: string; place: string; months: string[] };
+type AdRow = { id: string; business_id: string; headline: string; line: string; artwork: string; place: string; months: string[]; /** The business's website as it was when an admin approved the advertisement, when it leads there. */ link_url?: string };
 
-const readAds = unstable_cache(async (): Promise<AdRow[]> => orNone(every<AdRow>("ads", "id, business_id, headline, line, link_to, artwork, place, months", "id")), ["biznes-ads-v1"], { revalidate: KEEP, tags: [TAG_ADS] });
+const COLUMNS = "id, business_id, headline, line, artwork, place, months";
+const readAds = unstable_cache(
+  // A database from before the address was copied at approval has no such column: there an
+  // advertisement leads to the business's page on this site, which is always safe.
+  async (): Promise<AdRow[]> => orNone(every<AdRow>("ads", `${COLUMNS}, link_url`, "id").catch(() => every<AdRow>("ads", COLUMNS, "id"))),
+  ["biznes-ads-v2"],
+  { revalidate: KEEP, tags: [TAG_ADS] },
+);
+
+/** An address on the web and nothing else: never script, never a file. */
+const onTheWeb = (address: string | undefined) => (address && /^https?:\/\//i.test(address) ? address : "");
 
 /** An advertisement as a page shows it. */
 export type ShownAd = { id: string; headline: string; line: string; href: string; /** True when it leads off the site, to the business's own website. */ external: boolean; image?: string; /** The business it is from. */ by: string };
@@ -30,13 +40,15 @@ export async function adFor(place: AdPlaceId): Promise<ShownAd | undefined> {
   const { byId } = await owned();
   const running = (await readAds().catch(() => [] as AdRow[]))
     // The database has already asked all of this. It is asked again, so a stale read shows nothing it should not.
-    .filter((ad) => ad.place === place && ad.months.includes(month) && byId.has(ad.business_id))
+    .filter((ad) => ad.place === place && Array.isArray(ad.months) && ad.months.includes(month) && byId.has(ad.business_id))
     .sort((a, b) => a.id.localeCompare(b.id));
   if (!running.length) return undefined;
   const ad = running[Math.floor(Date.parse(mauritiusToday()) / 864e5) % running.length];
   const business = byId.get(ad.business_id)!;
-  const external = ad.link_to === "website" && Boolean(business.website);
-  return { id: ad.id, headline: ad.headline, line: ad.line, href: external ? business.website : business.path, external, ...(ad.artwork ? { image: mediaUrl(ad.artwork) } : {}), by: business.name };
+  // Where it leads is what the admin approved, kept on the advertisement itself. The business's
+  // own row is not asked: its owner may change that at any time.
+  const approved = onTheWeb(ad.link_url);
+  return { id: ad.id, headline: ad.headline, line: ad.line, href: approved || business.path, external: Boolean(approved), ...(ad.artwork ? { image: mediaUrl(ad.artwork) } : {}), by: business.name };
 }
 
 /** What a place in the pocket guide costs a month, from the guide's own rules. Null where a place has no price yet. */

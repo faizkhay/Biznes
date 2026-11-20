@@ -94,6 +94,10 @@ grant execute on all functions in schema t to public;
 
 begin;
 
+-- A stack made for the browser checks asks for the site's word with a visitor's writes
+-- (scripts/accounts-stack.sh). The claims are made without it until they come to it, below.
+delete from private.site_proof;
+
 select E'# Signing up';
 insert into auth.users (id, email, raw_user_meta_data) values (:'owner', 'owner@test.mu', '{"name": "  The Owner "}');
 insert into auth.users (id, email, raw_user_meta_data) values (:'admin', 'admin@test.mu', '{"name": "An Admin"}');
@@ -337,24 +341,71 @@ select t.throws($$ delete from public.subscribers $$, 'cannot empty the list', '
 select t.throws($$ select public.subscribe('not an address') $$, 'cannot add something that is not an email address', '22023');
 select t.throws($$ select public.subscribe('nothing@reader.mu', false, false) $$, 'cannot join without asking for anything', '22023');
 select t.lives($$ select public.subscribe('NEW@reader.mu', false, true) $$, 'asks again, this time for the magazine');
+select t.throws($$ select public.subscribe('a;b=1+1@reader.mu') $$, 'cannot add an address with a mark a spreadsheet would split a cell on', '22023');
+select t.throws($$ select public.subscribe('o''neil@reader.mu') $$, 'nor one with a quote in it', '22023');
+select t.throws($$ select public.subscribe('"quoted"@reader.mu') $$, 'nor one in quotation marks', '22023');
 select t.is($$ select public.unsubscribe('00000000-0000-4000-8000-00000000dead')::text $$, 'false', 'cannot take anyone off the list with a made-up token');
 reset role;
 select t.is($$ select count(*) || ',' || min(email) || ',' || bool_and(wants_guide and wants_magazine) from public.subscribers $$, '1,new@reader.mu,true', 'the address is on the list once, in lower case, with both things asked for');
-insert into public.subscribers (email, wants_guide, created_at) select 'crowd' || n || '@reader.mu', true, now() from generate_series(1, 200) n;
+select t.is($$ select count(*) from private.subscribe_tries $$, '2', 'each call that was let in is counted once, the new address and the old alike; the refused ones are not counted');
+select t.throws($$ insert into public.subscribers (email, wants_guide) values ('a;b@reader.mu', true) $$, 'a new row keeps to the plain pattern by whatever road it comes', '23514');
+-- Two hundred calls within the hour, whoever made them, and a few from two days ago.
+insert into private.subscribe_tries (at) select now() from generate_series(1, 198);
+insert into private.subscribe_tries (at) select now() - interval '2 days' from generate_series(1, 5);
 select token as leave_token from public.subscribers where email = 'new@reader.mu' \gset
-select t.be('anon', '', 'A visitor, when two hundred have joined within the hour');
+select t.be('anon', '', 'A visitor, when two hundred have asked within the hour');
 select t.throws($$ select public.subscribe('late@reader.mu') $$, 'a new address is asked to try again later', 'P0001', 'Try again later');
-select t.lives($$ select public.subscribe('new@reader.mu', true, true) $$, 'an address already on the list is still heard');
+select t.throws($$ select public.subscribe('new@reader.mu', true, true) $$, 'and so is an address already on the list, in the same words: the answer does not tell the two apart', 'P0001', 'Try again later');
+reset role;
+select t.is($$ select count(*) from public.subscribers $$, '1', 'neither call changed the list');
+update private.subscribe_tries set at = now() - interval '2 hours' where at > now() - interval '1 day';
+select t.be('anon', '', 'A visitor, an hour later');
+select t.lives($$ select public.subscribe('late@reader.mu') $$, 'a new address is let in again');
+select t.lives($$ select public.subscribe('new@reader.mu', true, true) $$, 'and one already on the list is heard');
 select t.is(format($$ select public.unsubscribe(%L)::text $$, :'leave_token'), 'true', 'leaves the list with the token from their own link');
+select t.throws($$ select * from private.subscribe_tries $$, 'cannot read the count of calls', '42501');
 reset role;
 select t.is($$ select count(*) from public.subscribers where email = 'new@reader.mu' $$, '0', 'and the row is gone');
-delete from public.subscribers where email like 'crowd%' and email <> 'crowd1@reader.mu';
+select t.is($$ select count(*) from private.subscribe_tries where at < now() - interval '1 day' $$, '0', 'the calls of more than a day ago are forgotten');
 select t.be('authenticated', :'alice', 'Alice, a regular user');
 select t.is($$ select count(*) from public.subscribers $$, '0', 'cannot read the list');
 select t.be('authenticated', :'admin', 'An admin');
 select t.is($$ select count(*) from public.subscribers $$, '1', 'reads the list');
-select t.lives($$ delete from public.subscribers where email = 'crowd1@reader.mu' $$, 'takes an address off by hand');
+select t.lives($$ delete from public.subscribers where email = 'late@reader.mu' $$, 'takes an address off by hand');
 select t.is($$ select count(*) from public.audit_log where action = 'subscriber.removed' and actor = auth.uid() $$, '1', 'which is on the record');
+
+------------------------------------------------------------------------------------------------
+-- The word that says a call came through the website. With its hash kept, a visitor's writes are
+-- refused without it; with none kept, nothing is asked for.
+reset role;
+insert into private.site_proof (word_hash) values (encode(sha256(convert_to('the-test-word', 'utf8')), 'hex'));
+select t.be('anon', '', 'A visitor calling the API with the public key and no word');
+select t.throws($$ select public.subscribe('outside@reader.mu') $$, 'cannot join the list', '42501', 'from the website');
+select t.throws($$ select public.unsubscribe('00000000-0000-4000-8000-00000000dead') $$, 'cannot ask to leave it', '42501');
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Out Side', '+230 5123 0000') $$, 'cannot place an order', '42501', 'from the website');
+select set_config('request.headers', '{"x-biznes-proof": "a-wrong-word"}', true) \gset ignored_
+select t.throws($$ select public.subscribe('outside@reader.mu') $$, 'nor with the wrong word', '42501', 'from the website');
+select t.throws($$ select private.from_site() $$, 'cannot ask the database whether a word is the right one', '42501');
+select t.throws($$ select word_hash from private.site_proof $$, 'cannot read the hash that is kept', '42501');
+select t.throws($$ select private.place_order_checked('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Out Side', '+230 5123 0000') $$, 'cannot reach the function that takes the order, round the one that asks', '42501');
+select set_config('request.headers', '{"user-agent": "a browser", "x-biznes-proof": "the-test-word"}', true) \gset ignored_
+select t.be('anon', '', 'A visitor whose call carries the word, as the website''s does');
+select t.lives($$ select public.subscribe('through@reader.mu') $$, 'joins the list');
+select t.is($$ select (public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Through Site', '+230 5123 0001')) ->> 'total' $$, '550', 'and places an order');
+select t.be('authenticated', :'carol', 'Carol, signed in, calling the API herself with no word');
+select set_config('request.headers', '{"user-agent": "a script"}', true) \gset ignored_
+select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Carol', '+230 5123 0002') $$, 'cannot place an order either', '42501', 'from the website');
+reset role;
+select t.is($$ select (select count(*) from public.subscribers where email like '%outside%') + (select count(*) from public.orders where name in ('Out Side', 'Carol')) $$, '0', 'nothing the refused calls asked for was written');
+delete from private.site_proof;
+select set_config('request.headers', '', true) \gset ignored_
+select t.be('anon', '', 'A visitor, with no hash kept in the database');
+select t.lives($$ select public.subscribe('free@reader.mu') $$, 'joins the list with no word, as before the proof was switched on');
+reset role;
+-- What these claims wrote is taken out again, so the counts further down stand as they did.
+delete from public.subscribers where email in ('through@reader.mu', 'free@reader.mu');
+delete from public.orders where name = 'Through Site';
+delete from private.subscribe_tries;
 
 ------------------------------------------------------------------------------------------------
 select t.be('authenticated', :'alice', 'Alice and the menu of her bakery, which is on Go');
@@ -478,6 +529,10 @@ select t.is($$ select status || ',' || paid || ',' || headline || ',' || cardina
 select t.throws(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'This month', 'home', array[%L]) $$, t.month(0)), 'cannot ask for the month that has begun', '23514', 'months to come');
 select t.throws(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'Last month', 'home', array[%L]) $$, t.month(-1)), 'cannot ask for a month that has passed', '23514', 'months to come');
 select t.throws($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'No month', 'home', array['next month']) $$, 'cannot ask for something that is not a month', '23514');
+select t.throws($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'Only a null', 'home', array[null]::text[]) $$, 'cannot ask for a month that is nothing at all', '23514');
+select t.lives(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'A null among them', 'home', array[%L, null]) $$, t.month(1)), 'sends a null among the months');
+select t.is($$ select cardinality(months) || ',' || (array_position(months, null) is null) from public.ads where headline = 'A null among them' $$, '1,true', 'and it is dropped: only what is a month is kept');
+select t.lives($$ delete from public.ads where headline = 'A null among them' $$, 'takes that one out again');
 select t.throws(format($$ insert into public.ads (business_id, headline, place, months, status) values ('b0000000-0000-4000-8000-0000000000a1', 'Approved already', 'home', array[%L], 'approved') $$, t.month(1)), 'cannot send one in already approved', '42501');
 select t.throws($$ update public.ads set status = 'submitted' $$, 'cannot send it in without its picture', '23514', 'picture');
 select t.throws($$ update public.ads set artwork = 'ads/00000000-0000-4000-8000-0000000000ff/art-1.jpg' $$, 'cannot use another advertisement''s picture', '23514');
@@ -500,11 +555,31 @@ select t.throws($$ select public.admin_review_ad('00000000-0000-4000-8000-000000
 select t.be('authenticated', :'admin', 'An admin and the advertisements sent in');
 select t.is($$ select count(*) from public.ads where status = 'submitted' $$, '1', 'sees what is waiting');
 select t.throws($$ select public.admin_review_ad((select id from public.ads limit 1), false, '  ') $$, 'cannot decline without saying why', '22023');
-select t.lives($$ select public.admin_review_ad((select id from public.ads limit 1), true) $$, 'approves it');
+select t.throws($$ select public.admin_review_ad((select id from public.ads limit 1), true) $$, 'cannot approve without the stamp of the advertisement they were shown', 'P0001', 'Look at it again');
+select updated_at as first_seen from public.ads where headline = 'Fresh bread at six' \gset
+reset role;
+update public.businesses set website = 'https://bakery.example.mu/' where id = 'b0000000-0000-4000-8000-0000000000a1';
+select t.be('authenticated', :'alice', 'Alice, while the admin''s page still shows what she first sent');
+select t.lives($$ update public.ads set status = 'draft' $$, 'takes her advertisement back');
+select t.lives($$ update public.ads set line = 'Something the admin never saw.', link_to = 'website' $$, 'changes its words and where it leads');
+select t.lives($$ update public.ads set status = 'submitted' $$, 'and sends it in again');
+select t.be('authenticated', :'admin', 'An admin, pressing Approve on the page as it was');
+select t.throws(format($$ select public.admin_review_ad((select id from public.ads limit 1), true, '', %L) $$, :'first_seen'), 'cannot approve it by the stamp of the one they saw: it has changed', 'P0001', 'Look at it again');
+select t.is($$ select status from public.ads $$, 'submitted', 'so it still waits');
+select updated_at as second_seen from public.ads where headline = 'Fresh bread at six' \gset
+select t.be('authenticated', :'alice', 'Alice, changing her business while the advertisement waits');
+select t.lives($$ update public.businesses set website = 'https://elsewhere.example.mu/' where id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'gives her business another website');
+select t.be('authenticated', :'admin', 'An admin, who looked before she did');
+select t.throws(format($$ select public.admin_review_ad((select id from public.ads limit 1), true, '', %L) $$, :'second_seen'), 'cannot approve it once the website it leads to has changed: that gave it a new stamp', 'P0001', 'Look at it again');
+select t.lives($$ select public.admin_review_ad(id, true, '', updated_at) from public.ads $$, 'looks again, and approves it as it now stands');
+select t.is($$ select link_url from public.ads $$, 'https://elsewhere.example.mu/', 'the address it leads to is copied onto it as it is approved');
 select t.is($$ select public.ad_state(status, paid, months) || ',' || (reviewed_by = auth.uid()) from public.ads $$, 'approved,true', 'it is approved, by them, and waits for its month and its payment');
 select t.lives($$ select public.admin_set_ad_paid((select id from public.ads limit 1), true) $$, 'marks it paid, once payment is arranged');
 select t.be('authenticated', :'alice', 'Alice, once her advertisement is approved');
 select t.throws($$ update public.ads set headline = 'Changed after approval' $$, 'cannot change it', 'P0001', 'approved advertisement');
+select t.throws($$ update public.ads set link_url = 'https://anywhere.example/' $$, 'cannot write where it leads', '42501');
+select t.lives($$ update public.businesses set website = 'https://changed-after.example.mu/' where id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'changes her business''s website after the approval');
+select t.is($$ select link_url from public.ads $$, 'https://elsewhere.example.mu/', 'and the advertisement still leads where it led when it was approved');
 select t.is($$ with done as (delete from public.ads returning 1) select count(*) from done $$, '0', 'cannot take it out');
 select t.throws($$ insert into storage.objects (bucket_id, name) select 'media', 'ads/' || id || '/art-3.jpg' from public.ads $$, 'cannot swap its picture', '42501', 'row-level security');
 select t.lives(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'A second one', 'guide-listing', array[%L]) $$, t.month(1)), 'drafts a listing for the pocket guide''s sponsors'' page');
@@ -520,10 +595,11 @@ select t.lives($$ delete from public.ads where headline = 'A second one' $$, 'an
 -- Advertisements put in as the owner of the database, each with a known id: one running this month for Bob Books, one approved and
 -- unpaid this month, and the pocket guide's four sponsored pages for next month.
 reset role;
+update public.businesses set website = 'https://bobbooks.example.mu/' where id = 'b0000000-0000-4000-8000-0000000000b1';
 insert into public.ads (id, business_id, headline, line, link_to, place, months, status, paid, artwork) values
   ('d0000000-0000-4000-8000-000000000001', 'b0000000-0000-4000-8000-0000000000b1', 'Books for every reader', 'New and second-hand, in Port Louis.', 'page', 'home', array[t.month(0)], 'approved', true, 'ads/d0000000-0000-4000-8000-000000000001/art-1.jpg'),
   ('d0000000-0000-4000-8000-000000000002', 'b0000000-0000-4000-8000-0000000000b1', 'Not paid for yet', '', 'page', 'results', array[t.month(0)], 'approved', false, ''),
-  ('d0000000-0000-4000-8000-000000000003', 'b0000000-0000-4000-8000-0000000000b1', 'Bob in the guide', 'Books for the beach.', 'page', 'guide-panel', array[t.month(1), t.month(2)], 'approved', true, ''),
+  ('d0000000-0000-4000-8000-000000000003', 'b0000000-0000-4000-8000-0000000000b1', 'Bob in the guide', 'Books for the beach.', 'website', 'guide-panel', array[t.month(1), t.month(2)], 'approved', true, ''),
   ('d0000000-0000-4000-8000-000000000004', 'b0000000-0000-4000-8000-0000000000b1', 'Guide panel, unpaid', '', 'page', 'guide-panel', array[t.month(1)], 'approved', false, ''),
   ('d0000000-0000-4000-8000-000000000011', 'b0000000-0000-4000-8000-0000000000b1', 'Page one', '', 'page', 'guide-page', array[t.month(1)], 'approved', true, ''),
   ('d0000000-0000-4000-8000-000000000012', 'b0000000-0000-4000-8000-0000000000b1', 'Page two', '', 'page', 'guide-page', array[t.month(1)], 'approved', false, ''),
@@ -534,13 +610,14 @@ select t.be('authenticated', :'alice', 'Alice asks for a page in the pocket guid
 select t.lives(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'A page of bread', 'guide-page', array[%L, %L]) $$, t.month(1), t.month(3)), 'drafts a sponsored page for next month and one later');
 select t.lives($$ update public.ads set artwork = 'ads/' || id || '/page-1.jpg', status = 'submitted' where headline = 'A page of bread' $$, 'and sends it in');
 select t.be('authenticated', :'admin', 'An admin');
-select t.throws($$ select public.admin_review_ad((select id from public.ads where headline = 'A page of bread'), true) $$, 'cannot approve a fifth sponsored page for an edition that has four', 'P0001', 'four sponsored pages');
+select t.throws($$ select public.admin_review_ad(id, true, '', updated_at) from public.ads where headline = 'A page of bread' $$, 'cannot approve a fifth sponsored page for an edition that has four', 'P0001', 'four sponsored pages');
 select t.lives($$ select public.admin_review_ad((select id from public.ads where headline = 'A page of bread'), false, 'Next month is full. Choose another month.') $$, 'declines it, saying the edition is full');
 select t.be('authenticated', :'alice', 'Alice');
 select t.lives(format($$ update public.ads set months = array[%L], status = 'submitted' where headline = 'A page of bread' $$, t.month(3)), 'moves it to a later month and sends it in again');
 select t.be('authenticated', :'admin', 'An admin');
-select t.lives($$ select public.admin_review_ad((select id from public.ads where headline = 'A page of bread'), true) $$, 'approves it for an edition with room');
+select t.lives($$ select public.admin_review_ad(id, true, '', updated_at) from public.ads where headline = 'A page of bread' $$, 'approves it for an edition with room');
 select t.is($$ select string_agg(action, ',' order by id) from public.audit_log where action like 'ad.%' and actor = auth.uid() $$, 'ad.approved,ad.paid,ad.declined,ad.declined,ad.approved', 'what the admin did with advertisements is on the record');
+select t.is($$ select count(*) from public.audit_log where action like 'ad.%' and actor is distinct from auth.uid() $$, '0', 'and nothing an owner did is: sending one in, taking it back and sending it again leave no line');
 
 select t.be('anon', '', 'A visitor, and what is advertised to them');
 select t.is($$ select string_agg(headline, ',' order by headline) from public.ads where place not like 'guide-%' $$, 'Books for every reader', 'is shown the one advertisement that is approved, paid and running this month: not the unpaid one, not next month''s');
@@ -548,6 +625,12 @@ select t.is($$ select public.ad_state(status, paid, months) from public.ads wher
 select t.throws($$ select reason from public.ads $$, 'cannot read why an advertisement was declined', '42501');
 select t.is($$ select string_agg(month || ' ' || option || ' ' || name || ' ' || line, '; ' order by month, option) from public.guide_sponsors $$, t.month(1) || ' page Bob Books Page one; ' || t.month(1) || ' panel Bob Books Books for the beach.; ' || t.month(2) || ' panel Bob Books Books for the beach.', 'reads who sponsors each edition of the pocket guide: the approved and paid, a row a month');
 select t.throws($$ update public.ads set paid = true $$, 'cannot change an advertisement', '42501');
+select t.is($$ select string_agg(option || ' ' || website, '; ' order by month, option) from public.guide_sponsors $$, 'page ; panel https://bobbooks.example.mu/; panel https://bobbooks.example.mu/', 'reads where each sponsor leads: the address the advertisement was approved with, and none for one that leads to its page here');
+select t.is($$ select link_url from public.ads where place = 'home' $$, '', 'reads where the advertisement on the first screen leads: to its page here');
+select t.be('authenticated', :'bob', 'Bob, whose advertisement in the guide is approved');
+select t.lives($$ update public.businesses set website = 'https://moved.example.mu/' where id = 'b0000000-0000-4000-8000-0000000000b1' $$, 'changes his business''s website');
+select t.be('anon', '', 'A visitor, after that');
+select t.is($$ select string_agg(distinct website, ',') from public.guide_sponsors where option = 'panel' $$, 'https://bobbooks.example.mu/', 'still reads the address that was approved, in the guide as on the site');
 reset role;
 update public.businesses set status = 'suspended' where id = 'b0000000-0000-4000-8000-0000000000b1';
 select t.be('anon', '', 'A visitor, while Bob Books is suspended');
@@ -555,6 +638,62 @@ select t.is($$ select (select count(*) from public.ads) + (select count(*) from 
 reset role;
 update public.businesses set status = 'live' where id = 'b0000000-0000-4000-8000-0000000000b1';
 select t.is($$ select public.ad_state('approved', true, array[t.month(-1)]) || ',' || public.ad_state('approved', false, array[t.month(0)]) || ',' || public.ad_state('submitted', false, array[t.month(1)]) $$, 'ended,approved,submitted', 'an advertisement whose months have passed has ended; one not paid for is not running');
+
+------------------------------------------------------------------------------------------------
+-- What the review asked for round the advertisements and their pictures.
+select t.is($$ select private.are_months(array['2027-01', null]) || ',' || private.are_months(array[null]::text[]) || ',' || private.are_months(array['2027-01', '2027-12']) $$, 'false,false,true', 'a null is not a month, alone or among months');
+
+-- The file of Alice's approved advertisement, as her upload left it in the bucket.
+reset role;
+insert into storage.objects (bucket_id, name, owner_id) select 'media', artwork, :'alice' from public.ads where headline = 'Fresh bread at six';
+select t.be('authenticated', :'alice', 'Alice and how many advertisements a business keeps');
+select t.lives(format($$ insert into public.ads (business_id, headline, place, months) select 'b0000000-0000-4000-8000-0000000000a1', 'Filler ' || n, 'results', array[%L] from generate_series(1, 18) n $$, t.month(1)), 'drafts until her bakery has twenty');
+select t.throws(format($$ insert into public.ads (business_id, headline, place, months) values ('b0000000-0000-4000-8000-0000000000a1', 'One too many', 'results', array[%L]) $$, t.month(1)), 'and is refused the twenty-first', 'P0001', 'twenty advertisements');
+select t.lives($$ delete from public.ads where headline like 'Filler%' and headline <> 'Filler 1' $$, 'takes most of them out again');
+
+-- A picture left behind: its advertisement is taken out, and the file stays in the bucket.
+select t.lives($$ insert into storage.objects (bucket_id, name, owner_id) select 'media', 'ads/' || id || '/art-1.jpg', auth.uid()::text from public.ads where headline = 'Filler 1' $$, 'uploads a picture for a draft, which Storage marks as hers');
+select 'ads/' || id || '/art-1.jpg' as left_behind from public.ads where headline = 'Filler 1' \gset
+select t.lives($$ delete from public.ads where headline = 'Filler 1' $$, 'then takes the draft out, leaving the file where it was');
+select t.be('authenticated', :'bob', 'Bob, another owner');
+select t.is(format($$ select count(*) from storage.objects where name = %L $$, :'left_behind'), '0', 'cannot see the picture Alice left behind');
+select t.is(format($$ with done as (delete from storage.objects where name = %L returning 1) select count(*) from done $$, :'left_behind'), '0', 'nor remove it');
+select t.be('authenticated', :'alice', 'Alice, who uploaded it');
+select t.is(format($$ with done as (delete from storage.objects where name = %L returning 1) select count(*) from done $$, :'left_behind'), '1', 'removes it herself, though the advertisement it belonged to is gone');
+select t.is($$ with done as (delete from storage.objects where name like 'ads/%' returning 1) select count(*) from done $$, '0', 'but still cannot remove the picture of her approved advertisement');
+reset role;
+select t.is($$ select count(*) from storage.objects where name like 'ads/%/art-1.jpg' $$, '1', 'which is still there');
+
+-- One person keeps 150 pictures at most, wherever they are.
+reset role;
+insert into storage.objects (bucket_id, name, owner_id) select 'media', 'ads/00000000-0000-4000-8000-0000000000ee/left-' || n || '.jpg', :'alice' from generate_series(1, 150) n;
+select t.be('authenticated', :'alice', 'Alice, with 150 pictures left about the bucket');
+select t.is($$ with done as (delete from storage.objects where name = 'business/b0000000-0000-4000-8000-0000000000a1/photo-11.jpg' returning 1) select count(*) from done $$, '1', 'makes room in her bakery''s folder');
+select t.throws($$ insert into storage.objects (bucket_id, name) values ('media', 'business/b0000000-0000-4000-8000-0000000000a1/photo-11.jpg') $$, 'and still cannot add a picture: what she left behind counts against her', '42501', 'row-level security');
+select t.is($$ with done as (delete from storage.objects where name like 'ads/00000000-0000-4000-8000-0000000000ee/%' returning 1) select count(*) from done $$, '150', 'removes what she left behind, which nothing owns but her');
+select t.lives($$ insert into storage.objects (bucket_id, name) values ('media', 'business/b0000000-0000-4000-8000-0000000000a1/photo-11.jpg') $$, 'and can add one again');
+
+select t.be('authenticated', :'bob', 'Bob, another owner');
+select t.throws($$ select public.admin_remove_ad_picture((select id from public.ads limit 1), 'Because.') $$, 'cannot call admin_remove_ad_picture', '42501', 'Only an admin');
+select t.throws($$ select public.admin_remove_business_picture('b0000000-0000-4000-8000-0000000000a1', 'business/b0000000-0000-4000-8000-0000000000a1/cover-1.jpg') $$, 'cannot call admin_remove_business_picture', '42501', 'Only an admin');
+select t.be('anon', '', 'A visitor');
+select t.throws($$ select public.admin_remove_ad_picture('00000000-0000-4000-8000-0000000000ff', 'Because.') $$, 'cannot call admin_remove_ad_picture', '42501');
+
+select t.be('authenticated', :'admin', 'An admin and the pictures in the bucket');
+select t.throws($$ select public.admin_remove_ad_picture((select id from public.ads where headline = 'Fresh bread at six'), ' ') $$, 'cannot take a picture off an advertisement without saying why', '22023');
+select t.lives($$ select public.admin_remove_ad_picture((select id from public.ads where headline = 'Fresh bread at six'), 'The picture is not yours to use.') $$, 'takes the picture off an approved advertisement');
+select t.is($$ select status || ',' || artwork || ',' || reason || ',' || link_url from public.ads where headline = 'Fresh bread at six' $$, 'declined,,The picture is not yours to use.,', 'which brings it down, tells its owner why, and empties where it led');
+select t.is($$ select string_agg(action, ',' order by id) from (select id, action from public.audit_log where action like 'ad.%' and actor = auth.uid() order by id desc limit 2) last $$, 'ad.declined,ad.picture_removed', 'and is on the record twice over: declined, and its picture removed');
+select t.is($$ with done as (delete from storage.objects where name like 'ads/%/art-1.jpg' returning 1) select count(*) from done $$, '1', 'removes the file itself: an admin may remove any picture in the bucket');
+select t.lives($$ select public.admin_remove_business_picture('b0000000-0000-4000-8000-0000000000a1', 'business/b0000000-0000-4000-8000-0000000000a1/cover-1.jpg') $$, 'takes the cover off a business''s page');
+select t.is($$ select cover || '|' || cardinality(photos) from public.showcases where business_id = 'b0000000-0000-4000-8000-0000000000a1' $$, '|1', 'the page no longer names it, and keeps its photographs');
+select t.throws($$ select public.admin_remove_business_picture('b0000000-0000-4000-8000-0000000000a1', 'business/b0000000-0000-4000-8000-0000000000a1/cover-1.jpg') $$, 'cannot take off a picture that is not on the page', 'P0002');
+select t.is($$ select count(*) from public.audit_log where action = 'business.picture_removed' and actor = auth.uid() $$, '1', 'which is on the record');
+select t.is($$ with done as (delete from storage.objects where name = 'business/b0000000-0000-4000-8000-0000000000a1/cover-1.jpg' returning 1) select count(*) from done $$, '1', 'and removes that file too');
+
+select t.be('authenticated', :'alice', 'Alice and the lists on her bakery''s page');
+select t.throws($$ update public.showcases set photos = array[null]::text[] where business_id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'cannot put a null among its photographs', '23514');
+select t.throws($$ update public.showcases set hours = array['Monday: 6 to 6', null] where business_id = 'b0000000-0000-4000-8000-0000000000a1' $$, 'nor among its opening hours', '23514');
 
 ------------------------------------------------------------------------------------------------
 select t.be('authenticated', :'alice', 'Alice asks to stop a plan at the end of its period');
@@ -656,8 +795,10 @@ reset role;
 select E'\n# The catalogue itself';
 select t.is($$ select coalesce(bool_or(has_function_privilege(r.name, p.oid, 'execute')), false)::text from pg_proc p join pg_namespace n on n.oid = p.pronamespace, (values ('anon'), ('authenticated')) r (name) where n.nspname = 'public' and p.proname = 'rls_auto_enable' $$, 'false', 'the project''s own rls_auto_enable(), where there is one, is closed to a visitor and to anyone signed in');
 select t.is($$ select coalesce(string_agg(c.relname, ', ' order by c.relname), 'none') from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'public' and c.relkind in ('r', 'p') and not c.relrowsecurity $$, 'none', 'every table in public has row level security switched on');
+select t.is($$ select (f.proowner = any (p.polroles))::text from pg_proc f, pg_policy p where f.oid = 'private.may_keep_media(text, boolean)'::regprocedure and p.polrelid = 'storage.objects'::regclass and p.polname = 'biznes media: counted by the database' $$, 'true', 'the role that counts the pictures in a folder is the one the bucket''s counting rule names, whoever made the rule');
+select t.is($$ select (r.rolsuper or r.rolbypassrls or exists (select 1 from pg_policy p where p.polrelid = 'storage.objects'::regclass and p.polcmd = 'r' and f.proowner = any (p.polroles)))::text from pg_proc f join pg_roles r on r.oid = f.proowner where f.oid = 'private.may_keep_media(text, boolean)'::regprocedure $$, 'true', 'and that role does see every picture: by its own attribute, or by that rule');
 select t.is($$ select coalesce(string_agg(p.proname, ', ' order by p.proname), 'none') from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname in ('public', 'private') and p.prosecdef and not exists (select 1 from unnest(coalesce(p.proconfig, '{}')) setting where setting like 'search_path=%') $$, 'none', 'every function that runs as its owner fixes its search path');
-select t.is($$ select coalesce(string_agg(p.proname, ', ' order by p.proname), 'none') from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'private' and has_function_privilege('anon', p.oid, 'execute') $$, 'takes_bookings', 'of the policies'' helpers a visitor may run one: whether a business takes bookings');
+select t.is($$ select coalesce(string_agg(p.proname, ', ' order by p.proname), 'none') from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'private' and has_function_privilege('anon', p.oid, 'execute') $$, 'is_live, serves_food, shows_paid, takes_bookings, this_month', 'of the policies'' helpers a visitor may run only the five that the public''s own reads and a booking ask: each answers yes or no about something already public');
 
 ------------------------------------------------------------------------------------------------
 select E'\n# The owner of the database, in the SQL editor';

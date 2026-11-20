@@ -5,7 +5,7 @@ import { PICTURES } from "@/data/themes";
 import { siteCatalogue } from "@/lib/accounts/catalogue";
 import { accountsOn, TAG_ADS, TAG_OWNED, TAG_SETTINGS } from "@/lib/accounts/config";
 import { field, SOON, TRY_AGAIN, UUID, type FormState } from "@/lib/accounts/form";
-import { dropPictures } from "@/lib/accounts/media";
+import { dropPictures, emptyFolder } from "@/lib/accounts/media";
 import { db } from "@/lib/accounts/server";
 import { getViewer } from "@/lib/accounts/session";
 import { isPlan, isRole, mauritiusToday, ORDER_NAMES, ORDER_STATUSES, STATUSES, type OrderStatus, type Viewer } from "@/lib/accounts/types";
@@ -190,11 +190,19 @@ export async function reviewAd(_: FormState, data: FormData): Promise<FormState>
   const ad = field(data, "ad");
   const approve = field(data, "answer", 8) === "approve";
   const reason = field(data, "reason", 300);
+  // The stamp of the advertisement as the page showed it. The database approves only that one:
+  // if its owner has changed it since, the admin is asked to look again.
+  const seen = field(data, "seen", 40);
   if (!UUID.test(ad)) return { message: TRY_AGAIN };
   if (!approve && !reason) return { errors: { reason: "Say why, in a line: the owner is shown it." }, values: { reason } };
+  if (approve && !/^\d{4}-\d{2}-\d{2}T[\d:.]+(Z|[+-]\d{2}:?\d{2})$/.test(seen)) return { message: "Open the page again, look at the advertisement, then approve it.", values: { reason } };
   const supabase = await db();
-  const { error } = await supabase.rpc("admin_review_ad", { ad, approve, why: approve ? "" : reason });
-  if (error) return { message: says(error), values: { reason } };
+  const { error } = await supabase.rpc("admin_review_ad", approve ? { ad, approve, why: "", seen } : { ad, approve, why: reason });
+  if (error) {
+    // The page is drawn again, so what is there now is what the admin sees next.
+    if (error.hint === "ad_step") revalidatePath("/admin/ads");
+    return { message: says(error), values: { reason } };
+  }
   updateTag(TAG_ADS);
   revalidatePath("/admin/ads");
   return { ok: true, message: approve ? "Approved. It runs in its months once it is marked paid." : "Declined. The owner sees your reason, and can change it and send it again." };
@@ -253,4 +261,41 @@ export async function removeSubscriber(_: FormState, data: FormData): Promise<Fo
   if (error || !gone?.length) return { message: TRY_AGAIN };
   revalidatePath("/admin/subscribers");
   return { ok: true, message: "Taken off the list." };
+}
+
+/**
+ * Take the picture off an advertisement, as an admin: one that should not be shown, or one left
+ * behind. An advertisement that was waiting or approved is declined with the reason, so it comes
+ * down and its owner is told why. Then the file itself is removed from the bucket.
+ */
+export async function removeAdPicture(_: FormState, data: FormData): Promise<FormState> {
+  if (!accountsOn) return { message: SOON };
+  if (!(await asAdmin())) return { message: NOT_ADMIN };
+  const ad = field(data, "ad");
+  const why = field(data, "why", 300);
+  if (!UUID.test(ad)) return { message: TRY_AGAIN };
+  if (!why) return { errors: { why: "Say why, in a line: the owner is shown it." }, values: { why } };
+  const supabase = await db();
+  const { data: row } = await supabase.from("ads").select("artwork").eq("id", ad).maybeSingle();
+  const { error } = await supabase.rpc("admin_remove_ad_picture", { ad, why });
+  if (error) return { message: says(error), values: { why } };
+  await emptyFolder(supabase, `ads/${ad}`, [(row?.artwork as string | undefined) ?? ""]);
+  updateTag(TAG_ADS);
+  revalidatePath("/admin/ads");
+  return { ok: true, message: "The picture is removed, and the owner is shown why." };
+}
+
+/** Take a picture off a business's page, as an admin: its cover or one of its photographs. Then the file is removed. */
+export async function removeBusinessPicture(_: FormState, data: FormData): Promise<FormState> {
+  if (!accountsOn) return { message: SOON };
+  if (!(await asAdmin())) return { message: NOT_ADMIN };
+  const business = field(data, "business");
+  const path = field(data, "path", 200);
+  if (!UUID.test(business) || !path.startsWith(`business/${business}/`)) return { message: TRY_AGAIN };
+  const supabase = await db();
+  const { error } = await supabase.rpc("admin_remove_business_picture", { business, path });
+  if (error) return { message: says(error) };
+  await dropPictures(supabase, [path]);
+  changed();
+  return { ok: true, message: "The picture is removed from the page and from storage." };
 }

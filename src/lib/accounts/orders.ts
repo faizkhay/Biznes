@@ -34,6 +34,8 @@ function read(text: string): Line[] | null {
   }
 }
 
+/** For whoever runs the site: the database asks for a word with a visitor's writes, and did not get the right one. */
+const PROOF_REFUSED = "[accounts] the database refused a call from the site: BIZNES_SITE_PROOF is not set, or is not the word whose hash is kept in private.site_proof (supabase/migrations, part 11).";
 const NOT_NOW = "We could not take the order just now. Nothing was placed. Try again in a moment, or call us.";
 
 export async function placeOrder(_: FormState, data: FormData): Promise<FormState> {
@@ -85,6 +87,7 @@ export async function placeOrder(_: FormState, data: FormData): Promise<FormStat
     if (error.hint === "order_rate") return { message: "Five orders have come from you in the last hour. We have them: a person will be in touch.", values };
     if (error.hint === "order_busy") return { message: "Many orders have come in the last hour. Try again later.", values };
     if (error.hint === "order_item") return { message: "Something in your cart is no longer sold here. Take it out, and order the rest.", values };
+    if (error.code === "42501") console.error(PROOF_REFUSED);
     return { message: NOT_NOW, values };
   }
   const { number, total, on_request: onRequest } = placed as { number: number; total: number; on_request: boolean };

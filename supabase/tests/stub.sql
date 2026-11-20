@@ -50,6 +50,9 @@ create table storage.objects (
   bucket_id text references storage.buckets (id),
   name text,
   owner uuid,
+  -- Who uploaded it. Supabase Storage writes the subject of the uploader's token here; the stand-in
+  -- does the same by default, so a test's plain insert is owned as an upload would be.
+  owner_id text default nullif(current_setting('request.jwt.claim.sub', true), ''),
   metadata jsonb,
   created_at timestamptz default now(),
   unique (bucket_id, name)
