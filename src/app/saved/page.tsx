@@ -9,7 +9,8 @@ export const metadata: Metadata = { title: "Saved", robots: { index: false, foll
 
 export default async function SavedPage({ searchParams }: { searchParams: Promise<{ ids?: string }> }) {
   const { byId } = index();
-  const wanted = ((await searchParams).ids ?? "").split(",").filter(Boolean).slice(0, 200);
+  // An address may give `ids` twice, which arrives as a list: either way it is read as one list of ids.
+  const wanted = String((await searchParams).ids ?? "").slice(0, 6000).split(",").filter(Boolean).slice(0, 200);
   const shared = wanted.filter((id) => byId.has(id));
   const sent = wanted.length > 0;
   return (
