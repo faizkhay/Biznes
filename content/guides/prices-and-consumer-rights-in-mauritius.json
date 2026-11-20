@@ -84,7 +84,7 @@
     {
       "label": "Second-hand car warranty",
       "value": "At least 2 months from purchase",
-      "detail": "From an authorised dealer, covering faulty parts, labour and materials.",
+      "detail": "What the Ministry tells buyers to check for when buying from an authorised dealer. It should cover faulty parts, labour and materials.",
       "sources": [
         "S11"
       ]
@@ -268,7 +268,7 @@
         },
         {
           "type": "p",
-          "text": "A manufacturer's guarantee comes on top of these statutory rights, and the Ministry says a trader should not discourage you from using them. Ask for the guarantee certificate with all its conditions in writing, and keep every receipt. A second-hand car from an authorised dealer must carry a warranty of at least 2 months that covers faulty parts, labour and materials.",
+          "text": "A manufacturer's guarantee comes on top of these statutory rights, and the Ministry says a trader should not discourage you from using them. Ask for the guarantee certificate with all its conditions in writing, and keep every receipt. When you buy a second-hand car from an authorised dealer, the Ministry tells you to check that it carries a warranty of at least 2 months, covering faulty parts, labour and materials.",
           "sources": [
             "S11",
             "S12"

@@ -3,6 +3,9 @@ import type { Role } from "@/lib/accounts/types";
 
 const PAGES: { href: string; label: string; only?: Role }[] = [
   { href: "/admin", label: "Businesses" },
+  { href: "/admin/ads", label: "Advertisements" },
+  { href: "/admin/orders", label: "Orders" },
+  { href: "/admin/subscribers", label: "Subscribers" },
   { href: "/admin/leads", label: "No website" },
   { href: "/admin/people", label: "People", only: "superadmin" },
   { href: "/admin/settings", label: "The look", only: "superadmin" },

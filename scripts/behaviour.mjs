@@ -570,6 +570,117 @@ await quiet.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcon
 check("no script: there is no button for a street map that could not open", (await quiet.locator("button", { hasText: "Open the street map" }).count()) === 0);
 await bare.close();
 
+// 10. Security: the headers, the policy in a real browser, and what an attacker would try first.
+{
+  const head = (await context.request.get(`${origin}/`)).headers();
+  const policy = head["content-security-policy"] ?? "";
+  const directive = (name) => (policy.split(";").map((d) => d.trim().split(/\s+/)).find((d) => d[0] === name) ?? []).slice(1);
+  const only = (name, ...values) => directive(name).join(" ") === values.join(" ");
+  check(
+    "security: the policy closes script from elsewhere, script in attributes, plugins, frames, and a base or a form that points away",
+    only("default-src", "'self'") && only("script-src", "'self'", "'unsafe-inline'") && only("script-src-attr", "'none'") && only("object-src", "'none'") && only("frame-src", "'none'") && only("frame-ancestors", "'none'") && only("base-uri", "'self'") && only("form-action", "'self'"),
+    policy,
+  );
+  const hosts = [...new Set(policy.match(/https?:\/\/[^\s;]+/g) ?? [])];
+  const known = (host) => host === "https://tiles.openfreemap.org" || host === "https://*.tile.openstreetmap.org" || /^https:\/\/[a-z0-9]+\.supabase\.co$/.test(host) || /^http:\/\/127\.0\.0\.1:\d+$/.test(host);
+  check("security: the only other hosts in the policy are the map's and the accounts' own", hosts.every(known), hosts.join(" "));
+  check(
+    "security: the other headers are set, and the site does not say what it is built with",
+    head["x-content-type-options"] === "nosniff" && head["x-frame-options"] === "DENY" && head["referrer-policy"] === "strict-origin-when-cross-origin" && /max-age=\d{8,}; includeSubDomains/.test(head["strict-transport-security"] ?? "") && head["cross-origin-opener-policy"] === "same-origin" && /camera=\(\)/.test(head["permissions-policy"] ?? "") && !("x-powered-by" in head),
+    JSON.stringify(head).slice(0, 300),
+  );
+
+  // Every kind of page, in a browser that notes whatever the policy refuses.
+  const guarded = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  await guarded.addInitScript(() => {
+    window.__refused = [];
+    document.addEventListener("securitypolicyviolation", (e) => window.__refused.push(`${e.effectiveDirective} ${e.blockedURI}`));
+  });
+  const watched = await guarded.newPage();
+  const refused = [];
+  watched.on("console", (m) => /Content Security Policy|Refused to/i.test(m.text()) && refused.push(m.text().slice(0, 160)));
+  const listingPath = "/b/keiffel-tours-grand-baie-n5651200767";
+  for (const path of ["/", "/search?q=pharmacy+in+curepipe", listingPath, "/learn/vat", "/saved", "/shop", "/emergency", "/offline"]) {
+    await watched.goto(origin + path, { waitUntil: "load" });
+    if (path === "/") {
+      await watched.fill("#home-search", "pharm");
+      await watched.waitForSelector('[role="listbox"] [role="option"]', { timeout: 8000 }).catch(() => {});
+    }
+    await watched.waitForTimeout(400);
+    refused.push(...(await watched.evaluate(() => window.__refused)).map((what) => `${path}: ${what}`));
+  }
+  check("security: no page is refused anything of its own by the policy", refused.length === 0, refused.slice(0, 3).join(" | "));
+  const worker = await watched.evaluate(() => Promise.race([navigator.serviceWorker.ready.then((r) => r.active?.scriptURL ?? ""), new Promise((r) => setTimeout(() => r("none"), 15000))]));
+  check("security: the service worker registers under the policy, and the manifest loads", worker.endsWith("/sw.js") && (await watched.evaluate(() => fetch(document.querySelector('link[rel="manifest"]').href).then((r) => r.ok))), worker);
+
+  await watched.goto(origin + listingPath, { waitUntil: "load" });
+  const tried = await watched.evaluate(async () => {
+    window.__refused = [];
+    const holder = document.createElement("div");
+    holder.innerHTML = '<img src="/icons/icon-192.png" onload="window.__ran = 1" onerror="window.__ran = 1">';
+    document.body.append(holder);
+    const script = document.createElement("script");
+    script.src = "https://example.com/x.js";
+    document.body.append(script);
+    const reached = await fetch("https://example.com/", { mode: "no-cors" }).then(() => true, () => false);
+    await new Promise((r) => setTimeout(r, 500));
+    return { ran: window.__ran === 1, reached, refused: window.__refused };
+  });
+  check("security: script in an attribute, script from another site and a connection elsewhere are refused", !tried.ran && !tried.reached && ["script-src-attr", "script-src-elem", "connect-src"].every((d) => tried.refused.some((r) => r.startsWith(d))), JSON.stringify(tried));
+  const marked = await watched.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => !s.innerHTML.includes("<") && typeof JSON.parse(s.textContent) === "object"));
+  check("security: a listing's structured data cannot close its own script", marked.length > 0 && marked.every(Boolean));
+  const links = await watched.evaluate(() => [...document.querySelectorAll("main a[href]")].map((a) => a.getAttribute("href")).filter((href) => !/^(https?:\/\/|tel:\+?\d|mailto:|\/(?!\/)|#)/.test(href)));
+  check("security: every link on a listing leads to a page, a telephone or an email address", links.length === 0, links.slice(0, 3).join(" "));
+  await watched.goto(`${origin}/search?q=${encodeURIComponent('"><img src=x onerror="window.__ran=1"><script>window.__ran=1</script>')}`, { waitUntil: "load" });
+  check("security: a question is shown as words and never run", (await watched.evaluate(() => window.__ran)) !== 1 && (await watched.locator('main img[src="x"]').count()) === 0 && (await watched.inputValue("main input[name=q]").catch(() => "")).includes("<script>"));
+
+  // The worker is in charge by now. A private page and an endpoint are opened: neither may be kept.
+  await watched.goto(`${origin}/account`, { waitUntil: "load" });
+  await watched.goto(`${origin}/emergency`, { waitUntil: "load" });
+  await watched.evaluate(() => fetch("/api/listings?ids=n5651200767").then((r) => r.text()));
+  await watched.waitForTimeout(800);
+  const kept = await watched.evaluate(async () => {
+    const paths = [];
+    for (const name of await caches.keys()) for (const request of await (await caches.open(name)).keys()) paths.push(new URL(request.url).pathname);
+    return paths;
+  });
+  const keptPrivate = kept.filter((path) => /^\/(api|account|admin|dashboard|auth)(\/|$)/.test(path));
+  check("security: the worker keeps a public page, and never a private page or an endpoint's answer", kept.includes("/emergency") && keptPrivate.length === 0, `${kept.length} kept; ${keptPrivate.join(" ")}`);
+  await guarded.close();
+
+  // Addresses an attacker would write by hand.
+  const ask = (path) => context.request.get(origin + path, { maxRedirects: 0 });
+  const twice = await Promise.all(["/search?q=a&q=b", "/saved?ids=a&ids=b", "/add?listing=a&listing=b&plan=go&plan=grow"].map((path) => ask(path).then((r) => r.status())));
+  check("security: a parameter given twice is read, and is not a fault", twice.every((status) => status === 200), twice.join(" "));
+  const led = await Promise.all(["/auth/confirm?next=//evil.example/", "/auth/confirm?next=https://evil.example/", "/auth/confirm?next=/%5Cevil.example", "/account/sign-in?next=https://evil.example/"].map((path) => ask(path).then((r) => r.headers()["location"] ?? "")));
+  check("security: a link through the site leads only to the site", led.every((to) => !/evil/.test(to) && (to === "" || /^\/(?![\/\\])/.test(to) || to.startsWith(`${origin}/`))), led.join(" "));
+  const walked = await Promise.all(["/shop/..%2F..%2Fpackage.json/download", "/shop/%2E%2E%2Fproduct.json/download", "/shop/no-such-guide/download", "/data/..%2F..%2Fpackage.json", "/data/%2E%2E%2F%2E%2E%2Fpackage.json"].map((path) => ask(path).then(async (r) => `${r.status()}${/"dependencies"|%PDF/.test(await r.text()) ? " and a file" : ""}`)));
+  check("security: the routes that hand out files hand out their own and no other", walked.every((answer) => answer === "404"), walked.join(" | "));
+  const unlisted = await Promise.all(["/account", "/dashboard", "/admin", "/account/me", "/api/listings?ids=n1"].map((path) => ask(path).then((r) => r.headers()["x-robots-tag"] ?? "none")));
+  check("security: private pages and endpoints ask not to be indexed", unlisted.every((value) => /noindex/.test(value)), unlisted.join(" | "));
+  const sitemap = await (await ask("/sitemap.xml")).text();
+  check("security: the sitemap lists no private address", sitemap.includes("<loc>") && !/<loc>https?:\/\/[^/<]+\/(account|dashboard|admin|auth|api|saved|offline)[/?<]/.test(sitemap));
+
+  // The form's endpoint. Each try comes from an address of its own, so the limit met above does not answer for it.
+  const good = { topic: "add", business: "Honest Shop", message: "Please add it.", name: "A Tester", email: "tester@example.com" };
+  const send = (from, headers, data) => context.request.post(`${origin}/api/enquiry`, { headers: { "x-forwarded-for": from, ...headers }, data });
+  const refusals = [
+    (await send("203.0.113.1", { "sec-fetch-site": "cross-site" }, good)).status(),
+    (await send("203.0.113.2", { "content-type": "text/plain" }, JSON.stringify(good))).status(),
+    (await send("203.0.113.3", {}, { ...good, message: "x".repeat(40000) })).status(),
+    (await send("203.0.113.4", { "content-type": "application/json" }, "null")).status(),
+  ];
+  check("security: the form's endpoint refuses another site, what is not JSON, what is too heavy and what is not a request", refusals.join(" ") === "403 415 413 400", refusals.join(" "));
+  const before = received.length;
+  const forged = await send("203.0.113.5", {}, { ...good, business: "Shop\r\nBcc: thief@evil.example", name: "A\nTester", reply: "phone", phone: "+230 5450\n8600", message: "First line.\nSecond line." });
+  const got = received[before] ?? {};
+  check(
+    "security: a line break typed into a field cannot start a new line in what is sent on",
+    forged.status() === 200 && received.length === before + 1 && ![got.subject, got.business, got.name, got.phone].some((v) => typeof v !== "string" || /[\r\n]/.test(v)) && got.message === "First line.\nSecond line.",
+    JSON.stringify(got).slice(0, 200),
+  );
+}
+
 check("no page errors", errors.length === 0, errors.slice(0, 2).join(" | "));
 console.log(`\n${passed} passed, ${failed} failed`);
 await browser.close();

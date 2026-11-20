@@ -611,7 +611,7 @@
         },
         {
           "type": "note",
-          "text": "Official pages do not all agree. On 20 November 2026 the MRA web page on the obligation to file showed three tax bands, ending at 20%, and its guide for new employees, dated December 2025, gave a filing threshold of Rs 390,000. The Income Tax Act as consolidated up to the Finance Act 2026, and the MRA communiqué of 28 August 2026, give the figures used here. Our business taxes guide explains which income year each band applies to.",
+          "text": "Official pages do not all agree. On 20 November 2026 the MRA web page on the obligation to file showed three tax bands, ending at 20%, and its guide for new employees, dated December 2025, gave a filing threshold of Rs 390,000. The Income Tax Act as consolidated up to the Finance Act 2026, and the MRA communiqué of 28 August 2026, give the figures used here. Our guide to personal income tax explains which income year each band applies to, and sets out the deductions and reliefs for the year that started on 1 July 2026.",
           "sources": [
             "S21",
             "S22",
@@ -1026,16 +1026,22 @@
       "what": "Lodge a complaint about maladministration, after the authority has had its chance to reply."
     },
     {
-      "title": "Business taxes in Mauritius",
-      "url": "/learn/business-taxes",
-      "publisher": "biznes.mu",
-      "what": "Our guide for people with business income, with the tax bands year by year."
-    },
-    {
       "title": "Everyday paperwork: ID card, passport, certificates, licences",
       "url": "/learn/everyday-paperwork-in-mauritius",
       "publisher": "biznes.mu",
       "what": "Our guide to the documents these offices ask for."
+    },
+    {
+      "title": "Personal income tax in Mauritius",
+      "url": "/learn/personal-income-tax-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to how the tax is worked out: the bands, the deductions for dependents and the reliefs with their caps."
+    },
+    {
+      "title": "Business taxes in Mauritius",
+      "url": "/learn/business-taxes",
+      "publisher": "biznes.mu",
+      "what": "Our guide for people with business income, with the tax bands year by year."
     }
   ],
   "unverified": [
@@ -1046,8 +1052,6 @@
     "Refuse collection days, the rules for bulky waste and any fee. These are set by each council and no council page was read.",
     "The current text of the Local Government Act 2011. The Ministry's page quotes sections 49 to 52 without a date.",
     "How the Citizen Support Portal works in detail, and its telephone number. The portal is drawn by script. Its description and its wording were read from the page's own files, which also hold a message that online requests are under maintenance. Whether that message was showing on 20 November 2026 was not confirmed.",
-    "The reliefs and deductions for the income year that started on 1 July 2026. The MRA guide read gives those for the year ended 30 June 2026.",
-    "Which income year the 35% band first applies to. The consolidated Act shows it in the First Schedule. Our business taxes guide dates it from 1 July 2026, from sources not read again for this guide.",
     "The MRA's stated time for paying a refund. The guide for employees says only that it follows the necessary verifications."
   ]
 }

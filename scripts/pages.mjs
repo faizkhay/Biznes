@@ -22,6 +22,8 @@ export const PAGES = [
   ["glossary", "/learn/glossary"],
   ["tools", "/tools"],
   ["tool-vat", "/tools/vat"],
+  ["tool-income-tax", "/tools/income-tax"],
+  ["tool-business-tax", "/tools/business-tax"],
   ["tool-verify", "/tools/verify"],
   ["tool-structures", "/tools/structures"],
   ["official", "/official"],

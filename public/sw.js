@@ -129,6 +129,8 @@ async function other(event) {
 
 /** Keep a copy of an answer, then drop the oldest copies over the cache's cap. */
 function keep(event, name, response) {
+  // An answer that was led on to a private address is not kept either, whatever address was asked for.
+  if (response.redirected && isPrivate(new URL(response.url).pathname)) return;
   const copy = response.clone();
   event.waitUntil(
     caches

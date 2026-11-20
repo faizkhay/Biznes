@@ -1,0 +1,719 @@
+{
+  "slug": "personal-income-tax-in-mauritius",
+  "title": "Personal income tax in Mauritius",
+  "summary": "How a person's income is taxed in Mauritius in the income year from 1 July 2026 to 30 June 2027: who is resident, the bands, the deductions for dependents, the other reliefs and their caps, what CSG and the National Savings Fund take from a salary, PAYE, and how a self-employed person pays. It is general information, not tax advice.",
+  "audience": "Employees, pensioners and self-employed people who want to see how their income tax is worked out.",
+  "shelf": "everyday",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Income year",
+      "value": "1 July to 30 June",
+      "detail": "The figures here are for the income year from 1 July 2026 to 30 June 2027.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Income tax bands",
+      "value": "0% on the first MUR 500,000, 10% on the next MUR 500,000, 20% on the next MUR 11 million, 35% on the remainder",
+      "detail": "On chargeable income. Each rate applies only to its own slice. The 35% band is new from 1 July 2026.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Deduction for dependents",
+      "value": "MUR 110,000 for one, MUR 190,000 for two, MUR 275,000 for three, MUR 355,000 for four or more",
+      "detail": "For a resident. A spouse, a child, or a bedridden next of kin in the person's care can be a dependent.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Additional deduction, retired or disabled person",
+      "value": "MUR 50,000",
+      "detail": "For a person aged 60 before the income year starts, with no business income and no pay above MUR 50,000, or a person with a disability.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Additional deduction, child at university",
+      "value": "MUR 500,000 for each child, for up to 4 children",
+      "detail": "A dependent child on a full-time course that is not sponsored, for no more than 6 years.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Additional deduction, private school fees",
+      "value": "The fees paid, up to MUR 60,000 for each child",
+      "detail": "A dependent child at a fee-paying private primary or secondary school.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Relief for housing loan interest",
+      "value": "The interest paid, where income is MUR 4 million or less",
+      "detail": "The Act sets no cap in rupees. The loan must be secured on property and used only to buy or build the person's house.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Relief for medical insurance",
+      "value": "Up to MUR 25,000 each for self and a first dependent, MUR 20,000 each for up to 3 more",
+      "detail": "The premium paid for the person and the dependents claimed. Not where the employer pays it.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Deduction for a personal pension scheme",
+      "value": "The contribution, up to MUR 50,000",
+      "detail": "An individual pension scheme approved by the Financial Services Commission.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Deduction for donations to charities",
+      "value": "The amount given, up to MUR 100,000",
+      "detail": "Given by electronic means to a charitable institution.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Deduction for a carer's wages",
+      "value": "The wages paid, up to MUR 30,000",
+      "detail": "A carer employed for a parent or grandparent, with social contributions paid. The older deduction for household employees ended on 30 June 2025.",
+      "sources": [
+        "S1",
+        "S3",
+        "S5"
+      ]
+    },
+    {
+      "label": "Fair Share Contribution, individuals",
+      "value": "None for the income year from 1 July 2026",
+      "detail": "It was 15% of leviable income above MUR 12 million, for the income year that started on 1 July 2025 only.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Reliefs for a non-resident",
+      "value": "None",
+      "detail": "Only a person resident in Mauritius in the income year can claim the deductions and reliefs. The bands are the same.",
+      "sources": [
+        "S1",
+        "S4"
+      ]
+    },
+    {
+      "label": "CSG on a salary",
+      "value": "1.5% where monthly basic pay is MUR 50,000 or less, 3% where it is more",
+      "detail": "The employee's share, on the whole basic wage or salary. An end of year bonus counts as a month of its own.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "label": "National Savings Fund on a salary",
+      "value": "1% of basic pay up to MUR 29,710 a month",
+      "detail": "The employee's share, from 1 July 2026. Not charged on a bonus.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "National Savings Fund, lowest wage charged",
+      "value": "MUR 4,580 a month",
+      "detail": "MUR 2,910 for a private household employee. From 1 July 2026.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "CSG for the self-employed",
+      "value": "MUR 150 a month where monthly net income is MUR 10,000 or less, 1.5% of 90% of it up to MUR 50,000, 3% of 90% of it above",
+      "detail": "Never less than MUR 150 a month. Income from rent, dividends and interest is left out.",
+      "sources": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "label": "PAYE exemption",
+      "value": "MUR 38,462 a month",
+      "detail": "No tax is withheld from an employee whose emoluments in a month are at or below this. Directors' fees are an exception.",
+      "sources": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "label": "Current Payment System threshold",
+      "value": "Gross income above MUR 4 million",
+      "detail": "A self-employed person files quarterly statements where last year's gross income from business and rent was above this.",
+      "sources": [
+        "S1",
+        "S10"
+      ]
+    },
+    {
+      "label": "Individual return and payment",
+      "value": "By 15 October",
+      "detail": "After the income year ends on 30 June. Thursday 15 October 2026 for the year ended 30 June 2026.",
+      "sources": [
+        "S1",
+        "S11",
+        "S12"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How is my income taxed?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A resident of Mauritius pays income tax on income from anywhere in the world. A non-resident pays on income from Mauritius. The income year runs from 1 July to 30 June. Tax is charged on chargeable income: gross income, less the deductions allowed in earning it, less the personal deductions and reliefs below.",
+          "sources": [
+            "S1",
+            "S15"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Chargeable income",
+            "Rate, income year from 1 July 2026"
+          ],
+          "rows": [
+            [
+              "First MUR 500,000",
+              "0%"
+            ],
+            [
+              "Next MUR 500,000",
+              "10%"
+            ],
+            [
+              "Next MUR 11 million",
+              "20%"
+            ],
+            [
+              "Remainder",
+              "35%"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The bands are progressive: each rate applies only to the slice of income inside its band. On a chargeable income of MUR 1.2 million, the first MUR 500,000 bears nothing, the next MUR 500,000 bears MUR 50,000 and the last MUR 200,000 bears MUR 40,000. The tax is MUR 90,000.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The 35% band is new. The Finance Act 2026 brought it in from 1 July 2026, on chargeable income above MUR 12 million. The year before, the top rate was 20% and a separate Fair Share Contribution took 15% of leviable income above MUR 12 million. That contribution ended for individuals after that one year. On 20 November 2026 the MRA's page on the obligation to file, its PAYE page and its tax calculator still showed the 2025-2026 bands. This article follows the Income Tax Act as consolidated up to the Finance Act 2026.",
+          "sources": [
+            "S1",
+            "S2",
+            "S4",
+            "S13",
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who is resident?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "A person whose domicile is in Mauritius, unless their permanent place of abode is outside Mauritius.",
+            "A person present in Mauritius for 183 days or more in the income year.",
+            "A person present for 270 days or more in total over that income year and the two before it."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Only a resident can claim the deductions and reliefs. A non-resident's pay is taxed on the same bands with nothing taken off, and rent, royalties and other income from property at a flat 15%.",
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What can I deduct?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "There is no longer an Income Exemption Threshold by category. Since 1 July 2023 a 0% band does that work for everyone, and a resident with dependents deducts a set amount for them.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Dependents",
+            "Deduction"
+          ],
+          "rows": [
+            [
+              "One",
+              "MUR 110,000"
+            ],
+            [
+              "Two",
+              "MUR 190,000"
+            ],
+            [
+              "Three",
+              "MUR 275,000"
+            ],
+            [
+              "Four or more",
+              "MUR 355,000"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A dependent is a spouse, a child under 18, an older child in full-time education or kept from earning by a disability, or a bedridden next of kin in the person's care.",
+            "Where one spouse claims for dependents, the other cannot.",
+            "No deduction is due for a dependent whose own income is above MUR 110,000 for the first, MUR 80,000 for the second, MUR 85,000 for the third or MUR 80,000 for the fourth.",
+            "A retired person, or a person with a disability, deducts a further MUR 50,000. Retired means aged 60 before the income year starts, with no business income and no pay above MUR 50,000."
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Relief or deduction",
+            "Cap",
+            "Conditions"
+          ],
+          "rows": [
+            [
+              "Dependent child at university",
+              "MUR 500,000 a child, up to 4 children",
+              "A full-time course, undergraduate or postgraduate, that is not sponsored. Not beyond 6 years, nor where tuition for an undergraduate course in Mauritius is under MUR 34,800"
+            ],
+            [
+              "Dependent child at a fee-paying private school",
+              "The fees or MUR 60,000 a child, whichever is lower",
+              "A primary or secondary school registered under the Education Act"
+            ],
+            [
+              "Interest on a housing loan",
+              "The interest paid. No cap in rupees",
+              "A loan secured on property, used only to buy or build the person's house. Not where the person or spouse already owned a residential building, or has income above MUR 4 million"
+            ],
+            [
+              "Medical or health insurance premium",
+              "MUR 25,000 each for self and a first dependent, MUR 20,000 each for up to 3 more",
+              "Not where the employer pays, nor under a combined medical and life scheme"
+            ],
+            [
+              "Approved personal pension scheme",
+              "The contribution or MUR 50,000, whichever is lower",
+              "A scheme approved by the Financial Services Commission"
+            ],
+            [
+              "Donations to charitable institutions",
+              "The amount or MUR 100,000, whichever is lower",
+              "Given by electronic means"
+            ],
+            [
+              "Wages of a carer",
+              "The wages or MUR 30,000, whichever is lower",
+              "For a parent or grandparent, with social contributions paid"
+            ],
+            [
+              "Solar energy unit, rainwater harvesting system, fast charger for an electric car",
+              "The amount invested",
+              "Any part not used is carried forward"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The deduction for household employees' wages ended on 30 June 2025, with the reliefs for adopting animals and for angel investors.",
+          "sources": [
+            "S1",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What comes off a salary: PAYE, CSG and the National Savings Fund",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Under Pay As You Earn (PAYE) the employer withholds income tax from each month's pay, on a cumulative sum over the income year. An employee claims deductions on an Employee Declaration Form. One thirteenth of them is counted each month, the end of year bonus being the thirteenth. No tax is withheld where a month's emoluments are MUR 38,462 or less. Without a form, tax is withheld at a flat 15%, or 20% if the employee asks.",
+          "sources": [
+            "S1",
+            "S4",
+            "S5",
+            "S6"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Contribution",
+            "Employee's share",
+            "Charged on"
+          ],
+          "rows": [
+            [
+              "CSG, monthly basic pay of MUR 50,000 or less",
+              "1.5%",
+              "The whole basic wage or salary"
+            ],
+            [
+              "CSG, monthly basic pay above MUR 50,000",
+              "3%",
+              "The whole basic wage or salary"
+            ],
+            [
+              "National Savings Fund",
+              "1%",
+              "Basic pay up to MUR 29,710 a month, from 1 July 2026. None under MUR 4,580 a month"
+            ]
+          ],
+          "sources": [
+            "S7",
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Basic pay leaves out overtime, bonuses and allowances. For CSG, an end of year bonus counts as a month of its own.",
+            "The employer pays its own share on top: 3% or 6% for CSG and 2.5% for the National Savings Fund."
+          ],
+          "sources": [
+            "S7",
+            "S8",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "If you are self-employed",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A self-employed person pays on the same bands, on the profit of the business with any other income, less the same deductions. Under the Current Payment System (CPS) a quarterly statement and payment are due where last year's gross income from business and rent was above MUR 4 million. The quarters to September, December and March are due 2 days before the end of December, on 31 March and 2 days before the end of June, not counting Saturdays and public holidays. The rest is paid with the yearly return.",
+          "sources": [
+            "S1",
+            "S10"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Monthly net income",
+            "CSG for the month"
+          ],
+          "rows": [
+            [
+              "MUR 10,000 or less",
+              "MUR 150"
+            ],
+            [
+              "Above MUR 10,000, up to MUR 50,000",
+              "1.5% of 90% of net income, and never less than MUR 150"
+            ],
+            [
+              "Above MUR 50,000",
+              "3% of 90% of net income"
+            ]
+          ],
+          "sources": [
+            "S7",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A month's net income can be taken as one twelfth of last year's. A yearly CSG return, paid in advance, is due by 15 October.",
+            "A small business in farming, manufacturing, retail or wholesale may choose a presumptive tax instead: see our guide to business taxes."
+          ],
+          "sources": [
+            "S1",
+            "S7",
+            "S8",
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The return and when it is due",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "A return is due from anyone with net income above MUR 500,000, business gross income above MUR 2 million, tax withheld under PAYE or deducted at source, or a chargeable income. Other self-employed people file a simplified return.",
+            "It is filed, and any tax paid, electronically by 15 October. For the year ended 30 June 2026 that was Thursday 15 October 2026.",
+            "A late return costs MUR 2,000 a month, up to MUR 5,000 for an individual not in business. Tax paid late bears a penalty of 2.5%, or 1% for such an individual, and interest of 0.25% a month."
+          ],
+          "sources": [
+            "S1",
+            "S11",
+            "S12",
+            "S16"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "The Finance Act 2026 (Act No. 14 of 2026)",
+      "url": "https://www.mra.mu/download/FinanceAct2026.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the Mauritius Revenue Authority",
+      "published": "Assented to on 12 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Reliefs, Deductions & Allowances - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/reliefs-deductions-allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "For the income year ending 30 June 2027",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Pay As You Earn (PAYE) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/employers/paye",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Circular to all employers: Personal Income Tax, PAYE, Income Year 01 July 2025 to 30 June 2026",
+      "url": "https://www.mra.mu/download/PayrollTaxes.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "6 October 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Communiqué: Submission of e-EDF, Income Year 2026/27",
+      "url": "https://www.mra.mu/download/Com_EDF2627.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "5 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Social Contribution and Social Benefits Act 2021 (as amended up to Act 14 of 2026)",
+      "url": "https://www.mra.mu/download/SocialContributionAndSocialBenefitsAct2021.pdf",
+      "publisher": "Attorney General's Office, copy published by the Mauritius Revenue Authority",
+      "published": "Amended up to Act 14 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Contribution Sociale Généralisée (CSG) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/business/csg",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "NPF / NSF Contributions and Training Levy - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/employers/npf-nsf-contributions",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Wage limits from 1 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Self Employed / Current Payment System (CPS) - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/self-employed",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Communiqué: Individual Income Tax Returns, e-Filing Season 2026",
+      "url": "https://www.mra.mu/download/ComFilng280826.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Tax Calendar - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Calendar for July to December 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Obligation to file a return - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/obligation-to-file-a-return",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Income Tax Calculator, Financial Year July 2025 to June 2026",
+      "url": "https://eservices.mra.mu/taxcalculator/viewCalculate",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Overview of Taxes - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/taxes-duties/overview-of-taxes",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Penalty & Interest - Mauritius Revenue Authority",
+      "url": "https://www.mra.mu/index.php/individuals/penalty-interest",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Business taxes in Mauritius",
+      "url": "/learn/business-taxes",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the taxes on a company's profits, and to how a sole trader or a société is taxed."
+    },
+    {
+      "title": "Household bills and services",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the yearly return among a household's other paperwork."
+    },
+    {
+      "title": "MRA Tax Calculator",
+      "url": "https://eservices.mra.mu/taxcalculator/viewCalculate",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Work out income tax with the MRA's own calculator. On 20 November 2026 it still used the bands for 2025-2026."
+    },
+    {
+      "title": "Reliefs, Deductions & Allowances",
+      "url": "https://www.mra.mu/index.php/individuals/reliefs-deductions-allowances",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the MRA's list of deductions and reliefs for the income year ending 30 June 2027."
+    },
+    {
+      "title": "Pay As You Earn (PAYE)",
+      "url": "https://www.mra.mu/index.php/employers/paye",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read how an employer works out the tax to withhold each month."
+    },
+    {
+      "title": "Contribution Sociale Généralisée (CSG)",
+      "url": "https://www.mra.mu/index.php/business/csg",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the rates of CSG for employees and for the self-employed."
+    },
+    {
+      "title": "Self Employed / Current Payment System (CPS)",
+      "url": "https://www.mra.mu/index.php/individuals/self-employed",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read who files quarterly CPS statements and when."
+    },
+    {
+      "title": "MRA e-Services portal",
+      "url": "https://eservices38.mra.mu/centralLogin/login",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Log in to file an income tax return or an Employee Declaration Form."
+    },
+    {
+      "title": "Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "See the due dates for returns and payments month by month."
+    },
+    {
+      "title": "The Income Tax Act 1995, consolidated",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read the bands in the First Schedule and the deductions in the Third Schedule."
+    }
+  ],
+  "unverified": [
+    "An MRA circular or PAYE table for the income year 1 July 2026 to 30 June 2027. On 20 November 2026 the MRA's PAYE page, its page on the obligation to file and its tax calculator still showed the bands for 2025-2026, with no 35% band. The bands here are from the Finance Act 2026 and the Income Tax Act as consolidated up to it.",
+    "How an employer withholds the 35% band month by month. The cumulative method is set by regulations, which were not read for 2026-2027.",
+    "Whether the MRA allows the additional deduction of MUR 50,000 for a retired or disabled person in the same way in 2026-2027. The amount is in section 27(2A) of the Act as consolidated. The MRA's page for the year defines a retired person and a disabled person but gives no amount.",
+    "The rate at which tax is charged on a quarterly CPS statement. Section 108 of the Act leaves it to regulations. The MRA's self-employed page gives 15%, but that page also shows penalty rates that were replaced on 1 July 2025.",
+    "The age at which National Savings Fund contributions stop. The MRA page gives 65 for pay periods from August 2018. It was not checked against later changes to pension law.",
+    "How the deduction for private school fees is shared where both parents pay fees. The Act and the MRA page give the cap for each child and say no more."
+  ]
+}

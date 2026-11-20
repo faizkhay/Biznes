@@ -52,12 +52,15 @@ function authSays(error: { code?: string; message?: string }): string {
 }
 
 /**
- * The site's own address, for the link in an email. NEXT_PUBLIC_SITE_URL when it is set; else the
- * address the request came to. Supabase sends people only to addresses on the project's own list
- * of redirect URLs, so a forged Host header cannot point a link elsewhere.
+ * The site's own address, for the link in an email. The address the site was told is its own
+ * (NEXT_PUBLIC_SITE_URL, or on Vercel the project's production address) whenever there is one;
+ * only with neither, as on a developer's machine, the address the request came to. A request can
+ * claim any host, and whoever asks for a password reset is not always whose account it is: a link
+ * built from the request could carry that person's sign-in to a host the asker chose. Supabase
+ * sends people only to addresses on the project's list of redirect URLs, which is the second lock.
  */
 async function origin(): Promise<string> {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return siteUrl;
+  if (process.env.NEXT_PUBLIC_SITE_URL || !/^http:\/\/localhost(:|$)/.test(siteUrl)) return siteUrl;
   const h = await headers();
   const host = h.get("x-forwarded-host") ?? h.get("host");
   if (!host || !/^[a-z0-9.-]+(:\d+)?$/i.test(host)) return siteUrl;

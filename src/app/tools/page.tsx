@@ -5,8 +5,8 @@ import { TOOLS } from "@/lib/tools";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
-  title: "Business tools for Mauritius",
-  description: "Free tools for business in Mauritius: check a business against the official registers, work out VAT, compare legal structures, and look up a term.",
+  title: "Tools for business and tax in Mauritius",
+  description: "Free tools for Mauritius: check a business against the official registers, work out VAT, income tax and the taxes on a business, and compare legal structures.",
   path: "/tools",
 });
 

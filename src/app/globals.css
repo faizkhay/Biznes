@@ -2826,6 +2826,122 @@
       background-position: -200% 0;
     }
   }
+
+  /* Accounts */
+  /* The b on its saffron tile, as it stands on the footer's edge: at the head of the card where a
+     person signs in, and beside their name on their own page. */
+  .account-mark {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    flex: none;
+    border-radius: 1.25rem;
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+    box-shadow: var(--shadow-md);
+    transform: rotate(-6deg);
+  }
+  .account-mark svg {
+    height: 2.25rem;
+    width: auto;
+  }
+  .account-mark circle {
+    fill: var(--palette-white);
+  }
+  /* A field that takes a picture. Its own button is a quiet pill, as the site's quiet buttons are. */
+  .field[type="file"] {
+    padding: 0.4375rem;
+    color: var(--color-ink-subtle);
+    cursor: pointer;
+  }
+  .field[type="file"]::file-selector-button {
+    min-height: 2.25rem;
+    margin-right: 0.75rem;
+    padding: 0 1rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 16%, transparent);
+    border-radius: var(--radius-full);
+    background: var(--color-panel);
+    color: var(--color-ink);
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  }
+  .field[type="file"]:hover::file-selector-button {
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
+  }
+  /* A number that sums something up, at the head of a page of one's own: bookings to answer, the
+     month's takings. A card with the figure large, and what it counts above it. */
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+    padding: 1.125rem 1.25rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  a.stat:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+    box-shadow: var(--shadow-md);
+  }
+  .stat-figure {
+    font-weight: 650;
+    font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  /* A picture an owner has uploaded, small, in a frame: a cover, a photograph, an advertisement's artwork. */
+  .thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--color-panel);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+  .thumb-wide {
+    aspect-ratio: 16 / 7;
+  }
+  /* An advertisement, wherever one is shown: its picture, its two lines, and the word that says it
+     is paid for. A quiet card: it never wears the verified mark's colours. */
+  .ad {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.875rem 1.125rem;
+    align-items: center;
+    padding: 0.875rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .ad:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+    box-shadow: var(--shadow-md);
+  }
+  .ad-picture {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    background: var(--color-panel);
+  }
+  @media (min-width: 40rem) {
+    .ad:has(.ad-picture) {
+      grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+    }
+  }
 }
 
 /* Reduced motion: nothing travels. State changes still happen, at once. */

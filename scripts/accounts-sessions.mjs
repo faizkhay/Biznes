@@ -82,8 +82,8 @@ check("and the session is renewed again", Boolean(third) && third !== second);
 
 await sleep(WAIT);
 await go(origin);
-await page.waitForSelector('header a[href="/account"]', { timeout: 10000 }).catch(() => {});
-check("on a public page, which the proxy leaves alone, the header still finds the person", (await page.locator('header a[href="/account"]').innerText().catch(() => "")).trim() === "S");
+await page.waitForSelector('header a[data-account="in"]', { timeout: 10000 }).catch(() => {});
+check("on a public page, which the proxy leaves alone, the header still finds the person", (await page.locator('header a[data-account="in"]').innerText().catch(() => "")).trim() === "S");
 
 await sleep(WAIT);
 const dashboard = await go(`${origin}/dashboard/new`);

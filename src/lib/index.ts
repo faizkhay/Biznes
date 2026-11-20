@@ -95,7 +95,7 @@ export type Guide = {
   summary: string;
   audience?: string;
   /** Who it is for, as a shelf of the guides page (src/data/site.ts, SHELVES). None means business. */
-  shelf?: "mauritius" | "business" | "food" | "visitors" | "newcomers" | "everyday";
+  shelf?: "mauritius" | "food" | "business" | "visitors" | "newcomers" | "everyday";
   /** The day its facts were last read against their sources. */
   checked: string;
   facts: { label: string; value: string; detail?: string; sources?: string[] }[];
@@ -152,12 +152,20 @@ const GUIDE_ORDER = [
   "getting-around-mauritius",
   "schools-and-universities-in-mauritius",
   "everyday-facts-about-mauritius",
+  "mauritian-food",
+  "street-food-and-markets-in-mauritius",
+  "eating-out-in-mauritius",
+  "opening-a-food-business-in-mauritius",
   "visiting-mauritius",
   "things-to-do-in-mauritius",
   "moving-to-mauritius",
   "settling-in-mauritius",
   "everyday-paperwork-in-mauritius",
   "household-bills-and-services",
+  "pharmacies-and-medicines-in-mauritius",
+  "prices-and-consumer-rights-in-mauritius",
+  "shopping-in-mauritius",
+  "internet-and-mobile-in-mauritius",
 ];
 
 /**

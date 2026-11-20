@@ -20,7 +20,7 @@ import { pageMeta } from "@/lib/meta";
 type Params = { q?: string; kind?: string; page?: string; phone?: string; web?: string; town?: string };
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<Params> }): Promise<Metadata> {
-  const { q } = await searchParams;
+  const q = String((await searchParams).q ?? "");
   // A page of results is never one to index: it is as many pages as there are questions.
   return pageMeta({ title: q ? `${q.slice(0, 60)}: search` : "Search", description: q ? `What biznes.mu holds for “${q.slice(0, 80)}”: its own pages that answer, then businesses and services in Mauritius.` : "Search biznes.mu for a kind of business and a town, a business by name, or a question about Mauritius.", path: "/search", index: false });
 }
@@ -29,7 +29,8 @@ const all = "body-3 mt-3 inline-flex min-h-11 items-center font-semibold text-li
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<Params> }) {
   const params = await searchParams;
-  const q = (params.q ?? "").trim().slice(0, 120);
+  // An address may give a parameter twice ("?q=a&q=b"), which arrives as a list and not as words.
+  const q = String(params.q ?? "").trim().slice(0, 120);
   const kind = KINDS.find((k) => k.id === params.kind)?.id as Kind | undefined;
   const page = Math.max(1, Number(params.page) || 1);
 

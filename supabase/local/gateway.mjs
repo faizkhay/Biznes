@@ -1,14 +1,15 @@
 // The local test stack's front door (scripts/accounts-stack.sh), standing in for a Supabase
-// project's own: /auth/v1 goes to Supabase Auth and /rest/v1 to PostgREST, as a hosted project
-// routes them. Nothing else is behind it.
+// project's own: /auth/v1 goes to Supabase Auth, /rest/v1 to PostgREST and /storage/v1 to Supabase
+// Storage, as a hosted project routes them. Nothing else is behind it.
 //
-//   node supabase/local/gateway.mjs [port] [auth port] [rest port]
+//   node supabase/local/gateway.mjs [port] [auth port] [rest port] [storage port]
 import http from "node:http";
 
-const [port = 54321, auth = 9999, rest = 3001] = process.argv.slice(2).map(Number);
+const [port = 54321, auth = 9999, rest = 3001, storage = 5001] = process.argv.slice(2).map(Number);
 const routes = [
   ["/auth/v1", auth],
   ["/rest/v1", rest],
+  ["/storage/v1", storage],
 ];
 
 http

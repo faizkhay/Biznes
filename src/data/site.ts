@@ -77,7 +77,7 @@ export const MENU = [
     label: "Learn",
     items: [
       { href: "/learn", label: "Articles", line: "Mauritius explained, with its sources" },
-      { href: "/tools", label: "Tools", line: "VAT, legal structures, checking a business" },
+      { href: "/tools", label: "Tools", line: "Income tax, VAT, checking a business" },
       { href: "/learn/glossary", label: "Glossary", line: "BRN, TAN, CSG and the other initials" },
       { href: "/official", label: "Official pages", line: "The registers and the forms themselves" },
     ],
@@ -103,8 +103,8 @@ export const START = ["/baz-manzer", "/emergency", "/holidays", "/directory", "/
 /** The shelves of the guides page: who each set of guides is for. */
 export const SHELVES = [
   { id: "mauritius", label: "About Mauritius", line: "The island, its people, its money, its weather and how it runs." },
+  { id: "food", label: "Food and eating out", line: "The dishes, the markets, eating out, and opening a food business." },
   { id: "business", label: "Starting and running a business", line: "Registration, companies, tax, VAT, staff, licences and the rest." },
-  { id: "food", label: "Food and eating out", line: "What is eaten here, and where to find it." },
   { id: "visitors", label: "Visiting Mauritius", line: "What to know before you come, and what there is to see and do." },
   { id: "newcomers", label: "Moving here", line: "The ways to live in Mauritius, and settling in once you have arrived." },
   { id: "everyday", label: "Living here", line: "The paperwork and the bills of everyday life." },
