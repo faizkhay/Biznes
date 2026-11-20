@@ -1,0 +1,1113 @@
+{
+  "slug": "moving-to-mauritius",
+  "shelf": "newcomers",
+  "title": "Moving to Mauritius: the ways to live here",
+  "summary": "The visas and permits a non-citizen can use to stay in Mauritius for longer than a holiday: the Premium Visa, the Occupation Permit and its categories, the permit for graduates, residence as a retired non-citizen or through property, the routes for family, and permanent residence. Each is reported as the Economic Development Board and the Passport and Immigration Office described it on 20 November 2026. This is general information, not legal or immigration advice.",
+  "audience": "People thinking of moving to Mauritius to work remotely, take a job, retire or join family, and people already here on a visa who want to stay longer.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Stay as a tourist",
+      "value": "Up to 180 days in a calendar year",
+      "detail": "The Passport and Immigration Office says the maximum of six months may be granted case by case. Visas and extensions of stay are issued free of charge.",
+      "sources": [
+        "S3",
+        "S21"
+      ]
+    },
+    {
+      "label": "Premium Visa",
+      "value": "More than 6 months and up to 1 year, renewable",
+      "detail": "Applied for online. No processing fee. The holder must not enter the Mauritian labour market.",
+      "sources": [
+        "S3",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "label": "Premium Visa: proof of income",
+      "value": "USD 1,500 a month for each adult, USD 500 for each dependent child",
+      "detail": "Figures in the Economic Development Board's FAQ of November 2023.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Occupation Permit: professional",
+      "value": "Monthly basic salary of at least MUR 50,000",
+      "detail": "All sectors. The permit runs for the length of the contract or 10 years, whichever is shorter. The employer applies.",
+      "sources": [
+        "S1",
+        "S2",
+        "S8"
+      ]
+    },
+    {
+      "label": "Occupation Permit: investor and self-employed",
+      "value": "USD 100,000 and USD 50,000",
+      "detail": "Initial investment, transferred to a bank account in Mauritius within 60 days of the permit being issued. Up to 10 years.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Young Professional Occupation Permit",
+      "value": "Up to 3 years",
+      "detail": "For graduates of a tertiary institution in Mauritius. The Economic Development Board's guideline of August 2025 asks for a monthly basic salary of at least MUR 25,000.",
+      "sources": [
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "label": "Residence permit: retired non-citizen",
+      "value": "Aged 50 or above, USD 2,000 a month or USD 24,000 a year",
+      "detail": "Transferred to a bank in Mauritius. The permit lasts up to 10 years and is renewable.",
+      "sources": [
+        "S1",
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "label": "Application fee",
+      "value": "USD 50, non-refundable",
+      "detail": "For every Occupation Permit and Residence Permit application made on the National Electronic Licensing System, from 1 December 2025.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Permit fee after approval",
+      "value": "USD 1,000 for a 10 year permit",
+      "detail": "Investor, self-employed or retired non-citizen. A professional's fee runs from USD 400 to USD 1,000 by length of contract. Each dependant: USD 400.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Residence permit through property",
+      "value": "Purchase price of at least USD 375,000",
+      "detail": "Under the approved schemes, or an apartment in a building of at least two floors above the ground floor. A USD 50 processing fee for each applicant applies from 1 October 2026.",
+      "sources": [
+        "S1",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "label": "Golden Visa",
+      "value": "USD 1 million invested within 12 months",
+      "detail": "Valid for up to 2 years, renewable. No processing fee. Applications opened on 12 November 2026.",
+      "sources": [
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "label": "Permanent Residence Permit",
+      "value": "20 years, after at least 5 years on a permit",
+      "detail": "Each category has its own test. Applications go to the Residence Permit Section of the Prime Minister's Office.",
+      "sources": [
+        "S1",
+        "S2",
+        "S14"
+      ]
+    },
+    {
+      "label": "Spouse of a citizen of Mauritius",
+      "value": "Residence permit free of cost",
+      "detail": "Both spouses apply in person at the Passport and Immigration Office.",
+      "sources": [
+        "S20"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "The routes at a glance",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen can visit Mauritius as a tourist for a cumulative stay of up to 180 days in a calendar year. To stay longer, to work or to retire here, a visa or a permit is needed. The Economic Development Board (EDB) receives most applications online. The Passport and Immigration Office (PIO) issues the visas and permits. The PIO is a branch of the Mauritius Police Force and works under the Prime Minister's Office.",
+          "sources": [
+            "S1",
+            "S3",
+            "S21",
+            "S24"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Route",
+            "Who it is for",
+            "How long",
+            "Where it is applied for"
+          ],
+          "rows": [
+            [
+              "Tourist visa",
+              "A visitor on holiday",
+              "Up to 180 days in a calendar year",
+              "The PIO. The EDB says it is granted on arrival. The PIO lists who must hold a visa before travelling"
+            ],
+            [
+              "Premium Visa",
+              "A long-stay visitor, a retiree, or a person working remotely for a business outside Mauritius, with family",
+              "More than 6 months and up to 1 year, renewable",
+              "Online, through the EDB. The visa arrives by email"
+            ],
+            [
+              "Occupation Permit: investor, professional or self-employed",
+              "A person who invests in a business, holds a contract of employment or works alone in the services sector",
+              "Up to 10 years, renewable",
+              "Online on the National Electronic Licensing System (NELS). The employer applies for a professional"
+            ],
+            [
+              "Young Professional Occupation Permit",
+              "A foreign graduate of a tertiary institution in Mauritius who has a job here",
+              "Up to 3 years",
+              "Online on NELS, by the employer"
+            ],
+            [
+              "Residence permit: retired non-citizen",
+              "A non-citizen aged 50 or above",
+              "Up to 10 years, renewable",
+              "Online on NELS"
+            ],
+            [
+              "Residence permit through property",
+              "A buyer of qualifying property for at least USD 375,000",
+              "The EDB pages for the Property Development Scheme and for apartments say for as long as the buyer holds the property",
+              "The EDB"
+            ],
+            [
+              "Residence permit as a dependant",
+              "The spouse, parents and children of a permit holder",
+              "No longer than the main holder's permit",
+              "Online on NELS. The PIO decides"
+            ],
+            [
+              "Residence permit as the spouse of a citizen",
+              "A non-citizen civilly married to a citizen of Mauritius",
+              "Not stated on the PIO page",
+              "In person at the PIO, both spouses together"
+            ],
+            [
+              "Golden Visa",
+              "A high net worth investor who undertakes to invest USD 1 million",
+              "Up to 2 years, renewable",
+              "Online on NELS"
+            ],
+            [
+              "Permanent Residence Permit",
+              "A holder of an Occupation Permit or a retired non-citizen permit who has met the test for 5 years",
+              "20 years, renewable",
+              "The Residence Permit Section of the Prime Minister's Office"
+            ],
+            [
+              "Work permit with a residence permit for employment",
+              "An employee whose employer has applied for a work permit",
+              "Not stated on the PIO page",
+              "The Ministry responsible for labour issues the work permit. The PIO issues the residence permit"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S9",
+            "S11",
+            "S14",
+            "S15",
+            "S18",
+            "S19",
+            "S20",
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The PIO says a visa lets its holder travel to a port of entry. The decision to admit a non-citizen, and for how long, rests with the Immigration Officer at the border.",
+            "A business visa allows up to 120 days in a calendar year, with no more than 90 days on each trip, and the visitor must not be paid in Mauritius.",
+            "A person who enters on a tourist or business visa is not entitled to take up employment.",
+            "Staying after a visa or entry permit has expired is an offence.",
+            "To extend a visa, the applicant calls in person at the PIO with the extension form, passport pages, a ticket reservation, bank statements for the last three months and proof of accommodation.",
+            "Mauritians living abroad who return to work or start a business can apply to the EDB for a certificate under the Mauritian Diaspora Scheme."
+          ],
+          "sources": [
+            "S21",
+            "S22",
+            "S26",
+            "S29"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Premium Visa",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Premium Visa is for a non-citizen who wants to stay in Mauritius for longer than a tourist, as a visitor, a retiree or a professional who works remotely and may come with family. It is valid for more than six months and up to one year, and it can be renewed. It is needed for any stay of more than 180 days in a calendar year. It is a multiple entry visa, so the holder can leave and come back while it is valid.",
+          "sources": [
+            "S3",
+            "S4",
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The applicant must not enter the Mauritian labour market.",
+            "The main place of business, and the source of income and profits, must be outside Mauritius.",
+            "The applicant shows proof of long-stay plans and enough travel and health insurance for the first period of stay.",
+            "The applicant supplies documents on the purpose of the visit and on accommodation, and meets the other basic immigration requirements."
+          ],
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The EDB checklist for a first application asks for the documents below. They are uploaded with the online form.",
+          "sources": [
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The biodata page of the passport and a passport size photo.",
+            "A copy of the airline ticket, with a return ticket for the intended stay of more than six months.",
+            "Travel and health insurance for the intended stay.",
+            "Proof of accommodation: a hotel booking, a lease or rental agreement, or a letter from a host with the host's proof of address and identity card, passport or residence permit.",
+            "Bank statements for the last three months and proof of monthly income. The EDB's FAQ of November 2023 gives a minimum of USD 1,500 a month for each adult and USD 500 a month for each dependent child.",
+            "For a spouse, the marriage certificate. For children, birth certificates, and a letter of consent where a child travels with one parent only. Certificates are in English or French."
+          ],
+          "sources": [
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Check the list of countries in the EDB's FAQ. Nationals of the 114 countries listed can apply before travelling. Nationals of other countries enter on a tourist visa and apply online during their stay.",
+            "Fill in the online application through the EDB's Premium Visa page and upload the documents. No fee is charged.",
+            "The visa is sent by email as an e-visa.",
+            "For an application made from abroad, the visa is issued for one year. It stays valid for travel for six months, and the year starts on the day of arrival.",
+            "For an application made in Mauritius on a tourist visa, the length of the Premium Visa follows the validity of the health insurance and the return ticket, which must both run for more than six months."
+          ],
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "On tax, the EDB states that money a Premium Visa holder spends in Mauritius with a foreign credit or debit card is not treated as remitted to Mauritius. It states that the holder is liable to income tax on money brought into and deposited in a bank account in Mauritius, unless a declaration is made that tax has been paid on it in the country of origin or residence. This guide reports the EDB's wording and has not checked it against the Income Tax Act.",
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A Premium Visa holder who later wants to work or invest in Mauritius may apply for an Occupation Permit. One who wants to retire here may apply for a residence permit as a retired non-citizen. A holder may also buy residential property under the approved schemes, or an apartment in a building of at least ground plus two floors.",
+          "sources": [
+            "S3",
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Occupation Permit: work, invest or be self-employed",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Occupation Permit is a combined work and residence permit. It lets a non-citizen work, invest and live in Mauritius. The EDB guidelines set out three categories: investor, professional and self-employed. A non-citizen applies in the category that best matches what he or she will do here. The criteria are fixed in the First Schedule to the Economic Development Board Act.",
+          "sources": [
+            "S1",
+            "S2",
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Category",
+            "Main conditions",
+            "Length",
+            "Permit fee after approval"
+          ],
+          "rows": [
+            [
+              "Investor",
+              "Initial investment of USD 100,000, shown by a certified bank statement and a written undertaking to transfer the money within 60 days of the permit being issued. Turnover of at least MUR 5 million from the third year, and MUR 8 million from the fifth year for renewal",
+              "Up to 10 years, renewable",
+              "USD 1,000"
+            ],
+            [
+              "Investor for innovative start-ups",
+              "An innovative project submitted to the EDB, or a business registered with an incubator accredited by the Mauritius Research and Innovation Council. A progress report after the first year and a development report at the end of the fifth year",
+              "Up to 10 years, renewable",
+              "USD 1,000"
+            ],
+            [
+              "Professional",
+              "A contract of employment in Mauritius with a monthly basic salary of at least MUR 50,000, in all sectors",
+              "The length of the contract or 10 years, whichever is shorter",
+              "USD 400 to USD 1,000 by length of contract, paid by the employer"
+            ],
+            [
+              "Professional on a short-term permit",
+              "A short assignment. One extension is allowed, applied for at least 15 days before expiry",
+              "Up to 9 months, then up to 3 months more",
+              "USD 300, and USD 150 for the extension"
+            ],
+            [
+              "Self-employed",
+              "Services sector only. Initial investment of USD 50,000 transferred within 60 days, and at least 3 letters of intent, 2 of them from potential local clients. Business income of at least MUR 2 million from the third year, and MUR 3 million a year from the fifth year for renewal",
+              "Up to 10 years, renewable",
+              "USD 1,000"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "For a professional, the employer submits the application on NELS and comes to the appointment with the employee.",
+            "A professional may invest in a business if he or she is not employed in it and takes no salary or employment benefits from it. A professional may hold shares in the employer, but not a majority.",
+            "A regulated activity, such as banking, engineering or medicine, needs a registration, licence or clearance from the public body or professional council concerned.",
+            "The EDB says a professional files his or her emoluments with the Mauritius Revenue Authority each year and pays tax where it applies.",
+            "A professional who changes employer needs a fresh application from the new employer. When a contract ends, the holder has 6 months to find a new job or permit if a self-undertaking form reaches the EDB and the PIO within 2 weeks. Otherwise the holder leaves within one month of the permit being cancelled.",
+            "A self-employed permit holder may employ one local administrative member of staff.",
+            "A holder must tell the EDB and the PIO in writing of any change of business or home address, or of a change to the contract of employment."
+          ],
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Official pages do not all agree. On 20 November 2026 the PIO page on Occupation Permits still gave a maximum of three years for a professional, and permanent residence after three years. The EDB guidelines, in a file dated 8 October 2026, and the Economic Development Board Act as amended up to 13 August 2026, give the figures used in this guide. The EDB's August 2026 newsletter describes the same changes.",
+          "sources": [
+            "S1",
+            "S2",
+            "S7",
+            "S28"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Graduates: the Young Professional Occupation Permit",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Young Professional Occupation Permit is for foreign students who have studied at a tertiary institution in Mauritius and have found work here. It is granted for up to three years, depending on the length of the contract of employment. If the employer still needs the employee after that, it may apply for an Occupation Permit as a professional.",
+          "sources": [
+            "S7",
+            "S9",
+            "S10"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The applicant has completed at least an undergraduate degree at a local tertiary institution recognised by the Higher Education Commission, or an internationally recognised professional certification of at least that level from a registered institution in Mauritius.",
+            "The EDB guideline of August 2025 asks for a monthly basic salary of at least MUR 25,000.",
+            "The application is made within 6 months of the results being published.",
+            "The employer applies online on NELS and pays the USD 50 application fee by card.",
+            "The Approval in Principle is valid for 90 days. Employer and employee attend the appointment together with the original documents.",
+            "The permit fee is USD 150 for up to one year, USD 250 for more than one and up to two years, and USD 300 for more than two and up to three years.",
+            "The permit is issued once only. A holder cannot move to another company on a second Young Professional permit, but can move to the Occupation Permit category."
+          ],
+          "sources": [
+            "S2",
+            "S9",
+            "S10"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The PIO page describes this permit differently. It limits the employer's business to artificial intelligence, biotechnology, fintech, robotics, financial services and information technology, and it says the application is sent to the EDB by email. The EDB guideline of August 2025 does not list sectors and says applications are made on NELS. The First Schedule to the Economic Development Board Act sets the qualification only and names no salary.",
+          "sources": [
+            "S2",
+            "S7",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Retiring in Mauritius",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen aged 50 or above may apply for a residence permit as a retired non-citizen. The permit is issued for up to ten years and can be renewed. The EDB says there is no set time that the holder must spend in Mauritius.",
+          "sources": [
+            "S1",
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The applicant submits a bank statement from the country of origin or residence showing at least USD 24,000.",
+            "The holder transfers at least USD 2,000 into a bank in Mauritius within 60 days of the permit being issued, and after that either USD 24,000 a year or USD 2,000 a month.",
+            "The holder must not take paid employment. He or she may invest in a business, without being employed in it or drawing a salary or employment benefits from it. A retiree who wishes to work applies for a work permit or an Occupation Permit.",
+            "The application needs a certificate of character or police clearance covering the last ten years, less than six months old.",
+            "The applicant gives information on residences held in other countries, including tax residences. The EDB says this is shared with the tax authority under the Common Reporting Standard.",
+            "The fees are the USD 50 application fee and a permit fee of USD 1,000.",
+            "A renewal is applied for on NELS at least one month before the permit expires."
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A retiree can also buy a home in a project approved under the Property Development Scheme for Senior Living. The EDB says a non-citizen aged above 50 can acquire a residential unit, or the life rights in one. There is no minimum price. The buyer may apply for a residence permit for himself or herself and a spouse or common law partner, for as long as the retiree owns or occupies the property.",
+          "sources": [
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The EDB's general page on retiring still shows the earlier figures of USD 1,500 a month or USD 18,000 a year, and permanent residence after three years. Its page for the retired non-citizen permit, its guidelines and the Economic Development Board Act give USD 2,000 a month or USD 24,000 a year, and five years. This guide follows the Act and the guidelines.",
+          "sources": [
+            "S1",
+            "S2",
+            "S11",
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Residence through property, and the Golden Visa",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen who buys qualifying property for at least USD 375,000 is eligible for a residence permit. The property must be under the Integrated Resort Scheme, the Real Estate Scheme, the Invest Hotel Scheme, the Property Development Scheme or the Smart City Scheme, or be an apartment in a building of at least two floors above the ground floor. The EDB guidelines say these main holders do not need a work permit or an Occupation Permit. The EDB's page for the Property Development Scheme says the spouse and children below the age of 24 are also granted a residence permit.",
+          "sources": [
+            "S1",
+            "S18",
+            "S19"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "From 1 October 2026 a non-refundable processing fee of USD 50 is payable by the main applicant and by each dependant on these residence permit applications. It is paid by card only at the Cashier's Office of the EDB in Ebene, Monday to Friday from 09:00 to 12:00 and from 13:00 to 14:30. Each application comes with a Residence Permit Application Payment Form.",
+          "sources": [
+            "S17"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Golden Visa opened for applications on NELS on 12 November 2026. It is aimed at high net worth investors and entrepreneurs. The applicant undertakes in writing to invest at least USD 1 million in qualifying sectors within 12 months of the visa being issued.",
+          "sources": [
+            "S15",
+            "S16"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The visa is valid for up to two years, allows multiple entries and can be renewed. It covers the spouse and children.",
+            "There is no processing fee. The EDB guidelines give a processing time of five working days once an application is complete.",
+            "The applicant supplies a business plan, travel and health insurance, proof of accommodation, the written undertaking, and a bank statement from the country of origin showing a balance of at least USD 1 million.",
+            "The initial source of income must be outside Mauritius.",
+            "The EDB screens the application and the PIO issues the visa.",
+            "A holder who has invested USD 1 million within the 12 months, other than in residential property under the EDB property schemes, may apply for a Permanent Residence Permit."
+          ],
+          "sources": [
+            "S2",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Family: dependants and spouses of citizens",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The dependants of a holder of an Occupation Permit or of a retired non-citizen permit can apply for a residence permit. The EDB guidelines define dependants as the spouse, including a common law partner of the opposite sex, the parents, and unmarried dependent children up to the age of 24, including stepchildren and lawfully adopted children. The permit lasts no longer than the main holder's.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The application is submitted on NELS and is decided by the PIO.",
+            "The permit fee is USD 400 for each dependant, paid at the EDB office in Ebene.",
+            "The checklist asks for the birth certificate, the marriage certificate or certificate of cohabitation, the passport, four photographs and a medical certificate. For a child under 12, a medical certificate from a local doctor is enough.",
+            "The dependant must hold a valid tourist visa at the time of application.",
+            "A dependant may not take up paid work. One who wishes to work applies for a work permit or an Occupation Permit."
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The PIO states that a non-citizen who is civilly married to a citizen of Mauritius has the status of a resident. Husband and wife call in person at the PIO to submit the application for a residence permit and to collect it. The permit is free of cost.",
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The form is the Application to Enter Mauritius, filled in and signed by the applicant.",
+            "The citizen brings his or her birth certificate and National Identity Card, and a letter saying whether he or she supports the application and has kept Mauritian citizenship.",
+            "The applicant brings a full birth certificate, the civil marriage certificate, passport copies, two photographs and a recent certificate of character or police clearance, less than six months old, from the country of origin and of residence.",
+            "A birth or marriage certificate issued abroad must be legalised or carry an apostille. Documents not in English or French need an official translation.",
+            "The PIO list for a husband also asks for proof of financial means, such as a recent bank statement from a bank in Mauritius or payslips for the last three months.",
+            "Where the marriage was celebrated outside Mauritius on or after 27 July 2022, the applicant adds an affidavit, sworn before a court in the country of residence, that he or she was not married to anyone else on the date of the marriage.",
+            "Documents are submitted in original with two copies."
+          ],
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The PIO lists the spouse of a citizen of Mauritius, and the children of citizens and residents, among the persons who do not need a visa to enter Mauritius.",
+          "sources": [
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How to apply, what it costs, and staying for good",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Applications for an Occupation Permit, for a residence permit as a retired non-citizen and for their dependants follow the same route. It is called the Approval in Principle route.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Register on NELS at business.edbmauritius.org and submit the application with every document on the checklist. This can be done from abroad.",
+            "Pay the non-refundable application fee of USD 50 by credit or debit card.",
+            "The Occupation Permit Unit and the PIO check the file and ask for anything missing by email or text message.",
+            "A Joint Committee of the EDB and the PIO, chaired by the Prime Minister's Office, assesses the complete application.",
+            "If it is approved, an Approval in Principle email is sent. It is valid for 90 days for a new application and 30 days for a renewal. It is not a visa and not a permit to live or work.",
+            "Travel to Mauritius and complete the medical examination. The EDB says the tests for hepatitis B, HIV and the chest x-ray must be done in Mauritius.",
+            "Upload the remaining documents and pay the permit fee, by card on NELS or at the EDB office in Ebene.",
+            "Attend the appointment with all original documents and a valid visa. The applicant is registered with the EDB and the PIO issues the permit.",
+            "Investors, self-employed persons and retired non-citizens transfer their funds to a bank account in Mauritius within 60 days of the permit being issued."
+          ],
+          "sources": [
+            "S1",
+            "S23",
+            "S25"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Fee",
+            "Amount"
+          ],
+          "rows": [
+            [
+              "Application fee, for each application",
+              "USD 50, non-refundable"
+            ],
+            [
+              "Permit fee: investor, self-employed or retired non-citizen, 10 years",
+              "USD 1,000"
+            ],
+            [
+              "Permit fee: professional, contract of not more than 2 years",
+              "USD 400"
+            ],
+            [
+              "Permit fee: professional, more than 2 and not more than 3 years",
+              "USD 500"
+            ],
+            [
+              "Permit fee: professional, more than 3 and not more than 5 years",
+              "USD 800"
+            ],
+            [
+              "Permit fee: professional, more than 5 and up to 10 years",
+              "USD 1,000"
+            ],
+            [
+              "Short-term Occupation Permit, up to 9 months",
+              "USD 300"
+            ],
+            [
+              "Short-term Occupation Permit, one extension of up to 3 months",
+              "USD 150"
+            ],
+            [
+              "Young Professional Occupation Permit",
+              "USD 150, USD 250 or USD 300 by length"
+            ],
+            [
+              "Each dependant",
+              "USD 400"
+            ],
+            [
+              "Premium Visa and Golden Visa",
+              "No fee"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S3",
+            "S10",
+            "S15"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An applicant who is turned down may appeal once, through NELS, within 30 days of the email. The visa must stay valid while the appeal is decided.",
+            "A renewal is applied for on NELS at least one month before the permit expires.",
+            "A permit is not transferable. If it is lost, the holder asks the PIO in person for a certified copy, with a police memo and a letter. The guidelines say it is granted within 3 working days.",
+            "The EDB, the PIO and the Mauritius Revenue Authority may check that a holder still meets the criteria. A holder who does not may be deregistered and the permit cancelled.",
+            "The PIO main office is at Sterling House, 9-11 Lislet Geoffroy Street, Port Louis. It opens on weekdays from 08:45 to 12:00 and from 12:45 to 16:00, and on Saturdays from 08:45 to 12:00."
+          ],
+          "sources": [
+            "S1",
+            "S27"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Several EDB web pages still carry a line saying that applying on NELS is free of charge. The same pages show a notice of the USD 50 application fee from 1 December 2025, and the guidelines state the fee. This guide follows the notice and the guidelines.",
+          "sources": [
+            "S1",
+            "S8",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Permanent Residence Permit lasts 20 years and is renewable. It is open to a person who has held an Occupation Permit, or a residence permit as a retired non-citizen, for at least 5 years and who meets the test for the category. The spouse, a common law partner of the opposite sex, children and parents are eligible as dependants. An application is made to the Residence Permit Section, Prime Minister's Office (Defence and Home Affairs Division), 4th Floor, New Government Centre, Port Louis.",
+          "sources": [
+            "S1",
+            "S2",
+            "S14"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Category",
+            "Test for a Permanent Residence Permit"
+          ],
+          "rows": [
+            [
+              "Investor",
+              "An Occupation Permit as investor for at least 5 years, with turnover of at least MUR 15 million a year for the 5 years before applying, or MUR 75 million in total over 5 consecutive years"
+            ],
+            [
+              "Professional",
+              "An Occupation Permit as professional, or a valid work permit, for at least 5 years, with a monthly basic salary of at least MUR 400,000 for 5 consecutive years"
+            ],
+            [
+              "Self-employed",
+              "An Occupation Permit as self-employed for at least 5 years, with business income of at least MUR 3 million a year for 5 consecutive years, or MUR 15 million in total over 5 consecutive years"
+            ],
+            [
+              "Retired non-citizen",
+              "A residence permit as retired non-citizen for at least 5 years, with transfers of at least USD 200,000 in total over 5 consecutive years"
+            ],
+            [
+              "Golden Visa holder",
+              "At least USD 1 million invested within 12 months of the visa being issued, in a business activity other than residential property under the EDB property schemes"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S14"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The EDB guidelines add that professionals and self-employed persons should apply no later than 6 months after meeting the test.",
+          "sources": [
+            "S1",
+            "S14"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Guidelines: Occupation Permit (Investor, Professional, Self-Employed) and Residence Permit (Retired Non-Citizen)",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/OP-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Undated; file last modified 8 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Economic Development Board Act (Act 11 of 2017), consolidated text",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/EDB-Act-2026.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Amendments noted up to Act 13 of 2026, in operation 13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Mauritius Premium Visa",
+      "url": "https://residency.mu/live/mauritius-premium-visa/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Stay in Mauritius under Premium Visa: FAQs",
+      "url": "https://edbmauritius.org/wp-content/uploads/2023/12/FAQs-Premium-Visa.pdf",
+      "publisher": "Economic Development Board",
+      "published": "File dated 27 November 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Premium Visa Checklist",
+      "url": "https://residency.mu/wp-content/uploads/2022/04/Checklist-Premium-Visa.pdf",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Premium Visa",
+      "url": "https://passport.govmu.org/passport/?page_id=595",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Occupation Permit",
+      "url": "https://passport.govmu.org/passport/?page_id=626",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Professional: employed in Mauritius by a multinational or a local company",
+      "url": "https://residency.mu/work/professional-employed-in-mauritius-by-a-multinational-or-a-local-company/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Young Professional Occupation Permit (YPOP)",
+      "url": "https://residency.mu/work/young-professional-occupation-permit-ypop/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Guideline: Young Professional Occupation Permit",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/Guideline-for-Young-Professional-OP.pdf",
+      "publisher": "Economic Development Board",
+      "published": "August 2025; file last modified 8 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Retired Non-Citizen +50 years",
+      "url": "https://residency.mu/retire/retired-non-citizen-50-years/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Retire in Mauritius, with FAQ",
+      "url": "https://residency.mu/retire/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Senior Living Residence",
+      "url": "https://residency.mu/retire/senior-living-residence/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Permanent Residence Permit (PRP)",
+      "url": "https://residency.mu/live/permanent-residence-permit-prp/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Golden Visa Scheme Mauritius: Guidelines",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/Golden-Visa-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Mauritius Golden Visa: Now Live on NELS",
+      "url": "https://edbmauritius.org/newsroom/mauritius-golden-visa-now-live-on-nels",
+      "publisher": "Economic Development Board",
+      "published": "12 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Communique: Processing fees for residence permit application",
+      "url": "https://edbmauritius.org/newsroom/communique-processing-fees-for-residence-permit-application",
+      "publisher": "Economic Development Board",
+      "published": "4 November 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Ground + 2 Apartments",
+      "url": "https://residency.mu/acquire/ground-2-appartments/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Property Development Scheme",
+      "url": "https://residency.mu/acquire/property-development-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Residence Permit as Spouse for Mauritius Citizen",
+      "url": "https://passport.govmu.org/passport/?page_id=562",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Visa Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=605",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Residence Permit for Employment",
+      "url": "https://passport.govmu.org/passport/?page_id=557",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Application Process",
+      "url": "https://residency.mu/wp-content/uploads/2021/07/Application-Process-revised.pdf",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Passport and Immigration Office: home page",
+      "url": "https://passport.govmu.org/passport/",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Health Care, with the list of medical tests for non-citizens",
+      "url": "https://residency.mu/practical-information/health/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Mauritian Diaspora Scheme",
+      "url": "https://residency.mu/work/mauritian-diaspora/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Contact Us",
+      "url": "https://passport.govmu.org/passport/?page_id=399",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "What's New in Occupation and Residence Permits",
+      "url": "https://edbmauritius.org/newsletter-august-2026-op",
+      "publisher": "Economic Development Board",
+      "published": "EDB Monthly Newsletter, August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Extension of Visa",
+      "url": "https://passport.govmu.org/passport/?page_id=593",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Residency in Mauritius",
+      "url": "https://residency.mu/",
+      "publisher": "Economic Development Board",
+      "what": "Start here. The EDB's pages on living, working, investing and retiring in Mauritius."
+    },
+    {
+      "title": "Mauritius Premium Visa",
+      "url": "https://residency.mu/live/mauritius-premium-visa/",
+      "publisher": "Economic Development Board",
+      "what": "Read the conditions, see the list of countries and reach the online application."
+    },
+    {
+      "title": "Premium Visa Checklist",
+      "url": "https://residency.mu/wp-content/uploads/2022/04/Checklist-Premium-Visa.pdf",
+      "publisher": "Economic Development Board",
+      "what": "See the documents to upload for a first application and for a renewal."
+    },
+    {
+      "title": "National Electronic Licensing System (NELS)",
+      "url": "https://business.edbmauritius.org/",
+      "publisher": "Economic Development Board",
+      "what": "Register and apply online for an Occupation Permit, a retired non-citizen permit or a Golden Visa."
+    },
+    {
+      "title": "Guidelines for the Occupation Permit and the retired non-citizen permit",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/OP-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Read the criteria, checklists, fees and forms for each category, and for dependants."
+    },
+    {
+      "title": "Professional: employed in Mauritius",
+      "url": "https://residency.mu/work/professional-employed-in-mauritius-by-a-multinational-or-a-local-company/",
+      "publisher": "Economic Development Board",
+      "what": "See what an employer must submit for a professional's Occupation Permit."
+    },
+    {
+      "title": "Young Professional Occupation Permit",
+      "url": "https://residency.mu/work/young-professional-occupation-permit-ypop/",
+      "publisher": "Economic Development Board",
+      "what": "Read the criteria and download the guideline and the employer's undertaking form."
+    },
+    {
+      "title": "Retired Non-Citizen +50 years",
+      "url": "https://residency.mu/retire/retired-non-citizen-50-years/",
+      "publisher": "Economic Development Board",
+      "what": "Read the conditions and the list of documents for the retirement permit."
+    },
+    {
+      "title": "Golden Visa Guidelines",
+      "url": "https://edbmauritius.org/wp-content/uploads/2026/08/Golden-Visa-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "what": "Read the conditions, qualifying sectors and checklist for the Golden Visa."
+    },
+    {
+      "title": "Permanent Residence Permit",
+      "url": "https://residency.mu/live/permanent-residence-permit-prp/",
+      "publisher": "Economic Development Board",
+      "what": "See the test for each category and download the application forms for the Prime Minister's Office."
+    },
+    {
+      "title": "Residence Permit as Spouse for Mauritius Citizen",
+      "url": "https://passport.govmu.org/passport/?page_id=562",
+      "publisher": "Passport and Immigration Office",
+      "what": "See the documents a husband or wife of a citizen must bring, and the form to fill in."
+    },
+    {
+      "title": "Visa Requirements",
+      "url": "https://passport.govmu.org/passport/?page_id=605",
+      "publisher": "Passport and Immigration Office",
+      "what": "Check who needs a visa, the kinds of visa and the country list."
+    },
+    {
+      "title": "Extension of Visa",
+      "url": "https://passport.govmu.org/passport/?page_id=593",
+      "publisher": "Passport and Immigration Office",
+      "what": "See the documents to bring when asking to extend a visa."
+    },
+    {
+      "title": "Passport and Immigration Office: contact",
+      "url": "https://passport.govmu.org/passport/?page_id=399",
+      "publisher": "Passport and Immigration Office",
+      "what": "Find the address, the opening hours and the telephone numbers of each section."
+    },
+    {
+      "title": "Invest in or move a business to Mauritius as a non-citizen",
+      "url": "/learn/invest-from-abroad",
+      "publisher": "biznes.mu",
+      "what": "Our business guide. It covers the Occupation Permit for investors and employers, the work permit route and property duties in more detail."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the first weeks: a bank account, a driving licence, healthcare, schools, a home and tax."
+    }
+  ],
+  "unverified": [
+    "Whether the Premium Visa income figures of USD 1,500 a month for each adult and USD 500 for each child still apply. They are in the EDB's FAQ dated November 2023. The current checklist asks for proof of monthly income and gives no amount.",
+    "Whether the minimum salary of MUR 25,000 for a Young Professional Occupation Permit still applies after the changes of 13 August 2026. It is in the EDB guideline of August 2025 and on the EDB page, but the First Schedule to the Economic Development Board Act names no salary.",
+    "Whether the Young Professional Occupation Permit is limited to the six sectors named on the PIO page. The EDB guideline does not list them.",
+    "The EDB's general page on working in Mauritius says graduates may apply for an Occupation Permit of up to 10 years. Its page and guideline for the Young Professional permit say 3 years. The reason for the difference was not found.",
+    "Fees for a Permanent Residence Permit. A list of fees collected at police cash offices, dated June 2022, shows Rs 75,000 for the main applicant and Rs 50,000 for each dependant. No current official figure was found, so none is stated in the guide.",
+    "How long an application for an Occupation Permit, a retired non-citizen permit or a Premium Visa takes. No processing time is stated on the pages read.",
+    "Which nationalities receive a tourist visa on arrival and which must apply before travelling. The PIO's country list was not opened.",
+    "The 'Long Stay Visa' named on the EDB's page on living in Mauritius, said to run for 10 years for the owner of an apartment. The page it links to had no text on 20 November 2026.",
+    "How long the residence permit of a citizen's spouse lasts, and how long the PIO takes to issue it. Neither is on the PIO page.",
+    "The permit to study in Mauritius. The PIO's guidelines page for student permits showed no text on 20 November 2026.",
+    "The benefits of the Mauritian Diaspora Scheme. Only the way to apply was read.",
+    "The tax position of Premium Visa and Golden Visa holders. The guide reports what the EDB says and has not checked it against the Income Tax Act or the Mauritius Revenue Authority."
+  ]
+}

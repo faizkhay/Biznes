@@ -1,0 +1,1053 @@
+{
+  "slug": "household-bills-and-services",
+  "shelf": "everyday",
+  "title": "Bills and services at home: electricity, water, waste, tax",
+  "summary": "How a household in Mauritius opens its electricity and water accounts, pays the bills, connects to the sewer, has its refuse collected and files the yearly income tax return, and where to turn when a public service lets you down. Each part reports what the body concerned said on its own site on 20 November 2026. It is general information, not legal or tax advice.",
+  "audience": "People who run a home in Mauritius, as owners or tenants, including newcomers setting up for the first time.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "New electricity connection",
+      "value": "Rs 750 for a single-phase supply",
+      "detail": "Paid with a security deposit before connection. Rs 1,500 or Rs 3,000 for a three-phase supply. The Central Electricity Board says its fees can be revised.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Time to connect electricity",
+      "value": "Within 10 working days of payment",
+      "detail": "The first inspection is within 5 working days of the application. Both are the Board's stated service times.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Electricity bill paid late",
+      "value": "5% surcharge",
+      "detail": "On the current amount, where payment is made after the due date on the bill.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "Reconnection after non-payment",
+      "value": "Rs 450",
+      "detail": "With all outstanding bills, within fifteen days. After that the account is closed.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Power cut or electrical emergency",
+      "value": "Dial 130",
+      "detail": "The Central Electricity Board's fault line, open 24 hours a day, 7 days a week.",
+      "sources": [
+        "S5"
+      ]
+    },
+    {
+      "label": "New domestic water supply",
+      "value": "Rs 500 processing fee and Rs 2,200 installation fee",
+      "detail": "The processing fee is not refunded.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "Water charge, up to 10 cubic metres a month",
+      "value": "Rs 45",
+      "detail": "Domestic tariff. Free for the first 6 cubic metres for consumers on the Social Register of Mauritius.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "No water, a leak or a water complaint",
+      "value": "Dial 170",
+      "detail": "The Central Water Authority hotline.",
+      "sources": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "label": "Wastewater charge, up to 10 cubic metres a month",
+      "value": "Rs 55",
+      "detail": "For a home connected to the sewer. Charges are worked out on the volume of water used.",
+      "sources": [
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "label": "First sewer connection for a house",
+      "value": "Free, up to a ceiling",
+      "detail": "The ceiling is set by Government under the Free House Connection Policy. Extra work is paid for by the applicant.",
+      "sources": [
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "label": "Individual income tax return",
+      "value": "Due by 15 October",
+      "detail": "Filed and paid electronically. For the income year ended 30 June 2026 the date was Thursday 15 October 2026.",
+      "sources": [
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "label": "Late tax return",
+      "value": "Rs 2,000 a month, up to Rs 5,000 for an individual not in business",
+      "detail": "The general maximum is Rs 20,000. Late payment adds a penalty and interest.",
+      "sources": [
+        "S24"
+      ]
+    },
+    {
+      "label": "Complaint to the Ombudsman",
+      "value": "Free, in writing, within 12 months",
+      "detail": "An office of last resort, for maladministration by a ministry, department or local authority.",
+      "sources": [
+        "S30"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Electricity: opening an account with the CEB",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Electricity is supplied by the Central Electricity Board (CEB), a parastatal body owned by the Government and working under the Ministry of Energy and Public Utilities. To open an electricity account for a home, an application is made in person or in writing at a CEB Customer Service Centre, with the documents below.",
+          "sources": [
+            "S1",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The applicant's National Identity Card or passport.",
+            "A copy of the title deed of the property, or of the lease agreement for a resident on State land, or of the transcription where the land has been transcribed to the applicant.",
+            "For a tenant: a letter of authorisation from the landlord, with a copy of the landlord's National Identity Card and title deed.",
+            "The Building and Land Use Permit for the premises, where it applies.",
+            "A list of the electrical appliances to be connected, in watts or kilowatts."
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Apply at a Customer Service Centre. A new customer is given a Business Partner number, to be quoted in every later contact.",
+            "A Technical Officer visits the site. Where the low voltage network is available, the officer says what work the applicant's own qualified electrician must do. A Residual Current Device is mandatory.",
+            "Tell the CEB when the work is finished. The officer visits again to check it.",
+            "Pay the connection fee and the security deposit.",
+            "The CEB's stated service time is a first inspection within 5 working days of the application and connection within 10 working days of payment.",
+            "The first bill arrives about two months after connection."
+          ],
+          "sources": [
+            "S3",
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Charge",
+            "Amount"
+          ],
+          "rows": [
+            [
+              "Connection of a new supply, single-phase",
+              "Rs 750"
+            ],
+            [
+              "Connection of a new supply, three-phase without current transformers",
+              "Rs 1,500"
+            ],
+            [
+              "Connection of a new supply, three-phase with current transformers",
+              "Rs 3,000"
+            ],
+            [
+              "Security deposit, domestic Tariff 110",
+              "Rs 200"
+            ],
+            [
+              "Security deposit, domestic Tariff 120 and Tariff 140",
+              "Rs 600 and Rs 1,200"
+            ],
+            [
+              "Reconnection after disconnection for non-payment",
+              "Rs 450"
+            ]
+          ],
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Electricity accounts cannot be transferred from one name to another. The present holder asks for the account to be closed, and the new occupier applies afresh with a rental or lease agreement or the deed of sale.",
+            "The CEB advises a customer who moves out to close the account, so that a new occupier does not use electricity on it. It accepts no liability where the holder leaves without closing it.",
+            "It advises landlords to authorise tenants to open an account in the tenant's own name. A landlord who keeps the account is liable for unpaid bills.",
+            "A minimum charge is payable even when the home is empty. A customer away for a long time who does not wish to pay it can close the account and apply again on return, with a new connection fee and deposit.",
+            "Where there is no low voltage network at the site, the applicant pays for the extension. The CEB describes ways of spreading or sharing that cost for domestic consumers, on conditions."
+          ],
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Electricity bills: tariffs, paying and faults",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The CEB publishes its consumption charges on its customer information page. The domestic rates there took effect on 1 May 2026 and rise by tiers of monthly use. The minimum monthly charge is Rs 31.00 on the residential social Tariff 110A, Rs 50.60 on Tariff 110, Rs 211.60 on Tariff 120 and Rs 424.35 on Tariff 140.",
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Way to pay",
+            "What the CEB says"
+          ],
+          "rows": [
+            [
+              "CEB cash offices",
+              "Cash, debit or credit card, or cheque. Avoid the peak period from the 29th to the 3rd of the month"
+            ],
+            [
+              "Other counters",
+              "Central Water Authority offices at St Paul and Port Louis, and post offices. Bring the current bill"
+            ],
+            [
+              "By post",
+              "A cheque with the bill, to the Customer Service Officer (Collections), Central Electricity Board, Royal Road, Curepipe"
+            ],
+            [
+              "Online with the CEB",
+              "CEB Quick Payment with the account number, the CEB Customer Portal, or the MoKouran mobile app"
+            ],
+            [
+              "Bank",
+              "Direct debit on the date stated on the bill, and internet banking or ATMs at selected banks"
+            ],
+            [
+              "Mobile apps and wallets",
+              "MCB Juice, my.t money, blink by Emtel and POP by Bank One"
+            ]
+          ],
+          "sources": [
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A bill paid after its due date carries a surcharge of 5% on the current amount.",
+            "Domestic customers on Tariffs 110 and 110A who receive a basic retirement pension have 14 more days to pay. The account must be in the pensioner's name and the pension card is shown to the cashier.",
+            "Unpaid balances from earlier bills are payable at once. If they are not paid, the supply may be disconnected without further notice.",
+            "After a disconnection for non-payment the customer pays a processing fee of Rs 450 and all outstanding bills within fifteen days. After that the account is closed and a new application is needed. The CEB asks for arrears to be settled at its own cash offices to avoid delay.",
+            "The television licence fee of the Mauritius Broadcasting Corporation is collected on the electricity bill. The CEB's FAQ gives Rs 150 a month, nothing where the home used no more than 396 kilowatt hours in the preceding year, and Rs 25 a month in Rodrigues.",
+            "A customer who has not received the month's statement by the planned reading date should contact a Customer Service Centre."
+          ],
+          "sources": [
+            "S3",
+            "S5"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "In a power cut, the CEB says to check first whether the Residual Current Device has tripped. If it has not, dial 130. The line takes reports of faults and emergencies 24 hours a day, 7 days a week. The CEB's stated time to restore supply is within 24 hours, depending on the fault and leaving aside cyclones, floods and storms.",
+          "sources": [
+            "S5",
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Water: a new supply and the bill",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Water is supplied by the Central Water Authority (CWA). An application for a new supply is made at a CWA Customer Care Office or by email with the documents attached. The offices are at St Paul, Rose Hill, Mahebourg, Souillac, Rose Belle, Flacq, Pamplemousses and the Mutual Aid Building in Port Louis.",
+          "sources": [
+            "S9",
+            "S13"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The title deed, in copy and original. The original is returned after checking.",
+            "A copy of the applicant's National Identity Card.",
+            "Two copies of the site or location plan.",
+            "The Building and Land Use Permit, if it applies.",
+            "Where the applicant is not the owner: a letter of authorisation from the owner and the owner's identity card. A tenant adds the rent book.",
+            "Where the property is inherited: a letter of authorisation from the heirs with copies of their identity cards, and a death certificate or affidavit.",
+            "A non-refundable processing fee of Rs 500, and Rs 2,200 as installation fees."
+          ],
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Domestic use in a month",
+            "Water charge"
+          ],
+          "rows": [
+            [
+              "Consumers on the Social Register of Mauritius: 0 to 6 cubic metres",
+              "Free"
+            ],
+            [
+              "Consumers on the Social Register of Mauritius: 7 to 10 cubic metres",
+              "Rs 45.00"
+            ],
+            [
+              "All other consumers: up to 10 cubic metres",
+              "Rs 45.00"
+            ],
+            [
+              "Above 10 cubic metres: the first 10",
+              "Rs 6.00 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 11 to 20",
+              "Rs 8.00 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 21 to 50",
+              "Rs 17.00 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 51 or more",
+              "Rs 32.00 a cubic metre"
+            ],
+            [
+              "Home with a swimming pool using more than 50 cubic metres a month",
+              "A swimming pool fee of Rs 500"
+            ]
+          ],
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pay online at pay.cwa.mu or by scanning the QR code on the CWA site.",
+            "Pay by cash or card at a CWA cash office, from 08:45 to 15:15: Mutual Aid Building in Port Louis, Souillac, Pamplemousses, Mahebourg, Flacq, Rose Hill, Rose Belle and St Paul.",
+            "Pay at a post office, or at the CEB offices at La Mivoie, Helvetia and Bramsthan.",
+            "Pay by direct debit, after registering with the bank, or through SBM Bill Pay, MCB internet banking or Juice, my.t money or Emtel mobile cash.",
+            "The account number is the nine digit Customer Account Number at the top of the bill.",
+            "A customer who has trouble paying can call 601 5000 or the hotline 170 to arrange payment."
+          ],
+          "sources": [
+            "S10",
+            "S13"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Other request",
+            "What the CWA asks"
+          ],
+          "rows": [
+            [
+              "Transfer of the account to a new name",
+              "In person, with the title deed, a letter of authorisation from the previous owner, a copy of that owner's identity card and the CWA bill. Arrears must be cleared. An administration fee of Rs 200 is charged"
+            ],
+            [
+              "Meter test",
+              "A copy of the identity card and the latest bill, and a fee of Rs 500. The fee is refunded and the meter changed if the meter is found to be faulty"
+            ],
+            [
+              "Stopping the supply for a time",
+              "An application at a Customer Care Centre or online. All arrears must be cleared first"
+            ],
+            [
+              "Reopening the supply",
+              "A fee of Rs 550 at the meter, Rs 2,000 at the road reserve or Rs 2,750 at the main"
+            ],
+            [
+              "Change in the number of living quarters, or from domestic to business use",
+              "An application at a Customer Care Centre or online"
+            ]
+          ],
+          "sources": [
+            "S9",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The CWA says repairing leaks after the water meter is the consumer's responsibility. For no water or a leak in the street, it gives the hotline 170, and a mobile application called Korek for reporting leaks.",
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Wastewater: the sewer connection and its charges",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Wastewater Management Authority (WMA) is the body responsible for the wastewater sector. It connects homes in sewered areas to the network after a survey shows that the connection is feasible. The application is made in the name of the holder of the CWA bill, on the WMA's form.",
+          "sources": [
+            "S14",
+            "S18"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The applicant's National Identity Card, the title deed, a location plan and a CWA bill.",
+            "The building permit, if it applies.",
+            "Permission from the owner where the applicant is not the owner, and from a neighbour or for the use of a common access where the pipe must cross them.",
+            "A first application for a house connection is free of charge, up to a ceiling approved by Government. Work beyond that limit is paid for by the applicant.",
+            "The applicant clears the site, shows the boundary lines to the contractor and pays for any reinstatement of concrete, tiles or asphalt.",
+            "All wastewater outlets are connected: toilet, bathroom, kitchen and laundry. Rainwater from roofs and yards must not be connected to the sewer.",
+            "Billing starts on the date a WMA representative certifies that the connection works."
+          ],
+          "sources": [
+            "S14",
+            "S16"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Water used in a month by a home on the sewer",
+            "Wastewater fee"
+          ],
+          "rows": [
+            [
+              "Consumer on the Social Register of Mauritius, not more than 6 cubic metres",
+              "No charge"
+            ],
+            [
+              "First 10 cubic metres or less",
+              "Rs 55.00"
+            ],
+            [
+              "Above 10 cubic metres: the first 10",
+              "Rs 7.50 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 11 to 20",
+              "Rs 9.00 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 21 to 50",
+              "Rs 20.00 a cubic metre"
+            ],
+            [
+              "Above 10 cubic metres: 51 or more",
+              "Rs 45.00 a cubic metre"
+            ]
+          ],
+          "sources": [
+            "S15"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The WMA attends to blockages in the public sewer.",
+            "For queries and complaints its Customer Care Unit answers on 206 3000 during office hours, from 08:45 to 16:00. Its hotline is 800 1300.",
+            "A household that is connected to the public sewer but is not being billed should contact the WMA without delay, at The Celicourt, Sir Celicourt Antelme Street, Port Louis.",
+            "The WMA also issues the clearance a notary needs for the sale of a property, and permits for private wastewater carriers."
+          ],
+          "sources": [
+            "S16",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Refuse collection and the local council",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Household refuse is collected by the local authority. Under section 50 of the Local Government Act 2011, a municipal council or district council is responsible, within its area and its means, for the collection and conveyance of waste to disposal sites or waste management facilities. The Ministry of Local Government lists scavenging services among the services that local authorities provide.",
+          "sources": [
+            "S19",
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The local authorities are one Municipal City Council, four Municipal Councils, seven District Councils and 130 Village Councils.",
+            "The Ministry says the same councils provide street lighting, build and maintain roads, drains and public spaces, run markets and fairs, and maintain cemeteries and cremation grounds.",
+            "A council is also responsible for removing dead animals from public places and roads, and for controlling pollution that causes a public or private nuisance.",
+            "The Ministry of Local Government is responsible for enforcing the conveyance of municipal solid waste.",
+            "Questions about collection days are for the council of the town or district where the home is."
+          ],
+          "sources": [
+            "S19",
+            "S20"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The yearly income tax return",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The income year runs from 1 July to 30 June. The Mauritius Revenue Authority (MRA) says a standard tax return must be submitted by every individual who, during the income year, falls in one of the cases below. The Income Tax Act sets the same tests.",
+          "sources": [
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Net income of more than Rs 500,000.",
+            "Gross income from business of more than Rs 2 million.",
+            "Emoluments from which tax was withheld under the Pay As You Earn (PAYE) system.",
+            "Income that was subject to tax deduction at source.",
+            "A chargeable income."
+          ],
+          "sources": [
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A self-employed person who does not have to submit a standard return submits a simplified return.",
+            "The return is submitted electronically, and any tax paid, no later than 15 October after the income year. For the income year ended 30 June 2026 the due date was Thursday 15 October 2026.",
+            "Taxpayers log in on the MRA website with their User ID (NID, NCID or TAN) and a password. The MRA's page for individuals has links to apply for a Tax Account Number and to retrieve a number or a password.",
+            "A person who had to file for one year keeps filing every year, unless the Director-General of the MRA agrees in writing to waive it.",
+            "An employee who wants reliefs and deductions counted in the tax withheld from pay submits an Employee Declaration Form electronically, through the MRA website, at the beginning of each financial year.",
+            "Where the tax withheld under PAYE is more than the tax due on the return, the MRA refunds the excess to the employee's bank account after its checks.",
+            "For help, the MRA offers an appointment by WhatsApp video call, booked on its website, a virtual assistant called MyRA, and a helpdesk on 207 6000 during working hours."
+          ],
+          "sources": [
+            "S21",
+            "S22",
+            "S25",
+            "S26",
+            "S27"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Chargeable income",
+            "Rate in the First Schedule to the Income Tax Act"
+          ],
+          "rows": [
+            [
+              "First Rs 500,000",
+              "0%"
+            ],
+            [
+              "Next Rs 500,000",
+              "10%"
+            ],
+            [
+              "Next Rs 11 million",
+              "20%"
+            ],
+            [
+              "Remainder",
+              "35%"
+            ]
+          ],
+          "sources": [
+            "S22"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Default",
+            "Penalty or interest"
+          ],
+          "rows": [
+            [
+              "Return submitted late",
+              "Rs 2,000 a month until it is submitted, up to Rs 20,000. The maximum is Rs 5,000 for an individual who is not in business"
+            ],
+            [
+              "Tax paid late",
+              "2.5% of the tax payable. The rate is 1% for an individual who is not in business"
+            ],
+            [
+              "Interest on tax paid late",
+              "0.25% on the unpaid balance for each month or part of a month"
+            ]
+          ],
+          "sources": [
+            "S24"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Official pages do not all agree. On 20 November 2026 the MRA web page on the obligation to file showed three tax bands, ending at 20%, and its guide for new employees, dated December 2025, gave a filing threshold of Rs 390,000. The Income Tax Act as consolidated up to the Finance Act 2026, and the MRA communiqué of 28 August 2026, give the figures used here. Our business taxes guide explains which income year each band applies to.",
+          "sources": [
+            "S21",
+            "S22",
+            "S23",
+            "S26"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When something goes wrong: complaints and citizen support",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Matter",
+            "First step",
+            "If that does not settle it"
+          ],
+          "rows": [
+            [
+              "Electricity",
+              "Phone, write to or visit a CEB customer centre. The CEB acknowledges an enquiry or complaint within five working days",
+              "After 30 days, the Senior Customer Services Officer, Royal Road, Curepipe, on 601 1100. After a further 25 days without feedback, an appointment with the Customer Services Manager at the Corporate Office in Ebene, on 404 2000"
+            ],
+            [
+              "Water",
+              "The CWA hotline 170, a Customer Care Centre, WhatsApp on 55 00 00 25 or the complaint form on its site",
+              "A letter to the General Manager, 150 Royal Road, St Paul, Phoenix"
+            ],
+            [
+              "Wastewater",
+              "The WMA Customer Care Unit on 206 3000, the hotline 800 1300 or the complaint form on its site",
+              "Not stated on the WMA page"
+            ],
+            [
+              "Tax",
+              "The MRA's online complaint system, for a complaint about staff or the quality of service",
+              "A letter to, or a visit at, the Internal Affairs Division, Level 7, Belfort Tower, Port Louis, or a call on 207 5011"
+            ],
+            [
+              "Any public service",
+              "The Citizen Support Portal, to send a request, a concern or an idea to the Government and follow it up online",
+              "The Office of the Ombudsman, once the authority concerned has had the chance to reply"
+            ]
+          ],
+          "sources": [
+            "S6",
+            "S12",
+            "S17",
+            "S28",
+            "S29",
+            "S30"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Citizen Support Portal says the Citizen Support Unit of the Prime Minister's Office forwards requests to the ministries, departments, parastatal bodies and local authorities concerned, and follows them up with the person. A request can be filed and checked online. A person who cannot use the site can go to the nearest Citizens Advice Bureau, where an officer files the request with them.",
+          "sources": [
+            "S29"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Ombudsman looks into a personal injustice caused by maladministration by a ministry or department, a local authority, the Rodrigues Regional Assembly, the Police Force or the Prison Service. Examples are a wrong decision, a failure to act and unreasonable delay.",
+            "First report the matter to the authority concerned and wait 5 working days for a reply. The Ombudsman calls itself an office of last resort.",
+            "A complaint is made in writing: by letter, by the online complaint form or by email. Complaints are not taken by telephone.",
+            "The time limit is 12 months from the date the cause arose, unless there is reasonable cause for the delay.",
+            "The service is free. An acknowledgement is sent within 5 working days.",
+            "The office is on the 2nd Floor of the City Centre Building, at the corner of Corderie and Leoville L'Homme streets in Port Louis. It opens Monday to Friday from 09:00 to 16:00. The reception answers on 260 0111.",
+            "The Ombudsman does not deal with private companies or individuals. Complaints against banks and insurance companies go to the Ombudsperson for Financial Services."
+          ],
+          "sources": [
+            "S30"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Residential Supply",
+      "url": "https://ceb.mu/customer-corner/residential-supply",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Your Residential Supply Checklist",
+      "url": "https://ceb.mu/files/files/check_list_residential.pdf",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Customer Corner: Frequently Asked Questions",
+      "url": "https://ceb.mu/customer-corner/frequently-asked-questions",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Paying Your Bill",
+      "url": "https://ceb.mu/customer-corner/paying-your-bill",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Customer Information: consumption charges as from 1 May 2026 and billing information",
+      "url": "https://ceb.mu/customer-corner/customer-information",
+      "publisher": "Central Electricity Board",
+      "published": "Charges as from 1 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Complaints and Enquiries",
+      "url": "https://ceb.mu/customer-corner/complaints-and-enquiries",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Expected Service Delivery",
+      "url": "https://ceb.mu/customer-corner/expected-service-delivery",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Central Electricity Board: home page",
+      "url": "https://ceb.mu/",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "My Applications",
+      "url": "https://cwa.govmu.org/cwa/?page_id=743",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Pay My Bills",
+      "url": "https://cwa.govmu.org/cwa/?page_id=789",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Tariffs and Charges",
+      "url": "https://cwa.govmu.org/cwa/?page_id=794",
+      "publisher": "Central Water Authority",
+      "published": "Cites Government Notice No. 22 of 2026 for the domestic tariff",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Complaints",
+      "url": "https://cwa.govmu.org/cwa/?page_id=803",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "FAQs",
+      "url": "https://cwa.govmu.org/cwa/?page_id=874",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Sewer Connection: Domestic",
+      "url": "https://www.wmamauritius.mu/house-connection/",
+      "publisher": "Wastewater Management Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Wastewater Fees, Rates and Connection Charges",
+      "url": "https://www.wmamauritius.mu/wastewater-fees-rates/",
+      "publisher": "Wastewater Management Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "FAQ",
+      "url": "https://www.wmamauritius.mu/faq/",
+      "publisher": "Wastewater Management Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Customer Service",
+      "url": "https://www.wmamauritius.mu/customer-service/",
+      "publisher": "Wastewater Management Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Wastewater Management Authority: home page",
+      "url": "https://www.wmamauritius.mu/",
+      "publisher": "Wastewater Management Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Purpose, Functions and Powers of Local Authorities (sections 49 to 52 of the Local Government Act 2011)",
+      "url": "https://localgovernment.govmu.org/Pages/Purpose-%2C-Funtions-%26-Powers-of-Local-Authorities.aspx",
+      "publisher": "Ministry of Local Government",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "About the Ministry",
+      "url": "https://localgovernment.govmu.org/Pages/TheMinistry.aspx",
+      "publisher": "Ministry of Local Government",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Communiqué: Individual Income Tax Returns, e-Filing Season 2026",
+      "url": "https://www.mra.mu/download/ComFilng280826.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Obligation to file a return",
+      "url": "https://www.mra.mu/index.php/individuals/obligation-to-file-a-return",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Penalty and Interest",
+      "url": "https://www.mra.mu/index.php/individuals/penalty-interest",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Individual: eServices",
+      "url": "https://www.mra.mu/index.php/eservices1/individual",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Guide on Income Tax: Employees Taking Up Employment for the First Time",
+      "url": "https://www.mra.mu/download/EmploymentGuide.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Calendar for July to December 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Feedback and Complaint",
+      "url": "https://www.mra.mu/index.php/feedback-complaint",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Citizen Support Portal",
+      "url": "https://www.csu.mu/",
+      "publisher": "Citizen Support Unit, Prime Minister's Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "FAQs",
+      "url": "https://ombudsman.govmu.org/Pages/faq.aspx",
+      "publisher": "Office of the Ombudsman",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "CEB: Residential Supply",
+      "url": "https://ceb.mu/customer-corner/residential-supply",
+      "publisher": "Central Electricity Board",
+      "what": "See the documents for a home electricity account and download the checklist."
+    },
+    {
+      "title": "CEB: Paying Your Bill",
+      "url": "https://ceb.mu/customer-corner/paying-your-bill",
+      "publisher": "Central Electricity Board",
+      "what": "Choose a way to pay and reach the online payment pages."
+    },
+    {
+      "title": "CEB Customer Portal",
+      "url": "https://csp.ceb.mu/",
+      "publisher": "Central Electricity Board",
+      "what": "Register to pay online, check consumption and see your balance."
+    },
+    {
+      "title": "CEB: Customer Information",
+      "url": "https://ceb.mu/customer-corner/customer-information",
+      "publisher": "Central Electricity Board",
+      "what": "Read the current tariffs, the minimum charges and the billing rules."
+    },
+    {
+      "title": "CEB: offices and telephone numbers",
+      "url": "https://ceb.mu/contact-us",
+      "publisher": "Central Electricity Board",
+      "what": "Find the CEB office for your area."
+    },
+    {
+      "title": "CWA: My Applications",
+      "url": "https://cwa.govmu.org/cwa/?page_id=743",
+      "publisher": "Central Water Authority",
+      "what": "See the documents and fees for a new supply, a transfer of name or a meter test, and download the forms."
+    },
+    {
+      "title": "CWA: Pay My Bills",
+      "url": "https://cwa.govmu.org/cwa/?page_id=789",
+      "publisher": "Central Water Authority",
+      "what": "Pay a water bill online or find a counter."
+    },
+    {
+      "title": "CWA: Tariffs and Charges",
+      "url": "https://cwa.govmu.org/cwa/?page_id=794",
+      "publisher": "Central Water Authority",
+      "what": "Check how a water bill is worked out, with the regulations behind each tariff."
+    },
+    {
+      "title": "WMA: Sewer Connection for a home",
+      "url": "https://www.wmamauritius.mu/house-connection/",
+      "publisher": "Wastewater Management Authority",
+      "what": "Read the terms and apply online for a house connection."
+    },
+    {
+      "title": "WMA: Customer Service",
+      "url": "https://www.wmamauritius.mu/customer-service/",
+      "publisher": "Wastewater Management Authority",
+      "what": "Report a blockage or make a complaint."
+    },
+    {
+      "title": "Ministry of Local Government",
+      "url": "https://localgovernment.govmu.org/",
+      "publisher": "Ministry of Local Government",
+      "what": "Read what the municipal, district and village councils are responsible for."
+    },
+    {
+      "title": "MRA: individual tax portal and services",
+      "url": "https://www.mra.mu/index.php/eservices1/individual",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "File the yearly return, apply for a Tax Account Number or book an appointment."
+    },
+    {
+      "title": "MRA Tax Calendar",
+      "url": "https://www.mra.mu/index.php/important-dates",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Check this year's due dates."
+    },
+    {
+      "title": "Citizen Support Portal",
+      "url": "https://www.csu.mu/",
+      "publisher": "Citizen Support Unit, Prime Minister's Office",
+      "what": "Send a request or a complaint about a public service and follow it up."
+    },
+    {
+      "title": "Office of the Ombudsman: complaint form",
+      "url": "https://ombudsman.govmu.org/Pages/complaint.aspx",
+      "publisher": "Office of the Ombudsman",
+      "what": "Lodge a complaint about maladministration, after the authority has had its chance to reply."
+    },
+    {
+      "title": "Business taxes in Mauritius",
+      "url": "/learn/business-taxes",
+      "publisher": "biznes.mu",
+      "what": "Our guide for people with business income, with the tax bands year by year."
+    },
+    {
+      "title": "Everyday paperwork: ID card, passport, certificates, licences",
+      "url": "/learn/everyday-paperwork-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the documents these offices ask for."
+    }
+  ],
+  "unverified": [
+    "The security deposit for a three-phase domestic supply. The CEB table is laid out in a way that leaves it unclear which figure goes with which supply. The guide gives the figures by tariff as they appear.",
+    "The CEB's tariff for each tier of consumption. The rates in force from 1 May 2026 are on its customer information page and are not copied here.",
+    "How often the CEB and the CWA read meters and send bills, and what the CWA charges on a late payment. The pages read do not say.",
+    "Whether the wastewater fee appears on the CWA bill. The WMA page says it is paid in the manner prescribed and does not say more.",
+    "Refuse collection days, the rules for bulky waste and any fee. These are set by each council and no council page was read.",
+    "The current text of the Local Government Act 2011. The Ministry's page quotes sections 49 to 52 without a date.",
+    "How the Citizen Support Portal works in detail, and its telephone number. The portal is drawn by script. Its description and its wording were read from the page's own files, which also hold a message that online requests are under maintenance. Whether that message was showing on 20 November 2026 was not confirmed.",
+    "The reliefs and deductions for the income year that started on 1 July 2026. The MRA guide read gives those for the year ended 30 June 2026.",
+    "Which income year the 35% band first applies to. The consolidated Act shows it in the First Schedule. Our business taxes guide dates it from 1 July 2026, from sources not read again for this guide.",
+    "The MRA's stated time for paying a refund. The guide for employees says only that it follows the necessary verifications."
+  ]
+}

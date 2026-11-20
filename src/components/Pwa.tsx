@@ -54,7 +54,15 @@ export default function Pwa() {
   const offer = useRef<InstallOffer | null>(null);
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== "production" || !("serviceWorker" in navigator)) return;
+    if (!("serviceWorker" in navigator)) return;
+    if (process.env.NODE_ENV !== "production") {
+      // A worker left on this address by a production run would hand `next dev` its kept files.
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((all) => all.forEach((registration) => registration.unregister()))
+        .catch(() => {});
+      return;
+    }
     // After the page's own files, so the worker never competes with them.
     const register = () => {
       navigator.serviceWorker.register("/sw.js", { scope: "/", updateViaCache: "none" }).catch(() => {

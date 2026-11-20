@@ -1,0 +1,1145 @@
+{
+  "slug": "everyday-paperwork-in-mauritius",
+  "shelf": "everyday",
+  "title": "Everyday paperwork: ID card, passport, certificates, licences",
+  "summary": "Where to go and what to bring for the papers of everyday life in Mauritius: the National Identity Card, a passport, birth, marriage and death certificates, a driving licence, a certificate of character and proof of address. Each part reports what the office's own page said on 20 November 2026, with any fee it states. It is general information, not legal advice.",
+  "audience": "People who live in Mauritius, citizens and residents alike, and Mauritians abroad who need a document from home.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "First National Identity Card",
+      "value": "Apply within 6 months of turning 18",
+      "detail": "A citizen who applies later shows proof of absence from Mauritius or from civil life, such as a passport or a hospital discharge letter.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Collecting the identity card",
+      "value": "7 days after registering",
+      "detail": "In person, at the same centre, with the collection slip.",
+      "sources": [
+        "S2",
+        "S7"
+      ]
+    },
+    {
+      "label": "Replacing an identity card",
+      "value": "Rs 350",
+      "detail": "For a lost or damaged card, and for a change of name or of other details printed on the card. Rs 200 for citizens aged 60 and above and citizens with an invalidity.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Passport fee",
+      "value": "Rs 700 for an adult",
+      "detail": "Rs 400 for a child under 16, a senior citizen aged 55 or above and a disabled person.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "label": "Replacing a lost or damaged valid passport",
+      "value": "Rs 5,000 the first time, Rs 15,000 the second",
+      "detail": "Each later loss adds a further Rs 15,000 to the fee.",
+      "sources": [
+        "S13",
+        "S16"
+      ]
+    },
+    {
+      "label": "Registering a birth",
+      "value": "Within 60 days",
+      "detail": "At the Civil Status Office of the district where the child was born or where the parents lived.",
+      "sources": [
+        "S20"
+      ]
+    },
+    {
+      "label": "Registering a death",
+      "value": "Within 48 hours",
+      "detail": "A permit for burial or cremation is issued after registration. Listed offices open on weekends and public holidays for deaths.",
+      "sources": [
+        "S21"
+      ]
+    },
+    {
+      "label": "Copy of a birth, marriage or death certificate",
+      "value": "Rs 25",
+      "detail": "The first certificate after a birth, a death or a marriage is free.",
+      "sources": [
+        "S23",
+        "S25"
+      ]
+    },
+    {
+      "label": "Learner's licence",
+      "value": "Rs 500, from age 18 for a car",
+      "detail": "Non-refundable. From 15 for an autocycle and 17 for a motorcycle. Each driving test also costs Rs 500.",
+      "sources": [
+        "S29",
+        "S30"
+      ]
+    },
+    {
+      "label": "Oral test on traffic signs",
+      "value": "29 right answers out of 35",
+      "detail": "Forty multiple choice questions on a computer, in English or French. The first five are for practice.",
+      "sources": [
+        "S30"
+      ]
+    },
+    {
+      "label": "International Driving Permit",
+      "value": "Rs 800",
+      "detail": "Applied for in person at the Traffic Branch counters.",
+      "sources": [
+        "S29"
+      ]
+    },
+    {
+      "label": "Certificate of character",
+      "value": "Rs 200 for an individual",
+      "detail": "Rs 100 for each additional certificate and Rs 500 for a company, on the online portal's guidelines. Applications from 1 July 2026 fall under the Certificate of Character Act 2026.",
+      "sources": [
+        "S31",
+        "S34"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "National Identity Card: the first card",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius National Identity Card Unit registers citizens and issues the National Identity Card and its digital version, the Mobile ID. The card has been a smart card since 16 September 2013. A new card with added security features has been issued since 19 February 2024. Every citizen must apply for a card within 6 months of reaching the age of 18. A citizen who applies after that period shows proof of absence from Mauritius or from civil life: a passport, a discharge letter from a hospital or prison, or a medical certificate.",
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "A recent birth certificate, in the A4 printed format, in original.",
+            "A recent marriage certificate where it applies, for example for a married woman who wishes to use her husband's name.",
+            "Proof of address not older than 3 months: a Central Electricity Board bill, a Central Water Authority bill, a telephone bill, a rent book or a bank statement.",
+            "A person who became a citizen by naturalisation or registration brings the citizenship letter or certificate from the Prime Minister's Office, the foreign birth certificate, the passport and proof of address.",
+            "A citizen born abroad of a Mauritian parent first obtains a clearance from the Prime Minister's Office, by calling in person with the documents listed on the Unit's page."
+          ],
+          "sources": [
+            "S2",
+            "S3",
+            "S12"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Book a time slot on the MoRendezVous website, or pre-register on the Citizen Portal with a MauPass account. The Unit encourages this to avoid queues.",
+            "Go to a National Identity Card Centre with the documents.",
+            "An officer checks the documents, takes fingerprints and a photograph.",
+            "Check the personal details shown and sign the User Declaration Form.",
+            "Take the collection slip. It shows the collection date, the place and any fee.",
+            "Return in person after 7 days, to the same centre, with the slip, to collect the card.",
+            "If the card is needed before then for an administrative purpose, ask the centre for a memo for temporary use."
+          ],
+          "sources": [
+            "S2",
+            "S7",
+            "S11"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Centre",
+            "Address",
+            "Telephone"
+          ],
+          "rows": [
+            [
+              "Port Louis",
+              "Ground Floor, Emmanuel Anquetil Building",
+              "207 5300, 207 5301, 207 5302"
+            ],
+            [
+              "Rose Hill",
+              "Ground Floor, NPF Building, Old Moka Road",
+              "467 6575"
+            ],
+            [
+              "Flacq",
+              "Ground Floor, Customer Service Centre, Central Flacq",
+              "420 3819"
+            ],
+            [
+              "Port Mathurin, Rodrigues",
+              "Fisherman Lane",
+              "832 0273, 832 0274"
+            ]
+          ],
+          "sources": [
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Unit's site gives opening hours of Monday to Friday from 09:00 to 16:00 for the offices in Mauritius. Its page for the Port Louis office gives 08:45 to 16:00, except public holidays. The Rodrigues office opens Monday to Friday from 08:00 to 15:15.",
+            "Cards issued from October 2013 are valid for 20 years from the date of issue. The older paper laminated cards have not been valid since April 2017.",
+            "A person who is bedridden or too old to travel can ask for a home visit. The application is submitted in person on the person's behalf, on a form from the Unit's site."
+          ],
+          "sources": [
+            "S1",
+            "S6",
+            "S9",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Identity card: lost, changed details, and turning 60",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "Report the loss at the nearest police station and obtain a memo certifying it. The Unit says a lost card can also be reported online on the Citizen Portal.",
+            "Go to a National Identity Card Centre with the police memo, which must be less than a week old.",
+            "Bring a recent birth certificate, a recent marriage certificate if there is one, and proof of address not older than 3 months. A citizen who receives an invalid pension brings the pension card.",
+            "Pay the fee shown on the collection slip and collect the new card as for a first card."
+          ],
+          "sources": [
+            "S3",
+            "S5",
+            "S10"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Reason for a new card",
+            "Fee on the Unit's fee page"
+          ],
+          "rows": [
+            [
+              "Lost or damaged card",
+              "Rs 350"
+            ],
+            [
+              "Second loss, listed under the earlier card (MNIC 2.0)",
+              "Rs 700"
+            ],
+            [
+              "Third and later loss, listed under the earlier card (MNIC 2.0)",
+              "Rs 1,000"
+            ],
+            [
+              "Other than loss: marriage, divorce or a change of information printed on the card",
+              "Rs 350"
+            ],
+            [
+              "Citizens aged 60 and above and citizens with an invalidity, however many times the card is lost",
+              "Rs 200"
+            ],
+            [
+              "Card with the 'SC' logo on reaching 60, when the old card is handed back",
+              "Free"
+            ]
+          ],
+          "sources": [
+            "S6",
+            "S41"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For an update of address, the Unit accepts as proof a Central Electricity Board bill, a Central Water Authority bill, a telephone bill, a rent book or a bank statement. Its FAQ says the Mobile ID app lets a citizen update an address with the Unit, and report a lost card.",
+          "sources": [
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A cardholder who reaches the age of 60 calls at a centre within 90 days, with the existing card, to have it replaced by one that bears the 'SC' logo. The logo gives access to free bus travel. The new card is free of charge and the old one must be returned. If it is not, the application is treated as a loss and Rs 200 is charged. The applicant brings a recent birth certificate, a marriage certificate where it applies and proof of address not older than 3 months.",
+          "sources": [
+            "S41"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Passport",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Passport and Immigration Office (PIO) issues Mauritian passports. All citizens are eligible, whether by birth, descent, adoption, registration or naturalisation. A first passport is applied for on form PF 136 and a renewal on form PF 136A. The forms are available at the PIO main office and sub-offices, at any police station, at a Mauritian embassy or consulate, and on the PIO website. They are filled in in capital letters with a black pen.",
+          "sources": [
+            "S13"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Passport service",
+            "Fee"
+          ],
+          "rows": [
+            [
+              "New passport, adult and young person",
+              "Rs 700"
+            ],
+            [
+              "New passport, minor below 16",
+              "Rs 400"
+            ],
+            [
+              "New passport, senior citizen aged 55 and above",
+              "Rs 400"
+            ],
+            [
+              "New passport, disabled person, with a certificate from the Ministry responsible for social security",
+              "Rs 400"
+            ],
+            [
+              "Endorsement of a passport, for a change of name by marriage or a change of profession",
+              "Rs 100"
+            ],
+            [
+              "Certificate of identity or travel document",
+              "Rs 300"
+            ],
+            [
+              "Replacing a valid passport that is lost or damaged, first time",
+              "Rs 5,000"
+            ],
+            [
+              "Second time",
+              "Rs 15,000"
+            ],
+            [
+              "Each later time",
+              "A further Rs 15,000 added to the fee"
+            ]
+          ],
+          "sources": [
+            "S13",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "First passport, adult: the form, the birth certificate, the National Identity Card, two recent identical photographs and, where they apply, a marriage certificate or divorce decree.",
+            "A citizen by registration, naturalisation or adoption adds the certificate of Mauritian citizenship. A citizen born abroad adds the birth certificate of the Mauritian parent.",
+            "Renewal, adult: the form, the previous passport with a photocopy of its biodata page, the National Identity Card and two photographs.",
+            "Child under 18: both parents sign their consent on the form in front of a police officer at a police station or at the PIO. The file includes the parents' birth certificates and National Identity Cards.",
+            "A copy of each document is handed in and the originals are shown. Documents must be in English or French.",
+            "Photographs are 35 to 40 millimetres wide and 45 to 50 millimetres high, taken within the last six months against a light background."
+          ],
+          "sources": [
+            "S13",
+            "S14",
+            "S15"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "If a passport is lost or stolen, report it at once to the police station of the area where it happened.",
+            "The police issue a Declaration of Lost or Stolen Certificate.",
+            "Apply for a new passport on form PF 136 with that certificate, the usual documents and a letter saying briefly how, where and when the passport was lost, stolen or damaged.",
+            "Pay the replacement fee.",
+            "A passport that has been reported lost or stolen must not be used for travel unless the PIO authorises it."
+          ],
+          "sources": [
+            "S16"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The PIO main office is at Sterling House, 9-11 Lislet Geoffroy Street, Port Louis. Passport applications are taken on weekdays from 08:45 to 16:00 and on Saturdays from 08:45 to 12:00.",
+            "The cashier at the main office opens on weekdays from 09:00 to 14:30 and on Saturdays from 09:00 to 11:30.",
+            "Sub-offices take applications on weekdays only, from 08:45 to 12:00 and from 12:45 to 16:00. They are at the Police District Headquarters of Piton, Flacq, Moka, Rose Hill, Curepipe, Rose Belle and Abercrombie. Passports are collected there between 14:30 and 16:00.",
+            "Offices are closed on Sundays and public holidays.",
+            "A citizen abroad applies through the Mauritian High Commission, Embassy or Consulate. Where there is none, a close relative in Mauritius can submit the application with a letter of authorisation."
+          ],
+          "sources": [
+            "S13",
+            "S18",
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Birth, marriage and death: registering, and getting a certificate",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Civil Status Division works under the Prime Minister's Office. It registers births, deaths and marriages and issues civil status certificates. Its head office, the Central Civil Status Office, is on the 7th Floor of the Emmanuel Anquetil Building in Port Louis, and its contact page lists 36 civil status offices across the Republic, district by district. Offices open from 08:45 to 16:00, with a lunch break from 12:00 to 12:30.",
+          "sources": [
+            "S23",
+            "S24",
+            "S39"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Event",
+            "Time limit",
+            "What to bring"
+          ],
+          "rows": [
+            [
+              "Birth",
+              "Within 60 days, at the office of the district where the birth took place or where the parents lived",
+              "Birth certificates of both parents, their marriage certificate if civilly married, the attestation of birth from the hospital or clinic, National Identity Cards or, for non-citizens, passports, and proof of address"
+            ],
+            [
+              "Death",
+              "Within 48 hours, at the office of the district where the death occurred or where the deceased last lived",
+              "The certificate of the cause of death, a birth or marriage certificate, the National Identity Card or, for a foreigner, the passport, and proof of address of the deceased"
+            ],
+            [
+              "Civil marriage",
+              "The marriage may be celebrated 10 days after publication. A fresh publication is needed if it is not celebrated within 3 months",
+              "Birth certificates issued within the last 3 months, the National Identity Cards of both parties, and earlier marriage or death certificates for a person who is divorced or widowed"
+            ]
+          ],
+          "sources": [
+            "S20",
+            "S21",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Birth: if the parents are civilly married to each other, one parent may register the birth alone. If they are not, both attend if both wish to register the child. No witness is needed.",
+            "A birth declared after 60 days needs an authorisation from the Registrar of Civil Status. After 3 months the parents must obtain an order from the Magistrate of the district.",
+            "Death: one declarant is enough. On Saturdays, Sundays and public holidays the offices listed on the Division's page open from 08:45 to noon for death registrations.",
+            "Marriage: both parties publish the intended marriage at the office of the district where it will take place, and at the office of the district where each has lived for the 7 days before. The legal age to marry is 18. Two witnesses attend the ceremony.",
+            "At the ceremony the couple tell the officer which matrimonial regime they choose: community of goods and property, separation of goods and property, or a marriage settlement drawn up by a notary.",
+            "A marriage between a citizen and a non-citizen follows a separate checklist published by the Division."
+          ],
+          "sources": [
+            "S20",
+            "S21",
+            "S22",
+            "S38"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Under the Civil Status Act a person may obtain a certificate of his or her own birth or marriage, and of the birth or marriage of a spouse, an ascendant or a descendant. A person may obtain the death certificate of a spouse, brother, sister, ascendant or descendant. Other cases need the consent of the person concerned or the authority of the Registrar of Civil Status. The application is made at the Central Civil Status Office or at any other civil status office, with proof of identity.",
+          "sources": [
+            "S25"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The first certificate is delivered free of charge to the person who declares a birth or a death, and to each spouse at a marriage.",
+            "Every other certificate or photocopy of an entry costs Rs 25, paid by stamp.",
+            "Certificates for births from 1900 and for deaths and marriages from 2001 are on the Civil Status database and are delivered at once. Older records are searched for, and the applicant must give accurate details.",
+            "Since 19 October 2026 certificates are printed in a new format on light grey security paper with a serial number. Certificates in the earlier format remain valid. Where an office asks for a certificate issued within the last 3 months, the new one comes in the new format.",
+            "An Information Desk at the Central Civil Status Office, on the ground floor of the Emmanuel Anquetil Building, answers questions on weekdays from 08:45 to 16:00, and by telephone on 201 2803."
+          ],
+          "sources": [
+            "S23",
+            "S25",
+            "S26",
+            "S28"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Civil marriage celebrated at",
+            "Both citizens",
+            "One citizen, one non-citizen",
+            "Both non-citizens"
+          ],
+          "rows": [
+            [
+              "The marriage hall",
+              "Rs 500",
+              "Rs 2,000",
+              "Rs 3,000"
+            ],
+            [
+              "A private residence",
+              "Rs 1,500",
+              "Rs 2,000",
+              "Rs 5,000"
+            ],
+            [
+              "Other premises",
+              "Rs 2,000",
+              "Rs 2,500",
+              "Rs 5,000"
+            ]
+          ],
+          "sources": [
+            "S27"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The marriage fees are those in the Division's communiqué, in force since 1 May 2022. The Division's FAQ shows no fee for a marriage between two citizens celebrated in a civil status office. The Schedule to the Civil Status Act also sets a fee of Rs 1,000 for any change of name.",
+          "sources": [
+            "S23",
+            "S25",
+            "S27"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Driving licence: learner, tests, duplicate and international permit",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Licensing Office of the Police Traffic Branch issues and controls driving licences in Mauritius and Rodrigues. Before learning to drive a car, a motorcycle or an autocycle, a person applies for a provisional driving licence, also called a learner's licence. The minimum age is 15 for an autocycle, 17 for a motorcycle and 18 for a motorcar.",
+          "sources": [
+            "S29",
+            "S30"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Apply on Police Form PF 31, at the police station of your area, at a post office or online through the Government portal with a MauPass account. The application fee is Rs 500 and is not refunded.",
+            "For an online application, choose a date and time to call at the Licensing Office. For an application at a police station, give an email address and telephone numbers. The Traffic Branch writes or emails when the applicant may call.",
+            "Bring a birth certificate, two recent passport size photographs, proof of address, the National Identity Card or student pass, and a marriage certificate where it applies. A non-citizen brings the original work or residence permit and passport.",
+            "An applicant under 18 comes with a responsible party.",
+            "Take the oral test on traffic signs. It is done on a computer, in English or French. There are forty multiple choice questions. The first five are for practice, and 29 right answers out of the other 35 secure a pass.",
+            "Book and pay for the practical driving test online. The test fee is Rs 500. The Licensing Office confirms the date and time by email.",
+            "Come to the practical test with your own vehicle and a valid special insurance policy for the test."
+          ],
+          "sources": [
+            "S29",
+            "S30"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Learner drivers may not use the motorways M1, M2 and M3 unless a driving instructor is supervising. The same schedule restricts named streets in Port Louis and Curepipe, some at peak hours on weekdays and some unless an instructor is supervising.",
+            "The car test checks, among other things, moving off, turning left and right, stopping in an emergency, signalling, reversing into a marked position, turning round in a narrow road and starting on a slope.",
+            "A test can be postponed by email at least 48 hours before the appointment, with a copy of the licence, the identity card and the appointment receipt.",
+            "A licence for a heavy motor vehicle, such as a bus or lorry, is open only to a person who has held a full car licence for at least six months. Taxi and heavy vehicle applicants also produce a certificate of character.",
+            "Duplicate licence: for a lost licence, report it at the police station and obtain a memo (PF 77). Bring the memo or the damaged licence, two photographs and the National Identity Card to the Licensing Office. The fee is Rs 500.",
+            "An attestation that a full licence is authentic is free. It is asked for in writing or by email, with a copy of the licence and of the identity card or passport."
+          ],
+          "sources": [
+            "S29",
+            "S30"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A holder of a Mauritian licence who will drive abroad can apply for an International Driving Permit. The applicant calls in person at the permit counter of the Traffic Branch at Line Barracks, at the Argy driving test centre or at Les Casernes in Curepipe, between 09:00 and 14:00 on weekdays and between 09:00 and 10:30 on Saturdays. He or she brings the original National Identity Card, the valid licence and two recent photographs, and pays Rs 800. The permit is delivered within 5 working days as far as practicable.",
+          "sources": [
+            "S29"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Licensing Office is at Line Barracks, Port Louis. Its information desk opens Monday to Friday from 07:00 to 16:00 and on Saturday from 07:00 to 12:00.",
+            "The cash office opens on weekdays from 09:00 to 14:30 and on Saturdays from 09:00 to 11:00.",
+            "A licence is restored after a period of disqualification has ended and, where it applies, after a rehabilitation course at the Mauritius Institute of Training and Development, for a fee of Rs 1,000."
+          ],
+          "sources": [
+            "S29"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Certificate of character",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A certificate of character, often called a certificate of morality, is an official document issued by the Office of the Director of Public Prosecutions. It states whether a person has previous convictions recorded against him or her. Applications made on or after 1 July 2026 are processed under the Certificate of Character Act 2026 and the Certificate of Character Regulations 2026.",
+          "sources": [
+            "S31",
+            "S34"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Who may apply: any citizen of Mauritius aged 18 or above, a non-citizen who holds a resident or work permit in Mauritius, and an employer in Mauritius on behalf of employees, with a letter of authorisation.",
+            "A person under 18 applies through a responsible party or relative.",
+            "Another person may apply or collect for the applicant at a police headquarters, with the applicant's written authorisation."
+          ],
+          "sources": [
+            "S31",
+            "S33"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Online: register on MauPass, log in to the Certificate of Character Portal and upload the documents.",
+            "Pay electronically, or at the nearest Police Divisional Headquarters.",
+            "When the notification email arrives, download and print the certificate.",
+            "In person: apply at the nearest Police Divisional Headquarters. The offices are at Piton, Rose Hill, Flacq, Moka Police Station, Rose Belle, Curepipe, Port Louis South, Port Louis North and Rodrigues.",
+            "The offices open Monday to Friday from 09:00 to 14:00, with collection until 16:00, and on Saturdays from 09:00 to 11:00, with collection until 11:30.",
+            "Collect the certificate at the headquarters where the application was made."
+          ],
+          "sources": [
+            "S31"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Birth certificate, in the computerised A4 format.",
+            "National Identity Card or, for a non-citizen, the passport and the resident or work permit.",
+            "Marriage certificate where it applies, and any document showing a recent change of name.",
+            "Proof of residence in Mauritius, for an application at a police headquarters.",
+            "A letter of authorisation where someone applies for another person."
+          ],
+          "sources": [
+            "S32",
+            "S33"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Applicant",
+            "Fee on the portal's guidelines"
+          ],
+          "rows": [
+            [
+              "Individual",
+              "Rs 200"
+            ],
+            [
+              "Additional certificate for an individual",
+              "Rs 100"
+            ],
+            [
+              "Company",
+              "Rs 500"
+            ]
+          ],
+          "sources": [
+            "S31"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The portal's FAQ gives a processing time of two to three weeks, or two to six weeks. It takes longer where the applicant has been convicted or documents are missing.",
+            "Up to two additional originals can be obtained within 3 months of the first being issued.",
+            "The certificate is issued in English or French only.",
+            "The FAQ says a certificate of character has no validity period. The office that asks for one may set its own limit. The Traffic Branch and the Economic Development Board, for example, ask for a recent one."
+          ],
+          "sources": [
+            "S29",
+            "S33",
+            "S36"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Mauritius Police Force page of guidelines still cites the Certificate of Character Act 2012, with fees of Rs 100, Rs 50 for an additional certificate and Rs 300 for a company, and office hours from 08:45 to 14:30. The portal's guidelines cite the 2026 Act and give the figures used above. This guide follows the portal and the notice of 1 July 2026 from the Office of the Director of Public Prosecutions.",
+          "sources": [
+            "S31",
+            "S34",
+            "S35"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Proof of address: what each office accepts",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "There is no single proof of address document. Each office says what it accepts, and most ask for a recent utility bill or a rent book in the applicant's name.",
+          "sources": [
+            "S3",
+            "S37"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Office and purpose",
+            "Proof of address it names"
+          ],
+          "rows": [
+            [
+              "National Identity Card Unit, for a new or replacement card",
+              "A Central Electricity Board bill, a Central Water Authority bill, a telephone bill, a rent book or a bank statement, not older than 3 months. Its registration page adds other official correspondence, such as from an employer, a bank or a university"
+            ],
+            [
+              "Civil Status Division, to register a birth or a death",
+              "Proof of address of the parents, or of the deceased. The page does not list documents"
+            ],
+            [
+              "Traffic Branch, for a learner's licence",
+              "Proof of address. The page does not list documents"
+            ],
+            [
+              "Police Divisional Headquarters, for a certificate of character",
+              "Proof of residence in Mauritius"
+            ],
+            [
+              "Ministry of Education and Human Resource, for admission to a school",
+              "A Central Electricity Board or Central Water Authority bill, or a rent book. For a school in high demand, a Proof of Residency form signed by the parent and verified by the police station"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S3",
+            "S20",
+            "S21",
+            "S29",
+            "S32",
+            "S37",
+            "S40"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Mauritius National Identity Card Unit: home page",
+      "url": "https://mnis.govmu.org/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "How to Register",
+      "url": "https://mnis.govmu.org/how-to-register/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Documents Required",
+      "url": "https://mnis.govmu.org/documents-required/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Your First Smart ID",
+      "url": "https://mnis.govmu.org/your-first-smart-id/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Card Replacement: Lost ID Card",
+      "url": "https://mnis.govmu.org/card-replacement-lost-of-id-card/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Payment Fee",
+      "url": "https://mnis.govmu.org/payment-fee/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Waiting Time To Get Your New Smart ID-Card",
+      "url": "https://mnis.govmu.org/waiting-time-to-get-your-new-smart-id-card/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Where to Register",
+      "url": "https://mnis.govmu.org/where-to-register/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Offices in Mauritius",
+      "url": "https://mnis.govmu.org/offices-in-mauritius/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "FAQs",
+      "url": "https://mnis.govmu.org/faqs/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Book your appointment online",
+      "url": "https://mnis.govmu.org/book-your-appointment-online/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Mauritian Descent (Born Abroad)",
+      "url": "https://mnis.govmu.org/mauritian-descent-born-abroad/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Application Guide",
+      "url": "https://passport.govmu.org/passport/?page_id=773",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Application for New Passport",
+      "url": "https://passport.govmu.org/passport/?page_id=761",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Renewal of Passport",
+      "url": "https://passport.govmu.org/passport/?page_id=792",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Lost, Stolen or Damaged Passport",
+      "url": "https://passport.govmu.org/passport/?page_id=766",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Amending Data of present passport",
+      "url": "https://passport.govmu.org/passport/?page_id=772",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Passport for Citizens Abroad",
+      "url": "https://passport.govmu.org/passport/?page_id=794",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Contact Us",
+      "url": "https://passport.govmu.org/passport/?page_id=399",
+      "publisher": "Passport and Immigration Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Birth",
+      "url": "https://csd.govmu.org/Pages/Registration/Birth.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Death",
+      "url": "https://csd.govmu.org/Pages/Registration/Death.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Marriage",
+      "url": "https://csd.govmu.org/Pages/Registration/Marriage.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "FAQ",
+      "url": "https://csd.govmu.org/Pages/FAQ.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Contact Us: Civil Status Head Office and Sub Offices",
+      "url": "https://csd.govmu.org/Pages/Contact-Us.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Civil Status Act (Act 23 of 1981)",
+      "url": "https://csd.govmu.org/DocumentsList/Civil%20Status%20Act%202023.pdf",
+      "publisher": "Civil Status Division (copy of the Act)",
+      "published": "Amendments noted up to Act 12 of 2023, in operation 20 July 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Communiqué: Implementation of New Format for Birth, Stillbirth, Marriage and Death Certificates",
+      "url": "https://csd.govmu.org/Documents/Communique/communique-New%20Format%20of%20Civil%20Status%20Certificates.pdf",
+      "publisher": "Civil Status Division",
+      "published": "13 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Communiqué: Fees payable for the Celebration of Civil Marriages",
+      "url": "https://csd.govmu.org/Documents/Fees%20%20(Communique).pdf",
+      "publisher": "Civil Status Division",
+      "published": "Fees in force from 1 May 2022; file dated 26 April 2022",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Communiqué: Information Desk at the Central Civil Status Office",
+      "url": "https://csd.govmu.org/Documents/Communique%20Helpdesk.pdf",
+      "publisher": "Civil Status Division",
+      "published": "27 April 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Traffic Branch",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "Application for Driving Licence",
+      "url": "https://police.govmu.org/police/?page_id=5578",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Guidelines for application of Certificate of Character",
+      "url": "https://ecertificateofcharacter.govmu.org/coc/templates/Guidelines.html",
+      "publisher": "Office of the Director of Public Prosecutions (Certificate of Character Portal)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "Documents Required",
+      "url": "https://ecertificateofcharacter.govmu.org/coc/templates/Document%20Required.html",
+      "publisher": "Office of the Director of Public Prosecutions (Certificate of Character Portal)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S33",
+      "title": "FAQs",
+      "url": "https://ecertificateofcharacter.govmu.org/coc/templates/FAQs.html",
+      "publisher": "Office of the Director of Public Prosecutions (Certificate of Character Portal)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S34",
+      "title": "Notice: Implementation of the Certificate of Character Act 2026 and Certificate of Character Regulations 2026",
+      "url": "https://ecertificateofcharacter.govmu.org/coc/templates/Certificate%20of%20Character%202026.pdf",
+      "publisher": "Office of the Director of Public Prosecutions",
+      "published": "1 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S35",
+      "title": "Guidelines for Application for a Certificate of Character",
+      "url": "https://police.govmu.org/police/?page_id=7617",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S36",
+      "title": "Retired Non-Citizen +50 years",
+      "url": "https://residency.mu/retire/retired-non-citizen-50-years/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S37",
+      "title": "Form: Application for Admission to a School in Mauritius",
+      "url": "https://education.govmu.org/Documents/2025/NEC/FORM%20-%20ADMISSION%20TO%20A%20SCHOOL%20IN%20MAURITIUS.pdf",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S38",
+      "title": "Marriage between Mauritian Citizen and Non Citizen",
+      "url": "https://csd.govmu.org/Pages/Registration/Marriage-between-.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S39",
+      "title": "Civil Status Division: home page",
+      "url": "https://csd.govmu.org/Pages/index.aspx",
+      "publisher": "Civil Status Division",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S40",
+      "title": "Form: Proof of Residency",
+      "url": "https://education.govmu.org/Documents/2025/NEC/FORM%20-%20PROOF%20OF%20RESIDENCE.pdf",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S41",
+      "title": "SC Logo When You attain 60 year",
+      "url": "https://mnis.govmu.org/sc-logo-when-you-attain-60-year/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Mauritius National Identity Card Unit",
+      "url": "https://mnis.govmu.org/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "what": "Find the centres, the documents for each case, the fees and the Mobile ID."
+    },
+    {
+      "title": "Citizen Portal of the National Identity Card Unit",
+      "url": "https://citizen.mnis.govmu.org/",
+      "publisher": "Mauritius National Identity Card Unit",
+      "what": "Pre-register, book an appointment or report a lost card, with a MauPass account."
+    },
+    {
+      "title": "MoRendezVous",
+      "url": "https://morendezvous.govmu.org/",
+      "publisher": "Government of Mauritius",
+      "what": "Book a time slot at a National Identity Card Centre."
+    },
+    {
+      "title": "Passport: Application Guide",
+      "url": "https://passport.govmu.org/passport/?page_id=773",
+      "publisher": "Passport and Immigration Office",
+      "what": "Download forms PF 136 and PF 136A, and check the fees, the photo standard and the hours."
+    },
+    {
+      "title": "Lost, Stolen or Damaged Passport",
+      "url": "https://passport.govmu.org/passport/?page_id=766",
+      "publisher": "Passport and Immigration Office",
+      "what": "See what to do and what to bring when a passport is lost."
+    },
+    {
+      "title": "Civil Status Division",
+      "url": "https://csd.govmu.org/Pages/index.aspx",
+      "publisher": "Civil Status Division",
+      "what": "Read the latest communiqués and reach the pages on births, deaths and marriages."
+    },
+    {
+      "title": "Civil Status offices",
+      "url": "https://csd.govmu.org/Pages/Contact-Us.aspx",
+      "publisher": "Civil Status Division",
+      "what": "Find the civil status office of your district, with its address and telephone number."
+    },
+    {
+      "title": "Marriage between a citizen and a non-citizen",
+      "url": "https://csd.govmu.org/Pages/Registration/Marriage-between-.aspx",
+      "publisher": "Civil Status Division",
+      "what": "Download the checklist in English or French."
+    },
+    {
+      "title": "Traffic Branch: driving licences",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "what": "Read the rules for learner's licences, tests, duplicates and international permits, with fees and hours."
+    },
+    {
+      "title": "Application for a Learner's Licence (online)",
+      "url": "https://mygov.govmu.org//LearnersLicense/Pages/Application.aspx",
+      "publisher": "Government of Mauritius",
+      "what": "Apply online for a provisional driving licence."
+    },
+    {
+      "title": "Certificate of Character Portal",
+      "url": "https://ecertificateofcharacter.govmu.org/",
+      "publisher": "Office of the Director of Public Prosecutions",
+      "what": "Apply online, read the guidelines and check that a certificate is authentic."
+    },
+    {
+      "title": "MauPass",
+      "url": "https://maupass.govmu.org/",
+      "publisher": "Government of Mauritius",
+      "what": "Create the digital identity used to log in to Government services online."
+    },
+    {
+      "title": "Bills and services at home: electricity, water, waste, tax",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the utility accounts whose bills serve as proof of address."
+    }
+  ],
+  "unverified": [
+    "Whether a first National Identity Card is free. The Unit's fee page lists fees only for replacement and for changes.",
+    "Whether the fees of Rs 700 for a second loss and Rs 1,000 for a third loss apply to the current card. The fee page shows them under the heading for the earlier card, MNIC 2.0.",
+    "Whether a change of address needs a new card and the Rs 350 fee. The pages do not say whether the address is printed on the card.",
+    "The opening hours of the National Identity Card Centres. The site gives both 09:00 to 16:00 and, for Port Louis, 08:45 to 16:00.",
+    "How long a passport is valid and how long the PIO takes to issue one. Neither is stated on the pages read.",
+    "Whether a full driving licence expires or must be renewed. The Traffic Branch pages read describe the learner's licence, tests, duplicates and the international permit, and say nothing about renewal.",
+    "How long a learner's licence lasts. The pages do not say.",
+    "The fee for an International Driving Permit. The Traffic Branch pages give Rs 800. A list of fees collected at police cash offices, dated June 2022, gives Rs 500.",
+    "Whether birth and marriage certificates can be applied for online today. A Civil Status Division communiqué of August 2023 refers to an online service, but the service itself was not found.",
+    "The text of the Certificate of Character Act 2026 and its Regulations. Only the notice of the Office of the Director of Public Prosecutions and the portal's guidelines were read. The portal's FAQ still mentions the 2012 Act in one answer.",
+    "The checklist for a marriage between a citizen and a non-citizen. The page links to it but the checklist was not opened.",
+    "The list of civil status offices open on weekends and public holidays for deaths. It is on the Division's page and may change."
+  ]
+}

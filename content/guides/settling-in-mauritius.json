@@ -1,0 +1,936 @@
+{
+  "slug": "settling-in-mauritius",
+  "shelf": "newcomers",
+  "title": "Settling in: bank, driving, health, school",
+  "summary": "The first practical steps after arriving in Mauritius on a visa or permit: opening a bank account, driving on a foreign licence and converting it, public and private healthcare, schools and the bodies that run them, buying or renting a home as a non-citizen, and registering with the Mauritius Revenue Authority once resident for tax. Each part reports what the official page says and where to go, as read on 20 November 2026. It is general information, not legal, immigration or tax advice.",
+  "audience": "People who have just moved to Mauritius, or are about to, with a Premium Visa, an Occupation Permit or a residence permit, and their families.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Bank account for a non-citizen",
+      "value": "Allowed, usually a savings account for a non-resident",
+      "detail": "A foreign resident can open a current account in rupees or in foreign currency. The minimum deposit depends on the bank.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Time to open an account",
+      "value": "About 2 working days",
+      "detail": "As stated in the Economic Development Board's FAQ for retirees. The applicant must be present in Mauritius unless introduced by an approved management company.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Converting a foreign driving licence",
+      "value": "Rs 1,500",
+      "detail": "Paid to the Traffic Branch after the application is approved. The residence, work or occupation permit must be valid for six months from the date of application.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Learner's (provisional) licence",
+      "value": "Rs 500, from age 18 for a car",
+      "detail": "Non-refundable application fee. The minimum age is 15 for an autocycle and 17 for a motorcycle.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "label": "Public health network",
+      "value": "5 regional hospitals, 19 area health centres, 114 community health centres",
+      "detail": "With 6 mediclinics, 2 district hospitals, 2 community hospitals and specialised hospitals. The Ministry says around 73% of the population uses the public system at no cost to the user.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "Medical emergency",
+      "value": "Dial 114",
+      "detail": "The SAMU control room, open 24 hours a day all year.",
+      "sources": [
+        "S10"
+      ]
+    },
+    {
+      "label": "Schooling",
+      "value": "Free in state and grant-aided schools, compulsory up to age 16",
+      "detail": "Secondary education has been free since 1977. Private fee-paying schools charge fees and are registered with the Private Secondary Education Authority.",
+      "sources": [
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "label": "Apartment outside the schemes",
+      "value": "At least MUR 6 million",
+      "detail": "In a building of at least two levels above the ground floor. A residence permit follows only where the price is at least USD 375,000.",
+      "sources": [
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "label": "Duty on a property transfer",
+      "value": "5% registration duty for the buyer, 5% land transfer tax for the seller",
+      "detail": "On the value of the transaction, as stated by the Registrar-General's Department.",
+      "sources": [
+        "S29"
+      ]
+    },
+    {
+      "label": "Renting as a non-citizen",
+      "value": "No certificate needed for a tenancy of up to 4 years",
+      "detail": "Under the Non-Citizens (Property Restriction) Act, in the copy published by the Economic Development Board with amendments up to April 2021.",
+      "sources": [
+        "S28"
+      ]
+    },
+    {
+      "label": "Resident for tax",
+      "value": "183 days in the income year",
+      "detail": "Or 270 days in total over the income year and the two before it, or domicile in Mauritius. The income year runs from 1 July to 30 June.",
+      "sources": [
+        "S30",
+        "S38"
+      ]
+    },
+    {
+      "label": "Individual income tax return",
+      "value": "Due by 15 October",
+      "detail": "Filed and paid electronically. For the income year ended 30 June 2026 the date was Thursday 15 October 2026.",
+      "sources": [
+        "S35",
+        "S38"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Opening a bank account",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Banks in Mauritius are licensed by the Bank of Mauritius. The Economic Development Board (EDB) says non-residents are allowed to open a bank account, usually a savings account. Foreign residents can open a current account in Mauritian rupees or in foreign currency. A foreign currency account can receive funds only by domestic and international bank transfer. The minimum deposit varies with each bank's own rules.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Mauritius Bankers Association describes three common kinds of account: current, savings and deposit. Before an account is opened, the bank asks for documents that prove identity and address. This is the Know Your Customer (KYC) procedure, and the Association says it is mandatory for all banks.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The EDB's FAQ for retirees says a non-citizen who holds a residence permit, a retiree permit or a Premium Visa may open a savings or a current account.",
+            "The applicant has to be in Mauritius in person. An application can be made from abroad where the introduction is made through a management company approved by the Financial Services Commission.",
+            "The documents it lists are the passport, proof of residence in the home country, a bank reference from the country of origin and a CV showing professional status. Passport and proof of residence are shown in original with a colour copy.",
+            "It says opening an account takes about 2 working days, and that an account can be opened in a foreign currency such as rand, euros or US dollars."
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For Occupation Permit and retired non-citizen applicants, the EDB says the Approval in Principle lets the applicant enter Mauritius and open a bank account. Investors, self-employed persons and retired non-citizens then transfer their funds into that account within 60 days of the permit being issued. The EDB publishes a list of the banks, with addresses, on its banks page and in an annex to its guidelines.",
+          "sources": [
+            "S1",
+            "S4",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Driving on a foreign licence",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Road Traffic Act says no person may drive a motor vehicle on a road without a driving licence for that class of vehicle. That rule does not apply to the holder of an international driving permit. The Act defines an international driving permit to include a driving licence or permit issued by a competent foreign authority and given effect in Mauritius by regulations. The pages read for this guide do not say for how long a visitor or a new resident may drive on a foreign licence.",
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Licensing Office of the Police Traffic Branch deals with applications to convert a foreign driving licence into a Mauritian one. It asks for the documents below, in original with a photocopy. The conversion fee of Rs 1,500 is paid after the application is approved.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "An application letter to the Officer Commanding Traffic Branch, with a telephone number and address.",
+            "An attestation from the authority that issued the foreign licence, confirming that it is authentic.",
+            "The foreign driving licence, both sides.",
+            "Proof of address, a rent book or a lease agreement.",
+            "The residence, work or occupation permit, valid for six months from the date of application.",
+            "The National Identity Card, passport or UID card.",
+            "For applicants above 60, a medical certificate in which the doctor states that the person is fit to drive.",
+            "A marriage certificate for a married woman and for the spouse of a citizen of Mauritius.",
+            "Two recent passport size photographs."
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A person with no licence starts with a provisional driving licence, also called a learner's licence. The application is made at a police station, at a post office or online through the Government portal with a MauPass account, on form PF 31 and with a non-refundable fee of Rs 500. A non-citizen brings the original work or residence permit and passport, with a birth certificate, two photographs and proof of address. The learner then takes an oral test on traffic signs and a practical driving test. Each test fee is Rs 500.",
+          "sources": [
+            "S6",
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Licensing Office is at Line Barracks, Port Louis. Its information desk opens Monday to Friday from 07:00 to 16:00 and on Saturday from 07:00 to 12:00.",
+            "The cash office opens on weekdays from 09:00 to 14:30 and on Saturdays from 09:00 to 11:00.",
+            "The legal limit for alcohol is 9 microgrammes in 100 millilitres of breath or 20 milligrammes in 100 millilitres of blood."
+          ],
+          "sources": [
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Healthcare: public and private",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Ministry of Health and Wellness says the public health services are designed to give universal health coverage, and that around 73% of the population uses the public system at no cost to the user. Primary care is given through area health centres, community health centres and mediclinics, placed so that a centre is within about 3 kilometres. Hospital care is given by 5 regional hospitals, 2 district hospitals and the specialised hospitals.",
+          "sources": [
+            "S9",
+            "S10",
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The regional hospitals are Dr Abdool Gaffoor Jeetoo Hospital, Sir Seewoosagur Ramgoolam National Hospital, Sir Anerood Jugnauth Hospital, Jawaharlal Nehru Hospital and Victoria Hospital.",
+            "The specialised hospitals are one psychiatric hospital, one each for chest, eye, and ear, nose and throat diseases, two cardiac centres and a new cancer hospital.",
+            "Emergencies are handled by the SAMU ambulance service and the Accident and Emergency departments of hospitals. The SAMU control room answers on 114, 24 hours a day.",
+            "Specialist services are given on appointment in more than 23 specialties.",
+            "Dental care is given in 55 public dental clinics, with specialised dental clinics in four regional hospitals.",
+            "Dialysis is free of charge for patients attending public health institutions."
+          ],
+          "sources": [
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The EDB's FAQ for retirees says healthcare is free in public hospitals, and that a foreign citizen pays a fee to be treated in a public hospital. It says there is a fee in private clinics and practices. The Ministry pages read for this guide do not set out fees for non-citizens.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Private hospitals, nursing homes, health care units and clinical laboratories need a licence from the Ministry under the Private Health Institutions Act. The EDB counts 29 private clinics, with diagnostic centres and specialised facilities, and says many expatriates use private care with local or international health insurance. Doctors are regulated by the Medical Council of Mauritius. The Ministry counts 380 community pharmacies, licensed by the Pharmacy Board.",
+          "sources": [
+            "S10",
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "An applicant for an Occupation Permit or a residence permit has medical tests done before the permit is issued. The EDB says the tests for hepatitis B and HIV and the chest x-ray must be done in Mauritius, at a private laboratory or clinic registered with the Ministry, and that a local doctor then issues the medical certificate.",
+          "sources": [
+            "S12"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Schools",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Primary school runs from Grade 1 to Grade 6. Secondary school is a seven year cycle from Grade 7 to Grade 13. Grades 7 to 9 complete the nine years of basic education. Students sit the Cambridge School Certificate, or O level, at the end of Grade 11 and the Higher School Certificate, or A level, at the end of Grade 13. Secondary education has been free since 1977 and schooling is compulsory up to the age of 16. Teaching is in English for all subjects except French, Asian and other languages.",
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Kind of school",
+            "Who runs or registers it",
+            "What the official page says about cost"
+          ],
+          "rows": [
+            [
+              "State primary school",
+              "The Ministry of Education and Human Resource, through four zones",
+              "The EDB says public primary schools are free"
+            ],
+            [
+              "Private aided and private unaided primary school",
+              "Listed by the Ministry, zone by zone, beside the state schools",
+              "Not stated on the Ministry page. The EDB says private and international primary schools follow international curricula"
+            ],
+            [
+              "State secondary school",
+              "63 are run by the Ministry and 6 by the Mahatma Gandhi Institute and Rabindranath Tagore Institute",
+              "Free"
+            ],
+            [
+              "Private grant-aided secondary school",
+              "Privately owned and managed, registered with the Private Secondary Education Authority (PSEA)",
+              "Free for all students. Government pays the staff and gives grants through the PSEA"
+            ],
+            [
+              "Private fee-paying secondary school",
+              "Registered with the PSEA, which also accredits their courses",
+              "Fees are charged. The EDB says these schools offer the International Baccalaureate or the French Baccalaureate"
+            ]
+          ],
+          "sources": [
+            "S14",
+            "S15",
+            "S16",
+            "S17",
+            "S19",
+            "S22"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Of the 69 state secondary schools, 57 are regional schools. They admit only students who live in their zone, from Grade 7 to Grade 13.",
+            "The other 12 are Academies. They teach Grades 10 to 13 and admit students from the whole country.",
+            "The four zones are Port Louis and the North, Beau Bassin, Rose Hill and the East, Curepipe and the South, and Vacoas, Phoenix, Quatre Bornes and the West.",
+            "The Ministry's secondary education page counts 78 private grant-aided and 24 private fee-paying secondary schools.",
+            "The PSEA is the regulator for private secondary schools, grant-aided and fee-paying, in Mauritius and Rodrigues. It inspects them and carries out quality audits.",
+            "For children below primary age, the Ministry lists the pre-primary schools housed in government primary schools and points to the Early Childhood Care and Education Authority."
+          ],
+          "sources": [
+            "S14",
+            "S15",
+            "S17",
+            "S18"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A child who arrives from a school abroad is placed through the National Equivalence Committee of the Ministry. The Committee decides on the equivalence of qualifications for admission to primary and secondary schools. The parent fills in the Ministry's form, Application for Admission to a School in Mauritius, and ticks the category 'Admission of child of Non-Mauritian citizen'. The form asks for the grade sought and two schools in order of preference.",
+          "sources": [
+            "S20",
+            "S21"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The child's birth certificate.",
+            "The parents' birth certificates and identity documents, and their marriage certificate if there is one.",
+            "The latest school reports, and a transfer or leaving certificate.",
+            "Proof of residential address: a Central Electricity Board or Central Water Authority bill, or a rent book.",
+            "A letter from the parents giving the reason for the transfer.",
+            "For non-Mauritian citizens: the parents' residence permit and work permit if there is one, the child's residence permit, and the passports of parents and child.",
+            "Documents are produced in original with two photocopies. A separate form is filled in for each child."
+          ],
+          "sources": [
+            "S21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Buying a home as a non-citizen",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A non-citizen can buy a home in Mauritius only in certain ways. The EDB says non-citizens may acquire residential property under schemes that it approves and manages, and may buy an apartment outside the schemes in a building of at least two levels above the ground floor.",
+          "sources": [
+            "S23",
+            "S24"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Integrated Resort Scheme: villas, townhouses, penthouses, apartments, duplexes and serviced plots of land in existing projects.",
+            "Real Estate Scheme: villas, penthouses, duplexes and apartments in existing, smaller developments.",
+            "Property Development Scheme: residential property in approved projects. A version for senior living lets a retiree aged above 50 buy a unit or life rights with no minimum price.",
+            "Smart City Scheme: a townhouse, villa, apartment, penthouse or duplex in one of the smart cities.",
+            "Invest Hotel Scheme: a room or unit in an approved hotel. The owner may use it for 45 days in any period of 12 months.",
+            "Apartments outside the schemes: in a building of at least ground plus two floors, for a price of not less than MUR 6 million.",
+            "On each route the EDB says the buyer is eligible for a residence permit where the price is at least USD 375,000.",
+            "The EDB says owners under the Integrated Resort Scheme and the Real Estate Scheme may rent out the property and face no restriction on taking the proceeds of sale or rent out of Mauritius."
+          ],
+          "sources": [
+            "S23",
+            "S24",
+            "S25",
+            "S26",
+            "S27",
+            "S39",
+            "S40",
+            "S41"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Outside these routes the Non-Citizens (Property Restriction) Act applies. In the copy published by the EDB, a non-citizen who wishes to hold, buy or otherwise acquire property applies in writing to the Minister, who may issue a certificate with conditions.",
+          "sources": [
+            "S28"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A deed of sale is registered at the Registrar-General's Department. The Department says the buyer pays registration duty of 5% on the value of the transaction and the seller pays land transfer tax of 5% on the same value. After registration the Government valuer checks the declared price. If the property is found to be undervalued, the Registrar-General may claim more duty within 7 months of registration. No claim is made where the difference is Rs 150,000 or less.",
+          "sources": [
+            "S29"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Department is on the 6th Floor of the Emmanuel Anquetil Building, Sir S. Ramgoolam Street, Port Louis.",
+            "Its public counters open Monday to Friday, except public holidays, from 08:45 to 15:30.",
+            "Duty and tax can be paid online through the Mauritius eRegistry System."
+          ],
+          "sources": [
+            "S29"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Renting a home, and proving your address",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Non-Citizens (Property Restriction) Act, in the copy published by the EDB, says a non-citizen needs no certificate to hold property under a tenancy agreement for a term of not more than 4 years. The Registrar-General's Department says eligible lease agreements can be submitted for registration online.",
+          "sources": [
+            "S28",
+            "S29"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A lease or a rent book then serves as proof of address in many of the steps in this guide. The offices below say what they accept from a tenant.",
+          "sources": [
+            "S6",
+            "S21",
+            "S31",
+            "S32"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Traffic Branch, for converting a licence: proof of address, a rent book or a lease agreement.",
+            "Ministry of Education, for school admission: a Central Electricity Board or Central Water Authority bill, or a rent book.",
+            "Central Electricity Board, for an electricity account: a letter of authorisation from the landlord, with a copy of the landlord's identity card and title deed.",
+            "Central Water Authority, for a water supply: the rent book, a letter of authorisation from the owner and the owner's identity card."
+          ],
+          "sources": [
+            "S6",
+            "S21",
+            "S31",
+            "S32"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Tax: when you become resident, and registering with the MRA",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Under the Income Tax Act an individual is resident in Mauritius for an income year if he or she has a domicile in Mauritius, unless the permanent place of abode is abroad. An individual is also resident after being present in Mauritius for 183 days or more in that income year, or for 270 days or more in total over that income year and the two before it. The income year runs from 1 July to 30 June.",
+          "sources": [
+            "S30",
+            "S35",
+            "S38"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Mauritius Revenue Authority (MRA) says a resident individual is subject to income tax on income derived in Mauritius or remitted to Mauritius, and is entitled to reliefs, deductions and allowances. A non-resident is taxed only on income derived from or accruing in Mauritius and has no such reliefs. A person who wants to be certified as resident for an income year applies to the Director-General of the MRA for a Tax Residence Certificate.",
+          "sources": [
+            "S30",
+            "S37"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The MRA's page for individuals has an online Application for TAN, the Tax Account Number, and a way to retrieve a number already issued.",
+            "A person who takes up employment for the first time gives the employer an Employee Declaration Form, so that reliefs and deductions are counted when tax is withheld from pay under the PAYE system.",
+            "An individual files a return if, in the income year, he or she had net income above Rs 500,000, gross business income above Rs 2 million, pay from which PAYE was withheld, income that had tax deducted at source, or a chargeable income.",
+            "The return is filed online, and any tax paid, by 15 October after the income year. The MRA says taxpayers log in with their User ID (NID, NCID or TAN) and a password.",
+            "Under the First Schedule to the Act the rates are 0% on the first Rs 500,000 of chargeable income, 10% on the next Rs 500,000, 20% on the next Rs 11 million and 35% on the remainder.",
+            "The EDB says a professional on an Occupation Permit files his or her emoluments with the MRA each year, and that a professional on secondment who declared them at home shows a tax certificate when the permit is renewed."
+          ],
+          "sources": [
+            "S5",
+            "S33",
+            "S34",
+            "S35",
+            "S36",
+            "S38"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Banks",
+      "url": "https://residency.mu/practical-information/banks/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Retire in Mauritius, with FAQ",
+      "url": "https://residency.mu/retire/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Opening a bank account",
+      "url": "https://mba.mu/financial-literacy/opening-a-bank-account/",
+      "publisher": "Mauritius Bankers Association",
+      "published": "25 June 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Application Process",
+      "url": "https://residency.mu/wp-content/uploads/2021/07/Application-Process-revised.pdf",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Guidelines: Occupation Permit (Investor, Professional, Self-Employed) and Residence Permit (Retired Non-Citizen)",
+      "url": "https://residency.mu/wp-content/uploads/2022/07/OP-Guidelines.pdf",
+      "publisher": "Economic Development Board",
+      "published": "Undated; file last modified 8 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Traffic Branch",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Application for Driving Licence",
+      "url": "https://police.govmu.org/police/?page_id=5578",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Road Traffic Act (Act 22 of 1962), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/R/Road%20Traffic%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised Laws of Mauritius, Acts as at 30 June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The Ministry",
+      "url": "https://health.govmu.org/health/?page_id=5444",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Hospital Services",
+      "url": "https://health.govmu.org/health/?page_id=5509",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Primary Health Care Unit",
+      "url": "https://health.govmu.org/health/?page_id=5527",
+      "publisher": "Ministry of Health and Wellness",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Health Care",
+      "url": "https://residency.mu/practical-information/health/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Private Health Institutions Act (Act 11 of 1989)",
+      "url": "https://health.govmu.org/health/wp-content/uploads/2023/03/PRIVATE-HEALTH-INSTITUTIONS-ACT-1989.pdf",
+      "publisher": "Ministry of Health and Wellness (copy of the Act)",
+      "published": "Revised Laws of Mauritius",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Secondary Education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Secondary%20Education/secondary2024.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "State Secondary Schools",
+      "url": "https://education.govmu.org/Pages/2024SECONDARY/state-secondary-school.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Private Secondary Schools",
+      "url": "https://education.govmu.org/Pages/2024SECONDARY/private-secondary-school.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Who We Are",
+      "url": "https://psea.govmu.org/psea/?page_id=1137",
+      "publisher": "Private Secondary Education Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Pre-Primary Education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Pre-Primary-Education.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Primary: list of schools by zone",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Primary/Primary-List.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "National Equivalence Committee",
+      "url": "https://education.govmu.org/Pages/About%20Us/National-Equivalence-Committee.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Form: Application for Admission to a School in Mauritius",
+      "url": "https://education.govmu.org/Documents/2025/NEC/FORM%20-%20ADMISSION%20TO%20A%20SCHOOL%20IN%20MAURITIUS.pdf",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "Education",
+      "url": "https://residency.mu/practical-information/education/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Acquire a Property in Mauritius",
+      "url": "https://residency.mu/acquire/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Ground + 2 Apartments",
+      "url": "https://residency.mu/acquire/ground-2-appartments/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Integrated Resort Scheme",
+      "url": "https://residency.mu/acquire/integrated-resort-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Property Development Scheme",
+      "url": "https://residency.mu/acquire/property-development-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Smart City Scheme",
+      "url": "https://residency.mu/acquire/smart-city-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Non-Citizens (Property Restriction) Act (Act 22 of 1975)",
+      "url": "https://residency.mu/wp-content/uploads/2021/06/NON-CITIZEN-PROPERTY-RESTRICTION-ACT-5.5.21.pdf",
+      "publisher": "Economic Development Board (copy of the Act)",
+      "published": "Amendments noted up to Act 2 of 2021, in operation 29 April 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "FAQs",
+      "url": "https://registrar.govmu.org/rgd/index.php/faqs/",
+      "publisher": "Registrar-General's Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S30",
+      "title": "Foreign Income, with the definition of residence",
+      "url": "https://www.mra.mu/index.php/individuals/foreign-income",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S31",
+      "title": "Residential Supply",
+      "url": "https://ceb.mu/customer-corner/residential-supply",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S32",
+      "title": "My Applications",
+      "url": "https://cwa.govmu.org/cwa/?page_id=743",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S33",
+      "title": "New Employees",
+      "url": "https://www.mra.mu/index.php/individuals/new-employees",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S34",
+      "title": "Individual: eServices",
+      "url": "https://www.mra.mu/index.php/eservices1/individual",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S35",
+      "title": "Communiqué: Individual Income Tax Returns, e-Filing Season 2026",
+      "url": "https://www.mra.mu/download/ComFilng280826.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S36",
+      "title": "Guide on Income Tax: Employees Taking Up Employment for the First Time",
+      "url": "https://www.mra.mu/download/EmploymentGuide.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S37",
+      "title": "eServices",
+      "url": "https://www.mra.mu/index.php/e-services",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S38",
+      "title": "The Income Tax Act 1995 (Consolidated up to Finance Act 2026)",
+      "url": "https://www.mra.mu/download/ITAConsolidated.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "published": "Consolidated up to Finance Act 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S39",
+      "title": "Real Estate Scheme",
+      "url": "https://residency.mu/acquire/real-estate-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S40",
+      "title": "Invest Hotel Scheme",
+      "url": "https://residency.mu/acquire/invest-hotel-scheme/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S41",
+      "title": "Senior Living Residence",
+      "url": "https://residency.mu/retire/senior-living-residence/",
+      "publisher": "Economic Development Board (residency.mu)",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Banks in Mauritius",
+      "url": "https://residency.mu/practical-information/banks/",
+      "publisher": "Economic Development Board",
+      "what": "See what kind of account a non-citizen can open and find the list of banks with their addresses."
+    },
+    {
+      "title": "Opening a bank account",
+      "url": "https://mba.mu/financial-literacy/opening-a-bank-account/",
+      "publisher": "Mauritius Bankers Association",
+      "what": "Read the three steps to an account and what the identity checks are for."
+    },
+    {
+      "title": "Traffic Branch: driving licences",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "what": "Find the list of documents for converting a foreign licence, the fees and the Licensing Office hours."
+    },
+    {
+      "title": "Hospital Services",
+      "url": "https://health.govmu.org/health/?page_id=5509",
+      "publisher": "Ministry of Health and Wellness",
+      "what": "Read how the public hospitals, emergency service, pharmacy and dental services are organised."
+    },
+    {
+      "title": "Health Care for residents from abroad",
+      "url": "https://residency.mu/practical-information/health/",
+      "publisher": "Economic Development Board",
+      "what": "See the medical tests for a permit and the lists of private clinics and laboratories."
+    },
+    {
+      "title": "Secondary Education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Secondary%20Education/secondary2024.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "Read how the grades and examinations work and reach the lists of state and private schools."
+    },
+    {
+      "title": "Private Secondary Education Authority",
+      "url": "https://psea.govmu.org/psea/",
+      "publisher": "Private Secondary Education Authority",
+      "what": "Check the list of registered private secondary schools and the school calendar."
+    },
+    {
+      "title": "Form: Admission to a School in Mauritius",
+      "url": "https://education.govmu.org/Documents/2025/NEC/FORM%20-%20ADMISSION%20TO%20A%20SCHOOL%20IN%20MAURITIUS.pdf",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "Download the form for a child arriving from abroad and see the documents to attach."
+    },
+    {
+      "title": "Schools for expatriate families",
+      "url": "https://residency.mu/practical-information/education/",
+      "publisher": "Economic Development Board",
+      "what": "Browse the EDB's list of private and international primary, secondary and tertiary institutions."
+    },
+    {
+      "title": "Acquire a Property in Mauritius",
+      "url": "https://residency.mu/acquire/",
+      "publisher": "Economic Development Board",
+      "what": "Compare the property schemes open to non-citizens and download the buyer guidelines."
+    },
+    {
+      "title": "Registrar-General's Department: FAQs",
+      "url": "https://registrar.govmu.org/rgd/index.php/faqs/",
+      "publisher": "Registrar-General's Department",
+      "what": "Read how deeds and leases are registered, what duty is paid and how to pay online."
+    },
+    {
+      "title": "MRA: services for individuals",
+      "url": "https://www.mra.mu/index.php/eservices1/individual",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Apply for or retrieve a Tax Account Number and reach the individual tax portal."
+    },
+    {
+      "title": "MRA: foreign income and residence",
+      "url": "https://www.mra.mu/index.php/individuals/foreign-income",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read when a person is resident for tax and how foreign income is treated."
+    },
+    {
+      "title": "Moving to Mauritius: the ways to live here",
+      "url": "/learn/moving-to-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the visas and permits that come before these steps."
+    },
+    {
+      "title": "Bills and services at home: electricity, water, waste, tax",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to opening electricity and water accounts, paying bills and filing the yearly tax return."
+    },
+    {
+      "title": "Invest in or move a business to Mauritius as a non-citizen",
+      "url": "/learn/invest-from-abroad",
+      "publisher": "biznes.mu",
+      "what": "Our business guide, with more on the property schemes, duties on sales to non-citizens and foreign exchange."
+    }
+  ],
+  "unverified": [
+    "How long a visitor or a new resident may drive on a foreign licence before an international driving permit or a Mauritian licence is needed. Travel sites give four weeks, but no official page or regulation stating a period was found. The regulations made under the Road Traffic Act were not found on the Attorney General's site.",
+    "What the Bank of Mauritius says about opening an account. Its website could not be opened on 20 November 2026 (HTTP 503), so the banking section rests on the Economic Development Board and the Mauritius Bankers Association.",
+    "The exact documents each bank asks of a non-citizen. The list in the guide is from the EDB's FAQ for retirees. Banks set their own requirements.",
+    "Whether a non-citizen pays for treatment in a public hospital, and how much. The EDB's FAQ says a fee is paid. The Ministry of Health and Wellness pages read do not mention it.",
+    "The current number of private clinics. The EDB page gives 29 and carries no date.",
+    "Current school numbers. The Ministry's secondary pages quote figures for 2018 and 2019.",
+    "Fees at private and international schools, and the admission rules and dates for state primary schools. Neither is on the pages read.",
+    "How pre-primary schools are registered. The Early Childhood Care and Education Authority's own site was not read.",
+    "Whether the Non-Citizens (Property Restriction) Act still reads as in the EDB's copy, which notes amendments only up to April 2021. This affects the 4 year tenancy rule and the certificate procedure.",
+    "The duties that apply when the buyer is a non-citizen. The Registrar-General's FAQ gives the general 5% rates. Our business guide reports the 2025 and 2026 changes.",
+    "How long the Traffic Branch takes to convert a licence, and whether a driving test is ever required on conversion. The page does not say.",
+    "The documents a non-citizen needs to obtain a Tax Account Number. The online form was not opened."
+  ]
+}

@@ -18,6 +18,12 @@ export default function PrivacyPage() {
         <div className="prose body-2">
           <h2 className="heading-3">If you only look</h2>
           <p>The site sets no cookies and runs no analytics or advertising scripts. A search is sent to our server to be answered and is not stored against you. Our hosting provider keeps ordinary server logs, as every website&rsquo;s does.</p>
+          <h2 className="heading-3 mt-8">If you save listings</h2>
+          <p>
+            The <Link href="/saved">saved list</Link> is kept in your own browser, on your own device. It is not sent to us and we cannot see it. If you share it, the link you send holds the listings&rsquo; reference numbers and nothing about you. Clearing your browser&rsquo;s data for this site clears the list.
+          </p>
+          <h2 className="heading-3 mt-8">If you add the site to your home screen</h2>
+          <p>Your device keeps copies of the pages you have opened, so they load quickly and still open with no connection. Those copies stay on your device.</p>
           <h2 className="heading-3 mt-8">If you send a request</h2>
           <p>The form on the page for adding or correcting a listing sends us what you type: the business, the details, your name, and the email address or number you ask us to reply to. We use it to deal with the request and to reply, and for nothing else. We do not sell it or pass it on.</p>
           <h2 className="heading-3 mt-8">If your business is listed</h2>
