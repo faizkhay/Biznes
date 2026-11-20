@@ -25,25 +25,28 @@ export default function MapSwitch({
   lit,
   focus,
   children,
+  back = "Back to the island",
 }: {
   /** Positions in the chart's points to light on the street map, as on the island. */
   lit?: number[];
   /** One listing to centre on and mark. */
   focus?: { lon: number; lat: number; name: string };
-  /** The island and its caption. */
-  children: React.ReactNode;
+  /** The island and its caption. With none, the button alone stands where the map will open. */
+  children?: React.ReactNode;
+  /** What the button says once the map is open. */
+  back?: string;
 }) {
   const [open, setOpen] = useState(false);
   const ready = useReady();
   return (
     <div className="map-switch">
-      <div hidden={open}>{children}</div>
+      {children && <div hidden={open}>{children}</div>}
       {open && <StreetMapView lit={lit} focus={focus} />}
       {/* The button's room is kept before the page's script has loaded, so nothing under it moves when it comes. */}
-      <p className="map-switch-act mt-3">
+      <p className={children || open ? "map-switch-act mt-3" : "map-switch-act"}>
         {ready && (
           <button type="button" className="btn btn-quiet btn-sm button-sm" onClick={() => setOpen(!open)}>
-            <MapIcon /> {open ? "Back to the island" : "Open the street map"}
+            <MapIcon /> {open ? back : "Open the street map"}
           </button>
         )}
       </p>

@@ -50,10 +50,10 @@ export default function SiteFooter() {
             </li>
           </ul>
           <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
-            <Link href="/add" className="btn btn-filled button-sm btn-sm">
+            <Link href="/add" prefetch={false} className="btn btn-filled button-sm btn-sm">
               {ACTIONS.add}
             </Link>
-            <Link href="/pricing" className="body-3 inline-flex min-h-11 items-center font-semibold text-ink">
+            <Link href="/pricing" prefetch={false} className="body-3 inline-flex min-h-11 items-center font-semibold text-ink">
               {ACTIONS.list}
             </Link>
           </p>
@@ -67,7 +67,8 @@ export default function SiteFooter() {
                 <ul className="mt-3 grid gap-0.5">
                   {column.items.map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} prefetch={item.href === "/account" || item.href === "/cart" ? false : undefined} className="body-3 inline-flex min-h-9 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
+                      {/* Not fetched ahead: the footer holds every page, and nobody means to open them all. */}
+                      <Link href={item.href} prefetch={false} className="body-3 inline-flex min-h-9 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
                         {item.label}
                       </Link>
                     </li>

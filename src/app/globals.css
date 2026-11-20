@@ -2105,14 +2105,20 @@
     stroke: color-mix(in srgb, var(--palette-ink) 62%, transparent);
     stroke-linecap: round;
   }
-  .chart-lit {
-    fill: var(--palette-saffron);
+  /* The lit points without script: dots drawn by a round cap, a ring of ink under a point of saffron. */
+  .chart-lit,
+  .chart-halo {
+    fill: none;
+    stroke-linecap: round;
+  }
+  .chart-lit-ring {
     stroke: var(--palette-ink);
-    stroke-width: 1.25;
-    vector-effect: non-scaling-stroke;
+  }
+  .chart-lit-point {
+    stroke: var(--palette-saffron);
   }
   .chart-halo {
-    fill: color-mix(in srgb, var(--palette-saffron) 42%, transparent);
+    stroke: color-mix(in srgb, var(--palette-saffron) 42%, transparent);
   }
   /* The island's lettering is set in the page's own type over the drawing, so it is as large on a
      phone as on a desk. */
@@ -2445,7 +2451,7 @@
     max-width: calc(100% - 1rem);
     padding: 0.25rem 0.625rem;
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--palette-white) 90%, transparent);
+    background: var(--color-paper);
     color: var(--color-ink-subtle);
     font-size: 0.75rem;
     line-height: 1.4;

@@ -44,7 +44,7 @@ export default function ShopPage() {
       <PageHead here="/shop" title={PUBLICATIONS.guide.name} path={[{ label: PUBLICATIONS.guide.short }]} lede="One guide to Mauritius, to keep on your phone and read on the road with no signal. A new edition every month, written the way the rest of biznes.mu is: from official pages, with every source listed at the back." />
       <div className="shell">
         <article className="grid items-start gap-x-16 gap-y-8 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-24 lg:col-span-5">
             <img src={`/shop/${p.slug}-cover.jpg`} alt={`The cover of the ${p.title}, ${monthName(built.edition)} edition.`} width={560} height={794} className="w-full max-w-sm rounded-xl shadow-[var(--shadow-lg)]" />
           </div>
           <div className="lg:col-span-7">

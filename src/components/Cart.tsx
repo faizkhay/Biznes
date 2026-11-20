@@ -79,7 +79,7 @@ export default function CartView({ buys }: { /** What can be bought, for an empt
             <li key={buy.href}>
               <article className="card h-full">
                 <h3 className="title-1">
-                  <Link href={buy.href} className="row-title text-ink">
+                  <Link href={buy.href} prefetch={false} className="row-title text-ink">
                     {buy.title}
                   </Link>
                 </h3>

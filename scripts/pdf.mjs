@@ -304,7 +304,9 @@ for (const [id, name] of [["cover", "cover"], ["opener", "opener"], ["sample", "
   const el = page.locator(`#${id}`);
   if (!(await el.count())) continue;
   const box = await el.boundingBox();
-  await page.screenshot({ path: `${root}public/shop/${product.slug}-${name}.jpg`, type: "jpeg", quality: 82, fullPage: true, clip: { x: box.x, y: box.y, width: Math.min(box.width, 560), height: Math.min(box.height, 794) } });
+  // Captured at twice the size and brought down to what the shop's page shows, so the three weigh little.
+  const shot = await page.screenshot({ type: "png", fullPage: true, clip: { x: box.x, y: box.y, width: Math.min(box.width, 560), height: Math.min(box.height, 794) } });
+  await sharp(shot).resize({ width: 800 }).jpeg({ quality: 78, mozjpeg: true }).toFile(`${root}public/shop/${product.slug}-${name}.jpg`);
 }
 const pages = (readFileSync(pdf).toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? []).length;
 writeFileSync(`${root}content/pdf/built.json`, `${JSON.stringify({ slug: product.slug, edition, pages, places: data.places.length, regions: regions.length, sources: data.sources.length, checked: data.checked }, null, 2)}\n`);

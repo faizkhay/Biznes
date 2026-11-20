@@ -200,15 +200,10 @@ export default function BusinessPage({
               </div>
             )}
           </dl>
-          {/* On a phone the island and the street map are here, beside the address; a wide screen has them at the side. */}
+          {/* On a phone the street map opens here, beside the address: the card above already shows the neighbourhood. A wide screen has the island and the map at the side. */}
           {onIsland && (
             <div className="mt-3 chart:hidden">
-              <MapSwitch focus={{ lon: l.lon!, lat: l.lat!, name }}>
-                <div className="flex items-center gap-4">
-                  <Chart className="chart-strip" focus={l} says={`A chart of Mauritius marking where ${name} is${where ? `, in ${where}` : ""}.`} />
-                  <p className="caption-1 text-ink-faint">The mark is {name}.</p>
-                </div>
-              </MapSwitch>
+              <MapSwitch focus={{ lon: l.lon!, lat: l.lat!, name }} back="Close the street map" />
             </div>
           )}
         </Block>
@@ -270,7 +265,7 @@ export default function BusinessPage({
               {l.extras?.length ? (
                 <div>
                   <dt>Good to know</dt>
-                  <dd className="flex flex-wrap gap-1.5 pt-1">
+                  <dd className="flex flex-wrap gap-2 pt-1">
                     {l.extras.map((extra) => (
                       <span key={extra} className="tag caption-1">
                         {extra}

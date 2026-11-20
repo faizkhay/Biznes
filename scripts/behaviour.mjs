@@ -224,7 +224,7 @@ await still.fill("#home-search", "dentist");
 await still.press("#home-search", "Enter");
 await still.waitForURL(/\/search\?q=dentist/, { timeout: 8000 }).catch(() => {});
 check("no script: the search works", /\/search\?q=dentist/.test(still.url()) && (await still.locator("main article").count()) > 3);
-check("no script: the answers are lit on the drawn chart", (await still.locator(".chart circle.chart-lit").count()) >= 0);
+check("no script: the answers are lit on the drawn chart", (await still.locator(".chart path.chart-lit-point").count()) >= 1 && ((await still.locator(".chart path.chart-lit-point").first().getAttribute("d")) ?? "").length > 20);
 await still.goto(`${origin}/tools/vat`, { waitUntil: "domcontentloaded" });
 check("no script: the VAT sums are in a table", /MUR 1,150\.00/.test(await still.content()));
 await still.goto(`${origin}/add`, { waitUntil: "domcontentloaded" });

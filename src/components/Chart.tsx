@@ -93,6 +93,7 @@ export default function Chart({
   }
   // Without script at most this many are lit as marks; the canvas lights them all.
   const marks = (lit ?? []).slice(0, 500);
+  const lights = marks.map((i) => `M${flat[i * 2] / 10} ${flat[i * 2 + 1] / 10}h0`).join("");
   const box = c.insetBox;
 
   return (
@@ -122,12 +123,17 @@ export default function Chart({
         <path className="chart-dots" d={mid} strokeWidth={3.8 * scale} opacity={0.66} />
         <path className="chart-dots" d={strong} strokeWidth={5.4 * scale} opacity={0.92} />
 
-        {marks.map((i) => (
-          <circle key={`h${i}`} className="chart-halo" cx={flat[i * 2] / 10} cy={flat[i * 2 + 1] / 10} r={9 * scale} />
-        ))}
-        {marks.map((i) => (
-          <circle key={`l${i}`} className="chart-lit" cx={flat[i * 2] / 10} cy={flat[i * 2 + 1] / 10} r={3.4 * scale} />
-        ))}
+        {/* The lit points, as the gathered dots are drawn: one path of strokes with no length, which a
+            round cap draws as dots. Three of them make a point: its soft light, its ring of ink and
+            its saffron. A list of a thousand answers is then a few lines of the page, not two
+            thousand shapes. */}
+        {marks.length > 0 && (
+          <>
+            <path className="chart-halo" d={lights} strokeWidth={18 * scale} />
+            <path className="chart-lit chart-lit-ring" d={lights} strokeWidth={6.8 * scale + 2.5 * unit} />
+            <path className="chart-lit chart-lit-point" d={lights} strokeWidth={6.8 * scale} />
+          </>
+        )}
       </svg>
 
       <ChartLive lit={lit} follow={follow} focus={mark ?? undefined} view={[view.x, view.y, view.w, view.h]} />
