@@ -6,10 +6,9 @@ import type { Listing } from "@/lib/index";
 import { narrowed, narrowOf, PAGE_SIZE } from "@/lib/search";
 import { itemList } from "@/lib/schema";
 import { Pager } from "./Bits";
-import Chart from "./Chart";
 import Filters, { narrowQuery } from "./Filters";
 import JsonLd from "./JsonLd";
-import MapSwitch from "./MapSwitch";
+import IslandBeside from "./IslandBeside";
 import { ListingRow } from "./Rows";
 
 /**
@@ -88,28 +87,9 @@ export default function ListingList({
         <Pager page={page} pages={pages} href={(n) => query(n)} />
         {/* An advertisement, when one is running for the directory: after the list, never among its rows, and always marked. */}
         <AdSlot place="directory" className="mt-8" />
-        {/* On a phone the island comes after the list: the first thing a visitor needs is a name and a number. */}
-        {lit.length > 0 && (
-          <div className="mt-10 chart:hidden">
-            <MapSwitch lit={lit}>
-              <div className="flex items-center gap-4">
-                <Chart className="chart-strip" lit={lit} zoom says={says} />
-                <p className="caption-1 text-ink-faint">{onChart}</p>
-              </div>
-            </MapSwitch>
-          </div>
-        )}
       </div>
-      {lit.length > 0 && (
-        <aside className="hidden chart:col-span-5 chart:block">
-          <div className="sticky top-24">
-            <MapSwitch lit={lit}>
-              <Chart className="chart-side" lit={lit} zoom says={says} />
-              <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
-            </MapSwitch>
-          </div>
-        </aside>
-      )}
+      {/* On a phone the island comes after the list: the first thing a visitor needs is a name and a number. */}
+      {lit.length > 0 && <IslandBeside lit={lit} says={says} onChart={onChart} />}
     </div>
   );
 }

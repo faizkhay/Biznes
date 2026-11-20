@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/account/AdSlot";
 import { Pager } from "@/components/Bits";
-import Chart from "@/components/Chart";
 import Filters, { narrowQuery } from "@/components/Filters";
 import { Chevron, Glass, Phone, Pin } from "@/components/Icons";
-import MapSwitch from "@/components/MapSwitch";
+import IslandBeside from "@/components/IslandBeside";
 import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
 import SearchBox from "@/components/SearchBox";
@@ -212,7 +211,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   return (
     <div className="shell pt-8 pb-16 lg:pt-10">
       <h1 className="sr-only">Search results for {q}</h1>
-      <div className="grid gap-x-12 chart:grid-cols-12">
+      {/* Three parts: the answers and the businesses; the island, drawn once (a strip after the businesses on a phone, beside everything on a desk); then what only mentions the words. */}
+      <div className="grid gap-x-12 chart:grid-cols-12 chart:grid-rows-[auto_1fr]">
         <div className="chart:col-span-7">
           <SearchBox size="lg" id="search" initial={q} hotkey />
 
@@ -355,18 +355,12 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </nav>
           )}
 
-          {/* On a phone the island comes after the list: a name and a number come first. */}
-          {charted && (
-            <div className="mt-8 chart:hidden">
-              <MapSwitch lit={a.points}>
-                <div className="flex items-center gap-4">
-                  <Chart className="chart-strip" lit={a.points} zoom says={says} />
-                  <p className="caption-1 text-ink-faint">{onChart}</p>
-                </div>
-              </MapSwitch>
-            </div>
-          )}
+        </div>
 
+        {/* On a phone the island comes after the list: a name and a number come first. */}
+        {charted && <IslandBeside lit={a.points} says={says} onChart={onChart} className="mt-8 chart:col-span-5 chart:col-start-8 chart:row-span-2 chart:row-start-1 chart:mt-0" />}
+
+        <div className="chart:col-span-7 chart:col-start-1">
           {mentions}
 
           {/* In the first view pages elsewhere are folded away as references, so the site's own
@@ -385,7 +379,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
         {/* With no island to show, the side of the page offers what to read next on the site. */}
         {!charted && total > 0 && more.length > 0 && (
-          <aside aria-labelledby="r-more" className="mt-12 chart:col-span-4 chart:col-start-9 chart:mt-0">
+          <aside aria-labelledby="r-more" className="mt-12 chart:col-span-4 chart:col-start-9 chart:row-span-2 chart:row-start-1 chart:mt-0">
             <div className="card sticky top-24">
               <h2 id="r-more" className="label-1 text-ink-faint">
                 Keep reading
@@ -403,17 +397,6 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               <Link prefetch={false} href="/learn" className={all}>
                 All articles
               </Link>
-            </div>
-          </aside>
-        )}
-
-        {charted && (
-          <aside className="hidden chart:col-span-5 chart:block">
-            <div className="sticky top-24">
-              <MapSwitch lit={a.points}>
-                <Chart className="chart-side" lit={a.points} zoom says={says} />
-                <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
-              </MapSwitch>
             </div>
           </aside>
         )}

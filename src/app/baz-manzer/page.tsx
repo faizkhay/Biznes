@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/account/AdSlot";
 import { Crumbs, Pager } from "@/components/Bits";
-import Chart from "@/components/Chart";
 import Filters, { narrowQuery } from "@/components/Filters";
 import { Arrow, Fork, GroupIcon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import MapSwitch from "@/components/MapSwitch";
+import IslandBeside from "@/components/IslandBeside";
 import { ListingRow } from "@/components/Rows";
 import { BAZ, SHELVES } from "@/data/site";
 import { owned } from "@/lib/accounts/owned";
@@ -225,36 +224,15 @@ export default async function BazManzerPage({ searchParams }: { searchParams: Pr
             A verified outlet on a paid plan is shown first and marked; the rest are in order of how much is known of them. <Link href="/data#order">How results are ordered</Link>. Map data as of {day(data.meta.map.stamp)}.
           </p>
 
-          {lit.length > 0 && (
-            <div className="mt-8 chart:hidden">
-              <MapSwitch lit={lit}>
-                <div className="flex items-center gap-4">
-                  <Chart className="chart-strip" lit={lit} zoom says={says} />
-                  <p className="caption-1 text-ink-faint">{onChart}</p>
-                </div>
-              </MapSwitch>
-            </div>
-          )}
         </div>
 
-        <aside className="hidden chart:col-span-5 chart:block">
-          <div className="sticky top-24">
-            {lit.length > 0 && (
-              <MapSwitch lit={lit}>
-                <Chart className="chart-side" lit={lit} zoom says={says} />
-                <p className="caption-1 mt-3 text-ink-faint">{onChart} Point at a row to see where it is.</p>
-              </MapSwitch>
-            )}
-            <AdSlot place="food" className="mt-6" />
-          </div>
-        </aside>
+        {/* One island for both sizes, with the advertisement for food under it. */}
+        <IslandBeside lit={lit} says={says} onChart={onChart}>
+          <AdSlot place="food" className="mt-6" />
+        </IslandBeside>
       </div>
 
       <div className="shell">
-        <div className="chart:hidden">
-          <AdSlot place="food" className="mt-8" />
-        </div>
-
         {articles.length > 0 && shelf && (
           <section aria-labelledby="food-articles" className="mt-16">
             <h2 id="food-articles" className="heading-2">

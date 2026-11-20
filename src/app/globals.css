@@ -2157,14 +2157,6 @@
     box-shadow: var(--shadow-sm);
   }
   /* On a phone the island beside a list is a small one above it, with no lettering. */
-  .chart-strip {
-    width: 9.5rem;
-    flex: none;
-    border-radius: var(--radius-lg);
-  }
-  .chart-strip .chart-letters {
-    display: none;
-  }
   .chart-frame {
     fill: color-mix(in srgb, var(--palette-white) 45%, transparent);
     stroke: color-mix(in srgb, var(--palette-ink) 16%, transparent);
@@ -2181,9 +2173,23 @@
     visibility: hidden;
   }
   /* Beside a list the island is never taller than the screen it sits in. */
-  .chart-side {
-    max-width: min(100%, calc((100dvh - 10.5rem) * 0.86));
-    margin-inline: auto;
+  /* The island beside a list, one drawing for both sizes of screen (IslandBeside): a small strip
+     after the list under the chart's breakpoint, the tall chart that stays in view from there up. */
+  @media (max-width: 67.99rem) {
+    .chart-fit {
+      width: 9.5rem;
+      flex: none;
+      border-radius: var(--radius-lg);
+    }
+    .chart-fit .chart-letters {
+      display: none;
+    }
+  }
+  @media (min-width: 68rem) {
+    .chart-fit {
+      max-width: min(100%, calc((100dvh - 10.5rem) * 0.86));
+      margin-inline: auto;
+    }
   }
 
   /* A guide's own words: long reading. */
