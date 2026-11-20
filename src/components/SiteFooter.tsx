@@ -1,75 +1,119 @@
 import Link from "next/link";
-import { ACTIONS, CREDITS, MORE, NAV, site } from "@/data/site";
+import SubscribeForm from "@/components/account/SubscribeForm";
+import { ABOUT, ACTIONS, CREDITS, MENU, PUBLICATIONS, STREET_MAP, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { day } from "@/lib/format";
 import { index } from "@/lib/index";
+import { Mail, Phone } from "./Icons";
 import { Mark, Wordmark } from "./Logo";
 
 /**
- * The footer: where the data comes from (the map's licence asks for its credit wherever its data
- * is shown, so it is on every page), the pages, how to reach the people behind the site, and who
- * made it.
+ * The footer: a dark card on the picture, with the b standing on its top edge. The name, large and
+ * white; whose product the site is; how to reach the people behind it; the way onto the list for
+ * the pocket guide and the magazine; every page in four columns (Explore, Learn, For business,
+ * About); the credit the map's data asks for wherever it is shown; and the page's last line.
  */
 export default function SiteFooter() {
   const { meta } = index();
   const { contact, builder } = site;
+  const columns = [...MENU.map((group) => ({ label: group.label, items: group.items.map((item) => ({ href: item.href, label: item.label })) })), { label: "About", items: [...ABOUT, ...(accountsOn ? [{ href: "/account", label: "Your account" }] : [])] }];
   return (
     <footer id="site-footer" className="site-footer">
       <span className="footer-mark" aria-hidden>
         <Mark />
       </span>
-      <div className="shell grid gap-10 pb-12 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <p className="logo">
+      <div className="shell grid gap-x-12 gap-y-10 pb-10 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <p className="footer-name">
             <Wordmark />
             <span className="sr-only">{site.name}</span>
           </p>
-          <p className="body-3 mt-3 max-w-sm text-ink-subtle">{site.line}. Listings come from open data and each one says where; guides are written from official sources and each one lists them.</p>
-          <p className="caption-1 mt-6 max-w-sm text-ink-faint">
-            Map data from{" "}
-            <a href={CREDITS.osm.href} rel="noopener">
-              {CREDITS.osm.label}
+          <p className="body-2 mt-4 max-w-sm text-ink-subtle">{site.line}.</p>
+          {/* Whose it is, in the owner's words. The names are in src/data/site.ts. */}
+          <p className="body-3 mt-4 max-w-sm text-ink-subtle">
+            {site.name} is a product of{" "}
+            <a href={builder.url} rel="noopener" className="font-semibold text-ink">
+              {builder.name}
             </a>
-            , under the {CREDITS.osm.licence}, as of {day(meta.map.stamp)}. Company facts from{" "}
-            <a href={CREDITS.wikidata.href} rel="noopener">
-              {CREDITS.wikidata.label}
-            </a>
-            , {CREDITS.wikidata.licence}.
+            , developed by {builder.developer}.
+          </p>
+          <ul className="footer-reach mt-6">
+            <li>
+              <a href={contact.phoneHref} className="data-1">
+                <Phone /> {contact.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${contact.email}`} className="body-3">
+                <Mail /> {contact.email}
+              </a>
+            </li>
+          </ul>
+          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Link href="/add" className="btn btn-filled button-sm btn-sm">
+              {ACTIONS.add}
+            </Link>
+            <Link href="/pricing" className="body-3 inline-flex min-h-11 items-center font-semibold text-ink">
+              {ACTIONS.list}
+            </Link>
           </p>
         </div>
-        <nav aria-label="Footer" className="md:col-span-3">
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-1">
-            {[...NAV, ...MORE, ...(accountsOn ? [{ href: "/account", label: "Your account" }] : [])].map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} prefetch={l.href === "/account" ? false : undefined} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
-                  {l.label}
-                </Link>
-              </li>
+
+        <div className="lg:col-span-7">
+          <nav aria-label="Footer" className="footer-cols">
+            {columns.map((column) => (
+              <div key={column.label}>
+                <h2 className="label-1 text-ink-faint">{column.label}</h2>
+                <ul className="mt-3 grid gap-0.5">
+                  {column.items.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} prefetch={item.href === "/account" || item.href === "/cart" ? false : undefined} className="body-3 inline-flex min-h-9 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
-        </nav>
-        <div className="md:col-span-4">
-          <p className="body-3 text-ink-subtle">Is something wrong or missing?</p>
-          <Link href="/add" className="btn btn-filled button-sm mt-3">
-            {ACTIONS.add}
-          </Link>
-          <p className="body-3 mt-6 max-w-xs text-ink-subtle">
-            No website yet? {builder.name}, who make {site.name}, <a href={builder.url} rel="noopener">build them for Mauritian businesses</a>.
-          </p>
-          <p className="body-3 mt-6 text-ink-subtle">
-            <a href={contact.phoneHref} className="data-1 inline-flex min-h-8 items-center whitespace-nowrap">
-              {contact.phone}
+          </nav>
+
+          {/* The list for the pocket guide and the magazine. The form is the accounts' own, on a light card so it reads as it does on the sheet; with nothing to show, the card is not drawn. */}
+          <div className="footer-join mt-10">
+            <div>
+              <h2 className="title-1">The {PUBLICATIONS.guide.short} and the {PUBLICATIONS.magazine.short}, by email</h2>
+              <p className="body-3 mt-1">Be sent each edition of the guide when it comes out, and the magazine when it begins.</p>
+            </div>
+            <div className="footer-join-form">
+              <SubscribeForm compact />
+            </div>
+          </div>
+          <p className="body-3 mt-8 max-w-prose text-ink-subtle">
+            No website yet? {builder.name}, who make {site.name},{" "}
+            <a href={builder.url} rel="noopener">
+              build them for Mauritian businesses
             </a>
-            <br />
-            <a href={`mailto:${contact.email}`} className="inline-flex min-h-8 items-center">
-              {contact.email}
-            </a>
+            .
           </p>
         </div>
       </div>
-      <div className="shell flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line py-6">
-        <p className="caption-1 text-ink-faint">The guides are general information, not legal or tax advice.</p>
-        <p className="caption-1 text-ink-subtle">
+
+      <div className="shell border-t border-line py-6">
+        <p className="caption-1 max-w-4xl text-ink-faint">
+          Map data from{" "}
+          <a href={CREDITS.osm.href} rel="noopener">
+            {CREDITS.osm.label}
+          </a>
+          , under the {CREDITS.osm.licence}, as of {day(meta.map.stamp)}. Company facts from{" "}
+          <a href={CREDITS.wikidata.href} rel="noopener">
+            {CREDITS.wikidata.label}
+          </a>
+          , {CREDITS.wikidata.licence}. The street map is drawn from{" "}
+          <a href={STREET_MAP.credit[0].href} rel="noopener">
+            {STREET_MAP.credit[0].label}
+          </a>
+          &rsquo;s tiles. The pictures behind the page are illustrations made for {site.name}, not photographs. The articles are general information, not legal or tax advice.
+        </p>
+        <p className="caption-1 mt-4 text-ink-subtle">
           A Digital Experience by{" "}
           <a href={builder.url} rel="noopener" className="font-semibold text-ink">
             {builder.name}

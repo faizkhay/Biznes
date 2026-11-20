@@ -3,9 +3,10 @@ import { NextResponse } from "next/server";
 import { editionFile, offer, products } from "@/lib/shop";
 
 /**
- * Hands out this month's edition of a pocket guide, only while it is free: that is, while its
- * sponsors have paid for it and the month is in its first three weeks. At any other time the guide
- * is sold, and this address sends the visitor back to the shop.
+ * Hands out this month's edition of the pocket guide, only while it is free: that is, while its
+ * sponsors have paid for it and the month is within the weeks they have paid for (two, three or
+ * all of it: `offer` in src/lib/shop.ts). At any other time the guide is sold, and this address
+ * sends the visitor back to the shop.
  */
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

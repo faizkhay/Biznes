@@ -6,15 +6,18 @@ import { useEffect, useRef, useState } from "react";
 import { ACTIONS, MENU, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import AccountControl from "./AccountControl";
-import { Chevron, Glass, List } from "./Icons";
+import { CartLink } from "./Cart";
+import { Chevron, Glass, List, Person } from "./Icons";
 import { Wordmark } from "./Logo";
 import { SavedLink } from "./Save";
 import SearchBox from "./SearchBox";
 
 /**
  * The menu: a white pill that floats at the top of every page. The name, three groups that open
- * (Explore, Learn, For business), the search box, the shortlist, and the way for a business to
- * list itself. Each group is a plain disclosure, so it opens with no script; with script, only one
+ * (Explore, Learn, For business), the search box, then soft square buttons for the shortlist, the
+ * cart and the account, and the way for a business to list itself. The cart and the account are
+ * there at every width; on a phone the pill holds the name, the search, those two and the menu
+ * button on one line. Each group is a plain disclosure, so it opens with no script; with script, only one
  * is open at a time and it closes on Escape, on a click elsewhere and when a page is chosen. The
  * first screen and the search page carry their own large search box, so there the pill leaves it
  * out. On a phone the groups are behind one button, and the tab bar carries the main ways in.
@@ -79,14 +82,22 @@ export default function HeaderBar() {
         </nav>
         <div className="min-w-0 flex-1">{!ownSearch && <div className="ml-auto hidden max-w-xs md:block">{<SearchBox id="header-search" hotkey />}</div>}</div>
         {!ownSearch && (
-          <Link href="/search" className="icon-btn icon-btn-sq md:hidden" aria-label="Search">
+          <Link href="/search" className="icon-btn icon-btn-sq nav-find md:hidden" aria-label="Search">
             <Glass />
           </Link>
         )}
         <span className="hidden lg:contents">
           <SavedLink />
         </span>
-        <AccountControl />
+        <CartLink />
+        {/* The account's own control, when accounts are on. With them off, the same square button leads to the page that says they open soon. */}
+        {accountsOn ? (
+          <AccountControl />
+        ) : (
+          <Link href="/account" prefetch={false} className="icon-btn icon-btn-sq" aria-label="Your account" title="Your account">
+            <Person />
+          </Link>
+        )}
         <Link href="/pricing" className="btn btn-ink btn-sm button-sm hidden shrink-0 sm:inline-flex">
           {ACTIONS.list}
         </Link>

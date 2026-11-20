@@ -65,9 +65,10 @@ export const MENU = [
     items: [
       { href: "/directory", label: "Directory", line: "Every kind of business, by category" },
       { href: "/places", label: "Places", line: "Town by town, village by village" },
+      { href: "/baz-manzer", label: "Baz Manzer", line: "Where to eat, by kind of food and by town" },
       { href: "/emergency", label: "Emergency numbers", line: "Who to call, from official pages" },
       { href: "/holidays", label: "Public holidays", line: "Every date, with its day of the week" },
-      { href: "/shop", label: "Pocket guides", line: "Guides to keep on your phone" },
+      { href: "/shop", label: "Pocket Guide", line: "Mauritius, place by place, on your phone" },
     ],
   },
   {
@@ -84,10 +85,18 @@ export const MENU = [
     items: [
       { href: "/pricing", label: "List your business", line: "Biznes Free, Go and Grow" },
       { href: "/add", label: "Add or correct a listing", line: "Put a listing right, or take it out" },
+      { href: "/shop#sponsor", label: "Sponsor the Pocket Guide", line: "A place for your business in a coming edition" },
       { href: "/data", label: "Where the data comes from", line: "Sources, order, and what is never taken" },
     ],
   },
 ] as const;
+
+/**
+ * The first things under the search on the first screen: the pages people most often need, as a
+ * start page for Mauritius. Each is a page of the menu, named as the menu names it; what is said
+ * under each name is counted from the data on the day.
+ */
+export const START = ["/baz-manzer", "/emergency", "/holidays", "/directory", "/learn", "/places"] as const;
 
 /** The shelves of the guides page: who each set of guides is for. */
 export const SHELVES = [
@@ -117,13 +126,48 @@ export const ARTICLE_BUSINESSES = {
   "support-and-finance": ["banks", "finance"],
 } as const;
 
+/**
+ * Baz Manzer: the home of everything for eating and drinking (U, 20 November 2026: "special
+ * category for food biznesses, we should have the best Baz Manzer on our apps"; and "food outlets
+ * using biznes go (at least) can list their menu"). The name is Kreol for a place to eat.
+ */
+export const BAZ = {
+  name: "Baz Manzer",
+  href: "/baz-manzer",
+  kicker: "Eat and drink",
+  line: "Where to eat in Mauritius",
+  meaning: "Baz manzer is Kreol for a place to eat.",
+  owners: { title: "Run a place to eat?", line: "It is probably listed here already, free. On Biznes Go and Biznes Grow your page carries your own pictures and your menu." },
+} as const;
+
+/**
+ * What biznes.mu publishes (U, 20 November 2026). There is one pocket guide, renewed every month:
+ * "i suggest 1 big guide, like a biznes.mu pocket guide". The magazine is to come: "later we will
+ * have 1 biznes.mu biznes magazine, where we list biznesses of the month etc, manual monthly
+ * e-magazine release for free (for that we need a subcribers list for that and for our pocket
+ * guide)". It is said to be coming, and nothing more is said of it than the owner has.
+ */
+export const PUBLICATIONS = {
+  guide: { name: "biznes.mu Pocket Guide", short: "Pocket Guide", href: "/shop" },
+  magazine: { name: "biznes.mu Biznes Magazine", short: "Biznes Magazine", line: "A free monthly e-magazine with the businesses of the month. It is on its way; no issue is out yet." },
+} as const;
+
+/** The last column of the footer: the site itself. The other columns are the menu's groups. */
+export const ABOUT = [
+  { href: "/about", label: "About biznes.mu" },
+  { href: "/bot", label: "Our crawler" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/saved", label: "Saved" },
+  { href: "/cart", label: "Cart" },
+] as const;
+
 /** The quieter pages, for the footer. */
 export const MORE = [
   { href: "/about", label: "About" },
   { href: "/emergency", label: "Emergency numbers" },
   { href: "/holidays", label: "Public holidays" },
   { href: "/pricing", label: "List your business" },
-  { href: "/shop", label: "Pocket guides" },
+  { href: "/shop", label: "Pocket Guide" },
   { href: "/official", label: "Official pages" },
   { href: "/data", label: "Where the data comes from" },
   { href: "/bot", label: "Our crawler" },
@@ -153,13 +197,15 @@ export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a co
 /**
  * The plans a business can be listed on (U, 20 November 2026): their names, their prices in rupees
  * a month for each business, and what each gives, in the owner's words. Biznes Grow holds everything in Biznes
- * Go. Plans will be paid for through Stripe, which is not connected yet: until it is, a business
+ * Go. The fuller page and the menu are the owner's later words of the same day: "paid listings
+ * should have a more beautiful biznes page", and "food outlets using biznes go (at least) can list
+ * their menu". Plans will be paid for through Stripe, which is not connected yet: until it is, a business
  * asks for a plan and a person answers. A customer pays a business directly, by MCB Juice, from
  * the details the business shows; the site takes no part in that payment.
  */
 export const PLANS = [
   { id: "free", name: "Biznes Free", price: 0, line: "A basic listing, free for good.", gives: ["Already yours if our crawler found you: every business on the open map is listed", "Claim the listing to show it is yours and keep it right", "Your name, what you do, where you are and how to reach you"] },
-  { id: "go", name: "Biznes Go", price: 550, line: "Verified, and listed with priority.", gives: ["Everything in Biznes Free", "A verified mark, once we have checked the business is real", "Listed with priority, and marked as such"] },
+  { id: "go", name: "Biznes Go", price: 550, line: "Verified, and listed with priority.", gives: ["Everything in Biznes Free", "A verified mark, once we have checked the business is real", "Listed with priority, and marked as such", "A fuller page, with your own pictures", "For a place to eat: your menu on your page"] },
   { id: "grow", name: "Biznes Grow", price: 1250, line: "Everything in Go, with bookings and sales.", gives: ["Everything in Biznes Go", "Manage your bookings in one place", "Sell your services online", "Show your MCB Juice details, so customers can pay you"] },
 ] as const;
 export type PlanId = (typeof PLANS)[number]["id"];

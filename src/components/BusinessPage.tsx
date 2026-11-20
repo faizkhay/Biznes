@@ -27,8 +27,8 @@ const SOCIAL_NAMES: Record<string, string> = { facebook: "Facebook", instagram: 
 /** A block of what is known: a small heading with its icon, and the facts under it. */
 function Block({ id, icon, title, children, wide = false }: { id: string; icon: React.ReactNode; title: string; children: React.ReactNode; wide?: boolean }) {
   return (
-    <section aria-labelledby={id} className={wide ? "block sm:col-span-2" : "block"}>
-      <h2 id={id} className="block-head title-2">
+    <section aria-labelledby={id} className={wide ? "known sm:col-span-2" : "known"}>
+      <h2 id={id} className="known-head title-2">
         <span aria-hidden>{icon}</span>
         {title}
       </h2>
@@ -126,10 +126,10 @@ export default function BusinessPage({
   const two = onIsland || side;
   // What is known, in blocks: how to reach it, where it is, when it is open, what it says of itself.
   const blocks = (
-    <div className={side ? "block-grid block-grid-one" : "block-grid mt-8"}>
+    <div className={side ? "known-grid known-grid-one" : "known-grid mt-8"}>
       <Block id="reach" icon={<Phone />} title="Contact">
         {l?.phone?.length || l?.web || (o && !l && (o.phone || o.website)) ? (
-          <dl className="block-facts body-3">
+          <dl className="known-facts body-3">
             {(l ? (l.phone ?? []) : o!.phone ? [o!.phone] : []).length > 0 && (
               <div>
                 <dt>Telephone</dt>
@@ -182,7 +182,7 @@ export default function BusinessPage({
 
       {(address || placed) && (
         <Block id="where" icon={<Pin />} title="Where">
-          <dl className="block-facts body-3">
+          <dl className="known-facts body-3">
             {address && (
               <div>
                 <dt>Address</dt>
@@ -260,7 +260,7 @@ export default function BusinessPage({
             </>
           )}
           {more && l && (
-            <dl className={`block-facts body-3 ${about ? "mt-4" : ""}`}>
+            <dl className={`known-facts body-3 ${about ? "mt-4" : ""}`}>
               {l.alt?.length ? (
                 <div>
                   <dt>Also known as</dt>

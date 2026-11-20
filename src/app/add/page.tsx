@@ -13,8 +13,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/add" },
 };
 
-export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string }> }) {
-  const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored } = await searchParams;
+export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string; order?: string }> }) {
+  const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored, order: ordered } = await searchParams;
+  // An order from the cart, written out by the cart itself: it opens the form with those words.
+  const order = ordered ? ordered.slice(0, 900).replace(/[<>]/g, "") : "";
   // A listing's owner who comes to claim it, where there are no accounts to claim it with: the same form, opened for that.
   const wanted = named ?? claimed;
   const claiming = Boolean(claimed) && !named;
@@ -29,17 +31,19 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
   return (
     <>
       <PageHead
-        title={plan ? (plan.price ? `Ask for ${plan.name}` : "List your business free") : product ? "Ask for the pocket guide" : toSponsor ? "Sponsor the pocket guide" : claiming && listing ? "Claim this listing" : "Add or correct a listing"}
-        path={[{ label: plan ? plan.name : product ? "Pocket guide" : toSponsor ? "Sponsor the guide" : claiming && listing ? "Claim a listing" : "Add or correct a listing" }]}
+        title={order ? "Send your order" : plan ? (plan.price ? `Ask for ${plan.name}` : "List your business free") : product ? "Ask for the pocket guide" : toSponsor ? "Sponsor the pocket guide" : claiming && listing ? "Claim this listing" : "Add or correct a listing"}
+        path={[{ label: order ? "Your order" : plan ? plan.name : product ? "Pocket guide" : toSponsor ? "Sponsor the guide" : claiming && listing ? "Claim a listing" : "Add or correct a listing" }]}
         lede={
-          plan
+          order
+            ? "What is in your cart is written into the message below. Paying online is not open yet: send it, and a person replies with how to pay."
+            : plan
             ? plan.price
               ? `${plan.name} is Rs ${count(plan.price)} a month for each business. Paying online is not open yet: tell us about the business, and a person replies with how to pay and what we need to verify it.`
               : "A basic listing costs nothing. If your business is already here, say so and we will make the listing yours; if not, tell us about it and we add it."
             : product
-              ? `"${product.title}" is ${product.price ? `Rs ${count(product.price)}` : "not yet priced"}. Paying online is not open yet: ask for it here, and a person sends it and tells you how to pay.`
+              ? `The ${product.title} is ${product.price ? `Rs ${count(product.price)} an edition` : "not yet priced"}. Paying online is not open yet: ask for it here, and a person sends it and tells you how to pay.`
               : toSponsor
-                ? `A place on the sponsors' page of "${toSponsor.title}", from ${monthName(offer(toSponsor).next)}. Say which option you want and for which months; a person replies with how to pay and what to send us.`
+                ? `A place on the sponsors' pages of the ${toSponsor.title}, from ${monthName(offer(toSponsor).next)}. Say which option you want and for which months; a person replies with how to pay and what to send us.`
                 : listing && claiming
                   ? `${listing.name}. Tell us it is yours and how we can check, and a person replies. Claiming a listing costs nothing.`
                   : listing
@@ -51,8 +55,8 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
         <div className="lg:col-span-7">
           <RequestForm
             compose={compose}
-            about={product || toSponsor ? "other" : undefined}
-            start={claiming && listing ? "This is my business, and I would like to claim its listing. " : plan ? `I would like ${plan.name} for my business.` : product ? `I would like the pocket guide "${product.title}".` : toSponsor ? `I would like to sponsor the pocket guide "${toSponsor.title}" from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
+            about={order || product || toSponsor ? "other" : undefined}
+            start={order ? `I would like to order: ${order}. ` : claiming && listing ? "This is my business, and I would like to claim its listing. " : plan ? `I would like ${plan.name} for my business.` : product ? `I would like the ${product.title}.` : toSponsor ? `I would like to sponsor the pocket guide (the ${toSponsor.title}) from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
         </div>
         <aside className="lg:col-span-4 lg:col-start-9">
           <h2 className="heading-3">Other ways</h2>

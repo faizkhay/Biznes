@@ -1,25 +1,41 @@
 {
-  "note": "Sponsorship of the pocket guides (the owner, 20 November 2026): a guide is renewed every month; a business may pay to be on its sponsors' page, for the coming month or months only; an edition with enough sponsors is free for the first three weeks of its month and paid in the last. The prices and the target below are Khay Digital's suggestion, for the owner to confirm.",
-  "confirmed": false,
-  "target": 6000,
-  "freeDays": 21,
+  "note": "Sponsorship of the biznes.mu Pocket Guide, in the owner's words of 20 November 2026. The guide is renewed every month, and a business may pay to be on its sponsors' pages for the coming month or months only. The three fees are confirmed (\"sponsorship, fees are good\"). An edition holds at most four pages of sponsors (\"we have max 4 pages per guide\"). Sponsors make an edition free by steps: \"if we hit 8k per edition, its free for 2 weeks, if we hit 10k its free for 3 weeks, if we hit 12k its free for the month.\" How much of a page each option takes is Khay Digital's layout, not the owner's figure: a panel is the quarter of a page its own description says, and eight listings go to a page.",
+  "confirmed": true,
+  "maxPages": 4,
+  "free": [
+    {
+      "raised": 8000,
+      "weeks": 2
+    },
+    {
+      "raised": 10000,
+      "weeks": 3
+    },
+    {
+      "raised": 12000,
+      "month": true
+    }
+  ],
   "options": [
     {
       "id": "listing",
       "name": "Sponsored listing",
       "price": 500,
-      "what": "Your name, what you do, your town and your number on the sponsors' page."
+      "pages": 0.125,
+      "what": "Your name, what you do, your town and your number on the sponsors' pages."
     },
     {
       "id": "panel",
       "name": "Sponsored panel",
       "price": 1500,
+      "pages": 0.25,
       "what": "A quarter of a page: your logo or picture, and forty words of your own."
     },
     {
       "id": "page",
       "name": "Sponsored page",
       "price": 4000,
+      "pages": 1,
       "what": "A full page of the guide to yourself."
     }
   ]

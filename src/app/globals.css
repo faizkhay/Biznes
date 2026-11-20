@@ -1175,11 +1175,13 @@
     height: 0.875rem;
   }
 
-  /* The foot of the page: a dark card on the picture, with the b standing on its edge. */
+  /* The foot of the page: a dark card on the picture, with the b standing on its edge. It lies
+     over the sheet's foot, so the b is whole: the sheet never covers its upper half. */
   .site-footer {
     position: relative;
+    z-index: 2;
     margin: 0.75rem var(--edge) var(--edge);
-    padding-top: 4.5rem;
+    padding-top: 4.75rem;
     background: var(--palette-ink);
     color: var(--palette-white);
     border-radius: var(--radius-2xl);
@@ -1209,6 +1211,73 @@
   }
   .site-footer .footer-mark circle {
     fill: var(--palette-white);
+  }
+  /* The name in the footer: white on the ink, and larger than in the menu. */
+  .footer-name {
+    color: var(--palette-white);
+  }
+  .footer-name svg {
+    display: block;
+    height: 2.25rem;
+    width: auto;
+  }
+  /* On ink the second half of the name is haze, not a faded ink: it stays easy to read. */
+  .footer-name svg path[opacity] {
+    opacity: 1;
+    fill: var(--palette-haze);
+  }
+  .footer-reach {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .footer-reach a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2.75rem;
+    color: var(--color-ink);
+    white-space: nowrap;
+  }
+  .footer-reach svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--color-signal);
+  }
+  /* Every page, in four columns; two on a phone. */
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+  @media (min-width: 40rem) {
+    .footer-cols {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  /* The list for the guide and the magazine: a light card in the dark footer, with the page's own
+     roles put back, so the form in it reads as it does on the sheet. With no form to show (accounts
+     off) the card is not drawn at all. */
+  .footer-join {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-xl);
+    background: var(--palette-cream);
+    color: var(--palette-ink);
+    --color-ink: var(--palette-ink);
+    --color-ink-subtle: var(--palette-slate);
+    --color-ink-faint: var(--palette-mist);
+    --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+    --color-focus: var(--palette-royal);
+  }
+  .footer-join p {
+    color: var(--palette-slate);
+  }
+  .footer-join:has(> .footer-join-form:empty) {
+    display: none;
   }
 
   /* On a phone the ways in are a bar at the foot of the screen, as in an app. */
@@ -1496,40 +1565,40 @@
 
   /* What is known of a business, in blocks: how to reach it, where it is, when it is open, what
      it says of itself. One column on a phone, two from 40rem. */
-  .block-grid {
+  .known-grid {
     display: grid;
     gap: 0.75rem;
   }
   @media (min-width: 40rem) {
-    .block-grid {
+    .known-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   /* At the side of a wide page the blocks stand one under another. */
   @media (min-width: 68rem) {
-    .block-grid-one {
+    .known-grid-one {
       grid-template-columns: minmax(0, 1fr);
     }
-    .block-grid-one .block {
+    .known-grid-one .known {
       grid-column: auto;
     }
   }
-  .block {
+  .known {
     padding: 1.125rem 1.25rem 1.25rem;
     background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
   }
-  .block a {
+  .known a {
     color: var(--color-link);
   }
-  .block-head {
+  .known-head {
     display: flex;
     align-items: center;
     gap: 0.625rem;
     margin-bottom: 0.625rem;
   }
-  .block-head > span {
+  .known-head > span {
     display: grid;
     place-items: center;
     width: 2rem;
@@ -1539,21 +1608,21 @@
     background: var(--color-panel);
     color: var(--color-ink-subtle);
   }
-  .block-head svg {
+  .known-head svg {
     width: 1rem;
     height: 1rem;
   }
-  .block-facts {
+  .known-facts {
     display: grid;
     gap: 0.375rem;
     margin: 0;
   }
-  .block-facts dt {
+  .known-facts dt {
     color: var(--color-ink-faint);
     font-size: 0.8125rem;
     line-height: 1.5;
   }
-  .block-facts dd {
+  .known-facts dd {
     margin: 0;
   }
   /* Opening hours, a day a line. Today carries the lit point. */
@@ -2407,6 +2476,244 @@
     font-size: 1rem;
   }
 
+  /* A chosen way to narrow a list, among links in a line: filled with ink, as a chosen filter is. */
+  .narrow a .n {
+    color: var(--color-ink-faint);
+  }
+  .narrow a[aria-current="true"] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+  .narrow a[aria-current="true"] .n {
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
+  }
+
+  /* Baz Manzer, the home of everything for eating: a card under the striped awning of a food
+     stall. The stripes are the brand's own red (coral) and the paper's cream; coral is a fill
+     here and never carries words. It is the page's appetite, and nothing else on the site wears it. */
+  .baz-head {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .baz-awning {
+    display: block;
+    height: 2.25rem;
+    background: repeating-linear-gradient(90deg, var(--palette-coral) 0 1.5rem, var(--palette-cream) 1.5rem 3rem);
+    /* The band, and under each stripe the round end of the cloth. */
+    -webkit-mask:
+      linear-gradient(#000 0 0) top / 100% 1.5rem no-repeat,
+      radial-gradient(circle at 50% 0, #000 0.75rem, transparent calc(0.75rem + 0.5px)) 0 1.5rem / 1.5rem 0.75rem repeat-x;
+    mask:
+      linear-gradient(#000 0 0) top / 100% 1.5rem no-repeat,
+      radial-gradient(circle at 50% 0, #000 0.75rem, transparent calc(0.75rem + 0.5px)) 0 1.5rem / 1.5rem 0.75rem repeat-x;
+  }
+  .baz-words {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+  .baz-types {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+    list-style: none;
+  }
+  @media (min-width: 48rem) {
+    .baz-words {
+      padding: 1.75rem 2.5rem 2rem;
+    }
+    .baz-types {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      padding: 0 2.5rem 2.25rem;
+    }
+  }
+  /* A kind of place to eat, as a way to narrow the list: its name and how many. */
+  .baz-type {
+    display: block;
+    height: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-panel);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .baz-type .data-2 {
+    color: var(--color-ink-faint);
+  }
+  .baz-type:hover {
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
+  }
+  .baz-type[aria-current="true"] {
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+  .baz-type[aria-current="true"] .data-2 {
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
+  }
+  /* Under a verified outlet's card: the first lines of its own menu. */
+  .menu-peek {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+    margin-top: 0.375rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-signal-wash);
+  }
+
+  /* The part of an article being read, marked in its contents rail (RailMark). */
+  .rail-link[aria-current] {
+    border-left-color: var(--color-signal);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  /* "Find a town": the page's own search box, over the list it makes smaller. */
+  .town-finder .search-md {
+    background: var(--color-paper);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
+  }
+  .town-finder .search-md .search-go {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    margin: 0.25rem;
+    padding: 0 0.875rem;
+  }
+  /* A town in the list of towns, with its neighbourhoods folded under it. */
+  .town {
+    break-inside: avoid;
+  }
+  .town-areas > summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0 0.625rem;
+    margin: 0.375rem 0;
+    border-radius: var(--radius-full);
+    background: var(--color-panel);
+    color: var(--color-ink-subtle);
+  }
+  .town-areas > summary::after {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-left: 0.5rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-0.125rem) rotate(45deg);
+  }
+  .town-areas[open] > summary::after {
+    transform: translateY(0.0625rem) rotate(-135deg);
+  }
+  .town-areas ul {
+    margin: 0 0 0.5rem;
+    padding: 0 0 0 1rem;
+    list-style: none;
+    border-left: 2px solid var(--color-line);
+  }
+
+  /* On the narrowest phones the header leaves its search button out: the tab bar carries the search. */
+  @media (max-width: 22.5rem) {
+    .nav-find {
+      display: none;
+    }
+  }
+  /* The cart: what is in it, a card each, with how many and the way to take it out. */
+  .cart-items {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cart-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 1.125rem 1rem 1.125rem 1.25rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+  }
+  .cart-acts,
+  .cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .cart-qty .data-1 {
+    min-width: 1.75rem;
+    text-align: center;
+  }
+  .cart-qty .icon-btn[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  /* The order is placed by the accounts' own button; where it shows nothing, the request form's is offered. */
+  .checkout:empty {
+    display: none;
+  }
+  .checkout:not(:empty) + .checkout-else {
+    display: none;
+  }
+
+  /* The start of the first screen's sheet: quick ways to what people need most. Two abreast on a
+     phone, three from 48rem, all six in a line on a wide screen. */
+  .start {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 48rem) {
+    .start {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+  .start-tile {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    height: 100%;
+    padding: 0.875rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .start-tile:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+    box-shadow: var(--shadow-md);
+  }
+  .start-tile .tile-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+  }
+  .start-tile:hover .tile-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
+  }
+  @media (max-width: 30rem) {
+    .start-tile {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
   /* The pages of a long list. */
   .pager {
     display: flex;
@@ -2417,6 +2724,7 @@
   }
 
   @media (pointer: coarse) {
+    .town-areas > summary,
     .act,
     .filter,
     .try,
@@ -2442,6 +2750,14 @@
     .site-footer {
       margin: 0;
       border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    /* The pill holds the name, the search, the cart, the account and the menu on one line. */
+    .nav-pill {
+      gap: 0.25rem;
+      padding-left: 1rem;
+    }
+    .logo svg {
+      height: 1.25rem;
     }
     .tabbar::before {
       content: "";

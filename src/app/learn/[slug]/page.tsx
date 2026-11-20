@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AdSlot from "@/components/account/AdSlot";
 import { Crumbs } from "@/components/Bits";
 import GuideBlocks, { Cites } from "@/components/GuideBlocks";
-import { Out } from "@/components/Icons";
+import { Arrow, Fork, GroupIcon, Out } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import { site } from "@/data/site";
+import RailMark from "@/components/RailMark";
+import { ARTICLE_BUSINESSES, BAZ, site } from "@/data/site";
+import { count } from "@/lib/format";
+import { listingsIn } from "@/lib/index";
 import { anchorOf, day, shortUrl } from "@/lib/format";
 import { TOOLS } from "@/lib/tools";
 import { SHELVES } from "@/data/site";
@@ -40,6 +44,14 @@ export default async function GuidePage({ params }: Props) {
   const words = g.sections.reduce((n, section) => n + JSON.stringify(section.blocks).split(/\s+/).length, 0);
   const minutes = Math.max(1, Math.round(words / 220));
   const tool = TOOLS.find((t) => t.guide === g.slug);
+  // The kinds of business that go with the article, where the tie is plain (src/data/site.ts): an
+  // article on the food shelf goes with every kind of place to eat.
+  const goes = g.shelf === "food" ? data.categories.filter((c) => c.group === "eat").map((c) => c.id) : [...((ARTICLE_BUSINESSES as Record<string, readonly string[]>)[g.slug] ?? [])];
+  const kinds = goes
+    .map((id) => data.categoryById.get(id))
+    .filter((c) => c != null && c.n > 0)
+    .slice(0, 3)
+    .map((c) => ({ category: c!, first: listingsIn({ cat: c!.id }).slice(0, 3) }));
 
   return (
     <article className="shell pt-8 pb-8 lg:pt-12">
@@ -108,15 +120,16 @@ export default async function GuidePage({ params }: Props) {
         <nav aria-label="In this article" className="hidden lg:col-span-3 lg:block">
           <div className="sticky top-24">
             <h2 className="label-1 pb-3 text-ink-faint">In this article</h2>
-            <ol className="grid gap-1 border-l border-line">
+            <ol id="rail" className="grid gap-1 border-l border-line">
               {[...g.sections.map((s) => s.heading), "References"].map((heading) => (
                 <li key={heading}>
-                  <a href={`#${anchor(heading)}`} className="body-3 -ml-px block border-l border-transparent py-1 pl-4 text-ink-subtle no-underline hover:border-signal hover:text-ink">
+                  <a href={`#${anchor(heading)}`} className="rail-link body-3 -ml-px block border-l border-transparent py-1 pl-4 text-ink-subtle no-underline hover:border-signal hover:text-ink">
                     {heading}
                   </a>
                 </li>
               ))}
             </ol>
+            <RailMark rail="rail" />
           </div>
         </nav>
 
@@ -183,6 +196,56 @@ export default async function GuidePage({ params }: Props) {
               </>
             )}
           </section>
+          {/* The businesses that go with the article: the kinds of place a reader of it may want next, from the directory. */}
+          {kinds.length > 0 && (
+            <section aria-labelledby="goes-with" className="mt-12">
+              <h2 id="goes-with" className="heading-2">
+                In the directory
+              </h2>
+              <p className="body-3 mt-2 max-w-prose text-ink-subtle">The kinds of business that go with this article, as the open map lists them. Being listed does not say a business is registered or recommended.</p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {kinds.map(({ category, first }) => (
+                  <li key={category.id}>
+                    <article className="card h-full">
+                      <p className="flex items-center gap-3">
+                        <span className="suggest-icon" aria-hidden>
+                          <GroupIcon group={category.group} />
+                        </span>
+                        <span className="data-2 text-ink-faint">{count(category.n)} listed</span>
+                      </p>
+                      <h3 className="title-1 mt-3">
+                        <Link prefetch={false} href={`/directory/${category.id}`} className="row-title text-ink">
+                          {category.label}
+                        </Link>
+                      </h3>
+                      <ul className="body-3 mt-2 grid gap-1 text-ink-subtle">
+                        {first.map((l) => (
+                          <li key={l.id} className="truncate">
+                            <Link prefetch={false} href={`/b/${l.slug}`}>
+                              {l.name}
+                            </Link>
+                            {l.place ? `, ${l.place}` : ""}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  </li>
+                ))}
+              </ul>
+              {g.shelf === "food" && (
+                <p className="mt-4">
+                  <Link href={BAZ.href} className="btn btn-quiet button-md">
+                    <Fork /> {BAZ.name}: every place to eat
+                    <span className="btn-dot">
+                      <Arrow />
+                    </span>
+                  </Link>
+                </p>
+              )}
+            </section>
+          )}
+          <AdSlot place="article" className="mt-12" />
+
           {/* Keep reading: the pages of this site that follow on, after its references: the last thing on the page is a way on, not a way out. */}
           <section aria-labelledby="keep-reading" className="mt-12">
             <h2 id="keep-reading" className="heading-2">

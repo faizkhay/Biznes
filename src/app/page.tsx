@@ -1,17 +1,23 @@
 import Link from "next/link";
+import AdSlot from "@/components/account/AdSlot";
 import { IndexItem } from "@/components/Bits";
 import Chart from "@/components/Chart";
-import { Arrow, Book, Calc, Glass, GroupIcon, Landmark, Phone, Tick } from "@/components/Icons";
+import { Arrow, Book, Calc, Calendar, Fork, Glass, GroupIcon, Landmark, Phone, Pin, Store, Tick } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import LitCount from "@/components/LitCount";
 import SearchBox from "@/components/SearchBox";
-import { ACTIONS, EXAMPLES, PROMISES, SHELVES, site } from "@/data/site";
+import { ACTIONS, BAZ, EXAMPLES, MENU, PROMISES, SHELVES, START, site } from "@/data/site";
+import { emergency } from "@/lib/emergency";
+import { food } from "@/lib/food";
 import { count, day } from "@/lib/format";
+import { holidays, longDay } from "@/lib/holidays";
 import { index } from "@/lib/index";
+import { todayInMauritius } from "@/lib/theme";
 import { siteUrl } from "@/lib/site-url";
 import { themeNow } from "@/lib/theme";
 import { TOOLS } from "@/lib/tools";
 
+const START_ICON: Record<string, React.ReactNode> = { "/baz-manzer": <Fork />, "/emergency": <Phone />, "/holidays": <Calendar />, "/directory": <Store />, "/learn": <Book />, "/places": <Pin /> };
 const TOOL_ICON: Record<string, React.ReactNode> = { "/tools/verify": <Landmark />, "/tools/vat": <Calc />, "/tools/structures": <GroupIcon group="companies" />, "/learn/glossary": <Book /> };
 const more = "body-3 inline-flex min-h-11 items-center gap-2 font-semibold text-link no-underline hover:underline";
 
@@ -23,6 +29,26 @@ export default async function Home() {
   const shelves = SHELVES.map((shelf) => ({ ...shelf, n: guides.filter((g) => (g.shelf ?? "business") === shelf.id).length })).filter((shelf) => shelf.n > 0);
   const firsts = shelves.map((shelf) => guides.find((g) => (g.shelf ?? "business") === shelf.id)!);
   const featured = [...firsts, ...guides.filter((g) => !firsts.includes(g))].slice(0, 6);
+  // The start of the page: the things people most often need, each said in what the data holds today.
+  const eat = food();
+  const numbers = emergency();
+  const first = numbers?.groups[0]?.items[0];
+  const today = todayInMauritius();
+  const next = Object.values(holidays()?.years ?? {})
+    .flat()
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .find((h) => h.date >= today);
+  const said: Record<string, string | undefined> = {
+    "/baz-manzer": `${count(eat.listings.length)} places to eat and drink`,
+    "/emergency": first ? `${first.name}: ${first.number}. ${count(numbers!.groups.reduce((n, g) => n + g.items.length, 0))} numbers in all` : undefined,
+    "/holidays": next ? `Next: ${next.name}, ${longDay(next.date).replace(/ \d{4}$/, "")}` : undefined,
+    "/directory": `${count(meta.listings.all)} listings in ${count(meta.categories)} categories`,
+    "/learn": `${count(guides.length)} articles, every figure with its source`,
+    "/places": `${count(meta.towns)} towns and villages`,
+  };
+  const pages = new Map<string, { label: string; line: string }>();
+  for (const group of MENU) for (const item of group.items) pages.set(item.href, item);
+  const start = START.map((href) => ({ href, label: pages.get(href)?.label ?? href, line: said[href] ?? pages.get(href)?.line ?? "" }));
   return (
     <>
       <JsonLd
@@ -49,7 +75,7 @@ export default async function Home() {
           <SearchBox size="lg" light deskFocus hotkey id="home-search" />
         </div>
         <ul className="mt-6 flex flex-wrap justify-center gap-2" aria-label="Searches to try">
-          {EXAMPLES.slice(0, 4).map((q) => (
+          {EXAMPLES.slice(0, 3).map((q) => (
             <li key={q}>
               <Link prefetch={false} href={`/search?q=${encodeURIComponent(q)}`} className="try body-3">
                 <Glass /> {q}
@@ -57,11 +83,74 @@ export default async function Home() {
             </li>
           ))}
           <li>
+            <Link prefetch={false} href={BAZ.href} className="try body-3">
+              <Fork /> {BAZ.name}
+            </Link>
+          </li>
+          <li>
             <Link prefetch={false} href="/emergency" className="try body-3">
               <Phone /> Emergency numbers
             </Link>
           </li>
         </ul>
+      </section>
+
+      {/* The start of the page: quick ways to what people need most, each said in what the data holds today. */}
+      <nav aria-label="Start here" className="shell pt-6 lg:pt-8">
+        <ul className="start">
+          {start.map((item) => (
+            <li key={item.href}>
+              <Link prefetch={false} href={item.href} className="start-tile">
+                <span className="tile-icon">{START_ICON[item.href]}</span>
+                <span className="min-w-0">
+                  <span className="title-2 block">{item.label}</span>
+                  <span className="caption-1 block text-ink-subtle">{item.line}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div className="shell empty:hidden">
+        <AdSlot place="home" className="mt-6" />
+      </div>
+
+      {/* Baz Manzer: where to eat, under the awning of its own page. */}
+      <section aria-labelledby="baz" className="shell pt-10 lg:pt-12">
+        <div className="baz-head">
+          <span className="baz-awning" aria-hidden />
+          <div className="baz-words">
+            <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+              <div>
+                <p className="label-1 flex items-center gap-2 text-ink-subtle">
+                  <Fork className="size-4" /> {BAZ.kicker}
+                </p>
+                <h2 id="baz" className="heading-1 mt-2">
+                  {BAZ.name}
+                </h2>
+                <p className="body-2 measure mt-2 text-ink-subtle">
+                  {BAZ.line}: {count(eat.listings.length)} places, by kind of food and by town.
+                </p>
+              </div>
+              <Link prefetch={false} href={BAZ.href} className="btn btn-ink button-md">
+                Find a place to eat
+                <span className="btn-dot">
+                  <Arrow />
+                </span>
+              </Link>
+            </div>
+            <ul className="narrow mt-4" aria-label="Kinds of food">
+              {eat.cuisines.slice(0, 8).map((c, i) => (
+                <li key={c.id} className={i >= 5 ? "hidden sm:block" : undefined}>
+                  <Link prefetch={false} href={`${BAZ.href}?food=${c.id}`} className="body-3" rel="nofollow">
+                    {c.label} <span className="n data-2">{count(c.n)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
       {/* A line for whoever owns a business: it is probably here already. */}

@@ -1,11 +1,17 @@
-// Makes the pocket guide as a PDF: `npm run pdf`.
+// Makes the biznes.mu Pocket Guide as a PDF: `npm run pdf`.
 //
-// It reads content/pdf/places.json (every place with its sources, written from official pages),
-// lays it out as an A5 booklet in the site's own type and colours, and writes this month's edition
-// to content/pdf/editions/ (never to public/: it is sold, and only the shop's own route hands it
-// out, when it is free). It also writes a cover and two sample pages to public/shop/, for the page
-// that sells it. A guide is renewed every month: run this again, after its facts have been read
-// again, at the start of each.
+// There is one guide, renewed every month. It reads content/pdf/places.json (every place with its
+// sources, written from official pages), lays it out as an A5 booklet in the site's own type and
+// colours, and writes this month's edition to content/pdf/editions/ (never to public/: it is
+// sold, and only the shop's own route hands it out, when it is free). It also writes a cover and
+// two sample pages to public/shop/, for the page that sells it. Run it again, after the guide's
+// facts have been read again, at the start of each month.
+//
+// An edition holds at most so many pages of sponsors (content/pdf/sponsorship.json, `maxPages`:
+// four, by the owner's word). Each sponsor's option takes its share of a page. If the sponsors
+// named for the edition in content/pdf/product.json would take more, nothing is made: the script
+// names the one that goes over and stops. `npm run pdf -- --check [product.json]` does only that
+// check, on the file named or on the guide's own.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -22,7 +28,10 @@ if (!existsSync(dataFile)) {
 const data = JSON.parse(readFileSync(dataFile, "utf8"));
 const emergencyFile = `${root}content/emergency.json`;
 const emergency = existsSync(emergencyFile) ? JSON.parse(readFileSync(emergencyFile, "utf8")) : null;
-const product = JSON.parse(readFileSync(`${root}content/pdf/product.json`, "utf8"));
+const args = process.argv.slice(2);
+const checking = args.includes("--check");
+const named = args.find((arg) => /\.json$/.test(arg));
+const product = JSON.parse(readFileSync(named ?? `${root}content/pdf/product.json`, "utf8"));
 const sponsorship = JSON.parse(readFileSync(`${root}content/pdf/sponsorship.json`, "utf8"));
 // How to reach the people behind the site is said once, in src/data/site.ts; it is read from there.
 const siteFacts = readFileSync(`${root}src/data/site.ts`, "utf8");
@@ -30,9 +39,33 @@ const contact = { phone: /\bphone: "([^"]+)"/.exec(siteFacts)?.[1] ?? "", email:
 
 // A guide is renewed every month. The edition is the month it is made for: this month, in
 // Mauritius, or the one named on the command line (`npm run pdf -- 2026-12`).
-const edition = /^\d{4}-\d{2}$/.test(process.argv[2] ?? "") ? process.argv[2] : new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
+const edition = args.find((arg) => /^\d{4}-\d{2}$/.test(arg)) ?? new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
 const editionName = new Date(`${edition}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 const sponsors = (product.sponsors ?? []).filter((sponsor) => sponsor.months?.includes(edition));
+
+// The most pages of sponsors an edition holds. Every month a sponsor is named for is counted, so a
+// fifth page is refused when it is written into the data, not in the month it would have run.
+const optionOf = new Map(sponsorship.options.map((option) => [option.id, option]));
+const months = [...new Set((product.sponsors ?? []).flatMap((sponsor) => sponsor.months ?? []))].sort();
+for (const month of months) {
+  let taken = 0;
+  for (const sponsor of product.sponsors.filter((s) => s.months?.includes(month))) {
+    const option = optionOf.get(sponsor.option);
+    if (!option) {
+      console.error(`Refused: "${sponsor.name}" asks for "${sponsor.option}", which is not one of the options in content/pdf/sponsorship.json.`);
+      process.exit(1);
+    }
+    taken += option.pages;
+    if (taken > sponsorship.maxPages + 1e-9) {
+      console.error(`Refused: the ${month} edition holds at most ${sponsorship.maxPages} pages of sponsors, and "${sponsor.name}" (${option.name}) would make it ${taken}. Take it out of that month in content/pdf/product.json, or move it to a later one.`);
+      process.exit(1);
+    }
+  }
+}
+if (checking) {
+  console.log(`Sponsors fit: ${months.length ? months.map((month) => `${month} holds ${product.sponsors.filter((s) => s.months?.includes(month)).reduce((sum, s) => sum + optionOf.get(s.option).pages, 0)} of ${sponsorship.maxPages} pages`).join("; ") : "no sponsor is named yet"}.`);
+  process.exit(0);
+}
 
 // The pictures, with their fades painted into them. A fade made of see-through colour is lost in
 // some PDF readers, which show a hard line where the picture ends; a painted one cannot be.
@@ -148,6 +181,14 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
 .sponsor p { margin-top: 1.2mm; color: #404965; }
 .sponsor .reach { font-weight: 600; color: #0a1639; }
 .sponsor.empty { background: #f5efe0; border-color: transparent; }
+.sponsor-page { break-before: page; break-after: page; min-height: 150mm; padding: 10mm 8mm; }
+.sponsor-page h3 { font-size: 24pt; letter-spacing: -0.035em; line-height: 1.05; }
+.sponsor-page p { font-size: 11pt; }
+.sponsor-panel { min-height: 38mm; }
+.box.light { background: #f5efe0; color: #0a1639; }
+.box.light td { border-top-color: rgba(10,22,57,.14); }
+.box.light td:first-child, .box.light .call { color: #404965; }
+.box.light td:last-child { color: #0a1639; }
 .box td b { color: #fff; }
 .box td:first-child { color: #d6dcec; padding-right: 3mm; }
 .box .call { margin-top: 3mm; font-size: 8.6pt; color: #d6dcec; }
@@ -163,11 +204,11 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
 <section class="full cover" id="cover">
   <p class="brand">${mark("#0a1639", "#f8c618")} biznes.mu</p>
   <div class="words">
-    <p class="pill">Pocket guide</p>
+    <p class="pill">${esc(editionName)} edition</p>
     <h1>${esc(product.cover)}</h1>
     <p class="sub">${esc(product.line)}</p>
   </div>
-  <p class="foot"><span>${esc(editionName)} edition. ${data.places.length} places, ${regions.length} regions</span><span>Checked ${day(data.checked)}</span></p>
+  <p class="foot"><span>${data.places.length} places, ${regions.length} regions. A new edition every month</span><span>Checked ${day(data.checked)}</span></p>
 </section>
 
 <h2 class="head">How to use this guide</h2>
@@ -208,16 +249,21 @@ ${data.itineraries.map((r) => `<div class="route"><h3>${esc(r.title)}</h3><ol>${
 <ol class="sources">${data.sources.map((s) => `<li><b>${s.n}</b>${esc(s.title)}, ${esc(s.publisher)}. ${esc(s.url)}</li>`).join("")}</ol>
 
 <h2 class="head new-page">Sponsors of this edition</h2>
-<p class="lede">This guide is renewed every month. The businesses below paid to be on this page; nothing else in the guide is paid for, and no place is in it because of a sponsor.</p>
+<p class="lede">This guide is renewed every month. The businesses below paid to be on these pages; nothing else in the guide is paid for, and no place is in it because of a sponsor. An edition holds at most ${sponsorship.maxPages} pages of sponsors.</p>
 ${
   sponsors.length
-    ? sponsors.map((sponsor) => `<div class="sponsor"><p class="kind">Sponsored</p><h3>${esc(sponsor.name)}</h3>${sponsor.line ? `<p>${esc(sponsor.line)}</p>` : ""}<p class="reach">${[sponsor.town, sponsor.phone, sponsor.web].filter(Boolean).map(esc).join(" · ")}</p></div>`).join("")
+    ? sponsors.map((sponsor) => `<div class="sponsor sponsor-${esc(sponsor.option)}"><p class="kind">Sponsored</p><h3>${esc(sponsor.name)}</h3>${sponsor.line ? `<p>${esc(sponsor.line)}</p>` : ""}<p class="reach">${[sponsor.town, sponsor.phone, sponsor.web].filter(Boolean).map(esc).join(" · ")}</p></div>`).join("")
     : `<div class="sponsor empty"><h3>Your business could be here.</h3><p>No business has sponsored this edition yet.</p></div>`
 }
 <div class="box">
-  <h3>Put your business in next month's guide</h3>
+  <h3>Put your business in a coming edition</h3>
   <table>${sponsorship.options.map((option) => `<tr><td><b>${esc(option.name)}</b><br>${esc(option.what)}</td><td>Rs ${option.price.toLocaleString("en-GB")} a month</td></tr>`).join("")}</table>
   <p class="call">Sponsorship is taken for the coming month or months. Call or WhatsApp ${esc(contact.phone)}, or write to ${esc(contact.email)}.</p>
+</div>
+<div class="box light">
+  <h3>When the guide is free</h3>
+  <table>${[...sponsorship.free].sort((x, y) => x.raised - y.raised).map((step) => `<tr><td>The edition's sponsors have together paid Rs ${step.raised.toLocaleString("en-GB")}</td><td>${step.month ? "Free all month" : `Free for ${["", "1 week", "2 weeks", "3 weeks", "4 weeks"][step.weeks] ?? `${step.weeks} weeks`}`}</td></tr>`).join("")}</table>
+  <p class="call">Counted from the first day of the edition's month. The rest of the month the guide is Rs ${Number(product.price).toLocaleString("en-GB")}.</p>
 </div>
 
 <section class="full back new-page">
@@ -227,7 +273,7 @@ ${
     <p>The restaurant near the beach, the pharmacy in the next village, the taxi back: biznes.mu is the search engine for business in Mauritius.</p>
     <p><b>biznes.mu</b></p>
   </div>
-  <p class="small">${esc(product.title)}. Facts checked ${day(data.checked)} against the sources listed. The pictures are illustrations made for biznes.mu, not photographs of the places. ${esc(editionName)} edition; a new one is made every month. This guide is for your own use: please do not pass it on. Made by Khay Digital, Mauritius. khay.digital</p>
+  <p class="small">The ${esc(product.title)}. Facts checked ${day(data.checked)} against the sources listed. The pictures are illustrations made for biznes.mu, not photographs of the places. ${esc(editionName)} edition; a new one is made every month. This guide is for your own use: please do not pass it on. Made by Khay Digital, Mauritius. khay.digital</p>
 </section>
 </body></html>`;
 
