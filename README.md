@@ -48,8 +48,10 @@ It replaces the site that sold ready-made businesses (in the repository's histor
   more arriving. Each fact names its source, and each article ends with what to read next on the
   site and then its list of references. A glossary of 90 terms (`content/glossary.json`) is drawn
   from the business guides.
-- **The tools**: check a business, a VAT calculator, a comparison of legal structures, the glossary.
-  Each takes its figures from a guide and holds none of its own.
+- **The tools**: check a business, a VAT calculator, a personal income tax calculator, a business
+  tax estimator, a comparison of legal structures, the glossary. Each takes its figures from a
+  guide and holds none of its own (`src/lib/figures.ts` reads them by a fact's label, and
+  `src/lib/sums.ts` does the arithmetic for the two tax tools and their no-script examples).
 - **Emergency numbers** (`content/emergency.json`): 43 numbers from 29 sources, each named.
 - **The pocket guide** (`content/pdf`, `npm run pdf`): the first of the PDF guides to be sold, 51
   pages.
@@ -778,6 +780,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/learn/[slug]` | One article, with its contents, its sources, "Keep reading" and "References" | Ahead of time |
 | `/learn/glossary` | The glossary, with a letter index | Ahead of time |
 | `/tools`, `/tools/verify`, `/tools/vat`, `/tools/structures` | The tools: check a business, the VAT calculator, legal structures compared | Ahead of time |
+| `/tools/income-tax`, `/tools/business-tax` | The personal income tax calculator and the business tax estimator, each from its guide's facts. `?profit=` on the first carries a sole trader's profit over from the second | Ahead of time |
 | `/official` | The official pages the guides point to | Ahead of time |
 | `/emergency` | The emergency numbers, each a link that dials, each with its source | Ahead of time |
 | `/pricing` | The three plans, and what paying changes | Ahead of time |
@@ -816,6 +819,7 @@ this list.
 | Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all four pictures at a desk and on a phone: the lowest is 5.77:1 |
 | Design record | `npm run design` | 0 errors |
 | Behaviour | `npm run behaviour` | 106 of 106, against a production server with accounts off |
+| The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
 | Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on every kind of public page, at a desk and on a phone |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
 | The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |

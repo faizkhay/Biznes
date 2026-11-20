@@ -58,10 +58,11 @@
     {
       "label": "PAYE exemption",
       "value": "MUR 38,462 a month",
-      "detail": "No PAYE where monthly emoluments are at or below this, in MRA guidance for the income year 1 July 2025 to 30 June 2026.",
+      "detail": "No PAYE where monthly emoluments are at or below this. The figure is in the Income Tax Act as consolidated up to the Finance Act 2026, and in MRA guidance for 2025-2026.",
       "sources": [
         "S2",
-        "S3"
+        "S3",
+        "S4"
       ]
     },
     {
@@ -922,6 +923,12 @@
   ],
   "resources": [
     {
+      "title": "Personal income tax in Mauritius",
+      "url": "/learn/personal-income-tax-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the bands, deductions and reliefs behind the tax an employer withholds."
+    },
+    {
       "title": "New Employer",
       "url": "https://www.mra.mu/index.php/employers/new-employer",
       "publisher": "Mauritius Revenue Authority",
@@ -1014,7 +1021,7 @@
   ],
   "unverified": [
     "The national minimum wage and salary compensation for 2027. No 2027 regulations were listed on the Ministry of Labour legislation pages on 20 November 2026. The 2026 figures took effect on 1 January 2026.",
-    "The monthly PAYE exemption for the income year 1 July 2026 to 30 June 2027. MRA guidance was found only for 2025-2026 (MUR 38,462). The MUR 500,000 zero-rate band is unchanged in the Act, but no MRA circular or PAYE table for 2026-2027 was found.",
+    "An MRA circular or PAYE table for the income year 1 July 2026 to 30 June 2027. MRA guidance was found only for 2025-2026. The monthly exemption of MUR 38,462 is still in the Income Tax Act as consolidated up to the Finance Act 2026, which defines the employee from whom no tax is withheld.",
     "The reduced PRGF rates for small and medium enterprises. The MRA PRGF page says SMEs pay a lower rate for the first three years. An MRA guide of April 2025 dates that period January 2022 to December 2024. Whether any reduced rate still applied in late 2026 could not be confirmed, so only the 4.5% rate is given.",
     "The scale of work permit fees under the Non-Citizens (Work Permit) (Fees) Regulations 2013. Only the MUR 700 processing fee and MUR 500 annual fee in the February 2026 information sheet were confirmed.",
     "The official list of public holidays for 2026. Only the 2027 list (General Notice No. 1088 of 2026) was fetched.",
