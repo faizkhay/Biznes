@@ -31,6 +31,9 @@ export default async function ShowcasePage({ params, searchParams }: { params: P
   const page = data as ShowcaseRow | null;
   const photos = page?.photos ?? [];
   const path = b.status === "live" ? shown.byId.get(b.id)?.path : undefined;
+  // What a visitor is given today: the same read the public page makes, as someone not signed in.
+  const seen = shown.byId.get(b.id)?.showcase;
+  const seenParts = [seen?.tagline ? "your line" : "", seen?.hours?.length ? "your opening hours" : "", seen?.cover ? "a cover" : "", seen?.photos?.length ? `${seen.photos.length} ${seen.photos.length === 1 ? "photograph" : "photographs"}` : ""].filter(Boolean);
   const upload = `/dashboard/${b.id}/showcase/upload`;
   const wrong = problemSays(problem);
 
@@ -46,6 +49,11 @@ export default async function ShowcasePage({ params, searchParams }: { params: P
         </PartHead>
         {said && SAID[said] && <Notice className="mt-6">{SAID[said]}</Notice>}
         {b.status !== "live" && <Notice className="mt-6">Your business is not live yet. What you put here is kept, and shown when it is.</Notice>}
+        {b.status === "live" && (
+          <p className="caption-1 mt-6 text-ink-faint" data-seen="showcase">
+            {seenParts.length ? `On your page now: ${seenParts.join(", ")}.` : "On your page now: nothing from here yet."}
+          </p>
+        )}
 
         <section aria-labelledby="words" className="card mt-6">
           <h3 id="words" className="heading-3">

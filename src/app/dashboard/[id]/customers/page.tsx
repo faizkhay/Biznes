@@ -57,7 +57,7 @@ export default async function CustomersPage({ params }: { params: Promise<{ id: 
             <ul className="rows mt-3">
               {people.map((p) => (
                 <li key={p.key}>
-                  <article className="listing">
+                  <article className="row listing">
                     <span className="listing-icon" aria-hidden>
                       <Person />
                     </span>

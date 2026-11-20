@@ -45,6 +45,9 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
   const sections = (sectionRows ?? []) as MenuSectionRow[];
   const items = (itemRows ?? []) as MenuItemRow[];
   const path = b.status === "live" ? shown.byId.get(b.id)?.path : undefined;
+  // What a visitor is given today: the same read the public page makes, as someone not signed in.
+  const seen = shown.byId.get(b.id)?.showcase?.menu ?? [];
+  const seenItems = seen.reduce((sum, section) => sum + section.items.length, 0);
 
   return (
     <div className="shell grid gap-x-16 gap-y-12 lg:grid-cols-12">
@@ -57,6 +60,11 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
           )}
         </PartHead>
         {b.status !== "live" && <Notice className="mt-6">Your business is not live yet. The menu is kept, and shown when it is.</Notice>}
+        {b.status === "live" && sections.length > 0 && (
+          <p className="caption-1 mt-6 text-ink-faint" data-seen="menu">
+            On your page now: {count(seen.length)} {seen.length === 1 ? "section" : "sections"}, {count(seenItems)} {seenItems === 1 ? "item" : "items"}.
+          </p>
+        )}
 
         {sections.length === 0 ? (
           <div className="mt-8">
@@ -66,10 +74,7 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
           </div>
         ) : (
           <>
-            <p className="caption-1 mt-6 text-ink-faint" role="status">
-              {count(sections.length)} {sections.length === 1 ? "section" : "sections"}, {count(items.length)} {items.length === 1 ? "item" : "items"}.
-            </p>
-            <div className="mt-3 grid gap-6">
+            <div className="mt-4 grid gap-6">
               {sections.map((s, at) => {
                 const inside = items.filter((i) => i.section_id === s.id);
                 return (

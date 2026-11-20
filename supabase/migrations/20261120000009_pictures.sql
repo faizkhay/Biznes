@@ -151,3 +151,17 @@ update public.site_settings set mode = 'fixed' where picture is not null;
 
 grant select (mode, pictures) on table public.site_settings to anon;
 grant update (mode, pictures) on table public.site_settings to authenticated;
+
+-- The record of a change to the look now holds how the picture is chosen as well.
+create or replace function private.site_settings_audit() returns trigger
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  if new.picture is distinct from old.picture or new.greeting is distinct from old.greeting
+    or new.mode is distinct from old.mode or new.pictures is distinct from old.pictures then
+    perform private.record('settings.look', 'site_settings', jsonb_build_object('mode', new.mode, 'picture', new.picture, 'pictures', to_jsonb(new.pictures), 'greeting', new.greeting));
+  end if;
+  return null;
+end;
+$$;
+revoke all on function private.site_settings_audit() from public;

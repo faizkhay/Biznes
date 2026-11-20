@@ -432,6 +432,7 @@ select t.be('authenticated', :'admin', 'An admin');
 select t.throws($$ insert into public.site_pictures (path, label) values ('site/backdrop-2.jpg', 'Another') $$, 'cannot add to the site''s pictures', '42501', 'row-level security');
 select t.is($$ with done as (update public.site_settings set mode = 'calendar' returning 1) select count(*) from done $$, '0', 'cannot change how the picture is chosen');
 select t.is($$ with done as (delete from public.site_pictures returning 1) select count(*) from done $$, '0', 'cannot remove a picture');
+select t.is($$ select (detail ->> 'mode') || ',' || jsonb_array_length(detail -> 'pictures') from public.audit_log where action = 'settings.look' order by id desc limit 1 $$, 'rotation,2', 'reads on the record how the picture is now chosen');
 select t.be('anon', '', 'A visitor');
 select t.is($$ select mode || ',' || cardinality(pictures) || ',' || (select label from public.site_pictures) from public.site_settings $$, 'rotation,2,Le Morne at dusk', 'reads how the picture is chosen, and the pictures there are');
 select t.throws($$ select created_by from public.site_pictures $$, 'cannot read who uploaded one', '42501');

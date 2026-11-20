@@ -50,7 +50,7 @@ export default async function BookingsPage({ params, searchParams }: { params: P
     const live = k.status === "requested" || k.status === "confirmed";
     return (
       <li key={k.id}>
-        <article className="listing">
+        <article className="row listing">
           <span className="listing-icon" aria-hidden>
             <Calendar />
           </span>

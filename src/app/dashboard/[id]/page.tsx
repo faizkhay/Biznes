@@ -72,8 +72,8 @@ export default async function BusinessPage({ params, searchParams }: { params: P
         </h2>
         {said && SAID[said] && <Notice className="mb-6">{SAID[said]}</Notice>}
         <Stats>
-          <Stat label="Status" figure={STATUS_NAMES[b.status]} note={b.status === "live" ? "Anyone can find it" : b.status === "pending" ? "A person is checking it" : undefined} />
-          <Stat label="Plan" figure={now.name} note={paid && b.plan_until ? `Paid until ${day(b.plan_until)}` : paid ? "No last day on record" : "Free for good"} href={`/dashboard/${b.id}#plan`} />
+          <Stat label="Status" figure={<span className="heading-3">{STATUS_NAMES[b.status]}</span>} note={b.status === "live" ? "Anyone can find it" : b.status === "pending" ? "A person is checking it" : undefined} />
+          <Stat label="Plan" figure={<span className="heading-3">{now.name}</span>} note={paid && b.plan_until ? `Paid until ${day(b.plan_until)}` : paid ? "No last day on record" : "Free for good"} href={`/dashboard/${b.id}#plan`} />
           {grow && <Stat label="Bookings to answer" figure={count(waiting ?? 0)} note={waiting ? "Waiting for your word" : "Nothing waiting"} href={`/dashboard/${b.id}/bookings`} />}
           {grow && <Stat label="Paid this month" figure={rupees(taken?.total ?? 0)} note={taken ? `${count(taken.payments)} in your ledger` : "Nothing in your ledger yet"} href={`/dashboard/${b.id}/payments`} />}
         </Stats>
@@ -166,7 +166,9 @@ export default async function BusinessPage({ params, searchParams }: { params: P
                   <Chips name="plan" legend={paid ? "Ask for a change" : "Ask for a plan"} defaultValue={changes[0]?.value} choices={changes} />
                   <TextArea name="note" label="Anything we should know" optional rows={3} maxLength={500} hint="The best time to call you, for one." />
                   <div>
-                    <Submit busy="Asking">{paid ? "Ask for this change" : "Ask for this plan"}</Submit>
+                    <Submit busy="Asking" className="btn btn-ink button-md">
+                      {paid ? "Ask for this change" : "Ask for this plan"}
+                    </Submit>
                     <p className="caption-1 mt-3 text-ink-faint">Nothing is paid here. We will contact you to arrange payment, and the plan starts once that is done. Paying online is on its way.</p>
                   </div>
                 </ActionForm>

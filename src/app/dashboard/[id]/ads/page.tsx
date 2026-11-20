@@ -101,21 +101,21 @@ export default async function AdsPage({ params, searchParams }: { params: Promis
                   <div className="mt-4">
                     <AdCard ad={preview(ad)} />
                   </div>
-                  <dl className="facts mt-4">
-                    <div>
+                  <dl className="facts body-3 mt-4">
+                    <div className="contents">
                       <dt>Months</dt>
                       <dd>{ad.months.map(monthName).join(", ")}</dd>
                     </div>
-                    <div>
+                    <div className="contents">
                       <dt>Price</dt>
                       <dd>{costOf(ad)}</dd>
                     </div>
-                    <div>
+                    <div className="contents">
                       <dt>Where it stands</dt>
                       <dd>{NEXT[state]}</dd>
                     </div>
                     {ad.status === "declined" && ad.reason && (
-                      <div>
+                      <div className="contents">
                         <dt>Why</dt>
                         <dd>{ad.reason}</dd>
                       </div>

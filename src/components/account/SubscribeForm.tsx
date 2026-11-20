@@ -11,14 +11,31 @@ import { ActionForm, Check, Field, Submit, Trap } from "./Form";
  * it says plainly what will be sent and that one can leave at any time. `compact` sets the address
  * and the button on one line, for a narrow place such as the foot of a page.
  */
-export default function SubscribeForm({ className, compact = false }: { className?: string; compact?: boolean }) {
+export default function SubscribeForm({
+  className,
+  compact = false,
+  email,
+  quiet = false,
+}: {
+  className?: string;
+  compact?: boolean;
+  /** An address to begin with, where the page knows who is looking. */
+  email?: string;
+  /** An ink button, where the page already has its one filled action. */
+  quiet?: boolean;
+}) {
+  const button = quiet ? "btn btn-ink button-md" : undefined;
   if (!accountsOn) return null;
   return (
     <div className={className}>
       <ActionForm action={subscribe} className={compact ? "grid gap-3" : "grid gap-4"}>
         <div className={compact ? "flex flex-wrap items-end gap-3" : "grid gap-4"}>
-          <Field name="email" label="Your email address" type="email" autoComplete="email" inputMode="email" className={compact ? "min-w-0 flex-1" : undefined} />
-          {compact && <Submit busy="Joining">Join the list</Submit>}
+          <Field name="email" label="Your email address" type="email" autoComplete="email" inputMode="email" defaultValue={email} className={compact ? "min-w-0 flex-1" : undefined} />
+          {compact && (
+            <Submit busy="Joining" className={button}>
+              Join the list
+            </Submit>
+          )}
         </div>
         <fieldset>
           <legend className="title-2">Send me</legend>
@@ -30,7 +47,9 @@ export default function SubscribeForm({ className, compact = false }: { classNam
         <Trap />
         {!compact && (
           <div>
-            <Submit busy="Joining">Join the list</Submit>
+            <Submit busy="Joining" className={button}>
+              Join the list
+            </Submit>
           </div>
         )}
         <p className="caption-1 max-w-prose text-ink-faint">

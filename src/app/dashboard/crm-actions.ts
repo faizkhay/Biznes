@@ -107,7 +107,7 @@ export async function recordPayment(_: FormState, data: FormData): Promise<FormS
   if (error) return { message: TRY_AGAIN, values };
   refreshed(business, "payments");
   refreshed(business, "bookings");
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: booking ? "Marked paid, and written in the ledger." : "Written in the ledger." };
 }
 

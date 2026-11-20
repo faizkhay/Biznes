@@ -11,16 +11,18 @@ import { ActionForm, Field, Select, Submit, TextArea, Trap } from "./Form";
  */
 export default function BookingForm({ business }: { business: Pick<Owned, "id" | "name" | "services"> }) {
   const today = mauritiusToday();
+  // A booking is for something done: a product is bought, not booked.
+  const services = business.services.filter((s) => s.kind !== "product");
   return (
     <ActionForm action={requestBooking}>
       <input type="hidden" name="business" value={business.id} />
-      {business.services.length > 0 && (
+      {services.length > 0 && (
         <Select
           name="service"
           label="What for"
           optional
           empty="Not sure yet"
-          choices={business.services.map((s) => ({ value: s.id, label: [s.name, s.price != null ? rupees(s.price) : "", s.minutes ? duration(s.minutes) : ""].filter(Boolean).join(", ") }))}
+          choices={services.map((s) => ({ value: s.id, label: [s.name, s.price != null ? rupees(s.price) : "", s.minutes ? duration(s.minutes) : ""].filter(Boolean).join(", ") }))}
         />
       )}
       <div className="grid gap-6 sm:grid-cols-2">

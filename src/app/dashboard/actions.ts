@@ -160,7 +160,7 @@ export async function withdrawPlanRequest(_: FormState, data: FormData): Promise
   const supabase = await db();
   const { data: gone, error } = await supabase.from("plan_requests").delete().eq("id", id).eq("business_id", business).eq("status", "open").select("id");
   if (error || !gone?.length) return { message: "That request could not be taken back. It may already have been answered." };
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: "Taken back." };
 }
 
@@ -195,10 +195,12 @@ export async function saveService(_: FormState, data: FormData): Promise<FormSta
 
   const supabase = await db();
   // A product takes no time: how long is a service's.
-  const row = { name, description, price_mur: price, minutes: kind === "product" ? null : minutes, kind, stock, active: id ? data.get("active") === "on" : true };
-  const { data: saved, error } = id
-    ? await supabase.from("services").update(row).eq("id", id).eq("business_id", business).select("id")
-    : await supabase.from("services").insert({ ...row, business_id: business }).select("id");
+  const service = { name, description, price_mur: price, minutes: kind === "product" ? null : minutes, active: id ? data.get("active") === "on" : true };
+  const write = (row: typeof service & { kind?: string; stock?: number | null }) =>
+    id ? supabase.from("services").update(row).eq("id", id).eq("business_id", business).select("id") : supabase.from("services").insert({ ...row, business_id: business }).select("id");
+  let { data: saved, error } = await write({ ...service, kind, stock });
+  // A database from before there were products has neither column: a service is still a service there.
+  if (error?.code === "PGRST204" && kind === "service") ({ data: saved, error } = await write(service));
   if (error?.hint === "too_many") return { message: "A business can list sixty services. Remove one first.", values };
   if (error?.code === "42501") return { message: "Services are part of Biznes Grow, and this business is not on it today.", values };
   if (error || !saved?.length) return { message: TRY_AGAIN, values };
@@ -218,7 +220,7 @@ export async function removeService(_: FormState, data: FormData): Promise<FormS
   const { data: gone, error } = await supabase.from("services").delete().eq("id", id).eq("business_id", business).select("id");
   if (error || !gone?.length) return { message: TRY_AGAIN };
   updateTag(TAG_OWNED);
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: "Removed." };
 }
 
@@ -250,7 +252,7 @@ export async function savePayDetails(_: FormState, data: FormData): Promise<Form
     : await supabase.from("pay_details").delete().eq("business_id", business).select("business_id");
   if (error || (number && !saved?.length)) return { message: error?.code === "42501" ? "That business is not yours to change." : TRY_AGAIN, values };
   updateTag(TAG_OWNED);
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: number ? "Saved." : "Taken off your page.", values: { juice_number: number, juice_name: name } };
 }
 
@@ -268,6 +270,6 @@ export async function answerBooking(_: FormState, data: FormData): Promise<FormS
   const supabase = await db();
   const { data: changed, error } = await supabase.from("bookings").update({ status: step }).eq("id", id).eq("business_id", business).select("id");
   if (error || !changed?.length) return { message: "That booking could not be changed that way. It may have been cancelled." };
-  revalidatePath(`/dashboard/${business}`);
+  revalidatePath(`/dashboard/${business}`, "layout");
   return { ok: true, message: STEPS[step] };
 }
