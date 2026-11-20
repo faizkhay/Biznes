@@ -214,7 +214,7 @@ export default async function AdminOrdersPage() {
                       </td>
                       <td data-label="Stands">{ORDER_NAMES[o.status]}</td>
                       <td>
-                        <ActionForm action={setOrder} className="grid" quiet>
+                        <ActionForm action={setOrder} className="flex sm:justify-end" quiet>
                           <input type="hidden" name="order" value={o.id} />
                           {STEPS[o.status].map((step) => (
                             <Submit key={step.to} name="status" value={step.to} busy={step.busy} className="btn btn-quiet btn-sm button-sm">

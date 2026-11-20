@@ -108,12 +108,12 @@ export default async function SubscribersPage({ searchParams }: { searchParams: 
                         <th scope="row" className="break-all">
                           {p.email}
                         </th>
-                        <td data-label="Wants">{[p.wants_guide ? "The pocket guide" : "", p.wants_magazine ? "The magazine" : ""].filter(Boolean).join(", ")}</td>
+                        <td data-label="Wants">{p.wants_guide && p.wants_magazine ? "The pocket guide and the magazine" : p.wants_guide ? "The pocket guide" : "The magazine"}</td>
                         <td data-label="Joined" className="whitespace-nowrap">
                           {day(p.created_at.slice(0, 10))}
                         </td>
                         <td>
-                          <ActionForm action={removeSubscriber} className="grid" quiet>
+                          <ActionForm action={removeSubscriber} className="flex sm:justify-end" quiet>
                             <input type="hidden" name="subscriber" value={p.id} />
                             <Submit className="btn btn-quiet btn-sm button-sm" busy="Removing">
                               Take off<span className="sr-only">: {p.email}</span>

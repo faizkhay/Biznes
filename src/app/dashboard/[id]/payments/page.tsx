@@ -86,7 +86,7 @@ export default async function PaymentsPage({ params }: { params: Promise<{ id: s
                         {rupees(p.amount_mur)}
                       </td>
                       <td>
-                        <ActionForm action={removePayment} className="grid">
+                        <ActionForm action={removePayment} className="flex sm:justify-end" quiet>
                           <input type="hidden" name="business" value={b.id} />
                           <input type="hidden" name="payment" value={p.id} />
                           <Submit className="btn btn-quiet btn-sm button-sm" busy="Removing">

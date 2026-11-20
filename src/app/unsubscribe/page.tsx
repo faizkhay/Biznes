@@ -19,7 +19,7 @@ export default async function UnsubscribePage({ searchParams }: { searchParams: 
   return (
     <AuthCard
       title="Leave the list"
-      line={whole ? "One press and we send you nothing more: not the pocket guide, not the magazine." : "This link is not whole, so we cannot tell which address it is for."}
+      line={!accountsOn ? "The list has not opened yet, so there is nothing to leave." : whole ? "One press and we send you nothing more: not the pocket guide, not the magazine." : "This link is not whole, so we cannot tell which address it is for."}
       foot={
         <Link href="/" className="text-link">
           Back to the search
@@ -34,9 +34,9 @@ export default async function UnsubscribePage({ searchParams }: { searchParams: 
           </div>
           <p className="caption-1 text-ink-faint">Your address is removed, not kept aside. You can join again whenever you like.</p>
         </ActionForm>
-      ) : (
+      ) : accountsOn ? (
         <p className="note body-3">Open the link again from the message it came in, or write to us and we will take you off by hand.</p>
-      )}
+      ) : null}
     </AuthCard>
   );
 }

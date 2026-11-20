@@ -489,11 +489,11 @@ The pieces the public pages use, each with its own notes in the file: `showcaseO
 
 | Check | Command | Result on 20 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | @@RLS@@ claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
-| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` with the same two set | @@E2E@@ of @@E2E@@, with axe-core (WCAG 2.2 AA) clean on @@PAGES@@ kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| Row level security | `npm run test:rls` | 372 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the two variables it prints, `node scripts/accounts-e2e.mjs` with the same two set | 236 of 236, with axe-core (WCAG 2.2 AA) clean on 53 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
 | A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
-| Accounts off | Build with neither variable set | Builds; the account pages say "Accounts open soon" |
-| No network at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy` | Builds; the reads that fail fall back to the calendar's look and to no businesses |
+| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon", and `/account/order` hands the order to the form at `/add` |
+| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses |
 
 `scripts/accounts-stack.sh` runs a Supabase project in miniature in Docker: Supabase's own Postgres
 image (15.8.1.085), Supabase Auth (v2.176.1), PostgREST (v12.2.8) and Supabase Storage (v1.25.7),
