@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { ACTIONS, CREDITS, site } from "@/data/site";
+import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 
@@ -83,6 +84,14 @@ export default function DataPage() {
             How results are ordered
           </h2>
           <div className="prose body-2 mt-4">
+            {/* Said only once owners can list a business themselves: it is the one thing not drawn from an open source. */}
+            {accountsOn && (
+              <>
+                <p>
+                  <strong>A business&rsquo;s own listing.</strong> An owner can create an account and list a business, or claim a listing that is already here. A person at {site.name} checks each one before anything changes. Its details are then the owner&rsquo;s own words, and its page says so. A claimed listing on the free plan is marked &ldquo;Claimed by its owner&rdquo;.
+                </p>
+                  </>
+            )}
             <p>Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name.</p>
             <p>
               A business on a paid plan (<Link href="/pricing">Biznes Go or Biznes Grow</Link>) is shown before others that answer equally well, and it is marked as a priority listing, so that a paid place is never mistaken for a better answer. Until a business is on a paid plan, the order is by answer and fullness alone.

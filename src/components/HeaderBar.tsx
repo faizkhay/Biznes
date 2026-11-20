@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ACTIONS, MENU, site } from "@/data/site";
+import { accountsOn } from "@/lib/accounts/config";
+import AccountControl from "./AccountControl";
 import { Chevron, Glass, List } from "./Icons";
 import { Wordmark } from "./Logo";
 import { SavedLink } from "./Save";
@@ -84,6 +86,7 @@ export default function HeaderBar() {
         <span className="hidden lg:contents">
           <SavedLink />
         </span>
+        <AccountControl />
         <Link href="/pricing" className="btn btn-ink btn-sm button-sm hidden shrink-0 sm:inline-flex">
           {ACTIONS.list}
         </Link>
@@ -95,6 +98,11 @@ export default function HeaderBar() {
             <Link href="/pricing" className="btn btn-ink button-md mb-2 w-full sm:hidden" onClick={close}>
               {ACTIONS.list}
             </Link>
+            {accountsOn && (
+              <Link href="/account" className="btn btn-quiet button-md mb-2 w-full sm:hidden" onClick={close}>
+                Your account
+              </Link>
+            )}
             {MENU.map((group) => (
               <div key={group.label}>
                 <p className="label-1 px-3 pt-3 pb-1 text-ink-faint">{group.label}</p>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ACTIONS, CREDITS, MORE, NAV, site } from "@/data/site";
+import { accountsOn } from "@/lib/accounts/config";
 import { day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { Mark, Wordmark } from "./Logo";
@@ -38,9 +39,9 @@ export default function SiteFooter() {
         </div>
         <nav aria-label="Footer" className="md:col-span-3">
           <ul className="grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-1">
-            {[...NAV, ...MORE].map((l) => (
+            {[...NAV, ...MORE, ...(accountsOn ? [{ href: "/account", label: "Your account" }] : [])].map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
+                <Link href={l.href} prefetch={l.href === "/account" ? false : undefined} className="body-3 inline-flex min-h-8 items-center text-ink-subtle no-underline hover:text-ink hover:underline">
                   {l.label}
                 </Link>
               </li>

@@ -19,10 +19,12 @@
     "og": "node scripts/og.mjs",
     "leads": "node scripts/leads.mjs",
     "pdf": "node scripts/pdf.mjs",
-    "hero": "node scripts/hero-contrast.mjs"
+    "hero": "node scripts/hero-contrast.mjs",
+    "test:rls": "bash scripts/test-rls.sh"
   },
   "dependencies": {
-    "geist": "^1.5.1",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.2",
     "minisearch": "^7.2.0",
     "next": "16.3.5",
     "react": "19.1.0",

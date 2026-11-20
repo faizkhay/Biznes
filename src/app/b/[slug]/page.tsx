@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import ListingClaim from "@/components/account/Claim";
 import { Crumbs } from "@/components/Bits";
 import Chart from "@/components/Chart";
 import { Globe, GroupIcon, Phone, Pin } from "@/components/Icons";
 import { SaveButton, ShareButton } from "@/components/Save";
+import { VerifiedMark } from "@/components/Verified";
 import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ACTIONS, CREDITS } from "@/data/site";
+import { claimOf } from "@/lib/accounts/owned";
 import { degrees } from "@/lib/chart";
 import { chartPoints } from "@/lib/chart";
 import { day, directionsHref, distance, hoursLines, mapHref, month, osmHref, shortUrl, telHref, wikidataHref, yearsSince } from "@/lib/format";
@@ -40,6 +43,11 @@ export default async function ListingPage({ params }: Props) {
   if (slug !== l.slug) permanentRedirect(`/b/${l.slug}`);
 
   const data = index();
+  // The live business that has claimed this listing, if one has. Always undefined with accounts off.
+  const claim = await claimOf(l.id);
+  // An owner's own number and website are newer than the map's, so the buttons use them.
+  const phone = claim?.phone || l.phone?.[0];
+  const web = claim?.website || l.web;
   const category = data.categoryById.get(l.cat);
   const where = whereOf(l);
   const placed = l.lat != null && l.lon != null;
@@ -86,7 +94,7 @@ export default async function ListingPage({ params }: Props) {
 
       <div className="mt-6 grid gap-x-12 gap-y-10 chart:grid-cols-12">
         <div className="chart:col-span-7">
-          <header className="biz-head">
+          <header className={claim?.paid ? "biz-head biz-paid" : "biz-head"}>
             {/* The top of the card is the map, drawn in on where the business is, among its neighbours. */}
             <div className="biz-cover">{own != null ? <Chart lit={[own]} focus={l} zoom span={96} says={`A map of the streets around ${l.name}, with the other listings near it.`} /> : null}</div>
             <div className="biz-body">
@@ -94,17 +102,19 @@ export default async function ListingPage({ params }: Props) {
                 <GroupIcon group={category?.group} />
               </span>
               <h1 className="heading-1 mt-4">{l.name}</h1>
+              {/* The vivid mark is for a verified business on a paid plan, and for nothing else. */}
+              {claim && <p className="mt-3">{claim.paid ? <VerifiedMark size="lg" priority /> : <span className="tag caption-1">Claimed by its owner</span>}</p>}
           <p className="body-1 mt-3 text-ink-subtle">{[l.kind && category?.id !== "companies" ? `${category?.one}, ${l.kind}` : (l.kind ?? category?.one), where].filter(Boolean).join(" · ")}</p>
 
-          {(l.phone?.length || l.web || placed) && (
+          {(phone || web || placed) && (
             <p className="biz-acts mt-6">
-              {l.phone?.[0] && (
-                <a href={telHref(l.phone[0])} className="btn btn-filled button-md">
-                  <Phone /> {ACTIONS.call} <span className="data-1">{l.phone[0]}</span>
+              {phone && (
+                <a href={telHref(phone)} className="btn btn-filled button-md">
+                  <Phone /> {ACTIONS.call} <span className="data-1">{phone}</span>
                 </a>
               )}
-              {l.web && (
-                <a href={l.web} rel="noopener nofollow" className={`btn button-md ${l.phone?.length ? "btn-quiet" : "btn-filled"}`}>
+              {web && (
+                <a href={web} rel="noopener nofollow" className={`btn button-md ${phone ? "btn-quiet" : "btn-filled"}`}>
                   <Globe /> {ACTIONS.website}
                 </a>
               )}
@@ -249,6 +259,9 @@ export default async function ListingPage({ params }: Props) {
             )}
           </dl>
 
+          {/* What its owner adds, once they have claimed it; or the way to claim it. */}
+          <ListingClaim listing={l} claim={claim} />
+
           {/* Where every part of the listing came from: the promise the whole index makes. */}
           <section aria-labelledby="from" className="mt-10">
             <h2 id="from" className="heading-3">
@@ -278,7 +291,7 @@ export default async function ListingPage({ params }: Props) {
                 Being listed here does not say a business is registered or licensed. <Link href="/tools/verify">The official registers</Link> do.
               </li>
               <li>
-                Nobody at biznes.mu has visited or vetted this business. If you run it, or know it has changed,{" "}
+                {claim?.paid ? "We have checked that this business is real; that is all the verified mark says." : "Nobody at biznes.mu has visited or vetted this business."} If you run it, or know it has changed,{" "}
                 <Link href={`/add?listing=${l.id}`}>tell us what to correct</Link>. To have it taken out, use the same form.
               </li>
             </ul>

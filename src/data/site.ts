@@ -119,6 +119,11 @@ export const ACTIONS = {
   website: "Visit website",
   directions: "Directions",
   whatsapp: "WhatsApp",
+  signIn: "Sign in",
+  signUp: "Create an account",
+  signOut: "Sign out",
+  claim: "Claim this listing",
+  book: "Ask for a booking",
 } as const;
 
 /** Questions the first screen offers, each a real search. Chosen to show the three things it answers. */

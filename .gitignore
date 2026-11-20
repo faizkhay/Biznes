@@ -33,3 +33,6 @@ reports/
 
 # Previews sent to the owner during a round. Not part of the site.
 review/preview/
+
+# The local test stack for the accounts (scripts/accounts-stack.sh): its mail and its logs.
+.accounts-stack/

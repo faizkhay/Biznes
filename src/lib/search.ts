@@ -103,7 +103,18 @@ type Engine = {
   categories: Phrase<Category>[];
   hints: Phrase<Category>[];
   leads: Map<string, { lead: Lead; guide?: string; weight: number; whole: boolean; /** A part's own heading, folded: the words that make it an answer and not a mention. */ heading?: string }>;
+  /** The overlay now in the index, by its stamp, and the documents it added. */
+  laid?: number;
+  laidIds: string[];
 };
+
+/**
+ * Businesses listed by their owners, laid over the index for a search (src/lib/accounts/owned.ts).
+ * `extras` are the live ones that are not in the open index, in a listing's shape. `paid` holds
+ * the ids of the rows, in the index or among the extras, that are verified and on Biznes Go or
+ * Biznes Grow today. With no overlay the search is exactly the index's own.
+ */
+export type Overlay = { stamp: number; extras: Listing[]; byId: Map<string, Listing>; paid: Set<string> };
 
 /**
  * Words that make a question about how, not a search for a business: "register a company" asks
@@ -113,22 +124,35 @@ const ASKING = /^(how|what|when|why|which|who|can|do|does|is|are|should|where (c
 
 let engine: Engine | undefined;
 
+/** A listing as the index searches it. */
+function docOf(l: Listing, c: Category | undefined): Doc {
+  return {
+    id: `l:${l.id}`,
+    kind: "listing",
+    name: l.name,
+    alt: [...(l.alt ?? []), l.brand ?? ""].join(" "),
+    // Only the words that mean the whole category: a narrower word must be in the listing itself.
+    what: [c?.one, c?.label, ...(c?.words ?? []), l.kind ?? ""].join(" "),
+    where: [l.area, l.place, l.district, l.street, l.seat].filter(Boolean).join(" "),
+    text: l.about ?? "",
+  };
+}
+
+/** Puts an overlay's extra businesses into the index, in place of the last overlay's. */
+function lay(e: Engine, overlay: Overlay) {
+  if (e.laid === overlay.stamp) return;
+  const { categoryById } = index();
+  for (const id of e.laidIds) e.mini.discard(id);
+  const docs = overlay.extras.map((l) => docOf(l, categoryById.get(l.cat)));
+  e.mini.addAll(docs);
+  e.laidIds = docs.map((d) => d.id);
+  e.laid = overlay.stamp;
+}
+
 function build(): Engine {
   const { listings, guides, official, sites, categories, places, categoryById, glossary } = index();
   const docs: Doc[] = [];
-  for (const l of listings) {
-    const c = categoryById.get(l.cat);
-    docs.push({
-      id: `l:${l.id}`,
-      kind: "listing",
-      name: l.name,
-      alt: [...(l.alt ?? []), l.brand ?? ""].join(" "),
-      // Only the words that mean the whole category: a narrower word must be in the listing itself.
-      what: [c?.one, c?.label, ...(c?.words ?? []), l.kind ?? ""].join(" "),
-      where: [l.area, l.place, l.district, l.street, l.seat].filter(Boolean).join(" "),
-      text: l.about ?? "",
-    });
-  }
+  for (const l of listings) docs.push(docOf(l, categoryById.get(l.cat)));
 
   const leads: Engine["leads"] = new Map();
   const lead = (id: string, doc: Omit<Doc, "id" | "kind" | "where">, entry: { lead: Lead; guide?: string; weight: number; whole: boolean; heading?: string }) => {
@@ -203,6 +227,7 @@ function build(): Engine {
     categories: unique(categories.flatMap((c) => [...(c.id.startsWith("other-") ? [] : [c.one]), c.label, ...c.words].map((word) => ({ tokens: stems(word), of: c }))).filter((p) => p.tokens.join("").length >= 3)).sort(longest),
     hints: unique(categories.flatMap((c) => (c.hints ?? []).map((word) => ({ tokens: stems(word), of: c })))).sort(longest),
     leads,
+    laidIds: [],
   };
 }
 
@@ -281,12 +306,16 @@ export function narrowed(listings: Listing[], narrow: Narrow = {}): { facets: Fa
   return { facets, listings: p || w || town ? listings.filter((l) => (!p || l.phone?.length) && (!w || l.web) && (!town || l.placeSlug === town)) : listings };
 }
 
-type Options = { kind?: Kind; page?: number; plain?: boolean; narrow?: Narrow };
+type Options = { kind?: Kind; page?: number; plain?: boolean; narrow?: Narrow; /** Owners' businesses to lay over the index. */ overlay?: Overlay };
 
-export function search(query: string, { kind, page = 1, plain = false, narrow }: Options = {}): Answer {
+export function search(query: string, { kind, page = 1, plain = false, narrow, overlay }: Options = {}): Answer {
   engine ??= build();
   const e = engine;
   const data = index();
+  if (overlay) lay(e, overlay);
+  // Every listing a question may be answered with: the index's, and any an owner listed outside it.
+  const pool = overlay?.extras.length ? data.listings.concat(overlay.extras) : data.listings;
+  const byId = (id: string) => data.byId.get(id) ?? overlay?.byId.get(id);
   const read = plain ? { text: fold(query), rest: fold(query), place: undefined, category: undefined, hint: undefined } : understand(query);
   const { place, category, rest, text } = read;
   // A word is matched as written, or as the start of a longer word. Close spellings are tried only
@@ -304,27 +333,27 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
     if (rest) {
       for (const close of [false, true]) {
         const scores = new Map(of("listing", rest, "AND", close).map((r) => [(r.id as string).slice(2), r.score]));
-        for (const l of data.listings) if (fits(l) && scores.has(l.id)) ranked.push({ l, score: scores.get(l.id)! * (1 + l.full / 12) });
+        for (const l of pool) if (fits(l) && scores.has(l.id)) ranked.push({ l, score: scores.get(l.id)! * (1 + l.full / 12) });
         if (ranked.length) {
           spelling = close;
           break;
         }
       }
     } else {
-      for (const l of data.listings) if (fits(l)) ranked.push({ l, score: l.full });
+      for (const l of pool) if (fits(l)) ranked.push({ l, score: l.full });
     }
     if (!ranked.length && !plain) {
       // Read as a town or a kind and nothing fits. The words may be a name: search them plainly.
-      const named = search(query, { kind, page, plain: true, narrow });
+      const named = search(query, { kind, page, plain: true, narrow, overlay });
       if (named.counts.listing > 0 || !rest) return named;
       // Not a name either. Answer the part that was understood, and say which words were left out.
-      for (const l of data.listings) if (fits(l)) ranked.push({ l, score: l.full });
+      for (const l of pool) if (fits(l)) ranked.push({ l, score: l.full });
       if (!ranked.length) return named;
       ignored = rest;
     }
   } else {
     for (const r of of("listing", text)) {
-      const l = data.byId.get((r.id as string).slice(2));
+      const l = byId((r.id as string).slice(2));
       if (l) ranked.push({ l, score: r.score * (1 + l.full / 12) });
     }
   }
@@ -353,14 +382,20 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
   // the index may simply not hold ("plumber" must not find "lumber").
   if (!ranked.length && !leads.length && !official.length && !sites.length && !read.hint) {
     for (const r of of("listing", text, "AND", true)) {
-      const l = data.byId.get((r.id as string).slice(2));
+      const l = byId((r.id as string).slice(2));
       if (l) ranked.push({ l, score: r.score * (1 + l.full / 12) });
     }
     leads = collect(of("guide", text, "AND", true));
     official = of("official", text, "AND", true).map((r) => data.official[Number((r.id as string).slice(2))]);
     spelling = ranked.length + leads.length + official.length > 0;
   }
-  ranked.sort((a, b) => b.score - a.score || a.l.name.localeCompare(b.l.name));
+  // The order: how well a listing answers, and how full it is. One thing comes before that, and
+  // the page marks it on every row it moves: a verified business on Biznes Go or Biznes Grow is
+  // shown first among the listings that answer. A question that is a business's own name still
+  // gets that business first, so a paid place is never passed off as the one asked for.
+  const byName = !place && !category;
+  const lead = (l: Listing) => (!overlay?.paid.size ? 0 : byName && fold(l.name) === text ? 2 : overlay.paid.has(l.id) ? 1 : 0);
+  ranked.sort((a, b) => lead(b.l) - lead(a.l) || b.score - a.score || a.l.name.localeCompare(b.l.name));
   // A question that names a town and found listings there is asking who and where. A guide that
   // happens to hold the same words would only be in the way.
   if (place && ranked.length) {
@@ -372,7 +407,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
   // Nothing at all for every word together: show what any of the words finds.
   if (!ranked.length && !leads.length && !official.length && !sites.length && text.includes(" ")) {
     for (const r of of("listing", text, "OR").slice(0, 200)) {
-      const l = data.byId.get((r.id as string).slice(2));
+      const l = byId((r.id as string).slice(2));
       if (l) ranked.push({ l, score: r.score });
     }
     leads = collect(of("guide", text, "OR").slice(0, 40)).slice(0, 6);
@@ -404,7 +439,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow }:
   const cut = <T>(list: T[], few: number, mine: Kind) => (kind === mine ? list.slice(start, start + PAGE_SIZE) : kind ? [] : list.slice(0, few));
   const ways: Way[] = [];
   if (category && place) {
-    const n = data.listings.filter(fits).length;
+    const n = pool.filter(fits).length;
     if (n) ways.push({ href: `/directory/${category.id}/${place.slug}`, label: `${category.label} in ${place.name}`, n });
   }
   if (category) ways.push({ href: `/directory/${category.id}`, label: `${category.label}, all of Mauritius`, n: category.n });
