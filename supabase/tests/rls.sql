@@ -340,6 +340,33 @@ reset role;
 select t.is($$ select status || ',' || (customer_id is null) from public.bookings where name = 'Eve' $$, 'requested,true', 'but lands as a plain request from nobody');
 
 ------------------------------------------------------------------------------------------------
+select E'\n# The security review: what is typed, and what nobody outside may reach';
+select t.be('authenticated', :'alice', 'Alice, writing straight to the API, past the website''s own checks');
+select t.throws($$ update public.businesses set website = 'javascript:alert(1)' where name = 'Alice Flowers' $$, 'cannot give a web address that is a script', '23514');
+select t.throws($$ update public.businesses set website = 'data:text/html,hello' where name = 'Alice Flowers' $$, 'nor one that is a page in itself', '23514');
+select t.throws($$ update public.businesses set website = 'https://example.mu/ onclick=x' where name = 'Alice Flowers' $$, 'nor one with a space in it', '23514');
+select t.lives($$ update public.businesses set website = 'https://example.mu/flowers' where name = 'Alice Flowers' $$, 'can give one that begins http or https');
+select t.throws($$ update public.businesses set phone = '<script>alert(1)</script>' where name = 'Alice Flowers' $$, 'cannot give a telephone number that is not one', '23514');
+select t.throws($$ update public.businesses set about = repeat('a', 1201) where name = 'Alice Flowers' $$, 'cannot write more than 1,200 characters about a business', '23514');
+select t.throws($$ update public.businesses set name = repeat('a', 121) where name = 'Alice Flowers' $$, 'cannot give a name longer than 120 characters', '23514');
+select t.throws($$ update public.businesses set category = '../admin' where name = 'Alice Flowers' $$, 'cannot give a category that is not a plain word', '23514');
+select t.throws($$ update public.businesses set town = 'a town with spaces' where name = 'Alice Flowers' $$, 'nor a town that is not one', '23514');
+select t.throws($$ insert into public.businesses (name, category, listing_id) values ('Alice Claims', 'florists', 'n1; drop table public.businesses') $$, 'cannot claim a listing whose id is not an id', '23514');
+select t.throws($$ update public.profiles set phone = 'javascript:alert(1)' where id = auth.uid() $$, 'cannot put anything but a telephone number on her profile', '23514');
+select t.throws($$ insert into public.plan_requests (business_id, plan, note) values ('b0000000-0000-4000-8000-0000000000a2', 'go', repeat('a', 501)) $$, 'cannot send a note longer than 500 characters with a request', '23514');
+select t.throws($$ select private.record('made.up', 'by hand') $$, 'cannot write to the record through its own function', '42501');
+select t.be('anon', '', 'A visitor, trying what is left');
+select t.throws($$ select public.admin_handle_plan_request('00000000-0000-4000-8000-000000000000', true, current_date + 365) $$, 'cannot call admin_handle_plan_request', '42501');
+select t.throws($$ select email from public.profiles $$, 'cannot read a single column of the profiles', '42501');
+select t.throws($$ insert into public.bookings (business_id, name, phone, wanted_at, note) values ('b0000000-0000-4000-8000-0000000000a2', 'Dev', '+230 5999 0009', now() + interval '2 days', repeat('a', 501)) $$, 'cannot send a note longer than 500 characters with a booking', '23514');
+reset role;
+select E'\n# The catalogue itself';
+select t.is($$ select coalesce(bool_or(has_function_privilege(r.name, p.oid, 'execute')), false)::text from pg_proc p join pg_namespace n on n.oid = p.pronamespace, (values ('anon'), ('authenticated')) r (name) where n.nspname = 'public' and p.proname = 'rls_auto_enable' $$, 'false', 'the project''s own rls_auto_enable(), where there is one, is closed to a visitor and to anyone signed in');
+select t.is($$ select coalesce(string_agg(c.relname, ', ' order by c.relname), 'none') from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'public' and c.relkind in ('r', 'p') and not c.relrowsecurity $$, 'none', 'every table in public has row level security switched on');
+select t.is($$ select coalesce(string_agg(p.proname, ', ' order by p.proname), 'none') from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname in ('public', 'private') and p.prosecdef and not exists (select 1 from unnest(coalesce(p.proconfig, '{}')) setting where setting like 'search_path=%') $$, 'none', 'every function that runs as its owner fixes its search path');
+select t.is($$ select coalesce(string_agg(p.proname, ', ' order by p.proname), 'none') from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'private' and has_function_privilege('anon', p.oid, 'execute') $$, 'takes_bookings', 'of the policies'' helpers a visitor may run one: whether a business takes bookings');
+
+------------------------------------------------------------------------------------------------
 select E'\n# The owner of the database, in the SQL editor';
 select t.throws($$ update public.profiles set role = 'user' where email = 'owner@test.mu' $$, 'cannot demote the last superadmin either', 'P0001', 'last superadmin');
 select t.throws($$ delete from auth.users where email = 'owner@test.mu' $$, 'cannot remove the last superadmin''s account', 'P0001', 'last superadmin');

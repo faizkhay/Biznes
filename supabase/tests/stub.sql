@@ -39,3 +39,14 @@ grant usage on schema public to anon, authenticated;
 alter default privileges in schema public grant all on tables to anon, authenticated;
 alter default privileges in schema public grant all on functions to anon, authenticated;
 alter default privileges in schema public grant all on sequences to anon, authenticated;
+
+-- A new Supabase project has this function, open to both API roles: it switches row level security
+-- on for each new table. The stand-in does nothing; it is here so the tests can prove that the
+-- migration which closes it to the API roles does so.
+create function public.rls_auto_enable() returns event_trigger
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  null;
+end;
+$$;
