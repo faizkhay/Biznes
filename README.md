@@ -221,6 +221,42 @@ else, reached through `@supabase/supabase-js` and `@supabase/ssr`. **There is no
 anywhere in the site.** Every privilege is decided in the database, so the publishable key the
 browser can see opens nothing that is not meant to be open.
 
+### The hosted project
+
+The owner created the Supabase project on 20 November 2026: "Biznes", in the organisation's
+Ireland region, with the reference `pcopgncmtgkojrtuiqud`. The four migrations were applied to it
+that day, whole and unchanged, and checked:
+
+- Eight tables in `public`, row level security on every one, twenty-six policies, and the trigger
+  that makes a profile on sign-up. No account exists yet, so the first to register is the
+  superadmin.
+- Asked with the public key, as a visitor would be: live businesses, services and payment details
+  answer (with nothing, as there is none yet); the settings answer with the columns the site reads;
+  profiles and the audit log are refused.
+- The site, built and served against it and not yet deployed: the first screen, a search and a
+  listing open; the sign-in and sign-up pages open; the plans lead to the dashboard; the dashboard
+  and the admin pages send a visitor who is not signed in to sign in. Nobody was registered, on
+  purpose.
+
+Its two public values, which are meant to be seen (they ship to every browser):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://pcopgncmtgkojrtuiqud.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_X_o60qW9sW669m8PJVq0Kw_lZo9mJv4
+```
+
+Still to do on the project itself, in its dashboard: the site's address and the redirect addresses,
+the two email templates and an email sender (all under "Setting up the project" below). And two
+things to know:
+
+- **Supabase's security adviser** lists the five admin functions as callable by a signed-in user.
+  That is by design: each checks the caller's role before it does anything, and a visitor cannot
+  call them. It also lists `public.rls_auto_enable()`, which is the project's own and not ours;
+  `revoke execute on function public.rls_auto_enable() from public, anon, authenticated;` clears it.
+- **The migrations' history** on the project carries the time each was applied, not the files' own
+  numbers. Before using the Supabase CLI against it, bring the two into line with `supabase
+  migration repair`, or a later `db push` will try to apply the four files again.
+
 ### Switching them on
 
 | Variable | For |
@@ -733,7 +769,7 @@ this list.
 | Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on every kind of public page, at a desk and on a phone |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
 | The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |
-| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 118 of 118, against Supabase's own database, sign-in and API services run on this machine (`scripts/accounts-stack.sh`), including axe-core on the account pages. Not against a hosted project: there is none yet |
+| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 118 of 118, against Supabase's own database, sign-in and API services run on this machine (`scripts/accounts-stack.sh`), including axe-core on the account pages. On the hosted project only reading has been tried (see Accounts) |
 
 The behaviour, accessibility and capture checks, and `npm run hero`, need a production server. The
 behaviour check starts the form's own receiver, so the form is tested end to end:
@@ -781,8 +817,10 @@ the five things left, are in `STORY.md` ("The design review of Round 4").
 
 **Not run, and why:**
 
-- **The accounts against a hosted Supabase project.** There is no project yet: its creation waits
-  on the owner. What a hosted project adds to the local one is listed under Accounts.
+- **Signing up, signing in and the dashboards on the hosted Supabase project.** The project exists
+  and holds the schema, and the site opens against it, but nobody has been registered there: the
+  first to register becomes the superadmin, and that must be the owner. The whole flow has been
+  run only against the local copy.
 - **A reading by a practitioner.** The first item on the confirm list. This is the gap that matters.
 - **Speed measurements** (Lighthouse, real devices on a mobile network). Not run in this session.
 - **A screen reader, by ear.** axe-core passes; nobody has listened to it.
