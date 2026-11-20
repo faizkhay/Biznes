@@ -105,7 +105,7 @@ export const Store = (p: P) => (
     <path d="M4 9.5 5.5 4.5h13L20 9.5M4 9.5a2.667 2.667 0 0 0 5.333 0 2.667 2.667 0 0 0 5.334 0 2.667 2.667 0 0 0 5.333 0M5.5 12.5v7h13v-7M10 19.5v-4h4v4" />
   </svg>
 );
-const Fork = (p: P) => (
+export const Fork = (p: P) => (
   <svg {...base} {...p}>
     <path d="M7 3.5v17M4.5 3.5v4a2.5 2.5 0 0 0 5 0v-4M16.5 20.5v-7M16.5 13.5c-1.7 0-3-1.3-3-3.8 0-3.4 1.4-6.2 3-6.2v10Z" />
   </svg>
@@ -195,5 +195,64 @@ export function GroupIcon({ group, ...p }: P & { group?: string }) {
 export const List = (p: P) => (
   <svg {...base} {...p}>
     <path d="M4 7h16M4 12h16M4 17h10" />
+  </svg>
+);
+export const MapIcon = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M3.5 6.5 9 4.5l6 2 5.5-2v13L15 19.5l-6-2-5.5 2v-13ZM9 4.5v13M15 6.5v13" />
+  </svg>
+);
+export const Plus = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+export const Minus = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M5 12h14" />
+  </svg>
+);
+export const Clock = (p: P) => (
+  <svg {...base} {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 7.5V12l3 2" />
+  </svg>
+);
+export const Cart = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M3 4.5h2.2L7.6 15h9.9l2-7.5H6.4" />
+    <circle cx="9" cy="18.7" r="1.3" />
+    <circle cx="16.5" cy="18.7" r="1.3" />
+  </svg>
+);
+export const Person = (p: P) => (
+  <svg {...base} {...p}>
+    <circle cx="12" cy="8.5" r="3.5" />
+    <path d="M5 20c.6-3.6 3.4-5.5 7-5.5s6.4 1.9 7 5.5" />
+  </svg>
+);
+export const Calendar = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="4" y="5.5" width="16" height="14" rx="2" />
+    <path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" />
+  </svg>
+);
+export const Info = (p: P) => (
+  <svg {...base} {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 11v5M12 8v.1" />
+  </svg>
+);
+export const Mail = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+    <path d="m4 7 8 6 8-6" />
+  </svg>
+);
+export const Photo = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="3.5" y="5" width="17" height="14" rx="2" />
+    <circle cx="9" cy="10" r="1.6" />
+    <path d="m4 17 5-4.5 4 3.5 2.5-2 5 4" />
   </svg>
 );

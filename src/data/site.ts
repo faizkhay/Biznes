@@ -92,10 +92,29 @@ export const MENU = [
 export const SHELVES = [
   { id: "mauritius", label: "About Mauritius", line: "The island, its people, its money, its weather and how it runs." },
   { id: "business", label: "Starting and running a business", line: "Registration, companies, tax, VAT, staff, licences and the rest." },
+  { id: "food", label: "Food and eating out", line: "What is eaten here, and where to find it." },
   { id: "visitors", label: "Visiting Mauritius", line: "What to know before you come, and what there is to see and do." },
   { id: "newcomers", label: "Moving here", line: "The ways to live in Mauritius, and settling in once you have arrived." },
   { id: "everyday", label: "Living here", line: "The paperwork and the bills of everyday life." },
 ] as const;
+
+/**
+ * The kinds of business that go with an article: the directory categories a reader of it may want
+ * next. An article ends with them, and a search for one of those kinds leads with the article.
+ * Only where the tie is plain and holds both ways: the article about money goes with banks, and
+ * someone looking for a bank may want it. None goes with a kind of business the index does not
+ * hold (there is no category for accountants, so the tax articles have none). Articles on the food
+ * shelf go with every category for eating and drinking without being named here.
+ */
+export const ARTICLE_BUSINESSES = {
+  "money-and-banking-in-mauritius": ["banks", "atms", "money-exchange"],
+  "getting-around-mauritius": ["taxis", "car-rental"],
+  "visiting-mauritius": ["hotels", "guest-houses"],
+  "things-to-do-in-mauritius": ["attractions"],
+  "schools-and-universities-in-mauritius": ["schools", "colleges"],
+  "settling-in-mauritius": ["banks", "estate-agents"],
+  "support-and-finance": ["banks", "finance"],
+} as const;
 
 /** The quieter pages, for the footer. */
 export const MORE = [
@@ -153,4 +172,25 @@ export const PROMISES = ["Every listing says where it came from.", "Every figure
 export const CREDITS = {
   osm: { label: "OpenStreetMap contributors", href: "https://www.openstreetmap.org/copyright", licence: "Open Database Licence 1.0" },
   wikidata: { label: "Wikidata", href: "https://www.wikidata.org/wiki/Wikidata:Licensing", licence: "CC0 1.0" },
+} as const;
+
+/**
+ * The street map: the one a visitor opens to see streets, pan and zoom. It is drawn in the
+ * browser by MapLibre GL from OpenFreeMap's public vector tiles, which need no key and set no
+ * limit on views (openfreemap.org, read 20 November 2026). The credit below is the one
+ * OpenFreeMap asks for, and it is always shown on the map. Nothing is fetched from that host
+ * until a visitor opens the map.
+ */
+export const STREET_MAP = {
+  style: "https://tiles.openfreemap.org/styles/liberty",
+  host: "tiles.openfreemap.org",
+  credit: [
+    { label: "OpenFreeMap", href: "https://openfreemap.org" },
+    { label: "© OpenMapTiles", href: "https://www.openmaptiles.org/" },
+    { label: "Data from OpenStreetMap", href: "https://www.openstreetmap.org/copyright" },
+  ],
+  /** Mauritius and Rodrigues, with sea around them: the map does not wander further. West, south, east, north. */
+  bounds: [56.9, -20.9, 63.9, -19.3],
+  /** The main island alone, for a map opened with nothing lit. */
+  island: [57.28, -20.54, 57.83, -19.96],
 } as const;

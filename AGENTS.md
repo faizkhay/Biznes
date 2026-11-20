@@ -13,9 +13,12 @@ website and the crawler that feeds it.
   and named. What could not be confirmed goes in the guide's `unverified` list, not its prose.
 - The crawler obeys robots.txt, reads one page a site, and never takes an email address
   (`crawler/config.mjs`). Keep it so.
-- The order of search results is by how well a listing answers and how full it is. A business on
-  a paid plan comes first among equal answers and is always marked as a priority listing. The
-  site says so (`/data`, `/pricing`). If the order ever changes, those pages change first.
+- The order of a page of results is: our own pages that answer, then businesses, then parts of
+  articles that only mention the words, then pages elsewhere. Businesses are ordered by how well a
+  listing answers and how full it is. A business on a paid plan comes first among equal answers
+  and is always marked as a priority listing. In the health categories a listing with a telephone
+  number comes before one without. The site says all of it (`/data`, `/pricing`). If the order
+  ever changes, those pages change first.
 - The plans, their prices and what each gives are the owner's words (`PLANS` in
   `src/data/site.ts`). Never add a feature or a price to a plan that the owner has not given.
 - The picture behind the page follows the calendar (`src/data/themes.ts`, `src/lib/theme.ts`).

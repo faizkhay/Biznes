@@ -95,7 +95,7 @@ export type Guide = {
   summary: string;
   audience?: string;
   /** Who it is for, as a shelf of the guides page (src/data/site.ts, SHELVES). None means business. */
-  shelf?: "mauritius" | "business" | "visitors" | "newcomers" | "everyday";
+  shelf?: "mauritius" | "business" | "food" | "visitors" | "newcomers" | "everyday";
   /** The day its facts were last read against their sources. */
   checked: string;
   facts: { label: string; value: string; detail?: string; sources?: string[] }[];
@@ -180,6 +180,24 @@ function load(): Store {
   for (const l of listings) if (l.aboutFrom === "site" && l.about && HIJACKED.test(l.about) && !/casino|gaming|betting/.test(l.cat)) delete l.about;
   const places = read<Place[]>("places.json");
   const { groups, categories } = read<{ groups: Group[]; categories: Category[] }>("categories.json");
+  // An organisation Wikidata files under the "hospitality industry" was read as a hospital. The
+  // crawler now reads the word whole (crawler/build.mjs); this puts right an index made before it
+  // did, and the counts that went with it.
+  for (const l of listings) {
+    if (l.cat !== "hospitals" || !l.id.startsWith("q") || !/^hospitality/i.test(l.kind ?? "")) continue;
+    const move = (from: string, to: string) => {
+      const [was, now] = [categories.find((c) => c.id === from), categories.find((c) => c.id === to)];
+      if (!was || !now) return;
+      was.n--;
+      now.n++;
+      for (const [group, by] of [[was.group, -1], [now.group, 1]] as const) {
+        const g = groups.find((o) => o.id === group);
+        if (g) g.n += by;
+      }
+      l.cat = to;
+    };
+    move("hospitals", "companies");
+  }
   const dir = join(root, "content", "guides");
   const guides = existsSync(dir)
     ? readdirSync(dir)
@@ -224,9 +242,16 @@ export function whereOf(l: Listing): string {
   return [l.area, l.place ?? l.seat].filter(Boolean).join(", ");
 }
 
-/** Listings in a category, a place or both, fullest first. */
+/**
+ * Listings in a category, a place or both, fullest first. In a health category those with a
+ * telephone number on record come before those without: the order the search keeps too, and the
+ * one the site states on /data.
+ */
 export function listingsIn({ cat, place, district }: { cat?: string; place?: string; district?: string }): Listing[] {
-  return index()
-    .listings.filter((l) => (!cat || l.cat === cat) && (!place || l.placeSlug === place || l.areaSlug === place) && (!district || l.districtSlug === district))
-    .sort((a, b) => b.full - a.full || a.name.localeCompare(b.name));
+  const { listings, categoryById } = index();
+  const health = cat ? categoryById.get(cat)?.group === "health" : false;
+  const reachable = (l: Listing) => (health && l.phone?.length ? 1 : 0);
+  return listings
+    .filter((l) => (!cat || l.cat === cat) && (!place || l.placeSlug === place || l.areaSlug === place) && (!district || l.districtSlug === district))
+    .sort((a, b) => reachable(b) - reachable(a) || b.full - a.full || a.name.localeCompare(b.name));
 }

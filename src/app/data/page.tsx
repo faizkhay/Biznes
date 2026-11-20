@@ -13,8 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function DataPage() {
-  const { meta, guides } = index();
+  const { meta, guides, categories } = index();
   const w = meta.web;
+  const health = categories.filter((c) => c.group === "health").map((c) => c.label.toLowerCase());
   return (
     <>
       <PageHead title="Where the data comes from" lede="Nothing in the index is typed in by hand or made up. Every listing comes from an open source, says which, and can be corrected or removed by the business it describes." />
@@ -92,9 +93,17 @@ export default function DataPage() {
                 </p>
                   </>
             )}
-            <p>Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name.</p>
             <p>
-              A business on a paid plan (<Link href="/pricing">Biznes Go or Biznes Grow</Link>) is shown before others that answer equally well, and it is marked as a priority listing, so that a paid place is never mistaken for a better answer. Until a business is on a paid plan, the order is by answer and fullness alone.
+              <strong>What comes first on a page of results.</strong> The order is the same for every question. First, the pages of this site that answer it: an article, one of its facts, a number to call, a public holiday&rsquo;s date, a glossary term, a tool. A page counts as an answer only when the question&rsquo;s words are in its own title, label or heading; a number or a date, only when they are there whole. Then businesses and services. Then the parts of our articles that only mention the words. Pages on other sites, official ones first, are folded away as references.
+            </p>
+            <p>
+              <strong>The order of businesses.</strong> Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name. A category&rsquo;s page and a town&rsquo;s page list the fullest first.
+            </p>
+            <p>
+              <strong>Health.</strong> In the health categories ({health.join(", ")}), a listing with a telephone number on record is shown before one without, in a search and on the category&rsquo;s own page. Someone unwell needs a number to call. Among those with a number, and among those without, the order is as everywhere else.
+            </p>
+            <p>
+              <strong>Paid plans.</strong> A business on a paid plan (<Link href="/pricing">Biznes Go or Biznes Grow</Link>) that we have verified is shown before others that answer equally well, and it is marked as a priority listing, so that a paid place is never mistaken for a better answer. On <Link href="/baz-manzer">Baz Manzer</Link> the verified outlets come first for the same reason, and are marked the same way.
             </p>
             <p>Paying changes nothing else: not what a listing says about anyone, not the guides, not the official pages.</p>
           </div>

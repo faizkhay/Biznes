@@ -85,10 +85,10 @@ const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc, Number: Phone, Holi
  * An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or
  * a tool. A card like a listing's, with a blue tile: saffron is kept for a verified business.
  */
-export function LeadRow({ lead }: { lead: Lead }) {
+export function LeadRow({ lead, brief = false }: { lead: Lead; /** A short card: the title and two lines, for an article beside a list of businesses. */ brief?: boolean }) {
   const Icon = LEAD_ICON[lead.tag];
   return (
-    <article className="row listing">
+    <article className={brief ? "row listing listing-brief" : "row listing"}>
       <span className="listing-icon listing-icon-guide" aria-hidden>
         <Icon />
       </span>
@@ -99,8 +99,8 @@ export function LeadRow({ lead }: { lead: Lead }) {
             {lead.title}
           </Link>
         </h3>
-        <p className="body-2 mt-2 line-clamp-4 max-w-prose">{lead.line}</p>
-        {lead.meta && <p className="caption-1 mt-3 text-ink-faint">{lead.meta}</p>}
+        <p className={brief ? "body-3 mt-1 line-clamp-2 max-w-prose text-ink-subtle" : "body-2 mt-2 line-clamp-4 max-w-prose"}>{lead.line}</p>
+        {lead.meta && !brief && <p className="caption-1 mt-3 text-ink-faint">{lead.meta}</p>}
       </div>
     </article>
   );

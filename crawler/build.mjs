@@ -40,7 +40,8 @@ export function buildIndex({ osm, organisations, web, official, guides }) {
     [/insurance/i, "insurance"],
     [/universit|college|higher education|institute of technology/i, "colleges"],
     [/\bschool\b/i, "schools"],
-    [/hospital/i, "hospitals"],
+    // The word alone: the "hospitality industry" is hotels, not hospitals.
+    [/\bhospitals?\b/i, "hospitals"],
     [/museum|theatre|cinema|zoo|botanical|tourist attraction|art gallery/i, "attractions"],
     [/restaurant/i, "restaurants"],
     [/supermarket|hypermarket|retail chain/i, "supermarkets"],
