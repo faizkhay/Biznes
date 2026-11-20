@@ -1098,6 +1098,9 @@
   .site-footer {
     --color-focus: var(--palette-saffron);
   }
+  .card-ink {
+    --color-line: color-mix(in srgb, var(--palette-white) 16%, transparent);
+  }
   .card-ink .row-title,
   .card-ink a:not(.btn, .cite) {
     color: inherit;

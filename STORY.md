@@ -245,7 +245,7 @@ and none is described as done anywhere in these documents.
    not connectting now tho". Until Stripe is connected, a plan or a guide is asked for and a person
    answers.
 2. The pocket guide's price. Answered: "just 1.99$ or equivalent in Mur. like 125rs, we can have
-   like 50-100 guides the sell a bundle of all for like 60% off something like that". Set at Rs 125.
+   like 50-100 guides the sell a bundle of all for like 60% off something like that". First set at Rs 125; the owner then set it at Rs 150 ("price it al 150rs instead per guide").
 3. Whether Biznes Grow includes Biznes Go's verified mark and priority. Answered: "yes, all feom go
    but with some booking and services sale management tools, users can pay businesses via mcb juice
    (no integrarion, just details)".

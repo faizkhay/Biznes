@@ -147,7 +147,7 @@ To confirm with the owner:
 - **What Biznes Grow holds: answered, 20 November 2026.** "Yes, all from go but with some booking
   and services sale management tools": everything in Biznes Go, with bookings and service sales.
   So a business on either paid plan carries the mark and comes first, as `/pricing` and `/data` say.
-- **The pocket guide's price: answered, 20 November 2026.** About USD 1.99, set at Rs 125. The
+- **The pocket guide's price: answered, 20 November 2026.** Rs 150 a guide (first given as about USD 1.99, then set at Rs 150). The
   owner intends 50 to 100 guides and a bundle of them all at about 60 per cent off.
 - **What "verified" checks.** The site says only that the business has been checked to be real.
   Against what, and by whom, is not written down.

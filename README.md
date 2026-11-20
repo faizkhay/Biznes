@@ -335,24 +335,45 @@ named on the confirm list.
 | File | Holds |
 |---|---|
 | `content/pdf/places.json` | The places, each with its region, what it is, what to know before going and its sources; the days out; the sources; what could not be confirmed. 60 places and 110 sources at present |
-| `content/pdf/product.json` | The guide's title, the words on its cover, and its price: Rs 125 |
-| `content/pdf/built.json` | What the last build held. Written by the script; the shop shows a guide only once this exists |
+| `content/pdf/product.json` | The guide's title, the words on its cover, and its price: Rs 150 |
+| `content/pdf/sponsorship.json` | How a guide is sponsored: the three options and their prices, the sum that makes an edition free, and for how many days. Khay Digital's suggestion until the owner confirms it (`"confirmed": false`) |
+| `content/pdf/built.json` | What the last build held, with its edition. Written by the script; the shop shows a guide only once this exists |
 
-`npm run pdf` reads the first two and writes:
+`npm run pdf` reads these and writes:
 
-- `reports/<slug>.pdf`: the guide itself, A5, 51 pages at present. `reports/` is not committed and
-  not served, because the guide is sold.
+- `content/pdf/editions/<slug>.pdf`: this month's edition, A5, 52 pages at present. It is kept
+  with the content and never in `public/`, because the guide is sold: only the shop's own route
+  (`/shop/<slug>/download`) hands it out, and only while it is free.
 - `public/shop/<slug>-cover.jpg`, `-opener.jpg` and `-sample.jpg`: the cover and two pages, for
   `/shop`.
 - `content/pdf/built.json`.
 
-It needs Playwright's browser, which the checks use too. Run it again after any change to the
-places or the price, and commit what it wrote outside `reports/`.
+It needs Playwright's browser, which the checks use too. The fades between a picture and the
+page are painted into the pictures themselves, because a fade made of see-through colour shows as
+a hard line in some PDF readers.
 
-The price is the owner's: about USD 1.99, set at Rs 125. The owner intends 50 to 100 guides, and
-later a bundle of them all at about 60 per cent off. Only one guide exists, and the script and the
-shop hold one: a second needs both to learn to hold several. Until Stripe is connected a guide is
-asked for through the form, and a person sends it.
+**A guide is renewed every month** (the owner, 20 November 2026). At the start of each month:
+read its facts again, correct `places.json` and its `checked` date, add that month's sponsors to
+`product.json`, run `npm run pdf` (or `npm run pdf -- 2026-12` to make a named month's edition),
+and commit what it wrote.
+
+**Sponsors.** Each edition has a sponsors' page, with how to reach us to be on the next one. A
+business that has paid goes in `product.json` under `sponsors`, with the option it bought and the
+months it paid for:
+
+```json
+{ "name": "A business", "line": "What it does, in a line", "town": "Curepipe", "phone": "+230 000 0000", "option": "listing", "months": ["2026-12", "2027-01"] }
+```
+
+Sponsorship is sold for a coming month or months only, never the one running. When the sponsors
+of a month have together paid the target in `sponsorship.json`, that edition is free on the site
+for the first three weeks of the month (to the 21st) and sold in the last. The shop works this
+out by itself each day (`offer()` in `src/lib/shop.ts`).
+
+The price is the owner's: Rs 150 a guide. The owner intends 50 to 100 guides, and later a bundle
+of them all at about 60 per cent off. Only one guide exists, and the script and the shop hold
+one: a second needs both to learn to hold several. Until Stripe is connected a guide is asked for
+through the form, and a person sends it; sponsorship is asked for the same way.
 
 ### The list of businesses with no website
 
@@ -429,7 +450,7 @@ The articles, the plans and the money:
    The wording of each line on `/pricing` is Khay Digital's (`PLANS`), for example "free for good"
    and "A verified mark, once we have checked the business is real". The owner should read each
    one. What the check behind "verified" is has not been written down.
-6. **The pocket guide's bundle.** One guide exists, at Rs 125. The bundle of all at about 60 per
+6. **The pocket guide's bundle.** One guide exists, at Rs 150. The bundle of all at about 60 per
    cent off is planned for when there are more. Until Stripe is connected, how a guide is paid for
    and sent is for the owner to say.
 7. **Who the first superadmin is.** The rule proposed is the first account registered.

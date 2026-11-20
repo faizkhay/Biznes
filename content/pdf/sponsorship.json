@@ -1,0 +1,26 @@
+{
+  "note": "Sponsorship of the pocket guides (the owner, 20 November 2026): a guide is renewed every month; a business may pay to be on its sponsors' page, for the coming month or months only; an edition with enough sponsors is free for the first three weeks of its month and paid in the last. The prices and the target below are Khay Digital's suggestion, for the owner to confirm.",
+  "confirmed": false,
+  "target": 6000,
+  "freeDays": 21,
+  "options": [
+    {
+      "id": "listing",
+      "name": "Sponsored listing",
+      "price": 500,
+      "what": "Your name, what you do, your town and your number on the sponsors' page."
+    },
+    {
+      "id": "panel",
+      "name": "Sponsored panel",
+      "price": 1500,
+      "what": "A quarter of a page: your logo or picture, and forty words of your own."
+    },
+    {
+      "id": "page",
+      "name": "Sponsored page",
+      "price": 4000,
+      "what": "A full page of the guide to yourself."
+    }
+  ]
+}

@@ -267,6 +267,17 @@ await page.goto(`${origin}/pricing`, { waitUntil: "domcontentloaded" });
 const plans = await page.locator("main article").allInnerTexts();
 check("plans: free, Rs 550 and Rs 1,250 a month", plans.length === 3 && /Biznes Free/.test(plans[0]) && /Rs 550/.test(plans[1]) && /Rs 1,250/.test(plans[2]));
 
+// 8c. The pocket guide: its price, its sponsors, and that it is not handed out while it is sold.
+await page.goto(`${origin}/shop`, { waitUntil: "domcontentloaded" });
+const shop = await page.locator("main").innerText();
+check("shop: the guide is Rs 150, renewed every month", /Rs 150/.test(shop) && /edition/.test(shop) && /A new edition every month/.test(shop));
+check("shop: a business can sponsor a coming edition, at three prices", /Sponsored listing/.test(shop) && /Sponsored panel/.test(shop) && /Sponsored page/.test(shop) && (await page.locator('main a[href^="/add?sponsor="]').count()) === 1);
+const guideSlug = (await page.locator('main a[href^="/add?sponsor="]').getAttribute("href")).split("=")[1];
+const handed = await context.request.get(`${origin}/shop/${guideSlug}/download`, { maxRedirects: 0 });
+check("shop: the guide is not handed out while it is sold", handed.status() === 303 && !/pdf/.test(handed.headers()["content-type"] ?? ""), String(handed.status()));
+await page.goto(`${origin}/add?sponsor=${guideSlug}`, { waitUntil: "domcontentloaded" });
+check("shop: asking to sponsor opens the form with the guide named", /sponsor the pocket guide/.test(await page.locator("main textarea").inputValue()));
+
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 const small = await phone.newPage();

@@ -386,7 +386,7 @@ are four in the index, that is where the next crawl, and the next sales call, sh
 ## Decisions for the owner
 
 1. How are plans and pocket guides paid for? Answered: through Stripe, to be connected.
-2. What is the pocket guide's price? Answered: about USD 1.99, set at Rs 125, with a bundle of
+2. What is the pocket guide's price? Answered: Rs 150 a guide, with a bundle of
    every guide at about 60 per cent off once there are 50 to 100 of them.
 3. Does Biznes Grow include Biznes Go's verified mark and priority? Answered: yes, everything in
    Go, with bookings and service sales.

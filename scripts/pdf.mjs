@@ -1,12 +1,15 @@
 // Makes the pocket guide as a PDF: `npm run pdf`.
 //
 // It reads content/pdf/places.json (every place with its sources, written from official pages),
-// lays it out as an A5 booklet in the site's own type and colours, and writes the PDF to reports/
-// (not committed and not served: it is sold, so it is never in public/). It also writes a cover
-// and two sample pages to public/shop/, for the page that sells it.
+// lays it out as an A5 booklet in the site's own type and colours, and writes this month's edition
+// to content/pdf/editions/ (never to public/: it is sold, and only the shop's own route hands it
+// out, when it is free). It also writes a cover and two sample pages to public/shop/, for the page
+// that sells it. A guide is renewed every month: run this again, after its facts have been read
+// again, at the start of each.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import sharp from "sharp";
 import { browserPath } from "./pages.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -20,6 +23,34 @@ const data = JSON.parse(readFileSync(dataFile, "utf8"));
 const emergencyFile = `${root}content/emergency.json`;
 const emergency = existsSync(emergencyFile) ? JSON.parse(readFileSync(emergencyFile, "utf8")) : null;
 const product = JSON.parse(readFileSync(`${root}content/pdf/product.json`, "utf8"));
+const sponsorship = JSON.parse(readFileSync(`${root}content/pdf/sponsorship.json`, "utf8"));
+// How to reach the people behind the site is said once, in src/data/site.ts; it is read from there.
+const siteFacts = readFileSync(`${root}src/data/site.ts`, "utf8");
+const contact = { phone: /\bphone: "([^"]+)"/.exec(siteFacts)?.[1] ?? "", email: /\bemail: "([^"]+)"/.exec(siteFacts)?.[1] ?? "" };
+
+// A guide is renewed every month. The edition is the month it is made for: this month, in
+// Mauritius, or the one named on the command line (`npm run pdf -- 2026-12`).
+const edition = /^\d{4}-\d{2}$/.test(process.argv[2] ?? "") ? process.argv[2] : new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
+const editionName = new Date(`${edition}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+const sponsors = (product.sponsors ?? []).filter((sponsor) => sponsor.months?.includes(edition));
+
+// The pictures, with their fades painted into them. A fade made of see-through colour is lost in
+// some PDF readers, which show a hard line where the picture ends; a painted one cannot be.
+const PX = { w: 1240, h: 1754 }; // an A5 page at 210 dots to the inch
+mkdirSync(`${root}reports/.guide`, { recursive: true });
+const fade = (stops) => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${PX.w}" height="${PX.h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">${stops.map(([at, colour, alpha]) => `<stop offset="${at}" stop-color="${colour}" stop-opacity="${alpha}"/>`).join("")}</linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`);
+const painted = {};
+async function paint(name, picture, tall, stops, ground) {
+  const top = await sharp(`${root}public/themes/${picture}.jpg`).resize(PX.w, Math.round(PX.h * tall), { fit: "cover", position: "south" }).toBuffer();
+  const out = `${root}reports/.guide/${name}.jpg`;
+  await sharp({ create: { width: PX.w, height: PX.h, channels: 3, background: ground } })
+    .composite([{ input: top, top: 0, left: 0 }, { input: fade(stops), top: 0, left: 0 }])
+    .jpeg({ quality: 84, mozjpeg: true })
+    .toFile(out);
+  painted[name] = `file://${out}`;
+}
+await paint("cover", "lagoon", 1, [[0, "#fdf9ec", 0.94], [0.34, "#fdf9ec", 0.62], [0.62, "#fdf9ec", 0]], "#fdf9ec");
+for (const picture of ["lagoon", "flamboyant", "cane", "lights"]) await paint(`opener-${picture}`, picture, 0.54, [[0, "#0a1639", 0], [0.3, "#0a1639", 0], [0.5, "#0a1639", 0.86], [0.54, "#0a1639", 1], [1, "#0a1639", 1]], "#0a1639");
 
 const REGIONS = [
   ["port-louis", "Port Louis", "lights"],
@@ -66,8 +97,7 @@ html { font-family: Manrope, sans-serif; color: #0a1639; font-size: 9.6pt; line-
 body { margin: 0; }
 h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
 .full { page: full; width: 148mm; height: 210mm; position: relative; overflow: hidden; break-after: page; }
-.cover { background: #fdf9ec url("${file("public/themes/lagoon.jpg")}") center bottom / cover; }
-.cover::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(253,249,236,.92), rgba(253,249,236,.6) 34%, rgba(253,249,236,0) 62%); }
+.cover { background: #fdf9ec url("${painted.cover}") center / cover; }
 .cover > * { position: relative; }
 .cover .brand { position: absolute; top: 13mm; left: 14mm; display: flex; align-items: center; gap: 2.4mm; font-weight: 700; font-size: 11pt; letter-spacing: -0.02em; }
 .mark { height: 7mm; width: auto; display: block; }
@@ -76,9 +106,8 @@ h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
 .cover h1 { margin-top: 5mm; font-size: 43pt; line-height: .98; letter-spacing: -0.045em; font-weight: 700; }
 .cover .sub { margin-top: 4mm; font-size: 14pt; line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; max-width: 96mm; }
 .cover .foot { position: absolute; left: 14mm; right: 14mm; bottom: 12mm; display: flex; justify-content: space-between; align-items: flex-end; color: #fff; font-size: 8pt; font-weight: 600; text-shadow: 0 1px 6px rgba(10,22,57,.55); }
-.opener { background: #0a1639; color: #fff; }
-.opener .picture { position: absolute; inset: 0 0 46% 0; background: center bottom / cover; }
-.opener .picture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,22,57,0) 55%, #0a1639 100%); }
+.opener { color: #fff; }
+.opener { background: #0a1639 center / cover; }
 .opener .words { position: absolute; left: 14mm; right: 14mm; top: 50%; }
 .opener .n { color: #f8c618; font-size: 8pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .opener h2 { margin-top: 2mm; font-size: 34pt; line-height: 1; letter-spacing: -0.04em; font-weight: 700; }
@@ -113,6 +142,15 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
 .sources { list-style: none; font-size: 6.9pt; line-height: 1.4; color: #404965; columns: 2; column-gap: 6mm; }
 .sources li { break-inside: avoid; padding: .7mm 0 .7mm 5mm; text-indent: -5mm; overflow-wrap: anywhere; }
 .sources b { display: inline-block; width: 5mm; text-indent: 0; color: #0d36a7; }
+.sponsor { break-inside: avoid; margin-top: 4mm; padding: 4mm 4.4mm; border: .3mm solid rgba(10,22,57,.16); border-radius: 3.4mm; }
+.sponsor .kind { font-size: 6.8pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #626a80; }
+.sponsor h3 { margin-top: .8mm; font-size: 12.5pt; letter-spacing: -0.02em; }
+.sponsor p { margin-top: 1.2mm; color: #404965; }
+.sponsor .reach { font-weight: 600; color: #0a1639; }
+.sponsor.empty { background: #f5efe0; border-color: transparent; }
+.box td b { color: #fff; }
+.box td:first-child { color: #d6dcec; padding-right: 3mm; }
+.box .call { margin-top: 3mm; font-size: 8.6pt; color: #d6dcec; }
 .new-page { break-before: page; }
 .back { background: #fdf9ec; }
 .back .words { position: absolute; left: 14mm; right: 14mm; top: 44mm; }
@@ -129,7 +167,7 @@ h2.head { font-size: 20pt; line-height: 1.05; letter-spacing: -0.035em; font-wei
     <h1>${esc(product.cover)}</h1>
     <p class="sub">${esc(product.line)}</p>
   </div>
-  <p class="foot"><span>${data.places.length} places, ${regions.length} regions</span><span>Checked ${day(data.checked)}</span></p>
+  <p class="foot"><span>${esc(editionName)} edition. ${data.places.length} places, ${regions.length} regions</span><span>Checked ${day(data.checked)}</span></p>
 </section>
 
 <h2 class="head">How to use this guide</h2>
@@ -148,8 +186,7 @@ ${firstAid.length ? `<div class="box"><h3>Numbers to keep</h3><table>${firstAid.
 ${regions
   .map(
     (r, i) => `
-<section class="full opener" ${i === 0 ? 'id="opener"' : ""}>
-  <div class="picture" style="background-image:url('${file(`public/themes/${r.picture}.jpg`)}')"></div>
+<section class="full opener" ${i === 0 ? 'id="opener"' : ""} style="background-image:url('${painted[`opener-${r.picture}`]}')">
   <div class="words">
     <p class="n">Part ${i + 1} of ${regions.length}</p>
     <h2>${esc(r.label)}</h2>
@@ -170,6 +207,19 @@ ${data.itineraries.map((r) => `<div class="route"><h3>${esc(r.title)}</h3><ol>${
 <h2 class="head new-page">Sources</h2>
 <ol class="sources">${data.sources.map((s) => `<li><b>${s.n}</b>${esc(s.title)}, ${esc(s.publisher)}. ${esc(s.url)}</li>`).join("")}</ol>
 
+<h2 class="head new-page">Sponsors of this edition</h2>
+<p class="lede">This guide is renewed every month. The businesses below paid to be on this page; nothing else in the guide is paid for, and no place is in it because of a sponsor.</p>
+${
+  sponsors.length
+    ? sponsors.map((sponsor) => `<div class="sponsor"><p class="kind">Sponsored</p><h3>${esc(sponsor.name)}</h3>${sponsor.line ? `<p>${esc(sponsor.line)}</p>` : ""}<p class="reach">${[sponsor.town, sponsor.phone, sponsor.web].filter(Boolean).map(esc).join(" · ")}</p></div>`).join("")
+    : `<div class="sponsor empty"><h3>Your business could be here.</h3><p>No business has sponsored this edition yet.</p></div>`
+}
+<div class="box">
+  <h3>Put your business in next month's guide</h3>
+  <table>${sponsorship.options.map((option) => `<tr><td><b>${esc(option.name)}</b><br>${esc(option.what)}</td><td>Rs ${option.price.toLocaleString("en-GB")} a month</td></tr>`).join("")}</table>
+  <p class="call">Sponsorship is taken for the coming month or months. Call or WhatsApp ${esc(contact.phone)}, or write to ${esc(contact.email)}.</p>
+</div>
+
 <section class="full back new-page">
   <div class="words">
     ${mark("#0a1639", "#f8c618")}
@@ -177,7 +227,7 @@ ${data.itineraries.map((r) => `<div class="route"><h3>${esc(r.title)}</h3><ol>${
     <p>The restaurant near the beach, the pharmacy in the next village, the taxi back: biznes.mu is the search engine for business in Mauritius.</p>
     <p><b>biznes.mu</b></p>
   </div>
-  <p class="small">${esc(product.title)}. Facts checked ${day(data.checked)} against the sources listed. The pictures are illustrations made for biznes.mu, not photographs of the places. This guide is for your own use: please do not pass it on. Made by Khay Digital, Mauritius. khay.digital</p>
+  <p class="small">${esc(product.title)}. Facts checked ${day(data.checked)} against the sources listed. The pictures are illustrations made for biznes.mu, not photographs of the places. ${esc(editionName)} edition; a new one is made every month. This guide is for your own use: please do not pass it on. Made by Khay Digital, Mauritius. khay.digital</p>
 </section>
 </body></html>`;
 
@@ -190,7 +240,10 @@ const browser = await chromium.launch({ executablePath: browserPath() });
 const page = await browser.newPage({ viewport: { width: 560, height: 794 }, deviceScaleFactor: 2 });
 await page.goto(`file://${htmlFile}`, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
-const pdf = `${root}reports/${product.slug}.pdf`;
+// The edition is kept with the content, so the site can hand it out when it is free. It is never
+// in public/: only the shop's own route serves it, and only then.
+mkdirSync(`${root}content/pdf/editions`, { recursive: true });
+const pdf = `${root}content/pdf/editions/${product.slug}.pdf`;
 await page.pdf({
   path: pdf,
   preferCSSPageSize: true,
@@ -208,6 +261,6 @@ for (const [id, name] of [["cover", "cover"], ["opener", "opener"], ["sample", "
   await page.screenshot({ path: `${root}public/shop/${product.slug}-${name}.jpg`, type: "jpeg", quality: 82, fullPage: true, clip: { x: box.x, y: box.y, width: Math.min(box.width, 560), height: Math.min(box.height, 794) } });
 }
 const pages = (readFileSync(pdf).toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? []).length;
-writeFileSync(`${root}content/pdf/built.json`, `${JSON.stringify({ slug: product.slug, pages, places: data.places.length, regions: regions.length, sources: data.sources.length, checked: data.checked }, null, 2)}\n`);
+writeFileSync(`${root}content/pdf/built.json`, `${JSON.stringify({ slug: product.slug, edition, pages, places: data.places.length, regions: regions.length, sources: data.sources.length, checked: data.checked }, null, 2)}\n`);
 await browser.close();
-console.log(`reports/${product.slug}.pdf: ${pages} pages, ${data.places.length} places, ${data.sources.length} sources`);
+console.log(`content/pdf/editions/${product.slug}.pdf (${editionName}): ${pages} pages, ${data.places.length} places, ${data.sources.length} sources`);
