@@ -1839,6 +1839,16 @@
     white-space: nowrap;
     vertical-align: 0.1em;
   }
+  /* Standing on its own, outside a sentence, a source's number is a full-size target. */
+  .cite-lg {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    margin-left: 0.25rem;
+    padding: 0 0.375rem;
+    vertical-align: middle;
+  }
   .cite:hover,
   .cite:focus-visible {
     background: var(--color-link);

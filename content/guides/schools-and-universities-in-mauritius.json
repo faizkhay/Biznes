@@ -1,0 +1,546 @@
+{
+  "slug": "schools-and-universities-in-mauritius",
+  "shelf": "mauritius",
+  "title": "School and university in Mauritius",
+  "summary": "The path from pre-primary school to Grade 13 and on to university: the stages, the four national examinations (PSAC, NCE, SC and HSC) and their latest pass rates, what is free, and who runs and regulates schools and universities. Checked on 20 November 2026.",
+  "audience": "Parents, students and newcomers who want to understand how schooling in Mauritius is organised.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Compulsory schooling",
+      "value": "Up to the age of 16",
+      "detail": "Since 2005.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Free secondary education",
+      "value": "Since 1977",
+      "detail": "As the Ministry of Education states. Fee-paying private schools also exist.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Schools",
+      "value": "792 pre-primary, 352 primary, 173 secondary",
+      "detail": "In March 2026, Republic of Mauritius excluding Agalega.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Pupils",
+      "value": "25,936 pre-primary, 82,514 primary, 88,468 secondary",
+      "detail": "Enrolment in March 2026.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "PSAC, end of Grade 6",
+      "value": "79.5% met the requirements in 2025",
+      "detail": "School candidates, including re-assessment. 76.9% before re-assessment.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "NCE, end of Grade 9",
+      "value": "70.4% passed in 2025",
+      "detail": "Up from 69.4% in 2024. 15,038 students took it.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "School Certificate and Higher School Certificate",
+      "value": "69.3% and 79.0% passed in 2025",
+      "detail": "Cambridge examinations at the end of Grade 11 and Grade 13. School candidates only.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Students in tertiary education",
+      "value": "50,480",
+      "detail": "At December 2025, part-time and full-time, of whom 15.5% were studying overseas.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Higher education institutions",
+      "value": "10 public, 33 private",
+      "detail": "Public institutions named in the list of the Higher Education Commission. Private institutions as at November 2024.",
+      "sources": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "label": "Free tertiary education",
+      "value": "Since January 2019",
+      "detail": "Tuition at public institutions for Mauritian nationals studying full-time for a first certificate, diploma or degree.",
+      "sources": [
+        "S7"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How does the school system work in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A child in Mauritius goes through pre-primary school, six years of primary school (Grades 1 to 6) and up to seven years of secondary school (Grades 7 to 13). Four national examinations mark the way: the PSAC at the end of Grade 6, the NCE at the end of Grade 9, the School Certificate at the end of Grade 11 and the Higher School Certificate at the end of Grade 13. Schooling is compulsory up to the age of 16. The Ministry of Education publishes the school calendar and a page for each stage.",
+          "sources": [
+            "S1",
+            "S2",
+            "S12"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Stage",
+            "Ages used to measure enrolment",
+            "Examination"
+          ],
+          "rows": [
+            [
+              "Pre-primary",
+              "4 and 5",
+              "None"
+            ],
+            [
+              "Primary, Grades 1 to 6",
+              "6 to 11",
+              "Primary School Achievement Certificate (PSAC), end of Grade 6"
+            ],
+            [
+              "Lower secondary, Grades 7 to 9",
+              "12 to 19 for the whole of secondary",
+              "National Certificate of Education (NCE), end of Grade 9"
+            ],
+            [
+              "Upper secondary, Grades 10 and 11",
+              "12 to 19 for the whole of secondary",
+              "Cambridge School Certificate (SC), or GCE O level"
+            ],
+            [
+              "Upper secondary, Grades 12 and 13",
+              "12 to 19 for the whole of secondary",
+              "Cambridge Higher School Certificate (HSC), or GCE A level"
+            ],
+            [
+              "Tertiary",
+              "20 to 24",
+              "Awards of each institution"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What happens in pre-primary and primary school?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In March 2026 there were 792 pre-primary schools with 25,936 children. Most of them, 563, were privately run. Another 182 worked on the premises of government primary schools under the Early Childhood Care and Education Authority, and 47 were run by religious education authorities or by municipal and village councils.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "There were 352 primary schools with 82,514 pupils: 219 run by the Government, 51 by the Roman Catholic Education Authority, 2 by the Hindu Education Authority and 80 private non-aided schools. About 55% of pupils were in government schools. There were 17 pupils for each general purpose teacher.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Primary school ends with the PSAC. In 2025, 12,281 school candidates took part and 79.5% met its requirements once re-assessment is counted. A pupil who has not reached the minimum can repeat the PSAC or enter the Foundation Programme in Literacy, Numeracy and Skills. This three-year programme, introduced in 2025, leads to the National Foundation Certificate of Education. From 2026 the PSAC no longer includes modular assessments in Science and in History and Geography.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How is secondary school organised, from Grade 7 to Grade 13?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "All children who have sat the PSAC move to Grade 7 in a secondary school. Grades 7 to 9 are the last three years of the Nine-Year Continuous Basic Education cycle, brought in by the reforms of 2016. At the end of Grade 9 students take the NCE. They then go on to upper secondary, in the same school or in an Academy, or choose technical and vocational courses.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Grades 10 and 11 lead to the Cambridge School Certificate, also called GCE O level. Grades 12 and 13 lead to the Cambridge Higher School Certificate, or GCE A level. English and French are compulsory core subjects, and teaching is in English for all subjects other than languages.",
+          "sources": [
+            "S2",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In March 2026 there were 173 secondary schools, 165 on the island of Mauritius and 8 in Rodrigues, with 88,468 students and 8,805 teachers. The State ran 66 of them. The other 107 were private schools, aided or not, and they taught 57.8% of the students.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Technical and vocational training offers other routes after Grade 9, Grade 11 or Grade 13, leading to National Certificates, National Diplomas or Higher National Diplomas. In 2025, 7,064 students followed publicly funded technical and vocational courses.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the PSAC, NCE, SC and HSC?",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Examination",
+            "Taken at the end of",
+            "Candidates in 2025",
+            "Pass rate in 2025"
+          ],
+          "rows": [
+            [
+              "Primary School Achievement Certificate (PSAC)",
+              "Grade 6",
+              "12,281 school candidates",
+              "79.5% with re-assessment"
+            ],
+            [
+              "National Certificate of Education (NCE)",
+              "Grade 9",
+              "15,038",
+              "70.4%"
+            ],
+            [
+              "Cambridge School Certificate (SC)",
+              "Grade 11",
+              "11,730",
+              "69.3%"
+            ],
+            [
+              "Cambridge Higher School Certificate (HSC)",
+              "Grade 13",
+              "5,794",
+              "79.0%"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Mauritius Examinations Syndicate, a public body set up under an Act of 1984, organises the national assessments and examinations from primary to professional level. It works with Cambridge Assessment International Education on the O level and A level examinations. It publishes the timetables: in November 2026 its site carried notices on the Cambridge sittings of October and November 2026 and on the NCE and PSAC timetables for 2026.",
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Girls did better than boys in 2025. In the NCE, 73.7% of girls passed against 66.9% of boys. In the PSAC, 82.9% of girls met the requirements against 76.2% of boys.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Is education free in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Secondary education has been free since 1977, and schooling has been compulsory up to the age of 16 since 2005. Fee-paying private schools exist alongside the state schools and the private schools that receive grants.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Students who are entitled to free travel on buses also travel free on Metro Express. They use a Student MECard, which is requested through their school or college and costs Rs 100. Free travel applies within set hours and zones, and outside them the fare is taken from the card's credit. The National Transport Corporation runs 337 school trips a day.",
+          "sources": [
+            "S9",
+            "S10",
+            "S13"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For the financial year 2026/2027 the Government has allocated Rs 27,946 million to education and training, 8.9% of its total expenditure. Secondary education takes 47.3% of that budget, primary 23.1%, tertiary 8.9% and pre-primary 4.5%.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which universities are there, and who regulates them?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Higher education is regulated by the Higher Education Commission. It registers private institutions and accredits their programmes, decides on the recognition and equivalence of qualifications, and funds and monitors the public institutions. The Commission and the Quality Assurance Authority took over from the Tertiary Education Commission, which ceased operations on 16 January 2020. The Commission's list names ten public institutions.",
+          "sources": [
+            "S5",
+            "S6",
+            "S8"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "University of Mauritius",
+            "University of Technology, Mauritius",
+            "Mauritius Institute of Education",
+            "Mahatma Gandhi Institute",
+            "Rabindranath Tagore Institute",
+            "Open University of Mauritius",
+            "Université des Mascareignes",
+            "Academy of Design and Innovation",
+            "Mauritius Institute of Health",
+            "Atal Bihari Vajpayee Institute of Public Service and Innovation"
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Commission also regulated 33 private institutions as at November 2024. At December 2025, 50,480 students were enrolled in tertiary programmes: 55.1% in publicly funded institutions in Mauritius, 29.4% in private institutions in Mauritius and 15.5% overseas. That number equals 53.3% of the population aged 20 to 24.",
+          "sources": [
+            "S5",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Under the Free Tertiary Education Scheme, introduced in January 2019, the State pays the tuition fees of Mauritian nationals enrolled full-time for a first certificate, a first diploma or a first degree at a public institution. The scheme does not cover international students, repeats and resits, or postgraduate fees. Administrative fees may still be charged. At the University of Mauritius they are capped at Rs 10,000.",
+          "sources": [
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is there for children with special education needs?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In March 2026 there were 79 special education needs schools registered with the Ministry, with 3,014 students. Twelve were run by the Government. The other 67 were run by non-governmental organisations, by the Roman Catholic education authority for special needs and by the Special Education Needs Resource and Development Centre.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Economic and Social Indicators: Education Statistics, 2026",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1953/Edu_Yr26_230926.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "23 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Secondary Education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Secondary%20Education/secondary2024.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Mission, Vision and Objectives",
+      "url": "https://mes.govmu.org/mes/?page_id=96",
+      "publisher": "Mauritius Examinations Syndicate",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Mauritius Examinations Syndicate, home page",
+      "url": "https://mes.govmu.org/",
+      "publisher": "Mauritius Examinations Syndicate",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Higher Education Commission, home page",
+      "url": "https://www.hec.mu/",
+      "publisher": "Higher Education Commission",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Higher Education Institutions",
+      "url": "https://www.hec.mu/hei",
+      "publisher": "Higher Education Commission",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Free Tertiary Education Scheme",
+      "url": "https://www.hec.mu/funding_he_sector",
+      "publisher": "Higher Education Commission",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "About HEC",
+      "url": "https://www.hec.mu/about_hec",
+      "publisher": "Higher Education Commission",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "FAQ Metro Express",
+      "url": "https://mauritiusmetroexpress.mu/faq-metro-express/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "National Transport Corporation",
+      "url": "https://landtransport.govmu.org/Pages/Parastatal/National-Transport-Corporation.aspx",
+      "publisher": "Ministry of Land Transport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Examinations: Secondary",
+      "url": "https://mes.govmu.org/mes/?page_id=4406",
+      "publisher": "Mauritius Examinations Syndicate",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Ministry of Education and Human Resource, home page",
+      "url": "https://education.govmu.org/",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "My Journey: how to use the Metro Express",
+      "url": "https://mauritiusmetroexpress.mu/my-journey/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Ministry of Education and Human Resource",
+      "url": "https://education.govmu.org/",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "Find the pages for each stage of schooling, scholarships and communiqués."
+    },
+    {
+      "title": "School calendar",
+      "url": "https://education.govmu.org/Pages/schoolcal.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "Check term dates and school holidays."
+    },
+    {
+      "title": "Secondary Education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Secondary%20Education/secondary2024.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "Read the Ministry's own outline of Grades 7 to 13."
+    },
+    {
+      "title": "Mauritius Examinations Syndicate",
+      "url": "https://mes.govmu.org/",
+      "publisher": "Mauritius Examinations Syndicate",
+      "what": "See examination timetables, entries, past papers and results services."
+    },
+    {
+      "title": "Higher Education Institutions",
+      "url": "https://www.hec.mu/hei",
+      "publisher": "Higher Education Commission",
+      "what": "Check that an institution is on the Commission's list before you enrol."
+    },
+    {
+      "title": "Free Tertiary Education Scheme",
+      "url": "https://www.hec.mu/funding_he_sector",
+      "publisher": "Higher Education Commission",
+      "what": "Read who is covered, at which institutions and what is left to pay."
+    },
+    {
+      "title": "Education statistics",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Education/SB_Education.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Look up schools, enrolment and pass rates year by year."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for newcomers, including finding a school."
+    },
+    {
+      "title": "Moving to Mauritius",
+      "url": "/learn/moving-to-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the ways of living in Mauritius, for families coming from abroad."
+    },
+    {
+      "title": "Getting around Mauritius",
+      "url": "/learn/getting-around-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our article on buses and Metro Express, which students use to reach school."
+    },
+    {
+      "title": "Directory",
+      "url": "/directory",
+      "publisher": "biznes.mu",
+      "what": "Find schools, colleges and training centres listed on this site."
+    }
+  ],
+  "unverified": [
+    "The age at which a child starts pre-primary school and Grade 1. No official page stating the rule was found. The ages in the table are the age groups Statistics Mauritius uses to measure enrolment, not entry rules.",
+    "Whether pre-primary and primary schooling are free, and since when. The Ministry page read states it for secondary education only.",
+    "The Academies: how many there are, where they are and how students are admitted. Statistics Mauritius only says that after Grade 9 students continue in the same school or in an Academy. Press reports of December 2025 spoke of a reform of admission to Grade 10. No official page describing it was found.",
+    "Regional secondary schools or colleges. The pages read do not describe them.",
+    "The rules of free bus travel for students. Only the Metro Express statement about students was read, not the scheme of the National Land Transport Authority.",
+    "The grading scales and pass requirements of the PSAC and the NCE. The Syndicate's information pages hold them in documents that were not read.",
+    "The names of the private higher education institutions. The Commission's list showed none on 20 November 2026.",
+    "The exact number of public institutions the Commission funds. Its home page says nine in one place, and its list names ten.",
+    "The Ministry's secondary education page gives older counts, such as 171 schools and enrolment for 2018. This article uses the March 2026 figures of Statistics Mauritius instead."
+  ]
+}

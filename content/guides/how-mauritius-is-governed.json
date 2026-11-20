@@ -1,0 +1,637 @@
+{
+  "slug": "how-mauritius-is-governed",
+  "title": "How Mauritius is governed",
+  "summary": "A plain account of who does what in the Republic of Mauritius: the Constitution, the President, the Prime Minister and Cabinet, the National Assembly and how it is elected, how a law is made, the courts, the Rodrigues Regional Assembly, local councils, and where the laws and the Government Gazette are published.",
+  "audience": "Citizens, students, newcomers and business people who want to know how the State is put together and where to find its laws.",
+  "checked": "2026-11-20",
+  "shelf": "mauritius",
+  "facts": [
+    {
+      "label": "Form of state",
+      "value": "A sovereign democratic State, a Republic since 12 March 1992",
+      "detail": "The Constitution is the supreme law.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Head of State",
+      "value": "The President, elected by the National Assembly for 5 years",
+      "detail": "Dharambeer Gokhool was elected on 6 December 2024 and sworn in the next day.",
+      "sources": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "label": "Prime Minister",
+      "value": "Dr Navinchandra Ramgoolam (November 2026)",
+      "detail": "The President appoints the member of the Assembly best able to command a majority.",
+      "sources": [
+        "S4",
+        "S1"
+      ]
+    },
+    {
+      "label": "Seats in the National Assembly",
+      "value": "Up to 70: 62 elected and up to 8 additional",
+      "detail": "The Assembly elected on 10 November 2024 has 67 members: 62 elected, 4 additional and the Attorney-General.",
+      "sources": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "label": "Constituencies",
+      "value": "21",
+      "detail": "The 20 on the island of Mauritius return 3 members each. Rodrigues returns 2.",
+      "sources": [
+        "S1",
+        "S6"
+      ]
+    },
+    {
+      "label": "Life of a Parliament",
+      "value": "5 years at most",
+      "detail": "Counted from the first sitting after a general election, unless Parliament is dissolved sooner.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Voting age",
+      "value": "18",
+      "detail": "A Commonwealth citizen aged 18 or over may register after 2 years' residence, or if domiciled and resident in Mauritius.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Registered electors",
+      "value": "1,009,333 (register of 2026)",
+      "detail": "490,085 men and 519,248 women.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Final court of appeal",
+      "value": "The Judicial Committee of the Privy Council",
+      "detail": "Kept after independence in 1968 and after the Republic in 1992.",
+      "sources": [
+        "S8",
+        "S1"
+      ]
+    },
+    {
+      "label": "Local councils",
+      "value": "1 city, 4 town, 7 district and 130 village councils",
+      "detail": "Rodrigues has its own Regional Assembly of at least 17 members.",
+      "sources": [
+        "S9",
+        "S10"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What kind of state is Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius is a sovereign democratic State known as the Republic of Mauritius. It is a parliamentary democracy on the Westminster model: the Government is drawn from an elected National Assembly and answers to it. The Constitution is the supreme law, and any other law that is inconsistent with it is void to that extent.",
+          "sources": [
+            "S1",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Constitution dates from independence on 12 March 1968, and the country became a Republic on 12 March 1992. Parliament can amend it, but only with large majorities: two-thirds of all members for most provisions and three-quarters for the entrenched ones. To change the section that makes Mauritius a democratic State, or the five-year limit on the life of Parliament, takes a referendum approved by three-quarters of the electorate and then the votes of all the members.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It is still changing. In May 2025 Parliament repealed one subsection of section 7. An Act assented to on 4 June 2026 lets the President appoint a Constitutional Review Commission to recommend reforms. A further amendment Bill, on the head of a new National Crime Agency, is dated 16 October 2026.",
+          "sources": [
+            "S11",
+            "S12",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What does the President do?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The President is the Head of State and Commander-in-Chief. The office exists to uphold and defend the Constitution, and to see that democracy and the rule of law are protected, that fundamental rights are respected, and that the unity of the diverse Mauritian nation is maintained.",
+          "sources": [
+            "S1",
+            "S14"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The President is elected by the National Assembly, on a motion of the Prime Minister supported by a majority of all members. The term is five years and the President may be re-elected. A candidate must be a citizen aged at least 40 who has lived in Mauritius for the last five years. A Vice-President is elected in the same way. Since 7 December 2024 the President has been Dharambeer Gokhool.",
+          "sources": [
+            "S1",
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Executive authority is vested in the President, who in almost everything acts on the advice of the Cabinet. The President may ask the Cabinet to reconsider its advice, and may return a Bill to the Assembly within 21 days. If the Assembly passes it again, the President must assent.",
+          "sources": [
+            "S1",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who runs the Government?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Prime Minister and the Cabinet. The President appoints as Prime Minister the member of the Assembly who appears best able to command the support of a majority of its members. The Deputy Prime Minister, the Attorney-General and the other Ministers are appointed on the Prime Minister's advice from among the members, though the Attorney-General need not be a member. The Cabinet advises the President and is collectively responsible to the Assembly.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If the Assembly passes a resolution of no confidence and the Prime Minister does not resign within three days, the President removes the Prime Minister, unless Parliament is to be dissolved. In November 2026 the Prime Minister is Dr Navinchandra Ramgoolam.",
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How is the National Assembly elected?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Sixty-two members are elected directly. The island of Mauritius is divided into 20 constituencies that return three members each, and Rodrigues is a constituency that returns two. Each elector votes for three candidates, or two in Rodrigues, and the candidates with the most votes win. This is the system known as first past the post.",
+          "sources": [
+            "S1",
+            "S16",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Up to eight more seats are then given to defeated candidates, to ensure a fair and adequate representation of each community. For this the Constitution recognises four communities: Hindu, Muslim, Sino-Mauritian and the General Population. The first four seats go to the most successful unreturned candidates of the appropriate community, whatever their party. The second four go to the most successful party, to make up for any of the first four that went elsewhere. After the election of 10 November 2024 four additional seats were allocated. With the Attorney-General, who sits as an ex-officio member, the present Assembly has 67 members.",
+          "sources": [
+            "S1",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A Commonwealth citizen aged 18 or over may register as an elector after two years' residence in Mauritius, or if domiciled and resident there. The register of 2026 holds 1,009,333 electors. The Electoral Supervisory Commission supervises registration and elections, and the Electoral Commissioner, a public officer who is not subject to the direction of any other person or authority, organises them. Parliament lasts five years from its first sitting unless it is dissolved sooner.",
+          "sources": [
+            "S1",
+            "S7",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How is a law made?",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            "A Bill is presented in the National Assembly, normally by a Minister. A private member may present one too, but not a money Bill.",
+            "The Assembly debates the Bill and votes on it. It usually sits on Tuesdays.",
+            "The Bill goes to the President for assent.",
+            "The Act is published in the Government Gazette. No law made by Parliament comes into operation until it has been published there."
+          ],
+          "sources": [
+            "S17",
+            "S18",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How are the courts arranged?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Supreme Court has unlimited jurisdiction in civil and criminal cases and supervises the lower courts. It is made up of the Chief Justice, the Senior Puisne Judge and the Puisne Judges, of whom there are at present 21. The Chief Justice is appointed by the President after consultation with the Prime Minister.",
+          "sources": [
+            "S19",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Below it are the Intermediate Court, which hears civil claims of up to Rs 2,000,000 and serious criminal cases, and a District Court in every district, for claims of up to Rs 250,000. There is also an Industrial Court for labour matters and a Court of Rodrigues. Prosecutions are in the hands of the Director of Public Prosecutions, an office set up by the Constitution.",
+          "sources": [
+            "S20",
+            "S21",
+            "S22",
+            "S23",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The last appeal lies to the Judicial Committee of the Privy Council, which Mauritius kept as its highest court of appeal after independence in 1968 and on becoming a Republic in 1992.",
+          "sources": [
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How is Rodrigues governed?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rodrigues sends two members to the National Assembly and also has an assembly of its own. The Rodrigues Regional Assembly has at least 17 members: two for each of six local regions, elected by simple majority, and five for the island as a whole, elected from party lists by proportional representation. It sits for five years, and the last election was held on 27 February 2022. An Executive Council led by a Chief Commissioner carries out its work.",
+          "sources": [
+            "S10",
+            "S24"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Regional Assembly makes and carries out policy for Rodrigues in the matters listed in its Act. It can make regulations, and it can propose Bills that become Regional Assembly Laws once Parliament adopts them. Both apply only to Rodrigues. Everything else stays with the Government of Mauritius.",
+          "sources": [
+            "S10",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What do local councils do?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "On the island of Mauritius there are one Municipal City Council, four Municipal Councils for the towns, seven District Councils and 130 Village Councils. They look after services such as street lighting, local roads and drains, refuse collection, markets and cemeteries, under the Local Government Act 2011. Our article on the districts, towns and villages sets out which council covers where.",
+          "sources": [
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where are the laws and the Government Gazette published?",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "The Government Gazette is the sole official publication of all enactments and public notices. Regulations appear in a legal supplement to it. It is printed by the Government Printing Department at La Tour Koenig, which comes under the Prime Minister's Office.",
+            "The National Assembly publishes each Bill and each Act on its website, along with the Constitution.",
+            "The Attorney-General's Office keeps the Revised Laws of Mauritius and the revised subsidiary legislation on its Laws of Mauritius portal. The portal asks for a MauPass login.",
+            "The Supreme Court's website has a search of legislation as well as of judgments."
+          ],
+          "sources": [
+            "S25",
+            "S12",
+            "S26",
+            "S27",
+            "S28",
+            "S29"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "The Constitution of the Republic of Mauritius",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2024/11/The-Constitution-Long-Upload-on-website-modify-on-28.01.22-06.04.22-.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Edition dated May 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Explore Mauritius: history, culture, geography, people and places of interest",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Biography",
+      "url": "https://president.govmu.org/president/biography/",
+      "publisher": "Office of the President",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "The Prime Minister",
+      "url": "https://pmo.govmu.org/Pages/Prime_Minister.aspx",
+      "publisher": "Prime Minister's Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Introduction",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/introduction/",
+      "publisher": "National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Constituencies",
+      "url": "https://electoral.govmu.org/oec/?page_id=576",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Register of Electors 2026, Table 3: Number and Percentage of Electors by Sex, Republic of Mauritius",
+      "url": "https://electoral.govmu.org/oec/wp-content/uploads/2026/08/Table-3-Number-and-Percentage-of-Electors-by-Sex-Republic-of-Mauritius-2026.pdf",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Judicial Committee of the Privy Council",
+      "url": "https://supremecourt.govmu.org/basic-page/492",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The Ministry",
+      "url": "https://localgovernment.govmu.org/Pages/TheMinistry.aspx",
+      "publisher": "Ministry of Local Government",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Rodrigues Regional Assembly Act (Act 39 of 2001), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/R/Rodrigues%20Regional%20Assembly%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "The Constitution (Amendment) Act 2025 (Act No. 10 of 2025)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2025/05/act1025.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Assented to on 14 May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "The Constitutional Review Commission Act 2026 (Act No. 7 of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/06/Act0726.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Assented to on 4 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "The Constitution (Amendment) Bill (No. XVI of 2026)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/10/The-Constitution-Amendment-Bill-No.-XVI-of-2026.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "16 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Role of the President",
+      "url": "https://president.govmu.org/president/role-of-the-president/",
+      "publisher": "Office of the President",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Powers of the President",
+      "url": "https://president.govmu.org/president/powers-of-the-president/",
+      "publisher": "Office of the President",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "The Commission",
+      "url": "https://electoral.govmu.org/oec/?page_id=558",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Functions",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/functions/",
+      "publisher": "National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Sitting Procedures",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/sitting-procedures/",
+      "publisher": "National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "The Supreme Court",
+      "url": "https://supremecourt.govmu.org/the-supreme-court",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "The Intermediate Court",
+      "url": "https://supremecourt.govmu.org/basic-page/intermediate_court",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "The District Court",
+      "url": "https://supremecourt.govmu.org/district_court",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "The Industrial Court",
+      "url": "https://supremecourt.govmu.org/industrial_court",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "Court of Rodrigues",
+      "url": "https://supremecourt.govmu.org/basic-page/499",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "Rodrigues Regional Assembly: election results",
+      "url": "https://electoral.govmu.org/oec/?page_id=1646",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S25",
+      "title": "Interpretation and General Clauses Act (Act 33 of 1974), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/I/In/Interpretation%20and%20General%20Clauses%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S26",
+      "title": "Government Printing Department: home page",
+      "url": "https://gpd.govmu.org/Pages/Index.aspx",
+      "publisher": "Government Printing Department",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S27",
+      "title": "Acts",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/acts-2/",
+      "publisher": "National Assembly of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S28",
+      "title": "Revised Laws of Mauritius and Revised Subsidiary Legislation of Mauritius: portal",
+      "url": "https://lawsofmauritius.govmu.org/portal/",
+      "publisher": "Attorney-General's Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S29",
+      "title": "Legislation Search",
+      "url": "https://supremecourt.govmu.org/legislation-search",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Official pages",
+      "url": "/official",
+      "publisher": "biznes.mu",
+      "what": "Our list of the official websites of the State, ministry by ministry."
+    },
+    {
+      "title": "Everyday paperwork: ID card, passport, certificates, licences",
+      "url": "/learn/everyday-paperwork-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the offices a resident deals with most often."
+    },
+    {
+      "title": "The Constitution",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/the-constitution/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read the Constitution of the Republic."
+    },
+    {
+      "title": "National Assembly",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Follow sittings, the Order Paper, Hansard, Bills and Acts."
+    },
+    {
+      "title": "Office of the President",
+      "url": "https://president.govmu.org/president/",
+      "publisher": "Office of the President",
+      "what": "Read about the role and powers of the President."
+    },
+    {
+      "title": "Prime Minister's Office: list of Ministers",
+      "url": "https://pmo.govmu.org/Pages/My_Cabinet.aspx",
+      "publisher": "Prime Minister's Office",
+      "what": "See who holds each ministry."
+    },
+    {
+      "title": "Cabinet decisions",
+      "url": "https://pmo.govmu.org/Pages/Cabinet_Decisions/Cabinet_Decisions.aspx",
+      "publisher": "Prime Minister's Office",
+      "what": "Read the highlights of each weekly Cabinet meeting."
+    },
+    {
+      "title": "Office of the Electoral Commissioner",
+      "url": "https://electoral.govmu.org/oec/",
+      "publisher": "Office of the Electoral Commissioner",
+      "what": "Check constituencies, the register of electors and election results."
+    },
+    {
+      "title": "The Supreme Court of Mauritius",
+      "url": "https://supremecourt.govmu.org/",
+      "publisher": "The Supreme Court of Mauritius",
+      "what": "Search judgments and legislation, and read about each court."
+    },
+    {
+      "title": "Laws of Mauritius portal",
+      "url": "https://lawsofmauritius.govmu.org/portal/",
+      "publisher": "Attorney-General's Office",
+      "what": "Search the revised Acts, regulations and proclamations. A MauPass login is needed."
+    },
+    {
+      "title": "Acts",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/acts-2/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Download Acts as passed, year by year."
+    },
+    {
+      "title": "Rodrigues Regional Assembly",
+      "url": "https://rra.govmu.org/rra/",
+      "publisher": "Rodrigues Regional Assembly",
+      "what": "Reach the Chief Commissioner's Office and the commissions of Rodrigues."
+    },
+    {
+      "title": "Ministry of Local Government",
+      "url": "https://localgovernment.govmu.org/SitePages/Index.aspx",
+      "publisher": "Ministry of Local Government",
+      "what": "Read about the councils and the Local Government Act."
+    }
+  ],
+  "unverified": [
+    "Whether the text of the Constitution read for this article is fully up to date. The National Assembly's copy is an edition dated May 2018. The amending Act of 2025 was read as well. Any other amendment made since 2018 was not traced.",
+    "Whether the Constitution (Amendment) Bill (No. XVI of 2026) has been passed. It is dated 16 October 2026 and appears among the Bills on the National Assembly's site. No Act was found.",
+    "Whether a Constitutional Review Commission has been appointed under the Act of June 2026, and who sits on it.",
+    "The name of the Vice-President in office. It was not found on the pages read.",
+    "Whether the Government Gazette can be read online free of charge. The Government Printing Department's page links to the National Assembly's list of Acts and not to the Gazette itself.",
+    "The matters for which the Rodrigues Regional Assembly is responsible. They are listed in the Fourth Schedule to its Act, which was not read in full.",
+    "The date of the next general election. Parliament lasts five years from its first sitting after the election of 10 November 2024 unless dissolved sooner. The date of that first sitting was not found on the pages read."
+  ]
+}

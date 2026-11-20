@@ -65,6 +65,7 @@ export const MENU = [
       { href: "/directory", label: "Directory", line: "Every kind of business, by category" },
       { href: "/places", label: "Places", line: "Town by town, village by village" },
       { href: "/emergency", label: "Emergency numbers", line: "Who to call, from official pages" },
+      { href: "/holidays", label: "Public holidays", line: "Every date, with its day of the week" },
       { href: "/shop", label: "Pocket guides", line: "Guides to keep on your phone" },
     ],
   },
@@ -99,6 +100,7 @@ export const SHELVES = [
 /** The quieter pages, for the footer. */
 export const MORE = [
   { href: "/emergency", label: "Emergency numbers" },
+  { href: "/holidays", label: "Public holidays" },
   { href: "/pricing", label: "List your business" },
   { href: "/shop", label: "Pocket guides" },
   { href: "/official", label: "Official pages" },

@@ -1,0 +1,580 @@
+{
+  "slug": "mauritius-at-a-glance",
+  "title": "Mauritius at a glance",
+  "summary": "The short answers about Mauritius in one place: where it is, which islands make up the Republic, its size and population, the capital, how it is governed, its languages, money and time, the flag and the national day. Figures are the latest official ones read on 20 November 2026.",
+  "audience": "Anyone who wants the basic facts about Mauritius: students, visitors, people moving here and people doing business with the island.",
+  "checked": "2026-11-20",
+  "shelf": "mauritius",
+  "facts": [
+    {
+      "label": "Population",
+      "value": "1,240,316 (estimate, 1 July 2026)",
+      "detail": "Provisional mid-year estimate for the Republic. The 2022 census counted 1,233,427 residents.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Land area",
+      "value": "2,007.2 km²",
+      "detail": "Island of Mauritius 1,868.4 km², Rodrigues 110.1 km², Agalega 26.0 km² and St Brandon 2.7 km².",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Capital",
+      "value": "Port Louis",
+      "detail": "In the north-west of the main island.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "National day",
+      "value": "12 March",
+      "detail": "Independence Day and Republic Day. Independence came on 12 March 1968 and the Republic on 12 March 1992.",
+      "sources": [
+        "S5",
+        "S3"
+      ]
+    },
+    {
+      "label": "Currency",
+      "value": "Mauritian rupee, divided into 100 cents",
+      "detail": "Only the Bank of Mauritius may issue notes and coins.",
+      "sources": [
+        "S6",
+        "S4"
+      ]
+    },
+    {
+      "label": "Time zone",
+      "value": "UTC +4",
+      "detail": "The law sets standard time as the solar time of longitude 60 degrees east of Greenwich.",
+      "sources": [
+        "S4",
+        "S7"
+      ]
+    },
+    {
+      "label": "Language most spoken at home",
+      "value": "Creole: 89.9% of residents (2022 census)",
+      "detail": "Alone or with another language. 78.6% spoke only Creole. English is the official language of the National Assembly.",
+      "sources": [
+        "S2",
+        "S8"
+      ]
+    },
+    {
+      "label": "Driving",
+      "value": "On the left",
+      "detail": "Drivers give way to vehicles coming from the right.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Dialling code",
+      "value": "+230",
+      "detail": "Fixed numbers have 7 digits and mobile numbers 8.",
+      "sources": [
+        "S4",
+        "S9"
+      ]
+    },
+    {
+      "label": "Internet domain",
+      "value": ".mu",
+      "detail": "A country-code top-level domain. Its manager is Internet Direct Ltd of Port Louis.",
+      "sources": [
+        "S10"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Where is Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius is an island state in the south-west of the Indian Ocean, about 2,000 km from the east coast of Africa. The main island lies just inside the Tropic of Capricorn, at 20° south and 57° east. It is of volcanic origin and almost entirely surrounded by coral reefs. Together with Réunion and Rodrigues it forms the group of islands known as the Mascarenes.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The land rises from the coastal plain to a central plateau that reaches 670 metres and is bordered by three mountain ranges. The highest peak is Piton de la Rivière Noire at 826 metres, ahead of Pieter Both at 818 metres and Le Pouce at 811 metres. The climate is maritime, tropical in summer and subtropical in winter. Summer runs from October to March and winter from June to September.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which islands make up the Republic of Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Republic is more than one island. The Constitution says that Mauritius includes the islands of Mauritius, Rodrigues, Agalega, Tromelin, Cargados Carajos and the Chagos Archipelago, including Diego Garcia, and any other island comprised in the State of Mauritius. Cargados Carajos is more often called St Brandon.",
+          "sources": [
+            "S8",
+            "S11"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Island",
+            "Land area (km²)",
+            "Residents at the 2022 census",
+            "What to know"
+          ],
+          "rows": [
+            [
+              "Island of Mauritius",
+              "1,868.4",
+              "1,189,493",
+              "The main island, with the capital, Port Louis"
+            ],
+            [
+              "Rodrigues",
+              "110.1",
+              "43,604",
+              "About 580 km to the north-east, with its own Regional Assembly"
+            ],
+            [
+              "Agalega",
+              "26.0",
+              "330",
+              "Two islands about 1,000 km north of Mauritius"
+            ],
+            [
+              "St Brandon (Cargados Carajos)",
+              "2.7",
+              "No permanent residents",
+              "A group of islets about 450 km to the north-north-east, mainly fishing outposts"
+            ],
+            [
+              "Republic of Mauritius",
+              "2,007.2",
+              "1,233,427",
+              "Statistics Mauritius gives no area or count for Tromelin or the Chagos Archipelago"
+            ]
+          ],
+          "sources": [
+            "S2",
+            "S12",
+            "S13",
+            "S11",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Agalega is administered by the Outer Islands Development Corporation, which comes under the Prime Minister's Office. In its Act the Outer Islands are all the islands of the State other than Mauritius and Rodrigues.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Chagos Archipelago has been administered by the United Kingdom. In an advisory opinion of 25 February 2019 the International Court of Justice concluded that the United Kingdom was under an obligation to end that administration as rapidly as possible. On 22 May 2025 the two governments signed an agreement which states that Mauritius is sovereign over the archipelago in its entirety, including Diego Garcia.",
+          "sources": [
+            "S15",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How big is Mauritius and how many people live there?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The land area of the Republic is 2,007.2 km², of which the island of Mauritius takes 1,868.4 km². Statistics Mauritius estimated the population at 1,240,316 on 1 July 2026: 1,194,974 on the island of Mauritius, 45,012 on Rodrigues and 330 on Agalega and St Brandon. That is 618 people for each square kilometre.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The last census, taken in July 2022, counted 1,233,427 residents. Leaving out Agalega, the count was 3,720 lower than in 2011, the first fall from one census to the next since 1911. The yearly estimates run a little higher than the census because they add an allowance for young children the census missed.",
+          "sources": [
+            "S2",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the capital, and how is Mauritius governed?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The capital is Port Louis. Mauritius is a sovereign democratic State known as the Republic of Mauritius. It became independent on 12 March 1968 and a Republic on 12 March 1992.",
+          "sources": [
+            "S3",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Parliament is made up of the President and a National Assembly of up to 70 members. The President is the Head of State, elected by the Assembly for five years. The Prime Minister is the member of the Assembly who appears to the President best able to command the support of a majority. In November 2026 the President is Dharambeer Gokhool, in office since 7 December 2024, and the Prime Minister is Dr Navinchandra Ramgoolam.",
+          "sources": [
+            "S8",
+            "S18",
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What languages are spoken, and what money is used?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Constitution does not name a national language. Its one rule on an official language is for Parliament: English is the official language of the National Assembly, and any member may address the chair in French. At home the language is Creole, which official papers now call Kreol Morisien. At the 2022 census 89.9% of residents said they usually spoke it at home, alone or with another language.",
+          "sources": [
+            "S8",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The unit of currency is the rupee, which is divided into 100 cents. The Bank of Mauritius has the sole right to issue notes and coins.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Time: Mauritius is four hours ahead of Greenwich, UTC +4. The law fixes standard time as the solar time of longitude 60 degrees east.",
+            "Driving: on the left, giving way to vehicles coming from the right.",
+            "Telephone: the international dialling code is +230. Fixed numbers have 7 digits and mobile numbers 8.",
+            "Electricity: 220/230 V, with British three-square-pin plugs and two-round-pin plugs.",
+            "Internet: the country domain is .mu."
+          ],
+          "sources": [
+            "S4",
+            "S7",
+            "S9",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What do the flag and the national symbols stand for?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The flag has four equal horizontal stripes of red, blue, yellow and green, and is in the proportion of 6 to 4. The Government gives each colour a meaning.",
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Red represents the struggle for freedom and independence.",
+            "Blue represents the Indian Ocean, in the middle of which Mauritius is situated.",
+            "Yellow represents the new light of independence shining over the island.",
+            "Green represents the agriculture of Mauritius and its colour throughout the twelve months of the year."
+          ],
+          "sources": [
+            "S20"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The coat of arms is supported by a dodo and a sambur deer, each holding a sugar cane, above the motto Stella Clavisque Maris Indici. The national anthem opens with the words Glory to thee, Motherland. Its words are by the poet Jean Georges Prosper and its music by Philippe Gentil of the Police Band. The national flower, since 12 March 1992, is Trochetia boutoniana, known as Boucle d'Oreille.",
+          "sources": [
+            "S21",
+            "S22",
+            "S23"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When is the national day?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "12 March is Independence Day and Republic Day, a public holiday every year. Two more fixed holidays recall the island's history: the Abolition of Slavery on 1 February and the Arrival of Indentured Labourers on 2 November. The other public holidays are New Year on 1 and 2 January, Labour Day on 1 May, Christmas on 25 December and the main festivals of the island's religions, whose dates change each year.",
+          "sources": [
+            "S5",
+            "S24"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Population and Vital Statistics, Republic of Mauritius, January to June 2026 (Economic and Social Indicators, Issue No 1949)",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1949/Pop_Vital_Midyr26_280826.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "2022 Housing and Population Census, Volume II: Demographic and Fertility Characteristics",
+      "url": "https://statsmauritius.govmu.org/Documents/Census_and_Surveys/Census2022/HPC_TR_Vol2_Demography_Yr22%20_120126.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "May 2024, figures amended on 2 December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Explore Mauritius: history, culture, geography, people and places of interest",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "The Public Holidays (Amendment) Act 2015 (Act No. 28 of 2015)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/03/act2815.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Gazetted on 21 November 2015",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Bank of Mauritius Act (Act 34 of 2004), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/B/Bank%20of%20Mauritius%20Act%2c%20No.%2034%20of%202004.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Interpretation and General Clauses Act (Act 33 of 1974), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/I/In/Interpretation%20and%20General%20Clauses%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "The Constitution of the Republic of Mauritius",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2024/11/The-Constitution-Long-Upload-on-website-modify-on-28.01.22-06.04.22-.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Edition dated May 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Numbering Plan for the Republic of Mauritius",
+      "url": "https://www.icta.mu/documents/2025/05/numbering_plan.pdf",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Delegation record for .MU (Root Zone Database)",
+      "url": "https://www.iana.org/domains/root/db/mu.html",
+      "publisher": "Internet Assigned Numbers Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "About Saint Brandon",
+      "url": "https://oidc.govmu.org/oidc/?page_id=39",
+      "publisher": "Outer Islands Development Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Rodrigues Island",
+      "url": "https://mauritiusnow.com/blog/things-to-do/rodrigues-island/",
+      "publisher": "Mauritius Tourism Promotion Authority (Mauritius Now)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "About Agalega",
+      "url": "https://oidc.govmu.org/oidc/?page_id=34",
+      "publisher": "Outer Islands Development Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Role and Function of OIDC",
+      "url": "https://oidc.govmu.org/oidc/?page_id=28",
+      "publisher": "Outer Islands Development Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Legal Consequences of the Separation of the Chagos Archipelago from Mauritius in 1965: overview of the case",
+      "url": "https://www.icj-cij.org/case/169",
+      "publisher": "International Court of Justice",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Agreement between the United Kingdom and the Republic of Mauritius concerning the Chagos Archipelago including Diego Garcia (Mauritius No. 1 (2025), CP 1334)",
+      "url": "https://assets.publishing.service.gov.uk/media/682f25afc054883884bff42a/CS_Mauritius_1.2025_Agreement_Chagos_Diego_Garcia.pdf",
+      "publisher": "Foreign, Commonwealth and Development Office, United Kingdom",
+      "published": "May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Digest of Demographic Statistics 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/Digests/Demography/Digest_Demo_Yr25_21102026.xlsx",
+      "publisher": "Statistics Mauritius",
+      "published": "October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Biography",
+      "url": "https://president.govmu.org/president/biography/",
+      "publisher": "Office of the President",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "The Prime Minister",
+      "url": "https://pmo.govmu.org/Pages/Prime_Minister.aspx",
+      "publisher": "Prime Minister's Office",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "National Flag",
+      "url": "https://govmu.org/EN/Pages/National-Flag.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Coat of Arms",
+      "url": "https://govmu.org/EN/Pages/Coat-of-Arms.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S22",
+      "title": "National Anthem",
+      "url": "https://govmu.org/EN/Pages/National-Anthem.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S23",
+      "title": "National Flower",
+      "url": "https://govmu.org/EN/Pages/National-Flower.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S24",
+      "title": "General Notice No. 1088 of 2026, Public Holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Visiting Mauritius: what to know before you come",
+      "url": "/learn/visiting-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to entry rules, the airport, money, getting around and the seasons."
+    },
+    {
+      "title": "Places",
+      "url": "/places",
+      "publisher": "biznes.mu",
+      "what": "Find businesses and services town by town and village by village."
+    },
+    {
+      "title": "Explore Mauritius",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius",
+      "what": "Read the Government's own pages on history, culture, geography and the national symbols."
+    },
+    {
+      "title": "Statistics Mauritius: population",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Population/SB_Population.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Get the latest population estimates and the Digest of Demographic Statistics."
+    },
+    {
+      "title": "2022 Housing and Population Census",
+      "url": "https://statsmauritius.govmu.org/Pages/Censuses%20and%20Surveys/Census/Census_2022.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Open the census reports and tables."
+    },
+    {
+      "title": "The Constitution",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/the-constitution/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read the Constitution of the Republic."
+    },
+    {
+      "title": "Public holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "what": "See the official list of public holidays for 2027."
+    },
+    {
+      "title": "Outer Islands Development Corporation",
+      "url": "https://oidc.govmu.org/oidc/",
+      "publisher": "Outer Islands Development Corporation",
+      "what": "Read about Agalega and St Brandon."
+    },
+    {
+      "title": "Mauritius Now: useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Check the practical facts a visitor asks about."
+    }
+  ],
+  "unverified": [
+    "The exact size of the main island. Statistics Mauritius gives 1,868.4 km², which this article uses. The Government portal gives 1,864 km² and the Mauritius Tourism Promotion Authority gives 2,030 km².",
+    "The land area and any population of Tromelin and of the Chagos Archipelago. They are named in the Constitution but do not appear in the Statistics Mauritius tables that were read.",
+    "Who administers Tromelin today. The Constitution lists it as part of Mauritius. No official page on its present administration was read.",
+    "Whether the agreement of 22 May 2025 on the Chagos Archipelago has entered into force. The copy published by the United Kingdom in May 2025 was marked as not in force, and no later official notice was found.",
+    "The exact distance from Mauritius to Rodrigues. The tourism authority gives around 580 km to the north-east. No Statistics Mauritius or Rodrigues Regional Assembly page giving the distance was found.",
+    "The designer of the flag and the date it was first raised. The Government page on the flag gives neither.",
+    "An official English translation of the motto Stella Clavisque Maris Indici. The Government page gives the Latin only.",
+    "Whether Mauritius ever changes its clocks. The pages read give UTC +4 and say nothing of summer time."
+  ]
+}

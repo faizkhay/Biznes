@@ -209,6 +209,16 @@ await still.goto(`${origin}/add`, { waitUntil: "domcontentloaded" });
 check("no script: the form says so and gives the other routes", /needs JavaScript/.test(await still.content()) && /\+230 5450 8600/.test(await still.content()));
 await plain.close();
 
+// 7b. General questions are answered from the site's own pages: a number, a date, an article's words.
+const answerTo = async (q) => {
+  await page.goto(`${origin}/search?q=${encodeURIComponent(q)}`, { waitUntil: "domcontentloaded" });
+  return (await page.locator("main article.answer").count()) ? `${await page.locator("main article.answer p.body-1").innerText()} | ${await page.locator("main article.answer a.row-title").getAttribute("href")}` : "";
+};
+check("answers: an emergency number, before a list of stations", /Police emergency: 999 or 112.*\| \/emergency/s.test(await answerTo("police number")), await answerTo("police number"));
+check("answers: a public holiday's date", /Divali: Sunday 8 November 2026.*\| \/holidays/s.test(await answerTo("when is divali")));
+check("answers: a general question, from an article", /1 November to 15 May.*\| \/learn\/weather-and-cyclones-in-mauritius/s.test(await answerTo("cyclone season")));
+check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
+
 // 8a. The menu: a group opens, shows its pages, and closes when one is chosen.
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 await page.locator("header summary", { hasText: "Learn" }).click();

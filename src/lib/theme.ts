@@ -1,24 +1,10 @@
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { holidays } from "./holidays";
 import { DEFAULT_PICTURE, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type PictureId } from "@/data/themes";
 
 export type Theme = { id: string; picture: PictureId; src: string; small: string; greeting: string; holiday?: string };
 
-type Holiday = { date: string; name: string };
-
-let holidays: Holiday[] | undefined;
-/** The public holidays, from the official notice (content/holidays.json). None if the file is not there. */
-function readHolidays(): Holiday[] {
-  if (holidays) return holidays;
-  const file = join(process.cwd(), "content", "holidays.json");
-  try {
-    const data = existsSync(file) ? (JSON.parse(readFileSync(file, "utf8")) as { years?: Record<string, Holiday[]> }) : {};
-    holidays = Object.values(data.years ?? {}).flat();
-  } catch {
-    holidays = [];
-  }
-  return holidays;
-}
+/** The public holidays of every year on the notices, as one list. */
+const readHolidays = () => Object.values(holidays()?.years ?? {}).flat();
 
 /** Today's date in Mauritius (UTC+4, no summer time), as YYYY-MM-DD. */
 export const todayInMauritius = (now = Date.now()) => new Date(now + 4 * 3600e3).toISOString().slice(0, 10);

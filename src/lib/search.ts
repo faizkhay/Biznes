@@ -19,7 +19,9 @@
  */
 import MiniSearch from "minisearch";
 import { chartPoints } from "./chart";
+import { emergency } from "./emergency";
 import { anchorOf, day } from "./format";
+import { holidays, longDay } from "./holidays";
 import { index, whereOf, type Category, type Listing, type Official, type Place, type Site } from "./index";
 import { TOOLS } from "./tools";
 
@@ -32,7 +34,7 @@ export const KINDS: { id: Kind; label: string }[] = [
 ];
 
 /** An answer from the guides: a guide, the fact in it that answers, a glossary term, or a tool. */
-export type Lead = { tag: "Guide" | "Glossary" | "Tool"; title: string; href: string; line: string; meta?: string };
+export type Lead = { tag: "Guide" | "Glossary" | "Tool" | "Number" | "Holiday"; title: string; href: string; line: string; meta?: string };
 export type Way = { href: string; label: string; n: number };
 
 export type Answer = {
@@ -125,13 +127,36 @@ function build(): Engine {
         `f:${g.slug}#${i}`,
         { name: f.label, alt: g.title, what: f.value, text: f.detail ?? "" },
         // A fact answers a question outright: it is shown as the answer, with the guide it is from.
-        { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#glance`, line: `${f.label}: ${f.value}.${f.detail ? ` ${f.detail}` : ""}`, meta }, guide: g.slug, weight: 1.8, whole: true },
+        { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#glance`, line: `${f.label}: ${f.value}.${f.detail ? ` ${f.detail}` : ""}`, meta }, guide: g.slug, weight: 2.6, whole: true },
       ),
     );
     g.sections.forEach((section, i) => {
       const words = section.blocks.map((b) => ("text" in b ? b.text : "items" in b ? b.items.join(" ") : [...b.columns, ...b.rows.flat()].join(" "))).join(" ");
-      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: `In it: ${section.heading}.`, meta }, guide: g.slug, weight: 1, whole: false });
+      // A part of an article answers with its own opening words, not with a pointer to itself.
+      const first = section.blocks.find((b) => "text" in b);
+      const opening = first && "text" in first ? first.text : "";
+      const cut = opening.length > 320 ? `${opening.slice(0, 320).replace(/[^.!?]*$/, "") || `${opening.slice(0, 300)}...`}` : opening;
+      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: !cut ? `In it: ${section.heading}.` : section.heading.endsWith("?") ? cut : `${section.heading.replace(/\.$/, "")}: ${cut}`, meta }, guide: g.slug, weight: 1, whole: false });
     });
+  }
+  // The emergency numbers and the public holidays answer by themselves: the number, the date.
+  const numbers = emergency();
+  numbers?.groups.forEach((group) =>
+    group.items.forEach((item, i) =>
+      lead(
+        `e:${group.id}#${i}`,
+        { name: item.name, alt: `${group.label} emergency number telephone call`, what: item.number, text: item.what },
+        { lead: { tag: "Number", title: "Emergency numbers", href: `/emergency#g-${group.id}`, line: `${item.name}: ${[item.number, ...(item.also ?? [])].join(" or ")}. ${item.what}`, meta: `Checked ${day(numbers.checked)}` }, weight: group.id === "emergency" ? 4 : 2, whole: true },
+      ),
+    ),
+  );
+  const dates = holidays();
+  if (dates) {
+    const byName = new Map<string, string[]>();
+    for (const year of Object.keys(dates.years).sort()) for (const h of dates.years[year]) byName.set(h.name, [...(byName.get(h.name) ?? []), longDay(h.date)]);
+    let n = 0;
+    for (const [name, days] of byName) lead(`h:${n++}`, { name, alt: "public holiday date when is", what: days.join(" "), text: "" }, { lead: { tag: "Holiday", title: "Public holidays in Mauritius", href: "/holidays", line: `${name}: ${days.join(", and ")}.`, meta: `Checked ${day(dates.checked)}` }, weight: 2, whole: true });
+    lead("h:all", { name: "Public holidays in Mauritius", alt: "bank holidays calendar jours feries konze piblik", what: Object.keys(dates.years).join(" "), text: "" }, { lead: { tag: "Holiday", title: "Public holidays in Mauritius", href: "/holidays", line: `Every public holiday of ${Object.keys(dates.years).sort().join(" and ")}, with the day of the week it falls on.`, meta: `Checked ${day(dates.checked)}` }, guide: "holidays", weight: 2, whole: true });
   }
   glossary.forEach((t, i) => lead(`t:${i}`, { name: `${t.term} ${t.full ?? ""}`, alt: "", what: "", text: t.meaning }, { lead: { tag: "Glossary", title: t.full ? `${t.term}: ${t.full}` : t.term, href: `/learn/glossary#${anchorOf(t.term)}`, line: t.meaning }, weight: 1.4, whole: true }));
   TOOLS.forEach((t, i) => lead(`x:${i}`, { name: t.title, alt: "calculator tool", what: t.what, text: "" }, { lead: { tag: "Tool", title: t.title, href: t.href, line: t.what }, weight: 1.3, whole: true }));

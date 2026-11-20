@@ -62,7 +62,9 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   // A question about how is answered first, in the site's own words: the fact or the passage that
   // answers, large, with the article it is from. The other articles that answer follow it.
-  const answer = !a.who && !kind ? a.leads[0] : undefined;
+  // A number to call answers even a question about who: "police number" wants 999 before a list of stations.
+  const first = !a.who || a.leads[0]?.tag === "Number";
+  const answer = first && !kind ? a.leads[0] : undefined;
   // What to read next: the articles on the same shelf as the one that answered, or the first few.
   const from = a.leads.map((lead) => (lead.href.startsWith("/learn/") ? guideBySlug.get(lead.href.slice(7).split(/[#?]/)[0]) : undefined)).find(Boolean);
   const shown = new Set(a.leads.map((lead) => lead.href.split("#")[0]));
@@ -71,7 +73,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const leads = a.leads.length > 0 && (
     <section aria-labelledby="r-guides" className="mt-8">
       <h2 id="r-guides" className="label-1 pb-3 text-ink-faint">
-        {a.who ? "Also, from our articles" : answer ? "The answer, from our articles" : "From our articles"}
+        {!first ? "Also, from our articles" : answer ? "The answer, from our pages" : "From our articles"}
       </h2>
       {answer && (
         <article className="answer">
@@ -182,7 +184,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </div>
           )}
 
-          {!a.who && leads}
+          {first && leads}
 
           {a.listings.length > 0 && (
             <section aria-labelledby="r-listings" className="mt-8">
@@ -217,7 +219,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </nav>
           )}
 
-          {a.who && leads}
+          {!first && leads}
 
           {/* Pages elsewhere: the official pages and the websites that answer. In the first view they
               are folded away as references, so the site's own answer comes first; each has its own tab. */}

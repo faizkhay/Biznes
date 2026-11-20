@@ -1,0 +1,501 @@
+{
+  "slug": "money-and-banking-in-mauritius",
+  "shelf": "mauritius",
+  "title": "Money in Mauritius: the rupee, banks and paying",
+  "summary": "What the money is and who stands behind it: the Mauritian rupee, the Bank of Mauritius and its Key Rate, the banks, cards and instant payments through MauCAS, changing money and how prices are moving. Each figure carries its date. Checked on 20 November 2026.",
+  "audience": "Visitors, newcomers and residents who want the plain facts about money, banks and paying in Mauritius.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Currency",
+      "value": "The Mauritian rupee, divided into 100 cents",
+      "detail": "The unit of currency set by the Bank of Mauritius Act. The rupee is not used outside Mauritius.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Who issues notes and coins",
+      "value": "The Bank of Mauritius only",
+      "detail": "The Act gives the Bank the sole right to issue Mauritius currency notes and coins.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Legal tender",
+      "value": "Notes for any amount, coins up to a limit",
+      "detail": "Coins below Rs 5 for up to 50 times their value. Coins of Rs 5 and above for up to 100 times their value.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Key Rate",
+      "value": "4.75% a year",
+      "detail": "Raised by 25 basis points on 20 May 2026 from 4.50%. L'Express reported it unchanged at the meeting of 12 August 2026.",
+      "sources": [
+        "S6",
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "label": "Inflation target of the Bank",
+      "value": "2% to 5%",
+      "detail": "The target range for headline inflation, as stated by the Governor on 11 February 2026.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Headline inflation",
+      "value": "4.1%",
+      "detail": "For the twelve months ending September 2026. It was 3.7% for the year 2025.",
+      "sources": [
+        "S11"
+      ]
+    },
+    {
+      "label": "MauCAS launched",
+      "value": "14 August 2019",
+      "detail": "The national payment switch, owned and operated by the Bank of Mauritius. It runs round the clock.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "Instant payments",
+      "value": "Within seconds",
+      "detail": "Between any two accounts at any two institutions, through the Instant Payments System of MauCAS.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "Members of the Mauritius Bankers Association",
+      "value": "17 names listed",
+      "detail": "On the association's website on 20 November 2026. Two of them carry the HSBC name.",
+      "sources": [
+        "S9"
+      ]
+    },
+    {
+      "label": "Official reserves",
+      "value": "US$9.8 billion",
+      "detail": "Gross official reserves at the end of April 2026, equal to 13.6 months of imports excluding the services of Global Business companies.",
+      "sources": [
+        "S7"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What is the currency of Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The currency of Mauritius is the rupee, divided into 100 cents. The Bank of Mauritius Act names it as the unit of currency and gives the Bank of Mauritius the sole right to issue notes and coins. The rupee is not used anywhere else, so you will handle it only here.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Notes issued by the Bank are legal tender for any amount. Coins are legal tender up to a limit: 50 times their value for coins below Rs 5, and 100 times their value for coins of Rs 5 and above. A note stops being legal tender when it no longer matches the specifications the Bank has published.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The largest note met in the notices read for this article is the Rs 2,000 note. It has been issued in polymer, with added security features, since 5 December 2018. The paper Rs 2,000 note stopped being legal tender on 1 February 2019. From that date it could be exchanged only at the counter of the Bank of Mauritius.",
+          "sources": [
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What does the Bank of Mauritius do?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Bank of Mauritius is the central bank. Under its Act, its primary object is to maintain price stability and to promote orderly and balanced economic development. It also regulates credit and currency, and it is charged with the stability and soundness of the financial system.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Its Monetary Policy Committee sets the Key Rate, which is the policy rate. At its meeting of 11 February 2026 the Committee kept the rate at 4.50% a year. On 20 May 2026 it raised it by 25 basis points. L'Express reported that the rate was left at 4.75% at the meeting of 12 August 2026. The Bank aims to keep headline inflation between 2% and 5%.",
+          "sources": [
+            "S6",
+            "S7",
+            "S8"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Bank also acts on the foreign exchange market. Between January and mid-May 2026 it intervened for US$40 million. Its gross official reserves stood at US$9.8 billion at the end of April 2026.",
+          "sources": [
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which banks are there in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Bankers Association, the industry body founded in 1967, listed these members on its website on 20 November 2026. This is the association's membership as it shows it, and it may not match the list of banks that hold a licence.",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Mauritius Commercial Bank Ltd",
+            "SBM Bank (Mauritius) Ltd",
+            "ABC Banking Corporation Ltd",
+            "Absa Bank (Mauritius) Limited",
+            "AfrAsia Bank Limited",
+            "Bank of Baroda",
+            "Bank of China (Mauritius) Limited",
+            "Bank One Limited",
+            "BCP Bank (Mauritius) Limited",
+            "HSBC Bank (Mauritius) Limited and The Hongkong and Shanghai Banking Corporation Limited",
+            "Investec Bank (Mauritius) Limited",
+            "MauBank Ltd",
+            "SBI (Mauritius) Ltd",
+            "Standard Bank (Mauritius) Limited",
+            "Standard Chartered Bank (Mauritius) Limited",
+            "Warwyck Private Bank Ltd"
+          ],
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Finance is one of the largest sectors of the economy. Financial and insurance activities made up 11.7% of the value added in Mauritius in 2025, of which 6.5 points came from monetary intermediation.",
+          "sources": [
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do people pay: cards, apps and instant payments",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The national payment switch is MauCAS, the Mauritius Central Automated Switch. The Bank of Mauritius launched it on 14 August 2019, and owns and operates it. It routes card and mobile phone payments between banks and non-bank operators round the clock. Its Instant Payments System moves money between any two accounts at any two institutions within seconds. A customer can also use the payment service of one bank or operator while keeping the account at another.",
+          "sources": [
+            "S3",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "At the launch the Governor of the day also set out plans for payments to an alias such as an email address, a nationwide bill payment service and shared ATMs. Speaking in 2026, the present Governor described a shift away from cash and cheques towards payments made by tap, swipe or click, with growing use of mobile wallets, QR-based payments and electronic transfers. Visa works with local banks on contactless payments and digital wallets.",
+          "sources": [
+            "S5",
+            "S12"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Bills: the Central Electricity Board, for example, takes payment by direct debit, by internet banking, at ATMs and through the Juice app, as well as at its cash offices and at post offices.",
+            "Transport: the ticket machines of Metro Express take bank cards and cash.",
+            "India: the Unified Payments Interface and RuPay cards were launched in Mauritius on 12 February 2024. RuPay cards issued in India are accepted in Mauritius, and RuPay cards issued by Mauritian banks are accepted in India."
+          ],
+          "sources": [
+            "S13",
+            "S14",
+            "S5"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where can you change money, and what moves the rate?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Tourism Promotion Authority says that ATMs and currency exchange desks stand at the airport as you leave baggage reclaim, and that you will generally get a better rate by changing cash after you arrive. Commercial banks, money changers and foreign exchange dealers all handle foreign currency. The Bank of Mauritius uses their returns to estimate what tourism earns.",
+          "sources": [
+            "S2",
+            "S16"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The value of the rupee changes over time. Between the Bank's meetings of February and May 2026 it lost 2.9% against the US dollar, 1.0% against the euro and 1.5% against the pound sterling.",
+          "sources": [
+            "S7"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How fast are prices rising?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Statistics Mauritius measures prices with the Consumer Price Index. Its headline inflation rate compares the average level of prices over twelve months with the average of the twelve months before. Headline inflation was 3.7% for 2025 and 4.1% for the twelve months ending September 2026. Statistics Mauritius forecasts around 5.0% for the year 2026.",
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Year",
+            "Headline inflation"
+          ],
+          "rows": [
+            [
+              "2022",
+              "10.8%"
+            ],
+            [
+              "2023",
+              "7.0%"
+            ],
+            [
+              "2024",
+              "3.6%"
+            ],
+            [
+              "2025",
+              "3.7%"
+            ],
+            [
+              "2026, forecast",
+              "Around 5.0%"
+            ]
+          ],
+          "sources": [
+            "S11"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Bank of Mauritius Act (Act 34 of 2004)",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/B/Bank%20of%20Mauritius%20Act%2c%20No.%2034%20of%202004.pdf",
+      "publisher": "Attorney General's Office, Revised Laws of Mauritius",
+      "published": "Listed among Acts as at 30 June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Yandraduth Googoolye: Mauritius launches Switch payments system to spur digital economy (address at the launch of MauCAS)",
+      "url": "https://www.bis.org/review/r190816g.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "14 August 2019",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Launching of the Mauritius Central Automated Switch (MauCAS)",
+      "url": "https://mcci.org/en/media-news-events/business-updates/launching-of-the-mauritius-central-automated-switch-maucas",
+      "publisher": "Mauritius Chamber of Commerce and Industry",
+      "published": "16 August 2019",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Priscilla Muthoora Thakoor: National Payments Corporation of India Workshop on Unified Payment Interface and RuPay",
+      "url": "https://www.bis.org/review/r260310g.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "30 January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Priscilla Muthoora Thakoor: Current economic conditions and outlook (statement after the 77th Monetary Policy Committee meeting)",
+      "url": "https://www.bis.org/review/r260223b.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "11 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Priscilla Muthoora Thakoor: Current economic conditions and outlook (statement after the 78th Monetary Policy Committee meeting)",
+      "url": "https://www.bis.org/review/r260526g.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "20 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Ile Maurice: Taux directeur maintenu à 4,75 %, la BoM joue la carte de la prudence",
+      "url": "https://fr.allafrica.com/stories/202608130318.html",
+      "publisher": "L'Express (Port Louis), carried by AllAfrica. A press report, used as a cross-check",
+      "published": "13 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The Mauritius Bankers Association Limited, home page and list of members",
+      "url": "https://mba.mu/",
+      "publisher": "Mauritius Bankers Association",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "The Bank of Mauritius issues new Rs. 2,000 denomination bank notes",
+      "url": "https://www.mcci.org/en/media-news-events/business-updates/the-bank-of-mauritius-issues-new-rs-2000-denomination-bank-notes/",
+      "publisher": "Mauritius Chamber of Commerce and Industry, reporting the Bank of Mauritius notice of 4 December 2018",
+      "published": "5 December 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Economic and Social Indicators, Issue No 1962: Consumer Price Index, 3rd Quarter 2026",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1962/CPI_3Qtr26_141026.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "14 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Priscilla Muthoora Thakoor: Leveraging the Mauritius IFC as a payment system hub (Visa Direct Day)",
+      "url": "https://www.bis.org/speeches/20261013-leveraging-mauritius-ifc-payment-system-hub",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "17 June 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Frequently Asked Questions",
+      "url": "https://ceb.mu/customer-corner/frequently-asked-questions",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "FAQ Metro Express",
+      "url": "https://mauritiusmetroexpress.mu/faq-metro-express/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Economic and Social Indicators, Issue No 1960: National Accounts Estimates (2023 to 2026), September 2026 issue",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1960/NAE_Sep26_071026.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "30 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "27 February 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Bank of Mauritius",
+      "url": "https://www.bom.mu/",
+      "publisher": "Bank of Mauritius",
+      "what": "The central bank's own site, for notes and coins, exchange rates and the Key Rate. It did not open on the day this article was checked."
+    },
+    {
+      "title": "List of licensees",
+      "url": "https://www.bom.mu/financial-stability/supervision/licensees/list-of-licensees",
+      "publisher": "Bank of Mauritius",
+      "what": "The official list of banks and other institutions the Bank licenses."
+    },
+    {
+      "title": "Mauritius Bankers Association",
+      "url": "https://mba.mu/",
+      "publisher": "Mauritius Bankers Association",
+      "what": "See the member banks and the association's guides to online banking and online security."
+    },
+    {
+      "title": "Consumer Price Index",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/CPI/SB_CPI.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Follow inflation quarter by quarter and month by month."
+    },
+    {
+      "title": "Bank of Mauritius Act",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/B/Bank%20of%20Mauritius%20Act%2c%20No.%2034%20of%202004.pdf",
+      "publisher": "Attorney General's Office",
+      "what": "Read the law on the rupee, legal tender and the Bank's objects."
+    },
+    {
+      "title": "Useful tips for visitors",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Read the tourism authority's notes on currency, tipping and exchange at the airport."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the first weeks, including opening a bank account."
+    },
+    {
+      "title": "The economy of Mauritius in brief",
+      "url": "/learn/the-economy-of-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our article on growth, sectors, jobs, prices and trade."
+    },
+    {
+      "title": "Business taxes",
+      "url": "/learn/business-taxes",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the taxes a business pays."
+    },
+    {
+      "title": "VAT calculator",
+      "url": "/tools/vat",
+      "publisher": "biznes.mu",
+      "what": "Add or remove VAT from a price."
+    },
+    {
+      "title": "Directory",
+      "url": "/directory",
+      "publisher": "biznes.mu",
+      "what": "Find banks and other businesses listed on this site."
+    }
+  ],
+  "unverified": [
+    "The notes and coins in issue, with their values. The Bank of Mauritius website returned an error (HTTP 503) on every attempt on 20 November 2026, so its currency pages could not be read. Only the Rs 2,000 polymer note is confirmed here, from a notice relayed by the Mauritius Chamber of Commerce and Industry.",
+    "The number and names of the banks licensed by the Bank of Mauritius. The official list of licensees could not be opened. The list in this article is the membership shown by the Mauritius Bankers Association, which is not the same thing.",
+    "What the Bank publishes each day, such as indicative exchange rates. Its site could not be read.",
+    "The Key Rate after 12 August 2026. The level of 4.75% rests on the Governor's statements of February and May 2026 and on a press report of the August meeting. Any decision taken in November 2026 was not found.",
+    "The MauCAS QR code, and how many payments MauCAS carries. The Bank's leaflet and its speech on the QR code are on its own site and could not be read.",
+    "Bank opening hours, card acceptance and ATM fees. No official or bank page stating them was read.",
+    "Whether the Bank of Mauritius Act has been amended on currency or on the Bank's objects since the copy read, which is in the Attorney General's list of Acts as at 30 June 2017.",
+    "The date of the Governor's Visa Direct Day speech. The Bank for International Settlements lists it under 13 October 2026, while the text gives 17 June 2026."
+  ]
+}

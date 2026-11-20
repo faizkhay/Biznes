@@ -3,7 +3,7 @@ import { day, shortUrl, telHref } from "@/lib/format";
 import { chartPoints } from "@/lib/chart";
 import { index, whereOf, type Listing, type Official, type Site } from "@/lib/index";
 import type { Lead } from "@/lib/search";
-import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone } from "./Icons";
+import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone, Sun } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
 
 /**
@@ -49,7 +49,7 @@ export function ListingRow({ listing: l, note }: { listing: Listing; /** A word 
   );
 }
 
-const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc } as const;
+const LEAD_ICON = { Guide: Book, Glossary: Book, Tool: Calc, Number: Phone, Holiday: Sun } as const;
 
 /**
  * An answer from the guides: a guide and the fact or part of it that answers, a glossary term, or

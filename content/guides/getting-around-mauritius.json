@@ -1,0 +1,507 @@
+{
+  "slug": "getting-around-mauritius",
+  "shelf": "mauritius",
+  "title": "Getting around Mauritius: bus, metro, taxi and car",
+  "summary": "How people travel in Mauritius: the buses and who runs them, the Metro Express line and how its fares are paid, taxis, the driving rules that official pages state, the airport, and the ways to reach Rodrigues. Checked on 20 November 2026.",
+  "audience": "Visitors and newcomers working out how to move around the island, and residents who want the rules and figures in one place.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Side of the road",
+      "value": "Left",
+      "detail": "Traffic drives on the left, as the Mauritius Tourism Promotion Authority states.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Size of the island",
+      "value": "About 61 km north to south, 45 km east to west",
+      "detail": "Roughly 1 hour 20 minutes and 1 hour 15 minutes by car.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Registered vehicles",
+      "value": "746,961",
+      "detail": "At the end of December 2025, up 5.1% in a year. Island of Mauritius.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Buses",
+      "value": "3,418 registered",
+      "detail": "At the end of 2025. Of these, 1,933 held a road service licence to run on set routes and charge fares.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Taxi cars",
+      "value": "7,927",
+      "detail": "Registered at the end of 2025.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Metro Express",
+      "value": "20 stations, Port Louis to Curepipe",
+      "detail": "As the operator's website describes the line. Six are major stations next to bus stations.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "Metro Express hours",
+      "value": "6.00 am to 7.00 pm, every day",
+      "detail": "A tram about every 10 minutes, public holidays included, as shown on the operator's website.",
+      "sources": [
+        "S7",
+        "S10"
+      ]
+    },
+    {
+      "label": "Minimum age to learn to drive",
+      "value": "18 for a car",
+      "detail": "17 for a motorcycle and 15 for an autocycle. A provisional licence is needed first.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Drink-drive limit",
+      "value": "20 mg of alcohol per 100 ml of blood",
+      "detail": "Or 9 micrograms per 100 ml of breath.",
+      "sources": [
+        "S12"
+      ]
+    },
+    {
+      "label": "Flight to Rodrigues",
+      "value": "1 hour 35 minutes",
+      "detail": "Direct flights by Air Mauritius on every day of the week. Rodrigues is just over 600 km to the east.",
+      "sources": [
+        "S18"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How do you get around Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius is small: about 61 km from north to south and 45 km from east to west, or roughly 1 hour 20 minutes and 1 hour 15 minutes by car. You can cross it by bus, by taxi or by car, and ride the Metro Express light rail between Port Louis and Curepipe. Traffic drives on the left.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "There were 746,961 vehicles registered at the end of 2025, 5.1% more than a year before. Of these, 423,869 were cars, double cab pickups and dual purpose vehicles, and 257,269 were motorcycles and autocycles.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do buses work in Mauritius, and who runs them?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "At the end of 2025 there were 3,418 registered buses. Of these, 1,933 held a road service licence, which means they run on set routes and charge each passenger a fare. The National Land Transport Authority (NLTA), a department under the Ministry of Land Transport, licenses public service vehicles and oversees public transport.",
+          "sources": [
+            "S2",
+            "S4",
+            "S5"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The state operator is the National Transport Corporation (NTC), which is fully owned by the Government and began running on 12 March 1980. Its page on the Ministry's site reports a fleet of about 500 to 540 buses on 97 routes, some 3,500 trips a day including 337 school trips, and 105 electric buses.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The tourism authority describes two kinds of service. Standard buses come roughly every 15 minutes. Express buses are faster and air-conditioned, but less frequent. Buses run from 5.30 am to 8 pm in towns and from 6.30 am to 6.30 pm in rural areas, with a late service between Port Louis and Curepipe until 11 pm.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Metro Express: the line, the stations and how fares are paid",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Metro Express is a light rail line run by Metro Express Ltd, a company wholly owned by the Government and incorporated on 26 October 2016. Its website describes 20 stations from Port Louis to Curepipe, six of them major stations next to bus stations. The second phase added 12.6 km of track between Rose Hill Central and Curepipe Central, by way of Quatre Bornes Central, Phoenix and Vacoas Central. Trams run every day, public holidays included, from 6.00 am to 7.00 pm, about every 10 minutes.",
+          "sources": [
+            "S7",
+            "S9",
+            "S10",
+            "S11"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "You travel with an MECard, a prepaid card you top up, or with a single-use ticket for one journey. Both are sold at the ticket machines in every station, which take bank cards and cash.",
+            "Fares depend on the number of zones you cross. They are 5% to 10% lower with an MECard than with a single-use ticket.",
+            "Tap on at the scanner before boarding and tap off when you leave. If you do not tap off within 60 minutes, the maximum fare is deducted.",
+            "There are five cards: Adult, Child, Student, Senior and Priority. The Senior card, for retired citizens aged 60 and over, and the Priority card, for citizens with a disability, are free. The Student card costs Rs 100.",
+            "Travelling without the right fare can bring a fine of up to Rs 5,000 and up to 2 years in prison.",
+            "Coromandel station has a park and ride with 250 spaces, and Rose Hill Central is a major interchange with buses."
+          ],
+          "sources": [
+            "S7",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do taxis work?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "There were 7,927 taxi cars registered at the end of 2025. A taxi needs a licence from the NLTA, which takes applications only when it advertises them in the press, and its driver needs a taxi driving licence. The tourism authority advises agreeing the fare before you set off. Taxis wait outside hotels and shopping malls, and your accommodation can arrange one. It adds that Uber is not available in Mauritius and names Yugo as an app for booking a taxi at a fixed price.",
+          "sources": [
+            "S2",
+            "S6",
+            "S12",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the driving rules in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "These are the rules that official pages state in words. Speed limits themselves are set by regulation and by road signs, and are not listed here.",
+          "sources": [
+            "S13"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Drive on the left. The tourism authority adds that vehicles coming from the right are given priority.",
+            "You need a driving licence. Under the Road Traffic Act that duty does not apply to the holder of an international driving permit. Bring your valid licence if you plan to drive.",
+            "To learn to drive you must hold a provisional licence and be at least 18 for a car, 17 for a motorcycle and 15 for an autocycle.",
+            "Drink driving: the limits are 20 mg of alcohol per 100 ml of blood, or 9 micrograms per 100 ml of breath. A first conviction brings a fine of Rs 20,000 to Rs 50,000 and disqualification for at least 12 months.",
+            "Speeding: the fine is Rs 2,500 for up to 15 km/h over the limit, Rs 5,000 for more than 15 and up to 25 km/h over, and Rs 10,000 beyond that. The police list 63 fixed speed camera sites.",
+            "On a dual carriageway, keep to the left lane unless you are overtaking, turning right at a junction or avoiding an obstruction.",
+            "Riders and pillion riders of motorcycles and autocycles must wear a helmet. Using a hand-held telephone while driving is an offence."
+          ],
+          "sources": [
+            "S1",
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Well-known international car hire companies have desks at the airport, and some firms deliver the car to your hotel. A resident who holds a foreign licence can apply to the Traffic Branch of the police to convert it, for a fee of Rs 1,500, with a residence, work or occupation permit. In 2025, 124 people died on the roads of the island, 52 of them on motorcycles or autocycles and 30 on foot.",
+          "sources": [
+            "S1",
+            "S12",
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which airport serves Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Flights use SSR International Airport at Plaine Magnien. Its passenger website, published by Airport Terminal Operations Ltd, shows live departures and arrivals and has an international and a domestic check-in. The airlines it lists include Air Mauritius, Air France, British Airways, Emirates, Turkish Airlines, Kenya Airways and Air Seychelles, with flights to cities such as Paris, London, Dubai, Johannesburg, Nairobi, Mumbai and Singapore. ATMs and currency exchange desks stand at the exit from baggage reclaim. In 2025, 1,411,791 tourists arrived by air and 24,459 by sea.",
+          "sources": [
+            "S14",
+            "S15",
+            "S16",
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do you get to Rodrigues?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rodrigues lies just over 600 km east of Mauritius. Air Mauritius flies there direct on every day of the week, from SSR International Airport (MRU) to Plaine Corail Airport (RRG). The flight takes 1 hour 35 minutes.",
+          "sources": [
+            "S18"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "By sea, the Mauritius Shipping Corporation Ltd, the national shipping line, runs a Rodrigues route. The vessels named on its site are the m/s Mauritius Trochetia, the m/s Mauritius Pride and the MV Black Rhino. You ask for a ticket through the sea passage form on its site or by telephone, and you should confirm the date and time of departure 24 hours before sailing. An adult may take two pieces of baggage of up to 22 kg each. A Mauritian adult needs a passport or National Identity Card and a foreign national a valid passport. The company's services to Reunion are suspended for the time being.",
+          "sources": [
+            "S19",
+            "S20"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Getting around Mauritius",
+      "url": "https://mauritiusnow.com/getting-around-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Economic and Social Indicators, Issue No 1917: Road Transport and Road Traffic Accident Statistics (Island of Mauritius), Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1917/RT_RTA_Yr25_270326.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "27 March 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "National Transport Corporation",
+      "url": "https://landtransport.govmu.org/Pages/Parastatal/National-Transport-Corporation.aspx",
+      "publisher": "Ministry of Land Transport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "National Land Transport Authority",
+      "url": "https://landtransport.govmu.org/Pages/Departments/National-Land-Transport-Authority.aspx",
+      "publisher": "Ministry of Land Transport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "National Land Transport Authority, home page",
+      "url": "https://nlta.govmu.org/",
+      "publisher": "National Land Transport Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Procedures: Licensing",
+      "url": "https://nlta.govmu.org/Pages/Procedures/Licensing.aspx",
+      "publisher": "National Land Transport Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "My Journey: how to use the Metro Express",
+      "url": "https://mauritiusmetroexpress.mu/my-journey/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "FAQ Metro Express",
+      "url": "https://mauritiusmetroexpress.mu/faq-metro-express/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "About Metro Express Ltd",
+      "url": "https://mauritiusmetroexpress.mu/about/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Metro Express, home page",
+      "url": "https://mauritiusmetroexpress.mu/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Phase 2",
+      "url": "https://mauritiusmetroexpress.mu/phase-2/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Traffic Branch",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Road Traffic Act (Act 22 of 1962)",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/R/Road%20Traffic%20Act-I9.pdf",
+      "publisher": "Attorney General's Office, Revised Laws of Mauritius",
+      "published": "Listed among Acts as at 30 June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Mauritius Airport, passenger home page",
+      "url": "https://mauritius-airport.atol.aero/",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Mauritius Airport, corporate page",
+      "url": "https://mauritius-airport.atol.aero/corporate",
+      "publisher": "Airport Terminal Operations Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "27 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Flights to Rodrigues",
+      "url": "https://www.airmauritius.com/flights/en/flights-to-rodrigues",
+      "publisher": "Air Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Passenger information",
+      "url": "https://www.mauritiusshipping.net/pax-info/",
+      "publisher": "Mauritius Shipping Corporation Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Mauritius Shipping Corporation Ltd, home page",
+      "url": "https://www.mauritiusshipping.net/",
+      "publisher": "Mauritius Shipping Corporation Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Metro Express: My Journey",
+      "url": "https://mauritiusmetroexpress.mu/my-journey/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "what": "Read how to buy and use an MECard, and download the fare table."
+    },
+    {
+      "title": "Metro Express interactive map",
+      "url": "https://mauritiusmetroexpress.mu/interactive-map-metro-express/?lang=en",
+      "publisher": "Metro Express Ltd",
+      "what": "See the stations on a map."
+    },
+    {
+      "title": "National Land Transport Authority",
+      "url": "https://nlta.govmu.org/",
+      "publisher": "National Land Transport Authority",
+      "what": "Register a vehicle, pay the motor vehicle licence and read the licensing procedures."
+    },
+    {
+      "title": "Traffic Branch of the police",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "what": "Apply for a learner's licence, book a driving test, convert a foreign licence or get an international driving permit."
+    },
+    {
+      "title": "Mauritius Airport: flights",
+      "url": "https://mauritius-airport.atol.aero/passengers/flights/flight-departure-search",
+      "publisher": "Airport Terminal Operations Ltd",
+      "what": "Check departures and arrivals at SSR International Airport."
+    },
+    {
+      "title": "Air Mauritius: flights to Rodrigues",
+      "url": "https://www.airmauritius.com/flights/en/flights-to-rodrigues",
+      "publisher": "Air Mauritius",
+      "what": "Look up flights between Mauritius and Rodrigues."
+    },
+    {
+      "title": "Mauritius Shipping Corporation: schedule",
+      "url": "https://www.mauritiusshipping.net/schedule/",
+      "publisher": "Mauritius Shipping Corporation Ltd",
+      "what": "See the sailing schedule of the m/s Mauritius Trochetia."
+    },
+    {
+      "title": "Getting around Mauritius",
+      "url": "https://mauritiusnow.com/getting-around-mauritius/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "what": "Read the tourism authority's page for visitors on buses, taxis, car hire and helicopters."
+    },
+    {
+      "title": "Visiting Mauritius",
+      "url": "/learn/visiting-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for visitors: entry, money and what to know before you come."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide for newcomers, including the driving licence."
+    },
+    {
+      "title": "Emergency numbers",
+      "url": "/emergency",
+      "publisher": "biznes.mu",
+      "what": "The numbers to call after an accident or a breakdown."
+    },
+    {
+      "title": "Directory",
+      "url": "/directory",
+      "publisher": "biznes.mu",
+      "what": "Find car hire, taxi and transport businesses listed on this site."
+    }
+  ],
+  "unverified": [
+    "The speed limits in km/h. The Road Traffic Act leaves them to regulations and road signs, and the police page shows them only as an image. Travel sites give figures that disagree, so none is quoted.",
+    "Bus fares, and the names of the bus operators other than the National Transport Corporation. No official page giving them was found.",
+    "Whether Metro Express now runs beyond the Port Louis to Curepipe line, for example to Réduit. The operator's website describes 20 stations from Port Louis to Curepipe and its newest dated notice is from December 2023.",
+    "The current Metro Express timetable. The hours of 6.00 am to 7.00 pm appear on pages that also carry older notices, so they may be out of date.",
+    "The price of the adult MECard. One page of the operator's site says Rs 150 and another Rs 200, each including Rs 100 of credit. Fare amounts by zone are in a file that was not read.",
+    "Whether taxis must use a meter, and typical fares. The tourism authority only advises agreeing the fare first.",
+    "How long a visitor may drive on a foreign licence without an international driving permit, and the minimum age to hire a car. The pages read do not say.",
+    "The full name of the airport and the role of Airports of Mauritius Co Ltd. The airport's own pages say SSR International Airport, and the company's website returned an empty page.",
+    "Bus and taxi links from the airport. The airport pages read cover car hire and parking only.",
+    "How long the ship takes to reach Rodrigues, how often it sails and what it costs. The shipping company's passenger page does not say, and the schedule page was not read.",
+    "Whether the Road Traffic Act provisions quoted have been amended since the copy read, which is in the Attorney General's list of Acts as at 30 June 2017."
+  ]
+}

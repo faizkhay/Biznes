@@ -1,0 +1,579 @@
+{
+  "slug": "everyday-facts-about-mauritius",
+  "shelf": "mauritius",
+  "title": "Everyday facts: hours, power, phones and internet",
+  "summary": "The practical facts people look up about daily life in Mauritius: working hours and the rule on public holidays, office hours, voltage and plugs, tap water, telephone numbers and operators, internet access and the emergency numbers. Each comes from an official page. Checked on 20 November 2026.",
+  "audience": "Visitors, newcomers and residents who want quick, sourced answers to everyday questions.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Normal working week",
+      "value": "45 hours",
+      "detail": "Set by the Workers' Rights Act, not counting meal and tea breaks. It does not apply to part-time workers.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Overtime pay",
+      "value": "At least 1.5 times the normal rate",
+      "detail": "On a week day. On a public holiday, at least twice the rate in normal hours and three times after them.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Public holidays in 2027",
+      "value": "15, plus Monday 6 September",
+      "detail": "General Notice No. 1088 of 2026. The date of Eid-Ul-Fitr is subject to confirmation.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Electricity",
+      "value": "220/230 volts",
+      "detail": "British plugs with three square pins and plugs with two round pins, as the tourism authority states.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Time zone",
+      "value": "UTC+4",
+      "detail": "Given as UTC/GMT +4 by the tourism authority.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Country code",
+      "value": "+230",
+      "detail": "Mobile numbers have 8 digits and begin with 5. Fixed lines have 7 digits.",
+      "sources": [
+        "S4",
+        "S9"
+      ]
+    },
+    {
+      "label": "Mobile network operators",
+      "value": "3",
+      "detail": "Cellplus Mobile Communications Ltd, Emtel Ltd and Mahanagar Telephone (Mauritius) Ltd.",
+      "sources": [
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "label": "Households with internet access",
+      "value": "85.8% in 2024",
+      "detail": "Up from 72.6% in 2020.",
+      "sources": [
+        "S14"
+      ]
+    },
+    {
+      "label": "People using the internet",
+      "value": "83.2% in 2024",
+      "detail": "Persons aged 12 and over. It was 68.3% in 2020.",
+      "sources": [
+        "S14"
+      ]
+    },
+    {
+      "label": "Emergency numbers",
+      "value": "999 or 112, 114, 115 or 995",
+      "detail": "Police, SAMU ambulance, and fire services, in that order.",
+      "sources": [
+        "S4",
+        "S9"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "What are the everyday basics in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Here are the quick answers. Each one is explained further down, with its source.",
+          "sources": []
+        },
+        {
+          "type": "list",
+          "items": [
+            "Time: UTC+4.",
+            "Work: a normal working week of 45 hours.",
+            "Electricity: 220/230 volts, with British three-pin plugs and plugs with two round pins.",
+            "Telephone: country code +230. Mobile numbers have 8 digits and begin with 5. Fixed lines have 7 digits.",
+            "Tap water: treated by the Central Water Authority and tested against the national Drinking Water Standards.",
+            "Emergencies: 999 or 112 for the police, 114 for an ambulance, 115 or 995 for the fire services."
+          ],
+          "sources": [
+            "S1",
+            "S4",
+            "S5",
+            "S9"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are normal working hours in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Workers' Rights Act sets the normal working week at 45 hours, not counting meal and tea breaks. On a five-day week that is 9 hours a day. On a six-day week it is 8 hours on five days and 5 hours on the sixth. The working week may begin on any day. No worker may be required to work more than 12 hours in a day, except in special circumstances. The rule does not apply to part-time workers.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Breaks: unless otherwise agreed, a meal break of one hour after no more than 4 hours of work in a row, and one tea break of at least 20 minutes or two of at least 10 minutes. Breaks are unpaid.",
+            "Overtime on a week day is paid at no less than one and a half times the normal rate.",
+            "An employer gives at least 24 hours' notice of extra work, as far as practicable. A worker who does not wish to do it says so 24 hours ahead.",
+            "A worker may choose paid time off instead of the extra pay."
+          ],
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the rule on public holidays?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Public Holidays Act lists the days kept as public holidays, and the Prime Minister's Office publishes the dates for each year. Under the Workers' Rights Act every worker is entitled to a normal day's pay for a public holiday, other than a Sunday, that falls on one of his or her normal working days. A worker who is required to work that day is paid on top of it: at no less than twice the normal rate during normal hours, and three times the rate after them. An agreement to give up a paid public holiday is void.",
+          "sources": [
+            "S1",
+            "S2",
+            "S3"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Public holiday in 2027",
+            "Date"
+          ],
+          "rows": [
+            [
+              "New Year",
+              "Friday 1 and Saturday 2 January"
+            ],
+            [
+              "Thaipoosam Cavadee",
+              "Friday 22 January"
+            ],
+            [
+              "Abolition of Slavery",
+              "Monday 1 February"
+            ],
+            [
+              "Chinese Spring Festival",
+              "Saturday 6 February"
+            ],
+            [
+              "Maha Shivaratree",
+              "Saturday 6 March"
+            ],
+            [
+              "Eid-Ul-Fitr",
+              "Wednesday 10 March, subject to confirmation"
+            ],
+            [
+              "Independence Day and Republic Day",
+              "Friday 12 March"
+            ],
+            [
+              "Ougadi",
+              "Wednesday 7 April"
+            ],
+            [
+              "Labour Day",
+              "Saturday 1 May"
+            ],
+            [
+              "Ganesh Chaturthi",
+              "Sunday 5 September, and Monday 6 September"
+            ],
+            [
+              "Divali",
+              "Friday 29 October"
+            ],
+            [
+              "All Saints Day",
+              "Monday 1 November"
+            ],
+            [
+              "Arrival of Indentured Labourers",
+              "Tuesday 2 November"
+            ],
+            [
+              "Christmas",
+              "Saturday 25 December"
+            ]
+          ],
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The date of Eid-Ul-Fitr depends on the visibility of the moon. Ganesh Chaturthi falls on a Sunday in 2027, and the notice makes Monday 6 September 2027 a public holiday as well, under the Public Holidays Act as amended in 2026.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When are offices open?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hours differ from one office to another, so check the page of the one you need. Three examples from official pages: the Traffic Management and Road Safety Unit is open from 8.45 am to 4.00 pm, Monday to Friday. The information desk of the police Traffic Branch is open from 7.00 am to 4.00 pm on weekdays and until noon on Saturdays. The office of the Mauritius Shipping Corporation is open on weekdays from 8.45 am to 4.30 pm, with a break from noon to 12.30 pm, and is closed on Sundays and public holidays.",
+          "sources": [
+            "S16",
+            "S17",
+            "S18"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What voltage and plugs does Mauritius use?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Mauritius Tourism Promotion Authority gives the supply as 220/230 volts. Two kinds of plug are in use: the British plug with three square pins and the plug with two round pins.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Central Electricity Board (CEB) answers its fault line, 130, day and night. Check your fuses or circuit breakers before you call. The CEB aims to repair an outage within 24 hours, depending on the fault, and to connect a new supply within 10 working days once the deposit and connection fees are paid. A new tariff schedule applies from 1 May 2026.",
+          "sources": [
+            "S6",
+            "S7",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Can you drink the tap water in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Central Water Authority (CWA) says its treated water is tested regularly against the national Drinking Water Standards, and that continuous laboratory monitoring keeps it safe to drink. It takes samples at about 160 points across the island, from treatment plants and reservoirs to consumers' taps. Its laboratory is accredited to ISO/IEC 17025:2017, and the Ministry of Health and Wellness enforces the standards. The tourism authority also tells visitors that tap water is drinkable.",
+          "sources": [
+            "S5",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If the water has an unusual colour, taste or smell, call the CWA hotline on 170. In some regions water is distributed at set hours. On 11 October 2026 the CWA announced new hours of distribution for Vacoas, Phoenix, St Pierre, Curepipe, Forest Side and Floréal.",
+          "sources": [
+            "S5",
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How do telephone numbers work, and who are the operators?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The country code is +230. Under the numbering plan of the ICT Authority, fixed lines have 7 digits and begin with 2, 4 or 6. Mobile numbers have 8 digits and begin with 5. They moved from 7 to 8 digits on 1 September 2013, when a 5 was added in front. Mobile numbers beginning with 70, 71 or 72 are set aside for tourists and non-citizen residents. Toll free numbers begin with 800, fixed lines in Rodrigues with 831, 832 or 833, and in Agalega with 814. To call abroad, dial 00.",
+          "sources": [
+            "S4",
+            "S9",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Three operators hold a mobile network licence: Cellplus Mobile Communications Ltd, Emtel Ltd and Mahanagar Telephone (Mauritius) Ltd. Fixed telephony is licensed to Mauritius Telecom Ltd and Emtel Ltd. The ICT Authority publishes the prefixes allotted to each mobile operator. A SIM card is registered when you buy it, with your identity details, proof of address and a photograph taken by the operator. You cannot yet keep your number when you change operator. In October 2026 the Authority was still preparing to license a provider of mobile number portability.",
+          "sources": [
+            "S10",
+            "S11",
+            "S12",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How many people are online in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "At the end of 2025 there were 2,155,400 mobile subscriptions, or 173.6 for every 100 inhabitants, and 2,241,100 internet subscriptions: 1,885,100 mobile and 356,000 fixed. Broadband made up 99.5% of them. Mobile networks cover 99% of the population, and eleven internet service providers were in operation. In 2024, 85.8% of households had internet access, up from 72.6% in 2020, and 83.2% of people aged 12 and over used the internet.",
+          "sources": [
+            "S14",
+            "S15"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which numbers do you call in an emergency?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Call 999 or 112 for the police, 114 for the SAMU ambulance and 115 or 995 for the fire services. The numbering plan keeps 999 and 995 in use alongside 112 and 115. Our emergency numbers page lists the others, from the coast guard to the electricity and water hotlines.",
+          "sources": [
+            "S4",
+            "S9"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Workers' Rights Act (Act 20 of 2019, as amended up to Act 13 of 2026)",
+      "url": "https://www.mra.mu/download/WorkersRightsAct2019.pdf",
+      "publisher": "Parliament of Mauritius, consolidated copy published by the Mauritius Revenue Authority",
+      "published": "Consolidated up to Act 13 of 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Republic of Mauritius: Public Holidays 2027 (General Notice No. 1088 of 2026)",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Public Holidays Act (Act 22 of 1968)",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/P/Pu/PUBLIC%20HOLIDAYS%20ACT%2c%20No.%2022%20of%201968.pdf",
+      "publisher": "Attorney General's Office, Revised Laws of Mauritius",
+      "published": "Listed among Acts as at 30 June 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Useful tips",
+      "url": "https://mauritiusnow.com/useful-tips/",
+      "publisher": "Mauritius Tourism Promotion Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Water Quality",
+      "url": "https://cwa.govmu.org/cwa/?page_id=813",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Frequently Asked Questions",
+      "url": "https://ceb.mu/customer-corner/frequently-asked-questions",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Expected Service Delivery",
+      "url": "https://ceb.mu/customer-corner/expected-service-delivery",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Electricity Tariffs and Applicable Rates",
+      "url": "https://ceb.mu/customer-corner/electricity-tariffs-and-applicable-rates",
+      "publisher": "Central Electricity Board",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Numbering Plan for the Republic of Mauritius",
+      "url": "https://www.icta.mu/documents/2025/05/numbering_plan.pdf",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "13 May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "List of Prefixes for Mobile Numbers",
+      "url": "https://www.icta.mu/mobile-prefixes/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Commercial Licensees",
+      "url": "https://www.icta.mu/licences-issued/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "FAQ",
+      "url": "https://www.icta.mu/faq/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Mobile Number Portability",
+      "url": "https://www.icta.mu/mobile-number-portability/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Economic and Social Indicators, Issue No 1939: Information and Communication Technologies (ICT) Statistics, 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1939/ICT_Yr25_100726.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "10 July 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Observatory: Internet",
+      "url": "https://www.icta.mu/observatory-internet/",
+      "publisher": "Information and Communication Technologies Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Traffic Management and Road Safety Unit",
+      "url": "https://landtransport.govmu.org/Pages/Departments/Traffic-Management-and-Road-Safety-Unit-.aspx",
+      "publisher": "Ministry of Land Transport",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "Traffic Branch",
+      "url": "https://police.govmu.org/police/?page_id=4928",
+      "publisher": "Mauritius Police Force",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Mauritius Shipping Corporation Ltd, home page",
+      "url": "https://www.mauritiusshipping.net/",
+      "publisher": "Mauritius Shipping Corporation Ltd",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Central Water Authority, home page",
+      "url": "https://cwa.govmu.org/",
+      "publisher": "Central Water Authority",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Public Holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "what": "The official notice of next year's public holidays."
+    },
+    {
+      "title": "Workers' Rights Act",
+      "url": "https://www.mra.mu/download/WorkersRightsAct2019.pdf",
+      "publisher": "Mauritius Revenue Authority",
+      "what": "Read sections 20, 24, 30 and 56 on hours, overtime, public holidays and breaks."
+    },
+    {
+      "title": "Numbering Plan for the Republic of Mauritius",
+      "url": "https://www.icta.mu/documents/2025/05/numbering_plan.pdf",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "See how fixed, mobile, toll free and short numbers are laid out."
+    },
+    {
+      "title": "Consumer complaints",
+      "url": "https://www.icta.mu/consumer-complaint/",
+      "publisher": "Information and Communication Technologies Authority",
+      "what": "Take a complaint about a telephone or internet service further, once you have tried the operator."
+    },
+    {
+      "title": "Power outage information",
+      "url": "https://ceb.mu/customer-corner/power-outage-information",
+      "publisher": "Central Electricity Board",
+      "what": "Check planned and current power cuts."
+    },
+    {
+      "title": "Water Quality",
+      "url": "https://cwa.govmu.org/cwa/?page_id=813",
+      "publisher": "Central Water Authority",
+      "what": "Read how drinking water is tested and how to ask for a test."
+    },
+    {
+      "title": "ICT statistics",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/ICT/SB_ICT.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Look up subscriptions, coverage and use of the internet year by year."
+    },
+    {
+      "title": "Emergency numbers",
+      "url": "/emergency",
+      "publisher": "biznes.mu",
+      "what": "Our page of the numbers to call, each with its source."
+    },
+    {
+      "title": "Household bills and services",
+      "url": "/learn/household-bills-and-services",
+      "publisher": "biznes.mu",
+      "what": "Our guide to electricity, water, telephone and internet at home."
+    },
+    {
+      "title": "Everyday paperwork in Mauritius",
+      "url": "/learn/everyday-paperwork-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the documents and offices of daily life."
+    },
+    {
+      "title": "Employing people",
+      "url": "/learn/employing-people",
+      "publisher": "biznes.mu",
+      "what": "Our guide for employers, with hours, leave and pay in more detail."
+    },
+    {
+      "title": "Weather, seasons and cyclones in Mauritius",
+      "url": "/learn/weather-and-cyclones-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our article on the seasons and on what each warning means."
+    }
+  ],
+  "unverified": [
+    "Bank opening hours and shop opening hours. No official page, and no page of a bank or shop, stating them was read. The Bank of Mauritius website could not be opened on 20 November 2026.",
+    "The voltage and frequency as declared by the Central Electricity Board. The CEB pages read do not state them, so the figure of 220/230 volts is the tourism authority's. The frequency in hertz and the plug types by letter were not found on an official page, nor was a standard of the Mauritius Standards Bureau.",
+    "The claim that tap water has met World Health Organization standards since 2012. The tourism authority says so. The Central Water Authority's own page cites the national Drinking Water Standards and does not mention the WHO.",
+    "The rule that makes Monday 6 September 2027 a public holiday. The notice cites section 3(3) of the Public Holidays Act as amended in 2026. The copy of the Act read predates that amendment.",
+    "Whether Mauritius ever changes its clocks. The pages read give UTC+4 and nothing more.",
+    "How a visitor or a non-citizen registers a SIM card. The ICT Authority's answer covers Mauritian citizens.",
+    "The brand names under which the three mobile operators trade. The ICT Authority lists the licensed companies only.",
+    "When mobile number portability will start. No date was given."
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "slug": "people-and-languages-of-mauritius",
+  "title": "The people and languages of Mauritius",
+  "summary": "Who lives in Mauritius and what they speak: population and density, town and country, the languages of the home from the 2022 census, the place of Kreol, French and English in Parliament, the courts and schools, the religions people report, and the living heritage that UNESCO has listed.",
+  "audience": "Readers who want to understand Mauritian society: students, visitors, newcomers and anyone writing or trading here.",
+  "checked": "2026-11-20",
+  "shelf": "mauritius",
+  "facts": [
+    {
+      "label": "Population",
+      "value": "1,240,316 (estimate, 1 July 2026)",
+      "detail": "612,887 males and 627,429 females. Provisional.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Population density",
+      "value": "618 people per km² (mid-2026)",
+      "detail": "640 on the island of Mauritius and 409 on Rodrigues.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Median age",
+      "value": "38 years (2022 census)",
+      "detail": "Up from 34 years in 2011. Provisional census results.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Living in the towns",
+      "value": "39% of residents (2022 census)",
+      "detail": "481,069 people in the five municipal areas. The other 61% live in villages.",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "label": "Creole spoken at home",
+      "value": "89.9% of residents (2022 census)",
+      "detail": "1,108,659 people, alone or with another language. 968,952 people, or 78.6%, spoke only Creole.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Bhojpuri spoken at home",
+      "value": "8.6% of residents (2022 census)",
+      "detail": "106,583 people, of whom 29,827 spoke only Bhojpuri.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "French spoken at home",
+      "value": "2.4% alone, 3.0% with Creole (2022 census)",
+      "detail": "29,840 people spoke only French and 36,762 spoke Creole and French.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "English spoken at home",
+      "value": "0.6% of residents (2022 census)",
+      "detail": "7,029 people spoke only English. It is the official language of the National Assembly and of the Supreme Court.",
+      "sources": [
+        "S4",
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "label": "Largest religious groups",
+      "value": "Hindu 47.9%, Christian 32.3%, Muslim 18.2% (2022 census)",
+      "detail": "Our addition of the groups published by the census. Roman Catholics alone are 24.9%.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Living heritage listed by UNESCO",
+      "value": "4 elements",
+      "detail": "Traditional Mauritian Sega (2014), Geet-Gawai (2016), Sega tambour of Rodrigues Island (2017) and Sega tambour Chagos (2019).",
+      "sources": [
+        "S7"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How many people live in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Statistics Mauritius estimated the population of the Republic at 1,240,316 on 1 July 2026, with 97.7 males for every 100 females. That is 618 people for each square kilometre. The number is falling slowly: it was 3,425 lower than a year before, a drop of 0.28%. For the whole of 2026 the office expects about 12,520 births and 12,900 deaths.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The population is also ageing. Between the 2011 and 2022 censuses the median age rose from 34 to 38 years. The share of children under 15 fell from 20.7% to 15.4%, and the share of people aged 60 and over rose from 12.7% to 18.7%. The average household shrank from 3.5 to 3.3 people.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where do people live?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "At the 2022 census 96.4% of residents lived on the island of Mauritius and nearly all the rest on Rodrigues. Across the Republic 39 residents in 100 lived in Port Louis or one of the four towns, and the rest in villages. Plaines Wilhems is the most populated district, with 340,780 residents. Our article on the districts and towns gives the figure for each.",
+          "sources": [
+            "S2",
+            "S3",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where did Mauritians come from?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The island was long unknown and uninhabited. Its people descend from those who came, or were brought, over three centuries: French settlers, slaves from Madagascar and Africa, indentured labourers from India of both Hindu and Muslim faith, and Chinese traders. The Government's own account describes a multiracial society of people of European, African, Indian and Chinese origins. The Aapravasi Ghat Trust Fund says the ancestors of more than 70% of today's population arrived through the immigration depot in Port Louis.",
+          "sources": [
+            "S8",
+            "S9"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The census no longer asks people which community they belong to. It last did so in 1972. The 2022 census asked about religion and language instead.",
+          "sources": [
+            "S3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What languages do Mauritians speak at home?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Creole. The 2022 census asked for the language each resident usually speaks at home. 968,952 people, 78.6% of residents, answered Creole alone. Another 139,707 answered Creole together with a second language. In all, nine residents in ten use Creole at home.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Language usually spoken at home",
+            "People",
+            "Share of residents"
+          ],
+          "rows": [
+            [
+              "Creole only",
+              "968,952",
+              "78.6%"
+            ],
+            [
+              "Bhojpuri and Creole",
+              "63,101",
+              "5.1%"
+            ],
+            [
+              "Creole and French",
+              "36,762",
+              "3.0%"
+            ],
+            [
+              "Creole and another language, other than Bhojpuri or French",
+              "39,844",
+              "3.2%"
+            ],
+            [
+              "French only",
+              "29,840",
+              "2.4%"
+            ],
+            [
+              "Bhojpuri only",
+              "29,827",
+              "2.4%"
+            ],
+            [
+              "Hindi only",
+              "16,684",
+              "1.4%"
+            ],
+            [
+              "Bangla",
+              "14,483",
+              "1.2%"
+            ],
+            [
+              "English only",
+              "7,029",
+              "0.6%"
+            ],
+            [
+              "All other answers",
+              "26,575",
+              "2.2%"
+            ],
+            [
+              "All residents",
+              "1,233,097",
+              "100%"
+            ]
+          ],
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Bhojpuri is the second language of the home, more often spoken alongside another language than alone. French is the only home language of 2.4% of residents and is shared with Creole by another 3.0%. English, the language of Parliament and the courts, is the only home language of 0.6%. On Rodrigues 99.6% of residents are in the census's Creole group.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Earlier figures differ. The provisional results of November 2022 gave 90.0% for Creole, 5.1% for Bhojpuri and 4.4% for French. This article uses the final tables, which cover 1,233,097 residents and leave out the 330 people of Agalega.",
+          "sources": [
+            "S2",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the place of Kreol, French and English?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Constitution does not name a national language. Its one rule on an official language is for Parliament: English is the official language of the National Assembly, and any member may address the chair in French. A candidate for the Assembly must be able to speak and read English well enough to take an active part in its proceedings. On 1 September 2026 the Assembly announced a Select Committee to consider the introduction of Kreol Morisien in its proceedings.",
+          "sources": [
+            "S5",
+            "S10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In the Supreme Court the official language is English. A person without enough English may give evidence in the language he or she knows best. In the Intermediate Court and the District Courts the language is English, and anyone may address the court in French. French was the ordinary language of the courts until 15 July 1847, and where an Act uses a French term it is still read as the French term is understood.",
+          "sources": [
+            "S6",
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Kreol Morisien entered the classroom in January 2012, as an optional subject in Grade 1 of all primary schools. Its first primary school assessment was held in October 2017 and it reached secondary schools in 2018. In May 2023 the Minister of Education presented a Bill for a National School Certificate in Kreol Morisien, awarded by the University of Mauritius. A standard spelling, Lortograf Kreol Morisien, was published by the Akademi Kreol Morisien in April 2011.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In a reply to Parliament in July 2009 the Minister of Education said that English is the medium of instruction across the school system. He added that, under the Education Regulations 1957, Kreol or another language of the environment may be used in the lower classes of primary school, up to Standard III.",
+          "sources": [
+            "S15"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Other languages have a home of their own. The Ministry of Arts and Culture lists twelve Speaking Unions: Arabic, Bhojpuri, Chinese, Creole, English, French, Hindi, Marathi, Sanskrit, Tamil, Telugu and Urdu.",
+          "sources": [
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What religions do Mauritians follow?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The census records religion in each person's own words and then groups the answers. In 2022 the largest single group was Hindu, followed by Roman Catholic and Islam.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Religious group, as the census groups it",
+            "People",
+            "Share of residents"
+          ],
+          "rows": [
+            [
+              "Hindu and other Hindu",
+              "474,623",
+              "38.5%"
+            ],
+            [
+              "Roman Catholic",
+              "307,515",
+              "24.9%"
+            ],
+            [
+              "Islam, Muslim and other Muslim",
+              "224,885",
+              "18.2%"
+            ],
+            [
+              "Other Christian",
+              "76,883",
+              "6.2%"
+            ],
+            [
+              "Tamil and Tamil Hindu",
+              "63,950",
+              "5.2%"
+            ],
+            [
+              "Telugu and Telugu Hindu",
+              "25,216",
+              "2.0%"
+            ],
+            [
+              "Marathi and Marathi Hindu",
+              "19,052",
+              "1.5%"
+            ],
+            [
+              "Assemblée de Dieu and Mission Salut et Guérison",
+              "11,357",
+              "0.9%"
+            ],
+            [
+              "No religion",
+              "7,753",
+              "0.6%"
+            ],
+            [
+              "Vedic, Hindu Vedic and Aryan",
+              "7,422",
+              "0.6%"
+            ],
+            [
+              "Other and not stated",
+              "6,931",
+              "0.6%"
+            ],
+            [
+              "Buddhist and Chinese",
+              "5,053",
+              "0.4%"
+            ],
+            [
+              "Church of England and Protestant",
+              "2,457",
+              "0.2%"
+            ],
+            [
+              "All residents",
+              "1,233,097",
+              "100%"
+            ]
+          ],
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Adding the five Hindu groups gives 590,263 people, 47.9% of residents. The four Christian groups come to 398,212, or 32.3%. The addition is ours: the census publishes the groups separately. Religion also follows geography. On Rodrigues 38,220 of the 43,604 residents, 87.7%, are Roman Catholic.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The calendar of public holidays reflects the mix. It includes Thaipoosam Cavadee, Maha Shivaratree, Ougadi, Ganesh Chaturthi and Divali, Eid-Ul-Fitr, the Chinese Spring Festival and Christmas, with the Assumption of the Blessed Virgin Mary and All Saints Day taken in alternate years.",
+          "sources": [
+            "S17"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What living heritage has UNESCO listed?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Four Mauritian traditions are on UNESCO's lists of intangible cultural heritage. Three are on the Representative List and one is on the list of heritage in need of urgent safeguarding.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Traditional Mauritian Sega, listed in 2014. UNESCO calls sega tipik a performing art emblematic of the Creole community, performed at family events and in public spaces. Soloists improvise words in Creole while a frame drum, a box rattle and a triangle keep time.",
+            "Bhojpuri folk songs in Mauritius, Geet-Gawai, listed in 2016. A pre-wedding ceremony of rituals, prayer, songs, music and dance, performed mainly by Bhojpuri-speaking communities of Indian descent at the home of the bride or groom.",
+            "Sega tambour of Rodrigues Island, listed in 2017. A rhythmic performance of music, song and dance with its origins in slave communities, led by a drum called the tambour.",
+            "Sega tambour Chagos, listed in 2019 as in need of urgent safeguarding. A sega with its origins in the Chagos Archipelago, sung in Chagossian Creole. UNESCO names the passing away of elders as one major threat to it."
+          ],
+          "sources": [
+            "S18",
+            "S19",
+            "S20",
+            "S21"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Population and Vital Statistics, Republic of Mauritius, January to June 2026 (Economic and Social Indicators, Issue No 1949)",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1949/Pop_Vital_Midyr26_280826.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "2022 Population Census: Main Results (Economic and Social Indicators, Issue No 1687)",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2022/EI1687/2022%20Population%20Census_Main%20Results_18112022.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "18 November 2022, provisional figures",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Digest of Demographic Statistics 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/Digests/Demography/Digest_Demo_Yr25_21102026.xlsx",
+      "publisher": "Statistics Mauritius",
+      "published": "October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "2022 Housing and Population Census, Volume II: Demographic and Fertility Characteristics",
+      "url": "https://statsmauritius.govmu.org/Documents/Census_and_Surveys/Census2022/HPC_TR_Vol2_Demography_Yr22%20_120126.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "May 2024, figures amended on 2 December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "The Constitution of the Republic of Mauritius",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2024/11/The-Constitution-Long-Upload-on-website-modify-on-28.01.22-06.04.22-.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "Edition dated May 2018",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Courts Act (Cap 168, Act 41 of 1945), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/C/Co/COURTS%20ACT%2c%20Cap%20168%2c%20%28Act%2041%20of%201945%29.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Mauritius: elements on the Lists of Intangible Cultural Heritage",
+      "url": "https://ich.unesco.org/en/state/mauritius-MU?info=elements-on-the-lists",
+      "publisher": "UNESCO, Intangible Cultural Heritage",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Explore Mauritius: history, culture, geography, people and places of interest",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Aapravasi Ghat World Heritage Site: Brief history",
+      "url": "https://aapravasi.govmu.org/aapravasi/wp-content/uploads/2020/09/Brief-History-of-the-Aapravasi-Ghat-World-Heritage-Site.pdf",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Communiqué: Select Committee on the Introduction of Kreol Morisien in the Proceedings of the National Assembly",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2026/09/Communique-for-KM-Select-Committee.pdf",
+      "publisher": "National Assembly of Mauritius",
+      "published": "1 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "History",
+      "url": "https://supremecourt.govmu.org/history",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Interpretation and General Clauses Act (Act 33 of 1974), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/I/In/Interpretation%20and%20General%20Clauses%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Minister's Statements and Speeches, Year 2023, Public Bills: The Education (Amendment) Bill (No. VI of 2023), 16 May 2023",
+      "url": "https://education.govmu.org/Documents/2023/PQs/Minister's%20Statements%20and%20Speeches%2016.05.2023.pdf",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "16 May 2023",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Lortograf Kreol Morisien",
+      "url": "https://education.govmu.org/Documents/educationsector/Documents/Lortograf%20Kreol%20Morisien.pdf",
+      "publisher": "Akademi Kreol Morisien, Ministry of Education and Human Resources",
+      "published": "April 2011",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "Primary Curriculum: parliamentary questions and answers",
+      "url": "https://education.govmu.org/Pages/About%20Us/PQs%20Statement%20Inner%20Pages/Primary-Curriculum.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Parastatal Bodies",
+      "url": "https://culture.govmu.org/mach/?page_id=1497",
+      "publisher": "Ministry of Arts and Culture",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S17",
+      "title": "The Public Holidays (Amendment) Act 2015 (Act No. 28 of 2015)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/03/act2815.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Gazetted on 21 November 2015",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S18",
+      "title": "Traditional Mauritian Sega",
+      "url": "https://ich.unesco.org/en/RL/traditional-mauritian-sega-01003",
+      "publisher": "UNESCO, Intangible Cultural Heritage",
+      "published": "Inscribed in 2014",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S19",
+      "title": "Bhojpuri folk songs in Mauritius, Geet-Gawai",
+      "url": "https://ich.unesco.org/en/RL/bhojpuri-folk-songs-in-mauritius-geet-gawai-01178",
+      "publisher": "UNESCO, Intangible Cultural Heritage",
+      "published": "Inscribed in 2016",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S20",
+      "title": "Sega tambour of Rodrigues Island",
+      "url": "https://ich.unesco.org/en/RL/sega-tambour-of-rodrigues-island-01257",
+      "publisher": "UNESCO, Intangible Cultural Heritage",
+      "published": "Inscribed in 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S21",
+      "title": "Sega tambour Chagos",
+      "url": "https://ich.unesco.org/en/USL/sega-tambour-chagos-01490",
+      "publisher": "UNESCO, Intangible Cultural Heritage",
+      "published": "Inscribed in 2019",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Things to do in Mauritius",
+      "url": "/learn/things-to-do-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to places to see, including the museums and heritage sites."
+    },
+    {
+      "title": "Settling in: bank, driving, health, school",
+      "url": "/learn/settling-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the first weeks for people who come to live here."
+    },
+    {
+      "title": "Statistics Mauritius: population",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Population/SB_Population.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Get the latest population estimates, births and deaths."
+    },
+    {
+      "title": "2022 Housing and Population Census",
+      "url": "https://statsmauritius.govmu.org/Pages/Censuses%20and%20Surveys/Census/Census_2022.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Open Volume II for the tables on religion and language, down to each ward and village."
+    },
+    {
+      "title": "UNESCO: living heritage of Mauritius",
+      "url": "https://ich.unesco.org/en/state/mauritius-MU?info=elements-on-the-lists",
+      "publisher": "UNESCO",
+      "what": "See the four listed traditions, with films and photographs."
+    },
+    {
+      "title": "Lortograf Kreol Morisien",
+      "url": "https://education.govmu.org/Documents/educationsector/Documents/Lortograf%20Kreol%20Morisien.pdf",
+      "publisher": "Akademi Kreol Morisien",
+      "what": "Read the standard spelling of Kreol Morisien."
+    },
+    {
+      "title": "The Constitution",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/index.php/the-constitution/",
+      "publisher": "National Assembly of Mauritius",
+      "what": "Read section 49 on the language of the Assembly."
+    },
+    {
+      "title": "Ministry of Arts and Culture",
+      "url": "https://culture.govmu.org/mach/",
+      "publisher": "Ministry of Arts and Culture",
+      "what": "Find the Speaking Unions, cultural centres and heritage bodies."
+    },
+    {
+      "title": "Primary education",
+      "url": "https://education.govmu.org/Pages/Education%20Sectors/Primary/Primary-Education.aspx",
+      "publisher": "Ministry of Education and Human Resource",
+      "what": "See the subjects taught in primary school, including the optional languages."
+    }
+  ],
+  "unverified": [
+    "Why the provisional and final census figures on language differ. The provisional bulletin describes its 90.0% as people who speak only Creole, while the final tables show 78.6% for Creole alone and 89.9% once Creole spoken with another language is added. Statistics Mauritius gives no note on the change.",
+    "An official total for Hindus or for Christians at the 2022 census. Statistics Mauritius publishes the groups separately. The totals in this article are our addition and treat the Tamil, Telugu and Marathi groups as the census lists them, beside the other Hindu groups.",
+    "The present rule on the language of teaching in schools. The statement that English is the medium of instruction comes from a ministerial reply of July 2009. No more recent official statement was found.",
+    "Whether the Creole-Speaking Union Act is in force. The revised edition of the Act on the Attorney General's site is marked as not in operation, while the Ministry of Arts and Culture lists a Creole Speaking Union among its bodies.",
+    "The outcome of the Select Committee on Kreol Morisien in the National Assembly. Written submissions closed on 22 September 2026 and no report was found.",
+    "The number of people who can speak English or French as a second language. The census tables read cover the language of the home and of forefathers, not every language a person knows.",
+    "The exact wording of UNESCO's descriptions of the four traditions. Its pages could only be read through a summarising reader, so the descriptions here are paraphrases, and the names, lists and years are as that reader returned them."
+  ]
+}

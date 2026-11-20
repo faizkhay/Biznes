@@ -27,7 +27,7 @@ export default function EmergencyPage() {
     [...sources]
       .sort((a, b) => a - b)
       .map((n) => (
-        <a key={n} href={`#source-${n}`} className="cite" aria-label={`Source ${n}`}>
+        <a key={n} href={`#source-${n}`} className="cite cite-lg" aria-label={`Source ${n}`}>
           {n}
         </a>
       ));

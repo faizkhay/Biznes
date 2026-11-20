@@ -1,0 +1,636 @@
+{
+  "slug": "districts-and-towns-of-mauritius",
+  "title": "The districts, towns and villages of Mauritius",
+  "summary": "How the island of Mauritius is divided: the nine districts, the city of Port Louis and the four towns, the 130 villages and the councils that run them, with the population of each district from Statistics Mauritius. Rodrigues and Agalega are arranged differently and are covered too.",
+  "audience": "People finding their way around the island, moving to a new area, or working out which council serves an address.",
+  "checked": "2026-11-20",
+  "shelf": "mauritius",
+  "facts": [
+    {
+      "label": "Districts",
+      "value": "9 on the island of Mauritius",
+      "detail": "Port Louis, Pamplemousses, Rivière du Rempart, Flacq, Grand Port, Savanne, Plaines Wilhems, Moka and Black River. Rodrigues is counted as a separate island.",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Most populated district",
+      "value": "Plaines Wilhems: 340,780 residents (2022 census)",
+      "detail": "28.6% of the island's residents, on 196.2 km².",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "label": "Least populated district",
+      "value": "Savanne: 67,779 residents (2022 census)",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Smallest and most crowded district",
+      "value": "Port Louis: 40.4 km²",
+      "detail": "An estimated 2,663 people per km² at the end of 2025.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "City and towns",
+      "value": "1 city and 4 towns",
+      "detail": "The city is Port Louis. The towns are Beau Bassin-Rose Hill, Quatre Bornes, Vacoas-Phoenix and Curepipe.",
+      "sources": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "label": "Largest municipal area",
+      "value": "Port Louis: 140,403 residents (2022 census)",
+      "detail": "Vacoas-Phoenix is second with 107,433.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Villages",
+      "value": "130",
+      "detail": "Each elects a Village Council of 9 councillors.",
+      "sources": [
+        "S5",
+        "S4"
+      ]
+    },
+    {
+      "label": "District Councils",
+      "value": "7",
+      "detail": "Black River, Flacq, Grand Port, Moka, Pamplemousses, Rivière du Rempart and Savanne.",
+      "sources": [
+        "S6",
+        "S4"
+      ]
+    },
+    {
+      "label": "Town and country",
+      "value": "39% urban, 61% rural (2022 census)",
+      "detail": "481,069 residents lived in the five municipal areas and 752,028 in the villages and on Rodrigues.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Rodrigues",
+      "value": "43,604 residents (2022 census) on 110.1 km²",
+      "detail": "Run by the Rodrigues Regional Assembly and divided into 6 local regions.",
+      "sources": [
+        "S1",
+        "S7"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How is Mauritius divided?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The island of Mauritius is divided into nine districts. Statistics Mauritius counts people by district, and each district has its own District Court. Local government follows a different map. It rests on one city, four towns and 130 villages, each with an elected council, and on seven District Councils that group the villages.",
+          "sources": [
+            "S1",
+            "S8",
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Rodrigues is not one of the nine districts. Statistics Mauritius lists it as a separate island, and it is run by its own Regional Assembly. Agalega has Village Committees instead of councils.",
+          "sources": [
+            "S1",
+            "S7",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the nine districts, and how many people live in each?",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "District",
+            "Area (km²)",
+            "Residents, 2022 census",
+            "Estimate, 31 December 2025",
+            "People per km², end of 2025"
+          ],
+          "rows": [
+            [
+              "Port Louis",
+              "40.4",
+              "106,332",
+              "107,579",
+              "2,663"
+            ],
+            [
+              "Pamplemousses",
+              "179.6",
+              "140,856",
+              "141,726",
+              "789"
+            ],
+            [
+              "Rivière du Rempart",
+              "154.3",
+              "111,195",
+              "110,635",
+              "717"
+            ],
+            [
+              "Flacq",
+              "298.8",
+              "138,529",
+              "137,890",
+              "461"
+            ],
+            [
+              "Grand Port",
+              "261.3",
+              "110,783",
+              "110,789",
+              "424"
+            ],
+            [
+              "Savanne",
+              "246.2",
+              "67,779",
+              "67,100",
+              "273"
+            ],
+            [
+              "Plaines Wilhems",
+              "196.2",
+              "340,780",
+              "345,792",
+              "1,762"
+            ],
+            [
+              "Moka",
+              "234.4",
+              "85,538",
+              "85,673",
+              "365"
+            ],
+            [
+              "Black River",
+              "257.2",
+              "87,701",
+              "89,545",
+              "348"
+            ],
+            [
+              "Island of Mauritius",
+              "1,868.4",
+              "1,189,493",
+              "1,196,729",
+              "641"
+            ],
+            [
+              "Island of Rodrigues",
+              "110.1",
+              "43,604",
+              "44,797",
+              "407"
+            ]
+          ],
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The census figures are the residents counted on the night of 3 to 4 July 2022. The 2025 figures are estimates. They start from the census, add an allowance for young children it missed, and carry forward births, deaths and moves.",
+          "sources": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Plaines Wilhems, where four of the five municipal areas lie, holds 28.6% of the island's residents. Port Louis is the smallest district and the most densely peopled. Between the 2011 and 2022 censuses Black River grew the most, by 11,097 people, while Plaines Wilhems lost 21,512 and Port Louis 12,099.",
+          "sources": [
+            "S2"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which are the city and the towns?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius has one city, Port Louis, and four towns: Beau Bassin-Rose Hill, Quatre Bornes, Vacoas-Phoenix and Curepipe. The city is run by a Municipal City Council and each town by a Municipal Town Council. Each is divided into wards, and every ward returns four councillors. The last municipal elections were held on 4 May 2025.",
+          "sources": [
+            "S6",
+            "S3",
+            "S9"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "City or town",
+            "Wards",
+            "Councillors",
+            "Residents, 2022 census"
+          ],
+          "rows": [
+            [
+              "City of Port Louis",
+              "8",
+              "32",
+              "140,403"
+            ],
+            [
+              "Town of Beau Bassin-Rose Hill",
+              "6",
+              "24",
+              "92,149"
+            ],
+            [
+              "Town of Quatre Bornes",
+              "5",
+              "20",
+              "71,076"
+            ],
+            [
+              "Town of Vacoas-Phoenix",
+              "6",
+              "24",
+              "107,433"
+            ],
+            [
+              "Town of Curepipe",
+              "5",
+              "20",
+              "70,008"
+            ]
+          ],
+          "sources": [
+            "S3",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Town limits and district limits do not match. The city of Port Louis reaches into Moka and Black River districts, which is why it has more residents than Port Louis district. Quatre Bornes and Beau Bassin-Rose Hill each have a ward that extends into Black River, and one ward of Vacoas-Phoenix extends into Moka.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These five municipal areas are what the census calls urban. In 2022 they held 481,069 people, 39% of the residents of the Republic, on about 12% of its land. Between the 2011 and 2022 censuses Port Louis and Vacoas-Phoenix grew a little, while Beau Bassin-Rose Hill lost 10,949 residents, Curepipe 7,463 and Quatre Bornes 4,537.",
+          "sources": [
+            "S2",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How are the villages and the District Councils arranged?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Outside the municipal areas the island is made up of 130 villages. Each returns nine councillors to its Village Council. The last village council elections were held on 22 November 2020. Under the Act a council lasts six years from its election unless it is dissolved sooner or its life is extended, and writs for a new election are issued within 60 days of the dissolution.",
+          "sources": [
+            "S5",
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Above the villages are seven District Councils. Their members are not chosen by the public directly. Within a week of a village election, the councillors of each village elect one or two of their number, by secret ballot, to sit on the District Council.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "District Council",
+            "Villages it groups"
+          ],
+          "rows": [
+            [
+              "Black River",
+              "13"
+            ],
+            [
+              "Flacq",
+              "23"
+            ],
+            [
+              "Grand Port",
+              "24"
+            ],
+            [
+              "Moka",
+              "16"
+            ],
+            [
+              "Pamplemousses",
+              "18"
+            ],
+            [
+              "Rivière du Rempart",
+              "19"
+            ],
+            [
+              "Savanne",
+              "17"
+            ],
+            [
+              "All seven",
+              "130"
+            ]
+          ],
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "There is no District Council of Port Louis or of Plaines Wilhems. The census classes Port Louis district as wholly urban, and Plaines Wilhems is almost wholly made up of the four towns: only 6,284 of its residents were counted in village areas.",
+          "sources": [
+            "S6",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What do the councils do?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Local authorities provide services and carry out works at local level. The Ministry of Local Government lists street lighting, the building and upkeep of roads, drains and public spaces, bus shelters and traffic centres, refuse collection, markets and fairs, sports and cultural activities, and the upkeep of cemeteries and cremation grounds. The Ministry administers the Local Government Act 2011 and gives the councils general policy guidance.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Act sets out the purpose of a local authority. It includes promoting the social, economic, environmental and cultural well-being of the local community and making sure that services are accessible and equitably distributed. The city council is led by a Lord Mayor, a town council by a Mayor, and a District Council or Village Council by a Chairperson.",
+          "sources": [
+            "S13",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How are Rodrigues and the outer islands run?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rodrigues has no municipal, district or village councils. Its Regional Assembly holds, in Rodrigues, the powers that a Municipal Council has on the island of Mauritius, along with wider responsibilities. For its elections the island is divided into six local regions: La Ferme, Marechal, St Gabriel, Baie aux Huitres, Port Mathurin and Grande Montagne. The census treats the whole of Rodrigues as rural.",
+          "sources": [
+            "S7",
+            "S1",
+            "S14",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In Agalega the Local Government Act provides for Village Committees in three localities, La Fourche, Sainte Rita and Vingt Cinq, set up by the Agaléga Island Council. The islands are administered by the Outer Islands Development Corporation. For general elections Agalega forms part of constituency No. 3, Port Louis Maritime and Port Louis East.",
+          "sources": [
+            "S6",
+            "S15",
+            "S16"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Are districts the same as constituencies?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "No. For National Assembly elections the island of Mauritius is divided into 20 constituencies, and Rodrigues forms the 21st. Their names show that they do not follow district lines: constituency No. 14 is Savanne and Black River, and No. 4 is Port Louis North and Montagne Longue.",
+          "sources": [
+            "S16"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "2022 Housing and Population Census, Volume II: Demographic and Fertility Characteristics",
+      "url": "https://statsmauritius.govmu.org/Documents/Census_and_Surveys/Census2022/HPC_TR_Vol2_Demography_Yr22%20_120126.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "May 2024, figures amended on 2 December 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Digest of Demographic Statistics 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/Digests/Demography/Digest_Demo_Yr25_21102026.xlsx",
+      "publisher": "Statistics Mauritius",
+      "published": "October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "City/Towns",
+      "url": "https://electoral.govmu.org/oec/?page_id=577",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "The Ministry",
+      "url": "https://localgovernment.govmu.org/Pages/TheMinistry.aspx",
+      "publisher": "Ministry of Local Government",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Villages",
+      "url": "https://electoral.govmu.org/oec/?page_id=578",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "The Local Government Act 2011 (Act 36 of 2011), consolidated to 19 September 2017",
+      "url": "https://localgovernment.govmu.org/MyDocument/Legislations/Local%20Govt%20Act/THE%20LOCAL%20GOVERNMENT%20ACT%202011_19.09.2017.pdf",
+      "publisher": "Ministry of Local Government",
+      "published": "Consolidated to 19 September 2017",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Rodrigues Regional Assembly Act (Act 39 of 2001), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/R/Rodrigues%20Regional%20Assembly%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "The District Court",
+      "url": "https://supremecourt.govmu.org/district_court",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Municipal Council: election results",
+      "url": "https://electoral.govmu.org/oec/?page_id=1644",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "2022 Population Census: Main Results (Economic and Social Indicators, Issue No 1687)",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2022/EI1687/2022%20Population%20Census_Main%20Results_18112022.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "18 November 2022, provisional figures",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Village Council: election results",
+      "url": "https://electoral.govmu.org/oec/?page_id=1647",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "The Local Government (Amendment) Act 2021 (Act No. 5 of 2021)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/03/act0521.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Gazetted on 27 May 2021",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "Purpose, Functions and Powers of Local Authorities",
+      "url": "https://localgovernment.govmu.org/Pages/Purpose-%2C-Funtions-%26-Powers-of-Local-Authorities.aspx",
+      "publisher": "Ministry of Local Government",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S14",
+      "title": "Rodrigues Regional Assembly: election results",
+      "url": "https://electoral.govmu.org/oec/?page_id=1646",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S15",
+      "title": "About Agalega",
+      "url": "https://oidc.govmu.org/oidc/?page_id=34",
+      "publisher": "Outer Islands Development Corporation",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S16",
+      "title": "Constituencies",
+      "url": "https://electoral.govmu.org/oec/?page_id=576",
+      "publisher": "Office of the Electoral Commissioner",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Places",
+      "url": "/places",
+      "publisher": "biznes.mu",
+      "what": "Find businesses and services in each town and village."
+    },
+    {
+      "title": "Directory",
+      "url": "/directory",
+      "publisher": "biznes.mu",
+      "what": "Browse listings by category across the island."
+    },
+    {
+      "title": "Statistics Mauritius: population",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Population/SB_Population.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Get the Digest of Demographic Statistics, with estimates for every district, town ward and village."
+    },
+    {
+      "title": "2022 Housing and Population Census",
+      "url": "https://statsmauritius.govmu.org/Pages/Censuses%20and%20Surveys/Census/Census_2022.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Open the census volumes, with tables down to each ward and village council area."
+    },
+    {
+      "title": "City and towns",
+      "url": "https://electoral.govmu.org/oec/?page_id=577",
+      "publisher": "Office of the Electoral Commissioner",
+      "what": "See the wards and councillors of the city and each town."
+    },
+    {
+      "title": "Villages",
+      "url": "https://electoral.govmu.org/oec/?page_id=578",
+      "publisher": "Office of the Electoral Commissioner",
+      "what": "See the names of the 130 villages."
+    },
+    {
+      "title": "Villages by Constituencies",
+      "url": "https://electoral.govmu.org/oec/?page_id=579",
+      "publisher": "Office of the Electoral Commissioner",
+      "what": "Find which constituency a village falls in."
+    },
+    {
+      "title": "Ministry of Local Government",
+      "url": "https://localgovernment.govmu.org/SitePages/Index.aspx",
+      "publisher": "Ministry of Local Government",
+      "what": "Read about the Ministry and the law that governs the councils."
+    },
+    {
+      "title": "The Local Government Act 2011",
+      "url": "https://localgovernment.govmu.org/MyDocument/Legislations/Local%20Govt%20Act/THE%20LOCAL%20GOVERNMENT%20ACT%202011_19.09.2017.pdf",
+      "publisher": "Ministry of Local Government",
+      "what": "Check the Act and its schedules of boundaries, wards and villages. This copy stops at September 2017."
+    },
+    {
+      "title": "Rodrigues Regional Assembly",
+      "url": "https://rra.govmu.org/rra/",
+      "publisher": "Rodrigues Regional Assembly",
+      "what": "Reach the commissions that run services in Rodrigues."
+    }
+  ],
+  "unverified": [
+    "The number of councillors on each District Council today, and whether the list of villages under each District Council has changed. The copy of the Local Government Act that was read is consolidated to September 2017. Its schedules can be amended by regulations, and the regulations of 2025 listed on the Ministry's site were not read.",
+    "The date of the next village council elections, and whether the life of the councils elected on 22 November 2020 has been extended. The Act allows an extension by Proclamation. No Proclamation or writ of election was found.",
+    "Whether any village or ward boundary has changed since the 2022 census. Statistics Mauritius says its census figures follow the boundaries as they were on 3 July 2022.",
+    "A chief town for each district. No official page naming one was found.",
+    "The names of the wards of the city and the towns. The Electoral Commissioner's page gives their number only."
+  ]
+}

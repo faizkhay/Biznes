@@ -1,0 +1,471 @@
+{
+  "slug": "history-of-mauritius",
+  "title": "A short history of Mauritius",
+  "summary": "The story of Mauritius by date, from the first maps that show it to the Republic of today: the Dutch, the French and the British, slavery and its abolition, indentured labour, independence in 1968 and the Republic in 1992. With the two World Heritage sites and the public holidays that mark this history.",
+  "audience": "Students, visitors and anyone who wants the main dates of Mauritian history in one short read.",
+  "checked": "2026-11-20",
+  "shelf": "mauritius",
+  "facts": [
+    {
+      "label": "Named Mauritius",
+      "value": "1598",
+      "detail": "By a Dutch squadron that landed at Grand Port, in honour of Prince Maurice of Nassau.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Dutch period",
+      "value": "1598 to 1710",
+      "detail": "A first settlement in 1638 lasted twenty years.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "French period",
+      "value": "1715 to 1810",
+      "detail": "The island was renamed Isle de France.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "British period",
+      "value": "1810 to 1968",
+      "detail": "Ceded to Great Britain by the Treaty of Paris in 1814.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "First indentured labourers",
+      "value": "2 November 1834",
+      "detail": "36 labourers arrived from India on the Atlas.",
+      "sources": [
+        "S2"
+      ]
+    },
+    {
+      "label": "Abolition of slavery",
+      "value": "1 February 1835",
+      "detail": "The planters received two million pounds sterling in compensation.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "label": "Indentured labourers received",
+      "value": "Almost half a million",
+      "detail": "Between 1834 and 1910, most of them from India.",
+      "sources": [
+        "S3",
+        "S2"
+      ]
+    },
+    {
+      "label": "Independence",
+      "value": "12 March 1968",
+      "detail": "Sir Seewoosagur Ramgoolam became the first Prime Minister.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Republic",
+      "value": "12 March 1992",
+      "detail": "Sir Veerasamy Ringadoo became President.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "World Heritage sites",
+      "value": "2",
+      "detail": "Aapravasi Ghat, inscribed on 16 July 2006, and Le Morne Cultural Landscape, inscribed in 2008.",
+      "sources": [
+        "S2",
+        "S1"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "When was Mauritius first known?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius was long unknown and uninhabited. The Government's account says it was probably visited by Arab sailors in the Middle Ages, and that maps of about 1500 show it under an Arabic name, Dina Arobi. Portuguese sailors called there several times in the early sixteenth century and put it on their maps as Cirne. One of them, Pedro Mascarenhas, gave his name to the Mascarenes, the group formed by Mauritius, Rodrigues and Réunion. The Portuguese did not stay.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What did the Dutch do in Mauritius (1598 to 1710)?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In 1598 a Dutch squadron under Admiral Wybrand Van Warwyck landed at Grand Port and named the island Mauritius, in honour of Prince Maurice of Nassau. A first settlement followed in 1638 and lasted twenty years. Later attempts fared no better, and the Dutch left for good in 1710. They are remembered for bringing sugar cane, domestic animals and deer. Their time also saw the end of the dodo, a flightless bird hunted for meat while introduced pigs, monkeys and rats ate its eggs. The last one was killed in 1681.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What changed under the French (1715 to 1810)?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In September 1715 Guillaume Dufresne D'Arsel landed and claimed the island for France, naming it Isle de France. Settlement began in 1721. The colony took shape under Governor Mahé de Labourdonnais, who arrived in 1735 and made Port Louis a naval base and a shipbuilding centre. The French East India Company ran the island until 1767, and officials appointed by the French Government after that.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The French developed the island with slave labour brought from Madagascar and Africa. By 1797 the population was nearly 60,000, of whom fifty thousand were slaves.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How did Mauritius become British?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "During the Napoleonic wars French corsairs raided British shipping from the island. A British attack was foiled at Grand Port in August 1810. A larger force, sailing from Rodrigues, landed in the north in December and the French capitulated. In the act of capitulation the British undertook to respect the language, customs, laws and traditions of the inhabitants.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "By the Treaty of Paris of 1814 the island, under its old name of Mauritius, was ceded to Great Britain together with Rodrigues and the Seychelles. The Seychelles were detached in 1903. French remained the ordinary language of the courts until 15 July 1847.",
+          "sources": [
+            "S1",
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When was slavery abolished, and what came after?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Slavery was abolished in Mauritius on 1 February 1835. The planters were paid two million pounds sterling for the loss of their slaves. The population then stood at about 100,000.",
+          "sources": [
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "To find labour for the sugar estates the British turned to indenture: free men and women who signed a contract, usually for five years, to work far from home. Mauritius was the test case of what was called the Great Experiment. The first 36 indentured labourers arrived from India on the Atlas on 2 November 1834, three months before slavery ended on the island.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Almost half a million indentured labourers came to Mauritius before the system formally ended in 1910. Most came from India, others from China, the Comoros, Madagascar, Mozambique and South East Asia. About two-thirds stayed for good. Sugar boomed, from 34,000 tons in 1833 to 150,000 tons in 1900, and the census count rose from 181,318 people in 1851 to 310,743 in 1861.",
+          "sources": [
+            "S3",
+            "S2",
+            "S5",
+            "S1",
+            "S6"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How did Mauritius win independence?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Political rights came in steps. A Council of Government set up in 1825 gained ten elected members in 1886, chosen by a restricted electorate. In 1948 the vote was extended to all adults who could pass a simple literacy test, and a Legislative Council with 19 elected members first met on 1 September 1948. A ministerial system followed. On 9 March 1959 a general election was held for the first time on universal adult suffrage.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "After the general election of 1967 the Legislative Assembly passed a resolution asking for independence. Mauritius became independent on 12 March 1968, as a state within the Commonwealth with a parliamentary system. Sir Seewoosagur Ramgoolam was its first Prime Minister.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One matter stayed open. The Chagos Archipelago had been separated from Mauritius in 1965 and remained under British administration. In 2019 the International Court of Justice advised that the decolonisation of Mauritius had not been lawfully completed. On 22 May 2025 the two governments signed an agreement which states that Mauritius is sovereign over the archipelago.",
+          "sources": [
+            "S7",
+            "S8"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What has happened since 1968?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "On 12 March 1992 Mauritius became a Republic, with Sir Veerasamy Ringadoo as President. Rodrigues gained a Regional Assembly of its own under an Act of 2001 that came into force in January 2002. The country joined the United Nations, the African Union, the Southern African Development Community and the Common Market for Eastern and Southern Africa, among others. Its population has grown from 809,200 in 1968 to an estimated 1,240,316 in mid-2026.",
+          "sources": [
+            "S1",
+            "S9",
+            "S10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which World Heritage sites tell this history?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Aapravasi Ghat, on the bay of Trou Fanfaron in Port Louis, is what remains of the immigration depot built in 1849 to receive indentured labourers. UNESCO inscribed it on the World Heritage List on 16 July 2006 under criterion (vi), as the first site chosen by the British Government in 1834 for the Great Experiment in the use of indentured, rather than slave, labour. Less than half of the depot as it stood in 1865 survives. What survives includes the flight of 14 steps that every immigrant climbed. The name means the landing place of immigrants in Hindi.",
+          "sources": [
+            "S3",
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Le Morne Cultural Landscape, at the south-western tip of the island, was inscribed in 2008. The mountain of Le Morne Brabant, protected by isolated, wooded and inaccessible cliffs, sheltered runaway slaves, known as maroons, who formed small settlements in its caves and on its summit. The Government describes it as a symbol of the slaves' suffering, sacrifice and fight for freedom, and a testimony to maroonage, or resistance to slavery. In August 2026 the Ministry of Arts and Culture said that Rs 124 million had been set aside to improve the entrance, the visitor facilities and the road to the open-air museum.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Which public holidays mark this history?",
+      "blocks": [
+        {
+          "type": "table",
+          "columns": [
+            "Date",
+            "Public holiday",
+            "What it recalls"
+          ],
+          "rows": [
+            [
+              "1 February",
+              "Abolition of Slavery",
+              "The end of slavery in Mauritius on 1 February 1835"
+            ],
+            [
+              "12 March",
+              "Independence Day and Republic Day",
+              "Independence in 1968 and the Republic in 1992"
+            ],
+            [
+              "2 November",
+              "Arrival of Indentured Labourers",
+              "The arrival of the Atlas on 2 November 1834. A public holiday since 2001"
+            ]
+          ],
+          "sources": [
+            "S12",
+            "S2",
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "All three are fixed dates in the Public Holidays Act. In 2027 they fall on Monday 1 February, Friday 12 March and Tuesday 2 November.",
+          "sources": [
+            "S12",
+            "S13"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Explore Mauritius: history, culture, geography, people and places of interest",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius (govmu.org)",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Aapravasi Ghat World Heritage Site: Brief history",
+      "url": "https://aapravasi.govmu.org/aapravasi/wp-content/uploads/2020/09/Brief-History-of-the-Aapravasi-Ghat-World-Heritage-Site.pdf",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Outstanding Universal Value: retrospective statement for the Aapravasi Ghat site",
+      "url": "https://aapravasi.govmu.org/aapravasi/?page_id=3497",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "History",
+      "url": "https://supremecourt.govmu.org/history",
+      "publisher": "The Supreme Court of Mauritius",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "Factsheet: Aapravasi Ghat World Heritage Site",
+      "url": "https://aapravasi.govmu.org/aapravasi/wp-content/uploads/2020/09/Factsheet-Aapravasi-Ghat-World-Heritage-Site.pdf",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Digest of Demographic Statistics 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/Digests/Demography/Digest_Demo_Yr25_21102026.xlsx",
+      "publisher": "Statistics Mauritius",
+      "published": "October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Legal Consequences of the Separation of the Chagos Archipelago from Mauritius in 1965: overview of the case",
+      "url": "https://www.icj-cij.org/case/169",
+      "publisher": "International Court of Justice",
+      "published": "",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Agreement between the United Kingdom and the Republic of Mauritius concerning the Chagos Archipelago including Diego Garcia (Mauritius No. 1 (2025), CP 1334)",
+      "url": "https://assets.publishing.service.gov.uk/media/682f25afc054883884bff42a/CS_Mauritius_1.2025_Agreement_Chagos_Diego_Garcia.pdf",
+      "publisher": "Foreign, Commonwealth and Development Office, United Kingdom",
+      "published": "May 2025",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "Rodrigues Regional Assembly Act (Act 39 of 2001), Revised Laws of Mauritius",
+      "url": "https://attorneygeneral.govmu.org/Documents/Laws%20of%20Mauritius/A-Z%20Acts/R/Rodrigues%20Regional%20Assembly%20Act-I9.pdf",
+      "publisher": "Attorney General's Office",
+      "published": "Revised edition",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Population and Vital Statistics, Republic of Mauritius, January to June 2026 (Economic and Social Indicators, Issue No 1949)",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1949/Pop_Vital_Midyr26_280826.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Rs 124 Million Upgrade for Le Morne Cultural Landscape",
+      "url": "https://culture.govmu.org/mach/?p=8061",
+      "publisher": "Ministry of Arts and Culture",
+      "published": "6 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "The Public Holidays (Amendment) Act 2015 (Act No. 28 of 2015)",
+      "url": "https://mauritiusassembly.govmu.org/mauritiusassembly/wp-content/uploads/2023/03/act2815.pdf",
+      "publisher": "Parliament of Mauritius, copy published by the National Assembly",
+      "published": "Gazetted on 21 November 2015",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "General Notice No. 1088 of 2026, Public Holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "published": "31 August 2026",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Things to do in Mauritius",
+      "url": "/learn/things-to-do-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our guide to places to see, including Aapravasi Ghat, Le Morne and the museums."
+    },
+    {
+      "title": "Places",
+      "url": "/places",
+      "publisher": "biznes.mu",
+      "what": "Find what is in Port Louis, Mahebourg, Le Morne and every other town and village."
+    },
+    {
+      "title": "Explore Mauritius: history",
+      "url": "https://govmu.org/EN/Pages/exploremauritius.aspx",
+      "publisher": "Government of Mauritius",
+      "what": "Read the Government's own account of the Dutch, French and British periods and of independence."
+    },
+    {
+      "title": "Aapravasi Ghat World Heritage Property",
+      "url": "https://aapravasi.govmu.org/aapravasi/?page_id=794",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "what": "Read the story of the immigration depot and plan a visit."
+    },
+    {
+      "title": "Aapravasi Ghat: Brief history",
+      "url": "https://aapravasi.govmu.org/aapravasi/wp-content/uploads/2020/09/Brief-History-of-the-Aapravasi-Ghat-World-Heritage-Site.pdf",
+      "publisher": "Aapravasi Ghat Trust Fund",
+      "what": "Read four pages on indenture in Mauritius from 1834 to 1910."
+    },
+    {
+      "title": "National Archives Department",
+      "url": "https://nationalarchives.govmu.org/nationalarchives/",
+      "publisher": "National Archives Department",
+      "what": "Start a search of the country's records."
+    },
+    {
+      "title": "Mauritius Museums Council",
+      "url": "https://mauritiusmuseums.govmu.org/",
+      "publisher": "Mauritius Museums Council",
+      "what": "Find the National History Museum at Mahebourg and the other state museums."
+    },
+    {
+      "title": "National Heritage Fund",
+      "url": "https://nhf.govmu.org/nhf/",
+      "publisher": "National Heritage Fund",
+      "what": "See the list of national heritage sites."
+    },
+    {
+      "title": "History of the courts",
+      "url": "https://supremecourt.govmu.org/history",
+      "publisher": "The Supreme Court of Mauritius",
+      "what": "Read how the courts changed from French to British rule."
+    },
+    {
+      "title": "Public holidays 2027",
+      "url": "https://pmo.govmu.org/Communique/Public_Holidays_2027.pdf",
+      "publisher": "Prime Minister's Office",
+      "what": "See the official list of public holidays for 2027."
+    }
+  ],
+  "unverified": [
+    "The year a European first landed on Mauritius. The Government page gives around 1511 in its history and 1505 in its note on the dodo.",
+    "The exact day in 2008 on which Le Morne Cultural Landscape was inscribed, and the criteria under which it is listed. The Government page gives 10 July 2008. UNESCO's World Heritage pages could not be opened to check either point.",
+    "The total number of indentured labourers. The Aapravasi Ghat Trust Fund gives almost half a million in one place and more than 462,000 in its factsheet, and the Government page gives more than 457,000.",
+    "The number of slaves freed in 1835. The sources read give the compensation paid and the population at the time, not a count of the people freed.",
+    "The exact date on which the Rodrigues Regional Assembly first sat. The Act is shown as in force from 18 January 2002. The first election date was not found on the pages read.",
+    "Whether the agreement of 22 May 2025 on the Chagos Archipelago has entered into force. The copy published by the United Kingdom in May 2025 was marked as not in force.",
+    "The dates on which Mauritius joined the United Nations and the other bodies named. The Government page lists them without dates."
+  ]
+}

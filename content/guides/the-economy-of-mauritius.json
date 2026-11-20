@@ -1,0 +1,595 @@
+{
+  "slug": "the-economy-of-mauritius",
+  "shelf": "mauritius",
+  "title": "The economy of Mauritius in brief",
+  "summary": "The size of the economy and how fast it is growing, the main sectors and their share, tourist arrivals, jobs and unemployment, inflation, trade partners and the minimum wage. The figures are those of Statistics Mauritius, each with its year. Checked on 20 November 2026.",
+  "audience": "Students, journalists, investors and anyone who wants the main figures on the economy of Mauritius in one place.",
+  "checked": "2026-11-20",
+  "facts": [
+    {
+      "label": "Size of the economy (GDP)",
+      "value": "Rs 810.3 billion in 2025",
+      "detail": "Gross domestic product at market prices. Forecast: Rs 873.1 billion in 2026.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Growth",
+      "value": "3.5% in 2025",
+      "detail": "After 4.2% in 2024. Statistics Mauritius forecasts 3.0% for 2026.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "GDP per head",
+      "value": "Rs 651,510 in 2025",
+      "detail": "GDP at current market prices divided by the population. Forecast: Rs 703,970 in 2026.",
+      "sources": [
+        "S1"
+      ]
+    },
+    {
+      "label": "Population",
+      "value": "1,240,316",
+      "detail": "Republic of Mauritius on 1 July 2026, of whom 45,012 in Rodrigues.",
+      "sources": [
+        "S8"
+      ]
+    },
+    {
+      "label": "Unemployment rate",
+      "value": "5.7% in 2025",
+      "detail": "5.5% in the second quarter of 2026. Mauritians aged 16 and over.",
+      "sources": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "label": "Tourist arrivals",
+      "value": "1,436,250 in 2025",
+      "detail": "Up 3.9% on 2024. About 1,470,000 are expected in 2026.",
+      "sources": [
+        "S4",
+        "S1"
+      ]
+    },
+    {
+      "label": "Tourism earnings",
+      "value": "Rs 103.4 billion in 2025",
+      "detail": "Up 10.4% on 2024, as estimated by the Bank of Mauritius.",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "label": "Headline inflation",
+      "value": "3.7% in 2025",
+      "detail": "4.1% for the twelve months ending September 2026. Forecast for 2026: around 5.0%.",
+      "sources": [
+        "S6"
+      ]
+    },
+    {
+      "label": "Trade in goods",
+      "value": "Exports Rs 107.6 billion, imports Rs 315.5 billion",
+      "detail": "Year 2025. The trade deficit was Rs 207.9 billion.",
+      "sources": [
+        "S7"
+      ]
+    },
+    {
+      "label": "National minimum wage",
+      "value": "Rs 17,745 a month",
+      "detail": "For every worker other than a part-time worker, from 1 January 2026. It was Rs 17,110 in 2025.",
+      "sources": [
+        "S9",
+        "S13"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How big is the economy of Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius produced Rs 810.3 billion of goods and services in 2025, measured as gross domestic product (GDP) at market prices. That is Rs 651,510 a head. The economy grew by 3.5% in 2025, after 4.2% in 2024. Statistics Mauritius forecasts growth of 3.0% in 2026, with GDP reaching Rs 873.1 billion. In May 2026 the Bank of Mauritius put growth for 2026 a little lower, at 2.8%.",
+          "sources": [
+            "S1",
+            "S11"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Republic of Mauritius had 1,240,316 people on 1 July 2026: 1,194,974 on the island of Mauritius, 45,012 in Rodrigues and 330 in Agalega and St Brandon. That was 3,425 fewer than a year earlier.",
+          "sources": [
+            "S8"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "These figures belong to a new series. In September 2026 Statistics Mauritius re-based the national accounts on the year 2023, using its 2023 census of economic activities. The level of GDP was revised upwards. For 2025 it went from Rs 743.0 billion to Rs 810.3 billion. Earlier publications are not strictly comparable.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What are the main sectors of the economy?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Services make up about three quarters of the value added in Mauritius. In 2025 wholesale and retail trade was the largest industry group, followed by financial and insurance activities and by manufacturing. Sugarcane accounted for 0.4% and textile manufacturing for 2.2%.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Industry group",
+            "Share of gross value added, 2025"
+          ],
+          "rows": [
+            [
+              "Wholesale and retail trade, repair of motor vehicles",
+              "14.1%"
+            ],
+            [
+              "Financial and insurance activities",
+              "11.7%"
+            ],
+            [
+              "Manufacturing",
+              "11.5%"
+            ],
+            [
+              "Public administration and defence",
+              "7.1%"
+            ],
+            [
+              "Accommodation and food service activities",
+              "6.9%"
+            ],
+            [
+              "Transportation and storage",
+              "6.4%"
+            ],
+            [
+              "Professional, scientific and technical activities",
+              "5.7%"
+            ],
+            [
+              "Agriculture, forestry and fishing",
+              "5.3%"
+            ],
+            [
+              "Construction",
+              "5.2%"
+            ],
+            [
+              "Information and communication",
+              "4.6%"
+            ],
+            [
+              "Human health and social work",
+              "4.6%"
+            ],
+            [
+              "Real estate activities",
+              "4.3%"
+            ],
+            [
+              "Education",
+              "4.2%"
+            ]
+          ],
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Statistics Mauritius also adds up activities that cut across these groups. Counted that way, tourism was 8.1% of gross value added in 2025, global business 7.9%, ICT 6.2%, export oriented enterprises 3.1% and seafood 1.3%.",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For 2026 it expects the largest contributions to growth from financial and insurance activities, wholesale and retail trade, and transportation and storage. Textile manufacturing is expected to shrink by 2.5%. Construction is expected to grow by 0.9% after falling by 2.1% in 2025.",
+          "sources": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How many tourists visit Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In 2025, 1,436,250 tourists arrived, 3.9% more than in 2024. Almost all came by air: 1,411,791. They stayed 11.3 nights on average. Tourism earned Rs 103.4 billion, 10.4% more than in 2024, or Rs 71,959 for each tourist.",
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Country of residence",
+            "Tourist arrivals, 2025",
+            "Change on 2024"
+          ],
+          "rows": [
+            [
+              "France",
+              "337,502",
+              "-0.6%"
+            ],
+            [
+              "United Kingdom",
+              "154,990",
+              "-2.0%"
+            ],
+            [
+              "Reunion Island",
+              "145,029",
+              "+3.1%"
+            ],
+            [
+              "Germany",
+              "122,166",
+              "-1.3%"
+            ],
+            [
+              "South Africa",
+              "110,287",
+              "+3.5%"
+            ],
+            [
+              "India",
+              "75,808",
+              "+33.5%"
+            ],
+            [
+              "Switzerland",
+              "36,014",
+              "+1.9%"
+            ]
+          ],
+          "sources": [
+            "S4"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "At the end of December 2025 there were 111 licensed hotels on the island of Mauritius, 109 of them in operation, with 14,112 rooms. Over the year 74% of their rooms were occupied on average. In the first half of 2026 arrivals rose by a further 1.5%, to 668,471. Statistics Mauritius expects about 1,470,000 arrivals for the whole of 2026.",
+          "sources": [
+            "S4",
+            "S5",
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How many people work, and what is the unemployment rate?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In 2025 the labour force numbered 587,200 Mauritians aged 16 and over: 553,700 in work and 33,500 unemployed. The unemployment rate was 5.7%, down from 6.0% in 2024. It was 4.3% for men, 7.6% for women and 18.4% for people aged 16 to 24. Foreign workers are not counted in these figures.",
+          "sources": [
+            "S2"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In the second quarter of 2026 the unemployment rate stood at 5.5%, with 550,600 Mauritians in work and 32,000 unemployed.",
+          "sources": [
+            "S3"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The national minimum wage is Rs 17,745 a month from 1 January 2026, for every worker other than a part-time worker. It was Rs 17,110 in 2025. When the minimum wage was introduced by the Regulations of 2017 it was Rs 8,140 a month.",
+          "sources": [
+            "S9",
+            "S13"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What is the inflation rate in Mauritius?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Headline inflation compares the average level of prices over twelve months with the average of the twelve months before. It was 3.7% in 2025. It reached 4.1% for the twelve months ending September 2026, and Statistics Mauritius forecasts around 5.0% for 2026. Between June and September 2026 the largest pushes came from gasoline, cigarettes and some food products.",
+          "sources": [
+            "S6"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Bank of Mauritius aims for inflation of 2% to 5%. It held its Key Rate at 4.50% a year in February 2026 and raised it by 25 basis points on 20 May 2026.",
+          "sources": [
+            "S10",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Who does Mauritius trade with?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Mauritius buys far more goods from abroad than it sells. In 2025 total exports were Rs 107.6 billion, of which Rs 32.5 billion were ship's stores and bunkers, and imports were Rs 315.5 billion. The trade deficit was Rs 207.9 billion. For 2026 Statistics Mauritius forecasts exports of around Rs 110 billion, imports of around Rs 325 billion and a deficit of around Rs 215 billion.",
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Exports of goods go to",
+            "2025, Rs million",
+            "Imports come from",
+            "2025, Rs million"
+          ],
+          "rows": [
+            [
+              "South Africa",
+              "9,191",
+              "China",
+              "55,316"
+            ],
+            [
+              "United States",
+              "7,928",
+              "United Arab Emirates",
+              "33,415"
+            ],
+            [
+              "United Kingdom",
+              "7,307",
+              "India",
+              "25,836"
+            ],
+            [
+              "Madagascar",
+              "7,083",
+              "South Africa",
+              "20,597"
+            ],
+            [
+              "France",
+              "6,188",
+              "France",
+              "18,625"
+            ]
+          ],
+          "sources": [
+            "S7"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Europe as a whole bought Rs 32.2 billion of the Rs 75.0 billion of goods exported in 2025, not counting ship's stores. Asia supplied Rs 176.7 billion of the imports. Once services are counted as well, the gap is much smaller. Net exports of goods and services showed a deficit of Rs 37.0 billion in 2025, or 4.6% of GDP. The Bank of Mauritius put the current account deficit at 7.1% of GDP for 2025.",
+          "sources": [
+            "S7",
+            "S1",
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "How much is invested, and how much does the Government spend?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Investment, measured as gross fixed capital formation, was Rs 169.8 billion in 2025, or 21.0% of GDP. The private sector made 82.8% of it. Total Government expenditure is estimated at Rs 291.0 billion for the financial year 2025/2026 and Rs 312.5 billion for 2026/2027.",
+          "sources": [
+            "S1",
+            "S12"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Economic and Social Indicators, Issue No 1960: National Accounts Estimates (2023 to 2026), September 2026 issue",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1960/NAE_Sep26_071026.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "30 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S2",
+      "title": "Economic and Social Indicators: Labour force, Employment and Unemployment, Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1925/LF_Emp_Unemp_Yr25_190526.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "19 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S3",
+      "title": "Labour Force, Employment and Unemployment, 2nd Quarter 2026",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/ESI/Labour/Labour/LF_Emp_Unemp_2Qtr26.aspx",
+      "publisher": "Statistics Mauritius",
+      "published": "30 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S4",
+      "title": "Economic and Social Indicators, Issue No 1910: International Travel and Tourism, Year 2025",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1910/Tourism_Yr%2025_270226.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "27 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S5",
+      "title": "International Travel and Tourism, 1st Semester 2026",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/ESI/Tourism/Tourism_1Sem26.aspx",
+      "publisher": "Statistics Mauritius",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S6",
+      "title": "Economic and Social Indicators, Issue No 1962: Consumer Price Index, 3rd Quarter 2026",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1962/CPI_3Qtr26_141026.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "14 October 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S7",
+      "title": "Economic and Social Indicators: External Merchandise Trade Statistics, 2nd Quarter 2026",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1946/Ext_Trade_2Qtr26_260826.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "26 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S8",
+      "title": "Population and Vital Statistics, January to June 2026",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/ESI/Population/Pop_Vital_Jan-Jun26.aspx",
+      "publisher": "Statistics Mauritius",
+      "published": "28 August 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S9",
+      "title": "The National Minimum Wage (Amendment) Regulations 2026 (Government Notice No. 8 of 2026)",
+      "url": "https://labour.govmu.org/Documents/Legislations/NWCC/The%20National%20Minimum%20Wage_Amd_Regulations%202026%20gazetted%20on%2017.1.2026.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "Gazetted on 17 January 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S10",
+      "title": "Priscilla Muthoora Thakoor: Current economic conditions and outlook (statement after the 77th Monetary Policy Committee meeting)",
+      "url": "https://www.bis.org/review/r260223b.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "11 February 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S11",
+      "title": "Priscilla Muthoora Thakoor: Current economic conditions and outlook (statement after the 78th Monetary Policy Committee meeting)",
+      "url": "https://www.bis.org/review/r260526g.htm",
+      "publisher": "Bank of Mauritius, text published by the Bank for International Settlements",
+      "published": "20 May 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S12",
+      "title": "Economic and Social Indicators: Education Statistics, 2026",
+      "url": "https://statsmauritius.govmu.org/Documents/Statistics/ESI/2026/EI1953/Edu_Yr26_230926.pdf",
+      "publisher": "Statistics Mauritius",
+      "published": "23 September 2026",
+      "accessed": "2026-11-20"
+    },
+    {
+      "id": "S13",
+      "title": "National Minimum Wage Regulations 2017 (Government Notice No. 1 of 2018)",
+      "url": "https://labour.govmu.org/Documents/Legislations/NWCC/National%20Minimum%20Wage%20Regulations%202017.pdf",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "published": "",
+      "accessed": "2026-11-20"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Statistics Mauritius",
+      "url": "https://statsmauritius.govmu.org",
+      "publisher": "Statistics Mauritius",
+      "what": "The source of the official figures, by subject and by date of release."
+    },
+    {
+      "title": "National Accounts",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/National_Accounts/SB_National_Accounts.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Read the latest estimates of GDP, growth and the sectors, yearly and by quarter."
+    },
+    {
+      "title": "Labour statistics",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Labour/SB_Labour.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Follow employment and unemployment each quarter."
+    },
+    {
+      "title": "Tourism statistics",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/Tourism/SB_Tourism.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "See arrivals by country, earnings and hotel occupancy."
+    },
+    {
+      "title": "Consumer Price Index",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/CPI/SB_CPI.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "Follow inflation by quarter and by month."
+    },
+    {
+      "title": "External trade",
+      "url": "https://statsmauritius.govmu.org/Pages/Statistics/By_Subject/External_Trade/SB_External_Trade.aspx",
+      "publisher": "Statistics Mauritius",
+      "what": "See exports and imports by product and by country."
+    },
+    {
+      "title": "National Minimum Wage legislation",
+      "url": "https://labour.govmu.org/Pages/NWC-Legislation.aspx",
+      "publisher": "Ministry of Labour and Industrial Relations",
+      "what": "Read the regulations that set the minimum wage, year by year."
+    },
+    {
+      "title": "Money in Mauritius: the rupee, banks and paying",
+      "url": "/learn/money-and-banking-in-mauritius",
+      "publisher": "biznes.mu",
+      "what": "Our article on the rupee, the Bank of Mauritius and how people pay."
+    },
+    {
+      "title": "Employing people",
+      "url": "/learn/employing-people",
+      "publisher": "biznes.mu",
+      "what": "Our guide for employers: pay, contributions, hours and leave."
+    },
+    {
+      "title": "Invest in or move a business to Mauritius",
+      "url": "/learn/invest-from-abroad",
+      "publisher": "biznes.mu",
+      "what": "Our guide for investors from abroad."
+    },
+    {
+      "title": "Business taxes",
+      "url": "/learn/business-taxes",
+      "publisher": "biznes.mu",
+      "what": "Our guide to the taxes a business pays."
+    },
+    {
+      "title": "Directory",
+      "url": "/directory",
+      "publisher": "biznes.mu",
+      "what": "Find businesses by sector across the island."
+    }
+  ],
+  "unverified": [
+    "GDP in US dollars and any world ranking. Statistics Mauritius publishes in rupees and no conversion was made here.",
+    "Public debt, the budget deficit and the measures of the 2026/2027 Budget. The pages of the Ministry of Finance were not read. Only the totals of Government expenditure quoted by Statistics Mauritius are given.",
+    "The national saving rate. The September 2026 release prints two versions of it for 2024 and 2025, one marked as amended, so it was left out.",
+    "The share of jobs in each sector, and the number of foreign workers. The pages read did not give them.",
+    "The Key Rate after 20 May 2026. See our article on money for what could be confirmed.",
+    "The sector descriptions of the Economic Development Board. Its pages were not read. The sector shares here are those of Statistics Mauritius.",
+    "Tourism earnings for 2026. The first semester page read did not give them."
+  ]
+}
