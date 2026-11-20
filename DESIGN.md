@@ -263,6 +263,8 @@ beneath it, `0 10px 40px -18px`). Both have an offset and a blur; neither is a g
 - **Corners are small**: 2px for a mark, 4px for a control, 8px for a panel. There are no pills.
 - **The lit point**: a filled saffron circle with a fainter halo. It is the dot in the name, the
   point a search lights and the mark on a listing.
+- **The link preview card** (`public/og.jpg`) is the name, the line and the chart at 1200 by 630,
+  captured from the site itself by `npm run og`.
 - **Corner marks** (`.ticked`): two L-shaped ticks at opposite corners of a frame, as a chart's
   neatline carries. On the first screen's chart only.
 - **The hairline**: one pixel, limewash at 13%.
@@ -374,7 +376,6 @@ Don't:
 
 - **No light palette.** An instrument has a day mode, and a phone in the sun would use one. The
   roles are clean enough to add one; it is not built.
-- **No link preview picture** (`og:image`). It should be the chart, captured from the site.
 - **The chart cannot be explored**: a point cannot be hovered or opened, and it does not zoom to a
   town.
 - **French pages** are not built. A question in French or Kreol is understood.

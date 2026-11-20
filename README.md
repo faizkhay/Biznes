@@ -124,6 +124,7 @@ Everything the owner will change is data. No fact is written into a component.
 | The tools' names and descriptions | `src/lib/tools.ts` |
 | A figure a tool uses | The guide it reads it from. A tool holds none |
 | The crawler's rules | `crawler/config.mjs`, `crawler/seeds.mjs` |
+| The link preview picture | `npm run dev`, then `npm run og`: it captures the site's own chart into `public/og.jpg`. Run it after a crawl |
 
 A guide is one JSON file: a title, a summary, the day it was checked, facts, sections of blocks
 (paragraph, list, steps, table, note), its sources, the pages to go to next, and what it could not
@@ -262,8 +263,7 @@ Captures of six kinds of page are kept in `review/screens`. The rest are made ag
   website. The registry counts 126,453 live entities; the index holds 7,179 listings.
 - **No French or Kreol pages.** A question in either is understood.
 - **No accounts**: a business cannot claim and edit its own listing. It asks through the form.
-- **No light palette**, no link preview picture, and the chart cannot be explored (`DESIGN.md`,
-  "Known Gaps").
+- **No light palette**, and the chart cannot be explored (`DESIGN.md`, "Known Gaps").
 - **"Open now" is not offered.** Hours are shown as the map holds them, for 355 listings.
 - **A listing's website is checked only at its front page.**
 - **The search has no memory of what people ask**, so nothing yet says which searches find nothing.

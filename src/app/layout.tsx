@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   // Until the owner has confirmed the guides, no page may be indexed (`launched` in src/data/site.ts).
   robots: site.launched ? { index: true, follow: true } : { index: false, follow: false },
-  openGraph: { type: "website", siteName: site.name, locale: site.locale },
+  openGraph: { type: "website", siteName: site.name, locale: site.locale, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${site.name}: ${site.line}. A chart of Mauritius drawn by its listings.` }] },
   twitter: { card: "summary_large_image" },
 };
 

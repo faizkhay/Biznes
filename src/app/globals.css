@@ -529,6 +529,8 @@
     margin: 0 0.0875rem;
     border-radius: 50%;
     font-size: 0;
+    /* With no height of type its baseline is its top edge, so it is lifted to stand on the line. */
+    transform: translateY(-100%);
     background: var(--color-signal);
     box-shadow: 0 0 0.7rem 0.05rem color-mix(in srgb, var(--palette-saffron) 60%, transparent);
   }

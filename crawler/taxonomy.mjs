@@ -70,9 +70,9 @@ const ROWS = [
 
   // Cars and transport
   ["fuel", "motoring", "Filling stations", "Filling station", ["amenity=fuel"], ["petrol", "essence", "lesans", "diesel", "gas station", "station service", "filling station", "fuel"]],
-  ["car-repair", "motoring", "Garages and tyres", "Garage", ["shop=car_repair", "shop=tyres", "shop=motorcycle_repair", "amenity=car_wash", "craft=car_repair"], ["garage", "mechanic", "mécanicien", "mekanik", "tyre", "tire", "pneu", "servicing", "car wash", "lavage", "panel beater", "tôlerie", "tolerie"]],
+  ["car-repair", "motoring", "Garages and tyres", "Garage", ["shop=car_repair", "shop=tyres", "shop=motorcycle_repair", "amenity=car_wash", "craft=car_repair"], ["garage", "garaz", "mechanic", "mécanicien", "mekanik", "tyre", "tire", "pneu", "servicing", "car wash", "lavage", "panel beater", "tôlerie", "tolerie"]],
   ["car-parts", "motoring", "Car parts", "Car parts shop", ["shop=car_parts"], ["spare parts", "pièces détachées", "pieces", "auto parts", "battery", "batterie"]],
-  ["car-dealers", "motoring", "Car and motorcycle dealers", "Vehicle dealer", ["shop=car", "shop=motorcycle", "shop=caravan", "shop=truck"], ["showroom", "dealer", "concessionnaire", "second hand cars", "voiture", "loto", "motorbike", "moto", "scooter"]],
+  ["car-dealers", "motoring", "Car and motorcycle dealers", "Vehicle dealer", ["shop=car", "shop=motorcycle", "shop=caravan", "shop=truck"], ["showroom", "dealer", "concessionnaire", "second hand cars", "voiture", "motorbike", "moto", "scooter"]],
   ["car-rental", "motoring", "Car hire and taxis", "Car hire or taxi", ["amenity=car_rental", "amenity=taxi", "amenity=boat_rental", "amenity=bicycle_rental", "amenity=motorcycle_rental", "shop=rental"], ["car rental", "rent a car", "location de voiture", "location voiture", "hire", "taxi", "transfer", "airport transfer", "scooter rental"]],
   ["driving-schools", "motoring", "Driving schools", "Driving school", ["amenity=driving_school"], ["auto école", "auto ecole", "driving lessons", "learner", "permis"]],
 

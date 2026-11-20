@@ -191,6 +191,13 @@ export function search(query: string, { kind, page = 1, plain = false }: Options
   let guides = [...bestSection.values()].sort((a, b) => b.score - a.score).map((g) => g.hit);
   let official = of("official", text).map((r) => data.official[Number((r.id as string).slice(2))]);
   let sites = of("site", text).map((r) => data.sites[Number((r.id as string).slice(2))]);
+  // A question that names a town and found listings there is asking who and where. A guide that
+  // happens to hold the same words would only be in the way.
+  if (place && ranked.length) {
+    guides = [];
+    official = [];
+    sites = [];
+  }
 
   // Nothing at all for every word together: show what any of the words finds.
   if (!ranked.length && !guides.length && !official.length && !sites.length && text.includes(" ")) {
