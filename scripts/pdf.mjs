@@ -41,6 +41,31 @@ const contact = { phone: /\bphone: "([^"]+)"/.exec(siteFacts)?.[1] ?? "", email:
 // Mauritius, or the one named on the command line (`npm run pdf -- 2026-12`).
 const edition = args.find((arg) => /^\d{4}-\d{2}$/.test(arg)) ?? new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 7);
 const editionName = new Date(`${edition}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+
+// Sponsors come from two places: the guide's own file, and the places businesses booked through
+// their accounts, once an admin has approved them and marked them paid (the `guide_sponsors` view,
+// read as any visitor reads it). The second is read only when the accounts' address and key are
+// in the environment, and never for a check of a file named on the command line. A sponsor named
+// in both is counted once.
+const accounts = { url: process.env.NEXT_PUBLIC_SUPABASE_URL, key: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY };
+if (accounts.url && accounts.key && !named) {
+  try {
+    const answer = await fetch(`${accounts.url}/rest/v1/guide_sponsors?month=eq.${edition}&select=month,option,name,line,town,phone,website`, { headers: { apikey: accounts.key } });
+    if (!answer.ok) throw new Error(`the accounts answered ${answer.status}`);
+    const placesFile = `${root}data/index/places.json`;
+    const townOf = new Map(existsSync(placesFile) ? JSON.parse(readFileSync(placesFile, "utf8")).map((place) => [place.slug, place.name]) : []);
+    const key = (sponsor) => `${String(sponsor.name).trim().toLowerCase()}|${sponsor.option}`;
+    const written = new Set((product.sponsors ?? []).filter((sponsor) => sponsor.months?.includes(edition)).map(key));
+    const booked = (await answer.json()).filter((row) => !written.has(key(row))).map((row) => ({ name: row.name, option: row.option, months: [edition], ...(row.line ? { line: row.line } : {}), ...(townOf.get(row.town) ? { town: townOf.get(row.town) } : {}), ...(row.phone ? { phone: row.phone } : {}), ...(row.website ? { web: row.website } : {}) }));
+    product.sponsors = [...(product.sponsors ?? []), ...booked];
+    console.log(`Sponsors booked through accounts for ${edition}: ${booked.length}.`);
+  } catch (error) {
+    console.error(`Refused: the sponsors booked through accounts could not be read (${error.message}). An edition is not made without them. Try again, or unset NEXT_PUBLIC_SUPABASE_URL to make it from the file alone.`);
+    process.exit(1);
+  }
+} else if (!named) {
+  console.log("Sponsors are read from content/pdf/product.json alone: the accounts' address and key are not in the environment.");
+}
 const sponsors = (product.sponsors ?? []).filter((sponsor) => sponsor.months?.includes(edition));
 
 // The most pages of sponsors an edition holds. Every month a sponsor is named for is counted, so a

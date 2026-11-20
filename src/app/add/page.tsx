@@ -14,10 +14,13 @@ export const metadata: Metadata = pageMeta({
   path: "/add",
 });
 
-export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string; order?: string }> }) {
-  const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored, order: ordered } = await searchParams;
-  // An order from the cart, written out by the cart itself: it opens the form with those words.
-  const order = ordered ? ordered.slice(0, 900).replace(/[<>]/g, "") : "";
+export default async function AddPage({ searchParams }: { searchParams: Promise<{ listing?: string; claim?: string; plan?: string; product?: string; sponsor?: string; message?: string }> }) {
+  const { listing: named, claim: claimed, plan: asked, product: guide, sponsor: sponsored, message: sent } = await searchParams;
+  // Words to begin the request with, as the cart's checkout writes them when accounts are off
+  // ("I would like to order: ..."). They are shown in the message's field and nowhere else.
+  const words = String(sent ?? "").slice(0, 900).replace(/[<>]/g, "").trim();
+  // A cart of several things names neither one plan nor one guide: the page is then for an order.
+  const order = words && !asked && !guide ? words : "";
   // A listing's owner who comes to claim it, where there are no accounts to claim it with: the same form, opened for that.
   const wanted = named ?? claimed;
   const claiming = Boolean(claimed) && !named;
@@ -56,8 +59,8 @@ export default async function AddPage({ searchParams }: { searchParams: Promise<
         <div className="lg:col-span-7">
           <RequestForm
             compose={compose}
-            about={order || product || toSponsor ? "other" : undefined}
-            start={order ? `I would like to order: ${order}. ` : claiming && listing ? "This is my business, and I would like to claim its listing. " : plan ? `I would like ${plan.name} for my business.` : product ? `I would like the ${product.title}.` : toSponsor ? `I would like to sponsor the pocket guide (the ${toSponsor.title}) from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
+            about={words || product || toSponsor ? "other" : undefined}
+            start={words ? `${words} ` : claiming && listing ? "This is my business, and I would like to claim its listing. " : plan ? `I would like ${plan.name} for my business.` : product ? `I would like the ${product.title}.` : toSponsor ? `I would like to sponsor the pocket guide (the ${toSponsor.title}) from ${monthName(offer(toSponsor).next)}. The option I want: ` : ""} listing={listing ? { id: listing.id, name: listing.name, path: `/b/${listing.slug}` } : undefined} />
         </div>
         <aside className="lg:col-span-4 lg:col-start-9">
           <h2 className="heading-3">Other ways</h2>

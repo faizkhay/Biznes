@@ -7,7 +7,7 @@ import { Arrow, Tick } from "@/components/Icons";
 import { PUBLICATIONS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
-import { freeFor, monthName, offer, products, sponsorPages, sponsorship } from "@/lib/shop";
+import { freeFor, monthName, offer, products, sponsorPages, sponsorship, withBooked } from "@/lib/shop";
 import { pageMeta } from "@/lib/meta";
 
 const description = "Mauritius, place by place, as a PDF for your phone. Renewed every month, every fact from an official source, and free in the weeks its sponsors pay for.";
@@ -22,8 +22,9 @@ const room = (pages: number) => (Number.isInteger(pages) ? `${count(pages)} ${pa
  * hands it out, in the weeks its sponsors have paid for), takes a business's request to be on the
  * sponsors' pages of a coming edition, and says that a magazine is coming.
  */
-export default function ShopPage() {
-  const p = products()[0];
+export default async function ShopPage() {
+  const only = products()[0];
+  const p = only && (await withBooked(only));
   const rules = sponsorship();
   if (!p) {
     return (
@@ -80,7 +81,7 @@ export default function ShopPage() {
                 </a>
               ) : (
                 <>
-                  <AddToCart item={{ id: `guide:${p.slug}:${built.edition}`, kind: "guide", name: p.title, detail: `${monthName(built.edition)} edition`, price: p.price, qty: 1 }} />
+                  <AddToCart item={{ id: p.slug, kind: "guide", name: p.title, detail: `${monthName(built.edition)} edition`, price: p.price, qty: 1 }} />
                   <Link href={`/add?product=${p.slug}`} className="btn btn-quiet button-md">
                     Ask for this guide
                   </Link>
@@ -156,7 +157,7 @@ export default function ShopPage() {
                       </span>
                       <span className="heading-3 tabular whitespace-nowrap text-signal">Rs {count(option.price)}</span>
                       <span className="col-span-2 empty:hidden">
-                        <AddToCart small quiet item={{ id: `sponsor:${option.id}:${o.next}`, kind: "sponsor", name: `${option.name} in the ${PUBLICATIONS.guide.short}`, detail: `From the ${monthName(o.next)} edition, counted by the month`, price: option.price, qty: 1 }} />
+                        <AddToCart small quiet item={{ id: option.id, kind: "sponsor", name: `${option.name} in the ${PUBLICATIONS.guide.short}`, detail: `From the ${monthName(o.next)} edition, counted by the month`, price: option.price, qty: 1 }} />
                       </span>
                     </li>
                   ))}

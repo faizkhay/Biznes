@@ -8,7 +8,7 @@
 //
 // It reports and does not judge: read the numbers against the budget in README ("Performance").
 import { chromium } from "playwright";
-import { browserPath } from "./pages.mjs";
+import { browserPath, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
 const KINDS = [
@@ -28,7 +28,7 @@ const kb = (bytes) => `${(bytes / 1024).toFixed(0).padStart(5)} kB`;
 const browser = await chromium.launch({ executablePath: browserPath() });
 console.log(`${"page".padEnd(14)} ${"whole".padStart(8)} ${"page".padStart(8)} ${"script".padStart(8)} ${"pictures".padStart(8)} ${"fonts".padStart(8)}  shift  largest`);
 for (const [name, path] of KINDS) {
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: "block" });
+  const context = await steady(await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: "block" }));
   const page = await context.newPage();
   // What crossed the wire, as the browser's own network log counts it: compressed, headers and all.
   const sizes = [];

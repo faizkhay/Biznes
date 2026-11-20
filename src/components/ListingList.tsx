@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdSlot from "@/components/account/AdSlot";
 import { chartPoints } from "@/lib/chart";
 import { count } from "@/lib/format";
 import type { Listing } from "@/lib/index";
@@ -85,6 +86,8 @@ export default function ListingList({
           </ul>
         )}
         <Pager page={page} pages={pages} href={(n) => query(n)} />
+        {/* An advertisement, when one is running for the directory: after the list, never among its rows, and always marked. */}
+        <AdSlot place="directory" className="mt-8" />
         {/* On a phone the island comes after the list: the first thing a visitor needs is a name and a number. */}
         {lit.length > 0 && (
           <div className="mt-10 chart:hidden">

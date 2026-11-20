@@ -16,7 +16,7 @@
 // Needs: playwright (devDependency).
 import { createServer } from "node:http";
 import { chromium } from "playwright";
-import { browserPath } from "./pages.mjs";
+import { browserPath, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
 const HOOK_PORT = Number(process.env.HOOK_PORT) || 3199;
@@ -46,7 +46,7 @@ const hook = createServer((req, res) => {
 }).listen(HOOK_PORT, "127.0.0.1");
 
 const browser = await chromium.launch({ executablePath: browserPath() });
-const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+const context = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 } }));
 const page = await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
@@ -216,7 +216,7 @@ check("form: the sixth request in ten minutes is refused", last === 429, `${last
 }
 
 // 8. Without script: the form asks, the page answers, the chart is drawn, the sums are shown.
-const plain = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+const plain = await steady(await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } }));
 const still = await plain.newPage();
 await still.goto(origin, { waitUntil: "domcontentloaded" });
 check("no script: the chart is drawn, with its dots", (await still.locator(".chart svg path.chart-dots").count()) === 3 && (await still.locator(".chart svg path.chart-coast").count()) >= 2);
@@ -284,7 +284,7 @@ await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 await page.locator("main button", { hasText: "Share this list" }).click();
 const copied = await page.evaluate(() => navigator.clipboard.readText());
 check("sharing: a saved list is a link that can be sent", /\/saved\?ids=/.test(copied) && (await page.locator(".toast").innerText()).includes("Link copied"), copied);
-const stranger = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+const stranger = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 } }));
 const other = await stranger.newPage();
 await other.goto(copied, { waitUntil: "networkidle" });
 await other.waitForSelector("main article[data-listing]");
@@ -482,12 +482,25 @@ await page.locator('main button[aria-label="Add to cart: Biznes Go"]').click();
 await page.goto(`${origin}/cart`, { waitUntil: "networkidle" });
 const cartWords = await page.locator("main").innerText();
 check("cart: it lists what is in it at its price in rupees, with the total", /biznes\.mu Pocket Guide/.test(cartWords) && /Rs 150/.test(cartWords) && /Biznes Go/.test(cartWords) && /Rs 550/.test(cartWords) && /Rs 700/.test(await text('main [role="status"]')), await text('main [role="status"]'));
-check("cart: it says that nothing is paid here yet, and a person replies", /Paying online is not open yet/.test(cartWords) && /a person contacts you with how to pay/.test(cartWords));
+check("cart: it says that nothing is paid here yet, and a person replies", /Paying online is not open yet/.test(cartWords) && /Nothing is charged here/.test(cartWords) && /a person (contacts you|replies) with how to pay/.test(cartWords));
 await page.locator('main [data-cart-item="plan:go"] button[aria-label="One more"]').click();
 check("cart: a plan is counted by the business, the guide is one", /Rs 1,250/.test(await text('main [role="status"]')) && (await page.locator('main [data-cart-item^="guide:"] button[aria-label="One more"]').count()) === 0);
-const orderHref = (await page.locator("main p.checkout-else a").getAttribute("href")) ?? "";
-await page.goto(`${origin}${orderHref}`, { waitUntil: "networkidle" });
-check("cart: with no way to place an order, the request form opens with the cart written into it", /^\/add\?order=/.test(orderHref) && /2 x Biznes Go/.test(await page.inputValue("#message")) && /1 x biznes\.mu Pocket Guide/.test(await page.inputValue("#message")) && /Total: Rs 1,250/.test(await page.inputValue("#message")), (await page.inputValue("#message")).slice(0, 160));
+const orderHref = (await page.locator('main .checkout a[href^="/add?"]').getAttribute("href").catch(() => "")) ?? "";
+if (orderHref) {
+  // Accounts are off on this server: the checkout hands the cart, in words, to the request form.
+  await page.goto(`${origin}${orderHref}`, { waitUntil: "networkidle" });
+  check("cart: with accounts off, the request form opens with the cart written into it", /^\/add\?message=/.test(orderHref) && /2 x Biznes Go/.test(await page.inputValue("#message")) && /1 x biznes\.mu Pocket Guide/.test(await page.inputValue("#message")) && /Rs 150 each/.test(await page.inputValue("#message")), (await page.inputValue("#message")).slice(0, 160));
+  await page.goto(`${origin}/add?message=${encodeURIComponent("I would like to order: 1 x Biznes Go.")}&plan=go`, { waitUntil: "networkidle" });
+  check("cart: a cart of one plan opens the form for that plan, with the cart's words", /Biznes Go/.test(await text("main h1")) && /1 x Biznes Go/.test(await page.inputValue("#message")));
+} else {
+  check("cart: with accounts on, the checkout asks who is ordering and sends only what is wanted and how many", (await page.locator('main .checkout form input[name="lines"]').count()) === 1 && /"id":"go","kind":"plan","qty":2/.test(await page.locator('main .checkout form input[name="lines"]').inputValue()) && /"id":"biznes-pocket-guide","kind":"guide","qty":1/.test(await page.locator('main .checkout form input[name="lines"]').inputValue()));
+}
+// The checkout says so once an order is placed: the cart empties, and what was ordered stays in view.
+await page.goto(`${origin}/cart`, { waitUntil: "networkidle" });
+await page.evaluate(() => window.dispatchEvent(new CustomEvent("biznes:order-placed", { detail: { number: 1, total: 1250 } })));
+await page.waitForTimeout(300);
+check("cart: once an order is placed the cart is empty, and the page still shows what was ordered", !/Cart, /.test((await page.locator('header a[href="/cart"]').getAttribute("aria-label")) ?? "") && /What you ordered/.test(await page.locator("main").innerText()) && (await page.locator("main [data-cart-item] button").count()) === 0 && (await page.evaluate(() => localStorage.getItem("biznes:cart"))) === "[]");
+await page.evaluate(() => localStorage.setItem("biznes:cart", JSON.stringify([{ id: "biznes-pocket-guide", kind: "guide", name: "biznes.mu Pocket Guide", price: 150, qty: 1 }, { id: "go", kind: "plan", name: "Biznes Go", price: 550, qty: 2 }])));
 await page.goto(`${origin}/cart`, { waitUntil: "networkidle" });
 await page.locator('main [data-cart-item="plan:go"] button[title="Remove"]').click();
 await page.locator('main [data-cart-item^="guide:"] button[title="Remove"]').click();
@@ -523,7 +536,7 @@ check("shop: a magazine is said to be coming, and no more than that", /biznes\.m
 }
 
 // 9. A phone: nothing wider than the screen, the ways in always on show.
-const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+const phone = await steady(await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }));
 const small = await phone.newPage();
 for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer?food=chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
@@ -560,7 +573,7 @@ await small.waitForFunction(() => document.querySelector('main section[aria-labe
 check("phone: the street map opens beside the address", (await small.locator('main section[aria-labelledby="where"] :is(.street-credit, .street-failed)').count()) === 1);
 await phone.close();
 // Without script the places page is still the whole list, and its box is a plain search.
-const bare = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+const bare = await steady(await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } }));
 const quiet = await bare.newPage();
 await quiet.goto(`${origin}/places`, { waitUntil: "domcontentloaded" });
 check("no script: the towns are a plain list, and the box asks the search", (await quiet.locator("main li.town").count()) > 100 && (await quiet.locator('main form.town-finder[action="/search"] input[name="q"]').count()) === 1);
@@ -591,7 +604,7 @@ await bare.close();
   );
 
   // Every kind of page, in a browser that notes whatever the policy refuses.
-  const guarded = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const guarded = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 } }));
   await guarded.addInitScript(() => {
     window.__refused = [];
     document.addEventListener("securitypolicyviolation", (e) => window.__refused.push(`${e.effectiveDirective} ${e.blockedURI}`));

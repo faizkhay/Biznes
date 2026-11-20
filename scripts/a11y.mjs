@@ -14,7 +14,7 @@
 // KOS kit. From DHE and Details (scripts/a11y.mjs). Needs: npm i -D playwright @axe-core/playwright
 import AxeBuilder from "@axe-core/playwright";
 import { chromium } from "playwright";
-import { PAGES, VIEWPORTS, browserPath, GL_ARGS } from "./pages.mjs";
+import { PAGES, VIEWPORTS, browserPath, GL_ARGS, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
 const only = process.env.ONLY?.split(",");
@@ -23,7 +23,7 @@ const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 const browser = await chromium.launch({ executablePath: browserPath(), args: GL_ARGS });
 let serious = 0;
 for (const [vp, size] of VIEWPORTS) {
-  const context = await browser.newContext({ viewport: size, reducedMotion: "reduce" });
+  const context = await steady(await browser.newContext({ viewport: size, reducedMotion: "reduce" }));
   const page = await context.newPage();
   for (const [name, path] of PAGES) {
     if (only && !only.includes(name)) continue;

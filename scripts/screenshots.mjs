@@ -21,7 +21,7 @@ import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
-import { PAGES, VIEWPORTS, browserPath, GL_ARGS } from "./pages.mjs";
+import { PAGES, VIEWPORTS, browserPath, GL_ARGS, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
 const out = process.argv[3] ?? "review/screens";
@@ -39,6 +39,7 @@ const browser = await chromium.launch({ executablePath: browserPath(), args: GL_
 let failures = 0;
 for (const [vname, vp] of VIEWPORTS) {
   const page = await browser.newPage({ viewport: vp, deviceScaleFactor: 1, reducedMotion: "reduce" });
+  await steady(page.context());
   for (const [name, path] of PAGES) {
     if (only && !only.includes(name)) continue;
     const errors = [];

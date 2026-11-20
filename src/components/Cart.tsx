@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Checkout, { type CartItem } from "@/components/account/Checkout";
-import { addToCart, cartTotal, counted, removeFromCart, setQuantity, useCart } from "@/lib/cart";
+import { useEffect, useRef, useState } from "react";
+import Checkout, { ORDER_PLACED, type CartItem } from "@/components/account/Checkout";
+import { addToCart, cartTotal, clearCart, counted, keyOf, removeFromCart, setQuantity, useCart } from "@/lib/cart";
 import { count } from "@/lib/format";
 import { useReady } from "@/lib/saved";
-import { Arrow, Cart as CartIcon, Close, Minus, Plus, Tick } from "./Icons";
+import { Cart as CartIcon, Close, Minus, Plus, Tick } from "./Icons";
 
 const rupees = (n: number) => `Rs ${count(n)}`;
 
@@ -32,7 +33,7 @@ export function CartLink() {
  */
 export function AddToCart({ item, quiet = false, small = false }: { item: CartItem; /** A second action beside a filled one. */ quiet?: boolean; small?: boolean }) {
   const ready = useReady();
-  const inside = useCart().some((own) => own.id === item.id);
+  const inside = useCart().some((own) => keyOf(own) === keyOf(item));
   const shape = `btn ${small ? "btn-sm button-sm" : "button-md"}`;
   // Its room is kept until the page's script has loaded, so nothing beside it moves when it comes.
   if (!ready)
@@ -54,10 +55,6 @@ export function AddToCart({ item, quiet = false, small = false }: { item: CartIt
   );
 }
 
-/** The cart in words, for a message the visitor sends: a line for each thing, then the total. */
-const written = (items: CartItem[]) =>
-  [...items.map((item) => `${item.qty} x ${item.name}${item.detail ? ` (${item.detail})` : ""}${item.price != null ? `, ${rupees(item.price)} each` : ""}`), `Total: ${rupees(cartTotal(items))}`].join("; ");
-
 /**
  * The cart's own page: what is in it, each at its price in rupees, the number where a thing is
  * bought by the number, a way to take each out, and the total. Nothing is paid here: the order is
@@ -65,7 +62,23 @@ const written = (items: CartItem[]) =>
  */
 export default function CartView({ buys }: { /** What can be bought, for an empty cart to point to. */ buys: { href: string; title: string; line: string }[] }) {
   const ready = useReady();
-  const items = useCart();
+  const held = useCart();
+  // Once an order is placed the cart empties itself, and the page keeps what was ordered in view
+  // beside the checkout's own words about it.
+  const [placed, setPlaced] = useState<CartItem[] | null>(null);
+  const now = useRef(held);
+  useEffect(() => {
+    now.current = held;
+  }, [held]);
+  useEffect(() => {
+    const done = () => {
+      setPlaced(now.current);
+      clearCart();
+    };
+    window.addEventListener(ORDER_PLACED, done);
+    return () => window.removeEventListener(ORDER_PLACED, done);
+  }, []);
+  const items = placed ?? held;
   if (!ready) return <div className="wait h-40 rounded-xl" role="status" aria-label="Your cart is loading" />;
   if (!items.length)
     return (
@@ -94,38 +107,41 @@ export default function CartView({ buys }: { /** What can be bought, for an empt
   return (
     <div className="grid gap-x-12 gap-y-10 lg:grid-cols-12">
       <div className="lg:col-span-7">
-        <ul className="cart-items" aria-label="In your cart">
+        {placed && <h2 className="heading-3 mb-4">What you ordered</h2>}
+        <ul className="cart-items" aria-label={placed ? "What you ordered" : "In your cart"}>
           {items.map((item) => (
-            <li key={item.id} className="cart-item" data-cart-item={item.id}>
+            <li key={keyOf(item)} className="cart-item" data-cart-item={keyOf(item)}>
               <div className="min-w-0">
                 <p className="title-1">{item.name}</p>
                 {item.detail && <p className="body-3 text-ink-subtle">{item.detail}</p>}
                 <p className="data-1 mt-1">{item.price != null ? `${rupees(item.price)}${counted(item) && item.qty > 1 ? ` each, ${rupees(item.price * item.qty)} in all` : ""}` : "Price to be agreed"}</p>
               </div>
-              <div className="cart-acts">
-                {counted(item) && (
-                  <p className="cart-qty" role="group" aria-label={`How many: ${item.name}`}>
-                    <button type="button" className="icon-btn icon-btn-edge" aria-label="One fewer" disabled={item.qty <= 1} onClick={() => setQuantity(item.id, item.qty - 1)}>
-                      <Minus />
-                    </button>
-                    <span className="data-1" aria-live="polite">
-                      {item.qty}
-                    </span>
-                    <button type="button" className="icon-btn icon-btn-edge" aria-label="One more" onClick={() => setQuantity(item.id, item.qty + 1)}>
-                      <Plus />
-                    </button>
-                  </p>
-                )}
-                <button type="button" className="icon-btn" aria-label={`Remove ${item.name} from your cart`} title="Remove" onClick={() => removeFromCart(item.id)}>
-                  <Close />
-                </button>
-              </div>
+              {!placed && (
+                <div className="cart-acts">
+                  {counted(item) && (
+                    <p className="cart-qty" role="group" aria-label={`How many: ${item.name}`}>
+                      <button type="button" className="icon-btn icon-btn-edge" aria-label="One fewer" disabled={item.qty <= 1} onClick={() => setQuantity(keyOf(item), item.qty - 1)}>
+                        <Minus />
+                      </button>
+                      <span className="data-1" aria-live="polite">
+                        {item.qty}
+                      </span>
+                      <button type="button" className="icon-btn icon-btn-edge" aria-label="One more" onClick={() => setQuantity(keyOf(item), item.qty + 1)}>
+                        <Plus />
+                      </button>
+                    </p>
+                  )}
+                  <button type="button" className="icon-btn" aria-label={`Remove ${item.name} from your cart`} title="Remove" onClick={() => removeFromCart(keyOf(item))}>
+                    <Close />
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
       </div>
-      <aside className="lg:col-span-5" aria-labelledby="cart-total">
-        <div className="card">
+      <aside className="grid content-start gap-4 lg:col-span-5" aria-label="Total and order">
+        <div className="card" hidden={Boolean(placed)}>
           <h2 id="cart-total" className="label-1 text-ink-faint">
             Total
           </h2>
@@ -133,19 +149,11 @@ export default function CartView({ buys }: { /** What can be bought, for an empt
             {rupees(cartTotal(items))}
           </p>
           <p className="body-3 mt-1 text-ink-subtle">In Mauritian rupees{unpriced ? ", without what has no price yet" : ""}. A plan and a place in the guide are charged by the month.</p>
-          <p className="note body-3 mt-4">Paying online is not open yet. Nothing is charged here: send the order, and a person contacts you with how to pay.</p>
-          {/* The order is placed with an account. With none, the same things are written into the request form. */}
-          <div className="checkout mt-4">
-            <Checkout items={items} />
-          </div>
-          <p className="checkout-else mt-4">
-            <Link href={`/add?order=${encodeURIComponent(written(items))}`} prefetch={false} className="btn btn-filled button-md w-full">
-              Send this order
-              <span className="btn-dot">
-                <Arrow />
-              </span>
-            </Link>
-          </p>
+          <p className="note body-3 mt-4">Paying online is not open yet. Nothing is charged here.</p>
+        </div>
+        {/* The accounts work places the order, or with accounts off hands the cart to the request form. It stays where it is once the order is placed, to say so. */}
+        <div className="checkout">
+          <Checkout items={items} />
         </div>
       </aside>
     </div>

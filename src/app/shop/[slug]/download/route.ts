@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { NextResponse } from "next/server";
-import { editionFile, offer, products } from "@/lib/shop";
+import { editionFile, offer, products, withBooked } from "@/lib/shop";
 
 /**
  * Hands out this month's edition of the pocket guide, only while it is free: that is, while its
@@ -13,7 +13,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
   const product = products().find((p) => p.slug === slug);
   const file = product && editionFile(product.slug);
   if (!product || !file || !existsSync(file)) return new NextResponse("No such guide.", { status: 404 });
-  if (!offer(product).free) return NextResponse.redirect(new URL("/shop", request.url), 303);
+  if (!offer(await withBooked(product)).free) return NextResponse.redirect(new URL("/shop", request.url), 303);
   return new NextResponse(new Uint8Array(readFileSync(file)), {
     headers: { "Content-Type": "application/pdf", "Content-Disposition": `attachment; filename="${product.slug}-${product.built!.edition}.pdf"`, "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" },
   });

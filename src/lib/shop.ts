@@ -49,6 +49,23 @@ export function products(): Product[] {
 
 export const sponsorship = () => read<Sponsorship>("sponsorship.json");
 
+/**
+ * The guide with every sponsor counted: those written into its file (content/pdf/product.json),
+ * and those who booked a place through their account and whom an admin has approved and marked
+ * paid (`guideSponsors`, for this month and the next). A sponsor named in both is counted once.
+ * With accounts off it is the file alone, and nothing is fetched.
+ */
+export async function withBooked(product: Product, today = todayInMauritius()): Promise<Product> {
+  const { accountsOn } = await import("@/lib/accounts/config");
+  if (!accountsOn) return product;
+  const { guideSponsors } = await import("@/lib/accounts/ads");
+  const month = today.slice(0, 7);
+  const booked = (await Promise.all([month, monthAfter(month)].map((m) => guideSponsors(m)))).flat();
+  const key = (name: string, option: string, m: string) => `${name.trim().toLowerCase()}|${option}|${m}`;
+  const named = new Set((product.sponsors ?? []).flatMap((sponsor) => sponsor.months.map((m) => key(sponsor.name, sponsor.option, m))));
+  return { ...product, sponsors: [...(product.sponsors ?? []), ...booked.filter((sponsor) => !sponsor.months.some((m) => named.has(key(sponsor.name, sponsor.option, m))))] };
+}
+
 /** The month after a given one, as YYYY-MM. */
 export const monthAfter = (month: string) => {
   const [y, m] = month.split("-").map(Number);

@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Fragment } from "react";
 import { PageHead } from "@/components/Bits";
+import { pageMeta } from "@/lib/meta";
 import BusinessTaxCalc from "@/components/BusinessTaxCalc";
 import { count, day } from "@/lib/format";
 import { businessTaxFigures, citesOf, incomeTaxFigures, vatFigures } from "@/lib/figures";
 import { business } from "@/lib/sums";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Business tax estimator for Mauritius",
-  description: "Estimate a year's taxes on a business in Mauritius: a company's income tax, CSR, the climate levy and the Fair Share Contribution, when the Advance Payment System applies, and how a sole trader or a société is taxed instead. Figures from the guide, with sources.",
-  alternates: { canonical: "/tools/business-tax" },
-};
+  description: "Estimate a year's taxes on a business in Mauritius: a company's income tax, CSR, the climate levy and the Fair Share Contribution. Figures with their sources.",
+  path: "/tools/business-tax",
+});
 
 const money = new Intl.NumberFormat("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const rupees = (n: number | null | undefined) => (n == null ? "Not worked out" : `MUR ${money.format(n)}`);
@@ -30,6 +31,7 @@ export default function BusinessTaxPage() {
   return (
     <>
       <PageHead
+        here="/tools/business-tax"
         path={[{ href: "/tools", label: "Tools" }, { label: "Business tax estimator" }]}
         title="Business tax estimator"
         lede="A year's taxes on a business, worked line by line: a company's income tax and the levies charged with it, when to pay during the year, and how a sole trader or a société is taxed instead."

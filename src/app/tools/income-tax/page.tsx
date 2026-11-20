@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
+import { pageMeta } from "@/lib/meta";
 import IncomeTaxCalc from "@/components/IncomeTaxCalc";
 import { count, day } from "@/lib/format";
 import { incomeTaxFigures } from "@/lib/figures";
 import { personal, type PersonalInput } from "@/lib/sums";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Personal income tax calculator for Mauritius",
-  description: "Work out a year's income tax in Mauritius from a salary and other income: the deductions for dependents, the reliefs and their caps, the tax band by band, and what CSG and the National Savings Fund take. Figures from the guide, with sources.",
-  alternates: { canonical: "/tools/income-tax" },
-};
+  description: "Work out a year's income tax in Mauritius from a salary or a business: the deductions, the reliefs, the tax band by band, and CSG. Figures with their sources.",
+  path: "/tools/income-tax",
+});
 
 const money = new Intl.NumberFormat("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const rupees = (n: number | null | undefined) => (n == null ? "Not worked out" : `MUR ${money.format(n)}`);
@@ -23,6 +24,7 @@ export default function IncomeTaxPage() {
   return (
     <>
       <PageHead
+        here="/tools/income-tax"
         path={[{ href: "/tools", label: "Tools" }, { label: "Personal income tax calculator" }]}
         title="Personal income tax calculator"
         lede="A year's income tax from a salary, a business or other income, worked line by line: the deductions, the tax band by band, and what CSG and the National Savings Fund take besides."

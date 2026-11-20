@@ -24,6 +24,10 @@ export default function PrivacyPage() {
           <p>
             The <Link href="/saved">saved list</Link> is kept in your own browser, on your own device. It is not sent to us and we cannot see it. If you share it, the link you send holds the listings&rsquo; reference numbers and nothing about you. Clearing your browser&rsquo;s data for this site clears the list.
           </p>
+          <h2 className="heading-3 mt-8">If you put things in the cart</h2>
+          <p>
+            The <Link href="/cart">cart</Link> is kept in your own browser too, and we cannot see it. Nothing in it reaches us until you send an order.
+          </p>
           <h2 className="heading-3 mt-8">If you add the site to your home screen</h2>
           <p>Your device keeps copies of the pages you have opened, so they load quickly and still open with no connection. Those copies stay on your device.</p>
           {accountsOn && (
@@ -36,6 +40,10 @@ export default function PrivacyPage() {
               <p>What you write about the business is shown to everyone once a person has checked it, and it is shown as your own words. That you are its owner is not shown. You can change it or take it out from your account at any time.</p>
               <h2 className="heading-3 mt-8">If you ask for a booking</h2>
               <p>Your name, your telephone number, the time you asked for and your note go to the business you asked, and are kept so that it can answer you. If you are signed in the request is also kept in your account. We do not pass them to anyone else, and we take no payment.</p>
+              <h2 className="heading-3 mt-8">If you place an order</h2>
+              <p>An order keeps the name, the telephone number and the email address you give with it, to arrange payment and delivery. If you are signed in the order is also kept in your account. Nothing is paid on this site.</p>
+              <h2 className="heading-3 mt-8">If you join the list</h2>
+              <p>Your email address is kept to send you the pocket guide and the magazine when each comes out, and for nothing else. Every message we send has a link that takes your address off the list.</p>
             </>
           )}
           <h2 className="heading-3 mt-8">If you send a request</h2>

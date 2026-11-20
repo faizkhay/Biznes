@@ -31,8 +31,9 @@ const EXAMPLE: Owned = {
   paid: true,
   books: true,
   services: [
-    { id: "s1", name: "A table for the evening", description: "An example of a service a business might offer.", price: null, minutes: 90 },
-    { id: "s2", name: "Catering for twenty", description: "An example with a price and no length.", price: 6000, minutes: null },
+    { id: "s1", name: "A table for the evening", description: "An example of a service a business might offer.", price: null, minutes: 90, kind: "service" },
+    { id: "s2", name: "Catering for twenty", description: "An example with a price and no length.", price: 6000, minutes: null, kind: "service" },
+    { id: "s3", name: "A jar of example pickle", description: "An example of a thing a business sells.", price: 180, minutes: null, kind: "product" },
   ],
   juiceNumber: "5000 0000",
   juiceName: "Example Snack Ltd",

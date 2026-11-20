@@ -56,7 +56,7 @@ export default function PricingPage() {
                     {/* A paid plan can also go in the cart, with whatever else is being bought. */}
                     {p.price > 0 && (
                       <span className="mt-2 block text-center">
-                        <AddToCart quiet small item={{ id: `plan:${p.id}`, kind: "plan", name: p.name, detail: "By the month, for each business", price: p.price, qty: 1 }} />
+                        <AddToCart quiet small item={{ id: p.id, kind: "plan", name: p.name, detail: "By the month, for each business", price: p.price, qty: 1 }} />
                       </span>
                     )}
                   </p>

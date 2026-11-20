@@ -70,5 +70,18 @@ export function browserPath() {
   return undefined;
 }
 
+/**
+ * Makes "the network is idle" mean it. Next answers a link fetched ahead with
+ * "stale-while-revalidate". On a second visit to a page the browser then hands over the copy it
+ * kept and asks again in the background, and that background request is never reported as
+ * finished, so a wait for an idle network never ends. A route that passes everything on turns the
+ * browser's own cache off (Playwright: "enabling routing disables http cache"), and each file is
+ * asked for once. What the service worker keeps is another store, and is left as it is.
+ */
+export async function steady(context) {
+  await context.route(/[?&]_rsc=/, (route) => route.continue());
+  return context;
+}
+
 /** No special arguments: nothing on this site needs WebGL. Kept so the kit's scripts read unchanged. */
 export const GL_ARGS = [];

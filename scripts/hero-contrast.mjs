@@ -8,7 +8,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import sharp from "sharp";
-import { browserPath } from "./pages.mjs";
+import { browserPath, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -29,6 +29,7 @@ const browser = await chromium.launch({ executablePath: browserPath() });
 let worst = Infinity;
 for (const [size, width, height] of [["desk", 1440, 900], ["phone", 390, 844]]) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+  await steady(page.context());
   await page.goto(origin, { waitUntil: "networkidle" });
   for (const picture of PICTURES) {
     await page.evaluate((p) => {
