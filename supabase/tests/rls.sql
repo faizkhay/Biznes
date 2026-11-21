@@ -383,6 +383,7 @@ select t.be('anon', '', 'A visitor calling the API with the public key and no wo
 select t.throws($$ select public.subscribe('outside@reader.mu') $$, 'cannot join the list', '42501', 'from the website');
 select t.throws($$ select public.unsubscribe('00000000-0000-4000-8000-00000000dead') $$, 'cannot ask to leave it', '42501');
 select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Out Side', '+230 5123 0000') $$, 'cannot place an order', '42501', 'from the website');
+select t.throws($$ insert into public.bookings (business_id, name, phone, wanted_at) values ('b0000000-0000-4000-8000-0000000000a2', 'Out Side', '+230 5888 0000', now() + interval '3 days') $$, 'cannot ask a business for a booking', '42501', 'on the website');
 select set_config('request.headers', '{"x-biznes-proof": "a-wrong-word"}', true) \gset ignored_
 select t.throws($$ select public.subscribe('outside@reader.mu') $$, 'nor with the wrong word', '42501', 'from the website');
 select t.throws($$ select private.from_site() $$, 'cannot ask the database whether a word is the right one', '42501');
@@ -392,10 +393,14 @@ select set_config('request.headers', '{"user-agent": "a browser", "x-biznes-proo
 select t.be('anon', '', 'A visitor whose call carries the word, as the website''s does');
 select t.lives($$ select public.subscribe('through@reader.mu') $$, 'joins the list');
 select t.is($$ select (public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Through Site', '+230 5123 0001')) ->> 'total' $$, '550', 'and places an order');
+select t.lives($$ insert into public.bookings (business_id, name, phone, wanted_at) values ('b0000000-0000-4000-8000-0000000000a2', 'Through Site', '+230 5888 0001', now() + interval '3 days') $$, 'and asks a business for a booking');
 select t.be('authenticated', :'carol', 'Carol, signed in, calling the API herself with no word');
 select set_config('request.headers', '{"user-agent": "a script"}', true) \gset ignored_
 select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 1}]'::jsonb, 'Carol', '+230 5123 0002') $$, 'cannot place an order either', '42501', 'from the website');
+select t.throws($$ insert into public.bookings (business_id, name, phone, wanted_at) values ('b0000000-0000-4000-8000-0000000000a2', 'Carol', '+230 5888 0002', now() + interval '3 days') $$, 'nor ask for a booking', '42501', 'on the website');
 reset role;
+select t.lives($$ insert into public.bookings (business_id, name, phone, wanted_at) values ('b0000000-0000-4000-8000-0000000000a2', 'By Hand', '+230 5888 0003', now() + interval '3 days') $$, 'a booking written by hand in the database, with no role set, is not asked for the word');
+select t.is($$ select count(*)::text from public.bookings where name in ('Out Side', 'Carol') and phone like '+230 5888%' $$, '0', 'and no refused booking was written');
 select t.is($$ select (select count(*) from public.subscribers where email like '%outside%') + (select count(*) from public.orders where name in ('Out Side', 'Carol')) $$, '0', 'nothing the refused calls asked for was written');
 delete from private.site_proof;
 select set_config('request.headers', '', true) \gset ignored_
@@ -705,8 +710,8 @@ select t.is($$ select plan || ',' || (plan_until = current_date + 365) || ',' ||
 ------------------------------------------------------------------------------------------------
 select t.be('anon', '', 'A visitor places an order as a guest');
 select t.is($$ select count(*) from public.catalogue where active $$, '13', 'reads what the site sells, and at what price');
-select t.is($$ select public.place_order('[{"id": "guide:mauritius-places-to-see", "qty": 2}, {"id": "sponsor:panel", "qty": 3, "detail": "From next month"}]'::jsonb, ' Gita Guest ', '+230 5123 4567', '', 'Call in the afternoon.') ->> 'total' $$, '4800', 'orders two guides and three months of a panel, and is told the total at the site''s own prices');
-select t.is($$ select public.place_order('[{"id": "guide:mauritius-places-to-see", "qty": 1, "price": 1, "unit_mur": 1, "price_mur": 1}]'::jsonb, 'Gita Guest', '', 'GITA@guest.mu') ->> 'total' $$, '150', 'cannot set a price of their own: a price sent with a line is not read');
+select t.is($$ select public.place_order('[{"id": "guide:biznes-pocket-guide", "qty": 2}, {"id": "sponsor:panel", "qty": 3, "detail": "From next month"}]'::jsonb, ' Gita Guest ', '+230 5123 4567', '', 'Call in the afternoon.') ->> 'total' $$, '4800', 'orders two guides and three months of a panel, and is told the total at the site''s own prices');
+select t.is($$ select public.place_order('[{"id": "guide:biznes-pocket-guide", "qty": 1, "price": 1, "unit_mur": 1, "price_mur": 1}]'::jsonb, 'Gita Guest', '', 'GITA@guest.mu') ->> 'total' $$, '150', 'cannot set a price of their own: a price sent with a line is not read');
 select t.is($$ select (public.place_order('[{"id": "ad:home", "qty": 1}]'::jsonb, 'Gita Guest', '', 'gita@guest.mu')) ->> 'on_request' $$, 'true', 'orders something priced on request, and is told so');
 select t.throws($$ select public.place_order('[{"id": "plan:platinum", "qty": 1}]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot order what the site does not sell', '22023', 'does not sell');
 select t.throws($$ select public.place_order('[{"id": "plan:go", "qty": 0}]'::jsonb, 'Gita Guest', '+230 5123 4567') $$, 'cannot order none of a thing', '22023');
@@ -743,8 +748,8 @@ select t.throws($$ select public.admin_set_order((select id from public.orders l
 select t.is($$ select string_agg(action, ',' order by id) from public.audit_log where action like 'order.%' $$, 'order.awaiting_payment,order.paid', 'each step is on the record');
 select t.throws($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 1, "per": "month"}]'::jsonb) $$, 'cannot change what the site sells: that is the superadmin''s', '42501', 'Only the superadmin');
 select t.be('authenticated', :'owner', 'The superadmin and what the site sells');
-select t.lives($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 600, "per": "month"}, {"id": "guide:mauritius-places-to-see", "name": "Mauritius, place by place", "price": 150, "per": "each"}]'::jsonb) $$, 'brings the catalogue level with the site''s data');
-select t.is($$ select (select price_mur from public.catalogue where id = 'plan:go') || ',' || (select count(*) from public.catalogue where active) || ',' || (select count(*) from public.catalogue) $$, '600,2,13', 'a price is changed, and what is no longer sold is switched off, not deleted');
+select t.lives($$ select public.set_catalogue('[{"id": "plan:go", "name": "Biznes Go", "price": 600, "per": "month"}, {"id": "guide:biznes-pocket-guide", "name": "biznes.mu Pocket Guide", "price": 150, "per": "each"}]'::jsonb) $$, 'brings the catalogue level with the site''s data');
+select t.is($$ select (select price_mur from public.catalogue where id = 'plan:go') || ',' || (select count(*) from public.catalogue where active) || ',' || (select count(*) from public.catalogue) $$, '600,2,14', 'a price is changed, and what is no longer sold is switched off, not deleted');
 select t.be('authenticated', :'carol', 'Carol, after the prices changed');
 select t.is($$ select string_agg(unit_mur::text, ',') from public.order_items $$, '1250', 'still reads her order at the price of its day');
 select t.throws($$ select public.place_order('[{"id": "plan:grow", "qty": 1}]'::jsonb) $$, 'cannot order what has been switched off', '22023', 'does not sell');

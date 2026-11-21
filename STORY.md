@@ -194,6 +194,62 @@ anywhere".
 - **The magazine.** Announced only.
 - **Paying online.** Not connected; the owner has not chosen how.
 
+### Round 5, behind the door: accounts, safety and tax
+
+**The owner's notes, in their own words.**
+
+"also, how should user and biznes owners access their accounts? how do i access superadmin to make
+changes? how do i manage ads? how do users manage their subcriptions? and their ads in different
+places? where do they upload their artwork? biznes grow users should have a mini crm to manage
+their bookings or products/services, payments, etc. the website is deployed on vercel, you have
+access, link the db to it. fix any security issues on any level. next.js do what is needed for
+longterm."
+
+Later: "my account was created, assign superadmin, also make accounts more beautiful", and "in
+tools add a personal Tax calculator as well, and business tax tool."
+
+**What was built, and why it is the way it is.**
+
+- **Nobody is given an address to remember.** The person icon in the header leads to the account,
+  and every page for an owner, an admin or the superadmin is one or two presses from there. A page
+  that is not for the person asking says it is not there.
+- **An owner's business has its own rooms, opened by its plan.** Overview for all. On a paid plan,
+  "Its page" (a line, hours, a cover, photographs) and, for a place to eat, its menu. On Biznes
+  Grow, bookings, customers, services and products, and a ledger of payments: the mini CRM the
+  owner asked for. Advertising for any live business, where the advertisement is drawn and its
+  artwork uploaded.
+- **The site's own rooms.** Admins check businesses, advertisements and orders and read the list of
+  subscribers. The superadmin also names admins and chooses the picture behind every page: by the
+  calendar, one picture, or a round of pictures, with pictures of their own.
+- **Nothing is paid on the site yet, and it never says otherwise.** A plan, an advertisement and an
+  order are asked for, arranged by a person and marked paid by hand. The database prices an order
+  from its own list, so a price sent by a browser counts for nothing.
+- **The database is the lock.** The site holds no key that opens more than a visitor's own. What a
+  person may read or change is decided row by row in the database, and proved by claims that run
+  against it (README, "Accounts").
+- **Two reviews by people who had not built it.** The first went at the whole site as an attacker
+  would: the framework was raised to a version with no open advisories, a content security policy
+  and stricter headers were added, and the form's endpoint was tightened. The second read the new
+  account features and found no way to another person's data, but ten weaknesses, since closed: an
+  advertisement approved after its owner had changed it; where an approved one leads; the list
+  telling whether an address was on it; limits that anyone with the public key could use up, now
+  behind a word only the site's server holds; pictures that outlived what they belonged to; and
+  smaller ones.
+- **A link in an email waits for its reader.** Some mail programs open every link before the person
+  does, and a link that signs someone in works once. It now lands on a page with one button.
+- **Two tax tools, from the Act.** A personal income tax calculator and a business tax estimator,
+  each reading its figures from an article that names its sources. Where the Finance Act 2026 and
+  the revenue authority's own pages disagreed on the day, the Act was followed and the article says
+  so. Each opens with the calculator, and the figures it uses follow.
+
+**Not done, and why.**
+
+- **Paying online.** Stripe is the owner's choice and is not connected.
+- **Email from the site.** It sends none of its own. The guide and the magazine go out by hand to
+  the list.
+- **Prices for advertisements on the site and in the magazine.** The owner has set none, so each
+  says "Price on request".
+
 ### Round 4, 20 November 2026: the postcard, and a wider product
 
 **The owner's notes, in their own words.**

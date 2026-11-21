@@ -311,13 +311,18 @@ to it that day, whole and unchanged, and checked:
 Migrations 5 to 10, the second round's, have since been applied to it, unchanged. Migration 9
 makes the `media` bucket and its rules itself: there is nothing to set in the Storage dashboard.
 
-**Migration 11 is not on it yet.** `supabase/migrations/20261120000011_review.sql` is what a
-security review of the second round asked for (it is in "How it is held" below). It alters
-what parts 5 to 10 made and keeps every row; it has been applied to nothing but the local stack and
-a scratch database with rows in it. Apply it after the merge, then set the site's word (step 8
-under "Setting up the project"). Until the word is set nothing asks for it, and until the file is
-applied the site still runs: an advertisement leads to its business's page, and approving one
-says to try again.
+**Migrations 11, 12 and 13 are not on it yet.** `20261120000011_review.sql` is what a security
+review of the second round asked for (it is in "How it is held" below); it alters what parts 5
+to 10 made and keeps every row. `20261120000012_bookings_proof.sql` puts a request for a booking
+behind the site's word, as part 11 does for the list and for orders. `20261120000013_pocket_guide.sql`
+brings the catalogue level with the one Pocket Guide; that change has already been made on the
+hosted project by hand, and the file changes nothing more there. All three have been applied to
+the local stack and to a scratch database with rows in it. Part 11 drops and remakes two rules and
+a function, so the project asks its owner to confirm before it runs. Apply the three in order, then
+give the database the hash of the site's word (step 8 under "Setting up the project"): the word
+itself, `BIZNES_SITE_PROOF`, is already set on the host. Until the hash is there nothing asks for
+the word, and until part 11 is applied the site still runs: an advertisement leads to its
+business's page, and approving one says to try again.
 
 Its two public values, which are meant to be seen (they ship to every browser):
 
@@ -379,9 +384,9 @@ cart in its message.
    guide's price or title, a sponsor option, a plan), the page says where the two differ and the
    superadmin brings them level with one button. Until they are level, what differs cannot be
    ordered.
-8. **Set the site's word.** Joining the list, leaving it and placing an order are open to
-   visitors and limited by the hour for everyone together, so anyone with the public key could
-   use the limit up from outside. Choose a long random word (`openssl rand -hex 32`), set it as
+8. **Set the site's word.** Joining the list, leaving it, placing an order and asking a business
+   for a booking are open to visitors and limited by the hour, so anyone with the public key
+   could use a limit up from outside. Choose a long random word (`openssl rand -hex 32`), set it as
    `BIZNES_SITE_PROOF` on the host, deploy, and only then give the database its hash, in the SQL
    editor, with the same word:
 
@@ -390,7 +395,8 @@ cart in its message.
    on conflict (id) do update set word_hash = excluded.word_hash;
    ```
 
-   From then on a call to those three functions without the word is refused. In that order
+   From then on a call to those three functions, or a booking sent through the API, is refused
+   without the word. In that order
    nothing breaks on the way; to change the word, empty the table (`delete from
    private.site_proof`), change the variable, deploy, and set the new hash. If the site's own
    forms start saying "try again", the two do not match: the server's log says so.
@@ -561,9 +567,11 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 - **The site's word.** `subscribe`, `unsubscribe` and `place_order` ask for a word in the header
   `x-biznes-proof` once its hash is in `private.site_proof`. The site sends it from
   `BIZNES_SITE_PROOF`, read in `src/lib/accounts/server.ts`, which only the server loads: the
-  word is in no file a browser is sent. So the hourly limits on those three can be reached only
-  through the site, where each connection is also limited, and not by someone calling the API
-  with the public key.
+  word is in no file a browser is sent. A request for a booking sent through the API asks for
+  the same word (part 12: the check is in the trigger that counts a business's bookings, and
+  reads who is asking from the role the API set). So the hourly limits on all four can be
+  reached only through the site, where each connection is also limited, and not by someone
+  calling the API with the public key.
 - **The look.** The picture behind the page is the calendar's, or one picture kept, or a round of
   pictures with a new one each day (`themeNow()` in `src/lib/theme.ts`). A picture is one the site
   is built with or one the superadmin uploaded; an uploaded one has a single size.
@@ -606,7 +614,7 @@ The pieces the public pages use, each with its own notes in the file: `showcaseO
 
 | Check | Command | Result on 20 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | 467 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
+| Row level security | `npm run test:rls` | 472 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
 | The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them, applies part 11 and what follows, and says what became of the rows | 15 claims, all pass |
 | The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the three variables it prints, `node scripts/accounts-e2e.mjs` with the same three set | 260 of 260, with axe-core (WCAG 2.2 AA) clean on 55 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
 | A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
@@ -671,9 +679,9 @@ does not say how large it is; and sends thirty-one in a row.
   and orders are counted in the database; the limit by connection, uploads included, is kept in
   one server's memory, so on a host that runs several servers each counts for itself.
 - **A request body larger than a picture.** The upload routes refuse by the size a request says
-  it is. The server still buffers what it is sent before a route sees it, up to Next's own limit
-  for a site with a proxy (ten megabytes); `experimental.proxyClientMaxBodySize` in
-  `next.config.ts` lowers that, and is not set.
+  it is. The server still buffers what it is sent before a route sees it, up to the limit set
+  for a site with a proxy: `experimental.proxyClientMaxBodySize` in `next.config.ts`, four
+  megabytes here in place of Next's ten. A body that says it is small and is not was not sent.
 - **A screen reader, by ear.** As for the rest of the site.
 
 **Not built:**
@@ -1221,7 +1229,7 @@ this list.
 | What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
 | The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |
-| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 118 of 118, against Supabase's own database, sign-in and API services run on this machine (`scripts/accounts-stack.sh`), including axe-core on the account pages. On the hosted project only reading has been tried (see Accounts) |
+| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 260 of 260, against Supabase's own database, sign-in, API and storage services run on this machine (`scripts/accounts-stack.sh`), with the public pages and the site's word in place, and axe-core clean on 55 kinds of account page at both sizes. On the hosted project only reading has been tried (see Accounts) |
 
 The behaviour, accessibility and capture checks, and `npm run hero`, need a production server. The
 behaviour check starts the form's own receiver, so the form is tested end to end:

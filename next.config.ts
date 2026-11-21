@@ -80,6 +80,9 @@ const config: NextConfig = {
   reactStrictMode: true,
   // Nobody needs to be told what the site is built with.
   poweredByHeader: false,
+  // The proxy keeps a copy of each request's body for the pages it guards. The largest thing they
+  // take is one picture of 3 MB with its form, so the copy stops at 4 MB instead of the default 10.
+  experimental: { proxyClientMaxBodySize: "4mb" },
   // A tool page (one ending .dev.tsx) is a page only under `next dev`.
   pageExtensions: process.env.NODE_ENV === "development" ? ["dev.tsx", "tsx", "ts"] : ["tsx", "ts"],
   // The index is read from disk at run time, so it must travel with the server.
