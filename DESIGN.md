@@ -147,6 +147,11 @@ components:                 # only: backgroundColor textColor typography rounded
   island: { backgroundColor: "{colors.shallows}", textColor: "{colors.ink}", typography: "{typography.label-1}", rounded: "{rounded.xl}" }
   island-coast: { backgroundColor: "{colors.lagoon-deep}", height: 1.25px }
   island-lit: { backgroundColor: "{colors.primary}", size: 4.2px }
+  baz-kind: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.75rem 1rem" }
+  baz-kind-count: { backgroundColor: "{colors.sand}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
+  baz-icon-tile: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.md}", size: 2.5rem }
+  baz-food: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.625rem 0.75rem" }
+  baz-mark: { backgroundColor: "{colors.ink}", rounded: "{rounded.sm}", size: 2rem }
   footer: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.body-3}", rounded: "{rounded.2xl}" }
   footer-caption: { backgroundColor: "{colors.ink}", textColor: "{colors.haze}", typography: "{typography.caption-1}" }
   footer-mark: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", size: 4.5rem }
@@ -675,8 +680,9 @@ opens with it.
 - **The toast** (`.toast`): "Link copied", on an ink pill at the foot of the screen.
 - **The offer to install** (`Pwa.tsx`): a white card at the foot of the screen, above the tab bar
   on a phone and in the bottom right corner on a wide screen. It has an "Install" button where the
-  browser makes the offer, and says where to tap on an iPhone or an iPad. Closed, it stays away for
-  thirty days. It was being put on the page as this was written (Known Gaps).
+  browser makes the offer, and says where to tap on an iPhone or an iPad. It offers the app the
+  page belongs to: on a page of Baz Manzer it carries the section's mark and its words. Closed,
+  the site's stays away for thirty days and the section's for good.
 - **The pocket guide** (`scripts/pdf.mjs`) wears the same system on A5 paper: Manrope, ink on
   white, the b on its cover over the lagoon picture, each part of the island opening on an ink
   page under one of the pictures, source numbers as royal on sand, and the sources at the
@@ -704,13 +710,60 @@ opens with it.
 - **Beside it**, from the chart's breakpoint up, the island and the way to the street map stay in
   view while the page scrolls.
 
-### Baz Manzer
+### Baz Manzer, the section
 
-`/baz-manzer`. The one place coral is used: an awning of coral and cream stripes with round ends
-(`.baz-awning`) over an ink card, like the front of a snack. It is decoration and carries no
-words. Under it the kinds of place are tiles (`.baz-types`), the kinds of food and the towns are
-chips, and a chosen one is ink with its count in white at 72%. A paid outlet's row shows the first
-lines of its menu on the saffron wash (`.menu-peek`).
+`/baz-manzer` and every page beneath it (`src/components/baz`, `src/app/baz-manzer`). The section
+stands by itself and installs as an app of its own, so it has a name, a header, a bar and a first
+page of its own. It is still the postcard: the same paper, ink, pills and tiles, and no colour
+the site does not have. What is its own is the awning.
+
+- **The awning** (`.baz-awning`): coral and cream stripes, each ending in a round hem of half its
+  width, across the top of the first page's white card, like the front of a snack. It is
+  decoration and carries no words. Coral is used for the awning and for nothing else.
+- **The app's icon** (`scripts/icons.mjs`; `public/icons/baz-*.png`, and `icon.svg` and
+  `apple-icon.png` in `src/app/baz-manzer`): the awning over the saffron point, on ink. On a
+  square of 1000: five stripes of 200, coral at both edges; the cloth 340 deep and its hem 100
+  more; the point is the b's own, 108 in radius, in the middle of the ink that is left. It
+  stands beside the site's mark as its sibling: the same ground, the same point, the same round
+  corners (230). For a platform that cuts icons to its own shape the drawing is made four fifths
+  the size about its middle and the cloth is run on to the edges, so a circle still shows a hem
+  and the point.
+- **The mark** (`.baz-mark`): that same drawing in CSS, from the same measures, so it is one
+  drawing at any size: 32px beside the name in the header, 22px as the first tab of the bar,
+  48px on the card that says the section installs, and on the offer to install.
+- **Its colours as an app**: the bar at the top of a phone takes coral (`#f14949`, the theme
+  colour of the section's pages and of its manifest), so the phone's own bar is the top of the
+  awning; behind the icon while the app opens is cream. No words of ours are set on coral: what
+  a browser writes there is the browser's.
+- **The header** (`BazHeader.tsx`): the site's white pill, holding the section's things. The mark
+  and "Baz Manzer" in Manrope at 700, where the site's name stands elsewhere; from 64rem its ways
+  round as plain links (Food, Towns, Saved), lit as the site's are; the compact search box on
+  sand, which asks the section's search; and one quiet button, "biznes.mu", the way back to the
+  whole site. On a phone it is the name and the way back, each 44px tall. The first page and the
+  search page carry their own large box, so there the pill shows none.
+- **The bar** (`BazTabBar.tsx`): the site's bar in shape, with the section's five ways in: Baz
+  Manzer (the mark), Food, Towns, Search, Saved, each an icon over a word. A page under none of
+  the last four (a kind of place, a place's own page) lights the first.
+- **The first page** is the front of the app: under the awning the name in `display-1`, the line,
+  the large search box (on sand here, since the card is white) and searches to try; the kinds of
+  place as tiles (`.baz-type`: a sand tile with the kind's icon on a 40px ink tile, in saffron,
+  over its name and its count, and beside them from 72rem); "Near you", a town to choose as a
+  pill with an ink button; the kinds of food and the towns as pills in a line, the last of each a
+  link to the page of them all; then every place to eat beside the island.
+- **A list** (a kind of place, a kind of food, a town): the path from "Baz Manzer", a small line
+  that says what kind of page it is with its icon, the title in `heading-1`, a sentence of counts,
+  then the ways to another list as pills (`.narrow`): by kind of place, by kind of food, by town,
+  a town's neighbourhoods, and the towns near it, each with how far. A chosen one is ink with its
+  count in white at 72%. A paid outlet's row shows the first lines of its menu on the saffron wash
+  (`.menu-peek`).
+- **Every kind of food** (`.baz-foods`, `.baz-food`): white tiles with the food's icon on the
+  same small ink tile, two abreast on a phone, three from 40rem, five from 64rem. **Every town**
+  is the directory's index of towns, district by district, each district with its icon.
+- **The search's results** follow the site's: the box, a line that says how many and how the
+  question was read, the pages of the section that answer as pills, the filters, the cards, and
+  last the one link to the whole site's search.
+- **Icons** are the site's own set (`Glyphs.tsx`): a kind of place, a kind of food, a district.
+  The section draws none.
 
 ### The street map
 

@@ -36,6 +36,7 @@ const START = "/";
 // Baz Manzer: the section's first page, which its own app opens on, and its own offline page.
 const BAZ = "/baz-manzer";
 const BAZ_OFFLINE = "/baz-manzer/offline";
+const BAZ_SUGGEST = "/baz-manzer/suggest";
 const inBaz = (path) => path === BAZ || path.startsWith(`${BAZ}/`);
 const STARTS = [START, BAZ];
 const PRECACHE = [OFFLINE, BAZ_OFFLINE, "/icons/icon-192.png", "/icons/icon-512.png", "/icons/icon-maskable-192.png", "/icons/icon-maskable-512.png"];
@@ -119,6 +120,8 @@ self.addEventListener("fetch", (event) => {
   // could show an old page as if it were new, so it goes to the network. With no network Next
   // loads the whole page instead, and that is answered below.
   if (request.headers.has("RSC") || url.searchParams.has("_rsc")) return;
+  // What Baz Manzer's search box offers while a question is typed is asked afresh each time, as the site's own is.
+  if (url.pathname === BAZ_SUGGEST) return;
 
   if (request.mode === "navigate") event.respondWith(page(event));
   else if (isAsset(url.pathname)) event.respondWith(asset(event));

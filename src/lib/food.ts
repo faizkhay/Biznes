@@ -5,7 +5,7 @@
 //
 // The section's search is here too. It asks the site's own search (src/lib/search.ts) by its
 // exported names and keeps what is a place to eat: it has no engine of its own.
-import { baz } from "./baz";
+import { baz, bazHref } from "./baz";
 import { anchorOf } from "./format";
 import { index, type Category, type Listing, type Place } from "./index";
 import { fold, PAGE_SIZE, search, understand, type Overlay, type Way } from "./search";
@@ -145,7 +145,12 @@ export function foodSearch(query: string, overlay?: Overlay): FoodAnswer {
   if (kind) way(baz.kind(kind.id, place?.slug), `${kind.label}${place ? ` in ${place.name}` : ""}`, pool.filter(fits).length);
   if (place) way(baz.town(place.slug), `Where to eat in ${place.name}`, pool.filter((l) => inTown(l, place.slug)).length);
   const asked = dish ? fold(dish.word) : rest || text;
-  for (const c of cuisines) if (asked.length >= 3 && (fold(c.label) === asked || fold(c.label).startsWith(`${asked} `) || `${fold(c.label)}s` === asked)) way(baz.food(c.id), `${c.label}, a kind of food`, c.n);
+  for (const c of cuisines) {
+    if (asked.length < 3 || !(fold(c.label) === asked || fold(c.label).startsWith(`${asked} `) || `${fold(c.label)}s` === asked)) continue;
+    // With a town in the question, the kind of food in that town; else the kind of food across the island.
+    if (place) way(bazHref({ food: c.id, town: place.slug }), `${c.label} in ${place.name}`, pool.filter((l) => inTown(l, place.slug) && cuisinesOf(l).some((own) => own.id === c.id)).length);
+    else way(baz.food(c.id), `${c.label}, a kind of food`, c.n);
+  }
   if (!place && text.length >= 3) for (const t of towns.filter((t) => t.kind === "town" && fold(t.name).split(" ").some((word) => word.startsWith(text))).slice(0, 3)) way(baz.town(t.slug), `Where to eat in ${t.name}`, t.eats);
 
   let answer: FoodAnswer;

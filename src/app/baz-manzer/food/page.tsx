@@ -14,7 +14,9 @@ const [, way] = BAZ.ways;
 
 export function generateMetadata(): Metadata {
   const { cuisines } = food();
-  return pageMeta({ title: "Kinds of food in Mauritius", description: `The ${count(cuisines.length)} kinds of food the open map records for places to eat in Mauritius, each with how many serve it, on Baz Manzer: from Chinese and Indian to pizza, seafood and the island's own.`, path: baz.foods });
+  // The kinds named are the four most served, read from the index on the day.
+  const most = cuisines.slice(0, 4).map((c) => c.label);
+  return pageMeta({ title: "Kinds of food in Mauritius", description: `The ${count(cuisines.length)} kinds of food the open map records for places to eat in Mauritius, each with how many serve it: most often ${most.slice(0, -1).join(", ")} and ${most.at(-1)}.`, path: baz.foods });
 }
 
 /**

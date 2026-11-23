@@ -420,7 +420,8 @@ const dataWords = await page.locator("main").innerText();
 check("the site states the order it keeps", /a listing with a telephone number on record is shown before one without/.test(dataWords) && /First, the pages of this site that answer/.test(dataWords) && /Then businesses and services/.test(dataWords));
 
 // 8bd. Baz Manzer: everything for eating, by kind of place, kind of food and town.
-await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });
+// Not "networkidle": a link fetched ahead by the page before this one can still be in flight, and one cut off by this visit is never reported as finished.
+await page.goto(`${origin}/baz-manzer`, { waitUntil: "domcontentloaded" });
 const bazAll = Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0);
 check("baz manzer: a page of its own, under its awning, with every place to eat", (await text("main h1")) === "Baz Manzer" && (await page.locator("main .baz-awning").count()) === 1 && bazAll > 1000 && (await page.locator("main .baz-types a").count()) === 5, `${bazAll}`);
 check("baz manzer: kinds of food from the map's own words, and towns", (await page.locator('main nav[aria-labelledby="by-food"] a').count()) >= 10 && (await page.locator('main nav[aria-labelledby="by-town"] a').count()) >= 5);

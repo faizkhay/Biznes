@@ -71,11 +71,11 @@ export function viewMeta(view: FoodView): Metadata {
   const n = listings.filter(inView(cuisine ? { cuisine } : { type, town })).length;
   const narrowedAfter = view.phone || view.web || view.page > 1 || Boolean(cuisine && (type || town));
   const path = baseOf(view);
-  const hours = "with telephone numbers and opening hours where the map records them";
+  const hours = "with numbers and hours where known";
   if (cuisine) return pageMeta({ title: `${cuisine.label}: places to eat in Mauritius`, description: `${count(n)} places to eat in Mauritius whose kind of food the map records as ${cuisine.label}, by kind of place and by town, ${hours}.`, path, index: !narrowedAfter, drawn: true });
   if (type && town) return pageMeta({ title: `${type.label} in ${town.name}`, description: `Where to eat in ${town.name}: ${count(n)} ${(n === 1 ? type.one : type.label).toLowerCase()} on Baz Manzer, ${hours}.`, path, index: false, drawn: true });
   if (type) return pageMeta({ title: `${type.label} in Mauritius`, description: `${count(n)} ${type.label.toLowerCase()} across Mauritius on Baz Manzer, by town and by kind of food, ${hours}.`, path, index: !narrowedAfter, drawn: true });
-  if (town) return pageMeta({ title: `Where to eat in ${town.name}`, description: `${count(n)} places to eat and drink in ${town.name}, Mauritius: restaurants, snacks, cafés, bakeries and bars, by kind of place and by kind of food, ${hours}.`, path, index: !narrowedAfter && n > 0, drawn: true });
+  if (town) return pageMeta({ title: `Where to eat in ${town.name}`, description: `${count(n)} ${n === 1 ? "place" : "places"} to eat and drink in ${town.name}, Mauritius, by kind of place and by kind of food, ${hours}, and the towns nearest it.`, path, index: !narrowedAfter && n > 0, drawn: true });
   return pageMeta({
     title: `${BAZ.name}: ${lowerFirst(BAZ.line)}`,
     description: `${count(listings.length)} places to eat and drink in Mauritius: restaurants, snacks, cafés, bakeries and bars, by kind of food and by town, with numbers and hours where known.`,

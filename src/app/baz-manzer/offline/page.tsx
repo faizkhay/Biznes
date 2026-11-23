@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Retry from "@/components/baz/Retry";
+import Retry from "@/components/Retry";
 import { BAZ } from "@/data/site";
 import { baz } from "@/lib/baz";
 import { pageMeta } from "@/lib/meta";
