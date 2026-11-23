@@ -787,7 +787,7 @@ Everything the owner will change is data. No fact is written into a component.
 | To change | Edit |
 |---|---|
 | The site's name, line, description and contact details | `site` in `src/data/site.ts` |
-| The menu's three groups, and the line under each page | `MENU` in `src/data/site.ts` |
+| The header's four links, what "More" opens, every page's name and the line under it | `NAV`, `MORE`, `MENU`, `YOURS` and `ABOUT` in `src/data/site.ts` |
 | The footer's pages | `NAV` and `MORE` in `src/data/site.ts` |
 | The five tabs at the foot of a phone's screen | `TABS` in `src/components/TabBar.tsx` |
 | The first screen's searches to try | `EXAMPLES` in `src/data/site.ts` |
@@ -833,8 +833,17 @@ owner has not given.
 
 ### The menu and the shelves
 
-The menu opens three groups, Explore, Learn and For business, each a list of pages with a line
-about it (`MENU`). To add a page to the menu, add an entry to its group. No other change is needed.
+The header has four plain links (`NAV`: Directory, Baz Manzer, Articles, Tools) and one word that
+opens a list, "More" (`MORE`: the eight pages most wanted after those). On a phone and a tablet a
+bar at the foot of the screen carries the search, the first three of the four, and "More", which
+there is a page of every page (`/more`). Nothing else opens, at any width.
+
+Every page that has a name is in one of three lists, each entry a name and a line about it: `MENU`
+(Find, Read, For business), `YOURS` (the shortlist, the cart, the account) and `ABOUT`. The page of
+every page and the footer's columns are drawn from them, and the header's "More" takes its names
+from them, so a page is called one thing wherever it is listed. To add a page, add an entry to its
+group; add its address to `MORE` only if it earns a place among the eight. An address in a link's
+`also` belongs to the same way in: the towns light Directory.
 
 A shelf is a row of `SHELVES`: an id, a label and a line. An article joins a shelf by its `shelf`
 field; one with none is on the business shelf. The order of articles on the site is `GUIDE_ORDER`
@@ -1174,6 +1183,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/directory/[cat]`, `/directory/[cat]/[place]` | A category, and a category in one town, with the filters and the island | On each request |
 | `/places` | Every town and village: a box that finds a town as it is typed, the districts as ways to jump, and each town's neighbourhoods folded under it | Ahead of time |
 | `/places/[place]` | One town: what is listed there, by kind | On each request |
+| `/more` | Every page the site has a name for, once, under its heading. What "More" leads to on a phone. Never indexed | Ahead of time |
 | `/learn` | The articles and guides, shelf by shelf | Ahead of time |
 | `/learn/[slug]` | One article, with its contents (the part being read is marked), its sources, the kinds of business that go with it, "Keep reading" and "References". The same address with `.md` after it gives the article as Markdown | Ahead of time |
 | `/learn/glossary` | The glossary, with a letter index | Ahead of time |
@@ -1222,10 +1232,10 @@ this list.
 | Contrast | `npm run contrast` | Every pair passes |
 | Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all ten pictures at a desk and on a phone: the lowest is 5.36:1 |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 193 of 193, against a production server with accounts off |
+| Behaviour | `npm run behaviour` | 203 of 203, against a production server with accounts off. The menu is among them: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
-| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 42 kinds of public page, at a desk and on a phone. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
-| Being found | `npm run seo` | 0 failures on 42 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 43 kinds of public page, at a desk and on a phone, and with the header's list open. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
+| Being found | `npm run seo` | 0 failures on 43 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
 | What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
 | The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |

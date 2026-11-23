@@ -247,15 +247,34 @@ check("answers: the site knows who makes it", /product of Khay Digital.*\| \/abo
 check("answers: words that are only partly found are never shown as the answer, and the page says so", (await answerTo("khayzzq digital")) === "" && /holds some of its words/.test(await page.locator('main p[role="status"]').first().innerText()));
 check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 
-// 8a. The menu: a group opens, shows its pages, and closes when one is chosen.
+// 8a. The menu: four plain links, each one press from its page, and one list that opens.
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
-await page.locator("header summary", { hasText: "Learn" }).click();
-check("menu: a group opens to its pages", (await page.locator("header details[open] .menu-item:visible").count()) === 4);
-await page.locator("header summary", { hasText: "Explore" }).click();
-check("menu: only one group is open at a time", (await page.locator("header details[open]").count()) === 1);
+const openLists = () => page.locator("header details[open]").count();
+const ways = await page.locator('header nav[aria-label="Main"] > ul > li > a').evaluateAll((links) => links.map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}|${a.getAttribute("aria-current") ?? ""}`));
+check("menu: the four ways in are plain links, and the one you are on says so", ways.join(",") === "Directory|/directory|page,Baz Manzer|/baz-manzer|,Articles|/learn|,Tools|/tools|", ways.join(","));
+check("menu: one thing in the header opens, and it is closed until it is asked for", (await page.locator("header details").count()) === 1 && (await openLists()) === 0);
+await page.locator("header summary", { hasText: "More" }).click();
+const moreLines = await page.locator("header details[open] .menu-item:visible").allInnerTexts();
+check("menu: More opens to the pages wanted less often, each named and with a line about it", moreLines.length === 9 && /Emergency numbers\s+Who to call/.test(moreLines.join("\n")) && /Every page, in one list/.test(moreLines.at(-1)), moreLines.join(" / ").replace(/\n/g, ": "));
+await page.keyboard.press("Escape");
+check("menu: Escape closes the list and hands the keyboard back to the word that opened it", (await openLists()) === 0 && (await page.evaluate(() => document.activeElement?.tagName === "SUMMARY" && document.activeElement.textContent.trim().startsWith("More"))));
+await page.keyboard.press("Enter");
+const openedByKey = await openLists();
+for (let i = 0; i < moreLines.length + 1; i++) await page.keyboard.press("Tab");
+check("menu: it opens from the keyboard, and walking out of it with Tab closes it", openedByKey === 1 && (await openLists()) === 0 && (await page.evaluate(() => !document.activeElement?.closest("details"))));
+await page.locator("header summary", { hasText: "More" }).click();
 await page.locator("header details[open] .menu-item", { hasText: "Emergency numbers" }).click();
 await page.waitForURL(/\/emergency/);
-check("menu: choosing a page goes there and closes the group", (await page.locator("header details[open]").count()) === 0 && /999/.test(await page.locator("main").innerText()));
+check("menu: choosing a page goes there, closes the list and lights More", (await openLists()) === 0 && /999/.test(await page.locator("main").innerText()) && (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
+await page.goto(`${origin}/places`, { waitUntil: "networkidle" });
+check("menu: the towns are the directory turned round: Directory is lit there, and one press goes between the two", (await page.locator('header nav a[href="/directory"]').getAttribute("aria-current")) === "true" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[aria-current="page"]').innerText()).trim() === "By town" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[href="/directory"]').count()) === 1);
+await page.goto(`${origin}/learn/vat`, { waitUntil: "networkidle" });
+check("menu: a page beneath a way in lights it as the place you are in, and only the page itself is called the current page", (await page.locator('header.site-header nav a[href="/learn"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
+await page.goto(`${origin}/more`, { waitUntil: "networkidle" });
+const moreGroups = await page.locator('main nav[aria-label="Every page"] h2').allInnerTexts();
+const moreLinks = await page.locator('main nav[aria-label="Every page"] a').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+check("more: the page of every page lists each one once, under its heading", moreGroups.join("|") === "Find|Read|For business|Yours|About" && moreLinks.length === new Set(moreLinks).size && moreLinks.length >= 20 && ["/directory", "/places", "/baz-manzer", "/emergency", "/holidays", "/learn", "/tools", "/shop", "/pricing", "/saved", "/cart", "/account", "/about", "/privacy"].every((href) => moreLinks.includes(href)), `${moreGroups.join("|")} ${moreLinks.length}`);
+check("more: it has one first heading and is not for a search engine", (await page.locator("main h1").count()) === 1 && (await page.locator('meta[name="robots"]').getAttribute("content"))?.includes("noindex"));
 
 // 8b. Narrowing, saving, sharing, and the plans.
 await page.goto(`${origin}/search?q=restaurants`, { waitUntil: "networkidle" });
@@ -276,7 +295,7 @@ check("narrowing: by town", townName.length > 0 && !/Any town/.test(townName) &&
 await page.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "networkidle" });
 const firstName = await page.locator("main article[data-listing] h3").first().innerText();
 await page.locator('main article[data-listing] button[aria-pressed="false"]').first().click();
-check("saving: the bookmark is pressed and the menu counts one", (await page.locator('main article[data-listing] button[aria-pressed="true"]').count()) === 1 && /Saved, 1/.test((await page.locator('header a[href="/saved"]').getAttribute("aria-label")) ?? ""));
+check("saving: the bookmark is pressed, and the shortlist's button comes into the header and counts one", (await page.locator('main article[data-listing] button[aria-pressed="true"]').count()) === 1 && /Saved, 1/.test((await page.locator("header a.nav-saved").getAttribute("aria-label")) ?? ""));
 await page.goto(`${origin}/saved`, { waitUntil: "networkidle" });
 await page.waitForSelector("main article[data-listing]");
 check("saving: the saved page lists it", (await page.locator("main article[data-listing] h2").first().innerText()) === firstName, firstName);
@@ -414,7 +433,7 @@ await page.waitForURL(/town=/);
 check("baz manzer: and a town narrows it again", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator("main article[data-listing]").count()) > 0);
 await page.goto(`${origin}/baz-manzer`, { waitUntil: "domcontentloaded" });
 check("baz manzer: the articles about food stand on its shelf", (await page.locator('main #food-articles ~ ul a[href^="/learn/"]').count()) >= 1);
-check("baz manzer: it is in the menu, on the first screen, in the sitemap and in llms.txt", (await page.locator('header .menu-item[href="/baz-manzer"]').count()) >= 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && (await (await page.request.get(origin)).text()).includes('href="/baz-manzer"'));
+check("baz manzer: it is in the menu, on the first screen, in the sitemap and in llms.txt", (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && (await (await page.request.get(origin)).text()).includes('href="/baz-manzer"'));
 
 // 8be. The street map: nothing of it is fetched until it is asked for.
 {
@@ -462,7 +481,7 @@ check("article: its address with .md after it gives the same article as Markdown
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 const footerWords = await page.locator("footer").innerText();
 check("footer: whose product the site is, in the owner's words, and the page's last line", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(footerWords) && /A Digital Experience by\s+Khay Digital\s*$/.test(footerWords.trim()) && (await page.locator('footer a[href="https://khay.digital"]').count()) >= 2);
-check("footer: every page in four columns", (await page.locator("footer nav h2").allInnerTexts()).join("|") === "EXPLORE|LEARN|FOR BUSINESS|ABOUT" || (await page.locator("footer nav h2").allInnerTexts()).join("|") === "Explore|Learn|For business|About");
+check("footer: every page in four columns, named as the menu names them", (await page.locator("footer nav h2").allInnerTexts()).join("|").toLowerCase() === "find|read|for business|about");
 const whole = async (ctxPage) => {
   await ctxPage.locator("footer .footer-mark").scrollIntoViewIfNeeded();
   await ctxPage.evaluate(() => document.querySelector("footer .footer-mark").scrollIntoView({ block: "center" }));
@@ -545,14 +564,19 @@ for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/search?q=c
   const over = await small.evaluate(() => Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth) - 390);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
-check("phone: the five ways in are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").count()) === 5);
+check("phone: the search, three ways in and More are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").allInnerTexts()).map((t) => t.trim()).join("|") === "Search|Directory|Baz Manzer|Articles|More");
 await small.goto(`${origin}/`, { waitUntil: "domcontentloaded" });
 const bar = await small.locator("nav.tabbar").boundingBox();
 check("phone: the bar is on the first screen", bar != null && bar.y + bar.height <= 844 && bar.y > 700, JSON.stringify(bar));
 check("phone: the emergency numbers are one tap from the first screen", (await small.locator('main section.hero-open a[href="/emergency"]').count()) === 1);
-await small.locator('header summary[aria-label="Menu"]').click();
-check("phone: the menu opens every group of pages", (await small.locator("header .menu-panel-all a:visible").count()) >= 10);
-await small.keyboard.press("Escape");
+check("phone: nothing in the header opens, and the bar is the one way round", (await small.locator("header details:visible, header summary:visible, header nav:visible").count()) === 0 && (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "Search");
+await small.locator('nav.tabbar a[href="/more"]').click();
+await small.waitForURL(/\/more$/);
+check("phone: More is a page of every page, and the bar says that is where you are", (await small.locator('main nav[aria-label="Every page"] a:visible').count()) >= 20 && (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "More");
+await small.goto(`${origin}/emergency`, { waitUntil: "domcontentloaded" });
+check("phone: on a page reached from More, More is lit", (await small.locator("nav.tabbar a[aria-current]").innerText()).trim() === "More" && (await small.locator("nav.tabbar a[aria-current]").getAttribute("aria-current")) === "true");
+const targets = await small.locator("nav.tabbar a, header .nav-pill > a").evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height))));
+check("phone: every control of the header and the bar is at least 44 pixels each way", targets.length >= 8 && targets.every((size) => size >= 44), targets.join(","));
 await small.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcontentloaded" });
 const strip = await small.locator("main .chart-fit").first().boundingBox();
 check("phone: results have the island as a small strip, drawn once", strip != null && strip.width < 170 && (await small.locator("main svg.chart, main .chart-fit").count()) <= 2 && (await small.locator("main .chart-fit").count()) === 1, JSON.stringify(strip));
@@ -564,9 +588,9 @@ const pill = await small.evaluate(() => {
   const logo = bar.querySelector(".logo").getBoundingClientRect();
   const shown = [...bar.querySelectorAll(':scope > a, :scope > details > summary')].filter((el) => el.getBoundingClientRect().width > 0).map((el) => el.getBoundingClientRect());
   const next = shown.filter((box) => box.left > logo.left + 1).sort((a, b) => a.left - b.left)[0];
-  return { fits: bar.scrollWidth <= bar.clientWidth, oneLine: bar.getBoundingClientRect().height <= 64, logoWhole: logo.width > 100 && logo.right <= next.left, cart: Boolean(bar.querySelector('a[href="/cart"]')?.getBoundingClientRect().width), account: Boolean(bar.querySelector('a[href^="/account"]')?.getBoundingClientRect().width), menu: Boolean(bar.querySelector('summary[aria-label="Menu"]')?.getBoundingClientRect().width) };
+  return { fits: bar.scrollWidth <= bar.clientWidth, oneLine: bar.getBoundingClientRect().height <= 64, logoWhole: logo.width > 100 && logo.right <= next.left, cart: Boolean(bar.querySelector('a[href="/cart"]')?.getBoundingClientRect().width), account: Boolean(bar.querySelector('a[href^="/account"]')?.getBoundingClientRect().width), opens: [...bar.querySelectorAll("details, summary")].filter((el) => el.getBoundingClientRect().width > 0).length };
 });
-check("phone: the header holds the name whole, the search, the cart, the account and the menu on one line", pill.fits && pill.oneLine && pill.logoWhole && pill.cart && pill.account && pill.menu, JSON.stringify(pill));
+check("phone: the header holds the name whole, the cart and the account on one line, and nothing that opens", pill.fits && pill.oneLine && pill.logoWhole && pill.cart && pill.account && pill.opens === 0, JSON.stringify(pill));
 check("phone: the footer's b is whole there too, clear of the sheet and of the tab bar", await whole(small));
 await small.goto(`${origin}/b/n14064293374`, { waitUntil: "networkidle" });
 const act = await small.locator("main header.biz-head a.btn-filled").boundingBox();

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHead } from "@/components/Bits";
+import { BrowseTabs, PageHead } from "@/components/Bits";
 import TownFinder from "@/components/TownFinder";
 import { count } from "@/lib/format";
 import { index, type Place } from "@/lib/index";
@@ -56,6 +56,7 @@ export default function PlacesPage() {
   return (
     <>
       <PageHead here="/places" title="Towns and villages" path={[{ label: "Places" }]} lede={`${count(meta.towns)} towns and villages with something listed, district by district.`}>
+        <BrowseTabs here="/places" />
         <div className="mt-6 max-w-md">
           <TownFinder target="towns" total={towns.length} />
         </div>

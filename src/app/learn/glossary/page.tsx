@@ -17,7 +17,7 @@ export default function GlossaryPage() {
   const letters = [...new Set(list.map((t) => letter(t.term)))];
   return (
     <>
-      <PageHead here="/learn/glossary" path={[{ href: "/learn", label: "Learn" }, { label: "Glossary" }]} title="Glossary" lede="The names and initials a business in Mauritius meets. Each meaning is taken from one of the guides, which gives its source." />
+      <PageHead here="/learn/glossary" path={[{ href: "/learn", label: "Articles" }, { label: "Glossary" }]} title="Glossary" lede="The names and initials a business in Mauritius meets. Each meaning is taken from one of the guides, which gives its source." />
       <div className="shell">
         {list.length === 0 && <p className="body-2 text-ink-subtle">The glossary is being written.</p>}
         <nav aria-label="Letters" className="mb-8">

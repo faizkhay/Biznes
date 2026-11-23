@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BROWSE } from "@/data/site";
 import { count } from "@/lib/format";
 import { breadcrumbs } from "@/lib/schema";
 import JsonLd from "./JsonLd";
@@ -70,5 +71,21 @@ export function PageHead({ path, here, title, lede, children }: { path?: { href?
       {lede && <p className="body-1 measure mt-4 text-ink-subtle">{lede}</p>}
       {children}
     </div>
+  );
+}
+
+/**
+ * The directory, both ways round: the same businesses by what they do, or by where they are. It
+ * stands at the head of both pages, so the towns are one press from the categories and back.
+ */
+export function BrowseTabs({ here }: { here: (typeof BROWSE)[number]["href"] }) {
+  return (
+    <nav aria-label="Ways to browse the directory" className="tabs mt-6">
+      {BROWSE.map((way) => (
+        <Link key={way.href} href={way.href} className="tab title-2" aria-current={way.href === here ? "page" : undefined}>
+          {way.label}
+        </Link>
+      ))}
+    </nav>
   );
 }

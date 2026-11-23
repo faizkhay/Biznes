@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SubscribeForm from "@/components/account/SubscribeForm";
-import { ABOUT, ACTIONS, CREDITS, MENU, PUBLICATIONS, STREET_MAP, site } from "@/data/site";
+import { ABOUT, ACTIONS, CREDITS, MENU, MENU_LABELS, PUBLICATIONS, STREET_MAP, YOURS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { day } from "@/lib/format";
 import { index } from "@/lib/index";
@@ -10,13 +10,15 @@ import { Mark, Wordmark } from "./Logo";
 /**
  * The footer: a dark card on the picture, with the b standing on its top edge. The name, large and
  * white; whose product the site is; how to reach the people behind it; the way onto the list for
- * the pocket guide and the magazine; every page in four columns (Explore, Learn, For business,
- * About); the credit the map's data asks for wherever it is shown; and the page's last line.
+ * the pocket guide and the magazine; every page in four columns (Find, Read, For business,
+ * About), named as the menu names them; the credit the map's data asks for wherever it is shown; and the page's last line.
  */
 export default function SiteFooter() {
   const { meta } = index();
   const { contact, builder } = site;
-  const columns = [...MENU.map((group) => ({ label: group.label, items: group.items.map((item) => ({ href: item.href, label: item.label })) })), { label: "About", items: [...ABOUT, ...(accountsOn ? [{ href: "/account", label: "Your account" }] : [])] }];
+  // The menu's own groups, and a last column for the site itself and what is the visitor's own.
+  const yours = YOURS.filter((item) => accountsOn || item.href !== "/account");
+  const columns = [...MENU.map((group) => ({ label: group.label, items: group.items.map((item) => ({ href: item.href, label: item.label })) })), { label: MENU_LABELS.about, items: [...ABOUT, ...yours].map((item) => ({ href: item.href, label: item.label })) }];
   return (
     <footer id="site-footer" className="site-footer">
       <span className="footer-mark" aria-hidden>

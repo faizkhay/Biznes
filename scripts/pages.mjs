@@ -17,6 +17,7 @@ export const PAGES = [
   ["category-place", "/directory/restaurants/grand-baie"],
   ["places", "/places"],
   ["place", "/places/curepipe"],
+  ["more", "/more"],
   ["learn", "/learn"],
   ["guide", "/learn/vat"],
   ["glossary", "/learn/glossary"],

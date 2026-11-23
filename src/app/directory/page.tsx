@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IndexItem, PageHead } from "@/components/Bits";
+import { BrowseTabs, IndexItem, PageHead } from "@/components/Bits";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
@@ -14,7 +14,9 @@ export default function DirectoryPage() {
   const { groups, categories, meta } = index();
   return (
     <>
-      <PageHead here="/directory" title="The directory" lede={`${count(meta.listings.all)} businesses and services in ${count(categories.length)} categories. Choose a category, then narrow it to a town.`} />
+      <PageHead here="/directory" title="The directory" lede={`${count(meta.listings.all)} businesses and services in ${count(categories.length)} categories. Choose a category, then narrow it to a town.`}>
+        <BrowseTabs here="/directory" />
+      </PageHead>
       <div className="shell">
         {groups.map((g) => (
           <section key={g.id} aria-labelledby={`g-${g.id}`} className="scroll-mt-8 grid gap-x-12 gap-y-4 border-t border-line py-10 md:grid-cols-12">

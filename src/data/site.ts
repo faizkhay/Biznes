@@ -50,36 +50,43 @@ export const site = {
 } as const;
 
 /** The pages in the header and the footer, in reading order. One label per page, everywhere. */
+/**
+ * The four ways in that every page names, in this order and by these names. The header shows them
+ * as plain links, each one press away; the phone's bar shows the first three, between the search
+ * and "More". `also` is an address that belongs to the same way in: the towns are the directory,
+ * turned the other way.
+ */
 export const NAV = [
-  { href: "/directory", label: "Directory" },
-  { href: "/places", label: "Places" },
-  { href: "/learn", label: "Learn" },
-  { href: "/tools", label: "Tools" },
+  { href: "/directory", label: "Directory", also: ["/places"] },
+  { href: "/baz-manzer", label: "Baz Manzer", also: [] },
+  { href: "/learn", label: "Articles", also: [] },
+  { href: "/tools", label: "Tools", also: [] },
 ] as const;
 
 /**
- * The menu, grouped: what a visitor may be after, in three words. Each line says what is behind it.
- * The header opens these as lists; the footer and the phone's tab bar use NAV.
+ * Every page a visitor may want, in groups, each with a line that says what is behind it. The
+ * footer's columns and the page behind "More" are drawn from this, so a page has one name and one
+ * place wherever it is listed.
  */
 export const MENU = [
   {
-    label: "Explore",
+    label: "Find",
     items: [
       { href: "/directory", label: "Directory", line: "Every kind of business, by category" },
       { href: "/places", label: "Places", line: "Town by town, village by village" },
       { href: "/baz-manzer", label: "Baz Manzer", line: "Where to eat, by kind of food and by town" },
       { href: "/emergency", label: "Emergency numbers", line: "Who to call, from official pages" },
       { href: "/holidays", label: "Public holidays", line: "Every date, with its day of the week" },
-      { href: "/shop", label: "Pocket Guide", line: "Mauritius, place by place, on your phone" },
     ],
   },
   {
-    label: "Learn",
+    label: "Read",
     items: [
       { href: "/learn", label: "Articles", line: "Mauritius explained, with its sources" },
       { href: "/tools", label: "Tools", line: "Income tax, VAT, checking a business" },
       { href: "/learn/glossary", label: "Glossary", line: "BRN, TAN, CSG and the other initials" },
       { href: "/official", label: "Official pages", line: "The registers and the forms themselves" },
+      { href: "/shop", label: "Pocket Guide", line: "Mauritius, place by place, on your phone" },
     ],
   },
   {
@@ -91,6 +98,34 @@ export const MENU = [
       { href: "/data", label: "Where the data comes from", line: "Sources, order, and what is never taken" },
     ],
   },
+] as const;
+
+/** The names of the two groups that stand after the menu's own, on the page of every page and in the footer. */
+export const MENU_LABELS = { yours: "Yours", about: "About" } as const;
+
+/** What is a visitor's own: the shortlist, the cart and the account. */
+export const YOURS = [
+  { href: "/saved", label: "Saved", line: "The businesses you have kept" },
+  { href: "/cart", label: "Cart", line: "What you are about to order" },
+  { href: "/account", label: "Your account", line: "Sign in, your businesses and your orders" },
+] as const;
+
+/**
+ * What the header's "More" opens: the pages beyond the four ways in that people most often want,
+ * most wanted first. Each is a page of MENU or YOURS, and is named as it is there.
+ */
+export const MORE = ["/places", "/emergency", "/holidays", "/shop", "/learn/glossary", "/official", "/saved", "/add"] as const;
+
+/**
+ * The list that opens in the header, and the page of every page that the phone's last tab leads
+ * to. `search` is the name of the first tab: the first screen, where the search is.
+ */
+export const MORE_PAGE = { href: "/more", label: "More", all: "Every page, in one list", title: "More", lede: "Everything on biznes.mu, in one list.", search: "Search" } as const;
+
+/** The directory, both ways round: the same businesses by what they do and by where they are. */
+export const BROWSE = [
+  { href: "/directory", label: "By kind of business" },
+  { href: "/places", label: "By town" },
 ] as const;
 
 /**
@@ -156,24 +191,9 @@ export const PUBLICATIONS = {
 
 /** The last column of the footer: the site itself. The other columns are the menu's groups. */
 export const ABOUT = [
-  { href: "/about", label: "About biznes.mu" },
-  { href: "/bot", label: "Our crawler" },
-  { href: "/privacy", label: "Privacy" },
-  { href: "/saved", label: "Saved" },
-  { href: "/cart", label: "Cart" },
-] as const;
-
-/** The quieter pages, for the footer. */
-export const MORE = [
-  { href: "/about", label: "About" },
-  { href: "/emergency", label: "Emergency numbers" },
-  { href: "/holidays", label: "Public holidays" },
-  { href: "/pricing", label: "List your business" },
-  { href: "/shop", label: "Pocket Guide" },
-  { href: "/official", label: "Official pages" },
-  { href: "/data", label: "Where the data comes from" },
-  { href: "/bot", label: "Our crawler" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/about", label: "About biznes.mu", line: "What the site is, and who makes it" },
+  { href: "/bot", label: "Our crawler", line: "What it took from a website, and how to stop it" },
+  { href: "/privacy", label: "Privacy", line: "What this site keeps, and what it does not" },
 ] as const;
 
 /** One label per intent, the same on every page. */

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NAV } from "@/data/site";
 import SearchBox from "@/components/SearchBox";
 
 export default function NotFound() {
@@ -11,12 +12,12 @@ export default function NotFound() {
         <SearchBox size="lg" id="missing-search" />
       </div>
       <p className="mt-6 flex flex-wrap gap-3">
-        <Link href="/directory" className="btn btn-quiet button-md">
-          The directory
-        </Link>
-        <Link href="/learn" className="btn btn-quiet button-md">
-          The guides
-        </Link>
+        {/* The first ways in, named as the menu names them. */}
+        {NAV.slice(0, 3).map((way) => (
+          <Link key={way.href} href={way.href} className="btn btn-quiet button-md">
+            {way.label}
+          </Link>
+        ))}
       </p>
     </div>
   );

@@ -80,17 +80,20 @@ export function ShareButton({ title, path, words = false, label }: { title: stri
   );
 }
 
-/** The header's way to the shortlist, with how many are on it. */
+/**
+ * The header's way to the shortlist, with how many are on it. It is there once something has been
+ * saved, and not before: an empty shortlist is one more button to read past. The list itself is
+ * always in "More" and on the page of every page.
+ */
 export function SavedLink() {
   const n = useSaved().length;
+  if (n === 0) return null;
   return (
-    <Link href="/saved" prefetch={false} className="icon-btn icon-btn-sq" aria-label={n ? `Saved, ${n}` : "Saved"} title="Saved">
+    <Link href="/saved" prefetch={false} className="icon-btn icon-btn-sq nav-saved" aria-label={`Saved, ${n}`} title="Saved">
       <Bookmark />
-      {n > 0 && (
-        <span className="badge" aria-hidden>
-          {n > 99 ? "99" : n}
-        </span>
-      )}
+      <span className="badge" aria-hidden>
+        {n > 99 ? "99" : n}
+      </span>
     </Link>
   );
 }

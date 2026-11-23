@@ -381,26 +381,53 @@
     width: auto;
     display: block;
   }
+  /* The four ways in, and "More": plain words in a row, each a link but the last. On a phone and a
+     tablet they are not here at all: the bar at the foot of the screen carries them. */
+  .nav-main {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .nav-main {
+      display: block;
+      margin-left: 0.75rem;
+    }
+  }
+  .nav-main > ul {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
   .nav-link {
     position: relative;
     display: inline-flex;
     align-items: center;
+    gap: 0.25rem;
     min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border-radius: var(--radius-full);
     color: var(--color-ink-subtle);
     text-decoration: none;
     white-space: nowrap;
     font-weight: 500;
-    transition: color 160ms var(--ease-out);
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
   .nav-link:hover,
-  .nav-link[aria-current="page"] {
+  .menu-group[open] > summary.nav-link {
+    background: var(--color-panel);
     color: var(--color-ink);
   }
-  .nav-link[aria-current="page"] {
+  /* Where you are: the word is ink and heavier, and carries the lit point. Not by colour alone. */
+  .nav-link[aria-current],
+  .nav-link[data-current] {
+    color: var(--color-ink);
     font-weight: 600;
   }
-  /* The page you are on carries the lit point. */
-  .nav-link[aria-current="page"]::after {
+  .nav-link[aria-current]::after,
+  .nav-link[data-current]::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -412,50 +439,41 @@
     background: var(--color-signal);
   }
 
-  /* A group of the menu: a word that opens a list of pages, each with a line about it. */
+  /* Between a tablet and a wide desk the pill is full: the shortlist's button waits in "More". */
+  @media (min-width: 64rem) and (max-width: 79.999rem) {
+    .nav-saved {
+      display: none;
+    }
+  }
+
+  /* "More": the one word that opens a list, of the pages wanted less often, each with a line about it. */
   .menu-group {
     position: relative;
   }
   .menu-group > summary.nav-link {
-    gap: 0.25rem;
-    padding: 0 0.75rem;
-    border-radius: var(--radius-full);
+    list-style: none;
+  }
+  .menu-group > summary.nav-link::-webkit-details-marker {
+    display: none;
   }
   .menu-group > summary.nav-link svg {
     width: 0.875rem;
     height: 0.875rem;
     transition: transform 200ms var(--ease-out);
   }
-  .menu-group > summary.nav-link:hover,
-  .menu-group[open] > summary.nav-link {
-    background: var(--color-panel);
-    color: var(--color-ink);
-  }
   .menu-group[open] > summary.nav-link svg {
     transform: rotate(180deg);
-  }
-  /* The group that holds the page you are on carries the lit point. */
-  .menu-group > summary.nav-link[data-current] {
-    color: var(--color-ink);
-    font-weight: 600;
-  }
-  .menu-group > summary.nav-link[data-current]::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0.25rem;
-    width: 0.3125rem;
-    height: 0.3125rem;
-    margin-left: -0.15625rem;
-    border-radius: 50%;
-    background: var(--color-signal);
   }
   .menu-panel {
     position: absolute;
     z-index: 60;
     top: calc(100% + 0.75rem);
-    left: 0;
-    width: 20rem;
+    left: 50%;
+    translate: -50% 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 0.25rem;
+    width: 36rem;
     margin: 0;
     padding: 0.5rem;
     list-style: none;
@@ -464,24 +482,15 @@
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
   }
-  .menu-panel ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  /* The last line leads to the page of every page, and runs the width of the list. */
+  .menu-panel .menu-all {
+    grid-column: 1 / -1;
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+    border-top: 1px solid var(--color-line);
   }
-  .menu-panel-all {
-    left: auto;
-    right: 0;
-    width: min(21rem, calc(100vw - 1rem));
-    max-height: calc(100dvh - var(--nav-h) - 8rem - env(safe-area-inset-bottom));
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-  .menu-panel-all .menu-item {
-    padding-block: 0.6875rem;
-  }
-  .menu-panel-all .menu-item .caption-1 {
-    display: none;
+  .menu-panel .menu-all .menu-item {
+    color: var(--color-link);
   }
   .menu-item {
     display: block;
@@ -494,7 +503,7 @@
   .menu-item:focus-visible {
     background: var(--color-panel);
   }
-  .menu-item[aria-current="page"] {
+  .menu-item[aria-current] {
     background: var(--color-signal-wash);
   }
 
@@ -1280,6 +1289,59 @@
     display: none;
   }
 
+  /* The page of every page: each group a short list of large rows, a whole row the link. */
+  .more-groups {
+    display: grid;
+    gap: 2.5rem 3rem;
+  }
+  @media (min-width: 48rem) {
+    .more-groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 72rem) {
+    .more-groups {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .more-list {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .more-list > li {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .more-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.5rem;
+    padding: 0.75rem 0.25rem;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .more-link svg {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    rotate: -90deg;
+    color: var(--color-ink-faint);
+    transition: translate 160ms var(--ease-out);
+  }
+  .more-link:hover .title-1,
+  .more-link:focus-visible .title-1 {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+  .more-link:hover svg {
+    translate: 0.1875rem 0;
+    color: var(--color-ink);
+  }
+
   /* On a phone the ways in are a bar at the foot of the screen, as in an app. */
   .tabbar {
     position: fixed;
@@ -1315,13 +1377,9 @@
     width: 1.375rem;
     height: 1.375rem;
   }
-  .tabbar a[aria-current="page"] {
+  .tabbar a[aria-current] {
     color: var(--color-ink);
     background: var(--color-signal-wash);
-  }
-  .tabbar .badge {
-    top: 0.25rem;
-    right: calc(50% - 1.375rem);
   }
   @media (min-width: 64rem) {
     .tabbar {
@@ -2640,12 +2698,6 @@
     border-left: 2px solid var(--color-line);
   }
 
-  /* On the narrowest phones the header leaves its search button out: the tab bar carries the search. */
-  @media (max-width: 22.5rem) {
-    .nav-find {
-      display: none;
-    }
-  }
   /* The cart: what is in it, a card each, with how many and the way to take it out. */
   .cart-items {
     display: grid;
@@ -2771,7 +2823,7 @@
       margin: 0;
       border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     }
-    /* The pill holds the name, the search, the cart, the account and the menu on one line. */
+    /* The pill holds the name, the cart and the account, and nothing that opens. */
     .nav-pill {
       gap: 0.25rem;
       padding-left: 1rem;

@@ -74,7 +74,7 @@ components:                 # only: backgroundColor textColor typography rounded
   nav-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 56px }
   nav-link: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.title-2}", rounded: "{rounded.full}", height: 2.75rem }
   nav-link-open: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  menu-panel: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.5rem, width: 20rem }
+  menu-panel: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.5rem, width: 36rem }
   menu-item: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.md}", padding: "0.625rem 0.75rem" }
   menu-item-line: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
   menu-item-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
@@ -378,7 +378,7 @@ sentences under it. Archivo, Geist and Geist Mono are gone.
 | `heading-2` | `clamp(1.5rem, 1.33rem + 0.65vw, 1.75rem)` | 650 | 1.18 | -0.018em | A section's heading. Bricolage Grotesque |
 | `heading-3` | 1.125rem | 600 | 1.3 | -0.015em | A sub-heading; a plan's name; an emergency number |
 | `title-1` | 1.0625rem | 600 | 1.35 | -0.012em | A card's title |
-| `title-2` | 0.875rem | 600 | 1.4 | -0.005em | A label, a group of the menu, a tab |
+| `title-2` | 0.875rem | 600 | 1.4 | -0.005em | A label, a word of the menu, a tab |
 | `body-1` | 1.125rem | 400 | 1.55 | -0.008em | A lede; the answer to a question |
 | `body-2` | 1rem | 400 | 1.65 | 0 | A guide's prose |
 | `body-3` | 0.875rem | 400 | 1.55 | 0 | A card's line, a fact, an index item, a filter |
@@ -482,7 +482,7 @@ royal for the answer. No other shadow has a colour.
 - **The icon tile**: a square of ink with 16px corners and a saffron icon. On a business's page it
   is 72px with a white border and stands half over the strip of picture.
 - **The lit point**: a filled saffron circle, sometimes with a soft halo. The centre of the b, the
-  dot under the current group of the menu, the dot in the greeting pill, a point on the map.
+  dot under the current word of the menu, the dot in the greeting pill, a point on the map.
 - **The seal**: a rosette of twelve points with a tick, the one filled icon.
 - **The hairline**: one pixel, ink at 10%.
 - **Icons**: one drawn set (`src/components/Icons.tsx`), 24px grid, 1.5px round strokes, in the
@@ -499,31 +499,53 @@ Each is a class in `globals.css` or a file in `src/components`. States are part 
 
 ### The pill menu
 
-`HeaderBar.tsx`, `.site-header`, `.nav-pill`, `.menu-group`, `.menu-panel`, `.menu-item`.
+`HeaderBar.tsx`, `.site-header`, `.nav-pill`, `.nav-main`, `.nav-link`, `.menu-group`,
+`.menu-panel`, `.menu-item`.
 
 - White at 90% with a blur, a hairline edge and `--shadow-md`. It stays at the top of the screen.
-- From 64rem it holds the name, three groups that open (Explore, Learn, For business; `MENU` in
-  `src/data/site.ts`), the compact search box, the bookmark with a count of saved listings, and
-  "List your business" as an ink button.
-- A group is a plain disclosure, so it opens with no script. With script only one is open at a
-  time, and it closes on Escape, on a press elsewhere and when a page is chosen. Open, its word
-  sits on sand and its arrow turns. The group that holds the page you are on carries a saffron
-  point.
-- A group opens a white panel 20rem wide with 24px corners and `--shadow-lg`. Each item is a
-  page's name and a line about it; under the pointer it is on sand, and the current page is on the
+- From 64rem it holds the name; four plain links, each one press from its page (Directory, Baz
+  Manzer, Articles, Tools; `NAV` in `src/data/site.ts`); "More", the one word that opens a list;
+  the compact search box; the cart and the account as soft square buttons; and "List your business"
+  as an ink button. The bookmark with its count joins them once something has been saved (from
+  80rem, where there is room; below that the shortlist is in "More").
+- Where you are is said three ways, never by colour alone: the word is ink and heavier, it carries
+  a saffron point, and it is marked for a screen reader (`aria-current`: "page" on the page
+  itself, "true" on a page beneath it). The towns light Directory, being the directory turned
+  round; a page that is reached from "More" lights "More".
+- "More" is a plain disclosure, so it opens with no script. With script it closes on Escape, which
+  hands the keyboard back to the word; when the keyboard walks out of it; on a press elsewhere; and
+  when a page is chosen. Open, its word sits on sand and its arrow turns.
+- It opens a white panel 36rem wide, centred under the word, with 24px corners and `--shadow-lg`:
+  eight pages in two columns (`MORE`), each a name and a line about it, and a last line that leads
+  to the page of every page. Under the pointer an item is on sand; the current page is on the
   saffron wash.
-- Under 64rem the groups are behind one soft square button that opens every page in one panel.
-  Under 48rem the search box becomes a button that leads to the search page. Under 40rem "List your
-  business" leaves the pill; it is in the menu.
+- Under 64rem the links and "More" leave the pill: the tab bar carries them. Under 48rem the
+  search box leaves too, and under 40rem "List your business". On a phone the pill is the name,
+  the cart and the account, and nothing in it opens.
 - The first screen and the search page carry their own large search box, so there the pill leaves
   it out.
 
 ### The tab bar
 
-`TabBar.tsx`, `.tabbar`. Under 64rem only. Five ways in: Search, Directory, Places, Learn, Saved.
-Each is an icon over a word, 52px tall. The current one is ink on the saffron wash. Saved carries
-the count. White at 92% with a blur, 24px corners, `--shadow-lg`, 0.5rem from the screen's sides and
-above the safe area.
+`TabBar.tsx`, `.tabbar`. Under 64rem only, and there the one way round: Search, Directory, Baz
+Manzer, Articles, More. Each is an icon over a word, 52px tall. Where you are is ink on the saffron
+wash, and marked for a screen reader as the header's links are. "More" is a page (`/more`), not a
+list that opens over the one you are on. White at 92% with a blur, 24px corners, `--shadow-lg`,
+0.5rem from the screen's sides and above the safe area.
+
+### The page of every page
+
+`src/app/more/page.tsx`, `.more-groups`, `.more-list`, `.more-link`. Every page the site has a name
+for, once, under its heading (Find, Read, For business, Yours, About; `MENU`, `YOURS` and `ABOUT`),
+each a row at least 56px tall with the page's name, a line about it and an arrow. One column on a
+phone, two from 48rem, three from 72rem. The footer's columns are drawn from the same lists, so a
+page has one name wherever it is listed.
+
+### The two-way switch
+
+`BrowseTabs` in `Bits.tsx`, on `.tabs` and `.tab`. At the head of the directory and of the towns:
+"By kind of business" and "By town" (`BROWSE`), the chosen one filled with ink. The same
+businesses, turned round, one press apart.
 
 ### The search box
 
@@ -719,7 +741,7 @@ sheet, above it in the stack so that its mark is never half hidden. The b stands
 edge, in the middle: ink, with a white point, on a 72px saffron tile tilted six degrees. Inside:
 the name large in white with its point in saffron (`.footer-name`), the line, and whose product it
 is, in the owner's words; the ways to reach us (`.footer-reach`); every page in four columns
-(`.footer-cols`: Explore, Learn, For business, About); a light card to join the list for the
+(`.footer-cols`: Find, Read, For business, About, drawn from the menu's own lists); a light card to join the list for the
 guide and the magazine (`.footer-join`, shown only when the form is); the map's credit as its
 licence asks; and, last, "A Digital Experience by Khay Digital". Secondary words are white at 78%.
 

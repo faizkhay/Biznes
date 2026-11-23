@@ -90,7 +90,7 @@ export default async function GuidePage({ params }: Props) {
           }}
         />
       )}
-      <Crumbs here={`/learn/${g.slug}`} path={[{ href: "/", label: "Home" }, { href: "/learn", label: "Learn" }, { label: g.title }]} />
+      <Crumbs here={`/learn/${g.slug}`} path={[{ href: "/", label: "Home" }, { href: "/learn", label: "Articles" }, { label: g.title }]} />
       <h1 className="heading-1 mt-4 max-w-4xl">{g.title}</h1>
       <p className="body-1 measure mt-4 text-ink-subtle">{g.summary}</p>
       <p className="caption-1 mt-6 text-ink-faint">

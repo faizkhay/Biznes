@@ -194,6 +194,45 @@ anywhere".
 - **The magazine.** Announced only.
 - **Paying online.** Not connected; the owner has not chosen how.
 
+### Round 6, 23 November 2026: one way round
+
+**The owner's note, in their own words.** "Simplify the site's navigation, should be easy to use,
+intuitive. Accessible."
+
+**What was wrong.** The header hid every page behind three words that opened (Explore, Learn, For
+business), so the directory, the food and the articles were each two presses away, and a visitor
+had to guess which word held what. A phone had two menus at once: four buttons at the top, one of
+them a list of fourteen pages that opened over the page, and a bar of five at the foot. The same
+section had three names: "Learn" on the bar, "Articles" in the list, "Learn" again in the path.
+
+**What was decided, and why.**
+
+- **The pages people come for are plain links.** Directory, Baz Manzer, Articles and Tools, each one
+  press away, always in the same place. A link says where it goes; a word that opens says only that
+  there is more.
+- **One thing opens, and it is called what it is.** "More" holds the eight pages wanted next, each
+  with a line about it, and ends on a page of every page. It closes on Escape, when the keyboard
+  leaves it, on a press elsewhere, and when a page is chosen.
+- **A phone has one menu, not two.** The bar at the foot is the way round: Search, Directory, Baz
+  Manzer, Articles, More. The header keeps the name, the cart and the account, and nothing in it
+  opens. "More" on a phone is a page, so the back button leaves it and a screen reader meets it as
+  any other page. Saved gave its place on the bar to Baz Manzer, which the owner asked to be
+  "the best on our apps"; the shortlist is in "More", and its button comes into the header once
+  something has been saved.
+- **The towns are the directory turned round.** "Places" left the first row. The directory and the
+  towns each open with the same switch, "By kind of business" and "By town", and both light
+  Directory.
+- **One name for a page, everywhere.** The header, the bar, the footer, the page of every page and
+  the path above a title all take a page's name from the same lists (`src/data/site.ts`). The
+  articles are "Articles" wherever they are named.
+- **Where you are is said, not only shown.** The word is ink and heavier and carries the lit point,
+  and a screen reader is told "current page" on the page itself and "current" on a page beneath it.
+- **The cart and the account stay in the header at every width**, as the owner asked.
+
+**Checked.** The behaviour checks hold the menu (the four links, the one list, Escape, Tab, the
+page of every page, the phone's bar, and that every control of the header and the bar is at least
+44 pixels each way). axe-core is clean on every kind of page at both sizes and with the list open.
+
 ### Round 5, behind the door: accounts, safety and tax
 
 **The owner's notes, in their own words.**

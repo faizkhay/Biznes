@@ -17,7 +17,7 @@ export default function LearnPage() {
   const shelves = SHELVES.map((shelf) => ({ ...shelf, guides: guides.filter((g) => (g.shelf ?? "business") === shelf.id) })).filter((shelf) => shelf.guides.length > 0);
   return (
     <>
-      <PageHead here="/learn" title="Articles about Mauritius" path={[{ label: "Learn" }]} lede="Plain articles about Mauritius: the island itself, doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
+      <PageHead here="/learn" title="Articles about Mauritius" path={[{ label: "Articles" }]} lede="Plain articles about Mauritius: the island itself, doing business here, visiting, moving here and living here. Each is written from the official pages themselves, names its source beside every figure, and says the day it was checked and what could not be confirmed." />
       <div className="shell">
         {guides.length === 0 && <p className="body-2 text-ink-subtle">The articles are being written.</p>}
         {shelves.length > 1 && (
