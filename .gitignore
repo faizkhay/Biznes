@@ -11,6 +11,8 @@ contrast.json
 # the site looked when it was checked; the rest, and the viewport slices, are working files.
 review/screens/*
 !review/screens/home-*.jpg
+!review/screens/landing-desktop.jpg
+!review/screens/landing-mobile.jpg
 !review/screens/search-desktop.jpg
 !review/screens/search-mobile.jpg
 !review/screens/listing-*.jpg

@@ -1252,11 +1252,28 @@ form.
   kind of business typed wrongly ("pharmcy", "restorant", "curpipe") as the word meant, when one
   word the index holds is plainly the nearest (alone at its distance, or held by five times as
   many documents as the next), and the page says close spellings are shown.
+- **A question asked the way people talk.** "Burger place in Beau Bassin" is a dish and a town.
+  A word that only says "a business" (`GENERIC` in `src/lib/search.ts`: place, spot, shop) is set
+  aside when the question finds nothing with it, and only beside a kind of business or a dish, so
+  "Place Taxi Margeot" is still found by its name. The words people add when asking aloud
+  ("where can I get", "with", "tonight") are padding. A dish asked for with a kind of place that
+  has none ("burger restaurant", where the burgers are in snacks) is looked for in every place to
+  eat. And when a kind of business in a town was understood, or a dish that places do mention,
+  and another word is held by none of them ("nice", "halal", "late night"), the question is
+  answered as far as it was understood and the page says which words were left out. Before this
+  the whole question fell to "holds some of its words": 25 of 42 everyday questions tried on
+  23 November 2026 did, and one does now, where the index holds no listing of that kind in that
+  town. The 387 measured questions gained seventeen of this sort.
+- **What the map does not say.** The open map records what a place serves for few of them. So
+  under the places that answer a dish in a town, `search()` gives `also`: the other places of the
+  dish's own kind in that town with nothing on record about what they serve, six at most, under
+  "May also fit", never counted among the results. The related searches offer the same dish in
+  the towns within ten kilometres, with real counts.
 
 | Check | Command | What it does |
 |---|---|---|
 | The engine alone | `npm run search:test` | 65 checks on small made-up documents: the order, a word half typed, typing mistakes (and that the filing finds every close spelling a full reading of the vocabulary finds), adding and taking out, every word and any word, empty and odd questions. No build, no server |
-| How long it takes | `npm run search:measure` | The site's `search()` in plain Node over 387 questions (`scripts/search-questions.mjs`: written by hand, and drawn from the index), five times each. Fails if the 95th percentile is over 30 ms or the index takes more than 1.5 times the library's time. `-- --results file` writes the first ten answers to every question, and `-- --compare file` says what differs from such a file |
+| How long it takes | `npm run search:measure` | The site's `search()` in plain Node over 404 questions (`scripts/search-questions.mjs`: written by hand, and drawn from the index), five times each. Fails if the 95th percentile is over 30 ms or the index takes more than 1.5 times the library's time. `-- --results file` writes the first ten answers to every question, and `-- --compare file` says what differs from such a file |
 | How good it is | `npm run search:measure -- --names` | Every one of the 6,520 names in the index asked for six ways: as written, with one of four slips in its longest word, and with its last two letters not yet typed. It counts how often the business is first, how often in the first ten, and how often nothing is found. About ten seconds |
 
 The test needs Node 22.6 or newer, which runs TypeScript by stripping its types. The measurement
@@ -1674,19 +1691,22 @@ this list.
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 261 files |
-| Tokens | `npm run tokens` | 0 failures, 192 files |
+| House style | `npm run copy` | 0 failures, 332 files |
+| Tokens | `npm run tokens` | 0 failures, 263 files |
 | Contrast | `npm run contrast` | Every pair passes |
 | Words on the picture | `npm run hero` | The landing page's headline, its greeting and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 5.60:1 |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 203 of 203, against a production server with accounts off. The menu is among them: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
+| Behaviour | `npm run behaviour` | 255 of 255, against a production server with accounts off. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
+| Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |
+| The search engine alone | `npm run search:test` | 65 of 65, in plain Node with no server (see "The engine") |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
-| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 43 kinds of public page, at a desk and on a phone, and with the header's list open. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
-| Being found | `npm run seo` | 0 failures on 43 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone, and with the header's list open. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
+| Being found | `npm run seo` | 0 failures on 56 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
 | What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
-| The accounts' rules in the database | `npm run test:rls` | 186 of 186, on a local Postgres |
-| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 260 of 260, against Supabase's own database, sign-in, API and storage services run on this machine (`scripts/accounts-stack.sh`), with the public pages and the site's word in place, and axe-core clean on 55 kinds of account page at both sizes. On the hosted project only reading has been tried (see Accounts) |
+| The accounts' rules in the database | `npm run test:rls` | 674 claims on a new database and 22 more on one that already holds rows, all pass, on a local Postgres |
+| The site's own email, with no database and no mail service | `node scripts/email-unit.mjs` | 68 of 68 |
+| The accounts in a browser | `node scripts/accounts-e2e.mjs` | 344 of 344, against Supabase's own database, sign-in, API and storage services run on this machine (`scripts/accounts-stack.sh`), with the public pages and the site's word in place, and axe-core clean on 70 kinds of account page at both sizes. On the hosted project only reading has been tried (see Accounts) |
 
 The behaviour, accessibility and capture checks, and `npm run hero`, need a production server. The
 behaviour check starts the form's own receiver, so the form is tested end to end:

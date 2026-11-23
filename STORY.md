@@ -127,6 +127,150 @@ transition.
 
 ## Rounds
 
+### Round 7, 23 November 2026: a door, a hall, and three things of our own
+
+**The owner's note, in their own words.**
+
+"Write our own site search algorithm. Keep landing page simple bg image, search bar, there is a
+button that says home where there is top business listings, baz manzer, categories, regions, other
+useful links. Priorities informative icons as well, create them to make them unique if needed.
+
+Also, to manage our subscription to pocket guide, build the internal email marketing system, we
+will set up our own stmp via maybe a free mailgun or resend server. (Will set up later, build the
+base first)
+
+Baz manzer should be its own section on the site, as in people can choose to install pwa version
+of only thr baz manzer section on their phones instead of the whole biznes.mu"
+
+**What was decided, and why.**
+
+- **The first screen is a door.** `/` is the picture, the site's own line as its heading, the
+  search and one button that says "Home". The header there keeps the name, the cart and the
+  account. There is no sheet, no bar at the foot and nothing under the button; one quiet line at
+  the foot says whose site it is. It is one screen at every size measured, from 320 by 568 to 1920
+  by 1080.
+- **Home is the hall behind it.** `/home` holds what the first screen used to carry and what the
+  owner listed: top businesses, Baz Manzer, the categories, the regions beside the island, and the
+  useful pages (the numbers to call, the next public holidays, articles, tools, the Pocket Guide,
+  listing a business). "Home" leads the menu and sits second on a phone's bar; Tools moved into
+  "More". A path above a title now starts at Home.
+- **"Top" is a measure, never a judgement.** Nothing on the site may be invented, and nobody at
+  biznes.mu rates a business. So the eight shown are: a verified business on a paid plan first,
+  marked, as on a page of results; then the fullest listings in the open index (a telephone
+  number, a website, opening hours and an address on record: 56 of the 7,179 today), eight at a
+  time, a different eight each day, every one having its turn in a run of seven days. The Home
+  page says so above the list and `/data` says it in full.
+- **Icons of our own, with one rule.** Every icon is a line drawing on the same grid with exactly
+  one solid point, the lit point of the name, placed where it means something: the pill in the
+  pharmacy's capsule, the flame of the candle, the place on the map. There is one for each kind of
+  business (67 drawn; three wear their group's), the thirteen groups, twenty kinds of food and
+  twenty-three pages. A district's icon is the island itself, cut from the same outline the chart
+  uses, with that district filled. Home's is a house: the first drawing was a signpost, kept apart
+  from the home and building group, but a button that says Home is looked for under a house.
+  A listing's row and a business's page now wear the icon of its own kind, not of its group.
+- **The search is ours.** The library that kept the index is gone. The engine
+  (`src/lib/engine.ts`) keeps the words of every document by field, weighs the name above the
+  kind, the kind above the place and the place above the rest, puts a whole name first, and reads
+  a typing mistake as the word meant: one slip from four letters, two from eight, and two letters
+  that changed places count as one. A close spelling always counts for less than the word spelt
+  right, and the page says when it has read one. Measured over all 6,520 names in the index, a
+  name as written is found first 97.7 times in a hundred (91.6 before), and with two letters
+  swapped 96.9 (71.2 before, with nothing at all found for one in fifteen). The median search
+  takes a fifth of a millisecond. The order of a page of results did not change, and `/data` says
+  how a listing is weighed.
+- **The email is a base, and it sends nothing until it is given a sender.** The owner will connect
+  Resend or Mailgun later, so the system was built to be whole without one. Joining the list works
+  as it did. An admin writes a message on the Email tab in parts, sees it drawn as it will arrive
+  with its plain-text twin, and with no sender takes the addresses as a file and the finished
+  message to send by hand, then marks it sent so the record holds who it went to. One press starts
+  the message for a new edition of the Pocket Guide with the month, the name and the address
+  filled in. With a sender the site asks a new address to confirm, sends in batches, gives every
+  reader their own link to leave in one press, and stops writing to an address that bounced,
+  complained or asked. No message can be sent while the sender's postal address is empty, and
+  nothing tracks who opened or pressed what.
+- **Baz Manzer is a section, and an app of its own.** Everything for eating now lives under
+  `/baz-manzer`: a first page under the awning with its own search, the five kinds of place, 76
+  kinds of food, 76 towns, a place's own page, and a shortlist of places to eat. It has its own
+  header and its own bar on a phone, so someone who installs it never falls out into the rest of
+  the site unless they press "biznes.mu". It carries its own manifest, name, icon and first page,
+  with `/baz-manzer` as its scope, so a phone offers "Add Baz Manzer to your home screen" inside
+  the section and "Add biznes.mu" everywhere else, and the two install side by side. A page of the
+  section opened once opens again with no connection. "What is near" is a town the visitor
+  chooses: the site asks no phone where it is. Every old address with parameters leads to its one
+  new address.
+
+**The same night: "why didn't we find any?"** The owner searched "Burger place in beau bassin" on
+a phone, got "Nothing here holds all of it" with a taxi rank first, and wrote: "there are so many
+burger places in beau bassin, why didn't we find any?? [...] Whats up with our algo? Fix that."
+
+Two things were wrong, and they are not the same thing.
+
+- **The engine let go of what it had understood.** It read "burger" as a dish and "Beau Bassin" as
+  a town, found no place that also held the word "place", and fell back to anything holding some
+  of the words. Tried on 42 questions asked the way people talk, 25 fell the same way. Now a word
+  that only says "a business" is set aside, the words people add when asking aloud are padding, a
+  dish asked for with the wrong word for the kind of place is looked for in every place to eat,
+  and a kind of business in a town is answered as far as it was understood, with the words left
+  out named on the page. One of the 42 still falls, where the index holds nothing of that kind in
+  that town. The 387 measured questions answer as before but for two long ones, now understood,
+  and one mistyped name that finds one more.
+- **The index is thin, and no engine can find what is not in it.** The open map records two places
+  in Beau Bassin-Rose Hill as serving burgers. Nothing may be invented, so the page now says what
+  it knows: under the places that answer it lists the other snacks and takeaways in the town that
+  have nothing on record about what they serve, as "May also fit" and never as results, and it
+  offers the same dish in the nearest towns. `/data` says both. The cure for thin data is more
+  listings, from owners or from a fuller source, and that is the owner's decision.
+
+**Checked.** On the tree that is live: 255 behaviour checks, 231 for Baz Manzer, 72 for the tax
+tools, 65 for the engine alone, 68 for the email with no service, axe-core clean on 56 kinds of
+public page at both sizes; with accounts on, 696 claims about who may read and write what and 344
+checks in a browser, axe-core clean on 70 kinds of account page.
+
+**Not done, and said.** The database's parts 11 to 14 are not on the hosted project: applying
+them asks the owner to confirm, and the owner has not yet been there to. Until then the Email tab
+says the database is behind. Neither Resend nor Mailgun has been called. The two apps were
+installed side by side on Chromium only: no real Android phone or iPhone has been tried. A sender
+over plain SMTP is not built.
+
+### Round 6, 23 November 2026: one way round
+
+**The owner's note, in their own words.** "Simplify the site's navigation, should be easy to use,
+intuitive. Accessible."
+
+**What was wrong.** The header hid every page behind three words that opened (Explore, Learn, For
+business), so the directory, the food and the articles were each two presses away, and a visitor
+had to guess which word held what. A phone had two menus at once: four buttons at the top, one of
+them a list of fourteen pages that opened over the page, and a bar of five at the foot. The same
+section had three names: "Learn" on the bar, "Articles" in the list, "Learn" again in the path.
+
+**What was decided, and why.**
+
+- **The pages people come for are plain links.** Directory, Baz Manzer, Articles and Tools, each one
+  press away, always in the same place. A link says where it goes; a word that opens says only that
+  there is more.
+- **One thing opens, and it is called what it is.** "More" holds the eight pages wanted next, each
+  with a line about it, and ends on a page of every page. It closes on Escape, when the keyboard
+  leaves it, on a press elsewhere, and when a page is chosen.
+- **A phone has one menu, not two.** The bar at the foot is the way round: Search, Directory, Baz
+  Manzer, Articles, More. The header keeps the name, the cart and the account, and nothing in it
+  opens. "More" on a phone is a page, so the back button leaves it and a screen reader meets it as
+  any other page. Saved gave its place on the bar to Baz Manzer, which the owner asked to be
+  "the best on our apps"; the shortlist is in "More", and its button comes into the header once
+  something has been saved.
+- **The towns are the directory turned round.** "Places" left the first row. The directory and the
+  towns each open with the same switch, "By kind of business" and "By town", and both light
+  Directory.
+- **One name for a page, everywhere.** The header, the bar, the footer, the page of every page and
+  the path above a title all take a page's name from the same lists (`src/data/site.ts`). The
+  articles are "Articles" wherever they are named.
+- **Where you are is said, not only shown.** The word is ink and heavier and carries the lit point,
+  and a screen reader is told "current page" on the page itself and "current" on a page beneath it.
+- **The cart and the account stay in the header at every width**, as the owner asked.
+
+**Checked.** The behaviour checks hold the menu (the four links, the one list, Escape, Tab, the
+page of every page, the phone's bar, and that every control of the header and the bar is at least
+44 pixels each way). axe-core is clean on every kind of page at both sizes and with the list open.
+
 ### Round 5, 20 November 2026: useful first
 
 **The owner's notes, in their own words.**
@@ -193,45 +337,6 @@ anywhere".
   none is shown.
 - **The magazine.** Announced only.
 - **Paying online.** Not connected; the owner has not chosen how.
-
-### Round 6, 23 November 2026: one way round
-
-**The owner's note, in their own words.** "Simplify the site's navigation, should be easy to use,
-intuitive. Accessible."
-
-**What was wrong.** The header hid every page behind three words that opened (Explore, Learn, For
-business), so the directory, the food and the articles were each two presses away, and a visitor
-had to guess which word held what. A phone had two menus at once: four buttons at the top, one of
-them a list of fourteen pages that opened over the page, and a bar of five at the foot. The same
-section had three names: "Learn" on the bar, "Articles" in the list, "Learn" again in the path.
-
-**What was decided, and why.**
-
-- **The pages people come for are plain links.** Directory, Baz Manzer, Articles and Tools, each one
-  press away, always in the same place. A link says where it goes; a word that opens says only that
-  there is more.
-- **One thing opens, and it is called what it is.** "More" holds the eight pages wanted next, each
-  with a line about it, and ends on a page of every page. It closes on Escape, when the keyboard
-  leaves it, on a press elsewhere, and when a page is chosen.
-- **A phone has one menu, not two.** The bar at the foot is the way round: Search, Directory, Baz
-  Manzer, Articles, More. The header keeps the name, the cart and the account, and nothing in it
-  opens. "More" on a phone is a page, so the back button leaves it and a screen reader meets it as
-  any other page. Saved gave its place on the bar to Baz Manzer, which the owner asked to be
-  "the best on our apps"; the shortlist is in "More", and its button comes into the header once
-  something has been saved.
-- **The towns are the directory turned round.** "Places" left the first row. The directory and the
-  towns each open with the same switch, "By kind of business" and "By town", and both light
-  Directory.
-- **One name for a page, everywhere.** The header, the bar, the footer, the page of every page and
-  the path above a title all take a page's name from the same lists (`src/data/site.ts`). The
-  articles are "Articles" wherever they are named.
-- **Where you are is said, not only shown.** The word is ink and heavier and carries the lit point,
-  and a screen reader is told "current page" on the page itself and "current" on a page beneath it.
-- **The cart and the account stay in the header at every width**, as the owner asked.
-
-**Checked.** The behaviour checks hold the menu (the four links, the one list, Escape, Tab, the
-page of every page, the phone's bar, and that every control of the header and the bar is at least
-44 pixels each way). axe-core is clean on every kind of page at both sizes and with the list open.
 
 ### Round 5, behind the door: accounts, safety and tax
 
