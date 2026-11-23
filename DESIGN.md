@@ -861,6 +861,7 @@ They are the site's own, drawn for it and taken from no library: one for each of
 business, the 13 groups of the directory, the 10 districts, the kinds of food most listed on Baz
 Manzer, and each page the menu names. `npm run icons:sheet` draws every one at 20px, 24px and 48px
 on paper, on a white card and on an ink tile (`review/icons/`), and is how the set is judged.
+Under `npm run dev`, `/preview/icons` shows them on the site's own tiles.
 
 - **The hand**: a 24 by 24 grid, 1.5px strokes with round caps and joins, in the current colour,
   on whole and half units, and no drawing longer than about thirty commands. Nothing is smaller

@@ -21,7 +21,7 @@ const WORLD: Drawing = ["M3.5 12a8.5 8.5 0 1 0 17 0 8.5 8.5 0 1 0-17 0ZM3.5 12h1
 /** A plate of spaghetti; the point is the sauce on top. */
 const PASTA: Drawing = ["M2.5 16h19M5 16c.5 2.5 3 4.5 7 4.5s6.5-2 7-4.5M5.5 16c0-4 2.8-7 6.5-7s6.5 3 6.5 7M9 16c0-2 1.3-3.5 3-3.5s3 1.5 3 3.5M16.5 10l4-5.5", 12, 8, 2.25];
 /** A scallop shell; the point is its hinge. */
-const SHELL: Drawing = ["M12 17.5C7.5 16.5 3.5 13.5 3.5 9.5c0-3.5 3.5-6 8.5-6s8.5 2.5 8.5 6c0 4-4 7-8.5 8ZM12 17 8 4.5M12 17V3.5M12 17l4-12.5", 12, 19];
+const SHELL: Drawing = ["M12 18 3.5 9.5a2.7 2.7 0 0 1 3.9-2.6 2.7 2.7 0 0 1 4.6-.9 2.7 2.7 0 0 1 4.6.9 2.7 2.7 0 0 1 3.9 2.6L12 18ZM12 18 7.4 6.9M12 18V6M12 18l4.6-11.1", 12, 18.5];
 /** A fish; the point is its eye. */
 const FISH: Drawing = ["M3 12c2.5-4 6-6 9.5-6 3 0 5 1.5 6.5 3.5l2.5-2.5v10L19 14.5c-1.5 2-3.5 3.5-6.5 3.5-3.5 0-7-2-9.5-6ZM12 8.5c1 2 1 5 0 7", 7.5, 11, 1.75];
 /** A cup to take away. */

@@ -60,10 +60,11 @@ export default function IconsPreview() {
           <h2 id="icons-districts" className="heading-3">
             Districts
           </h2>
-          <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-5">
+          {/* The point is lit here by the hook on the list, not by a prop on each icon. */}
+          <ul className="mt-4 grid grid-cols-2 gap-3 [--glyph-point:var(--color-signal)] md:grid-cols-5">
             {districts.map((district) => (
               <li key={district.slug} className="body-3 flex items-center gap-3 rounded-xl bg-paper p-4">
-                <DistrictIcon slug={district.slug} lit width={32} height={32} className="shrink-0" />
+                <DistrictIcon slug={district.slug} width={32} height={32} className="shrink-0" />
                 {district.name}
               </li>
             ))}
