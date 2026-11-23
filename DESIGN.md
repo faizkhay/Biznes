@@ -92,6 +92,8 @@ components:                 # only: backgroundColor textColor typography rounded
   suggestion-icon: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}", rounded: "{rounded.sm}", size: 2rem }
   pill-note: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.full}", height: 2rem }
   try-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.5rem }
+  landing-foot: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.caption-1}", rounded: "{rounded.xl}", padding: "0.125rem 1.25rem" }
+  landing-foot-link: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", height: 2.25rem }
   field: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.md}", padding: "0.6875rem 1rem", height: 3rem }
   field-placeholder: { backgroundColor: "{colors.white}", textColor: "{colors.mist}" }
   field-edge: { backgroundColor: "{colors.line-strong}", height: 1px }
@@ -131,6 +133,9 @@ components:                 # only: backgroundColor textColor typography rounded
   card-ink: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", rounded: "{rounded.xl}", padding: 1.5rem }
   tile-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.lg}", size: 3rem }
   tile-icon-hover: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
+  glyph: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", size: 1.5rem }
+  glyph-point-lit: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", rounded: "{rounded.full}" }
+  tile-icon-quiet: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.md}", size: 2.25rem }
   index-item: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-3}" }
   index-count: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
   fact-name: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.body-3}" }
@@ -170,8 +175,9 @@ why. Where the two disagree, the code is right and this is the bug.
 
 biznes.mu is a search engine for business in Mauritius: a directory, guides and the official
 registers behind one box. The page is a painted picture of the island with a sheet of warm paper
-laid on it and one question in the middle: "Find it in Mauritius." The picture changes with the
-season and the public holiday. The paper, the ink and the saffron point do not.
+laid on it. The landing page is the picture alone, with the site's one line and the search in the
+middle of it. The picture changes with the season and the public holiday. The paper, the ink and
+the saffron point do not.
 
 The owner's brief of 20 November 2026 set it: "i dont want too corporate, still want an easy
 feeling for people coming to us, we can have a background image that i can change with time, main
@@ -186,7 +192,7 @@ the brand's own ink: 16.80:1 on the sheet, 17.69:1 on a card. Secondary words ar
 
 **Mode.** The site is a tool (impeccable's Operate) with reading pages (Read). Familiar controls, a
 fixed type scale, cards where a list holds things to act on, and motion only for a change of
-state. The first screen alone is allowed the display size and the full picture.
+state. The landing page alone is allowed the display size and the full picture.
 
 **Key characteristics**
 
@@ -346,11 +352,15 @@ and not yet in `scripts/contrast.pairs.json`:
 | line-strong | cream | 3.36:1 | A chip's edge on the sheet (a mark) |
 
 **Words on the picture.** A picture is not one colour, so no pair can vouch for words set on it.
-Two things keep them readable: a veil of cream over the picture's sky on every page, and on the
-first screen a soft light of cream behind the question. `scripts/hero-contrast.mjs` reads the
-pixels behind the headline and the line under it on each of the ten pictures, at a desk and on a
-phone, and fails under 3:1 for the headline or 4.5:1 for the line. On 20 November 2026 the lowest
-of all was 5.36:1. It needs a running server.
+Only the landing page sets any there. Two things keep its headline readable: a veil of cream over
+the picture's sky on every page, and a soft light of cream behind the words. The greeting above
+the headline and the line at the page's foot each stand on a ground of their own, white at 82%
+with a blur: over the darkest picture there could be that ground is no darker than `#d1d1d1`,
+on which slate measures 5.82:1 and ink more. `scripts/hero-contrast.mjs` reads the pixels behind
+all three on each of the ten pictures, at a desk and on a phone, and fails under 3:1 for the
+headline or 4.5:1 for the other two. On 23 November 2026 the lowest of the sixty was 5.60:1 (the
+headline on the sunset, at a desk), and the lowest for the foot line 6.30:1. It needs a running
+server.
 
 **Gaps (recorded, not rules).**
 
@@ -378,7 +388,7 @@ sentences under it. Archivo, Geist and Geist Mono are gone.
 
 | Style | Size | Weight | Line | Tracking | Used for |
 |---|---|---|---|---|---|
-| `display-1` | `clamp(2.625rem, 1.4rem + 4.9vw, 4.5rem)` | 700 | 1 | -0.03em | The first screen's question, once. Bricolage Grotesque |
+| `display-1` | `clamp(2.625rem, 1.4rem + 4.9vw, 4.5rem)` | 700 | 1 | -0.03em | The landing page's line, once; Baz Manzer's name on its own page. Bricolage Grotesque |
 | `heading-1` | `clamp(2rem, 1.55rem + 1.7vw, 2.75rem)` | 650 | 1.08 | -0.024em | A page's title; a plan's price. Bricolage Grotesque |
 | `heading-2` | `clamp(1.5rem, 1.33rem + 0.65vw, 1.75rem)` | 650 | 1.18 | -0.018em | A section's heading. Bricolage Grotesque |
 | `heading-3` | 1.125rem | 600 | 1.3 | -0.015em | A sub-heading; a plan's name; an emergency number |
@@ -418,14 +428,14 @@ heading over a list. No sentence is set in capitals.
 - **The picture** (`.backdrop`) is fixed behind the page and fills the screen, anchored to its
   foot. A veil of cream lies over its sky: 78% at the top, 52% at 38% of the height, clear by 68%.
 - **The sheet** is drawn behind `main`: cream, 32px corners, set in from the screen's sides by
-  `--edge`, `clamp(0.5rem, 1.4vw, 1.25rem)`, so the picture shows round it. On the first screen it
-  begins under the question, at `--hero-h`, `clamp(33rem, 80svh, 44rem)`.
+  `--edge`, `clamp(0.5rem, 1.4vw, 1.25rem)`, so the picture shows round it. The landing page has
+  no sheet: it is the picture, whole.
 - **The shell** is 76rem wide with a gutter of `clamp(1.25rem, 4vw, 3rem)`.
 - **The menu** floats 0.75rem from the top as a pill up to 68rem wide and 56px tall.
-- **Twelve columns** from 68rem (`chart:`): a list on seven and the island on five. On the first
-  screen, the towns on six and the island on six. Below that width the island is a small one above
-  a list.
-- **Sections** on the first screen are 3rem apart above and below, 4rem from 64rem.
+- **Twelve columns** from 68rem (`chart:`): a list on seven and the island on five. On the Home
+  page, the regions on six and the island on six. Below that width the island is a small one after
+  a list, and on the Home page it stands whole under the regions.
+- **The parts** of the Home page are 3rem apart, 4rem from 64rem.
 - **A list of things to act on is a stack of cards** 0.75rem apart: listings, answers from the
   articles, official pages, websites. Other lists are rows between hairlines (`.rows`).
 - **An index** (`.index-cols`) sets names and counts in one to four columns: the directory, the
@@ -437,15 +447,44 @@ heading over a list. No sentence is set in capitals.
 - A grid's child may always shrink to its column, so a wide table scrolls inside its own frame and
   the page is never wider than the screen.
 
-**The first screen**, in order: a pill with the greeting and what the index holds; "Find it in
-Mauritius."; the owner's line with what the site answers; the search box, up to 42rem wide, with
-its saffron button; four searches to try. Then, on the sheet: the directory's thirteen groups as
-tiles, the towns beside the island, the guides, the tools, and where it all comes from.
+**The landing page** (`/`, `src/app/page.tsx`) is one screen, at a desk and on a phone, and
+nothing lies under it. In order: a pill with the greeting and what the index holds; the site's
+one line as the headline, in `display-1`; the search box, up to 42rem wide, with its saffron
+button; and one button, "Home", in ink with its icon. They stand a little above the middle of the
+screen. At the foot is one quiet line in the footer's place (`.landing-foot`): whose product the
+site is, in the owner's words, and three pages (About, Privacy, More). The menu there is
+only the name, the cart and the account; there is no tab bar and no footer card. The page's own
+class does all of it (`main:has(> .landing)`, `body:has(.landing)`), so no layout knows of it.
+On a screen under 40rem tall the same things stand closer together, and it is still one screen
+on a phone of 320 by 568; on a screen shorter than that (a phone on its side) the page grows and
+nothing lies over anything else.
+
+**The Home page** (`/home`, `src/app/home/page.tsx`) is the sheet with five parts on it, in the
+owner's order, each under a plain `heading-2` with a line about it and a way to see all of it:
+
+1. **Top businesses**: eight biznes cards, two abreast from 48rem; on a phone they go by sideways
+   (`.top-list`), one card and the edge of the next in view. The line under the heading says how
+   they are chosen and leads to the longer account on `/data`.
+2. **Baz Manzer**: its white card under the awning, with the five kinds of place and the eight
+   kinds of food most listed as tiles on sand, and the ink button into it.
+3. **Categories**: the directory's thirteen groups as tiles, then the twelve kinds most listed as
+   quiet tiles.
+4. **Regions**: the nine districts and Rodrigues as tiles, each with its count and its three
+   largest towns, on six columns; the island on the other six.
+5. **Useful**: two cards, the numbers to call (`.dial`, the police's first, on the one filled
+   button) and the next three public holidays (the first marked "Next"); then six pages as start
+   tiles.
+
+The page opens with the greeting in its pill, the title, a line, and the five parts as chips to
+jump to. Every icon on it stands beside its words in a square, in two sizes that are set once, on
+`.home` (`--home-icon`, `--home-icon-box` and their `-sm` pair): 22px in 48px for a way in, 18px in
+36px for a kind within it and for a card's heading. On a phone the larger is 20px in 40px.
 
 ### Named Rules
 
 **The Sheet Rule.** Everything a visitor reads at length is on the sheet or on a card. Only the
-first screen's question stands on the picture itself.
+landing page's headline stands on the picture itself; its greeting and its foot line each have a
+ground of their own.
 
 ## Elevation & Depth
 
@@ -467,8 +506,8 @@ picture.
 - **The answer's glow** (`0 12px 32px -10px` royal at 26%): the answer to a question.
 
 The menu and the tab bar are white at 90% and 92% with a 16px blur behind them, so the picture and
-the sheet pass under them softly. The greeting pill and the searches to try are white at 82% with
-an 8px blur.
+the sheet pass under them softly. The greeting pill, the searches to try and the landing page's
+foot line are white at 82% with an 8px blur.
 
 ### Named Rules
 
@@ -490,8 +529,10 @@ royal for the answer. No other shadow has a colour.
   dot under the current word of the menu, the dot in the greeting pill, a point on the map.
 - **The seal**: a rosette of twelve points with a tick, the one filled icon.
 - **The hairline**: one pixel, ink at 10%.
-- **Icons**: one drawn set (`src/components/Icons.tsx`), 24px grid, 1.5px round strokes, in the
-  current colour, always beside words or carrying their own label.
+- **Icons**: one hand in two files, 24px grid, 1.5px round strokes, in the current colour, always
+  beside words or carrying their own label. The interface's small signs (an arrow, a tick, the
+  cross that closes) are `src/components/Icons.tsx`. The site's own pictures (a kind of business, a
+  district, a kind of food, a page) are `src/components/Glyphs.tsx`: see The icons.
 
 ### Named Rules
 
@@ -508,10 +549,10 @@ Each is a class in `globals.css` or a file in `src/components`. States are part 
 `.menu-panel`, `.menu-item`.
 
 - White at 90% with a blur, a hairline edge and `--shadow-md`. It stays at the top of the screen.
-- From 64rem it holds the name; four plain links, each one press from its page (Directory, Baz
-  Manzer, Articles, Tools; `NAV` in `src/data/site.ts`); "More", the one word that opens a list;
-  the compact search box; the cart and the account as soft square buttons; and "List your business"
-  as an ink button. The bookmark with its count joins them once something has been saved (from
+- From 64rem it holds the name, which leads to the landing page, where the search is; four plain
+  links, each one press from its page (Home, Directory, Baz Manzer, Articles; `NAV` in
+  `src/data/site.ts`); "More", the one word that opens a list; the compact search box; the cart
+  and the account as soft square buttons; and "List your business" as an ink button. The bookmark with its count joins them once something has been saved (from
   80rem, where there is room; below that the shortlist is in "More").
 - Where you are is said three ways, never by colour alone: the word is ink and heavier, it carries
   a saffron point, and it is marked for a screen reader (`aria-current`: "page" on the page
@@ -521,19 +562,22 @@ Each is a class in `globals.css` or a file in `src/components`. States are part 
   hands the keyboard back to the word; when the keyboard walks out of it; on a press elsewhere; and
   when a page is chosen. Open, its word sits on sand and its arrow turns.
 - It opens a white panel 36rem wide, centred under the word, with 24px corners and `--shadow-lg`:
-  eight pages in two columns (`MORE`), each a name and a line about it, and a last line that leads
-  to the page of every page. Under the pointer an item is on sand; the current page is on the
+  nine pages in two columns (`MORE`, the tools at their head), each a name and a line about it,
+  and a last line that leads to the page of every page. Under the pointer an item is on sand; the current page is on the
   saffron wash.
 - Under 64rem the links and "More" leave the pill: the tab bar carries them. Under 48rem the
   search box leaves too, and under 40rem "List your business". On a phone the pill is the name,
   the cart and the account, and nothing in it opens.
-- The first screen and the search page carry their own large search box, so there the pill leaves
-  it out.
+- The landing page and the search page carry their own large search box, so there the pill
+  leaves it out. On the landing page the pill is only the name, the cart and the account, at
+  every width: its one button, "Home", is the way on.
 
 ### The tab bar
 
-`TabBar.tsx`, `.tabbar`. Under 64rem only, and there the one way round: Search, Directory, Baz
-Manzer, Articles, More. Each is an icon over a word, 52px tall. Where you are is ink on the saffron
+`TabBar.tsx`, `.tabbar`. Under 64rem only, and there the one way round: Search, Home, Baz
+Manzer, Articles, More. The directory is reached through Home, whose categories and regions are
+its two ways in, and through "More", which is lit on it. The landing page has no bar. Each tab is
+an icon over a word, 52px tall. Where you are is ink on the saffron
 wash, and marked for a screen reader as the header's links are. "More" is a page (`/more`), not a
 list that opens over the one you are on. White at 92% with a blur, 24px corners, `--shadow-lg`,
 0.5rem from the screen's sides and above the safe area.
@@ -556,7 +600,7 @@ businesses, turned round, one press apart.
 
 `SearchBox.tsx`, `.search`, `.suggest`. A plain form that asks `/search`.
 
-- **Large** (the first screen, the search page): a white pill 64px tall with `--shadow-md` and the
+- **Large** (the landing page, the search page): a white pill 64px tall with `--shadow-md` and the
   saffron "Search" button inside its right end. Under 30rem the button is the glass alone.
 - **Compact** (the menu): 44px, on sand, no shadow. Enter asks; the button is kept for a screen
   reader and shows when it has focus.
@@ -564,7 +608,7 @@ businesses, turned round, one press apart.
   turns ink).
 - With script it is a combobox: up to eight suggestions, arrow keys, Enter, Escape. Each has its
   kind's icon in a sand square, a label and a note; the chosen one is on sand with its icon square
-  in saffron. On a desk it takes focus on the first screen, and it answers to the "/" key.
+  in saffron. On a desk it takes focus on the landing page, and it answers to the "/" key.
 
 ### Buttons
 
@@ -653,9 +697,13 @@ opens with it.
 - **`.elsewhere`**: the official pages and the websites that also answer, folded under a pill that
   reads "References elsewhere" with their count. It is a plain disclosure, so it opens with no
   script.
-- **`.tile`**: a way in on the first screen: an icon on an ink tile, a name, how many. Under the
-  pointer the icon's tile turns saffron, tips by four degrees and grows a little. On a phone the
-  tiles stand two abreast as small cards.
+- **`.tile`**: a way in on the Home page: an icon on an ink tile, a name, how many, and for a
+  region its largest towns. Under the pointer the icon's tile turns saffron, tips by four degrees
+  and grows a little. On a phone the tiles stand two abreast as small cards, each still a row with
+  its icon beside its words. **`.tile-quiet`** is a kind within a group (a kind of food, a kind
+  of business): smaller, its icon in ink on a white square with a hairline, so the groups stay the
+  louder of the two. Inside Baz Manzer's card a tile stands on sand, and under the pointer keeps
+  it and gains an edge of ink, so its count keeps 4.70:1.
 
 ### Reading
 
@@ -665,15 +713,20 @@ opens with it.
   becomes a block a row, each cell naming its column.
 - **A guide's page** has a contents rail on a wide screen and a contents list that opens on a
   phone. It ends with "Keep reading" (other pages of this site, as cards) and then "References".
-- **Crumbs**, **pager**, **index item**, **page head**: `Bits.tsx`. Every page but the first screen
-  and the search page has its path, so every title sits at the same height.
+- **Crumbs**, **pager**, **index item**, **page head**: `Bits.tsx`. Every page but the landing
+  page, the Home page and the search page has its path, so every title sits at the same height.
+  The path's first step is the Home page, by the menu's name for it; on the Home page the greeting
+  pill stands where a path would.
 - **`.note`**: a quiet panel on sand with 16px corners.
 - **`.facts`**: a name in mist and its value.
 
 ### The rest
 
-- **The greeting pill** (`.pill-note`) and **a search to try** (`.try`): white at 82% with a blur,
-  on the picture. The greeting pill carries a saffron point with a halo.
+- **The greeting pill** (`.pill-note`) and **a search to try** (`.try`): white at 82% with a blur.
+  The greeting pill carries a saffron point with a halo, and stands on the picture on the landing
+  page and at the head of the Home page; the searches to try are on the search page.
+- **The landing page's foot line** (`.landing-foot`): the same ground with 24px corners, `caption-1`
+  in slate, its three links in ink at 500, each 36px tall and 44px under a finger.
 - **The request form** (`RequestForm.tsx`): errors on their own fields, focus to the first, a
   success that says what happens next, and a failure that gives the telephone and the email. It
   opens with a plan's or a pocket guide's name when it is reached from one.
@@ -776,9 +829,11 @@ same place on openstreetmap.org.
 
 ### Ways in, and the cart
 
-- **The start tiles** (`.start-tile`), under the first screen's search: white cards with a small
+- **The start tiles** (`.start-tile`), in the last part of the Home page: white cards with a small
   ink tile and a saffron icon, a title and a line. On hover the card lifts and its tile turns
-  saffron.
+  saffron. Three abreast from 48rem; on a phone a list, one to a line.
+- **The numbers to call** (`.dial`): rows between hairlines, a name and its numbers, each number
+  a link that dials, 44px tall at any pointer. The police's first number is the one filled button.
 - **The island beside a list** is drawn once (`IslandBeside.tsx`, `.chart-fit`): a strip after the
   list on a phone, the tall chart beside it from the chart's breakpoint up.
 - **The header** carries three soft square buttons at every width, in this order: the shortlist
@@ -789,7 +844,8 @@ same place on openstreetmap.org.
 
 ### The footer card
 
-`SiteFooter.tsx`, `.site-footer`. An ink card with 32px corners that sits on the picture below the
+`SiteFooter.tsx`, `.site-footer`. On every page but the landing page, which has one quiet line in
+its place. An ink card with 32px corners that sits on the picture below the
 sheet, above it in the stack so that its mark is never half hidden. The b stands whole on its top
 edge, in the middle: ink, with a white point, on a 72px saffron tile tilted six degrees. Inside:
 the name large in white with its point in saffron (`.footer-name`), the line, and whose product it
@@ -803,8 +859,8 @@ licence asks; and, last, "A Digital Experience by Khay Digital". Secondary words
 **The One Filled Action Rule.** A group of buttons has one filled in saffron. The others are ink or
 quiet.
 
-**The Tile Rule.** Saffron on an ink tile is a business in a list, or a way in on the first screen
-(a directory group, a tool). In a list of results an article's tile is pale blue and a page on
+**The Tile Rule.** Saffron on an ink tile is a business in a list, or a way in on the Home page
+(a directory group, a region, a kind of place, a page). In a list of results an article's tile is pale blue and a page on
 another site's is sand.
 
 ## The pictures and the calendar
@@ -856,7 +912,7 @@ One drawing of Mauritius, used everywhere (`Chart.tsx`, `ChartLive.tsx`, `src/li
 what the night chart left behind. It was the page's one dark panel at the start of this round and
 was redrawn as a light map in the page's own colours.
 
-- **Where it is.** Beside the towns on the first screen; beside a list of results, a category or a
+- **Where it is.** Beside the regions on the Home page; beside a list of results, a category or a
   town; on a business's page.
 - **Projection**: equirectangular, scaled at the island's own latitude, 1000 units wide. A point is
   in the same place on every page.
@@ -903,6 +959,70 @@ was redrawn as a light map in the page's own colours.
   which are drawn from that file, and the pocket guide's cover.
 - In the menu the name is 22px tall.
 
+## The icons
+
+`src/components/Glyphs.tsx` is the one way in; the drawings are data in `src/components/glyphs/`.
+They are the site's own, drawn for it and taken from no library: one for each of the 70 kinds of
+business, the 13 groups of the directory, the 10 districts, the kinds of food most listed on Baz
+Manzer, and each page the menu names. `npm run icons:sheet` draws every one at 20px, 24px and 48px
+on paper, on a white card and on an ink tile (`review/icons/`), and is how the set is judged.
+Under `npm run dev`, `/preview/icons` shows them on the site's own tiles.
+
+- **The hand**: a 24 by 24 grid, 1.5px strokes with round caps and joins, in the current colour,
+  on whole and half units, and no drawing longer than about thirty commands. Nothing is smaller
+  than can be read at 20px. No letters, no numbers, no flags. Each icon is decoration beside words
+  and is hidden from assistive technology.
+- **The point**: every icon has exactly one small solid point and everything else is line. It is
+  the lit point of the name, 4 units across (3.5 where a drawing is tight; up to 5.5 where it is a
+  head, a hub or the sun), and it sits where it means something: the olive in the glass, the
+  keyhole, the candle's flame, the lamp on a taxi's roof, the eye of the fish, the place a plane
+  leaves. One solid point among line drawings is what makes the set ours in a single colour.
+- **The point's colour**: the icon's own, so on an ink tile the whole icon is saffron. Where an
+  icon is drawn in ink, slate or royal on white, cream, sand or the saffron wash, the point may be
+  lit: give the icon `lit`, or set `--glyph-point` to `var(--color-signal)` on whatever holds a set
+  of them. A lit point is saffron inside a ring of the icon's own colour, 0.75 units thick, as the
+  point of the b sits inside its ring. It is never saffron alone on a light ground (below). Never
+  light a point on an ink or a saffron tile.
+- **The directory**: a kind of business wears its own drawing; one with none wears its group's,
+  and a thing with no group wears the shop front. Three kinds are their group (a college, a
+  government office, a company). The kinds that stand side by side are drawn to be told apart:
+  the five kinds of place to eat, the fifteen kinds of shop.
+- **The districts** are the island itself: Mauritius in line, with the district filled, so the
+  icon says where the district is. Rodrigues is its own island, filled whole. Port Louis is too
+  small to see as a shape and is the point. `scripts/district-icons.mjs` cuts them from
+  `data/index/geo.json` into `src/data/district-shapes.ts` (`npm run icons:districts`): it smooths
+  the coast, drops the points that do not matter, and builds each district from its inland
+  boundary and the same coast, so the fill and the line agree. No outline is typed by hand.
+- **Food**: twenty drawings for the kinds most listed (the island's own cooking is a pot on the
+  fire; Chinese and the rest of Asia a bowl and chopsticks). Words that mean the same table share
+  a drawing. A kind with no drawing wears the fork and knife.
+- **Pages**: by address. A page under a named one wears its icon (`/learn/vat` wears the
+  articles'); an address the set does not know wears the lens with its point. Home is a house
+  with its door and a light under the roof; the home and building group keeps the plainer house.
+  About is the b itself, in line.
+
+The point's colour, measured on 23 November 2026 with `npm run contrast`:
+
+| Mark | On | Ratio | Where |
+|---|---|---|---|
+| saffron | white | 1.60:1 | A lit point with no ring: fails as a mark, so it is never drawn |
+| saffron | cream | 1.52:1 | The same on the sheet: fails |
+| saffron | sand | 1.39:1 | The same on a note or a chip: fails |
+| saffron | ink | 11.02:1 | The lit point against its ring, on an icon drawn in ink |
+| saffron | slate | 5.54:1 | The lit point against its ring, on an icon drawn in slate |
+| saffron | royal | 6.22:1 | The lit point against its ring, on an icon drawn in royal |
+| ink | white, cream, sand | 17.69:1, 16.80:1, 15.42:1 | The ring, and the icon's lines, on a light ground |
+| slate | white, cream, sand | 8.90:1, 8.45:1, 7.76:1 | The same for an icon drawn in slate |
+
+Mist is too pale to ring a lit point well (saffron on mist is 3.36:1): an icon in `ink-faint`
+keeps its point solid.
+
+### Named Rules
+
+**The One Point Rule.** An icon of the site's own has one solid point and no other filled shape.
+A new icon is drawn in `src/components/glyphs/`, put on the sheet, and read back at 20px before it
+is used.
+
 ## Motion
 
 **Principle:** motion says that something changed. Content is visible by default and nothing moves
@@ -919,7 +1039,6 @@ by itself.
 
 | Moment | Trigger | What moves | Duration |
 |---|---|---|---|
-| A question lights the island | Typing in the first screen's search box | The points that answer come up; the rest fade | 360ms |
 | A card lifts | The pointer | Edge, shadow, one pixel up | 160ms to 200ms |
 | A tile's icon | The pointer | Turns saffron, tips four degrees, grows 4% | 200ms |
 | A main button's arrow | The pointer | Moves two pixels and turns | 200ms |
@@ -933,7 +1052,7 @@ There are no entrance animations and no scroll effects.
 
 | Movement | `prefers-reduced-motion: reduce` | Without script |
 |---|---|---|
-| The island's points coming up | Lit at once | Drawn in SVG, lit where a page has answers |
+| The island's points | Lit at once, as they now are for everyone: the island no longer follows what is typed | Drawn in SVG, lit where a page has answers |
 | Lifts, tips and turns | Happen at once | The same, they are CSS |
 | The toast | Appears at once | Not shown: sharing needs script |
 | The wait | Still | Not shown |
@@ -947,7 +1066,8 @@ None. There is no WebGL in this build. The island is SVG with a 2D canvas over i
 | Width | What changes |
 |---|---|
 | Under 30rem | The large search box's button is the glass alone; a biznes card loses its icon tile; facts stack |
-| Under 40rem | The small picture is used; tiles stand two abreast as cards; an index is one column; tables become blocks; a line of ways to narrow scrolls sideways; "List your business" leaves the pill |
+| Under 40rem | The small picture is used; tiles stand two abreast as cards; the Home page's regions and its last part's pages are one to a line; an index is one column; tables become blocks; a line of ways to narrow scrolls sideways; "List your business" leaves the pill |
+| Under 48rem | The Home page's top businesses go by sideways |
 | Under 48rem | The menu's search box becomes a button |
 | Under 64rem | The tab bar appears; the menu's groups go behind one button; the page keeps room at its foot |
 | From 68rem | The island sits beside a list; below it, a small island sits above the list |
@@ -963,7 +1083,7 @@ at both sizes are made again at the end of the round and recorded in the README.
 
 ### Do
 
-- **Do** put the question first: the search box in the middle of the first screen and in the menu
+- **Do** put the question first: the search box in the middle of the landing page and in the menu
   everywhere else.
 - **Do** set anything read at length on the sheet or on a card (the Sheet Rule).
 - **Do** show things to act on as cards and things to scan as rows or an index.
@@ -976,6 +1096,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Do** say where a thing came from, beside it.
 - **Do** give every picture its record (the Provenance Rule).
 - **Do** take a holiday's date from `content/holidays.json`.
+- **Do** take a picture-icon from `src/components/Glyphs.tsx` by what it stands for (a category's
+  id, a district's slug, a page's address), and light its point only on a light ground.
 
 ### Don't
 
@@ -983,7 +1105,7 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** use saffron running to ember, a coloured ring or a saffron glow for anything but a
   verified business (the Verified Rule, the Coloured Glow Rule).
 - **Don't** caption a picture as a photograph, or as a real place.
-- **Don't** set words on the picture outside the first screen's question.
+- **Don't** set words on the picture outside the landing page, or anything under its one button.
 - **Don't** add a second face, or a monospaced face for figures.
 - **Don't** set a sentence in capitals (the Capitals Rule).
 - **Don't** make a dark page. Ink is for the footer and for a card to notice.
@@ -992,6 +1114,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** draw anything on the island that is not in the data.
 - **Don't** animate an entrance, or anything that moves by itself.
 - **Don't** make a square button: a control is a pill, a round or a soft square (the Pill Rule).
+- **Don't** take an icon from a library, put a letter, a number or a flag in one, or give one a
+  second filled shape (the One Point Rule).
 
 ## Agent Guide
 
@@ -1010,17 +1134,22 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
   string in a component. A plan's name, price and what it gives are the owner's words (`PLANS`):
   add nothing to them.
 - A link that appears by the dozen carries `prefetch={false}`.
-- The island takes `lit` (positions from `chartPoints()`), `focus` (one listing) or `follow` (the
-  first screen). It needs `says`.
+- The island takes `lit` (positions from `chartPoints()`) or `focus` (one listing). It needs
+  `says`. (`follow`, which lit what was being typed on the old first screen, is no longer used.)
+- An icon on the Home page comes from `src/components/Glyphs.tsx` and stands beside its words in
+  a `.tile-icon`. Its size is `--home-icon` on `.home`: change it there and nowhere else.
 - A paid listing takes `.listing-paid` and the `VerifiedMark`, with `priority` when it pays to come
   first. Use them for nothing else.
 - A new picture needs both sizes, its record, and a line in `src/data/themes.ts`.
+- An icon for a thing the site lists is `CategoryIcon`, `GroupGlyph`, `DistrictIcon`, `FoodIcon` or
+  `PageIcon` (`src/components/Glyphs.tsx`). Each takes any id and never fails. A new drawing goes
+  in `src/components/glyphs/`, then `npm run icons:sheet`.
 - House style in every file: British spelling, plain sentences, no em or en dashes
   (`npm run copy`).
 
 **Audit before calling a page done:**
 
-1. Words are on the sheet or a card; nothing but the first screen's question is on the picture.
+1. Words are on the sheet or a card; nothing but the landing page's headline is on the picture.
 2. One filled action in each group; saffron nowhere as words.
 3. Every text pair is in Contrast, floored and passing, or listed under Gaps.
 4. Hover, focus and pressed states exist for everything that can be pressed, and the focus ring

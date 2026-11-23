@@ -10,8 +10,8 @@ web
 
 Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS v4: the Khay Digital house standard,
 without React Three Fiber or smooth scrolling, because this is a tool people work in, not a story
-they scroll. MiniSearch holds the search index in memory. A crawler in plain Node (`crawler/`)
-builds the data the site reads. The fixed pages are prerendered and made again at most once an
+they scroll. The site's own engine (`src/lib/engine.ts`) holds the search index in memory. A
+crawler in plain Node (`crawler/`) builds the data the site reads. The fixed pages are prerendered and made again at most once an
 hour, so that each takes the day's picture; a listing's page is made the first time it is asked
 for and then kept; the search, the paged lists, the look-up behind a saved list and the request
 form run on a server. Accounts are to be held on Supabase: that part is being built and no project

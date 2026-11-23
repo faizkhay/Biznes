@@ -4,7 +4,8 @@ import { notFound, permanentRedirect } from "next/navigation";
 import AdSlot from "@/components/account/AdSlot";
 import { Crumbs } from "@/components/Bits";
 import GuideBlocks, { Cites } from "@/components/GuideBlocks";
-import { Arrow, Fork, GroupIcon, Out } from "@/components/Icons";
+import { CategoryIcon } from "@/components/Glyphs";
+import { Arrow, Fork, Out } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import RailMark from "@/components/RailMark";
 import { ARTICLE_BUSINESSES, BAZ, site } from "@/data/site";
@@ -231,7 +232,7 @@ export default async function GuidePage({ params }: Props) {
                     <article className="card h-full">
                       <p className="flex items-center gap-3">
                         <span className="suggest-icon" aria-hidden>
-                          <GroupIcon group={category.group} />
+                          <CategoryIcon id={category.id} group={category.group} />
                         </span>
                         <span className="data-2 text-ink-faint">{count(category.n)} listed</span>
                       </p>

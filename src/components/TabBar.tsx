@@ -5,24 +5,28 @@ import { usePathname } from "next/navigation";
 import { ABOUT, MENU, MORE_PAGE, NAV, YOURS } from "@/data/site";
 import { mark } from "@/lib/nav";
 import BazTabBar, { inBaz } from "./baz/BazTabBar";
-import { Book, Fork, Glass, List, Store } from "./Icons";
+import { PageIcon } from "./Glyphs";
+import { Glass } from "./Icons";
 
-const ICONS = { "/directory": Store, "/baz-manzer": Fork, "/learn": Book } as const;
-/** The three ways in that the bar names between the search and "More": the header's first three. */
-const WAYS = NAV.filter((item): item is (typeof NAV)[number] & { href: keyof typeof ICONS } => item.href in ICONS);
+/** The three ways in that the bar names between the search and "More": Home, Baz Manzer and Articles. */
+const ON_BAR: readonly string[] = ["/home", "/baz-manzer", "/learn"];
+const WAYS = NAV.filter((item) => ON_BAR.includes(item.href));
 /** Every other page with a name in the menu: on one of those, "More" is where the visitor is. */
 const REST = [...MENU.flatMap((group) => group.items.map((item) => item.href.split("#")[0])), ...YOURS.map((item) => item.href), ...ABOUT.map((item) => item.href)];
 
 /**
  * On a phone and a tablet, the one way round: a bar at the foot of the screen, as in an app. The
- * search, three of the four ways in, and "More", which is a page of everything else and not a
- * list that opens over this one. A wide screen has the same ways in as links in the header.
+ * search, Home, Baz Manzer, Articles, and "More", which is a page of everything else and not a
+ * list that opens over this one. The directory is reached through Home, whose categories and
+ * regions are its two ways in, and through "More". A wide screen has the same ways in as links
+ * in the header. The landing page has no bar: its one button, "Home", is the way on.
  */
 export default function TabBar() {
   const pathname = usePathname();
+  if (pathname === "/") return null;
   if (inBaz(pathname)) return <BazTabBar />; // Baz Manzer has a bar of its own.
   const way = WAYS.find((item) => mark(pathname, item.href, item.also));
-  const search = pathname === "/" ? "page" : pathname === "/search" ? "true" : undefined;
+  const search = pathname === "/search" ? "true" : undefined;
   // "More" is lit on its own page, and on any page that is reached from it.
   const more = pathname === MORE_PAGE.href ? "page" : !way && !search && REST.some((href) => mark(pathname, href)) ? "true" : undefined;
   return (
@@ -31,17 +35,14 @@ export default function TabBar() {
         <Glass />
         {MORE_PAGE.search}
       </Link>
-      {WAYS.map((item) => {
-        const Icon = ICONS[item.href];
-        return (
-          <Link key={item.href} href={item.href} aria-current={item === way ? mark(pathname, item.href, item.also) : undefined}>
-            <Icon />
-            {item.label}
-          </Link>
-        );
-      })}
+      {WAYS.map((item) => (
+        <Link key={item.href} href={item.href} aria-current={item === way ? mark(pathname, item.href, item.also) : undefined}>
+          <PageIcon href={item.href} />
+          {item.label}
+        </Link>
+      ))}
       <Link href={MORE_PAGE.href} prefetch={false} aria-current={more}>
-        <List />
+        <PageIcon href={MORE_PAGE.href} />
         {MORE_PAGE.label}
       </Link>
     </nav>

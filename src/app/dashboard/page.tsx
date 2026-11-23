@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Empty, Notice } from "@/components/account/Bits";
 import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
-import { Arrow, GroupIcon, Store } from "@/components/Icons";
+import { CategoryIcon } from "@/components/Glyphs";
+import { Arrow, Store } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { ACTIONS, PLANS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
@@ -95,7 +96,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
                   <article className="card flex h-full flex-col">
                     <div className="flex items-start gap-4">
                       <span className="tile-icon" aria-hidden>
-                        <GroupIcon group={kind?.group} />
+                        <CategoryIcon id={kind?.id} group={kind?.group} />
                       </span>
                       <div className="min-w-0">
                         <h2 className="title-1 flex flex-wrap items-center gap-x-2 gap-y-1">

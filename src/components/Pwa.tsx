@@ -61,9 +61,9 @@ function ios() {
  * and offers to put the app the page belongs to on the home screen: Baz Manzer on a page of that
  * section, biznes.mu everywhere else. Where the browser makes the offer the card has an Install
  * button; on an iPhone or an iPad it says where to tap. It shows nothing on the server, nothing
- * until the page has loaded, nothing inside an installed app, and nothing once it has been closed
- * (for thirty days for the site's, for good for the section's). There is never more than one
- * card.
+ * until the page has loaded, nothing inside an installed app, nothing on the landing page, and
+ * nothing once it has been closed (for thirty days for the site's, for good for the section's).
+ * There is never more than one card.
  *
  * The browser's offer is for the manifest the page named when the offer was made. A step from the
  * site into the section, or back, changes the manifest without loading a page, so an offer is
@@ -71,7 +71,11 @@ function ios() {
  * app when it reads the new manifest, and until it does there is no card.
  */
 export default function Pwa() {
-  const app = appOf(usePathname());
+  const pathname = usePathname();
+  const app = appOf(pathname);
+  // The landing page is one screen with one question on it, and has no bar at its foot for a
+  // card to sit above: nothing is offered there. The offer waits for the next page.
+  const bare = pathname === "/";
   /** The app the browser's held offer is for. */
   const [offered, setOffered] = useState<App | null>(null);
   /** On an iPhone or an iPad: the app whose way on to the home screen is being told. */
@@ -137,7 +141,7 @@ export default function Pwa() {
     setTold(!standalone() && ios() && !closedLately(app) ? app : null);
   }, [app]);
 
-  const way = offered === app ? "offer" : told === app ? "ios" : null;
+  const way = bare ? null : offered === app ? "offer" : told === app ? "ios" : null;
   if (!way) return null;
 
   /** Take the card away, and hand the keyboard back to the page it sat on. */

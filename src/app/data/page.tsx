@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
-import { ACTIONS, CREDITS, site } from "@/data/site";
+import { ACTIONS, CREDITS, HOME, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
+import { isFull, TOP_SHOWN } from "@/lib/top";
+import { roundOf } from "@/lib/turn";
 
 export const metadata: Metadata = pageMeta({
   title: "Where the data comes from",
@@ -14,7 +16,9 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function DataPage() {
-  const { meta, guides, categories } = index();
+  const { meta, guides, categories, listings } = index();
+  const full = listings.filter(isFull).length;
+  const top = HOME.parts[0];
   const w = meta.web;
   const health = categories.filter((c) => c.group === "health").map((c) => c.label.toLowerCase());
   return (
@@ -95,10 +99,16 @@ export default function DataPage() {
                   </>
             )}
             <p>
-              <strong>What comes first on a page of results.</strong> The order is the same for every question. First, the pages of this site that answer it: an article, one of its facts, a number to call, a public holiday&rsquo;s date, a glossary term, a tool. A page counts as an answer only when the question&rsquo;s words are in its own title, label or heading; a number or a date, only when they are there whole. Then businesses and services. Then the parts of our articles that only mention the words. Pages on other sites, official ones first, are folded away as references.
+              <strong>What comes first on a page of results.</strong> The order is the same for every question. First, the pages of this site that answer it: an article, one of its facts, a number to call, a public holiday&rsquo;s date, a glossary term, a tool. A page counts as an answer only when the question&rsquo;s words are in its own title, label or heading; a number or a date, only when they are there whole. Then businesses and services. Then the parts of our articles that only mention the words. Pages on other sites, official ones first, are folded away as references. Among our own pages, an article whose own title holds the question&rsquo;s words counts for more than a line from another article that mentions them.
             </p>
             <p>
               <strong>The order of businesses.</strong> Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name. A category&rsquo;s page and a town&rsquo;s page list the fullest first.
+            </p>
+            <p>
+              <strong>How well a listing answers.</strong> The search engine is this site&rsquo;s own, and it weighs every listing the same way. A word of the question counts most in a business&rsquo;s name, then in another name it goes by, then in the kind of business it is, then in its address, then in its description. A name that is exactly what was typed comes before a longer name that holds the same words: &ldquo;MCB&rdquo; finds the branches called MCB first. A business asked for by its whole name is shown first even when its name reads as a kind of business in a town, as &ldquo;Ebene Pharmacy&rdquo; does. Words that stand side by side in a name, as they were typed, count for more than the same words apart. A rare word says more than a common one, and a word in a short name more than the same word in a long one. A listing that holds every word of the question comes before one that holds only some of them.
+            </p>
+            <p>
+              <strong>Words half typed, and typing mistakes.</strong> A word still being typed finds the longer words that begin with it, and they count for less than the word written out. When nothing matches as written, the engine looks for close spellings: a letter missing, a letter too many, a wrong letter, or two letters that changed places. One such slip is allowed in a word of four letters or more, and two between words of eight letters or more. A close spelling always counts for less than the word spelt right, and the page says when close spellings are shown. A town or a kind of business typed wrongly, such as &ldquo;pharmcy&rdquo; or &ldquo;restorant&rdquo;, is read as the word meant when one word is plainly the nearest.
             </p>
             <p>
               <strong>Health.</strong> In the health categories ({health.join(", ")}), a listing with a telephone number on record is shown before one without, in a search and on the category&rsquo;s own page. Someone unwell needs a number to call. Among those with a number, and among those without, the order is as everywhere else.
@@ -123,6 +133,17 @@ export default function DataPage() {
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>
               <li>No judgement. Nobody at biznes.mu has visited or vetted a listed business. The one exception is the verified mark: it means we have checked that the business is real, and nothing more.</li>
             </ul>
+          </div>
+        </section>
+
+        <section aria-labelledby={top.id} className="max-w-3xl">
+          <h2 id={top.id} className="heading-2">
+            The top businesses on the Home page
+          </h2>
+          <div className="prose body-2 mt-4">
+            <p>
+              The <Link href={HOME.href}>Home page</Link> shows {count(TOP_SHOWN)} businesses under &ldquo;{top.label}&rdquo;, and the word means two things there and no more. A business on a paid plan that we have verified comes first and is marked as a priority listing, as it is on a page of results; if more of them are live than fit, they take turns by the day. The places that are left go to the fullest listings in the open index: those with a telephone number, a website, opening hours and an address on record, which is {count(full)} of the {count(meta.listings.all)}. They are shown {count(TOP_SHOWN)} at a time, and the date decides which: they go round in runs of {count(roundOf(full, TOP_SHOWN))} days, in each run every one of them has its turn, and on a given day everyone sees the same ones. Nobody at {site.name} picks them, and none is said to be better than another: it is a measure of how much is on record, not of how good a business is.
+            </p>
           </div>
         </section>
 

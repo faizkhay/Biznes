@@ -8,12 +8,17 @@ const PAPER = "#fdf9ec"; // --palette-cream, the same value as the theme colour 
 
 const icon = (name: string, size: number, purpose: "any" | "maskable") => ({ src: `/icons/${name}-${size}.png`, sizes: `${size}x${size}`, type: "image/png", purpose });
 
-/** The pages the icon can open directly, by a long press on a phone or a right click on a desk. */
+/**
+ * The pages the icon can open directly, by a long press on a phone or a right click on a desk.
+ * Some phones show only the first four, so the shortlist, which is one visitor's own, is last.
+ * Baz Manzer is not among them: it is an app of its own (src/app/baz-manzer/manifest.webmanifest).
+ */
 const SHORTCUTS = [
   { name: "Search", url: "/search" },
+  { name: "Home", url: "/home" },
   { name: "Directory", url: "/directory" },
-  { name: "Saved", url: "/saved" },
   { name: "Emergency numbers", url: "/emergency" },
+  { name: "Saved", url: "/saved" },
 ];
 
 export default function manifest(): MetadataRoute.Manifest {

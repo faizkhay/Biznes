@@ -92,6 +92,7 @@ check("manifest: it opens on the section's first page, alone, and never leaves t
 check("manifest: its own colours, a language and a description", manifest.theme_color === "#f14949" && manifest.background_color === "#fdf9ec" && manifest.lang === "en" && /Mauritius/.test(manifest.description ?? ""), JSON.stringify([manifest.theme_color, manifest.background_color]));
 const siteManifest = await (await get("/manifest.webmanifest")).json();
 check("manifest: the site's own is still served, and the two are two apps", siteManifest.id === "/" && siteManifest.scope === "/" && siteManifest.name === "biznes.mu" && siteManifest.id !== manifest.id, JSON.stringify([siteManifest.id, siteManifest.name]));
+check("manifest: the site's own shortcuts name Home, keep the emergency numbers among the first four, and leave Baz Manzer to its own app", siteManifest.shortcuts.some((shortcut) => shortcut.url === "/home") && siteManifest.shortcuts.slice(0, 4).some((shortcut) => shortcut.url === "/emergency") && !siteManifest.shortcuts.some((shortcut) => shortcut.url.startsWith(ROOT)), siteManifest.shortcuts.map((shortcut) => shortcut.url).join(" "));
 {
   const wanted = ["any 192x192", "any 512x512", "maskable 192x192", "maskable 512x512"];
   const icons = manifest.icons ?? [];
@@ -190,6 +191,11 @@ for (const [old, now] of [
   const response = await get(old, { redirect: "manual" });
   const led = pathOf(response.headers.get("location"));
   check(`old address: ${old} leads for good to ${now}`, response.status === 308 && led === now && (await get(now)).status === 200, `${response.status} ${led}`);
+}
+{
+  const home = await html("/home");
+  const into = [...home.matchAll(/href="(\/baz-manzer[^"]*)"/g)].map((match) => decode(match[1]));
+  check("the Home page leads to a kind of place and a kind of food at their own addresses, with no parameter", into.includes(`${ROOT}/kind/restaurants`) && into.some((href) => href.startsWith(`${ROOT}/food/`)) && into.every((href) => !href.includes("?")), into.slice(0, 6).join(" "));
 }
 check("old address: a telephone number, a website and a page of the list stay parameters of the first page", (await get(`${ROOT}?phone=1&web=1&page=2`, { redirect: "manual" })).status === 200 && (await get(`${ROOT}?food=no-such-food`, { redirect: "manual" })).status === 200);
 check("an address that names no kind, food or town is no page", [(await get(`${ROOT}/kind/no-such`)).status, (await get(`${ROOT}/food/no-such`)).status, (await get(`${ROOT}/town/no-such`)).status].every((status) => status === 404));
@@ -416,6 +422,19 @@ for (const [name, path] of INSIDE) {
   await small.evaluate(offer);
   await card.waitFor();
   check("install: closing the section's offer does not close the site's, which is the site's own", (await card.getAttribute("aria-label")) === "Install biznes.mu" && /^Add biznes\.mu to your home screen/.test(await card.innerText()));
+  // The landing page is one screen with one question: nothing is offered on it.
+  await small.goto(`${origin}/`, { waitUntil: "load" });
+  await small.waitForFunction(() => {
+    const el = document.querySelector("header .nav-pill a");
+    return !!el && Object.keys(el).some((key) => key.startsWith("__reactProps"));
+  });
+  await small.evaluate(offer);
+  await small.waitForTimeout(300);
+  check("install: the landing page carries no offer", (await card.count()) === 0);
+  await small.goto(`${origin}/directory`, { waitUntil: "load" });
+  await live(small);
+  await small.evaluate(offer);
+  await card.waitFor();
   // The offer above was made for the site. A step into the section must not show it as the section's.
   await small.evaluate(() => window.localStorage.removeItem("biznes:install-closed-baz"));
   await small.locator('footer a[href="/baz-manzer"]').first().click();
@@ -443,6 +462,9 @@ for (const [name, path] of INSIDE) {
   await ios.goto(`${origin}/directory`, { waitUntil: "load" });
   await told.waitFor();
   check("install, on an iPhone: on the rest of the site the line is the site's", (await told.getAttribute("aria-label")) === "Install biznes.mu" && /Add biznes\.mu to your home screen/.test(await told.innerText()));
+  await ios.goto(`${origin}/`, { waitUntil: "load" });
+  await ios.waitForTimeout(800);
+  check("install, on an iPhone: the landing page carries no line", (await told.count()) === 0);
   await iphone.close();
 }
 

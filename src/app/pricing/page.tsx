@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { AddToCart } from "@/components/Cart";
-import { Arrow, GroupIcon, Tick } from "@/components/Icons";
+import { GroupGlyph } from "@/components/Glyphs";
+import { Arrow, Tick } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { PLANS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
@@ -77,7 +78,7 @@ export default function PricingPage() {
           </div>
           <div className="row listing listing-paid" aria-label="An example of a verified listing's card">
             <span className="listing-icon" aria-hidden>
-              <GroupIcon group="eat" />
+              <GroupGlyph id="eat" />
             </span>
             <div className="min-w-0">
               <p className="title-1 text-link">
