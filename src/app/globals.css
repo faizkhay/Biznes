@@ -2567,9 +2567,14 @@
     color: color-mix(in srgb, var(--palette-white) 72%, transparent);
   }
 
-  /* Baz Manzer, the home of everything for eating: a card under the striped awning of a food
-     stall. The stripes are the brand's own red (coral) and the paper's cream; coral is a fill
-     here and never carries words. It is the page's appetite, and nothing else on the site wears it. */
+  /* Baz Manzer, the section. It stands by itself and installs as an app of its own, so beside
+     its awning it has its own name in the header's pill, its own ways in and its own first page.
+     Everything here is the site's own system: no new colour, and the brand's red (coral) is
+     still the awning's alone, on the page and on the app's icon. */
+
+  /* The front of the section: a card under the striped awning of a food stall. The stripes are
+     the brand's own red and the paper's cream; coral is a fill here and never carries words. It
+     is the page's appetite, and nothing else on the site wears it. */
   .baz-head {
     position: relative;
     overflow: hidden;
@@ -2593,6 +2598,11 @@
   .baz-words {
     padding: 1.25rem 1.25rem 1.5rem;
   }
+  /* The search box stands on a white card here, so it takes the compact box's sand to be seen. */
+  .baz-head .search-lg {
+    background: var(--color-panel);
+    box-shadow: none;
+  }
   .baz-types {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2610,9 +2620,13 @@
       padding: 0 2.5rem 2.25rem;
     }
   }
-  /* A kind of place to eat, as a way to narrow the list: its name and how many. */
+  /* A kind of place to eat, as a way in: its icon on an ink tile, its name and how many. The
+     icon stands over the words until there is room for it beside them. */
   .baz-type {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
     height: 100%;
     padding: 0.75rem 1rem;
     border-radius: var(--radius-lg);
@@ -2621,18 +2635,39 @@
     text-decoration: none;
     transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
-  .baz-type .data-2 {
+  @media (min-width: 72rem) {
+    .baz-type {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+  .baz-type .data-2,
+  .baz-food .data-2 {
     color: var(--color-ink-faint);
   }
   .baz-type:hover {
     background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
   }
-  .baz-type[aria-current="true"] {
+  /* The small ink tile an icon of the section stands on: a kind of place, a kind of food, a district. */
+  .baz-type-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    border-radius: var(--radius-md);
     background: var(--color-ink);
-    color: var(--color-on-ink);
+    color: var(--color-signal);
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
-  .baz-type[aria-current="true"] .data-2 {
-    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
+  .baz-type-icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  a:hover > .baz-type-icon {
+    background: var(--color-signal);
+    color: var(--color-on-signal);
   }
   /* Under a verified outlet's card: the first lines of its own menu. */
   .menu-peek {
@@ -2644,6 +2679,139 @@
     padding: 0.625rem 1.25rem;
     border-radius: var(--radius-lg);
     background: var(--color-signal-wash);
+  }
+
+  /* The app's icon, drawn small, beside the section's name in the header: the awning over the
+     saffron point, on ink. The same drawing as the icon files (scripts/icons.mjs): five stripes,
+     red at both edges, each ending in a round hem of half its width, the cloth 34 hundredths of
+     the square and the hem 10 more. */
+  .baz-mark {
+    --size: 2rem;
+    position: relative;
+    display: block;
+    flex: none;
+    width: var(--size);
+    height: var(--size);
+    overflow: hidden;
+    border-radius: calc(var(--size) * 0.23);
+    background: var(--palette-ink);
+  }
+  .baz-mark-lg {
+    --size: 3rem;
+  }
+  .baz-mark::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: calc(var(--size) * 0.44);
+    background: repeating-linear-gradient(90deg, var(--palette-coral) 0 20%, var(--palette-cream) 20% 40%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) top / 100% calc(var(--size) * 0.34) no-repeat,
+      radial-gradient(circle at 50% 0, #000 calc(var(--size) * 0.1), transparent calc(var(--size) * 0.1 + 0.5px)) 0 calc(var(--size) * 0.34) / calc(var(--size) * 0.2) calc(var(--size) * 0.1) repeat-x;
+    mask:
+      linear-gradient(#000 0 0) top / 100% calc(var(--size) * 0.34) no-repeat,
+      radial-gradient(circle at 50% 0, #000 calc(var(--size) * 0.1), transparent calc(var(--size) * 0.1 + 0.5px)) 0 calc(var(--size) * 0.34) / calc(var(--size) * 0.2) calc(var(--size) * 0.1) repeat-x;
+  }
+  .baz-mark::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 72%;
+    width: 21.6%;
+    height: 21.6%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: var(--palette-saffron);
+  }
+  /* On the bar at the foot of a phone the mark is the first page's icon, at the size of the others. */
+  .tabbar .baz-mark {
+    --size: 1.375rem;
+  }
+  /* The section's name in the pill, where the site's own name stands on every other page: the
+     mark and the words, in the weight the site's name is drawn in. */
+  .baz-name {
+    gap: 0.625rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  /* What is near: a town to choose and the way to it, in a line. */
+  .baz-near-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 34rem;
+    margin-top: 0.5rem;
+  }
+  .baz-near-form .field {
+    flex: 1 1 14rem;
+    width: auto;
+    border-radius: var(--radius-full);
+    padding-left: 1.25rem;
+  }
+  /* A small icon before a name, in a line of ways to another list: a kind of food. */
+  .narrow a > svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--color-ink-subtle);
+  }
+  .narrow a[aria-current="true"] > svg {
+    color: inherit;
+  }
+  /* The last of a line of ways: the page that holds them all. A link, not one more pill. */
+  .narrow a.baz-more {
+    border-color: transparent;
+    background: none;
+    padding-inline: 0.5rem;
+    color: var(--color-link);
+    font-weight: 600;
+  }
+  .narrow a.baz-more > svg {
+    color: inherit;
+    transition: translate 200ms var(--ease-out);
+  }
+  .narrow a.baz-more:hover > svg {
+    translate: 0.1875rem 0;
+  }
+  /* Every kind of food, as tiles: two abreast on a phone, up to five on a desk. */
+  .baz-foods {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 40rem) {
+    .baz-foods {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64rem) {
+    .baz-foods {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+  .baz-food {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 100%;
+    min-height: 3.75rem;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .baz-food:hover {
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+    box-shadow: var(--shadow-sm);
   }
 
   /* The part of an article being read, marked in its contents rail (RailMark). */

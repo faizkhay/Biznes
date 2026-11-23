@@ -57,9 +57,16 @@ export default function BusinessPage({
   owned: o,
   showcase,
   preview = false,
+  within,
 }: {
   listing?: Listing;
   owned?: Owned;
+  /**
+   * Drawn inside a section of the site (Baz Manzer): the path at the page's head, where another
+   * listing's page is inside the section, and where "all of this kind in this town" is. The
+   * page's one address for a search engine does not change with it.
+   */
+  within?: { path: { href?: string; label: string }[]; listing: (l: Listing) => string; all?: string };
   /** What a paid plan adds: pictures, a line, a menu. Absent with accounts off, and for a business with none. */
   showcase?: Showcase;
   /** True on the design's own preview page: the content is made up, and the page says so. */
@@ -111,12 +118,14 @@ export default function BusinessPage({
   const aboutFrom = l?.aboutFrom === "site" ? "its own website" : l?.aboutFrom === "wikidata" ? "Wikidata" : "OpenStreetMap";
   const about = l?.about ?? (l ? undefined : o?.about);
   const more = l && (l.alt?.length || l.extras?.length || l.stars || l.since || l.exchange || (l.seat && !l.place));
-  const crumbs = [
-    { href: "/directory", label: "Directory" },
-    ...(category ? [{ href: `/directory/${category.id}`, label: category.label }] : []),
-    ...(category && l?.placeSlug ? [{ href: `/directory/${category.id}/${l.placeSlug}`, label: l.place! }] : []),
-    { label: name },
-  ];
+  const crumbs = within
+    ? [...within.path, { label: name }]
+    : [
+        { href: "/directory", label: "Directory" },
+        ...(category ? [{ href: `/directory/${category.id}`, label: category.label }] : []),
+        ...(category && l?.placeSlug ? [{ href: `/directory/${category.id}/${l.placeSlug}`, label: l.place! }] : []),
+        { label: name },
+      ];
   const absolute = (src: string) => (src.startsWith("/") ? `${siteUrl}${src}` : src);
   const food = servesFood(category?.id);
 
@@ -594,13 +603,13 @@ export default function BusinessPage({
           <ul className="rows mt-6">
             {near.map(({ other, d }) => (
               <li key={other.id}>
-                <ListingRow listing={other} note={`${distance(d)} away`} />
+                <ListingRow listing={other} note={`${distance(d)} away`} within={within?.listing(other)} />
               </li>
             ))}
           </ul>
           <p className="mt-4 flex flex-wrap gap-x-6 gap-y-1">
             {l?.placeSlug && (
-              <Link href={`/directory/${category.id}/${l.placeSlug}`} className="body-3 inline-flex min-h-11 items-center font-semibold text-link">
+              <Link href={within?.all ?? `/directory/${category.id}/${l.placeSlug}`} className="body-3 inline-flex min-h-11 items-center font-semibold text-link">
                 All {category.label.toLowerCase()} in {l.place}
               </Link>
             )}

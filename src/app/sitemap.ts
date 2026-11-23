@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { owned } from "@/lib/accounts/owned";
+import { baz } from "@/lib/baz";
+import { food } from "@/lib/food";
 import { index } from "@/lib/index";
 import { siteUrl } from "@/lib/site-url";
 import { TOOLS } from "@/lib/tools";
@@ -9,7 +11,8 @@ export const revalidate = 3600;
 
 /**
  * Every address worth finding: the fixed pages, each article, each category, each town, each
- * category in each town that has one, each listing, and each business its owner has listed. The
+ * category in each town that has one, the pages of Baz Manzer that are lists of their own, each
+ * listing, and each business its owner has listed. The
  * date beside each is an honest one: the day an article was last checked, the day the map last
  * recorded a listing, and for the rest the day the index was built. A visitor's own pages (search
  * results, the shortlist, the cart, the account) are not in it.
@@ -23,11 +26,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pairs = new Set<string>();
   for (const l of listings) for (const place of [l.placeSlug, l.areaSlug]) if (place) pairs.add(`${l.cat}/${place}`);
   const own = (await owned()).all.filter((business) => !business.listingId);
+  // Baz Manzer's own pages that are worth finding: its first page, its two lists, each kind of
+  // place, each kind of food and each town or village with somewhere to eat. A place's page
+  // inside the section is not here: its one address is its listing's. Nor is a kind of place in
+  // a town (the directory's page for it is), a narrowed view or a later page of a list.
+  const eat = food();
+  const section = [
+    url(baz.home, built, 0.9),
+    url(baz.foods, built, 0.6),
+    url(baz.towns, built, 0.6),
+    ...eat.types.map((c) => url(baz.kind(c.id), built, 0.7)),
+    ...eat.cuisines.map((c) => url(baz.food(c.id), built, 0.5)),
+    ...eat.towns.filter((t) => t.kind === "town").map((t) => url(baz.town(t.slug), built, 0.6)),
+  ];
   return [
     url("/", built, 1),
     url("/directory", built, 0.9),
     url("/places", built, 0.8),
-    url("/baz-manzer", built, 0.9),
+    ...section,
     url("/learn", newest, 0.9),
     url("/tools", built, 0.7),
     url("/about", built, 0.5),

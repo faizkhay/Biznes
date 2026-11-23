@@ -7,6 +7,7 @@ import { ABOUT, ACTIONS, MENU, MORE, MORE_PAGE, NAV, YOURS, site } from "@/data/
 import { accountsOn } from "@/lib/accounts/config";
 import { mark } from "@/lib/nav";
 import AccountControl from "./AccountControl";
+import BazHeader, { inBaz } from "./baz/BazHeader";
 import { CartLink } from "./Cart";
 import { Chevron, Person } from "./Icons";
 import { Wordmark } from "./Logo";
@@ -62,6 +63,8 @@ export default function HeaderBar() {
       document.removeEventListener("keydown", key);
     };
   }, []);
+
+  if (inBaz(pathname)) return <BazHeader />; // Baz Manzer has a header of its own. Asked here, after the hooks above, so that their number never changes.
 
   // "More" carries the lit point when the page is one of its own and not under one of the four.
   const underFour = NAV.some((item) => mark(pathname, item.href, item.also));

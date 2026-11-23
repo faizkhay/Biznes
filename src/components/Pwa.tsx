@@ -1,28 +1,42 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { site } from "@/data/site";
+import { BAZ, site } from "@/data/site";
+import { inBaz } from "@/lib/baz";
 import { Close, Share } from "./Icons";
 
 /** The browser's offer to install the site. TypeScript's own list of events does not carry it. */
 type InstallOffer = Event & { prompt: () => Promise<unknown>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 
-const CLOSED = "biznes:install-closed";
-const QUIET_FOR = 30 * 24 * 60 * 60 * 1000; // a card that was closed stays away for thirty days
+/**
+ * The two apps this site installs as: the whole of biznes.mu, and Baz Manzer, the section under
+ * /baz-manzer, which has a manifest of its own. A page offers the one it belongs to, in that
+ * app's own words. `closed` is where the browser notes that the offer was closed, and `quiet`
+ * for how long it then stays away: thirty days for the site's, and for good for the section's.
+ */
+const APPS = {
+  site: { name: site.name, words: `Add ${site.name} to your home screen`, ios: "Tap Share, then Add to Home Screen.", closed: "biznes:install-closed", quiet: 30 * 24 * 60 * 60 * 1000 },
+  baz: { name: BAZ.name, words: BAZ.app.install, ios: BAZ.app.ios, closed: "biznes:install-closed-baz", quiet: Infinity },
+} as const;
+type App = keyof typeof APPS;
 
-function closedLately() {
+/** The app a page belongs to, by its address. */
+const appOf = (pathname: string): App => (inBaz(pathname) ? "baz" : "site");
+
+function closedLately(app: App) {
   try {
-    const at = Number(window.localStorage.getItem(CLOSED));
-    return at > 0 && Date.now() - at < QUIET_FOR;
+    const at = Number(window.localStorage.getItem(APPS[app].closed));
+    return at > 0 && Date.now() - at < APPS[app].quiet;
   } catch {
     // Storage is closed to the page: nothing is remembered, and nothing breaks.
     return false;
   }
 }
 
-function rememberClosed() {
+function rememberClosed(app: App) {
   try {
-    window.localStorage.setItem(CLOSED, String(Date.now()));
+    window.localStorage.setItem(APPS[app].closed, String(Date.now()));
   } catch {
     // The card will come back on the next page; there is nowhere to note that it was closed.
   }
@@ -44,13 +58,24 @@ function ios() {
 
 /**
  * What makes the site an app: it registers the service worker (public/sw.js), in production only,
- * and offers to put the site on the home screen. Where the browser makes the offer the card has an
- * Install button; on an iPhone or an iPad it says where to tap. It shows nothing on the server,
- * nothing until the page has loaded, nothing inside the installed app, and nothing for thirty days
- * once it has been closed.
+ * and offers to put the app the page belongs to on the home screen: Baz Manzer on a page of that
+ * section, biznes.mu everywhere else. Where the browser makes the offer the card has an Install
+ * button; on an iPhone or an iPad it says where to tap. It shows nothing on the server, nothing
+ * until the page has loaded, nothing inside an installed app, and nothing once it has been closed
+ * (for thirty days for the site's, for good for the section's). There is never more than one
+ * card.
+ *
+ * The browser's offer is for the manifest the page named when the offer was made. A step from the
+ * site into the section, or back, changes the manifest without loading a page, so an offer is
+ * shown only on the pages of the app it was made for; the browser makes a new one for the other
+ * app when it reads the new manifest, and until it does there is no card.
  */
 export default function Pwa() {
-  const [way, setWay] = useState<"offer" | "ios" | null>(null);
+  const app = appOf(usePathname());
+  /** The app the browser's held offer is for. */
+  const [offered, setOffered] = useState<App | null>(null);
+  /** On an iPhone or an iPad: the app whose way on to the home screen is being told. */
+  const [told, setTold] = useState<App | null>(null);
   const offer = useRef<InstallOffer | null>(null);
 
   useEffect(() => {
@@ -65,9 +90,16 @@ export default function Pwa() {
     }
     // After the page's own files, so the worker never competes with them.
     const register = () => {
-      navigator.serviceWorker.register("/sw.js", { scope: "/", updateViaCache: "none" }).catch(() => {
-        // No worker: the site works as it did, with a connection.
-      });
+      // A page opened before any worker was here was fetched without it. Once the worker is
+      // ready the page asks to be kept, so even the first page ever opened works with no connection.
+      const first = !navigator.serviceWorker.controller;
+      navigator.serviceWorker
+        .register("/sw.js", { scope: "/", updateViaCache: "none" })
+        .then(() => (first ? navigator.serviceWorker.ready : null))
+        .then((registration) => registration?.active?.postMessage({ keep: window.location.pathname + window.location.search }))
+        .catch(() => {
+          // No worker: the site works as it did, with a connection.
+        });
     };
     if (document.readyState === "complete") {
       register();
@@ -82,33 +114,41 @@ export default function Pwa() {
     const onOffer = (event: Event) => {
       // The browser's own bar stays away: the card asks in its place, and only if it is welcome.
       event.preventDefault();
-      if (closedLately()) return;
+      // The offer is for the app whose manifest the page names now.
+      const made = appOf(window.location.pathname);
+      if (closedLately(made)) return;
       offer.current = event as InstallOffer;
-      setWay("offer");
+      setOffered(made);
     };
     const onInstalled = () => {
       offer.current = null;
-      setWay(null);
+      setOffered(null);
     };
     window.addEventListener("beforeinstallprompt", onOffer);
     window.addEventListener("appinstalled", onInstalled);
-    if (ios() && !closedLately()) setWay("ios");
     return () => {
       window.removeEventListener("beforeinstallprompt", onOffer);
       window.removeEventListener("appinstalled", onInstalled);
     };
   }, []);
 
+  // An iPhone makes no offer, so the way is told in words, for the app this page belongs to.
+  useEffect(() => {
+    setTold(!standalone() && ios() && !closedLately(app) ? app : null);
+  }, [app]);
+
+  const way = offered === app ? "offer" : told === app ? "ios" : null;
   if (!way) return null;
 
   /** Take the card away, and hand the keyboard back to the page it sat on. */
   const leave = () => {
     offer.current = null;
-    setWay(null);
+    setOffered(null);
+    setTold(null);
     document.getElementById("main")?.focus({ preventScroll: true });
   };
   const close = () => {
-    rememberClosed();
+    rememberClosed(app);
     leave();
   };
   const install = async () => {
@@ -117,7 +157,7 @@ export default function Pwa() {
     leave(); // an offer can be taken up once
     try {
       await event.prompt();
-      if ((await event.userChoice).outcome === "dismissed") rememberClosed();
+      if ((await event.userChoice).outcome === "dismissed") rememberClosed(app);
     } catch {
       // The browser withdrew the offer: nothing to do.
     }
@@ -128,16 +168,18 @@ export default function Pwa() {
   return (
     <div
       role="region"
-      aria-label={`Install ${site.name}`}
+      aria-label={`Install ${APPS[app].name}`}
+      data-app={app}
       className="card fixed inset-x-2 z-50 flex items-center gap-2 p-4 shadow-[var(--shadow-lg)] [--lift:5rem] lg:left-auto lg:right-4 lg:w-full lg:max-w-sm lg:[--lift:1rem] print:hidden"
       style={{ bottom: "calc(var(--lift) + env(safe-area-inset-bottom))" }}
     >
+      {app === "baz" && <span className="baz-mark flex-none" aria-hidden />}
       <div className="min-w-0 flex-1">
-        <p className="title-2 text-ink">Add {site.name} to your home screen</p>
+        <p className="title-2 text-ink">{APPS[app].words}</p>
         {way === "ios" && (
           <p className="caption-1 mt-1 flex items-center gap-1 text-ink-subtle">
             <Share className="h-4 w-4 flex-none" />
-            Tap Share, then Add to Home Screen.
+            {APPS[app].ios}
           </p>
         )}
       </div>

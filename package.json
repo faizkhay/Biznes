@@ -23,7 +23,8 @@
     "seo": "node scripts/seo.mjs",
     "weights": "node scripts/weights.mjs",
     "test:rls": "bash scripts/test-rls.sh",
-    "behaviour:tax": "node scripts/behaviour-tax.mjs"
+    "behaviour:tax": "node scripts/behaviour-tax.mjs",
+    "behaviour:baz": "node scripts/behaviour-baz.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

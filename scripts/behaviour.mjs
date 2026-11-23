@@ -425,14 +425,16 @@ const bazAll = Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d
 check("baz manzer: a page of its own, under its awning, with every place to eat", (await text("main h1")) === "Baz Manzer" && (await page.locator("main .baz-awning").count()) === 1 && bazAll > 1000 && (await page.locator("main .baz-types a").count()) === 5, `${bazAll}`);
 check("baz manzer: kinds of food from the map's own words, and towns", (await page.locator('main nav[aria-labelledby="by-food"] a').count()) >= 10 && (await page.locator('main nav[aria-labelledby="by-town"] a').count()) >= 5);
 await page.locator('main nav[aria-labelledby="by-food"] a', { hasText: "Chinese" }).click();
-await page.waitForURL(/food=chinese/);
+await page.waitForURL(/\/baz-manzer\/food\/chinese$/);
 const bazChinese = Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0);
-check("baz manzer: a kind of food narrows the list, and is marked as chosen", bazChinese > 0 && bazChinese < bazAll && /Chinese places to eat/.test(await text("main h2#list")) && (await page.locator('main nav[aria-labelledby="by-food"] a[aria-current="true"]').count()) === 1 && (await page.locator("main article[data-listing]").count()) > 0, `${bazChinese}`);
+check("baz manzer: a kind of food is a page of its own, with only the places that serve it", bazChinese > 0 && bazChinese < bazAll && /Chinese places to eat/.test(await text("main h2#list")) && (await text("main h1")) === "Chinese" && (await page.locator("main article[data-listing]").count()) > 0, `${bazChinese}`);
 await page.locator('main nav[aria-labelledby="by-town"] a').first().click();
 await page.waitForURL(/town=/);
-check("baz manzer: and a town narrows it again", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator("main article[data-listing]").count()) > 0);
+check("baz manzer: and a town narrows it again, and is marked as chosen", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator('main nav[aria-labelledby="by-town"] a[aria-current="true"]').count()) === 1 && (await page.locator("main article[data-listing]").count()) > 0);
 await page.goto(`${origin}/baz-manzer`, { waitUntil: "domcontentloaded" });
 check("baz manzer: the articles about food stand on its shelf", (await page.locator('main #food-articles ~ ul a[href^="/learn/"]').count()) >= 1);
+// Baz Manzer's own pages have a header of their own (scripts/behaviour-baz.mjs), so the site's menu is read from a page outside it.
+await page.goto(`${origin}/directory`, { waitUntil: "domcontentloaded" });
 check("baz manzer: it is in the menu, on the first screen, in the sitemap and in llms.txt", (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && (await (await page.request.get(origin)).text()).includes('href="/baz-manzer"'));
 
 // 8be. The street map: nothing of it is fetched until it is asked for.
@@ -559,7 +561,7 @@ check("shop: a magazine is said to be coming, and no more than that", /biznes\.m
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await steady(await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }));
 const small = await phone.newPage();
-for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer?food=chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
+for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer/food/chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
   const over = await small.evaluate(() => Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth) - 390);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
