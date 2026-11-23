@@ -42,6 +42,8 @@ It replaces the site that sold ready-made businesses (in the repository's histor
   order: our own pages that answer, businesses, parts of articles that only mention the words,
   and pages elsewhere, folded away as "References elsewhere". It never passes a wider category off
   as the answer to a narrower word, and a partial match is said to be one ("The order of results").
+  Finding the documents that hold a question's words, and weighing them, is the site's own engine
+  (`src/lib/engine.ts`, "The engine"): no library does it.
 - **Narrowing, saving and sharing**: a list of listings is narrowed by telephone number, by
   website and by town, each as a link. A shortlist is kept in the visitor's own browser and shared
   as a link. A listing or a search can be shared.
@@ -874,6 +876,100 @@ The words the search understands are in the same file: `SAID_PHRASES` and `SAID`
 to English), `PADDING` (words that carry no meaning), and `DISHES` (a dish is looked for in a
 place's own words, across every kind of place to eat, and never read as a category). Forty-nine
 searches are kept as checks in `scripts/behaviour.mjs`; add one whenever a search goes wrong.
+Eleven more, each named "engine", check what the site's own engine does that the library before it
+did not.
+
+A business asked for by its own name is given first, in three ways. A question that is a whole
+name counts double in the engine. A name that reads as a kind of business in a town, or holds a
+kind's word ("Phoenix Assurance", "Ebene Pharmacy", "Battery Point"), is still that business: if a
+listing elsewhere, or of another kind, has the whole question for its name, the question is
+searched as a name. And a name is tried as it was written before any close spelling of a part of
+it. A kind of business asked for in a town that has none still leads, among partial matches, with
+that kind elsewhere.
+
+Among our own pages the order is `collect()`'s, in the same file. Of one article's parts, a part
+that names the question's words in its own label or heading, or the article itself, comes before a
+part that answers only because the article's title holds the words: "bus" is the article on
+getting around, not its fact about the metro. An article whose own title holds the words counts
+half as much again as a fact from another article. The three emergency numbers lead whatever else
+answers.
+
+### The engine
+
+`src/lib/engine.ts` is the site's own search engine, written in this repository in Round 7 in place
+of the MiniSearch library. It has no dependency and imports nothing from the rest of the site, so
+it is tested by itself. The comment at its head is the algorithm's own account; this is the short
+form.
+
+- **What it holds.** For every word, the documents that hold it and how often in each field; for
+  every document, its words in order. A document goes in or comes out by itself (`add`, `discard`):
+  an owner's business is laid over the index and taken off again without anything being rebuilt.
+- **How a word is matched.** As written; as the start of a longer word, found by halving a sorted
+  list of the words (a quarter to a half of a whole match, by how much was typed); or, when the
+  search allows it, as a close spelling. The distance between two words is the number of single
+  slips between them, and two letters that changed places are one slip. One slip is allowed from
+  four letters, two between words of eight letters or more. Close spellings are found without
+  reading the vocabulary: each word is filed under its first seven letters with one letter out (two
+  for a long word), and a typed word is looked up the same way. A close spelling counts for 0.5 or
+  0.35 of a whole match.
+- **How a document is scored.** By the field-weighted form of BM25 (BM25F): a word counts by the
+  weight of the field it is in (`FIELDS` in `src/lib/search.ts`: name 4, other names 2.5, kind of
+  business 2, address 1.5, description 1), by how rare it is, and less the longer the field is
+  against the usual length of that field among documents of the same kind. Then the words together:
+  a question that is a whole name doubles the score, and words side by side in a field add up to
+  0.6. Asked for every word, a document that lacks one is no answer; asked for any, the one that
+  holds them all comes first.
+- **What the search asks of it.** `search()` decides: a word may stand for the start of a longer
+  one from three letters for a listing and from four for a page; close spellings only when nothing
+  matched as written, and never for a narrower word such as "plumber"; and, for a question read as
+  a kind of business, the whole question is passed too, so that "state bank of mauritius" finds
+  the State Bank of Mauritius before the State Bank of India. `understand()` reads a town or a
+  kind of business typed wrongly ("pharmcy", "restorant", "curpipe") as the word meant, when one
+  word the index holds is plainly the nearest (alone at its distance, or held by five times as
+  many documents as the next), and the page says close spellings are shown.
+
+| Check | Command | What it does |
+|---|---|---|
+| The engine alone | `npm run search:test` | 65 checks on small made-up documents: the order, a word half typed, typing mistakes (and that the filing finds every close spelling a full reading of the vocabulary finds), adding and taking out, every word and any word, empty and odd questions. No build, no server |
+| How long it takes | `npm run search:measure` | The site's `search()` in plain Node over 387 questions (`scripts/search-questions.mjs`: written by hand, and drawn from the index), five times each. Fails if the 95th percentile is over 30 ms or the index takes more than 1.5 times the library's time. `-- --results file` writes the first ten answers to every question, and `-- --compare file` says what differs from such a file |
+| How good it is | `npm run search:measure -- --names` | Every one of the 6,520 names in the index asked for six ways: as written, with one of four slips in its longest word, and with its last two letters not yet typed. It counts how often the business is first, how often in the first ten, and how often nothing is found. About ten seconds |
+
+The test needs Node 22.6 or newer, which runs TypeScript by stripping its types. The measurement
+needs Node 22.15 or newer: `scripts/ts-paths.mjs` teaches plain Node the site's `@/` paths with
+hooks that came in then.
+
+The times in milliseconds, as written down in `scripts/search-measure.json`. Both rows were
+measured in one sitting on the machine the round was built on, while four other builds ran on it:
+on a quiet machine every figure is lower, the library's too. The library's row is the same script
+at commit `55a3995`, the last with MiniSearch.
+
+| | MiniSearch | The engine |
+|---|---|---|
+| The documents going into the index | 762.85 | 311.26 |
+| The first question, which builds everything the search holds | 915.94 | 481.95 |
+| The first question with a typing mistake (the engine files its words for close spellings then, once) | 11.5 | 56.89 |
+| A search: the median | 1.74 | 0.2 |
+| A search: the 95th percentile | 10.12 | 1.69 |
+| A search: the 99th percentile | 22.12 | 4.47 |
+| The slowest search | 87.69 | 13.2 |
+
+And how often a business is found by its own name, over the 6,520 names in the index: the share
+found first, and the share in the first ten (the first five for a name half typed). With two
+letters changed places the library found nothing at all for 6.8% of names; the engine finds
+something for every one.
+
+| Asked for | MiniSearch: first | in the first ten | The engine: first | in the first ten |
+|---|---|---|---|---|
+| By its name as written | 91.6% | 96.4% | 97.7% | 98.6% |
+| With two letters of its longest word changed places | 71.2% | 84.6% | 96.9% | 98.1% |
+| With a letter of its longest word left out | 83.6% | 92.3% | 94.5% | 96.5% |
+| With a letter of its longest word doubled | 90.8% | 96.5% | 97.1% | 98.2% |
+| With a letter of its longest word wrong | 90.4% | 96.1% | 96.9% | 98% |
+| By all but its last two letters (the first five) | 85.7% | 93.8% | 88.1% | 94% |
+
+The search became quicker for two reasons, and only the first is the engine: it finds and weighs
+documents in less time than the library did, and `search()` no longer walks all 7,179 listings for
+each question, since it keeps them by kind of business and by town.
 
 ### Baz Manzer
 

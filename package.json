@@ -23,13 +23,14 @@
     "seo": "node scripts/seo.mjs",
     "weights": "node scripts/weights.mjs",
     "test:rls": "bash scripts/test-rls.sh",
-    "behaviour:tax": "node scripts/behaviour-tax.mjs"
+    "behaviour:tax": "node scripts/behaviour-tax.mjs",
+    "search:test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/search-test.mjs",
+    "search:measure": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/ts-paths.mjs scripts/search-measure.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.2",
     "maplibre-gl": "6.19.0",
-    "minisearch": "^7.2.0",
     "next": "16.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"

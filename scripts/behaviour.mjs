@@ -406,6 +406,35 @@ for (const [q, want] of SEARCHES) {
 }
 check(`searches: ${SEARCHES.length} a Mauritian would type are read and answered as they should be`, read === SEARCHES.length, `${read} of ${SEARCHES.length}`);
 
+// 8bb2. What the site's own engine (src/lib/engine.ts) does that the library before it did not.
+const found = async (q) => {
+  const status = await reads(q);
+  const names = (await page.locator("main article[data-listing] h3").allInnerTexts()).map((name) => name.trim());
+  return { status, names, tally: (await page.locator("main p.tally").count()) ? await text("main p.tally") : "" };
+};
+let got = await found("burgre king");
+check("engine: two letters that changed places are one slip, so the business is found and not every king", /close spellings/.test(got.status) && !/holds some of its words/.test(got.status) && got.names.length > 0 && got.names.every((name) => /burger king/i.test(name)), `${got.status.slice(0, 120)} | ${got.names.slice(0, 3).join(", ")}`);
+got = await found("restorant");
+check("engine: a kind of business typed wrongly is read as the kind, counted, and said to be a close spelling", /Read as: Restaurants\./.test(got.status) && /close spellings/.test(got.status) && /restaurants listed across Mauritius/.test(got.tally), `${got.status.slice(0, 120)} | ${got.tally}`);
+got = await found("pharmacy curpipe");
+check("engine: a town typed wrongly is read as the town", /Read as: Pharmacies in Curepipe\./.test(got.status) && /close spellings/.test(got.status) && got.names.length > 5, got.status.slice(0, 120));
+got = await found("dentsit");
+check("engine: a slip that used to find nothing is answered", /Read as: Dentists\./.test(got.status) && got.names.length > 5, got.status.slice(0, 120));
+got = await found("state bank of mauritius");
+check("engine: a name that is the whole question comes before the names that only hold its words", got.names.length >= 3 && got.names.slice(0, 3).every((name) => /^State Bank of Mauritius/.test(name)), got.names.slice(0, 5).join(", "));
+got = await found("ebene pharmacy");
+const named = got.names[0] ?? "";
+got = await found("battery point");
+check("engine: a business whose name reads as a kind and a town, or holds a kind's word, is found by its name wherever it is", /^Ebene Pharmacy/.test(named) && /^Battery Point/.test(got.names[0] ?? "") && !/close spellings/.test(got.status), `${named} | ${got.names.slice(0, 2).join(", ")}`);
+got = await found("winers");
+check("engine: a plural is not taken for the start of another word: “winers” is Winners, not a winery", /close spellings/.test(got.status) && /^Winner/.test(got.names[0] ?? ""), `${got.status.slice(0, 80)} | ${got.names.slice(0, 3).join(", ")}`);
+got = await found("tout le modne en parle");
+check("engine: a name of five words with one slip in it finds that business, and only that one", got.names.length === 1 && /^Tout Le Monde En Parle/.test(got.names[0]) && /close spellings/.test(got.status) && !/holds some of its words/.test(got.status), `${got.status.slice(0, 80)} | ${got.names.slice(0, 3).join(", ")}`);
+got = await found("grand bay coeur de ville");
+check("engine: letters written as one are found typed as two", got.names.length === 1 && /C(œ|oe)ur de Ville/.test(got.names[0]) && !/holds some of its words/.test(got.status), `${got.status.slice(0, 80)} | ${got.names.slice(0, 3).join(", ")}`);
+const mistyped = await (await page.request.get(`${origin}/api/suggest?q=restorant`)).json();
+check("engine: the list under the search box offers the kind that was meant", mistyped.suggestions.some((s) => s.label === "Restaurants, all of Mauritius") && mistyped.n > 100, mistyped.suggestions.map((s) => s.label).join(" | "));
+
 // 8bc. Health: a listing with a telephone number first, in a search and on the category's page; and /data says so.
 const telFirst = async () => {
   const has = await page.locator("main article[data-listing]").evaluateAll((rows) => rows.map((row) => Boolean(row.querySelector('a[href^="tel:"]'))));
@@ -418,6 +447,7 @@ check("health: on the category's own page too, and the page says so", (await tel
 await page.goto(`${origin}/data`, { waitUntil: "domcontentloaded" });
 const dataWords = await page.locator("main").innerText();
 check("the site states the order it keeps", /a listing with a telephone number on record is shown before one without/.test(dataWords) && /First, the pages of this site that answer/.test(dataWords) && /Then businesses and services/.test(dataWords));
+check("the site says how its own engine weighs a listing, and what it does with a typing mistake", /A name that is exactly what was typed comes before a longer name/.test(dataWords) && /two letters that changed places/.test(dataWords) && /A close spelling always counts for less than the word spelt right/.test(dataWords));
 
 // 8bd. Baz Manzer: everything for eating, by kind of place, kind of food and town.
 await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });
