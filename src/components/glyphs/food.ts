@@ -14,8 +14,8 @@ const PIZZA: Drawing = ["M12 21 4 7.5c2.5-1.5 5-2.5 8-2.5s5.5 1 8 2.5L12 21ZM5.5
 const BURGER: Drawing = ["M4 11.5c0-4 3.5-7 8-7s8 3 8 7H4ZM3.5 14.5c1.4-1.5 2.8 1.5 4.25 0s2.8 1.5 4.25 0 2.8 1.5 4.25 0 2.8 1.5 4.25 0M4.5 17.5h15v1a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-1Z", 12, 8, 1.75];
 /** A chilli. */
 const CHILLI: Drawing = ["M15.5 7c1 3.5-.5 7.5-3.5 10-2 1.7-4.5 2.5-7 2.5 2-1.5 3.5-3.5 4.5-6 .7-1.8 1-4 1-6M13.5 4c.5-1 1.5-1.5 3-1.5", 13, 6, 2.25];
-/** A drumstick; the point is the end of the bone. */
-const DRUMSTICK: Drawing = ["M8.5 15 9 8.6a5.5 5.5 0 1 1 5.9 5.9L8.5 15ZM8.5 15l-2 2", 5, 18.5];
+/** A drumstick with a bite out of it; the point is the end of the bone. */
+const DRUMSTICK: Drawing = ["M8.5 15 9 8.6a5.5 5.5 0 0 1 7.3-4.8 2.75 2.75 0 0 0 3.4 3.4 5.5 5.5 0 0 1-4.8 7.3L8.5 15ZM8.5 15l-2 2", 5, 18.5];
 /** The world, and one place on it. */
 const WORLD: Drawing = ["M3.5 12a8.5 8.5 0 1 0 17 0 8.5 8.5 0 1 0-17 0ZM3.5 12h17M12 3.5c-2.5 2.4-3.5 5.2-3.5 8.5s1 6.1 3.5 8.5", 15.5, 8, 1.75];
 /** A plate of spaghetti; the point is the sauce on top. */
@@ -58,6 +58,10 @@ export const FOODS: Record<string, Drawing> = {
   noodle: BOWL,
   noodles: BOWL,
   dimsum: BOWL,
+  boulette: BOWL,
+  boulettes: BOWL,
+  "mine-frite": BOWL,
+  "boiled-noodle": BOWL,
   pizza: PIZZA,
   "italian-pizza": PIZZA,
   burger: BURGER,

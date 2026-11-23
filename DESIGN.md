@@ -131,6 +131,8 @@ components:                 # only: backgroundColor textColor typography rounded
   card-ink: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", rounded: "{rounded.xl}", padding: 1.5rem }
   tile-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.lg}", size: 3rem }
   tile-icon-hover: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
+  glyph: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", size: 1.5rem }
+  glyph-point-lit: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", rounded: "{rounded.full}" }
   index-item: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-3}" }
   index-count: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
   fact-name: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.body-3}" }
@@ -485,8 +487,10 @@ royal for the answer. No other shadow has a colour.
   dot under the current word of the menu, the dot in the greeting pill, a point on the map.
 - **The seal**: a rosette of twelve points with a tick, the one filled icon.
 - **The hairline**: one pixel, ink at 10%.
-- **Icons**: one drawn set (`src/components/Icons.tsx`), 24px grid, 1.5px round strokes, in the
-  current colour, always beside words or carrying their own label.
+- **Icons**: one hand in two files, 24px grid, 1.5px round strokes, in the current colour, always
+  beside words or carrying their own label. The interface's small signs (an arrow, a tick, the
+  cross that closes) are `src/components/Icons.tsx`. The site's own pictures (a kind of business, a
+  district, a kind of food, a page) are `src/components/Glyphs.tsx`: see The icons.
 
 ### Named Rules
 
@@ -850,6 +854,68 @@ was redrawn as a light map in the page's own colours.
   which are drawn from that file, and the pocket guide's cover.
 - In the menu the name is 22px tall.
 
+## The icons
+
+`src/components/Glyphs.tsx` is the one way in; the drawings are data in `src/components/glyphs/`.
+They are the site's own, drawn for it and taken from no library: one for each of the 70 kinds of
+business, the 13 groups of the directory, the 10 districts, the kinds of food most listed on Baz
+Manzer, and each page the menu names. `npm run icons:sheet` draws every one at 20px, 24px and 48px
+on paper, on a white card and on an ink tile (`review/icons/`), and is how the set is judged.
+
+- **The hand**: a 24 by 24 grid, 1.5px strokes with round caps and joins, in the current colour,
+  on whole and half units, and no drawing longer than about thirty commands. Nothing is smaller
+  than can be read at 20px. No letters, no numbers, no flags. Each icon is decoration beside words
+  and is hidden from assistive technology.
+- **The point**: every icon has exactly one small solid point and everything else is line. It is
+  the lit point of the name, 4 units across (3.5 where a drawing is tight; up to 5.5 where it is a
+  head, a hub or the sun), and it sits where it means something: the olive in the glass, the
+  keyhole, the candle's flame, the lamp on a taxi's roof, the eye of the fish, the place a plane
+  leaves. One solid point among line drawings is what makes the set ours in a single colour.
+- **The point's colour**: the icon's own, so on an ink tile the whole icon is saffron. Where an
+  icon is drawn in ink, slate or royal on white, cream, sand or the saffron wash, the point may be
+  lit: give the icon `lit`, or set `--glyph-point` to `var(--color-signal)` on whatever holds a set
+  of them. A lit point is saffron inside a ring of the icon's own colour, 0.75 units thick, as the
+  point of the b sits inside its ring. It is never saffron alone on a light ground (below). Never
+  light a point on an ink or a saffron tile.
+- **The directory**: a kind of business wears its own drawing; one with none wears its group's,
+  and a thing with no group wears the shop front. Three kinds are their group (a college, a
+  government office, a company). The kinds that stand side by side are drawn to be told apart:
+  the five kinds of place to eat, the fifteen kinds of shop.
+- **The districts** are the island itself: Mauritius in line, with the district filled, so the
+  icon says where the district is. Rodrigues is its own island, filled whole. Port Louis is too
+  small to see as a shape and is the point. `scripts/district-icons.mjs` cuts them from
+  `data/index/geo.json` into `src/data/district-shapes.ts` (`npm run icons:districts`): it smooths
+  the coast, drops the points that do not matter, and builds each district from its inland
+  boundary and the same coast, so the fill and the line agree. No outline is typed by hand.
+- **Food**: twenty drawings for the kinds most listed (the island's own cooking is a pot on the
+  fire; Chinese and the rest of Asia a bowl and chopsticks). Words that mean the same table share
+  a drawing. A kind with no drawing wears the fork and knife.
+- **Pages**: by address. A page under a named one wears its icon (`/learn/vat` wears the
+  articles'); an address the set does not know wears the lens with its point. Home is a signpost,
+  because a house is the home and building group. About is the b itself, in line.
+
+The point's colour, measured on 23 November 2026 with `npm run contrast`:
+
+| Mark | On | Ratio | Where |
+|---|---|---|---|
+| saffron | white | 1.60:1 | A lit point with no ring: fails as a mark, so it is never drawn |
+| saffron | cream | 1.52:1 | The same on the sheet: fails |
+| saffron | sand | 1.39:1 | The same on a note or a chip: fails |
+| saffron | ink | 11.02:1 | The lit point against its ring, on an icon drawn in ink |
+| saffron | slate | 5.54:1 | The lit point against its ring, on an icon drawn in slate |
+| saffron | royal | 6.22:1 | The lit point against its ring, on an icon drawn in royal |
+| ink | white, cream, sand | 17.69:1, 16.80:1, 15.42:1 | The ring, and the icon's lines, on a light ground |
+| slate | white, cream, sand | 8.90:1, 8.45:1, 7.76:1 | The same for an icon drawn in slate |
+
+Mist is too pale to ring a lit point well (saffron on mist is 3.36:1): an icon in `ink-faint`
+keeps its point solid.
+
+### Named Rules
+
+**The One Point Rule.** An icon of the site's own has one solid point and no other filled shape.
+A new icon is drawn in `src/components/glyphs/`, put on the sheet, and read back at 20px before it
+is used.
+
 ## Motion
 
 **Principle:** motion says that something changed. Content is visible by default and nothing moves
@@ -923,6 +989,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Do** say where a thing came from, beside it.
 - **Do** give every picture its record (the Provenance Rule).
 - **Do** take a holiday's date from `content/holidays.json`.
+- **Do** take a picture-icon from `src/components/Glyphs.tsx` by what it stands for (a category's
+  id, a district's slug, a page's address), and light its point only on a light ground.
 
 ### Don't
 
@@ -939,6 +1007,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** draw anything on the island that is not in the data.
 - **Don't** animate an entrance, or anything that moves by itself.
 - **Don't** make a square button: a control is a pill, a round or a soft square (the Pill Rule).
+- **Don't** take an icon from a library, put a letter, a number or a flag in one, or give one a
+  second filled shape (the One Point Rule).
 
 ## Agent Guide
 
@@ -962,6 +1032,9 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
 - A paid listing takes `.listing-paid` and the `VerifiedMark`, with `priority` when it pays to come
   first. Use them for nothing else.
 - A new picture needs both sizes, its record, and a line in `src/data/themes.ts`.
+- An icon for a thing the site lists is `CategoryIcon`, `GroupGlyph`, `DistrictIcon`, `FoodIcon` or
+  `PageIcon` (`src/components/Glyphs.tsx`). Each takes any id and never fails. A new drawing goes
+  in `src/components/glyphs/`, then `npm run icons:sheet`.
 - House style in every file: British spelling, plain sentences, no em or en dashes
   (`npm run copy`).
 

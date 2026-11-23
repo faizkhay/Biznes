@@ -185,7 +185,7 @@ const island = thinRing(soften(coast, true), TOLERANCE);
 
 // Rodrigues: an island of its own, drawn smaller because all of it is filled.
 const rodrigues = longest(geo.rodrigues.coast);
-const rodriguesIsland = thinRing(soften(rodrigues.map(fit(rodrigues, 16, 16)), true), TOLERANCE);
+const rodriguesIsland = thinRing(soften(rodrigues.map(fit(rodrigues, 17, 17)), true), TOLERANCE);
 
 const parts = {};
 for (const district of geo.districts) {

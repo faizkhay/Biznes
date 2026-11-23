@@ -45,7 +45,7 @@ export function Point({ x, y, r = RADIUS }: { x: number; y: number; r?: number }
 export function Glyph({ drawing: [d, x, y, r, turn], ...p }: GlyphProps & { drawing: Drawing }) {
   return (
     <Frame {...p}>
-      <path d={d} transform={turn} />
+      <path d={d} fill="none" transform={turn} />
       <Point x={x} y={y} r={r} />
     </Frame>
   );

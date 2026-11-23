@@ -43,7 +43,7 @@ export function DistrictIcon({ slug, ...p }: GlyphProps & { slug?: string }) {
   return (
     <Frame {...p}>
       {shape && !shape.point ? <path d={shape.part} fill={POINT} strokeWidth={RING} /> : null}
-      <path d={ISLANDS[shape?.island ?? "mauritius"]} />
+      <path d={ISLANDS[shape?.island ?? "mauritius"]} fill="none" />
       {shape?.point ? <Point x={shape.x} y={shape.y} /> : null}
       {shape ? null : <Point x={12} y={12} />}
     </Frame>
@@ -57,7 +57,10 @@ export function FoodIcon({ id, ...p }: GlyphProps & { id?: string }) {
 
 /** The drawing for an address: its own, else that of the page above it, else the lens. */
 function pageDrawing(href: string | undefined): Drawing {
-  let path = String(href ?? "").split("?")[0];
+  // A whole address ("https://biznes.mu/learn") is read as its path.
+  let path = String(href ?? "")
+    .replace(/^[a-z][a-z0-9+.-]*:\/\/[^/]*/i, "")
+    .split("?")[0];
   const whole = find(PAGES, path);
   if (whole) return whole;
   path = path.split("#")[0].replace(/\/+$/, "") || "/";

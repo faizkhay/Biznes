@@ -35,6 +35,8 @@ export const PAGES: Record<string, Drawing> = {
   // The crawler: a robot's head; the point is the end of its aerial.
   "/bot": [box(4.5, 8, 15, 11, 3) + "M12 8V5.5M9 13v1.5M15 13v1.5M2.5 12.5v3M21.5 12.5v3", 12, 3.75, 1.75],
   "/privacy": [box(5, 10.5, 14, 10, 2) + "M8 10.5V8a4 4 0 0 1 8 0v2.5M12 16.5V18", 12, 14.75, 1.75],
+  // An owner's own businesses: the shop front again.
+  "/dashboard": SHOP,
   // More: the list of every page, with one of them lit.
   "/more": ["M10 6.5h10.5M3.5 12h17M3.5 17.5h11", 5, 6.5],
 };

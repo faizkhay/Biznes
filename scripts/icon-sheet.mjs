@@ -18,12 +18,14 @@
 // How it works: the icons are TypeScript, so the script turns the few files they live in into
 // plain JavaScript with the compiler the project already has, keeps the result under
 // node_modules/.cache, renders each icon to SVG with React's own server renderer, and takes the
-// picture with Playwright. The colours are read from src/app/globals.css, never typed here.
+// picture with Playwright. The colours are read from src/app/globals.css, never typed here. The
+// kept sheet is two JPEGs, encoded by sharp to stay under 600 kB between them.
 import { createRequire } from "node:module";
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import sharp from "sharp";
 import { browserPath } from "./pages.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -99,14 +101,14 @@ const cell = (item) =>
     : `<figure>${swatch(item, "paper", false)}${swatch(item, "card", true)}${swatch(item, "tile", false)}<figcaption>${item.name}</figcaption></figure>`;
 const html = `<!doctype html><meta charset="utf-8"><style>
   :root { --color-signal: ${palette("saffron")}; }
-  body { margin: 0; padding: 24px; background: ${palette("cream")}; color: ${palette("ink")}; font: 12px/1.3 system-ui, sans-serif; width: ${mode === "big" ? 1352 : mode === "small" ? 432 : 1392}px; }
+  body { margin: 0; padding: 24px; background: ${palette("cream")}; color: ${palette("ink")}; font: 12px/1.3 system-ui, sans-serif; width: ${mode === "big" ? 1352 : mode === "small" ? 432 : 1592}px; }
   h1 { font-size: 18px; margin: 0 0 4px; }
   p { margin: 0 0 16px; color: ${palette("slate")}; max-width: 60em; }
-  h2 { font-size: 13px; margin: 20px 0 8px; padding-top: 8px; border-top: 1px solid ${palette("sand")}; }
-  section { display: grid; grid-template-columns: repeat(${mode === "big" ? 8 : 3}, 1fr); gap: 12px 8px; }
-  figure { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 4px 6px; }
+  h2 { font-size: 13px; margin: 16px 0 8px; padding-top: 8px; border-top: 1px solid ${palette("sand")}; }
+  section { display: grid; grid-template-columns: repeat(${mode === "big" ? 8 : mode === "small" ? 3 : 4}, 1fr); gap: 8px; }
+  figure { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 3px 6px; }
   figcaption { grid-column: 1 / -1; color: ${palette("slate")}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .swatch { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; }
+  .swatch { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 12px; }
   .paper { background: ${palette("cream")}; outline: 1px solid ${palette("sand")}; }
   .card { background: ${palette("white")}; outline: 1px solid ${palette("sand")}; }
   .tile { background: ${palette("ink")}; color: ${palette("saffron")}; }
@@ -117,13 +119,13 @@ const html = `<!doctype html><meta charset="utf-8"><style>
   .big .frame { background: ${palette("white")}; outline: 1px solid ${palette("sand")}; border-radius: 8px; padding: 6px; }
 </style>
 <h1>biznes.mu: the icon set</h1>
-<p>${mode === "big" ? "Each icon large, and at 24px beside it." : "Each icon at 20px, 24px and 48px: on paper in ink, on a white card with its point lit, and on an ink tile in saffron."} Made by scripts/icon-sheet.mjs from src/components/Glyphs.tsx.</p>
+<p>${{ big: "Each icon large, and at 24px beside it.", small: "Each icon at 16px and 20px, on paper and on an ink tile.", slices: "", sheet: "" }[mode] || "Each icon at 20px, 24px and 48px: on paper in ink, on a white card with its point lit, and on an ink tile in saffron."} Made by scripts/icon-sheet.mjs from src/components/Glyphs.tsx.</p>
 ${sections.map((s) => `<h2 data-part="${s.id === "groups" || s.id === "kinds" ? 1 : 2}">${s.title} (${s.items.length})</h2><section>${s.items.map(cell).join("")}</section>`).join("\n")}`;
 
 // 4. The pictures.
 mkdirSync(dir, { recursive: true });
 const browser = await chromium.launch({ executablePath: browserPath() });
-const wide = mode === "small" ? 480 : 1440;
+const wide = mode === "small" ? 480 : mode === "big" ? 1440 : 1640;
 const page = await browser.newPage({ viewport: { width: wide, height: 900 }, deviceScaleFactor: 1 });
 await page.setContent(html);
 const height = await page.evaluate(() => document.documentElement.scrollHeight);
@@ -137,7 +139,8 @@ if (mode === "sheet") {
   const parts = split > 0 && split < height ? [[0, split], [split, height]] : [[0, height]];
   for (const [i, [from, to]] of parts.entries()) {
     const file = join(dir, `sheet-${i + 1}.jpg`);
-    await page.screenshot({ path: file, type: "jpeg", quality: 72, fullPage: true, clip: { x: 0, y: from, width: 1440, height: to - from } });
+    const png = await page.screenshot({ fullPage: true, clip: { x: 0, y: from, width: wide, height: to - from } });
+    await sharp(png).jpeg({ quality: 60, mozjpeg: true }).toFile(file);
     written.push(file);
   }
 } else {
