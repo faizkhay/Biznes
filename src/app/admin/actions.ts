@@ -260,6 +260,7 @@ export async function removeSubscriber(_: FormState, data: FormData): Promise<Fo
   const { data: gone, error } = await supabase.from("subscribers").delete().eq("id", id).select("id");
   if (error || !gone?.length) return { message: TRY_AGAIN };
   revalidatePath("/admin/subscribers");
+  revalidatePath("/admin/email");
   return { ok: true, message: "Taken off the list." };
 }
 

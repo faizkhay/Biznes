@@ -2,13 +2,20 @@
 
 import { revalidatePath } from "next/cache";
 import { accountsOn } from "./config";
+import { sendConfirmation } from "./email/send";
+import { currentSender } from "./email/store";
 import { field, SOON, UUID, type FormState } from "./form";
 import { tooMany } from "./limit";
 import { publicDb } from "./server";
 
 // Joining and leaving the list of people who are sent the pocket guide and the magazine. Both go
-// through functions in the database (supabase/migrations, part 5): the site never reads the list
-// as a visitor, so neither answer says whether an address was on it.
+// through functions in the database (supabase/migrations, parts 5, 11 and 14): the site never
+// reads the list as a visitor, so neither answer says whether an address was on it.
+//
+// With no sender connected (src/lib/accounts/email/sender.ts) joining is all there is: the
+// address is kept as not confirmed, because no message can ask it to confirm. With one, a message
+// with a link to confirm goes to an address that is new or has not confirmed yet, once a day at
+// most. The form's answer is the same whichever the address was.
 
 /** For whoever runs the site: the database asks for a word with a visitor's writes, and did not get the right one. */
 const PROOF_REFUSED = "[accounts] the database refused a call from the site: BIZNES_SITE_PROOF is not set, or is not the word whose hash is kept in private.site_proof (supabase/migrations, part 11).";
@@ -43,7 +50,43 @@ export async function subscribe(_: FormState, data: FormData): Promise<FormState
   if (error?.code === "42501") console.error(PROOF_REFUSED);
   if (error) return { message: "You could not be added just now. Try again in a moment.", values };
   revalidatePath("/admin/subscribers");
-  return { ok: true, message: `You are on the list. We will send ${asked} to ${email} when it comes out, and nothing else.` };
+  const asked_to_confirm = await askToConfirm(email);
+  return {
+    ok: true,
+    message: asked_to_confirm
+      ? `Nearly there. If ${email} is new to the list, a message is on its way to it: press the link in it to confirm the address is yours. Then we send ${asked} when it comes out, and nothing else.`
+      : `You are on the list. We will send ${asked} to ${email} when it comes out, and nothing else.`,
+  };
+}
+
+/**
+ * Send the message that asks an address to confirm, where the site can. True when the site is
+ * set up to ask: a sender is connected, the settings say who a message comes from, and the
+ * database holds the hash of the site's word, without which it hands no link to anyone. Whether
+ * a message went to this address in particular is not said: the answer to the visitor is the
+ * same for an address that is new, one that has confirmed, and one asked earlier today.
+ */
+async function askToConfirm(email: string): Promise<boolean> {
+  try {
+    const sender = await currentSender();
+    if (!sender.connected) return false;
+    const { data: handed, error } = await publicDb().rpc("confirmation_for", { address: email });
+    if (error) {
+      if (error.code === "42501") console.error("[accounts] no link to confirm was handed over: the database holds no hash of the site's word, or BIZNES_SITE_PROOF is not that word (README, \"Setting up the project\", step 8).");
+      return false;
+    }
+    if (!handed || typeof handed !== "object") return true;
+    const h = handed as Record<string, string>;
+    const outcome = await sendConfirmation(sender, email, { confirm: h.confirm, leave: h.leave, from_name: h.from_name ?? "", from_email: h.from_email ?? "", reply_to: h.reply_to ?? "", postal_address: h.postal_address ?? "" });
+    if (!outcome.ok) {
+      console.error(`[accounts] a message asking an address to confirm was not sent: ${outcome.why}`);
+      // The address counts as never asked, unless the message may have gone after all.
+      if (!outcome.unsure) await publicDb().rpc("confirmation_unsent", { link_token: h.confirm });
+    }
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /** Leave the list, with the token an unsubscribe link carries. */

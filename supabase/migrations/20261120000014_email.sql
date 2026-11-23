@@ -194,53 +194,6 @@ $$;
 revoke all on function public.email_event(text, text, text, text) from public;
 grant execute on function public.email_event(text, text, text, text) to anon, authenticated;
 
--- The link to confirm an address that has just joined, for the website to put in a message. It
--- is handed over only to the website (its word must be the right one), only for an address that
--- is on the list and not yet confirmed, and once a day at most for any one address, so the form
--- cannot be used to fill a stranger's inbox. An address whose reader complained or asked us by
--- hand is not written to, even to confirm. Null: there is nothing to send.
-create function public.confirmation_for(address text) returns jsonb
-language plpgsql security definer set search_path = ''
-as $$
-declare
-  clean text := lower(btrim(coalesce(address, '')));
-  found_row public.subscribers;
-begin
-  if not private.strictly_from_site() then
-    raise exception 'Only the website may ask for a link to confirm.' using errcode = '42501', hint = 'forbidden';
-  end if;
-  select * into found_row from public.subscribers s where s.email = clean for update;
-  if found_row.id is null or found_row.confirmed_at is not null then
-    return null;
-  end if;
-  if exists (select 1 from public.email_suppressions x where x.email = clean and x.reason <> 'bounce') then
-    return null;
-  end if;
-  if found_row.confirm_sent_at is not null and found_row.confirm_sent_at > now() - interval '1 day' then
-    return null;
-  end if;
-  update public.subscribers s set confirm_sent_at = now() where s.id = found_row.id;
-  return jsonb_build_object('confirm', found_row.confirm_token, 'leave', found_row.token);
-end;
-$$;
-revoke all on function public.confirmation_for(text) from public;
-grant execute on function public.confirmation_for(text) to anon, authenticated;
-
--- The message asking to confirm could not be handed to the mail service: the address may be
--- asked again at once, and counts as never asked.
-create function public.confirmation_unsent(link_token uuid) returns void
-language plpgsql security definer set search_path = ''
-as $$
-begin
-  if not private.strictly_from_site() then
-    raise exception 'Only the website may say that.' using errcode = '42501', hint = 'forbidden';
-  end if;
-  update public.subscribers s set confirm_sent_at = null where s.confirm_token = link_token and s.confirmed_at is null;
-end;
-$$;
-revoke all on function public.confirmation_unsent(uuid) from public;
-grant execute on function public.confirmation_unsent(uuid) to anon, authenticated;
-
 alter table public.email_suppressions enable row level security;
 revoke all on table public.email_suppressions from anon, authenticated;
 grant select on table public.email_suppressions to authenticated;
@@ -322,13 +275,70 @@ create policy email_settings_update on public.email_settings
   using ((select private.is_superadmin()))
   with check ((select private.is_superadmin()));
 
+-- The link to confirm an address that has just joined, for the website to put in a message. It
+-- is handed over only to the website (its word must be the right one), only for an address that
+-- is on the list and not yet confirmed, and once a day at most for any one address, so the form
+-- cannot be used to fill a stranger's inbox. An address whose reader complained or asked us by
+-- hand is not written to, even to confirm. Null: there is nothing to send to this address.
+create function public.confirmation_for(address text) returns jsonb
+language plpgsql security definer set search_path = ''
+as $$
+declare
+  clean text := lower(btrim(coalesce(address, '')));
+  found_row public.subscribers;
+  setting public.email_settings;
+begin
+  if not private.strictly_from_site() then
+    raise exception 'Only the website may ask for a link to confirm.' using errcode = '42501', hint = 'forbidden';
+  end if;
+  -- No message may be sent while there is nobody for it to come from or no postal address to end
+  -- it with. That is said before the address is looked at, so it says nothing about the address.
+  select * into setting from public.email_settings;
+  if setting.postal_address = '' or setting.from_email = '' or setting.from_name = '' then
+    raise exception 'No message may be sent until the settings say who it comes from and give the sender''s postal address.' using errcode = 'P0001', hint = 'email_not_ready';
+  end if;
+  select * into found_row from public.subscribers s where s.email = clean for update;
+  if found_row.id is null or found_row.confirmed_at is not null then
+    return null;
+  end if;
+  if exists (select 1 from public.email_suppressions x where x.email = clean and x.reason <> 'bounce') then
+    return null;
+  end if;
+  if found_row.confirm_sent_at is not null and found_row.confirm_sent_at > now() - interval '1 day' then
+    return null;
+  end if;
+  update public.subscribers s set confirm_sent_at = now() where s.id = found_row.id;
+  -- With the link goes what the message is sent with: a visitor's request cannot read the settings.
+  return jsonb_build_object('confirm', found_row.confirm_token, 'leave', found_row.token,
+    'from_name', setting.from_name, 'from_email', setting.from_email, 'reply_to', setting.reply_to, 'postal_address', setting.postal_address);
+end;
+$$;
+revoke all on function public.confirmation_for(text) from public;
+grant execute on function public.confirmation_for(text) to anon, authenticated;
+
+-- The message asking to confirm could not be handed to the mail service: the address may be
+-- asked again at once, and counts as never asked.
+create function public.confirmation_unsent(link_token uuid) returns void
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  if not private.strictly_from_site() then
+    raise exception 'Only the website may say that.' using errcode = '42501', hint = 'forbidden';
+  end if;
+  update public.subscribers s set confirm_sent_at = null where s.confirm_token = link_token and s.confirmed_at is null;
+end;
+$$;
+revoke all on function public.confirmation_unsent(uuid) from public;
+grant execute on function public.confirmation_unsent(uuid) to anon, authenticated;
+
 ------------------------------------------------------------------------------------------------
 -- 4. Campaigns: a message to the list.
 --
 -- A body is a list of blocks, each one of four kinds: a heading, a paragraph, a button that leads
 -- to a path on this site or to a full https address, and a line. Nothing else, and no HTML: the
--- website draws the blocks itself.
-create function private.are_email_blocks(blocks jsonb) returns boolean
+-- website draws the blocks itself. A draft may hold a block that is not filled in yet (`whole`
+-- false); a message that is ready may not.
+create function private.are_email_blocks(blocks jsonb, whole boolean) returns boolean
 language sql immutable set search_path = ''
 as $$
   select case when jsonb_typeof(blocks) = 'array' then
@@ -338,18 +348,19 @@ as $$
       where not coalesce(
         case when jsonb_typeof(b) <> 'object' then false else
           case b ->> 'type'
-            when 'heading' then char_length(b ->> 'text') between 1 and 120 and (b ->> 'text') !~ '[[:cntrl:]]'
+            when 'heading' then char_length(b ->> 'text') between (case when whole then 1 else 0 end) and 120 and (b ->> 'text') !~ '[[:cntrl:]]'
             -- A paragraph may break its lines; it holds no other mark that is not a letter.
-            when 'paragraph' then char_length(b ->> 'text') between 1 and 2000 and (b ->> 'text') !~ '[\x01-\x09\x0b-\x1f\x7f]'
-            when 'button' then char_length(b ->> 'label') between 1 and 60 and (b ->> 'label') !~ '[[:cntrl:]]'
-              and char_length(b ->> 'href') <= 300 and (b ->> 'href') ~ '^(/[^[:space:]"<>]*|https://[^[:space:]"<>]+)$' and (b ->> 'href') !~ '^//'
+            when 'paragraph' then char_length(b ->> 'text') between (case when whole then 1 else 0 end) and 2000 and (b ->> 'text') !~ '[\x01-\x09\x0b-\x1f\x7f]'
+            when 'button' then char_length(b ->> 'label') between (case when whole then 1 else 0 end) and 60 and (b ->> 'label') !~ '[[:cntrl:]]'
+              and char_length(b ->> 'href') <= 300
+              and (((b ->> 'href') = '' and not whole) or ((b ->> 'href') ~ '^(/[^[:space:]"<>]*|https://[^[:space:]"<>]+)$' and (b ->> 'href') !~ '^//'))
             when 'line' then true
             else false
           end
         end, false))
     else false end;
 $$;
-revoke all on function private.are_email_blocks(jsonb) from public;
+revoke all on function private.are_email_blocks(jsonb, boolean) from public;
 
 create table public.email_campaigns (
   id uuid primary key default gen_random_uuid(),
@@ -363,7 +374,7 @@ create table public.email_campaigns (
   subject text not null default '' check (char_length(subject) <= 150 and subject !~ '[[:cntrl:]]'),
   -- The line a mail program shows after the subject.
   preheader text not null default '' check (char_length(preheader) <= 200 and preheader !~ '[[:cntrl:]]'),
-  blocks jsonb not null default '[]'::jsonb check (private.are_email_blocks(blocks)),
+  blocks jsonb not null default '[]'::jsonb check (private.are_email_blocks(blocks, false)),
   status text not null default 'draft' check (status in ('draft', 'ready', 'sending', 'sent', 'cancelled')),
   -- Sent from the owner's own mail program, and written into the record afterwards.
   by_hand boolean not null default false,
@@ -458,6 +469,9 @@ begin
     end if;
     if jsonb_array_length(was.blocks) = 0 then
       raise exception 'Write something in the message first.' using errcode = '23514', hint = 'email_empty';
+    end if;
+    if not private.are_email_blocks(was.blocks, true) then
+      raise exception 'A part of the message is not filled in. Fill it in or take it out first.' using errcode = '23514', hint = 'email_blocks';
     end if;
   elsif new_status = 'draft' and was.status in ('ready', 'cancelled') and was.started_at is null then
     null;

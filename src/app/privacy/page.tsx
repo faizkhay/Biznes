@@ -43,7 +43,9 @@ export default function PrivacyPage() {
               <h2 className="heading-3 mt-8">If you place an order</h2>
               <p>An order keeps the name, the telephone number and the email address you give with it, to arrange payment and delivery. If you are signed in the order is also kept in your account. Nothing is paid on this site.</p>
               <h2 className="heading-3 mt-8">If you join the list</h2>
-              <p>Your email address is kept to send you the pocket guide and the magazine when each comes out, and for nothing else. Every message we send has a link that takes your address off the list.</p>
+              <p>
+                Your email address is kept to send you the pocket guide and the magazine when each comes out, and for nothing else. Every message we send has a link that takes your address off the list. We also keep whether you confirmed the address and, for each message, the address it went to and how it went, which stays on record after you leave. An address that bounces, or whose owner marks a message as spam or asks us to stop, is kept apart with the reason, so that nothing is sent to it again.
+              </p>
             </>
           )}
           <h2 className="heading-3 mt-8">If you send a request</h2>

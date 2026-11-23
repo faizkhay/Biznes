@@ -12,6 +12,7 @@ export const metadata: Metadata = { title: "Leave the list", robots: { index: fa
  * Where the link at the foot of a message leads: one button that takes the address off the list
  * of subscribers. Opening the page changes nothing, so a mail service that looks at links before
  * a person does takes nobody off; pressing the button does. The link's token is the only key.
+ * A mail program's own "Unsubscribe" does the same in one press, by posting to /api/email/leave.
  */
 export default async function UnsubscribePage({ searchParams }: { searchParams: Promise<{ token?: string }> }) {
   const token = ((await searchParams).token ?? "").trim();
@@ -32,7 +33,7 @@ export default async function UnsubscribePage({ searchParams }: { searchParams: 
           <div>
             <Submit busy="Taking you off">Take me off the list</Submit>
           </div>
-          <p className="caption-1 text-ink-faint">Your address is removed, not kept aside. You can join again whenever you like.</p>
+          <p className="caption-1 text-ink-faint">Your address is taken off the list, not kept aside to be written to later. The record of messages already sent to it stays. You can join again whenever you like.</p>
         </ActionForm>
       ) : accountsOn ? (
         <p className="note body-3">Open the link again from the message it came in, or write to us and we will take you off by hand.</p>
