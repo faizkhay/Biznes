@@ -25,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const own = (await owned()).all.filter((business) => !business.listingId);
   return [
     url("/", built, 1),
+    url("/home", built, 0.9),
     url("/directory", built, 0.9),
     url("/places", built, 0.8),
     url("/baz-manzer", built, 0.9),

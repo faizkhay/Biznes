@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
-import { ACTIONS, CREDITS, site } from "@/data/site";
+import { ACTIONS, CREDITS, HOME, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
+import { isFull, TOP_SHOWN } from "@/lib/top";
+import { roundOf } from "@/lib/turn";
 
 export const metadata: Metadata = pageMeta({
   title: "Where the data comes from",
@@ -14,7 +16,9 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function DataPage() {
-  const { meta, guides, categories } = index();
+  const { meta, guides, categories, listings } = index();
+  const full = listings.filter(isFull).length;
+  const top = HOME.parts[0];
   const w = meta.web;
   const health = categories.filter((c) => c.group === "health").map((c) => c.label.toLowerCase());
   return (
@@ -123,6 +127,17 @@ export default function DataPage() {
               <li>No company register. Whether a business is registered, licensed or solvent is for the official registers to say: <Link href="/tools/verify">check a business</Link> lists them.</li>
               <li>No judgement. Nobody at biznes.mu has visited or vetted a listed business. The one exception is the verified mark: it means we have checked that the business is real, and nothing more.</li>
             </ul>
+          </div>
+        </section>
+
+        <section aria-labelledby={top.id} className="max-w-3xl">
+          <h2 id={top.id} className="heading-2">
+            The top businesses on the Home page
+          </h2>
+          <div className="prose body-2 mt-4">
+            <p>
+              The <Link href={HOME.href}>Home page</Link> shows {count(TOP_SHOWN)} businesses under &ldquo;{top.label}&rdquo;, and the word means two things there and no more. A business on a paid plan that we have verified comes first and is marked as a priority listing, as it is on a page of results; if more of them are live than fit, they take turns by the day. The places that are left go to the fullest listings in the open index: those with a telephone number, a website, opening hours and an address on record, which is {count(full)} of the {count(meta.listings.all)}. They are shown {count(TOP_SHOWN)} at a time, and the date decides which: they go round in runs of {count(roundOf(full, TOP_SHOWN))} days, in each run every one of them has its turn, and on a given day everyone sees the same ones. Nobody at {site.name} picks them, and none is said to be better than another: it is a measure of how much is on record, not of how good a business is.
+            </p>
           </div>
         </section>
 

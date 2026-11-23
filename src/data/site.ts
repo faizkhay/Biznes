@@ -49,18 +49,44 @@ export const site = {
   },
 } as const;
 
-/** The pages in the header and the footer, in reading order. One label per page, everywhere. */
+/**
+ * The Home page (U, 23 November 2026: "there is a button that says home where there is top
+ * business listings, baz manzer, categories, regions, other useful links"). `label` is its one
+ * name: on the landing page's button, in the header, on the phone's bar and as the first step of
+ * every page's path. `parts` are its five parts, in the owner's order, each by the heading it
+ * stands under; `useful` are the pages its last part leads to, each named as the menu names it.
+ */
+export const HOME = {
+  href: "/home",
+  label: "Home",
+  lede: "Top businesses, where to eat, every category, every region and the numbers to call, on one page.",
+  /** For a search engine, and for the card a link to it shows when it is pasted somewhere. */
+  title: "Home: businesses, food and regions of Mauritius",
+  card: "Businesses, food and regions of Mauritius",
+  description: "The Home page of biznes.mu: the day's top businesses, where to eat, every category and region of Mauritius, the numbers to call and the next public holiday.",
+  parts: [
+    { id: "top-businesses", label: "Top businesses" },
+    { id: "baz-manzer", label: "Baz Manzer" },
+    { id: "categories", label: "Categories" },
+    { id: "regions", label: "Regions" },
+    { id: "useful", label: "Useful" },
+  ],
+  /** The way into Baz Manzer from its part of the page. */
+  eat: "Find a place to eat",
+  useful: ["/learn", "/tools", "/shop", "/learn/glossary", "/official", "/pricing"],
+} as const;
+
 /**
  * The four ways in that every page names, in this order and by these names. The header shows them
- * as plain links, each one press away; the phone's bar shows the first three, between the search
- * and "More". `also` is an address that belongs to the same way in: the towns are the directory,
- * turned the other way.
+ * as plain links, each one press away; the phone's bar shows Home, Baz Manzer and Articles,
+ * between the search and "More". `also` is an address that belongs to the same way in: the towns
+ * are the directory, turned the other way.
  */
 export const NAV = [
+  { href: HOME.href, label: HOME.label, also: [] },
   { href: "/directory", label: "Directory", also: ["/places"] },
   { href: "/baz-manzer", label: "Baz Manzer", also: [] },
   { href: "/learn", label: "Articles", also: [] },
-  { href: "/tools", label: "Tools", also: [] },
 ] as const;
 
 /**
@@ -72,6 +98,7 @@ export const MENU = [
   {
     label: "Find",
     items: [
+      { href: HOME.href, label: HOME.label, line: "Top businesses, food, categories and regions" },
       { href: "/directory", label: "Directory", line: "Every kind of business, by category" },
       { href: "/places", label: "Places", line: "Town by town, village by village" },
       { href: "/baz-manzer", label: "Baz Manzer", line: "Where to eat, by kind of food and by town" },
@@ -112,13 +139,15 @@ export const YOURS = [
 
 /**
  * What the header's "More" opens: the pages beyond the four ways in that people most often want,
- * most wanted first. Each is a page of MENU or YOURS, and is named as it is there.
+ * most wanted first. Each is a page of MENU or YOURS, and is named as it is there. The tools lead
+ * it: they gave their place among the four to Home.
  */
-export const MORE = ["/places", "/emergency", "/holidays", "/shop", "/learn/glossary", "/official", "/saved", "/add"] as const;
+export const MORE = ["/tools", "/places", "/emergency", "/holidays", "/shop", "/learn/glossary", "/official", "/saved", "/add"] as const;
 
 /**
  * The list that opens in the header, and the page of every page that the phone's last tab leads
- * to. `search` is the name of the first tab: the first screen, where the search is.
+ * to. `search` is the name of the first tab, and of where the site's name leads: the landing
+ * page, where the search is.
  */
 export const MORE_PAGE = { href: "/more", label: "More", all: "Every page, in one list", title: "More", lede: "Everything on biznes.mu, in one list.", search: "Search" } as const;
 
@@ -127,13 +156,6 @@ export const BROWSE = [
   { href: "/directory", label: "By kind of business" },
   { href: "/places", label: "By town" },
 ] as const;
-
-/**
- * The first things under the search on the first screen: the pages people most often need, as a
- * start page for Mauritius. Each is a page of the menu, named as the menu names it; what is said
- * under each name is counted from the data on the day.
- */
-export const START = ["/baz-manzer", "/emergency", "/holidays", "/directory", "/learn", "/places"] as const;
 
 /** The shelves of the guides page: who each set of guides is for. */
 export const SHELVES = [
@@ -213,7 +235,7 @@ export const ACTIONS = {
   book: "Ask for a booking",
 } as const;
 
-/** Questions the first screen offers, each a real search. Chosen to show the three things it answers. */
+/** Questions the search page offers before anything is asked, each a real search. Chosen to show the three things it answers. */
 export const EXAMPLES = ["pharmacy in Curepipe", "quincaillerie", "register a company", "VAT", "restaurants in Grand Baie"] as const;
 
 /**

@@ -32,6 +32,7 @@ export function FoodIcon({ id: _id, ...p }: P & { id?: string }) {
 }
 
 const PAGE_ICONS: Record<string, (p: P) => React.ReactElement> = {
+  "/home": (p) => <GroupIcon group="home" {...p} />,
   "/directory": Store,
   "/places": Pin,
   "/baz-manzer": Fork,

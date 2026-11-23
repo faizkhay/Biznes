@@ -140,7 +140,7 @@ export type Payment = { id: string; business_id: string; customer_id: string | n
  * others have no price yet and are shown as "Price on request".
  */
 export const AD_PLACES = [
-  { id: "home", name: "The first screen", where: "site", what: "Under the search box on the first page." },
+  { id: "home", name: "The first screen", where: "site", what: "Under the top businesses on the Home page." },
   { id: "results", name: "Search results", where: "site", what: "Among the answers to a search." },
   { id: "listing", name: "A listing's page", where: "site", what: "On the pages of other listings." },
   { id: "food", name: "Food and drink", where: "site", what: "On the pages for places to eat and drink." },
