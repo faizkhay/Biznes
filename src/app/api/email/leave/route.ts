@@ -26,7 +26,8 @@ const PLAIN = { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "n
 
 export async function POST(request: NextRequest) {
   const token = (request.nextUrl.searchParams.get("token") ?? "").trim();
-  if (!accountsOn || !UUID.test(token)) return new Response("That link is not whole.\n", { status: 400, headers: PLAIN });
+  if (!accountsOn) return new Response("The list has not opened yet, so there is nothing to leave.\n", { status: 404, headers: PLAIN });
+  if (!UUID.test(token)) return new Response("That link is not whole.\n", { status: 400, headers: PLAIN });
   if (await tooMany("leave", 120)) return new Response("Too many tries from this connection. Try again in a few minutes.\n", { status: 429, headers: PLAIN });
   const { error } = await publicDb().rpc("unsubscribe", { leave_token: token });
   if (error) {

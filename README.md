@@ -403,7 +403,9 @@ cart in its message.
    ```
 
    From then on a call to those three functions, or a booking sent through the API, is refused
-   without the word. In that order
+   without the word. The site's own email leans on the same word: until the hash is kept, the
+   database hands no link to confirm an address to anyone, and believes nothing reported from a
+   mail service's webhook (see "Email"). In that order
    nothing breaks on the way; to change the word, empty the table (`delete from
    private.site_proof`), change the variable, deploy, and set the new hash. If the site's own
    forms start saying "try again", the two do not match: the server's log says so.
@@ -822,14 +824,15 @@ The pieces the public pages use, each with its own notes in the file: `showcaseO
 
 ### Checking it
 
-| Check | Command | Result on 20 November 2026 |
+| Check | Command | Result on 23 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | 472 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
-| The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them, applies part 11 and what follows, and says what became of the rows | 15 claims, all pass |
-| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the three variables it prints, `node scripts/accounts-e2e.mjs` with the same three set | 260 of 260, with axe-core (WCAG 2.2 AA) clean on 55 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
-| A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
-| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon", and `/account/order` hands the order to the form at `/add` |
-| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses |
+| Row level security | `npm run test:rls` | 674 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image. 202 of them are the email's (part 14) |
+| The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them (a list of subscribers among them), applies part 11 and what follows, and says what became of the rows | 22 claims, all pass |
+| The site's own email, with no database and no mail service | `node scripts/email-unit.mjs` | 68 of 68 |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the variables it prints and with `NEXT_PUBLIC_SITE_URL` set to the address it is served at, `node scripts/accounts-e2e.mjs` with the same variables set | 343 of 343, with axe-core (WCAG 2.2 AA) clean on 70 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 on 20 November 2026. Not run again on the 23rd: nothing it checks was changed |
+| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon" (the email's among them), `/subscribe/confirm` says the list has not opened, the email's endpoints refuse, and `/account/order` hands the order to the form at `/add` |
+| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses, and leaving in one press answers 503, so a mail program tries again |
 
 `scripts/accounts-stack.sh` runs a Supabase project in miniature in Docker: Supabase's own Postgres
 image (15.8.1.085), Supabase Auth (v2.176.1), PostgREST (v12.2.8) and Supabase Storage (v1.25.7),
@@ -857,6 +860,23 @@ advertisement waiting and one approved, and finds none of their files left; uplo
 calls itself a JPEG and finds it kept as a PNG; has an admin remove a picture from a business's
 page and from an advertisement; reads the subscribers' file cell by cell; sends an upload that
 does not say how large it is; and sends thirty-one in a row.
+
+For the email (section 6j) it listens on this machine as the local sender, but not from the
+start, so the site is seen with no sender first. With none: it joins the list and finds each
+address kept as not confirmed, starts the Pocket Guide's message and finds the month, the name
+and the guide's address filled in, changes it part by part (and is refused a button that leads to
+script), looks at it drawn on the page with its plain-text twin, is refused every way of sending
+while the postal address is empty, sets the settings as the superadmin, takes the addresses and
+the message as files, and marks it as sent by hand. With the sender answering: it joins and is
+sent one link to confirm, opens the link without pressing and finds nothing confirmed, presses
+and finds one address confirmed, asks the earlier addresses to confirm once, reports a bounce
+and a complaint by signed webhooks (and is refused unsigned, wrongly signed, stale and altered
+ones), writes a note, sends itself a test, presses Send and then Stop, has a batch refused by
+the sender, carries on, queues the refused again, and reads every message the sender was handed:
+each address once, each with its own link to leave, none to an address that was unconfirmed,
+bounced or complained. It leaves in one press as a mail program does, finds that address not
+written to by the next message, sends that message with script off, a batch a press, and reads
+the list's own page and its file.
 
 **Not run, and why:**
 
@@ -898,12 +918,9 @@ does not say how large it is; and sends thirty-one in a row.
 
 - **Payment.** Plans, advertisements and orders are arranged and marked paid by hand. Paying
   online is planned, through Stripe, and is not connected.
-- **Email from the site.** It sends none: not to subscribers, not to an owner whose advertisement
-  was declined, not to a person whose order moved. Auth's two messages are the only email. There
-  is no confirming of a subscriber's address by a link either (the `confirmed_at` column is there
-  for it and is not used).
-- **`/privacy` on subscribers and orders.** The page says what an account keeps. It should also
-  say that a subscriber's address and an order's name, number and address are kept, and for what.
+- **Email to an owner or a customer.** The site's own email is for the list (see "Email"). It
+  sends nothing to an owner whose advertisement was declined or to a person whose order moved.
+  Auth's two messages are the project's own.
 - **Resizing pictures**, and a second size for an uploaded backdrop.
 - **Owners' own businesses in the browsing lists.** A business listed from scratch is found by the
   search and has its own page, but is not yet in the lists under `/directory` and `/places`, in the

@@ -37,14 +37,20 @@ export default async function SubscribersPage({ searchParams }: { searchParams: 
   const state = asked.state === "confirmed" || asked.state === "unconfirmed" ? asked.state : "";
   const like = q.replace(/[%_*\\,()"]/g, " ").trim();
   const supabase = await db();
-  let list = supabase.from("subscribers").select("id, email, wants_guide, wants_magazine, created_at, confirmed_at, confirm_sent_at").order("created_at", { ascending: false }).limit(200);
-  if (like) list = list.ilike("email", `%${like}%`);
-  if (want === "guide") list = list.eq("wants_guide", true);
-  if (want === "magazine") list = list.eq("wants_magazine", true);
-  if (state === "confirmed") list = list.not("confirmed_at", "is", null);
-  if (state === "unconfirmed") list = list.is("confirmed_at", null);
-  const [{ data: rows }, counted, sender, { data: suppressedRows }] = await Promise.all([list, emailStatus(supabase), currentSender(), supabase.from("email_suppressions").select("email, reason, detail, source, created_at").order("created_at", { ascending: false }).limit(200)]);
-  const people = (rows ?? []) as Listed[];
+  const listOf = (columns: string) => {
+    let list = supabase.from("subscribers").select(columns).order("created_at", { ascending: false }).limit(200);
+    if (like) list = list.ilike("email", `%${like}%`);
+    if (want === "guide") list = list.eq("wants_guide", true);
+    if (want === "magazine") list = list.eq("wants_magazine", true);
+    if (state === "confirmed") list = list.not("confirmed_at", "is", null);
+    if (state === "unconfirmed") list = list.is("confirmed_at", null);
+    return list;
+  };
+  const OLD_COLUMNS = "id, email, wants_guide, wants_magazine, created_at, confirmed_at";
+  const [first, counted, sender, { data: suppressedRows }] = await Promise.all([listOf(`${OLD_COLUMNS}, confirm_sent_at`), emailStatus(supabase), currentSender(), supabase.from("email_suppressions").select("email, reason, detail, source, created_at").order("created_at", { ascending: false }).limit(200)]);
+  // A database from before part 14 does not say when an address was asked to confirm: the list is read as it was.
+  const { data: rows } = first.error ? await listOf(OLD_COLUMNS) : first;
+  const people = ((rows ?? []) as unknown as Listed[]).map((p) => ({ ...p, confirm_sent_at: p.confirm_sent_at ?? null }));
   const suppressed = (suppressedRows ?? []) as Suppression[];
   // Which of the addresses shown are kept from being written to: asked by name, so a long list of those is no matter.
   const { data: kept } = people.length ? await supabase.from("email_suppressions").select("email").in("email", people.map((p) => p.email)) : { data: [] };
@@ -63,6 +69,11 @@ export default async function SubscribersPage({ searchParams }: { searchParams: 
       <PageHead title="Subscribers" path={[{ href: "/admin", label: "Admin" }, { label: "Subscribers" }]} lede="Everyone who asked to be sent the pocket guide each month, the magazine when it begins, or both. Each joined by their own act: nobody is added here by hand." />
       <div className="shell">
         <AdminNav role={viewer.role} current="/admin/subscribers" />
+        {!counted && (
+          <Notice bad className="mb-8">
+            The database has not had part 14 of the migrations applied, so the list is shown as it was: nobody can confirm an address yet, and no address can be kept from being written to. Apply it, then open this page again.
+          </Notice>
+        )}
         <Stats five>
           <Stat label="On the list" figure={count(total)} href={href({ want: "", state: "" })} />
           <Stat label="Confirmed" figure={count(counted?.confirmed ?? 0)} note="Pressed the link in a message." href={href({ state: "confirmed" })} />

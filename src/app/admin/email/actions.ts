@@ -106,18 +106,19 @@ export async function saveCampaign(_: FormState, data: FormData): Promise<FormSt
   const subject = field(data, "subject", BLOCK_LIMITS.subject).replace(/\s+/g, " ");
   const preheader = field(data, "preheader", BLOCK_LIMITS.preheader).replace(/\s+/g, " ");
   const typed = typedBlocks(data);
-  // What was typed is judged before anything is moved, so each word of an answer is beside its own field.
+  const [op, arg] = field(data, "do", 20).split(":");
+  const at = Number(arg);
+  // What was typed is judged before anything is moved, so each word of an answer is beside its own
+  // field. A part on its way out is not judged: what is wrong with it leaves with it.
   const errors: Record<string, string> = {};
   if (!isAudience(audience)) errors.audience = "Say who the message goes to.";
   typed.forEach((b, i) => {
-    const wrong = blockProblem(b, false);
+    const wrong = op === "remove" && i === at ? null : blockProblem(b, false);
     if (wrong) errors[`b${i}.${wrong.field}`] = wrong.says;
   });
   if (Object.keys(errors).length) return { errors, values: typedValues(audience, subject, preheader, typed) };
 
   let blocks = typed;
-  const [op, arg] = field(data, "do", 20).split(":");
-  const at = Number(arg);
   let said = "Saved.";
   if (op === "add" && isBlockType(arg)) {
     if (blocks.length >= BLOCK_MOST) return { message: `A message holds ${BLOCK_MOST} parts at most. Take one out first.`, values: typedValues(audience, subject, preheader, typed) };
@@ -216,6 +217,10 @@ export async function sendBatch(prev: RunState, data: FormData): Promise<RunStat
   if (result.progress.queued === 0) revalidatePath("/admin/email");
   const batches = (prev?.batches ?? 0) + 1;
   if (result.error) return { progress: result.progress, said: result.error, stopped: true, batches };
+  // Nothing to take, and some addresses still out with a batch that has not answered: they are
+  // closed as unsure ten minutes after they were taken, when a batch is next asked for.
+  if (result.went === 0 && result.refused.length === 0 && result.progress.queued === 0 && result.progress.sending > 0)
+    return { progress: result.progress, said: "Some addresses were taken by a batch that has not answered. If it never does, they are closed as unsure ten minutes after they were taken: press again then.", stopped: true, batches };
   const went = result.went === 1 ? "1 message went" : `${result.went} messages went`;
   // A batch the mail service refused whole stops the run: the next would be refused the same way.
   const refusedAll = result.went === 0 && result.refused.length > 0;

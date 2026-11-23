@@ -1538,6 +1538,7 @@ let adId = "";
   await fill(admin, { "b0.text": "The list is open", "b1.text": "Thank you for joining <b>us</b> & welcome.", "b2.label": "See the directory", "b2.href": "https://biznes.example/directory?from=email&x=1" });
   await part(admin, "write").getByRole("button", { name: "Save the draft" }).click();
   await admin.waitForFunction(() => /The list is open/.test(document.querySelector(".mail-frame")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("note: saving says so, and keeps what was typed in its fields", /Saved\./.test(await part(admin, "write").locator('[role="status"]').innerText().catch(() => "")) && (await admin.locator('main [name="b2.href"]').inputValue()) === "https://biznes.example/directory?from=email&x=1" && (await admin.locator('main [name="subject"]').inputValue()) === SUBJECT);
   check("note: what is typed is words, never markup, on the page and in the message", (await admin.locator(".mail-frame b").count()) === 0 && /Thank you for joining <b>us<\/b> & welcome\./.test(await admin.locator(".mail-frame").first().innerText()) && (await admin.locator(".mail-frame").first().locator("a", { hasText: "See the directory" }).getAttribute("href")) === "https://biznes.example/directory?from=email&x=1");
   await part(admin, "ready").getByRole("button", { name: "It is ready" }).click();
   await admin.waitForSelector('main [data-status="ready"]', { timeout: 15000 }).catch(() => {});

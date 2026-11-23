@@ -193,33 +193,35 @@ export default async function CampaignPage({ params, searchParams }: { params: P
               </div>
             )}
             <div className="card mt-6">
-              {/* Made again whenever the draft is saved, so each field begins with what is kept. */}
-              <ActionForm key={campaign.updated_at} action={saveCampaign}>
+              <ActionForm action={saveCampaign}>
                 {/* The first button of the form: pressing Enter in a field saves, and never moves or takes out a part. */}
                 <button type="submit" name="do" value="save" hidden tabIndex={-1} />
                 <input type="hidden" name="campaign" value={campaign.id} />
-                <input type="hidden" name="count" value={blocks.length} />
-                <Chips name="audience" legend="Who it goes to" defaultValue={campaign.audience} choices={AUDIENCES.map((value) => ({ value, label: AUDIENCE_NAMES[value] }))} />
-                <Field name="subject" label="The subject" defaultValue={campaign.subject} hint={`Up to ${BLOCK_LIMITS.subject} characters.`} />
-                <Field name="preheader" label="The line after the subject" optional defaultValue={campaign.preheader} hint="A mail program shows it beside the subject, before the message is opened." />
-                {blocks.length === 0 && <p className="note body-3">The message has no parts yet. Add one below.</p>}
-                {blocks.map((block, i) => (
-                  <Part key={i} block={block} i={i} last={i === blocks.length - 1} />
-                ))}
-                <fieldset>
-                  <legend className="title-2">Add a part at the end</legend>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {BLOCK_TYPES.map((type) => (
-                      <Submit key={type} name="do" value={`add:${type}`} className="btn btn-quiet btn-sm button-sm" busy="Adding">
-                        {BLOCK_NAMES[type]}
-                      </Submit>
-                    ))}
+                {/* The fields are made again whenever the draft is saved, so each begins with what is kept; the form's own answer stays. */}
+                <div key={campaign.updated_at} className="contents">
+                  <input type="hidden" name="count" value={blocks.length} />
+                  <Chips name="audience" legend="Who it goes to" defaultValue={campaign.audience} choices={AUDIENCES.map((value) => ({ value, label: AUDIENCE_NAMES[value] }))} />
+                  <Field name="subject" label="The subject" defaultValue={campaign.subject} hint={`Up to ${BLOCK_LIMITS.subject} characters.`} />
+                  <Field name="preheader" label="The line after the subject" optional defaultValue={campaign.preheader} hint="A mail program shows it beside the subject, before the message is opened." />
+                  {blocks.length === 0 && <p className="note body-3">The message has no parts yet. Add one below.</p>}
+                  {blocks.map((block, i) => (
+                    <Part key={i} block={block} i={i} last={i === blocks.length - 1} />
+                  ))}
+                  <fieldset>
+                    <legend className="title-2">Add a part at the end</legend>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {BLOCK_TYPES.map((type) => (
+                        <Submit key={type} name="do" value={`add:${type}`} className="btn btn-quiet btn-sm button-sm" busy="Adding">
+                          {BLOCK_NAMES[type]}
+                        </Submit>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <div>
+                    <Submit name="do" value="save">
+                      Save the draft
+                    </Submit>
                   </div>
-                </fieldset>
-                <div>
-                  <Submit name="do" value="save">
-                    Save the draft
-                  </Submit>
                 </div>
               </ActionForm>
             </div>

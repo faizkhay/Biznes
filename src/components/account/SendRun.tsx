@@ -27,7 +27,9 @@ export default function SendRun({ action, campaign, start, go = false }: { actio
   const { progress } = state;
   const left = progress.queued;
   const done = progress.total - progress.queued - progress.sending;
-  const finished = left === 0;
+  // Addresses a batch has taken and not yet answered for are not finished: the database closes
+  // them itself, ten minutes after they were taken, the next time a batch is asked for.
+  const finished = left === 0 && progress.sending === 0;
 
   function next() {
     askedFrom.current = state;
@@ -56,11 +58,12 @@ export default function SendRun({ action, campaign, start, go = false }: { actio
       <input type="hidden" name="campaign" value={campaign} />
       <div>
         <label htmlFor="send-progress" className="title-2 block">
-          {finished ? "Every address has been dealt with" : running ? "Sending" : "Sending has stopped"}
+          {finished ? "Every address has been dealt with" : running ? "Sending" : state.batches > 0 || progress.sent > 0 || progress.failed > 0 ? "Sending has stopped" : "Ready to send"}
         </label>
         <progress id="send-progress" className="progress mt-2" max={Math.max(progress.total, 1)} value={done} />
         <p className="data-2 mt-2 text-ink-subtle" role="status">
-          {count(progress.sent)} sent, {count(left)} waiting, {count(progress.failed)} failed, {count(progress.skipped)} left out, of {count(progress.total)}.
+          {count(progress.sent)} sent, {count(left)} waiting, {progress.sending ? `${count(progress.sending)} taken and not yet answered for, ` : ""}
+          {count(progress.failed)} failed, {count(progress.skipped)} left out, of {count(progress.total)}.
         </p>
       </div>
       {state.said && (

@@ -68,7 +68,8 @@ function drawBlock(block: Block, i: number, firstHeading: number, frame: Frame, 
     return row(
       { padding: "4px 0 24px 0" },
       null,
-      layout(null, {}, row(pill, { bgcolor: tone.button, align: "center" }, el("a", { display: "inline-block", padding: "14px 28px", "font-family": FONT, "font-size": "16px", "line-height": "1.2", "font-weight": "700", color: tone.onButton, "text-decoration": "none", ...pill }, { href: absolute(block.href, frame.site) }, block.label))),
+      // Outlook on Windows gives a link no padding of its own: the cell is told to take it there.
+      layout(null, {}, row({ ...pill, "mso-padding-alt": "14px 28px" }, { bgcolor: tone.button, align: "center" }, el("a", { display: "inline-block", padding: "14px 28px", "font-family": FONT, "font-size": "16px", "line-height": "1.2", "font-weight": "700", color: tone.onButton, "text-decoration": "none", ...pill }, { href: absolute(block.href, frame.site) }, block.label))),
     );
   }
   return row({ padding: "4px 0 24px 0" }, null, el("div", { "border-top": `1px solid ${tone.line}`, "font-size": "0", "line-height": "0", height: "1px" }, { class: "em-line" }, " "));

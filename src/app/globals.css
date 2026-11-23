@@ -3051,7 +3051,6 @@
   }
   .progress::-webkit-progress-value {
     background: var(--color-ink);
-    transition: width 200ms var(--ease-out);
   }
   .progress::-moz-progress-bar {
     background: var(--color-ink);
