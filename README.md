@@ -268,6 +268,10 @@ ask for a change of plan or to stop one; advertisements an owner makes and an ad
 list of subscribers to the pocket guide and the magazine; orders from the cart; pictures of the
 superadmin's own behind the page; and every account page drawn again in the site's manner.
 
+A third piece, on 23 November 2026 (the `email` branch), to the owner's note of that day: the base
+of the site's own email, for the list that is sent the Pocket Guide and, later, the magazine. It is
+set out under "Email" below.
+
 Accounts run on a Supabase project: Supabase Auth for signing in, its Postgres for everything
 else, and its Storage for pictures, reached through `@supabase/supabase-js` and `@supabase/ssr`.
 **There is no service-role key anywhere in the site.** Every privilege is decided in the database,
@@ -288,8 +292,9 @@ so the publishable key the browser can see opens nothing that is not meant to be
   paid plan; Advertising once the business is live. To begin, "List your business" on `/pricing`
   or on `/dashboard`, or "Claim this listing" on a listing's own page.
 - **An admin** sees a second set of tiles on `/account`, "Running the site": Admin (`/admin`),
-  Advertisements (`/admin/ads`), Orders (`/admin/orders`), Subscribers (`/admin/subscribers`), No
-  website (`/admin/leads`). The same pages are tabs across the top of each admin page.
+  Advertisements (`/admin/ads`), Orders (`/admin/orders`), Subscribers (`/admin/subscribers`),
+  Email (`/admin/email`), No website (`/admin/leads`). The same pages are tabs across the top of
+  each admin page.
 - **The superadmin** is the first person who ever registered (see "The first superadmin"). They
   sign in like anyone else and have two more tiles and tabs: People (`/admin/people`), to make
   someone an admin, and The look (`/admin/settings`), for the picture behind every page.
@@ -315,7 +320,9 @@ to it that day, whole and unchanged, and checked:
 Migrations 5 to 10, the second round's, have since been applied to it, unchanged. Migration 9
 makes the `media` bucket and its rules itself: there is nothing to set in the Storage dashboard.
 
-**Migrations 11, 12 and 13 are not on it yet.** `20261120000011_review.sql` is what a security
+**Migrations 11, 12, 13 and 14 are not on it yet.** (Part 14, `20261120000014_email.sql`, is the
+site's own email, set out under "Email" below: apply it after the three described here. It alters
+the list of subscribers and keeps every row.) `20261120000011_review.sql` is what a security
 review of the second round asked for (it is in "How it is held" below); it alters what parts 5
 to 10 made and keeps every row. `20261120000012_bookings_proof.sql` puts a request for a booking
 behind the site's word, as part 11 does for the list and for orders. `20261120000013_pocket_guide.sql`
@@ -400,7 +407,9 @@ cart in its message.
    ```
 
    From then on a call to those three functions, or a booking sent through the API, is refused
-   without the word. In that order
+   without the word. The site's own email leans on the same word: until the hash is kept, the
+   database hands no link to confirm an address to anyone, and believes nothing reported from a
+   mail service's webhook (see "Email"). In that order
    nothing breaks on the way; to change the word, empty the table (`delete from
    private.site_proof`), change the variable, deploy, and set the new hash. If the site's own
    forms start saying "try again", the two do not match: the server's log says so.
@@ -437,7 +446,7 @@ over, make the new person a superadmin first.
 | | Visitor | User | Admin | Superadmin |
 |---|---|---|---|---|
 | Search, read a listing, ask a business on Grow for a booking | yes | yes | yes | yes |
-| Join the list of subscribers, and leave it by the link they were sent | yes | yes | yes | yes |
+| Join the list of subscribers, confirm their address by the link they were sent, and leave by the link in any message or in one press from their mail program | yes | yes | yes | yes |
 | Place an order (a guest gives a name and a way to reach them) | yes | yes | yes | yes |
 | See their own orders and bookings; cancel a booking | | yes | yes | yes |
 | List a business, or claim a listing in the open index | | yes | yes | yes |
@@ -452,10 +461,13 @@ over, make the new person a superadmin first.
 | Move an order on: awaiting payment, paid, fulfilled, cancelled | | | yes | yes |
 | Take a picture off an advertisement or a business's page, and remove any picture from the bucket | | | yes | yes |
 | Read the list of subscribers, take it as a file, take an address off | | | yes | yes |
+| Write a message to the list, look at it, send it or mark it as sent by hand, and read who it went to | | | yes | yes |
+| Ask the addresses that joined before to confirm, once; write down an address that asked not to be written to, or lift one | | | yes | yes |
 | See everyone's businesses and bookings, the record of admin actions, the list of listings with no website | | | yes | yes |
 | Change roles | | | | yes |
 | Choose the picture behind the page (the calendar's, one kept, or a round), upload pictures, set the greeting | | | | yes |
 | Bring the catalogue of prices level with the site | | | | yes |
+| Set who the site's email comes from, where replies go, the sender's postal address, and who is written to | | | | yes |
 
 A user's own role, plan, plan end, verified mark and status are never theirs to write. An owner's
 customers, notes and ledger are theirs alone: an admin cannot read them.
@@ -558,9 +570,9 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   everyone together) and refuses before it looks at the list. An address is letters, digits and
   `. _ % + -` and nothing else, and every cell of the file an admin takes is in quotation marks,
   so a spreadsheet reads an address as an address whatever it splits a line on. Each row has a token;
-  `/unsubscribe?token=...` shows one button, and pressing it deletes the row. **The site sends no
-  email**: an admin takes the list as a file, with each person's own link to leave, and sends from
-  a mail service of their own.
+  `/unsubscribe?token=...` shows one button, and pressing it deletes the row. What the site does
+  with the list beyond keeping it (confirming an address, writing to it, the addresses not
+  written to) is under "Email" below.
 - **Orders are requests too.** The cart sends only what is wanted and how many. The server prices
   each line from the site's own data (`src/lib/accounts/catalogue.ts`: the guides, the sponsor
   options, the plans, and advertisement places with no price), then the database prices it again
@@ -569,8 +581,11 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
   one telephone number or address. The answer is "We have your order. A person will contact you
   with how to pay", and nothing is said about how. An admin moves it on by hand; `/admin/orders`
   shows the oldest three hundred that are open and says how many more wait behind them.
-- **The site's word.** `subscribe`, `unsubscribe` and `place_order` ask for a word in the header
-  `x-biznes-proof` once its hash is in `private.site_proof`. The site sends it from
+- **The site's word.** `subscribe`, `unsubscribe`, `confirm_subscription` and `place_order` ask
+  for a word in the header `x-biznes-proof` once its hash is in `private.site_proof`. Three
+  functions of the email (part 14) ask for it always, and are refused while no hash is kept:
+  the one that hands the website a link to confirm, and the ones that believe the website about
+  what a mail service said. The site sends it from
   `BIZNES_SITE_PROOF`, read in `src/lib/accounts/server.ts`, which only the server loads: the
   word is in no file a browser is sent. A request for a booking sent through the API asks for
   the same word (part 12: the check is in the trigger that counts a business's bookings, and
@@ -587,8 +602,201 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 - **Public reads are kept for five minutes** and tagged, so an admin's or an owner's change shows
   at once. With accounts on, the fixed pages are made again at most every five minutes, not every
   hour, because the picture behind the page may have been chosen by hand.
-- **`/privacy` changes with accounts on**: it says what an account keeps, and that signing in sets
-  cookies. It does not yet speak of subscribers or of orders: see "Not built".
+- **`/privacy` changes with accounts on**: it says what an account keeps, that signing in sets
+  cookies, what an order keeps, and what the list keeps: the address, whether it was confirmed,
+  which messages went to it and how each went, and the addresses not written to.
+
+### Email
+
+The base of the site's own email, built on 23 November 2026 to the owner's note: "to manage our
+subscription to pocket guide, build the internal email marketing system, we will set up our own
+smtp via maybe a free mailgun or resend server. (Will set up later, build the base first)". It is
+everything but the last mile. With two or three variables set for Resend or for Mailgun it sends;
+until then nothing leaves the site, the pages say so, and a message goes out by hand with the
+record still kept.
+
+**Today, with no sender connected:**
+
+- **Someone joins.** As before: the form answers "You are on the list", and the address is kept.
+  It is kept as *not confirmed*, because no message can ask it to confirm. `/admin/subscribers`
+  counts the list, the confirmed, each wish and the addresses not written to.
+- **The owner wants to send an edition.** On `/admin/email`, "Start the Pocket Guide's message"
+  begins a draft for the coming edition with the month, the guide's name, its address on the site
+  and whether the edition is free or sold already filled in (from `content/pdf` and the sponsors
+  booked, through `src/lib/shop.ts`: no price and no date the data does not hold). The draft is
+  changed part by part, looked at as it will be drawn, and called ready. Its page then gives the
+  addresses for it as a file, the message as HTML and as text to copy or to take as files, and
+  "Mark as sent by hand". The owner sends it from their own mail program, with the addresses in
+  the hidden-copy line, and marks it: who it went to is written into the record. A message sent
+  that way tells its readers to reply to leave the list, since one message to many cannot carry
+  each reader's own link; an address that asks is taken off on `/admin/subscribers`.
+- **Nothing is sent before the superadmin has set the sender's postal address** (`/admin/email`,
+  "Who a message is from"). Every message ends with who sent it, why its reader has it, the way to
+  leave, and that address.
+
+**What it is made of:**
+
+- **The list is confirmed by a link** (double opt-in). A message that asks to confirm carries a
+  link with a token of its own, which is not the token that leaves the list. The link opens
+  `/subscribe/confirm`, a page with one button: opening it confirms nothing, because mail programs
+  open links to look at them; pressing the button does. With a sender connected a message asking
+  to confirm goes out when an address joins, once a day at most for any one address, and the
+  form's answer is the same whether the address was new, confirmed or asked already. An admin can
+  ask the addresses that joined before to confirm, once: the database marks each as asked, so
+  pressing again asks nobody twice.
+- **Who a message goes to is a setting** (`write_to`, the superadmin's). As it begins: only
+  confirmed addresses once the site sends for itself, and every address that is not kept from
+  being written to while a message is sent by hand, because until a sender is connected nobody
+  can confirm. The other two choices are confirmed addresses only, by either road, and every
+  address.
+- **Addresses that must not be written to** are a table of their own (`email_suppressions`): a
+  hard bounce, a complaint, or a person who asked, each with the reason, what was said and the
+  day. It is looked at when a message is queued and again as each batch is taken. Joining again
+  does not take an address out of it. For one that bounced, a fresh confirmation does: when it
+  is put in, the address's old confirmation is taken back and its old link is made useless, so
+  only a link from a message sent since can confirm it. One whose reader complained, or who asked
+  by hand, is not written to even to confirm: only an admin lifts it, on the record.
+- **Leaving in one press.** Every message the site sends carries `List-Unsubscribe:
+  <https://the-site/api/email/leave?token=...>` and `List-Unsubscribe-Post:
+  List-Unsubscribe=One-Click` (RFC 8058), which is what Gmail and Yahoo ask of anyone who sends
+  to many. A mail program posts to that address with no cookie; the token is the only key, and
+  the answer is the same whether the token was anyone's. A plain visit to it leads to
+  `/unsubscribe`, where a person presses the button.
+- **A message is blocks, not HTML.** A heading, a paragraph, a button (to a page of this site,
+  written as a path, or to a full `https` address) and a line. The database checks the shape of
+  each; the site draws them (`src/lib/accounts/email/render.ts`): tables, every style on its own
+  element, 600 pixels wide, no picture and nothing fetched, in the site's own colours (the cream
+  sheet, the white card, ink words, the saffron button with ink words), with the site's dark
+  pairs for a mail program that honours a dark setting. A plain-text twin is made from the same
+  blocks. The admin's page draws the message from the same tree of marks the HTML is made from,
+  on the page itself and not in a frame, because the site's security policy refuses frames.
+- **The message that asks to confirm is the site's own words**
+  (`src/lib/accounts/email/message.ts`). Nobody writes it, so a message that goes to addresses
+  nobody has confirmed can say nothing else.
+- **Sending is a queue in the database** (`email_recipients`). "Send" writes one row for each
+  address, with the address as it was that day, and with the reason for each one left out. The
+  page then sends a batch at a time (`EMAIL_BATCH`, twenty-five unless set), each batch one
+  request to the server: the database hands out the next rows and marks them taken, the sender
+  hands each its own copy, and the database is told how each went. It shows how far it has got,
+  can be stopped and carried on, and works with script off, a batch a press. One address is in a
+  campaign once, by a unique rule, and a row is handed out once. A batch the mail service refuses
+  is marked failed with what the service said, and the run stops; an admin may queue those again.
+  A batch that got no plain answer (a dropped line, an error of the service's own) is marked as
+  unsure and is never tried again by itself, because it may have gone.
+- **The record.** Starting a message, calling it ready, sending it, marking it as sent by hand,
+  cancelling it, queueing the refused again, asking the list to confirm, a change to the
+  settings, and an address put among or lifted from the ones not written to are each written to
+  `audit_log`, with who and when. A campaign's page lists who it went to, and gives that as a file.
+
+**The senders** (`src/lib/accounts/email/`): one interface, `Sender`, and four of them.
+
+| `EMAIL_PROVIDER` | What it does |
+|---|---|
+| unset | None. Nothing leaves; every try is refused with the reason |
+| `resend` | Resend's HTTP API: one request for a batch of up to a hundred emails, each whole and with its own headers |
+| `mailgun` | Mailgun's HTTP API: one request for each address, five at a time (the file says why it is not Mailgun's own batch) |
+| `local` | For the checks only: each batch is posted as JSON to `EMAIL_TEST_URL`, which must be an address on the same machine |
+
+The owner said "smtp". Both services offer SMTP as well, and the site does not use it: their HTTP
+APIs need no library (the site adds no dependency for email) and answer with a name for each
+message and a reason for each refusal, which is what the queue records. An SMTP sender would
+need a library that speaks SMTP over TLS (nodemailer is the usual one), four variables
+(`EMAIL_SMTP_HOST`, `EMAIL_SMTP_PORT`, `EMAIL_SMTP_USER`, `EMAIL_SMTP_PASS`) and a host that
+lets a server open port 587. It would implement `Sender` in a file of its own and nothing else
+would change.
+
+| Variable | For |
+|---|---|
+| `EMAIL_PROVIDER` | `resend` or `mailgun`. Unset: no sender |
+| `RESEND_API_KEY` | Resend's API key. Sending access is enough |
+| `RESEND_WEBHOOK_SECRET` | The signing secret of the webhook made in Resend (`whsec_...`) |
+| `MAILGUN_API_KEY` | Mailgun's API key, or the domain's own sending key |
+| `MAILGUN_DOMAIN` | The sending domain as Mailgun names it (`mg.example.mu`) |
+| `MAILGUN_REGION` | `eu` for a domain made in Mailgun's EU region. Unset, or `us`, otherwise |
+| `MAILGUN_WEBHOOK_SIGNING_KEY` | The account's HTTP webhook signing key (Mailgun: Settings, API Security). Not the API key |
+| `EMAIL_BATCH` | How many addresses a batch holds, 1 to 100. Unset: 25 |
+| `EMAIL_TEST_URL` | For the checks, with `EMAIL_PROVIDER=local`: an address that begins `http://127.0.0.1` or `http://localhost` |
+
+All are the server's alone: none begins `NEXT_PUBLIC_`, and none belongs in the repository. Who a
+message comes from is not a variable: it is a setting in the database, the superadmin's.
+
+**To connect Resend:**
+
+1. Make an account at resend.com and add a domain you own. Resend advises a subdomain kept for
+   this (for example `news.biznes.mu`), so that its reputation is its own.
+2. In your DNS, add the records Resend's "Records" tab shows for the domain, copied exactly: a
+   TXT record for DKIM, and for SPF an MX record and a TXT record at the return-path name (`send`
+   under the domain, unless you chose another). Wait until Resend shows the domain as verified.
+3. Add a DMARC record: a TXT record at `_dmarc` under the domain. Resend's own page suggests
+   starting with `v=DMARC1; p=none; rua=mailto:` followed by an address you read.
+4. Make an API key in Resend. One with sending access only is enough.
+5. In Resend, under Webhooks, add an endpoint: `https://<the site>/api/email/hook/resend`, for
+   the events `email.bounced`, `email.complained` and `email.suppressed`. Copy its signing secret.
+6. On the host, set `EMAIL_PROVIDER=resend`, `RESEND_API_KEY` and `RESEND_WEBHOOK_SECRET`, and
+   deploy. `NEXT_PUBLIC_SITE_URL` must be the site's real address: it is in every link.
+7. Make sure the database holds the hash of the site's word (step 8 under "Setting up the
+   project"). Without it no link to confirm is handed out and no webhook is believed;
+   `/admin/email` says so when it is missing.
+8. As the superadmin, on `/admin/email`, set the name and the address messages come from (an
+   address at the verified domain), the address replies go to, and the postal address.
+9. Begin a message, call it ready, and press "Send me a test message". When it arrives and reads
+   well, press "Ask them to confirm" on `/admin/email` for the addresses that joined before.
+
+**To connect Mailgun:**
+
+1. Make an account at mailgun.com and add a domain, in the US or the EU region. Use a subdomain
+   kept for this (for example `mg.biznes.mu`): Mailgun asks for MX records, and on the main
+   domain those would take its ordinary mail.
+2. In your DNS, add the records Mailgun's control panel shows for the domain: a TXT record for
+   SPF (`v=spf1 include:mailgun.org ~all`), a TXT record for DKIM, two MX records (`mxa.mailgun.org`
+   and `mxb.mailgun.org`, or the EU ones for a domain in the EU region), which is how Mailgun
+   learns of a bounce that comes back later, and a CNAME record for its tracking. Wait until
+   Mailgun shows the domain as verified. Add a DMARC record as in step 3 above.
+3. Copy an API key (or make a sending key for the domain), and the HTTP webhook signing key
+   from Settings, API Security.
+4. In Mailgun, under the domain's Webhooks, add `https://<the site>/api/email/hook/mailgun` for
+   "Permanent Failure" and "Spam Complaints". A domain in the EU region has its own webhooks.
+5. On the host, set `EMAIL_PROVIDER=mailgun`, `MAILGUN_API_KEY`, `MAILGUN_DOMAIN`,
+   `MAILGUN_REGION=eu` if the domain is in the EU region, and `MAILGUN_WEBHOOK_SIGNING_KEY`, and
+   deploy.
+6. Then steps 7 to 9 above. In Mailgun, leave its own unsubscribe footer off for the domain: the
+   site adds its own link and its own headers, and keeps its own list.
+
+**Checking it** needs no mail service. `node scripts/email-unit.mjs` runs the site's own files:
+a message's HTML and text, the colours against the site's tokens and its measured contrast pairs,
+the two real senders against the shapes of answer their documentation records, and the two webhook
+signatures (Svix's own published example among them). The browser check
+(`scripts/accounts-e2e.mjs`, section 6j) listens on this machine as the local sender, and
+`accounts-stack.sh env` prints the variables for it.
+
+**Not run, and why:**
+
+- **Resend and Mailgun themselves.** No account and no key were available, so neither was called.
+  The senders are held to the requests and answers their documentation shows (read on 23
+  November 2026; each file names its pages), not to a live answer. The first real send should be
+  the test message.
+- **Mailgun's batch.** Its documentation shows a recipient's own values filled into the subject
+  and the body of one request for many addresses. It does not say they are filled into a custom
+  header, which is where each reader's link to leave goes, so the site sends Mailgun one request
+  for each address. If a test on a real account shows the header is filled too, one request for
+  a batch would do.
+- **Real mail programs.** The message was looked at as the browser draws it, on the admin's page,
+  light and dark. How Gmail, Outlook and Apple Mail draw it, what each does with a dark setting,
+  and whether their own "Unsubscribe" button appears were not seen. That button also depends on
+  the sending domain's reputation, which a new domain does not have.
+- **A webhook from a real service.** The signatures are checked against Svix's published example
+  and Mailgun's published rule, and the bodies against the examples on their pages. No real
+  delivery was received.
+- **Delivery.** SPF, DKIM and DMARC, spam folders, a service's own limits and quotas.
+- **A long list.** The checks send to a handful of addresses. A list of thousands, and a host's
+  limit on how long one request may run (a batch must finish inside it), were not tried.
+- **The hosted project.** Part 14 has been applied to the local stack and to a scratch database
+  with a list in it, not to the hosted project.
+
+**Not built:** a sender over SMTP (above); opens and clicks, which the site does not track;
+pictures in a message; a time to send at; sending without a browser open (the page asks for
+each batch, so closing it stops the run until someone carries on); a message to an owner or to
+a person who placed an order.
 
 ### Its pages
 
@@ -604,9 +812,13 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 | `/dashboard/[id]/bookings`, `/customers`, `/services`, `/payments` | Biznes Grow's own: bookings by day, customers, services and products with MCB Juice details, the ledger |
 | `/dashboard/[id]/showcase`, `/menu` | A paid plan's page: its line, hours and pictures; a food outlet's menu |
 | `/dashboard/[id]/ads` | The owner's advertisements |
-| `/admin`, `/admin/ads`, `/admin/orders`, `/admin/subscribers`, `/admin/leads` | Businesses to check, plan requests, every business, the record; advertisements to check and what each place shows today; orders; subscribers, with a CSV file; listings with no website, with a CSV file. Anyone who is not an admin is told the page is not there |
+| `/admin`, `/admin/ads`, `/admin/orders`, `/admin/subscribers`, `/admin/leads` | Businesses to check, plan requests, every business, the record; advertisements to check and what each place shows today; orders; subscribers, with their counts, a search, two filters, the addresses not written to and a CSV file; listings with no website, with a CSV file. Anyone who is not an admin is told the page is not there |
+| `/admin/email`, `/admin/email/[id]` | Where the site's email stands (which sender, or none and what to set), a message begun, every message; one message: written, looked at, sent or sent by hand, how far it has got, and who it went to. `/admin/email/[id]/export` is its addresses, its HTML, its text and its record as files |
 | `/admin/people`, `/admin/settings` | The superadmin's: roles; the picture behind the page |
-| `/unsubscribe` | Where a subscriber's link lands |
+| `/unsubscribe` | Where a subscriber's link to leave lands: one button |
+| `/subscribe/confirm` | Where a link to confirm an address lands: one button |
+| `/api/email/leave` | Where a mail program posts to take its reader off the list in one press. A plain visit leads to `/unsubscribe` |
+| `/api/email/hook/resend`, `/api/email/hook/mailgun` | Where a mail service says, signed, that an address bounced or its reader complained |
 | `/biz/[slug]` | The page of a business its owner listed that is not in the open index |
 | `/b/[slug]`, `/biz/[slug]` | One business: a listing from the index, or one its owner listed. The same component draws both: its head with the ways to reach it, what is known in blocks, its hours day by day, the island and the street map, where each part came from, the same kind nearby. A paying owner's page adds a cover, pictures, a menu, services and a way to book. A listing's id alone leads to its full address | The first time it is asked for, then kept |
 
@@ -617,14 +829,15 @@ The pieces the public pages use, each with its own notes in the file: `showcaseO
 
 ### Checking it
 
-| Check | Command | Result on 20 November 2026 |
+| Check | Command | Result on 23 November 2026 |
 |---|---|---|
-| Row level security | `npm run test:rls` | 472 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image |
-| The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them, applies part 11 and what follows, and says what became of the rows | 15 claims, all pass |
-| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the three variables it prints, `node scripts/accounts-e2e.mjs` with the same three set | 260 of 260, with axe-core (WCAG 2.2 AA) clean on 55 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
-| A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 |
-| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon", and `/account/order` hands the order to the form at `/add` |
-| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses |
+| Row level security | `npm run test:rls` | 674 claims, all pass, on Postgres 16 behind a stub of Supabase, and again on Supabase's own Postgres image. 202 of them are the email's (part 14) |
+| The later migrations, on a database in use | The same command: its second pass applies parts 1 to 10, writes rows as a project might hold them (a list of subscribers among them), applies part 11 and what follows, and says what became of the rows | 22 claims, all pass |
+| The site's own email, with no database and no mail service | `node scripts/email-unit.mjs` | 68 of 68 |
+| The whole of it, in a browser | `bash scripts/accounts-stack.sh up`, build and serve with the variables it prints and with `NEXT_PUBLIC_SITE_URL` set to the address it is served at, `node scripts/accounts-e2e.mjs` with the same variables set | 344 of 344, with axe-core (WCAG 2.2 AA) clean on 70 kinds of account page at 1440 by 900 and 390 by 844, and none wider than its screen |
+| A session that runs out | `ACCOUNTS_JWT_EXP=100 bash scripts/accounts-stack.sh reset`, serve, `ACCOUNTS_JWT_EXP=100 node scripts/accounts-sessions.mjs` | 8 of 8 on 20 November 2026. Not run again on the 23rd: nothing it checks was changed |
+| Accounts off | Build with neither variable set | Builds; the header has no account button, the account pages say "Accounts open soon" (the email's among them), `/subscribe/confirm` says the list has not opened, the email's endpoints refuse, and `/account/order` hands the order to the form at `/add` |
+| No database at build | Build with `NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:59999 NEXT_PUBLIC_SUPABASE_ANON_KEY=dummy`, an address where nothing answers | Builds; the reads that fail fall back to the calendar's look and to no businesses, and leaving in one press answers 503, so a mail program tries again |
 
 `scripts/accounts-stack.sh` runs a Supabase project in miniature in Docker: Supabase's own Postgres
 image (15.8.1.085), Supabase Auth (v2.176.1), PostgREST (v12.2.8) and Supabase Storage (v1.25.7),
@@ -652,6 +865,23 @@ advertisement waiting and one approved, and finds none of their files left; uplo
 calls itself a JPEG and finds it kept as a PNG; has an admin remove a picture from a business's
 page and from an advertisement; reads the subscribers' file cell by cell; sends an upload that
 does not say how large it is; and sends thirty-one in a row.
+
+For the email (section 6j) it listens on this machine as the local sender, but not from the
+start, so the site is seen with no sender first. With none: it joins the list and finds each
+address kept as not confirmed, starts the Pocket Guide's message and finds the month, the name
+and the guide's address filled in, changes it part by part (and is refused a button that leads to
+script), looks at it drawn on the page with its plain-text twin, is refused every way of sending
+while the postal address is empty, sets the settings as the superadmin, takes the addresses and
+the message as files, and marks it as sent by hand. With the sender answering: it joins and is
+sent one link to confirm, opens the link without pressing and finds nothing confirmed, presses
+and finds one address confirmed, asks the earlier addresses to confirm once, reports a bounce
+and a complaint by signed webhooks (and is refused unsigned, wrongly signed, stale and altered
+ones), writes a note, sends itself a test, presses Send and then Stop, has a batch refused by
+the sender, carries on, queues the refused again, and reads every message the sender was handed:
+each address once, each with its own link to leave, none to an address that was unconfirmed,
+bounced or complained. It leaves in one press as a mail program does, finds that address not
+written to by the next message, sends that message with script off, a batch a press, and reads
+the list's own page and its file.
 
 **Not run, and why:**
 
@@ -693,12 +923,9 @@ does not say how large it is; and sends thirty-one in a row.
 
 - **Payment.** Plans, advertisements and orders are arranged and marked paid by hand. Paying
   online is planned, through Stripe, and is not connected.
-- **Email from the site.** It sends none: not to subscribers, not to an owner whose advertisement
-  was declined, not to a person whose order moved. Auth's two messages are the only email. There
-  is no confirming of a subscriber's address by a link either (the `confirmed_at` column is there
-  for it and is not used).
-- **`/privacy` on subscribers and orders.** The page says what an account keeps. It should also
-  say that a subscriber's address and an order's name, number and address are kept, and for what.
+- **Email to an owner or a customer.** The site's own email is for the list (see "Email"). It
+  sends nothing to an owner whose advertisement was declined or to a person whose order moved.
+  Auth's two messages are the project's own.
 - **Resizing pictures**, and a second size for an uploaded backdrop.
 - **Owners' own businesses in the browsing lists.** A business listed from scratch is found by the
   search and has its own page, but is not yet in the lists under `/directory` and `/places`, in the

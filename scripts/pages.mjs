@@ -79,9 +79,31 @@ export function browserPath() {
  * finished, so a wait for an idle network never ends. A route that passes everything on turns the
  * browser's own cache off (Playwright: "enabling routing disables http cache"), and each file is
  * asked for once. What the service worker keeps is another store, and is left as it is.
+ *
+ * One more thing can hold a network open, and it is the test browser's own doing. A page left
+ * while the links in its menu are still being fetched ahead leaves those requests neither
+ * finished nor failed, and they count against the page that comes next (measured on
+ * 23 November 2026: two visits in fourteen, always the two links of the header). The visit after
+ * that is clean again. So a visit that waits for an idle network and does not get one in fifteen
+ * seconds is made once more, with the full wait. A page that truly never rests still fails.
  */
 export async function steady(context) {
   await context.route(/[?&]_rsc=/, (route) => route.continue());
+  const newPage = context.newPage.bind(context);
+  context.newPage = async (...args) => {
+    const page = await newPage(...args);
+    const goto = page.goto.bind(page);
+    page.goto = async (url, options = {}) => {
+      if (options.waitUntil !== "networkidle") return goto(url, options);
+      try {
+        return await goto(url, { ...options, timeout: 15_000 });
+      } catch (error) {
+        if (error?.name !== "TimeoutError") throw error;
+        return goto(url, options);
+      }
+    };
+    return page;
+  };
   return context;
 }
 

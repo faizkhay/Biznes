@@ -64,9 +64,9 @@ export function Stat({ label, figure, note, href }: { label: string; figure: Rea
   );
 }
 
-/** A row of figures: two abreast on a phone, four on a desk. */
-export function Stats({ children }: { children: React.ReactNode }) {
-  return <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">{children}</div>;
+/** A row of figures: two abreast on a phone, four on a desk, or five where a page counts five things. */
+export function Stats({ children, five = false }: { children: React.ReactNode; five?: boolean }) {
+  return <div className={`grid grid-cols-2 gap-3 ${five ? "sm:grid-cols-3 lg:grid-cols-5" : "lg:grid-cols-4"}`}>{children}</div>;
 }
 
 /** A list with nothing in it yet: what the thing is, and how to begin. */

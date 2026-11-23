@@ -44,10 +44,20 @@ key_for() {
 }
 anon_key() { key_for anon; }
 
+# The site's own email, for the checks (src/lib/accounts/email): a sender that posts each batch to
+# this machine, where scripts/accounts-e2e.mjs listens, two addresses to a batch so that stopping
+# and carrying on can be seen, and the secrets the two webhooks are signed with. None of them is
+# worth anything anywhere else, and no message leaves the machine.
+EMAIL_TEST_PORT=54399
 print_env() {
   echo "NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:$API_PORT"
   echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$(anon_key)"
   echo "BIZNES_SITE_PROOF=$PROOF"
+  echo "EMAIL_PROVIDER=local"
+  echo "EMAIL_TEST_URL=http://127.0.0.1:$EMAIL_TEST_PORT/send"
+  echo "EMAIL_BATCH=2"
+  echo "RESEND_WEBHOOK_SECRET=whsec_YS1zZWNyZXQtZm9yLXRoZS1sb2NhbC10ZXN0LXN0YWNrLW9ubHk="
+  echo "MAILGUN_WEBHOOK_SIGNING_KEY=a-signing-key-for-the-local-test-stack-only"
 }
 
 down() {
@@ -127,7 +137,7 @@ up() {
     sleep 1
   done
 
-  echo "# Up. Build and serve the site with these, on $SITE:"
+  echo "# Up. Build and serve the site with these, on $SITE (and with NEXT_PUBLIC_SITE_URL=$SITE, so the links in a message lead back to it):"
   print_env
   echo "# For the checks: MAIL_DIR=$RUN/mail DATABASE_URL=$DB"
 }
