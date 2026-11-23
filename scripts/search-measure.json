@@ -1,0 +1,120 @@
+{
+  "library": {
+    "questions": 387,
+    "indexing": 762.85,
+    "first": 915.94,
+    "mistake": 11.5,
+    "median": 1.74,
+    "p95": 10.12,
+    "p99": 22.12,
+    "slowest": 87.69,
+    "slowestQuestion": "where can i find a good cheap restaurant open now near grand",
+    "memory": 73,
+    "at": "55a3995",
+    "node": "v22.23.4",
+    "names": {
+      "as written": {
+        "asked": 6520,
+        "first": 91.6,
+        "within": 96.4,
+        "top": 10,
+        "nothing": 0
+      },
+      "two letters changed places": {
+        "asked": 6072,
+        "first": 71.2,
+        "within": 84.6,
+        "top": 10,
+        "nothing": 6.8
+      },
+      "a letter left out": {
+        "asked": 6072,
+        "first": 83.6,
+        "within": 92.3,
+        "top": 10,
+        "nothing": 2.2
+      },
+      "a letter doubled": {
+        "asked": 6072,
+        "first": 90.8,
+        "within": 96.5,
+        "top": 10,
+        "nothing": 0
+      },
+      "a letter wrong": {
+        "asked": 6072,
+        "first": 90.4,
+        "within": 96.1,
+        "top": 10,
+        "nothing": 0.1
+      },
+      "all but the last two letters": {
+        "asked": 6292,
+        "first": 85.7,
+        "within": 93.8,
+        "top": 5,
+        "nothing": 1.1
+      }
+    },
+    "namesAt": "55a3995"
+  },
+  "engine": {
+    "questions": 387,
+    "indexing": 311.26,
+    "first": 481.95,
+    "mistake": 56.89,
+    "median": 0.2,
+    "p95": 1.69,
+    "p99": 4.47,
+    "slowest": 13.2,
+    "slowestQuestion": "restaurants",
+    "memory": 70,
+    "at": "55a3995+",
+    "node": "v22.23.4",
+    "names": {
+      "as written": {
+        "asked": 6520,
+        "first": 97.7,
+        "within": 98.6,
+        "top": 10,
+        "nothing": 0
+      },
+      "two letters changed places": {
+        "asked": 6072,
+        "first": 96.9,
+        "within": 98.1,
+        "top": 10,
+        "nothing": 0
+      },
+      "a letter left out": {
+        "asked": 6072,
+        "first": 94.5,
+        "within": 96.5,
+        "top": 10,
+        "nothing": 0.4
+      },
+      "a letter doubled": {
+        "asked": 6072,
+        "first": 97.1,
+        "within": 98.2,
+        "top": 10,
+        "nothing": 0
+      },
+      "a letter wrong": {
+        "asked": 6072,
+        "first": 96.9,
+        "within": 98,
+        "top": 10,
+        "nothing": 0
+      },
+      "all but the last two letters": {
+        "asked": 6292,
+        "first": 88.1,
+        "within": 94,
+        "top": 5,
+        "nothing": 1.1
+      }
+    },
+    "namesAt": "55a3995+"
+  }
+}

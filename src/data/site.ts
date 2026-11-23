@@ -292,6 +292,7 @@ export const STREET_MAP = {
  * the pocket guide. Each answers in a line of its own. `words` are what people type for it.
  */
 export const PAGES = [
+  { href: HOME.href, title: HOME.label, line: HOME.lede, words: "home start browse top businesses categories regions" },
   { href: "/about", title: "About biznes.mu and Khay Digital", line: "biznes.mu is a product of Khay Digital, a Mauritian digital agency, and was developed by Faiz Khayrattee. Khay Digital builds websites and digital experiences.", words: "khay digital khaydigital faiz khayrattee agency web design website developer who made built owner about us contact" },
   { href: "/pricing", title: "List your business on biznes.mu", line: "Biznes Free is a basic listing at no cost. Biznes Go is Rs 550 a month: verified, and listed with priority. Biznes Grow is Rs 1,250 a month: everything in Go, with bookings and sales.", words: "list my business add business advertise price pricing plans biznes free go grow subscription verified claim" },
   { href: "/shop", title: "The biznes.mu pocket guide", line: "A guide to Mauritius for your phone, place by place, renewed every month, with every fact from an official source.", words: "pocket guide pdf magazine places to visit things to do sponsor sponsorship advert" },

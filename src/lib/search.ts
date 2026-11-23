@@ -22,12 +22,22 @@
  * question's words are in its own title, label or heading; a number or a date, only when they are
  * there whole. Words no listing mentions are said to have been left out.
  *
- * The index is MiniSearch, built in memory from data/index the first time it is needed.
+ * A business asked for by its own name is given first. A name that reads as a kind of business in
+ * a town ("Phoenix Assurance", "Ebene Pharmacy") is still that business, wherever it is; and a
+ * name is tried as it was written before any close spelling of a part of it.
+ *
+ * A typing mistake is answered and said to be one. A town or a kind of business typed wrongly
+ * ("curpipe", "restorant") is read as the word meant when one word is plainly the nearest; any
+ * other word is given close spellings only when nothing matched as written.
+ *
+ * Finding the documents that hold a question's words, and putting them in order, is the engine's
+ * work (src/lib/engine.ts, which says how). It is built in memory from data/index the first time
+ * it is needed.
  */
-import MiniSearch from "minisearch";
 import { ARTICLE_BUSINESSES, PAGES } from "@/data/site";
 import { chartPoints } from "./chart";
 import { emergency } from "./emergency";
+import { Engine, fold } from "./engine";
 import { anchorOf, count, day } from "./format";
 import { holidays, longDay } from "./holidays";
 import { index, whereOf, type Category, type Guide, type Listing, type Official, type Place, type Site } from "./index";
@@ -94,14 +104,8 @@ export type Answer = {
   points: number[];
 };
 
-/** Lower case, unaccented, punctuation to spaces. */
-export const fold = (text: string) =>
-  text
-    .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
+/** Lower case, unaccented, punctuation to spaces. The engine folds a document's words the same way. */
+export { fold };
 
 /** A word without its plural: "pharmacies" and "pharmacy" are the same word, as are "taxis" and "taxi". */
 const stem = (word: string) => (word.length > 3 ? word.replace(/ies$/, "y").replace(/(s|x|ch|sh)es$/, "$1").replace(/([^s])s$/, "$1") : word);
@@ -200,18 +204,46 @@ type LeadEntry = {
   article?: boolean;
   /** The words that make it an answer and not a mention: its own title, label or heading, stemmed. */
   key: string[];
+  /** For a part of an article: the words of its own label or heading alone, without the article's title. */
+  own?: string[];
+  /** For an article and its parts: the words of the article's title. */
+  title?: string[];
   /** A number to call or a holiday's date answers only when the question's words are in it whole. */
   exact?: boolean;
   /** Words of which the question must hold one: the list of holidays is not an answer to "bank". */
   need?: string[];
 };
 type Phrase<T> = { tokens: string[]; of: T };
+/** A list of phrases by the first word of each, every phrase with its place in the list: a question's words find their phrases without the list being read. */
+type ByWord<T> = Map<string, { rank: number; phrase: Phrase<T> }[]>;
 
-type Engine = {
-  mini: MiniSearch<Doc>;
-  places: Phrase<Place>[];
-  categories: Phrase<Category>[];
-  hints: Phrase<Category>[];
+/**
+ * The fields of a document, as the engine weighs them. A word in a name says most; then another
+ * name; then the kind of business; then the address; then a description. `length` is how far a
+ * long field is held against a word in it: a name fully, a category's list of words and an address
+ * hardly, since their length says nothing about the business. A question that is a whole name
+ * counts double.
+ */
+const FIELDS = [
+  { name: "name", weight: 4, length: 0.6, whole: 2 },
+  { name: "alt", weight: 2.5, length: 0.5 },
+  { name: "what", weight: 2, length: 0.2 },
+  { name: "where", weight: 1.5, length: 0.2 },
+  { name: "text", weight: 1, length: 0.5 },
+];
+
+type Built = {
+  engine: Engine;
+  /** Towns, kinds of business and narrower words, each list the longest phrase first. */
+  places: ByWord<Place>;
+  categories: ByWord<Category>;
+  hints: ByWord<Category>;
+  /** The index's listings by kind of business, by town or neighbourhood, and those for eating, in the index's order. */
+  byCategory: Map<string, Listing[]>;
+  byPlace: Map<string, Listing[]>;
+  eating: Listing[];
+  /** A word of a town's name as it is written, by the word as the engine holds it: "vacoa" is "vacoas". */
+  townWords: Map<string, string>;
   leads: Map<string, LeadEntry>;
   /** The categories for eating and drinking, and those for health. */
   eat: Set<string>;
@@ -237,7 +269,25 @@ export type Overlay = { stamp: number; extras: Listing[]; byId: Map<string, List
  */
 const ASKING = /^(how|what|when|why|which|who|can|do|does|is|are|should|where (can|do|to)|comment|kan|kouma|ki)\b|\b(register|registering|registration|incorporate|incorporating|apply|applying|application|renew|renewal|start|starting|set up|setting up|become|open an?|ouvrir|ouver|creer|cost|costs|fee|fees|price|rate|rates|threshold|deadline|requirements?|documents?|procedure|steps|rules|law|laws|meaning|definition)\b/;
 
-let engine: Engine | undefined;
+let built: Built | undefined;
+
+/**
+ * The words that mean a whole category, once each: "Hotel", "Hotels and resorts" and "hôtel" are
+ * one word said three times, and a listing is no more a hotel for it.
+ */
+const categoryWords = new Map<string, string>();
+function wordsOf(c: Category): string {
+  let words = categoryWords.get(c.id);
+  if (words === undefined) {
+    const seen = new Set<string>();
+    words = [c.one, c.label, ...c.words]
+      .flatMap((phrase) => fold(phrase).split(" "))
+      .filter((word) => word && !seen.has(stem(word)) && seen.add(stem(word)))
+      .join(" ");
+    categoryWords.set(c.id, words);
+  }
+  return words;
+}
 
 /** A listing as the index searches it. */
 function docOf(l: Listing, c: Category | undefined): Doc {
@@ -247,7 +297,7 @@ function docOf(l: Listing, c: Category | undefined): Doc {
     name: l.name,
     alt: [...(l.alt ?? []), l.brand ?? ""].join(" "),
     // Only the words that mean the whole category: a narrower word must be in the listing itself.
-    what: [c?.one, c?.label, ...(c?.words ?? []), l.kind ?? ""].join(" "),
+    what: [c ? wordsOf(c) : "", l.kind ?? ""].join(" "),
     where: [l.area, l.place, l.district, l.street, l.seat].filter(Boolean).join(" "),
     // What the map notes about it besides: "Delivery", "Takeaway", "Wi-Fi".
     text: [l.about ?? "", ...(l.extras ?? [])].join(" "),
@@ -255,37 +305,37 @@ function docOf(l: Listing, c: Category | undefined): Doc {
 }
 
 /** Puts an overlay's extra businesses into the index, in place of the last overlay's. */
-function lay(e: Engine, overlay: Overlay) {
+function lay(e: Built, overlay: Overlay) {
   if (e.laid === overlay.stamp) return;
   const { categoryById } = index();
-  for (const id of e.laidIds) e.mini.discard(id);
+  for (const id of e.laidIds) e.engine.discard(id);
   const docs = overlay.extras.map((l) => docOf(l, categoryById.get(l.cat)));
-  e.mini.addAll(docs);
+  e.engine.addAll(docs);
   e.laidIds = docs.map((d) => d.id);
   e.laid = overlay.stamp;
 }
 
-function build(): Engine {
+function build(): Built {
   const { listings, guides, official, sites, categories, places, categoryById, glossary } = index();
   const docs: Doc[] = [];
   for (const l of listings) docs.push(docOf(l, categoryById.get(l.cat)));
 
-  const leads: Engine["leads"] = new Map();
+  const leads: Built["leads"] = new Map();
   const lead = (id: string, doc: Omit<Doc, "id" | "kind" | "where">, entry: LeadEntry) => {
     docs.push({ id, kind: "guide", where: "", ...doc });
-    leads.set(id, { ...entry, key: [...new Set(entry.key.flatMap(stems))], need: entry.need?.flatMap(stems) });
+    leads.set(id, { ...entry, key: [...new Set(entry.key.flatMap(stems))], own: entry.own?.flatMap(stems), title: entry.title?.flatMap(stems), need: entry.need?.flatMap(stems) });
   };
   // A body is asked for by its initials: the Central Electricity Board is "CEB". They are the name's own.
   const initials = (name: string) => (name.match(/(?:\b[A-Z][a-z]+ ){2,}[A-Z][a-z]+/g) ?? []).map((run) => run.split(" ").map((word) => word[0]).join("")).join(" ");
   for (const g of guides) {
     const meta = `Checked ${day(g.checked)}`;
-    lead(`g:${g.slug}`, { name: g.title, alt: "", what: g.summary, text: "" }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}`, line: g.summary, meta }, guide: g.slug, weight: 2, whole: true, article: true, key: [g.title, g.summary] });
+    lead(`g:${g.slug}`, { name: g.title, alt: "", what: g.summary, text: "" }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}`, line: g.summary, meta }, guide: g.slug, weight: 2, whole: true, article: true, key: [g.title, g.summary], title: [g.title] });
     g.facts.forEach((f, i) =>
       lead(
         `f:${g.slug}#${i}`,
         { name: f.label, alt: g.title, what: f.value, text: f.detail ?? "" },
         // A fact answers a question outright when the question names it: it is shown as the answer, with the article it is from.
-        { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#glance`, line: `${f.label}: ${f.value}.${f.detail ? ` ${f.detail}` : ""}`, meta }, guide: g.slug, weight: 2.6, whole: true, key: [f.label, g.title] },
+        { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#glance`, line: `${f.label}: ${f.value}.${f.detail ? ` ${f.detail}` : ""}`, meta }, guide: g.slug, weight: 2.6, whole: true, key: [f.label, g.title], own: [f.label], title: [g.title] },
       ),
     );
     g.sections.forEach((section, i) => {
@@ -294,7 +344,7 @@ function build(): Engine {
       const first = section.blocks.find((b) => "text" in b);
       const opening = first && "text" in first ? first.text : "";
       const cut = opening.length > 320 ? `${opening.slice(0, 320).replace(/[^.!?]*$/, "") || `${opening.slice(0, 300)}...`}` : opening;
-      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: !cut ? `In it: ${section.heading}.` : section.heading.endsWith("?") ? cut : `${section.heading.replace(/\.$/, "")}: ${cut}`, meta }, guide: g.slug, weight: 1, whole: false, key: [section.heading, g.title] });
+      lead(`g:${g.slug}#${i}`, { name: section.heading, alt: g.title, what: "", text: words }, { lead: { tag: "Guide", title: g.title, href: `/learn/${g.slug}#${anchorOf(section.heading)}`, line: !cut ? `In it: ${section.heading}.` : section.heading.endsWith("?") ? cut : `${section.heading.replace(/\.$/, "")}: ${cut}`, meta }, guide: g.slug, weight: 1, whole: false, key: [section.heading, g.title], own: [section.heading], title: [g.title] });
     });
   }
   // The emergency numbers and the public holidays answer by themselves: the number, the date.
@@ -304,7 +354,8 @@ function build(): Engine {
       lead(
         `e:${group.id}#${i}`,
         { name: item.name, alt: `${group.label} ${initials(item.name)} emergency number telephone call`, what: item.number, text: item.what },
-        { lead: { tag: "Number", title: "Emergency numbers", href: `/emergency#g-${group.id}`, line: `${item.name}: ${[item.number, ...(item.also ?? [])].join(" or ")}. ${item.what}`, meta: `Checked ${day(numbers.checked)}`, call: [item.number, ...(item.also ?? [])] }, weight: group.id === "emergency" ? 4 : group.id === "rodrigues" ? 1.2 : 2, whole: true, exact: true, key: [item.name, initials(item.name), group.label, item.what, "emergency helpline hotline call"] },
+        { lead: { tag: "Number", title: "Emergency numbers", href: `/emergency#g-${group.id}`, line: `${item.name}: ${[item.number, ...(item.also ?? [])].join(" or ")}. ${item.what}`, meta: `Checked ${day(numbers.checked)}`, call: [item.number, ...(item.also ?? [])] }, // The three emergency numbers lead whatever else answers: an article's fact that is the very word asked counts double, and they still come before it.
+        weight: group.id === "emergency" ? 8 : group.id === "rodrigues" ? 1.2 : 2, whole: true, exact: true, key: [item.name, initials(item.name), group.label, item.what, "emergency helpline hotline call"] },
       ),
     ),
   );
@@ -327,14 +378,9 @@ function build(): Engine {
   official.forEach((o, i) => docs.push({ id: `o:${i}`, kind: "official", name: o.title, alt: o.publisher, what: o.what, where: "", text: o.host ?? "" }));
   sites.forEach((s, i) => docs.push({ id: `s:${i}`, kind: "site", name: s.name ?? s.title, alt: s.title, what: s.host, where: "", text: s.about ?? "" }));
 
-  const mini = new MiniSearch<Doc>({
-    fields: ["name", "alt", "what", "where", "text"],
-    storeFields: ["kind"],
-    // A word and its plural are one word: "pharmacies" finds "pharmacy", "ATMs" finds "ATM".
-    processTerm: (term) => stem(fold(term)) || null,
-    searchOptions: { boost: { name: 4, alt: 2.5, what: 2, where: 1.5, text: 1 }, prefix: (term) => term.length >= 3, fuzzy: (term) => (term.length >= 5 ? 0.2 : false) },
-  });
-  mini.addAll(docs);
+  // A word and its plural are one word: "pharmacies" finds "pharmacy", "ATMs" finds "ATM".
+  const engine = new Engine({ fields: FIELDS, word: stem });
+  engine.addAll(docs);
 
   const longest = <T>(a: Phrase<T>, b: Phrase<T>) => b.tokens.length - a.tokens.length || b.tokens.join("").length - a.tokens.join("").length;
   const unique = <T>(list: Phrase<T>[]) => list.filter((p, i, all) => p.tokens.length > 0 && all.findIndex((o) => o.tokens.join(" ") === p.tokens.join(" ")) === i);
@@ -344,14 +390,32 @@ function build(): Engine {
   );
   // A town comes before a neighbourhood of the same name.
   placePhrases.sort((a, b) => longest(a, b) || (a.of.kind === "town" ? -1 : 1));
+  const byWord = <T>(list: Phrase<T>[]): ByWord<T> => {
+    const out: ByWord<T> = new Map();
+    list.forEach((phrase, rank) => out.set(phrase.tokens[0], [...(out.get(phrase.tokens[0]) ?? []), { rank, phrase }]));
+    return out;
+  };
+  const byCategory = new Map<string, Listing[]>();
+  const byPlace = new Map<string, Listing[]>();
+  const into = (map: Map<string, Listing[]>, key: string, l: Listing) => (map.get(key) ?? map.set(key, []).get(key)!).push(l);
+  for (const l of listings) {
+    into(byCategory, l.cat, l);
+    if (l.placeSlug) into(byPlace, l.placeSlug, l);
+    if (l.areaSlug && l.areaSlug !== l.placeSlug) into(byPlace, l.areaSlug, l);
+  }
+  const eat = new Set(categories.filter((c) => c.group === "eat").map((c) => c.id));
   return {
-    mini,
-    places: unique(placePhrases),
+    engine,
+    places: byWord(unique(placePhrases)),
     // A catch-all ("Other shops") does not answer to its bare noun: "shop" is not a search for it.
-    categories: unique(categories.flatMap((c) => [...(c.id.startsWith("other-") ? [] : [c.one]), c.label, ...c.words].map((word) => ({ tokens: stems(word), of: c }))).filter((p) => p.tokens.join("").length >= 3)).sort(longest),
-    hints: unique(categories.flatMap((c) => (c.hints ?? []).map((word) => ({ tokens: stems(word), of: c })))).sort(longest),
+    categories: byWord(unique(categories.flatMap((c) => [...(c.id.startsWith("other-") ? [] : [c.one]), c.label, ...c.words].map((word) => ({ tokens: stems(word), of: c }))).filter((p) => p.tokens.join("").length >= 3)).sort(longest)),
+    hints: byWord(unique(categories.flatMap((c) => (c.hints ?? []).map((word) => ({ tokens: stems(word), of: c })))).sort(longest)),
+    byCategory,
+    byPlace,
+    eating: listings.filter((l) => eat.has(l.cat)),
+    townWords: new Map(placePhrases.flatMap((p) => p.tokens.map((word) => [stem(word), word] as [string, string]))),
     leads,
-    eat: new Set(categories.filter((c) => c.group === "eat").map((c) => c.id)),
+    eat,
     health: new Set(categories.filter((c) => c.group === "health").map((c) => c.id)),
     articlesFor: articlesByCategory(guides, categories),
     laidIds: [],
@@ -372,66 +436,90 @@ function articlesByCategory(guides: Guide[], categories: Category[]): Map<string
 }
 
 /** The words a listing says of itself: its name, the map's word for its kind, its description and what the map notes besides. Not its category's. */
-const ownWords = (l: Listing) => [l.name, ...(l.alt ?? []), l.brand ?? "", l.kind ?? "", l.about ?? "", ...(l.extras ?? [])].flatMap(stems);
+const said_ = new WeakMap<Listing, string[]>();
+function ownWords(l: Listing): string[] {
+  let words = said_.get(l);
+  if (!words) said_.set(l, (words = [l.name, ...(l.alt ?? []), l.brand ?? "", l.kind ?? "", l.about ?? "", ...(l.extras ?? [])].flatMap(stems)));
+  return words;
+}
 
-/** Where `phrase` starts in `tokens`, as whole words in order, or -1. */
-function find(tokens: string[], phrase: string[]): number {
-  for (let i = 0; i + phrase.length <= tokens.length; i++) if (phrase.every((word, j) => tokens[i + j] === word)) return i;
-  return -1;
+/** True when `phrase` stands in `tokens` at `at`, as whole words in order. */
+const stands = (tokens: string[], at: number, phrase: string[]) => phrase.every((word, j) => tokens[at + j] === word);
+
+/** Of the phrases that stand in `tokens`, the first in the list's own order, and where it first stands. */
+function firstListed<T>(list: ByWord<T>, tokens: string[]): { at: number; phrase: Phrase<T> } | undefined {
+  let best: { at: number; rank: number; phrase: Phrase<T> } | undefined;
+  for (let at = 0; at < tokens.length; at++) {
+    for (const { rank, phrase } of list.get(tokens[at]) ?? []) {
+      if (best && rank >= best.rank) break;
+      if (stands(tokens, at, phrase.tokens)) best = { at, rank, phrase };
+    }
+  }
+  return best;
+}
+
+/** Of the phrases that stand in `tokens`, the one that stands earliest; of two that begin at the same word, the first in the list's order. */
+function earliest<T>(list: ByWord<T>, tokens: string[], wanted?: (phrase: Phrase<T>) => boolean): { at: number; phrase: Phrase<T> } | undefined {
+  for (let at = 0; at < tokens.length; at++) {
+    for (const { phrase } of list.get(tokens[at]) ?? []) if ((!wanted || wanted(phrase)) && stands(tokens, at, phrase.tokens)) return { at, phrase };
+  }
+  return undefined;
 }
 
 /** A dish named in a question, and the category its word sits in. */
 type Dish = { word: string; home: Category };
 const DISH_STEMS = new Set([...DISHES].map((word) => stems(word).join(" ")));
 
-/**
- * Reads a question: the town it names, the kind of business it names (or the dish), and the words
- * left over.
- */
-export function understand(query: string): { text: string; place?: Place; category?: Category; dish?: Dish; hint?: { category: Category; word: string }; rest: string } {
-  engine ??= build();
-  const e = engine;
-  const text = fold(query);
-  let tokens = phrased(text).split(" ").filter(Boolean);
+/** A question as it was read. */
+type Reading = {
+  text: string;
+  place?: Place;
+  category?: Category;
+  dish?: Dish;
+  hint?: { category: Category; word: string };
+  rest: string;
+  /** The question without its town: what a business's name is compared with. */
+  words?: string;
+  /** The question as it was read, when a word of it was taken for a close spelling of a town or a kind of business. */
+  corrected?: string;
+};
 
+/** Reads a question's words: the town among them, the kind of business (or the dish), and the words left over. */
+function reading(e: Built, text: string, all: string[]): Reading {
+  let tokens = all;
   let place: Place | undefined;
-  for (const p of e.places) {
-    const at = find(tokens, p.tokens);
-    if (at < 0) continue;
-    place = p.of;
+  // The longest town's name in the question; a town before a neighbourhood of the same name.
+  const town = firstListed(e.places, tokens);
+  if (town) {
+    place = town.phrase.of;
     // "pharmacy in curepipe": the word that joins them goes with the town.
-    const from = at > 0 && JOINERS.has(tokens[at - 1]) ? at - 1 : at;
-    tokens = [...tokens.slice(0, from), ...tokens.slice(at + p.tokens.length)];
-    break;
+    const from = town.at > 0 && JOINERS.has(tokens[town.at - 1]) ? town.at - 1 : town.at;
+    tokens = [...tokens.slice(0, from), ...tokens.slice(town.at + town.phrase.tokens.length)];
   }
+  const words = tokens.join(" ");
 
   // The kind of business named first in the question; of two that begin at the same word, the
   // longer. "Petrol station" is a filling station, though "station" alone is a police station.
-  const first = (phrases: Phrase<Category>[]) => {
-    const stemmed = tokens.map(stem);
-    let best: { at: number; phrase: Phrase<Category> } | undefined;
-    for (const phrase of phrases) {
-      const at = find(stemmed, phrase.tokens);
-      if (at >= 0 && (!best || at < best.at)) best = { at, phrase };
-    }
+  const first = (wanted?: (phrase: Phrase<Category>) => boolean) => {
+    const best = earliest(e.categories, tokens.map(stem), wanted);
     if (best) tokens = [...tokens.slice(0, best.at), ...tokens.slice(best.at + best.phrase.tokens.length)];
     return best?.phrase;
   };
   let category: Category | undefined;
   let dish: Dish | undefined;
   // A question about how names no kind of business, whatever nouns it holds. A town in it still counts.
-  const asking = !place && ASKING.test(phrased(text));
+  const asking = !place && ASKING.test(all.join(" "));
   if (!asking) {
     const isDish = (phrase: Phrase<Category>) => e.eat.has(phrase.of.id) && DISH_STEMS.has(phrase.tokens.join(" "));
-    const named = first(e.categories);
+    const named = first();
     category = named?.of;
     if (named && isDish(named)) {
       // A dish, and perhaps a kind of place to eat named beside it: "pizza restaurant".
       dish = { word: named.tokens.join(" "), home: named.of };
-      category = first(e.categories.filter((phrase) => e.eat.has(phrase.of.id) && !isDish(phrase)))?.of;
+      category = first((phrase) => e.eat.has(phrase.of.id) && !isDish(phrase))?.of;
     } else if (named && e.eat.has(named.of.id)) {
       // A kind of place to eat, and perhaps a dish named beside it: "snack pizza".
-      const beside = first(e.categories.filter(isDish));
+      const beside = first(isDish);
       if (beside) dish = { word: beside.tokens.join(" "), home: beside.of };
     }
     // A word left over that is one of the category's own ("station", after "petrol") says nothing more.
@@ -440,16 +528,42 @@ export function understand(query: string): { text: string; place?: Place; catego
   }
   let hint: { category: Category; word: string } | undefined;
   if (!category && !dish && !asking) {
-    const stemmed = tokens.map(stem);
-    for (const h of e.hints) {
-      const at = find(stemmed, h.tokens);
-      if (at >= 0) {
-        hint = { category: h.of, word: tokens.slice(at, at + h.tokens.length).join(" ") };
-        break;
-      }
-    }
+    const narrower = firstListed(e.hints, tokens.map(stem));
+    if (narrower) hint = { category: narrower.phrase.of, word: tokens.slice(narrower.at, narrower.at + narrower.phrase.tokens.length).join(" ") };
   }
-  return { text, place, category, dish, hint, rest: tokens.filter((word) => !PADDING.has(word)).join(" ") };
+  return { text, place, category, dish, hint, rest: tokens.filter((word) => !PADDING.has(word)).join(" "), words };
+}
+
+/**
+ * Reads a question: the town it names, the kind of business it names (or the dish), and the words
+ * left over.
+ *
+ * A word that nothing in the index holds, as written or as the start of a longer word, may be a
+ * town or a kind of business typed wrongly: "pharmcy", "restorant", "curpipe". It is read as the
+ * word meant only when one word the index holds is plainly the nearest to it (alone at its
+ * distance, or five times as common as the next), and only when that word then names a town, a
+ * kind of business or a dish the question did not have before. A real name is
+ * never read as something else, since the index holds it; and a question about how is left alone.
+ */
+export function understand(query: string): Reading {
+  built ??= build();
+  const e = built;
+  const text = fold(query);
+  const tokens = phrased(text).split(" ").filter(Boolean);
+  const read = reading(e, text, tokens);
+  if (read.hint || (!read.place && ASKING.test(tokens.join(" ")))) return read;
+  const meant = tokens.map((word) => {
+    if (word.length < 4 || PADDING.has(word) || ASKS.has(word) || e.engine.knows(word, 3)) return word;
+    // The nearest spelling, when it stands alone at its distance or is held by five times as many documents as the next.
+    const close = e.engine.spell(word);
+    const only = close.length > 0 && (close.length === 1 || close[1].distance > close[0].distance || close[0].held >= 5 * close[1].held) ? close[0].word : undefined;
+    return only ? (e.townWords.get(only) ?? only) : word;
+  });
+  if (meant.every((word, i) => word === tokens[i])) return read;
+  const again = reading(e, text, meant);
+  const more = (again.place && !read.place) || ((again.category || again.dish) && !read.category && !read.dish);
+  const less = (read.place && again.place !== read.place) || (read.category && again.category !== read.category) || again.hint;
+  return more && !less ? { ...again, corrected: meant.join(" ") } : read;
 }
 
 export const PAGE_SIZE = 20;
@@ -480,27 +594,42 @@ export function narrowed(listings: Listing[], narrow: Narrow = {}): { facets: Fa
   return { facets, listings: p || w || town ? listings.filter((l) => (!p || l.phone?.length) && (!w || l.web) && (!town || l.placeSlug === town)) : listings };
 }
 
-type Options = { kind?: Kind; page?: number; plain?: boolean; narrow?: Narrow; /** Owners' businesses to lay over the index. */ overlay?: Overlay };
+type Options = {
+  kind?: Kind;
+  page?: number;
+  plain?: boolean;
+  narrow?: Narrow;
+  /** Owners' businesses to lay over the index. */
+  overlay?: Overlay;
+  /** For a question searched as plain words after it was read as a kind of business: that kind, to come first among partial matches. */
+  prefer?: string;
+};
 
 /** Kilometres between two places, near enough for an island. */
 const apart = (a: Place, b: Place) => Math.hypot((a.lon! - b.lon!) * 104, (a.lat! - b.lat!) * 111);
 
-export function search(query: string, { kind, page = 1, plain = false, narrow, overlay }: Options = {}): Answer {
-  engine ??= build();
-  const e = engine;
+export function search(query: string, { kind, page = 1, plain = false, narrow, overlay, prefer }: Options = {}): Answer {
+  built ??= build();
+  const e = built;
   const data = index();
   if (overlay) lay(e, overlay);
   // Every listing a question may be answered with: the index's, and any an owner listed outside it.
   const pool = overlay?.extras.length ? data.listings.concat(overlay.extras) : data.listings;
   const byId = (id: string) => data.byId.get(id) ?? overlay?.byId.get(id);
-  const read = plain ? { text: fold(query), rest: fold(query), place: undefined, category: undefined, dish: undefined, hint: undefined } : understand(query);
+  const read: Reading = plain ? { text: fold(query), rest: fold(query) } : understand(query);
+  if (read.corrected) {
+    // A town or a kind of business typed wrongly: the question is answered as it was meant, and the page says so.
+    // Only when it then answers as a town or a kind of business would: a wrong guess is dropped, and the words are searched as they are.
+    const meant = search(read.corrected, { kind, page, narrow, overlay });
+    if (meant.who && !meant.loose && meant.counts.listing > 0) return { ...meant, query, spelling: true };
+  }
   const { place, rest, text } = read;
   let { category, dish } = read;
   // A word is matched as written, or as the start of a longer word: from three letters for a
   // listing, from four for a page ("bus" is not "business", "bar" is not "barracks"). Close
   // spellings are tried only when that finds nothing, and the page then says so.
-  const of = (wanted: Kind, words: string, combineWith: "AND" | "OR" = "AND", close = false) =>
-    words ? e.mini.search(words, { combineWith, filter: (r) => r.kind === wanted, prefix: (term) => term.length >= (wanted === "listing" && combineWith === "AND" ? 3 : 4), fuzzy: close ? (term) => (term.length >= 5 ? 0.2 : false) : false }) : [];
+  const of = (wanted: Kind, words: string, combineWith: "AND" | "OR" = "AND", close = false, more: { also?: string; limit?: number } = {}) =>
+    words ? e.engine.search(words, { all: combineWith === "AND", kind: wanted, prefix: wanted === "listing" && combineWith === "AND" ? 3 : 4, close, ...more }) : [];
   let spelling = false;
 
   // Listings. With a town or a kind of business read from the question, they are every listing of
@@ -509,25 +638,58 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
   let ranked: { l: Listing; score: number }[] = [];
   let ignored: string | undefined;
   const fits = (l: Listing) => (dish && !category ? e.eat.has(l.cat) : !category || l.cat === category.id) && (!place || l.placeSlug === place.slug || l.areaSlug === place.slug);
-  const every = () => {
-    for (const l of pool) if (fits(l)) ranked.push({ l, score: l.full });
-  };
-  const matching = (words: string) => {
-    for (const close of [false, true]) {
-      const scores = new Map(of("listing", words, "AND", close).map((r) => [(r.id as string).slice(2), r.score]));
-      for (const l of pool) if (fits(l) && scores.has(l.id)) ranked.push({ l, score: scores.get(l.id)! * (1 + l.full / 12) });
-      if (ranked.length) {
-        spelling = close;
-        break;
+  // The listings of one kind, in one town, and for eating: the index's own lists, with any an owner listed outside it.
+  const extras = overlay?.extras ?? [];
+  const withExtras = (list: Listing[] | undefined, mine: (l: Listing) => boolean) => (extras.length ? (list ?? []).concat(extras.filter(mine)) : (list ?? []));
+  const inCategory = (id: string) => withExtras(e.byCategory.get(id), (l) => l.cat === id);
+  const inPlace = (slug: string) => withExtras(e.byPlace.get(slug), (l) => l.placeSlug === slug || l.areaSlug === slug);
+  const forEating = () => withExtras(e.eating, (l) => e.eat.has(l.cat));
+  /** Every listing that fits what was read, without walking the whole index for it. */
+  const fitting = () => (category ? inCategory(category.id) : place ? inPlace(place.slug) : dish ? forEating() : pool).filter(fits);
+  /**
+   * The listings whose whole name is the question, in two words or more: "Hotel Tamarin", "Phoenix
+   * Assurance". A question read as a kind of business in a town may be such a name instead.
+   */
+  const namesakes = () => {
+    const out = new Set<Listing>();
+    if (text.includes(" ")) {
+      // A plural and its singular are one word here too.
+      const asked = stems(text).join(" ");
+      for (const r of of("listing", text)) {
+        const l = byId(r.id.slice(2));
+        if (l && stems(l.name).join(" ") === asked) out.add(l);
       }
     }
+    return out;
+  };
+  // The fullest first; and before them the business whose own name is the whole question.
+  const every = (own?: Set<Listing>) => {
+    for (const l of fitting()) ranked.push({ l, score: l.full + (own?.has(l) ? 100 : 0) });
+  };
+  const matching = (words: string, close: boolean) => {
+    // The question without its town is given too: a listing whose name is the whole of it comes first.
+    for (const r of of("listing", words, "AND", close, { also: read.words })) {
+      const l = byId(r.id.slice(2));
+      if (l && fits(l)) ranked.push({ l, score: r.score * (1 + l.full / 12) });
+    }
+    if (ranked.length) spelling = close;
   };
   if (place || category || dish) {
+    const byName = () => search(query, { kind, page, plain: true, narrow, overlay, prefer: category?.id });
+    // A question read as a kind of business, with a town or with other words, may be a business's
+    // own name. If one elsewhere, or of another kind, has the whole question for its name, the
+    // question is that name: "Phoenix Assurance" is an insurer, wherever it is, before it is
+    // insurance in Phoenix. A kind with nothing beside it is left as the kind: its words are the
+    // category's own. A town with no kind is left as the town.
+    const own = !plain && (category || dish) && (place || rest) ? namesakes() : undefined;
+    if (own && [...own].some((l) => !fits(l))) {
+      const named = byName();
+      if (named.counts.listing > 0) return named;
+    }
     if (dish) {
       // By what a listing says of itself, never by its category's words: every takeaway would "mention" pizza.
       const wanted = [...stems(dish.word), ...stems(rest)];
-      for (const l of pool) {
-        if (!fits(l)) continue;
+      for (const l of fitting()) {
         const own = ownWords(l);
         if (!wanted.every((word) => own.includes(word))) continue;
         const name = stems(l.name);
@@ -541,21 +703,28 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
       }
     }
     if (!ranked.length) {
-      if (rest) matching(rest);
-      else every();
+      if (rest) matching(rest, false);
+      // Every word was a kind of business or a town: the fullest first, after the one whose name is the question.
+      else every(ignored ? undefined : own);
     }
     if (!ranked.length && !plain) {
-      // Read as a town or a kind and nothing fits. The words may be a name: search them plainly.
-      const named = search(query, { kind, page, plain: true, narrow, overlay });
-      if (named.counts.listing > 0 || !rest) return named;
-      // Not a name either. Answer the part that was understood, and say which words were left out.
-      every();
-      if (!ranked.length) return named;
-      ignored = [ignored, rest].filter(Boolean).join(" ");
+      // Read as a town or a kind and nothing fits as written. The words may be a name: search
+      // them plainly. A name found as written is the answer. If there is none, the words left
+      // over are tried as close spellings within the kind or the town, before anything looser.
+      const named = byName();
+      if (named.counts.listing > 0 && !named.spelling && !named.loose) return named;
+      if (rest) matching(rest, true);
+      if (!ranked.length) {
+        if (named.counts.listing > 0 || !rest) return named;
+        // Not a name either. Answer the part that was understood, and say which words were left out.
+        every();
+        if (!ranked.length) return named;
+        ignored = [ignored, rest].filter(Boolean).join(" ");
+      }
     }
   } else {
     for (const r of of("listing", text)) {
-      const l = byId((r.id as string).slice(2));
+      const l = byId(r.id.slice(2));
       if (l) ranked.push({ l, score: r.score * (1 + l.full / 12) });
     }
   }
@@ -569,23 +738,32 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     .split(" ")
     .filter((word) => word && !PADDING.has(word) && !ASKS.has(word));
   const asked = [...new Set(told.map(stem))];
-  const covers = (entry: LeadEntry, word: string) => entry.key.includes(word) || (!entry.exact && word.length >= 4 && entry.key.some((own) => own.startsWith(word)));
-  type Found = { lead: Lead; score: number; soft: boolean; article: boolean };
+  const holds = (list: string[], word: string, exact?: boolean) => list.includes(word) || (!exact && word.length >= 4 && list.some((own) => own.startsWith(word)));
+  const covers = (entry: LeadEntry, word: string) => holds(entry.key, word, entry.exact);
+  type Found = { lead: Lead; score: number; soft: boolean; article: boolean; direct: boolean };
   const dial = /\b(number|numero|nimero|phone|telephone|call|contact|hotline|helpline|appeler)\b/.test(text);
-  const collect = (hits: { id: unknown; score: number }[]) => {
+  const collect = (hits: { id: string; score: number }[]) => {
     const best = new Map<string, Found>();
-    // Of one article's parts: the one that answers; for a question about who and where, the article itself before one of its facts; then the better match.
-    const rank = (found: Found) => (found.soft ? 0 : 2e6) + (who && found.article ? 1e6 : 0) + Math.min(found.score, 9e5);
+    // Of one article's parts: the one that answers. Of those, a part that names the words in its
+    // own label or heading, or the article itself, before a part that answers only because the
+    // article's title holds them: "bus" is the article on getting around, not its fact about the
+    // metro. For a question about who and where, the article itself before one of its facts.
+    // Then the better match.
+    const rank = (found: Found) => (found.soft ? 0 : found.direct ? 2e6 : 1e6) + (who && found.article ? 2e6 : 0) + Math.min(found.score, 9e5);
     for (const r of hits) {
-      const entry = e.leads.get(r.id as string);
+      const entry = e.leads.get(r.id);
       if (!entry) continue;
       if (entry.need && !entry.need.some((word) => asked.includes(word))) continue;
       const soft = !asked.every((word) => covers(entry, word));
       // A number or a date answers or is not shown; and a question about who and where is not answered by a part deep in an article.
       if ((soft && entry.exact) || (who && !entry.whole)) continue;
+      const own = entry.own;
+      const direct = !soft && (!own || asked.every((word) => holds(own, word)));
+      // An article whose own title holds the words is the article about them: it counts half as much again.
+      const titled = !soft && entry.title !== undefined && asked.every((word) => holds(entry.title!, word));
       // A question that asks for a number wants the number before the article that mentions the body.
-      const found = { lead: soft ? { ...entry.lead, soft: true } : entry.lead, score: r.score * entry.weight * (dial && entry.lead.tag === "Number" ? 6 : 1), soft, article: Boolean(entry.article) };
-      const key = entry.guide ?? (r.id as string);
+      const found = { lead: soft ? { ...entry.lead, soft: true } : entry.lead, score: r.score * entry.weight * (dial && entry.lead.tag === "Number" ? 6 : 1) * (titled ? 1.5 : 1), soft, article: Boolean(entry.article), direct };
+      const key = entry.guide ?? r.id;
       const was = best.get(key);
       if (!was || rank(found) > rank(was)) best.set(key, found);
     }
@@ -593,17 +771,18 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
   };
   const words = told.join(" ");
   let leads = collect(of("guide", words));
-  let official = of("official", words).map((r) => data.official[Number((r.id as string).slice(2))]);
-  let sites = of("site", text).map((r) => data.sites[Number((r.id as string).slice(2))]);
+  let official = of("official", words).map((r) => data.official[Number(r.id.slice(2))]);
+  let sites = of("site", text).map((r) => data.sites[Number(r.id.slice(2))]);
   // Nothing matches as written: try close spellings. Not for a word that names a kind of business
-  // the index may simply not hold ("plumber" must not find "lumber").
-  if (!ranked.length && !leads.length && !official.length && !sites.length && !read.hint) {
+  // the index does not hold ("plumber" must not find "lumber"); a narrower word the index does
+  // hold, such as "store", does not stop the words beside it from being spelt wrongly.
+  if (!ranked.length && !leads.length && !official.length && !sites.length && !(read.hint && !e.engine.knows(read.hint.word))) {
     for (const r of of("listing", text, "AND", true)) {
-      const l = byId((r.id as string).slice(2));
+      const l = byId(r.id.slice(2));
       if (l) ranked.push({ l, score: r.score * (1 + l.full / 12) });
     }
     leads = collect(of("guide", words, "AND", true));
-    official = of("official", words, "AND", true).map((r) => data.official[Number((r.id as string).slice(2))]);
+    official = of("official", words, "AND", true).map((r) => data.official[Number(r.id.slice(2))]);
     spelling = ranked.length + leads.length + official.length > 0;
   }
   // The order of listings: how well a listing answers, and how full it is. Two things come before
@@ -636,15 +815,25 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
       .split(" ")
       .filter((word) => word && !PADDING.has(word) && !ASKS.has(word))
       .join(" ");
-    for (const r of of("listing", any, "OR").slice(0, 200)) {
-      const l = byId((r.id as string).slice(2));
-      if (l) ranked.push({ l, score: r.score });
+    const some: { l: Listing; score: number; words: number }[] = [];
+    for (const r of of("listing", any, "OR", false, prefer ? {} : { limit: 200 })) {
+      const l = byId(r.id.slice(2));
+      if (l) some.push({ l, score: r.score, words: r.words });
     }
-    leads = collect(of("guide", words, "OR").slice(0, 40))
+    if (prefer) {
+      // "Garage in Goodlands", and no garage is listed there. What holds every word still comes
+      // first; then the kind of business asked for, wherever it is: a garage in the next town is
+      // nearer the question than a pharmacy in Goodlands.
+      const most = some.reduce((n, found) => Math.max(n, found.words), 0);
+      const rank = (found: { l: Listing; words: number }) => (found.words === most && most > 1 ? 2 : found.l.cat === prefer ? 1 : 0);
+      some.sort((a, b) => rank(b) - rank(a) || b.score - a.score);
+    }
+    ranked.push(...some.slice(0, 200));
+    leads = collect(of("guide", words, "OR", false, { limit: 40 }))
       .slice(0, 6)
       .map((found) => ({ ...found, soft: true }));
-    official = of("official", words, "OR").slice(0, 20).map((r) => data.official[Number((r.id as string).slice(2))]);
-    sites = of("site", any, "OR").slice(0, 20).map((r) => data.sites[Number((r.id as string).slice(2))]);
+    official = of("official", words, "OR", false, { limit: 20 }).map((r) => data.official[Number(r.id.slice(2))]);
+    sites = of("site", any, "OR", false, { limit: 20 }).map((r) => data.sites[Number(r.id.slice(2))]);
   }
 
   // The articles that go with the kind of business asked for (src/data/site.ts) stand with the
@@ -691,12 +880,12 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
   const eating = Boolean(who && (dish || (category && e.eat.has(category.id))));
   const ways: Way[] = [];
   if (category && place) {
-    const n = pool.filter((l) => l.cat === category!.id && (l.placeSlug === place.slug || l.areaSlug === place.slug)).length;
+    const n = inCategory(category.id).filter((l) => l.placeSlug === place.slug || l.areaSlug === place.slug).length;
     if (n) ways.push({ href: `/directory/${category.id}/${place.slug}`, label: `${category.label} in ${place.name}`, n });
   }
   if (category) ways.push({ href: `/directory/${category.id}`, label: `${category.label}, all of Mauritius`, n: category.n });
   if (place) ways.push({ href: `/places/${place.slug}`, label: `Everything in ${place.name}`, n: place.n });
-  if (eating) ways.push({ href: "/baz-manzer", label: "Baz Manzer, every place to eat", n: pool.filter((l) => e.eat.has(l.cat)).length });
+  if (eating) ways.push({ href: "/baz-manzer", label: "Baz Manzer, every place to eat", n: forEating().length });
 
   // Searches near this one, from what the index holds: the same kind in the towns nearest and in
   // larger ones, the kind across the island, and everything in the town.
@@ -704,7 +893,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
   const ask = (label: string, n: number) => related.push({ href: `/search?q=${encodeURIComponent(label)}`, label, n });
   if (who && category && !dish && !kind) {
     const inTown = new Map<string, number>();
-    for (const l of pool) if (l.cat === category.id && l.placeSlug) inTown.set(l.placeSlug, (inTown.get(l.placeSlug) ?? 0) + 1);
+    for (const l of inCategory(category.id)) if (l.placeSlug) inTown.set(l.placeSlug, (inTown.get(l.placeSlug) ?? 0) + 1);
     const towns = [...inTown].map(([slug, n]) => ({ town: data.placeBySlug.get(slug), n })).filter((t): t is { town: Place; n: number } => t.town != null);
     if (place) {
       const here = (place.kind === "area" && place.within ? data.placeBySlug.get(place.within) : undefined) ?? place;
@@ -718,7 +907,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     }
   } else if (who && place && !dish && !kind) {
     const kinds = new Map<string, number>();
-    for (const l of pool) if (l.placeSlug === place.slug || l.areaSlug === place.slug) kinds.set(l.cat, (kinds.get(l.cat) ?? 0) + 1);
+    for (const l of inPlace(place.slug)) kinds.set(l.cat, (kinds.get(l.cat) ?? 0) + 1);
     for (const [id, n] of [...kinds].sort((a, b) => b[1] - a[1]).slice(0, 5)) {
       const c = data.categoryById.get(id);
       if (c && !c.id.startsWith("other-")) ask(`${c.label} in ${place.name}`, n);
@@ -780,7 +969,6 @@ export type Suggestion = { href: string; label: string; note: string; kind: Kind
 export function suggest(query: string): { suggestions: Suggestion[]; points: number[]; n: number } {
   const text = fold(query);
   if (text.length < 2) return { suggestions: [], points: [], n: 0 };
-  engine ??= build();
   const data = index();
   const a = search(query);
   const suggestions: Suggestion[] = [];
