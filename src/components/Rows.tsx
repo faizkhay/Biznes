@@ -18,6 +18,7 @@ export function ListingRow({
   paid = false,
   verified = false,
   href,
+  within,
 }: {
   listing: Listing;
   /** A word more for its line: how far away it is. */
@@ -28,10 +29,12 @@ export function ListingRow({
   verified?: boolean;
   /** Its own page, for a business its owner listed outside the open index. */
   href?: string;
+  /** Its page inside a section of the site (Baz Manzer). It is still the index's own listing, so it can be saved. */
+  within?: string;
 }) {
   const category = index().categoryById.get(l.cat);
   const where = whereOf(l);
-  const to = href ?? `/b/${l.slug}`;
+  const to = within ?? href ?? `/b/${l.slug}`;
   const marked = paid && verified;
   return (
     <article className={marked ? "row listing listing-paid" : "row listing"} data-listing={l.id} data-point={chartPoints().at.get(l.id)}>

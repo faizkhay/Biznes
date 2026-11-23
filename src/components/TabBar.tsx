@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ABOUT, MENU, MORE_PAGE, NAV, YOURS } from "@/data/site";
 import { mark } from "@/lib/nav";
+import BazTabBar, { inBaz } from "./baz/BazTabBar";
 import { PageIcon } from "./Glyphs";
 import { Glass } from "./Icons";
 
@@ -23,6 +24,7 @@ const REST = [...MENU.flatMap((group) => group.items.map((item) => item.href.spl
 export default function TabBar() {
   const pathname = usePathname();
   if (pathname === "/") return null;
+  if (inBaz(pathname)) return <BazTabBar />; // Baz Manzer has a bar of its own.
   const way = WAYS.find((item) => mark(pathname, item.href, item.also));
   const search = pathname === "/search" ? "true" : undefined;
   // "More" is lit on its own page, and on any page that is reached from it.

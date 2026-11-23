@@ -189,6 +189,13 @@ export const ARTICLE_BUSINESSES = {
  * Baz Manzer: the home of everything for eating and drinking (U, 20 November 2026: "special
  * category for food biznesses, we should have the best Baz Manzer on our apps"; and "food outlets
  * using biznes go (at least) can list their menu"). The name is Kreol for a place to eat.
+ *
+ * It is a section that stands by itself and installs as an app of its own, beside the whole of
+ * biznes.mu (U, 23 November 2026: "Baz manzer should be its own section on the site, as in people
+ * can choose to install pwa version of only thr baz manzer section on their phones instead of the
+ * whole biznes.mu"). Everything it says of itself is here: its ways round, the words of its
+ * search, of its offer to install and of its page for when there is no connection. Its addresses
+ * are built in src/lib/baz.ts, and its lists are counted from the index (src/lib/food.ts).
  */
 export const BAZ = {
   name: "Baz Manzer",
@@ -197,6 +204,38 @@ export const BAZ = {
   line: "Where to eat in Mauritius",
   meaning: "Baz manzer is Kreol for a place to eat.",
   owners: { title: "Run a place to eat?", line: "It is probably listed here already, free. On Biznes Go and Biznes Grow your page carries your own pictures and your menu." },
+  /** The app: what a phone is told about it (src/app/baz-manzer/manifest.webmanifest). */
+  app: {
+    description: "Where to eat in Mauritius: restaurants, snacks, cafés, bakeries and bars, by kind of food and by town. A part of biznes.mu that opens as an app of its own.",
+    install: "Add Baz Manzer to your home screen",
+    ios: "Tap Share, then Add to Home Screen.",
+    about: { title: "Baz Manzer on your phone", line: "This part of biznes.mu installs as an app of its own. In your browser's menu choose Install, or on an iPhone tap Share, then Add to Home Screen." },
+  },
+  /**
+   * The section's own ways round, in the order its bar at the foot of a phone shows them. The
+   * first is its first page; the header shows the others as plain links on a wide screen.
+   */
+  ways: [
+    { href: "/baz-manzer", label: "Baz Manzer", line: "The first page: what is near, and every way in" },
+    { href: "/baz-manzer/food", label: "Food", line: "Every kind of food the map records" },
+    { href: "/baz-manzer/town", label: "Towns", line: "Every town and village with a place to eat" },
+    { href: "/baz-manzer/search", label: "Search", line: "A dish, a name or a town, among places to eat only" },
+    { href: "/baz-manzer/saved", label: "Saved", line: "The places to eat you have kept" },
+  ],
+  /** The one plain way back to the whole site, from every page of the section. */
+  back: { href: "/", label: "biznes.mu", says: "biznes.mu, the whole site" },
+  /** The section's search: it looks only among places to eat, and answers inside the section. */
+  search: {
+    label: "Search places to eat",
+    placeholder: "A dish, a name or a town",
+    lede: "Ask for a dish, a kind of place, a name or a town. Baz Manzer looks only among places to eat and drink.",
+    /** Searches to try, each a real one. */
+    tries: ["pizza", "Chinese in Port Louis", "café in Curepipe", "seafood", "bakery in Quatre Bornes"],
+  },
+  /** What is near: a visitor says where they are by choosing a town, and nothing is kept of it. */
+  near: { title: "Near you", label: "Your town or village", action: "Show what is near", line: "Choose where you are. Nothing is kept of it, and your phone is not asked where it is." },
+  /** The page the worker shows inside the section when there is no connection and no kept copy. */
+  offline: { title: "You are offline", lede: "This page of Baz Manzer could not be loaded, because there is no connection just now. The places you have already opened still work.", retry: "Try again", saved: "Saved places" },
 } as const;
 
 /**

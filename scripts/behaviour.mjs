@@ -121,7 +121,7 @@ check("home: they are the day's turn of the fullest listings, the same for every
 const chosenLine = await text("main section[aria-labelledby=top-businesses] h2 + p");
 check("home: the line under the heading says how they are chosen, with the index's own count, and leads to the longer account", new RegExp(`${fullest.length} listings with a telephone number, a website, opening hours and an address on record`).test(chosenLine) && /verified business(es)? on a paid plan comes? first and (is|are) marked/i.test(chosenLine) && (await page.locator('main section[aria-labelledby=top-businesses] a[href="/data#top-businesses"]').count()) === 1, chosenLine);
 const eatLinks = await page.locator("main section[aria-labelledby=baz-manzer] a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-check("home: Baz Manzer's five kinds of place and eight kinds of food, each with its count, and a button into it", eatLinks.filter((href) => href.startsWith("/baz-manzer?type=")).length === 5 && eatLinks.filter((href) => href.startsWith("/baz-manzer?food=")).length === 8 && (await page.locator('main section[aria-labelledby=baz-manzer] a.btn[href="/baz-manzer"]').count()) === 1 && (await page.locator("main section[aria-labelledby=baz-manzer] a.tile").allInnerTexts()).every((words) => /\d/.test(words)), eatLinks.join(" "));
+check("home: Baz Manzer's five kinds of place and eight kinds of food, each with its count, and a button into it", eatLinks.filter((href) => href.startsWith("/baz-manzer/kind/")).length === 5 && eatLinks.filter((href) => href.startsWith("/baz-manzer/food/")).length === 8 && (await page.locator('main section[aria-labelledby=baz-manzer] a.btn[href="/baz-manzer"]').count()) === 1 && (await page.locator("main section[aria-labelledby=baz-manzer] a.tile").allInnerTexts()).every((words) => /\d/.test(words)), eatLinks.join(" "));
 const groupLinks = await page.locator('main section[aria-labelledby=categories] a[href^="/directory#g-"]').evaluateAll((links) => links.map((a) => a.getAttribute("href").split("#")[1]));
 const kindLinks = await page.locator('main section[aria-labelledby=categories] a.tile[href^="/directory/"]').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
 const directoryHtml = await (await page.request.get(`${origin}/directory`)).text();
@@ -371,9 +371,10 @@ await page.goto(`${origin}/places`, { waitUntil: "networkidle" });
 check("menu: the towns are the directory turned round: Directory is lit there, and one press goes between the two", (await page.locator('header nav a[href="/directory"]').getAttribute("aria-current")) === "true" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[aria-current="page"]').innerText()).trim() === "By town" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[href="/directory"]').count()) === 1);
 await page.goto(`${origin}/tools/vat`, { waitUntil: "networkidle" });
 check("menu: the tools are reached from More, and light it", (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
-await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });
+// Baz Manzer is a section that stands by itself: a reader's path there begins at its own first page, so its app never leads out of itself, and a machine's still begins at Home.
+await page.goto(`${origin}/baz-manzer/kind/restaurants`, { waitUntil: "networkidle" });
 const bazTrail = await trailOf();
-check("menu: a page that writes its own path is led to Home too", bazTrail.first === "Home|/home" && /\/home$/.test(bazTrail.machine?.item ?? ""), JSON.stringify(bazTrail));
+check("menu: inside Baz Manzer a page's path begins at the section's first page for a reader, and at Home for a machine", bazTrail.first === "Baz Manzer|/baz-manzer" && bazTrail.machine?.name === "Home" && /\/home$/.test(bazTrail.machine?.item ?? ""), JSON.stringify(bazTrail));
 await page.goto(`${origin}/learn/vat`, { waitUntil: "networkidle" });
 check("menu: a page beneath a way in lights it as the place you are in, and only the page itself is called the current page", (await page.locator('header.site-header nav a[href="/learn"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
 await page.goto(`${origin}/more`, { waitUntil: "networkidle" });
@@ -564,14 +565,17 @@ const bazAll = Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d
 check("baz manzer: a page of its own, under its awning, with every place to eat", (await text("main h1")) === "Baz Manzer" && (await page.locator("main .baz-awning").count()) === 1 && bazAll > 1000 && (await page.locator("main .baz-types a").count()) === 5, `${bazAll}`);
 check("baz manzer: kinds of food from the map's own words, and towns", (await page.locator('main nav[aria-labelledby="by-food"] a').count()) >= 10 && (await page.locator('main nav[aria-labelledby="by-town"] a').count()) >= 5);
 await page.locator('main nav[aria-labelledby="by-food"] a', { hasText: "Chinese" }).click();
-await page.waitForURL(/food=chinese/);
+await page.waitForURL(/\/baz-manzer\/food\/chinese$/);
 const bazChinese = Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0);
-check("baz manzer: a kind of food narrows the list, and is marked as chosen", bazChinese > 0 && bazChinese < bazAll && /Chinese places to eat/.test(await text("main h2#list")) && (await page.locator('main nav[aria-labelledby="by-food"] a[aria-current="true"]').count()) === 1 && (await page.locator("main article[data-listing]").count()) > 0, `${bazChinese}`);
+check("baz manzer: a kind of food is a page of its own, with only the places that serve it", bazChinese > 0 && bazChinese < bazAll && /Chinese places to eat/.test(await text("main h2#list")) && (await text("main h1")) === "Chinese" && (await page.locator("main article[data-listing]").count()) > 0, `${bazChinese}`);
 await page.locator('main nav[aria-labelledby="by-town"] a').first().click();
 await page.waitForURL(/town=/);
-check("baz manzer: and a town narrows it again", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator("main article[data-listing]").count()) > 0);
-await page.goto(`${origin}/baz-manzer`, { waitUntil: "domcontentloaded" });
+check("baz manzer: and a town narrows it again, and is marked as chosen", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator('main nav[aria-labelledby="by-town"] a[aria-current="true"]').count()) === 1 && (await page.locator("main article[data-listing]").count()) > 0);
+// Each of these two is let to finish its own requests, for the reason given above the visit to /data.
+await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });
 check("baz manzer: the articles about food stand on its shelf", (await page.locator('main #food-articles ~ ul a[href^="/learn/"]').count()) >= 1);
+// Baz Manzer's own pages have a header of their own (scripts/behaviour-baz.mjs), so the site's menu is read from a page outside it.
+await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 check("baz manzer: it is in the menu, on the Home page, in the sitemap and in llms.txt", (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && homePageHtml.includes('href="/baz-manzer"'));
 
 // 8be. The street map: nothing of it is fetched until it is asked for.
@@ -698,7 +702,7 @@ check("shop: a magazine is said to be coming, and no more than that", /biznes\.m
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await steady(await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }));
 const small = await phone.newPage();
-for (const path of ["/", "/home", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer?food=chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
+for (const path of ["/", "/home", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer/food/chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
   const over = await small.evaluate(() => Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth) - 390);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);

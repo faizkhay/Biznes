@@ -59,8 +59,10 @@ It replaces the site that sold ready-made businesses (in the repository's histor
   guide and holds none of its own (`src/lib/figures.ts` reads them by a fact's label, and
   `src/lib/sums.ts` does the arithmetic for the two tax tools and their no-script examples).
 - **Emergency numbers** (`content/emergency.json`): 43 numbers from 29 sources, each named.
-- **Baz Manzer** (`/baz-manzer`, `src/lib/food.ts`): the places to eat and drink as a section of
-  their own, by kind of place, by kind of food and by town, with a paid outlet's menu on its row.
+- **Baz Manzer** (`/baz-manzer` and everything beneath it, `src/lib/food.ts`, `src/lib/baz.ts`):
+  the places to eat and drink as a section that stands by itself, with its own header, its own
+  search and an address for each kind of place, kind of food and town, and a paid outlet's menu on
+  its row. It installs as an app of its own ("The installable app").
 - **A business's page** (`src/components/BusinessPage.tsx`): one component for a listing from the
   index (`/b/...`) and for a business its owner listed (`/biz/...`). Calm when free; with a cover,
   pictures, hours, a menu and a way to book when the owner pays and has added them.
@@ -72,8 +74,8 @@ It replaces the site that sold ready-made businesses (in the repository's histor
   visitor's browser until the order is sent.
 - **The plans** (`PLANS` in `src/data/site.ts`): Biznes Free, Biznes Go and Biznes Grow, on
   `/pricing`.
-- **The installable app**: a manifest, a service worker, an offline page and a card that offers to
-  install.
+- **The installable apps**: the whole site, and Baz Manzer by itself. Two manifests, one service
+  worker, two offline pages and a card that offers to install the one the page belongs to.
 - **Accounts** are built on their own branch and merged here (see "Accounts").
 
 ## Running it
@@ -210,30 +212,56 @@ answers.
 
 ## The installable app
 
-The owner asked for a site that is "fully pwa enabled" on iOS, Android and a desk. Five parts make
-it so.
+The owner asked for a site that is "fully pwa enabled" on iOS, Android and a desk, and then, on 23
+November 2026, for a second app beside it: "Baz manzer should be its own section on the site, as
+in people can choose to install pwa version of only thr baz manzer section on their phones instead
+of the whole biznes.mu". So the site installs as two apps, and a person takes either or both.
 
 | Part | File | What it does |
 |---|---|---|
-| The manifest | `src/app/manifest.ts`, served as `/manifest.webmanifest` | The name ("biznes" under the icon), the paper's colour, the four icons, and four pages the icon can open directly: Search, Directory, Saved, Emergency numbers |
-| The icons | `public/icons`, `src/app/apple-icon.png` | Drawn from the mark by `node scripts/icons.mjs`. Two as drawn, two on a full square of ink for a platform to cut to its own shape, one for the iOS home screen |
-| The service worker | `public/sw.js` | Lets the site open with no connection once it has been visited |
-| The offline page | `/offline` | What the worker shows in place of a page it could not fetch and holds no copy of: "You are offline", with a way to try again and a way to the saved list |
-| The install card | `src/components/Pwa.tsx` | Registers the worker, and offers to add the site to the home screen |
+| The site's manifest | `src/app/manifest.ts`, served as `/manifest.webmanifest` | The name ("biznes" under the icon), the paper's colour, the four icons, and five pages the icon can open directly: Search, Home, Directory, Emergency numbers, Saved. Some phones show only the first four, so the shortlist, which is one visitor's own, is last |
+| Baz Manzer's manifest | `src/app/baz-manzer/manifest.webmanifest/route.ts`, served as `/baz-manzer/manifest.webmanifest` | Its own id, so the two are never taken for one app; the name "Baz Manzer"; a first page and a scope of `/baz-manzer`; the awning's red for the bar at the top of a phone; its own four icons; and what its icon can open directly: the kinds of place, and the towns |
+| What a page says of its app | `src/app/layout.tsx`, `src/app/baz-manzer/layout.tsx` | Every page names one manifest, with the name for an iPhone's home screen, the touch icon and the theme colour that go with it: the section's on a page under `/baz-manzer`, the site's on every other |
+| The icons | `public/icons`, `src/app/apple-icon.png`, `src/app/baz-manzer/icon.svg` and `apple-icon.png` | All drawn by `node scripts/icons.mjs`: the site's from the mark, the section's from its awning's measures. For each app two as drawn, two on a full square for a platform to cut to its own shape, one for the iOS home screen |
+| The service worker | `public/sw.js` | One worker for both apps (its scope is the whole site). Lets a page open with no connection once it has been visited |
+| The offline pages | `/offline`, `/baz-manzer/offline` | What the worker shows in place of a page it could not fetch and holds no copy of: "You are offline", with a way to try the same address again and a way to the saved list. Inside Baz Manzer it is the section's own page, under the section's header and bar, and both ways on stay inside the section |
+| The install card | `src/components/Pwa.tsx` | Registers the worker, and offers to add to the home screen the app the page belongs to |
+
+**Two apps, and what keeps them apart.** A manifest's `id` is what a phone knows an app by, and
+its `scope` is where the app ends. The site's are both `/`; the section's are both `/baz-manzer`
+(Next writes its addresses with no stroke at the end, so the scope is the first page's own
+address). Next serves a manifest file only from the root of the site, so the section's is a route,
+made once when the site is built from the same data the pages read (`BAZ` in `src/data/site.ts`,
+the kinds of place from the index). The section's layout names it, and Next then leaves the
+site's out of the head: the checks hold that every kind of page names exactly one.
+
+An installed app that left its own scope each time a restaurant was opened would not be an app.
+So everything a person does while looking for somewhere to eat has an address under
+`/baz-manzer` ("Pages"), a place to eat has a page of its own there, and the section has its own
+header, its own bar on a phone and its own search. What is the whole site's is one plain link
+away, named as such: "biznes.mu" in the header, "Search all of biznes.mu" under a search.
 
 **What the worker answers, and how** (it is written by hand, with no library, and says so at its
 head):
 
 - **A page**: the network first; with no network, the kept copy of that page; with no copy, the
-  offline page. It keeps the last 40 pages opened.
+  offline page, and under `/baz-manzer` the section's own. It keeps the last 40 pages opened, and
+  never drops either app's first page to make room.
 - **The build's own files, the pictures behind the page, the icons and the typeface**: the kept
   copy first, since none of them changes under the same address.
 - **Any other file of the site**: the kept copy at once, and a fresh one fetched for the next time.
 - **Never**: another site, a form being sent, anything under `/api`, `/account`, `/admin`,
-  `/dashboard` or `/auth`, a signed request, a request for part of a file, or Next's own request
-  for a page's data.
-- **From the first visit** it keeps the offline page with the files it needs, the icons, and the
-  first screen, so the installed app opens with no connection from the first day.
+  `/dashboard` or `/auth`, a signed request, a request for part of a file, Next's own request
+  for a page's data, or what Baz Manzer's search box asks while a question is typed.
+- **From the first visit** it keeps both offline pages with the files they need, the site's icons,
+  and the site's first page, so the installed app opens with no connection from the first day.
+- **The first page a visitor ever opens** was fetched before there was a worker, so the worker
+  holds no copy of it. Once the worker is ready the page asks to be kept (`Pwa.tsx` sends its
+  address; the worker listens only to an address of this site that is not a private one) and the
+  worker fetches it once more. "The pages you have already opened still work" is then true of the
+  very first.
+- **Baz Manzer's first page** is kept the first time any page of the section is opened, so the
+  app opens with no connection even when it was installed from a restaurant's page.
 - **A redirect** it resolves itself. On a page's first making the server can give a redirect's
   address twice, which a browser forgives and a worker's sealed copy does not, so the worker asks
   where the address leads and sends the browser there.
@@ -241,17 +269,52 @@ head):
 **When to raise `VERSION`** at the head of `public/sw.js`: when the file changes what it keeps, and
 when a file under `/themes/` or `/icons/` is replaced under the same name (a new picture, a new
 mark). The older version's kept files are then deleted on every device at its next visit. A
-picture or an icon given a new name needs no change.
+picture or an icon given a new name needs no change. It is `v3` since the section's pages joined.
 
-**The install card.** Where the browser makes the offer (Android, a desk), the card has an
-"Install" button. On an iPhone or an iPad, which make no offer, it says where to tap: Share, then
-Add to Home Screen. It shows nothing inside the installed app, nothing inside another app's own
-browser on iOS, and nothing for thirty days once it has been closed. On a phone it sits above the
-tab bar; on a wide screen, in the bottom right corner.
+**The install card.** One card, for the app the page belongs to: "Add Baz Manzer to your home
+screen" on a page of the section, "Add biznes.mu to your home screen" on every other. Where the
+browser makes the offer (Android, a desk), the card has an "Install" button. On an iPhone or an
+iPad, which make no offer, it says where to tap: Share, then Add to Home Screen. It shows nothing
+inside an installed app, nothing inside another app's own browser on iOS, and nothing on the
+landing page, which is one screen with one question and has no bar for a card to sit above: the
+offer waits for the next page. Closed, the site's
+stays away for thirty days and the section's for good; closing one does not close the other. On a
+phone it sits above the tab bar; on a wide screen, in the bottom right corner. The section's
+first page also says in a sentence that it installs, for whoever closed the card.
+
+The browser's offer is for the manifest the page named when the offer was made. A step from the
+site into the section changes the manifest without loading a page, so the card is shown only on
+pages of the app its offer was made for. Chromium was seen to make a new offer for the new
+manifest within a few seconds of such a step. The way back from the section ("biznes.mu") is a
+whole page load, so the browser reads the site's manifest afresh.
 
 The saved list keeps what it needs to show each listing beside the list itself, in the browser, so
-it still opens with no connection. The privacy page says what an installed copy keeps on the
-device.
+it still opens with no connection. The section's saved places are the same list, narrowed to
+places to eat. The privacy page says what an installed copy keeps on the device.
+
+**How the two apps are checked.** `npm run behaviour:baz` (`scripts/behaviour-baz.mjs`), against a
+production server: the section's manifest and every field an installer reads; one manifest named
+on each kind of page, inside the section and outside it; the old addresses; that no link to a
+place, a kind, a kind of food or a town leaves the section; the search; the header and the bar;
+the offer to install; axe-core on each kind of page at both sizes; and the pages with the network
+off. For that last part it starts a second server and stops it, because a browser's own
+"offline" switch does not reach a service worker's requests: with the switch alone a page was
+reported as opening offline that had in truth been fetched.
+
+**What was tried, and on what** (23 November 2026). The build machine has Chromium only.
+
+- In Chromium with a window and a profile of its own: the browser read both manifests with no
+  error and found nothing against installing either; it made its offer for the section's on a page
+  of the section and for the site's elsewhere; both were then installed side by side, as two apps
+  with two ids, and each opened in a window of its own on its own first page. In the Baz Manzer
+  window a restaurant opened inside the app.
+- **Not tried on a real Android phone**: the icon on a home screen and how the maskable one is
+  cut, the splash screen, the red bar at the top, the shortcuts on a long press, and a link to a
+  page of the section opening in the Baz Manzer app when both are installed.
+- **Not tried on an iPhone or an iPad at all.** There the card is shown to anything that names
+  itself an iPhone, and it was checked with that name on Chromium. Whether Safari takes the
+  section's name, icon and first page from a page of the section when "Add to Home Screen" is
+  tapped has not been seen, nor whether a list saved in Safari is there in the installed app.
 
 ## Accounts
 
@@ -1235,10 +1298,27 @@ each question, since it keeps them by kind of business and by town.
 
 ### Baz Manzer
 
-`BAZ` in `src/data/site.ts` holds its words, and `src/lib/food.ts` its lists: the kinds of place
-are the categories of the "eat" group, and the kinds of food are counted from what the map
-records for each place. Nothing is typed in. A verified outlet on a paid plan comes first and is
-marked; its menu, when it has given one, shows on its row and in full on its own page.
+`BAZ` in `src/data/site.ts` holds its words: its name and line, its ways round (the bar on a
+phone and the header's links are drawn from them), the words of its search, of its offer to
+install and of its offline page. `src/lib/food.ts` holds its lists: the kinds of place are the
+categories of the "eat" group, the kinds of food are counted from what the map records for each
+place, and the towns are the ones a place to eat stands in. Nothing is typed in. A verified
+outlet on a paid plan comes first and is marked; its menu, when it has given one, shows on its
+row and in full on its own page.
+
+`src/lib/baz.ts` builds its addresses, and `bazHref` there gives every list exactly one: a kind
+of food, a kind of place, a town and a kind of place in a town are addresses; a kind of food
+narrowed by place or by town, a telephone number, a website and the page of a long list are
+parameters after them. The old addresses, which were all parameters of `/baz-manzer`, are led to
+the new by the pages themselves, for good.
+
+Its search has no engine of its own (`foodSearch` in `src/lib/food.ts`). It asks the site's search
+by its exported names: `understand` reads the question, and a town alone, a kind of place alone
+or a kind of place in a town is the list itself; anything else is asked of `search`, a page of
+answers at a time, and the places to eat among the answers are kept in the order the search gave
+them. It looks through at most the first 800 listings that answer, and says so when there were
+more. What is near is a town the visitor chooses: the site's own policy turns the browser's
+location off (`Permissions-Policy` in `next.config.ts`), and nothing is kept of the choice.
 
 ### What goes with an article
 
@@ -1552,7 +1632,15 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/emergency` | The emergency numbers, each a link that dials, each with its source | Ahead of time |
 | `/pricing` | The three plans, and what paying changes | Ahead of time |
 | `/shop` | The biznes.mu Pocket Guide: the cover, what is inside, the price, when it is free, the places a business can take in it, and the magazine to come. `/shop/[slug]/download` hands the edition out only while it is free | Ahead of time |
-| `/baz-manzer` | Places to eat and drink: by kind of place (`type=`), kind of food (`food=`) and town (`town=`), with the filters, the island and the articles on food | On each request |
+| `/baz-manzer` | The front of Baz Manzer: its own search, a town to choose for what is near, the kinds of place, the kinds of food, the towns, then every place to eat with the filters (`phone=1`, `web=1`, `page=`), the island and the articles on food. The old addresses (`type=`, `food=`, `town=`) lead to the ones below | On each request |
+| `/baz-manzer/kind/[kind]`, `/baz-manzer/kind/[kind]/[town]` | A kind of place (restaurants, snacks and takeaways, cafés, bakeries, bars), and that kind in one town. The second is not put forward to search engines: the directory's own page for it is | On each request |
+| `/baz-manzer/food`, `/baz-manzer/food/[food]` | Every kind of food the map records; and one kind, which `type=` and `town=` narrow | The first ahead of time; the second on each request |
+| `/baz-manzer/town`, `/baz-manzer/town/[town]` | Every town and village with somewhere to eat, district by district; and one town or neighbourhood, with the towns nearest it and how far each is | The first ahead of time; the second on each request |
+| `/baz-manzer/p/[slug]` | A place to eat, inside the section: the same page as `/b/[slug]` (or `/biz/[slug]`), which stays its one address for a search engine, with the section's path at its head. Only a place to eat has one | The first time it is asked for, then kept |
+| `/baz-manzer/search?q=` | The section's own search: only places to eat, every answer inside the section. Never indexed | On each request |
+| `/baz-manzer/saved` | The shortlist, narrowed to places to eat. `?ids=` shows a list someone sent. Never indexed | On each request |
+| `/baz-manzer/offline` | What the installed Baz Manzer shows with no connection and no kept copy | Ahead of time |
+| `/baz-manzer/suggest` | The section's search box's suggestions | On each request |
 | `/cart` | What the visitor means to buy, with the total, and the way to send the order. Never indexed | Ahead of time; its contents are read in the browser |
 | `/about` | Who makes the site | Ahead of time |
 | `/saved` | The visitor's shortlist, read from their browser. `/saved?ids=` shows a list someone sent | On each request |
@@ -1567,7 +1655,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/api/enquiry` | Takes the form's requests and delivers them | On each request |
 | `/points.json`, `/markers.json` | Where every listing sits on the island; and, for the street map, each placed listing with its name and kind | Ahead of time |
 | `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt` | For machines: who may crawl, every public page, what the site holds, and every article whole | Ahead of time |
-| `/manifest.webmanifest`, `/sw.js` | For the installable app | Ahead of time |
+| `/manifest.webmanifest`, `/baz-manzer/manifest.webmanifest`, `/sw.js` | For the two installable apps | Ahead of time |
 
 Plus the icons, the link preview cards (one drawn for each kind of page that has its own) and the
 404, which carries the search box. A page named `*.dev.tsx` is a page only under `npm run dev`:

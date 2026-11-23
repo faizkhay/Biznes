@@ -9,6 +9,7 @@ import JsonLd from "@/components/JsonLd";
 import { ListingRow } from "@/components/Rows";
 import { ABOUT, BAZ, HOME, MENU, MORE_PAGE, YOURS, site } from "@/data/site";
 import { owned } from "@/lib/accounts/owned";
+import { baz } from "@/lib/baz";
 import { dialHref, emergency } from "@/lib/emergency";
 import { food } from "@/lib/food";
 import { count, day } from "@/lib/format";
@@ -215,7 +216,7 @@ export default async function HomePage() {
             <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
               {eat.types.map((type) => (
                 <li key={type.id}>
-                  <Tile href={`${BAZ.href}?type=${type.id}`} rel="nofollow" icon={<CategoryIcon id={type.id} group={type.group} />} label={type.label} note={`${count(type.n)} listed`} />
+                  <Tile href={baz.kind(type.id)} icon={<CategoryIcon id={type.id} group={type.group} />} label={type.label} note={`${count(type.n)} listed`} />
                 </li>
               ))}
             </ul>
@@ -223,7 +224,7 @@ export default async function HomePage() {
             <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {eat.cuisines.slice(0, 8).map((cuisine) => (
                 <li key={cuisine.id}>
-                  <Tile quiet href={`${BAZ.href}?food=${cuisine.id}`} rel="nofollow" icon={<FoodIcon id={cuisine.id} />} label={cuisine.label} note={`${count(cuisine.n)} places`} />
+                  <Tile quiet href={baz.food(cuisine.id)} icon={<FoodIcon id={cuisine.id} />} label={cuisine.label} note={`${count(cuisine.n)} places`} />
                 </li>
               ))}
             </ul>
