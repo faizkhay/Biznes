@@ -249,7 +249,7 @@ check("a place's structured data names its listing's address, once", data.filter
 
 // 6. What is near: a town is chosen, and the form leads to the town's own page, with no script too.
 {
-  const plain = await browser.newContext({ javaScriptEnabled: false, viewport: deskSize });
+  const plain = await steady(await browser.newContext({ javaScriptEnabled: false, viewport: deskSize }));
   const bare = await plain.newPage();
   await bare.goto(origin + ROOT, { waitUntil: "domcontentloaded" });
   check("no script: the first page is whole: its name, its ways in and its list", (await bare.locator("main h1").innerText()) === "Baz Manzer" && (await bare.locator("main article[data-listing]").count()) === 20 && (await bare.locator("main .baz-types a").count()) === 5);
@@ -470,8 +470,10 @@ for (const [name, path] of INSIDE) {
 
 // 11. With the network off: a page of the section opens after one visit, and the section has its
 // own page for when one cannot. The network is taken away by stopping the server the pages came
-// from, which the worker's own requests feel as a phone's would. No routing here, so the browser's
-// own cache serves the page's files as it would on a phone.
+// from, which the worker's own requests feel as a phone's would. This one context is not made
+// steady (scripts/pages.mjs): that turns the browser's own cache off, and on a phone it is that
+// cache which serves the files of a page first opened before the worker was there. No visit here
+// waits for an idle network, which is what steady is for.
 {
   const { spawn } = await import("node:child_process");
   const answers = () => fetch(`${alt}${ROOT}/offline`).then((response) => response.ok, () => false);
