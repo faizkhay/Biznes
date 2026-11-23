@@ -6,7 +6,8 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 export const PAGES = [
-  ["home", "/"],
+  ["landing", "/"],
+  ["home", "/home"],
   ["search", "/search?q=pharmacy+in+curepipe"],
   ["search-guides", "/search?q=vat"],
   ["search-none", "/search?q=zzqqxx"],

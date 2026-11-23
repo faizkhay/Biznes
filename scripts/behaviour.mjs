@@ -14,8 +14,10 @@
 // Exits 1 if any check fails.
 //
 // Needs: playwright (devDependency).
+import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { chromium } from "playwright";
+import ts from "typescript";
 import { browserPath, steady } from "./pages.mjs";
 
 const origin = process.argv[2] ?? "http://localhost:3100";
@@ -52,22 +54,108 @@ const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const text = (selector) => page.locator(selector).first().innerText();
 
-// 1. The first screen, and the chart.
+// 1. The landing page: the picture, the site's line, the search and one button, on one screen.
 await page.goto(origin, { waitUntil: "networkidle" });
-check("home: one h1, and the owner's line under it", (await page.locator("h1").count()) === 1 && /search engine/i.test(await text("main section p.body-1")));
-check("home: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights|market|teafields|chamarel|harbour|village|sunset)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
-await page.waitForFunction(() => document.querySelector(".chart")?.dataset.live === "true", null, { timeout: 15000 }).catch(() => {});
-check("home: the chart goes live with script", (await page.locator('.chart[data-live="true"]').count()) === 1);
+check("landing: one h1, and it is the site's own line", (await page.locator("h1").count()) === 1 && (await text("main h1")).trim() === "The search engine for business in Mauritius");
+check("landing: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights|market|teafields|chamarel|harbour|village|sunset)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
+check("landing: at a desk the search box has the keyboard from the start", (await page.evaluate(() => document.activeElement?.id)) === "home-search");
+const landing = await page.evaluate(() => ({
+  buttons: [...document.querySelectorAll("main a.btn")].map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","),
+  under: document.querySelectorAll("main h2, main h3, main article, main .tile, main .start-tile, main .card, main .chart").length,
+  sheet: getComputedStyle(document.querySelector("main"), "::before").content,
+  tall: document.documentElement.scrollHeight - innerHeight,
+  search: document.querySelectorAll('main form[role="search"] input[name="q"], main form input[name="q"]').length,
+}));
+check("landing: the search, one button that says Home, and nothing under them: no tiles, no bands, no lists, no sheet", landing.buttons === "Home|/home" && landing.under === 0 && landing.search === 1 && landing.sheet === "none", JSON.stringify(landing));
+check("landing: it is one screen at a desk", landing.tall <= 0, `${landing.tall}px over`);
+const head = await page.evaluate(() => ({
+  links: [...document.querySelectorAll("header.site-header a")].filter((a) => a.getBoundingClientRect().width > 0).map((a) => a.getAttribute("href").split("/").slice(0, 2).join("/")).join(","),
+  others: document.querySelectorAll("header.site-header nav, header.site-header details, header.site-header input, header.site-header form").length,
+}));
+check("landing: the header is only the name, the cart and the account", head.links === "/,/cart,/account" && head.others === 0, JSON.stringify(head));
+const foot = await page.evaluate(() => {
+  const line = document.querySelector("main .landing-foot");
+  const box = line.getBoundingClientRect();
+  return { words: line.innerText.replace(/\s+/g, " "), links: [...line.querySelectorAll("nav a")].map((a) => a.getAttribute("href")).join(","), onScreen: box.top > innerHeight / 2 && box.bottom <= innerHeight, card: getComputedStyle(document.querySelector("footer.site-footer")).display };
+});
+check("landing: in the footer's place, one quiet line: whose product it is, in the owner's words, and three pages", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(foot.words) && foot.links === "/about,/privacy,/more" && foot.onScreen && foot.card === "none", JSON.stringify(foot));
+check("landing: the skip link is still the first thing the keyboard meets", (await page.evaluate(() => document.querySelector("body a")?.getAttribute("href"))) === "#main" && (await page.locator("a.skip-link").count()) === 1);
+await page.evaluate(() => document.activeElement?.blur());
+await page.keyboard.press("/");
+check("landing: the / key goes to its search box", (await page.evaluate(() => document.activeElement?.id)) === "home-search");
 const pts = await (await page.request.get(`${origin}/points.json`)).json();
 check("points.json: pairs of whole numbers", Array.isArray(pts) && pts.length > 10000 && pts.length % 2 === 0 && pts.every(Number.isInteger), `${pts.length}`);
 
-// 2. Typing: suggestions, the keyboard, and the chart lighting what answers.
+// 1b. The Home page: everything, set out with icons, in the owner's order.
+await page.locator('main a.btn[href="/home"]').click();
+await page.waitForURL(/\/home$/);
+await page.waitForLoadState("networkidle");
+check("home: the landing page's button leads to it, and the header says that is where you are", (await text("main h1")).trim() === "Home" && (await page.locator('header.site-header nav a[href="/home"]').getAttribute("aria-current")) === "page");
+const parts = await page.evaluate(() => [...document.querySelectorAll("main h2")].map((h) => `${h.textContent.trim()}|${h.id}`));
+check("home: its five parts, in the owner's order, each under a plain heading", parts.join(",") === "Top businesses|top-businesses,Baz Manzer|baz-manzer,Categories|categories,Regions|regions,Useful|useful", parts.join(","));
+const jumps = await page.locator('main nav[aria-label="On this page"] a').evaluateAll((links) => links.map((a) => a.getAttribute("href")).join(","));
+check("home: each part can be jumped to, and each has a way to see all of it", jumps === "#top-businesses,#baz-manzer,#categories,#regions,#useful" && (await page.evaluate(() => ["/directory", "/baz-manzer", "/places", "/more"].every((href) => document.querySelector(`main section a[href="${href}"]`)))));
+// The top businesses. What "top" means is said on the page and on /data, and checked here against the index itself.
+const { turnOf } = await import(`data:text/javascript,${encodeURIComponent(ts.transpileModule(readFileSync(new URL("../src/lib/turn.ts", import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText)}`);
+const everyListing = JSON.parse(readFileSync(new URL("../data/index/listings.json", import.meta.url), "utf8"));
+const fullest = everyListing.filter((l) => l.phone?.length && l.web && l.hours && l.street).sort((a, b) => a.id.localeCompare(b.id));
+const topRows = await page.locator("main section[aria-labelledby=top-businesses] article[data-listing]").evaluateAll((rows) => rows.map((row) => ({ id: row.dataset.listing, paid: row.classList.contains("listing-paid"), marked: Boolean(row.querySelector(".verified")), tel: Boolean(row.querySelector('a[href^="tel:"]')), web: Boolean(row.querySelector('a[href^="http"]')) })));
+const fullIds = new Set(fullest.map((l) => l.id));
+const paidFirst = topRows.every((row, i) => row.paid === row.marked && (row.paid || !topRows.slice(i).some((later) => later.paid)));
+check("home: eight top businesses; one that pays is first and marked, and every other has a telephone number, a website, hours and an address on record", topRows.length === 8 && paidFirst && topRows.filter((row) => !row.paid).every((row) => fullIds.has(row.id) && row.tel && row.web), JSON.stringify(topRows.map((row) => row.id)));
+// The page is made again at most once an hour, so just after midnight in Mauritius it may still show the day before.
+const mauritius = (daysAgo) => new Date(Date.now() + 4 * 3600e3 - daysAgo * 864e5).toISOString().slice(0, 10);
+const openRows = topRows.filter((row) => !row.paid).map((row) => row.id);
+const turnOn = (day) => turnOf(fullest.filter((l) => !topRows.some((row) => row.paid && row.id === l.id)), openRows.length, day).map((l) => l.id).join(",");
+check("home: they are the day's turn of the fullest listings, the same for everyone on a given day", [mauritius(0), mauritius(1)].some((day) => turnOn(day) === openRows.join(",")), `${openRows.join(",")} against ${turnOn(mauritius(0))}`);
+{
+  const day = (n) => new Date(n * 864e5).toISOString().slice(0, 10);
+  const round = Math.ceil(fullest.length / 8);
+  const from = Math.floor(Date.now() / 864e5 / round) * round;
+  const turns = new Map();
+  for (let n = from; n < from + round; n++) for (const l of turnOf(fullest, 8, day(n))) turns.set(l.id, (turns.get(l.id) ?? 0) + 1);
+  const twice = turnOf(fullest, 8, day(from)).map((l) => l.id).join(",") === turnOf(fullest, 8, day(from)).map((l) => l.id).join(",");
+  const moves = turnOf(fullest, 8, day(from)).map((l) => l.id).join(",") !== turnOf(fullest, 8, day(from + 1)).map((l) => l.id).join(",");
+  check(`home: in a run of ${round} days every one of the ${fullest.length} fullest listings has its turn, and a day's eight do not change within the day`, turns.size === fullest.length && twice && moves && (fullest.length % 8 !== 0 || [...turns.values()].every((n) => n === 1)), `${turns.size} of ${fullest.length}`);
+}
+const chosenLine = await text("main section[aria-labelledby=top-businesses] h2 + p");
+check("home: the line under the heading says how they are chosen, with the index's own count, and leads to the longer account", new RegExp(`${fullest.length} listings with a telephone number, a website, opening hours and an address on record`).test(chosenLine) && /verified business(es)? on a paid plan comes? first and (is|are) marked/i.test(chosenLine) && (await page.locator('main section[aria-labelledby=top-businesses] a[href="/data#top-businesses"]').count()) === 1, chosenLine);
+const eatLinks = await page.locator("main section[aria-labelledby=baz-manzer] a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+check("home: Baz Manzer's five kinds of place and eight kinds of food, each with its count, and a button into it", eatLinks.filter((href) => href.startsWith("/baz-manzer?type=")).length === 5 && eatLinks.filter((href) => href.startsWith("/baz-manzer?food=")).length === 8 && (await page.locator('main section[aria-labelledby=baz-manzer] a.btn[href="/baz-manzer"]').count()) === 1 && (await page.locator("main section[aria-labelledby=baz-manzer] a.tile").allInnerTexts()).every((words) => /\d/.test(words)), eatLinks.join(" "));
+const groupLinks = await page.locator('main section[aria-labelledby=categories] a[href^="/directory#g-"]').evaluateAll((links) => links.map((a) => a.getAttribute("href").split("#")[1]));
+const kindLinks = await page.locator('main section[aria-labelledby=categories] a.tile[href^="/directory/"]').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+const directoryHtml = await (await page.request.get(`${origin}/directory`)).text();
+check("home: the thirteen groups of the directory, each leading to its own part of it, and the dozen kinds most listed", groupLinks.length === 13 && groupLinks.every((id) => directoryHtml.includes(`id="${id}"`)) && kindLinks.length === 12 && kindLinks.every((href) => directoryHtml.includes(`href="${href}"`)), `${groupLinks.length} groups, ${kindLinks.length} kinds`);
+const regionLinks = await page.locator('main section[aria-labelledby=regions] a[href^="/places#d-"]').evaluateAll((links) => links.map((a) => ({ id: a.getAttribute("href").split("#")[1], words: a.innerText })));
+const placesHtml = await (await page.request.get(`${origin}/places`)).text();
+check("home: the ten regions, Rodrigues among them, each with its count and its largest towns, leading to its part of the towns", regionLinks.length === 10 && regionLinks.some((region) => region.id === "d-rodrigues" && /Port Mathurin/.test(region.words)) && regionLinks.every((region) => placesHtml.includes(`id="${region.id}"`) && /\d+ listed/.test(region.words)), regionLinks.map((region) => region.id).join(" "));
+await page.waitForFunction(() => document.querySelector(".chart")?.dataset.live === "true", null, { timeout: 15000 }).catch(() => {});
+check("home: the island stands beside the regions, and goes live with script", (await page.locator('main section[aria-labelledby=regions] .chart[data-live="true"]').count()) === 1);
+const dial = await page.locator("main section[aria-labelledby=useful] ul.dial").first().locator("a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+check("home: the numbers to call lead with the police's, each a link that dials it", dial[0] === "tel:999" && dial.includes("tel:112") && dial.includes("tel:114") && dial.includes("tel:115") && (await page.locator('main section[aria-labelledby=useful] a[href="/emergency"]').count()) === 1, dial.join(" "));
+const holidayRows = await page.locator("main section[aria-labelledby=useful] article[aria-labelledby=holidays] ul.dial li").allInnerTexts();
+const holidaysPage = await (await page.request.get(`${origin}/holidays`)).text();
+check("home: the next public holiday, with its day of the week, as the holidays page has it", holidayRows.length >= 1 && /Next/.test(holidayRows[0]) && /(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day \d+ \w+ 20\d\d/.test(holidayRows[0]) && holidaysPage.includes(holidayRows[0].match(/\w+day \d+ \w+ 20\d\d/)[0]), holidayRows[0]);
+const usefulLinks = await page.locator("main section[aria-labelledby=useful] a.start-tile").evaluateAll((links) => links.map((a) => a.getAttribute("href")).join(","));
+check("home: and the pages people come back to: articles, tools, the Pocket Guide, the glossary, official pages, and the way to list a business", usefulLinks === "/learn,/tools,/shop,/learn/glossary,/official,/pricing", usefulLinks);
+const icons = await page.evaluate(() => {
+  const ways = [...document.querySelectorAll("main a.tile, main a.start-tile")];
+  const size = () => [...new Set([...document.querySelectorAll("main a.tile:not(.tile-quiet) .tile-icon svg")].map((svg) => Math.round(svg.getBoundingClientRect().width)))].join(",");
+  const before = size();
+  document.querySelector(".home").style.setProperty("--home-icon", "2rem");
+  const after = size();
+  document.querySelector(".home").style.removeProperty("--home-icon");
+  return { ways: ways.length, beside: ways.every((a) => a.querySelector(".tile-icon svg[aria-hidden=true]") && a.innerText.trim().length > 2), before, after };
+});
+check("home: every way in has an icon beside its words, hidden from a screen reader, at a size set in one place", icons.ways >= 54 && icons.beside && icons.before === "22" && icons.after === "32", JSON.stringify(icons));
+check("home: nothing is marked as paid or sponsored that is not: every mark is on a paid row, and an advertisement says it is one", topRows.filter((row) => row.marked).length === (await page.locator("main .verified").count()) && (await page.locator("main aside.ad").count()) === (await page.locator("main aside.ad", { hasText: "Sponsored" }).count()));
+
+// 2. Typing: suggestions and the keyboard.
+await page.goto(origin, { waitUntil: "networkidle" });
 await page.fill("#home-search", "pharm");
 await page.waitForSelector('[role="listbox"] [role="option"]', { timeout: 8000 }).catch(() => {});
 const options = await page.locator('[role="listbox"] [role="option"]').count();
 check("search box: suggestions while typing", options >= 3, `${options}`);
-await page.waitForFunction(() => /lit for your question/.test(document.querySelector('[role="status"]')?.textContent ?? ""), null, { timeout: 5000 }).catch(() => {});
-check("home: the chart says how many it lit", /\d+ lit for your question/.test(await page.locator('main [role="status"]').first().innerText()));
 await page.keyboard.press("ArrowDown");
 check("search box: arrow key marks an option", (await page.locator('[role="option"][aria-selected="true"]').count()) === 1);
 check("search box: the input points at it", ((await page.getAttribute("#home-search", "aria-activedescendant")) ?? "").length > 0);
@@ -135,11 +223,17 @@ const cardUrl = articleHtml.match(/<meta property="og:image" content="([^"]+)"/)
 const card = await page.request.get(`${origin}${new URL(cardUrl, origin).pathname}`);
 check("an article has a card of its own for when its link is pasted", /\/learn\/vat\/opengraph-image/.test(cardUrl) && card.status() === 200 && /image\/png/.test(card.headers()["content-type"] ?? "") && (await card.body()).length < 300000, cardUrl);
 const homeHtml = await (await page.request.get(origin)).text();
-check("the first screen's card is the picture, with its size and a description", /<meta property="og:image" content="[^"]*\/og\.jpg"/.test(homeHtml) && /og:image:width" content="1200"/.test(homeHtml) && /twitter:card" content="summary_large_image"/.test(homeHtml));
+check("the landing page's card is the picture, with its size and a description", /<meta property="og:image" content="[^"]*\/og\.jpg"/.test(homeHtml) && /og:image:width" content="1200"/.test(homeHtml) && /twitter:card" content="summary_large_image"/.test(homeHtml));
+check("the landing page is still the site's front door for a search engine: its title, the site with its search, and who is behind it", /<title>biznes\.mu · The search engine for business in Mauritius<\/title>/.test(homeHtml) && /"@type":"WebSite"/.test(homeHtml) && /"@type":"SearchAction"/.test(homeHtml) && /\/search\?q=\{query\}/.test(homeHtml) && /"@type":"Organization"/.test(homeHtml) && /<link rel="canonical" href="https?:\/\/[^"/]+\/?"/.test(homeHtml));
 const sitemap = await (await page.request.get(`${origin}/sitemap.xml`)).text();
 check("sitemap: listings, guides, towns", (sitemap.match(/<loc>/g) ?? []).length > 7000 && /\/learn\/vat</.test(sitemap) && /\/places\/curepipe</.test(sitemap));
 const llms = await (await page.request.get(`${origin}/llms.txt`)).text();
 check("llms.txt: names the guides and the sources", /OpenStreetMap/.test(llms) && /\/learn\/vat/.test(llms));
+const homePageHtml = await (await page.request.get(`${origin}/home`)).text();
+const homeCardUrl = homePageHtml.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? "";
+const homeCard = await page.request.get(`${origin}${new URL(homeCardUrl, origin).pathname}`);
+check("the Home page has a title, a description and a drawn card of its own, and is in the sitemap and in llms.txt", /<title>Home: businesses, food and regions of Mauritius · biznes\.mu<\/title>/.test(homePageHtml) && /<meta name="description" content="The Home page of biznes\.mu/.test(homePageHtml) && /\/home\/opengraph-image/.test(homeCardUrl) && homeCard.status() === 200 && /image\/png/.test(homeCard.headers()["content-type"] ?? "") && /\/home</.test(sitemap) && /\[Home\]\([^)]*\/home\)/.test(llms), homeCardUrl);
+check("the Home page says what it holds to a machine: a list of the day's top businesses, by their own addresses", /"@type":"CollectionPage"/.test(homePageHtml) && /"@type":"ItemList","name":"Top businesses","numberOfItems":8/.test(homePageHtml));
 const sug = await (await page.request.get(`${origin}/api/suggest?q=bank+port+louis`)).json();
 check("suggest: answers and points", sug.suggestions.length > 0 && sug.points.length > 0 && sug.n > 0);
 
@@ -218,8 +312,11 @@ check("form: the sixth request in ten minutes is refused", last === 429, `${last
 // 8. Without script: the form asks, the page answers, the chart is drawn, the sums are shown.
 const plain = await steady(await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } }));
 const still = await plain.newPage();
-await still.goto(origin, { waitUntil: "domcontentloaded" });
+await still.goto(`${origin}/home`, { waitUntil: "domcontentloaded" });
 check("no script: the chart is drawn, with its dots", (await still.locator(".chart svg path.chart-dots").count()) === 3 && (await still.locator(".chart svg path.chart-coast").count()) >= 2);
+check("no script: the Home page is whole: its five parts, the eight businesses, every tile and the numbers to call", (await still.locator("main h2").count()) === 5 && (await still.locator("main article[data-listing]").count()) === 8 && (await still.locator("main a.tile, main a.start-tile").count()) >= 54 && (await still.locator('main a[href="tel:999"]').count()) === 1);
+await still.goto(origin, { waitUntil: "domcontentloaded" });
+check("no script: the landing page still has its search and its one button", (await still.locator("main #home-search").count()) === 1 && (await still.locator('main a.btn[href="/home"]').count()) === 1);
 await still.fill("#home-search", "dentist");
 await still.press("#home-search", "Enter");
 await still.waitForURL(/\/search\?q=dentist/, { timeout: 8000 }).catch(() => {});
@@ -247,15 +344,19 @@ check("answers: the site knows who makes it", /product of Khay Digital.*\| \/abo
 check("answers: words that are only partly found are never shown as the answer, and the page says so", (await answerTo("khayzzq digital")) === "" && /holds some of its words/.test(await page.locator('main p[role="status"]').first().innerText()));
 check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 
-// 8a. The menu: four plain links, each one press from its page, and one list that opens.
+// 8a. The menu: four plain links, each one press from its page, Home the first of them, and one list that opens.
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 const openLists = () => page.locator("header details[open]").count();
 const ways = await page.locator('header nav[aria-label="Main"] > ul > li > a').evaluateAll((links) => links.map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}|${a.getAttribute("aria-current") ?? ""}`));
-check("menu: the four ways in are plain links, and the one you are on says so", ways.join(",") === "Directory|/directory|page,Baz Manzer|/baz-manzer|,Articles|/learn|,Tools|/tools|", ways.join(","));
+check("menu: the four ways in are plain links, Home the first, and the one you are on says so", ways.join(",") === "Home|/home|,Directory|/directory|page,Baz Manzer|/baz-manzer|,Articles|/learn|", ways.join(","));
+check("menu: the name leads to the landing page, where the search is, and says so", (await page.locator("header a.logo").getAttribute("href")) === "/" && (await page.locator("header a.logo").getAttribute("aria-label")) === "biznes.mu, search");
+const trailOf = async () => ({ first: await page.locator('main nav[aria-label="You are here"] a').first().evaluate((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`), machine: (await page.locator('script[type="application/ld+json"]').allInnerTexts()).map((body) => JSON.parse(body)).find((item) => item["@type"] === "BreadcrumbList")?.itemListElement?.[0] });
+const trail = await trailOf();
+check("menu: the first step of a page's path is Home, for a reader and for a machine", trail.first === "Home|/home" && trail.machine?.name === "Home" && /\/home$/.test(trail.machine?.item ?? ""), JSON.stringify(trail));
 check("menu: one thing in the header opens, and it is closed until it is asked for", (await page.locator("header details").count()) === 1 && (await openLists()) === 0);
 await page.locator("header summary", { hasText: "More" }).click();
 const moreLines = await page.locator("header details[open] .menu-item:visible").allInnerTexts();
-check("menu: More opens to the pages wanted less often, each named and with a line about it", moreLines.length === 9 && /Emergency numbers\s+Who to call/.test(moreLines.join("\n")) && /Every page, in one list/.test(moreLines.at(-1)), moreLines.join(" / ").replace(/\n/g, ": "));
+check("menu: More opens to the pages wanted less often, the tools at their head, each named and with a line about it", moreLines.length === 10 && /^Tools\s+Income tax/.test(moreLines[0]) && /Emergency numbers\s+Who to call/.test(moreLines.join("\n")) && /Every page, in one list/.test(moreLines.at(-1)), moreLines.join(" / ").replace(/\n/g, ": "));
 await page.keyboard.press("Escape");
 check("menu: Escape closes the list and hands the keyboard back to the word that opened it", (await openLists()) === 0 && (await page.evaluate(() => document.activeElement?.tagName === "SUMMARY" && document.activeElement.textContent.trim().startsWith("More"))));
 await page.keyboard.press("Enter");
@@ -268,12 +369,17 @@ await page.waitForURL(/\/emergency/);
 check("menu: choosing a page goes there, closes the list and lights More", (await openLists()) === 0 && /999/.test(await page.locator("main").innerText()) && (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
 await page.goto(`${origin}/places`, { waitUntil: "networkidle" });
 check("menu: the towns are the directory turned round: Directory is lit there, and one press goes between the two", (await page.locator('header nav a[href="/directory"]').getAttribute("aria-current")) === "true" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[aria-current="page"]').innerText()).trim() === "By town" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[href="/directory"]').count()) === 1);
+await page.goto(`${origin}/tools/vat`, { waitUntil: "networkidle" });
+check("menu: the tools are reached from More, and light it", (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
+await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });
+const bazTrail = await trailOf();
+check("menu: a page that writes its own path is led to Home too", bazTrail.first === "Home|/home" && /\/home$/.test(bazTrail.machine?.item ?? ""), JSON.stringify(bazTrail));
 await page.goto(`${origin}/learn/vat`, { waitUntil: "networkidle" });
 check("menu: a page beneath a way in lights it as the place you are in, and only the page itself is called the current page", (await page.locator('header.site-header nav a[href="/learn"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
 await page.goto(`${origin}/more`, { waitUntil: "networkidle" });
 const moreGroups = await page.locator('main nav[aria-label="Every page"] h2').allInnerTexts();
 const moreLinks = await page.locator('main nav[aria-label="Every page"] a').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-check("more: the page of every page lists each one once, under its heading", moreGroups.join("|") === "Find|Read|For business|Yours|About" && moreLinks.length === new Set(moreLinks).size && moreLinks.length >= 20 && ["/directory", "/places", "/baz-manzer", "/emergency", "/holidays", "/learn", "/tools", "/shop", "/pricing", "/saved", "/cart", "/account", "/about", "/privacy"].every((href) => moreLinks.includes(href)), `${moreGroups.join("|")} ${moreLinks.length}`);
+check("more: the page of every page lists each one once, under its heading, Home the first of them", moreGroups.join("|") === "Find|Read|For business|Yours|About" && moreLinks.length === new Set(moreLinks).size && moreLinks.length >= 21 && moreLinks[0] === "/home" && ["/directory", "/places", "/baz-manzer", "/emergency", "/holidays", "/learn", "/tools", "/shop", "/pricing", "/saved", "/cart", "/account", "/about", "/privacy"].every((href) => moreLinks.includes(href)), `${moreGroups.join("|")} ${moreLinks.length}`);
 check("more: it has one first heading and is not for a search engine", (await page.locator("main h1").count()) === 1 && (await page.locator('meta[name="robots"]').getAttribute("content"))?.includes("noindex"));
 
 // 8b. Narrowing, saving, sharing, and the plans.
@@ -433,7 +539,7 @@ await page.waitForURL(/town=/);
 check("baz manzer: and a town narrows it again", Number((await text("main h2#list")).replace(/,/g, "").match(/^(\d+)/)?.[1] ?? 0) <= bazChinese && / in /.test(await text("main h2#list")) && (await page.locator("main article[data-listing]").count()) > 0);
 await page.goto(`${origin}/baz-manzer`, { waitUntil: "domcontentloaded" });
 check("baz manzer: the articles about food stand on its shelf", (await page.locator('main #food-articles ~ ul a[href^="/learn/"]').count()) >= 1);
-check("baz manzer: it is in the menu, on the first screen, in the sitemap and in llms.txt", (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && (await (await page.request.get(origin)).text()).includes('href="/baz-manzer"'));
+check("baz manzer: it is in the menu, on the Home page, in the sitemap and in llms.txt", (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1 && /\/baz-manzer</.test(sitemap) && /Baz Manzer/.test(llms) && homePageHtml.includes('href="/baz-manzer"'));
 
 // 8be. The street map: nothing of it is fetched until it is asked for.
 {
@@ -481,7 +587,7 @@ check("article: its address with .md after it gives the same article as Markdown
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 const footerWords = await page.locator("footer").innerText();
 check("footer: whose product the site is, in the owner's words, and the page's last line", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(footerWords) && /A Digital Experience by\s+Khay Digital\s*$/.test(footerWords.trim()) && (await page.locator('footer a[href="https://khay.digital"]').count()) >= 2);
-check("footer: every page in four columns, named as the menu names them", (await page.locator("footer nav h2").allInnerTexts()).join("|").toLowerCase() === "find|read|for business|about");
+check("footer: every page in four columns, named as the menu names them, Home the first", (await page.locator("footer nav h2").allInnerTexts()).join("|").toLowerCase() === "find|read|for business|about" && (await page.locator("footer nav a").first().evaluate((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`)) === "Home|/home");
 const whole = async (ctxPage) => {
   await ctxPage.locator("footer .footer-mark").scrollIntoViewIfNeeded();
   await ctxPage.evaluate(() => document.querySelector("footer .footer-mark").scrollIntoView({ block: "center" }));
@@ -559,17 +665,32 @@ check("shop: a magazine is said to be coming, and no more than that", /biznes\.m
 // 9. A phone: nothing wider than the screen, the ways in always on show.
 const phone = await steady(await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }));
 const small = await phone.newPage();
-for (const path of ["/", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer?food=chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
+for (const path of ["/", "/home", "/search?q=bank", "/search?q=restaurants", "/search?q=cyclone+season", "/learn/vat", "/learn/mauritian-food", "/b/n5651200767", "/b/n14064293374", "/directory", "/directory/restaurants", "/places", "/places/curepipe", "/baz-manzer", "/baz-manzer?food=chinese", "/tools/verify", "/pricing", "/saved", "/cart", "/shop", "/emergency", "/holidays", "/about"]) {
   await small.goto(origin + path, { waitUntil: "domcontentloaded" });
   const over = await small.evaluate(() => Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth) - 390);
   check(`phone: ${path} is no wider than the screen`, over <= 0, `${over}px`);
 }
-check("phone: the search, three ways in and More are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").allInnerTexts()).map((t) => t.trim()).join("|") === "Search|Directory|Baz Manzer|Articles|More");
-await small.goto(`${origin}/`, { waitUntil: "domcontentloaded" });
-const bar = await small.locator("nav.tabbar").boundingBox();
-check("phone: the bar is on the first screen", bar != null && bar.y + bar.height <= 844 && bar.y > 700, JSON.stringify(bar));
-check("phone: the emergency numbers are one tap from the first screen", (await small.locator('main section.hero-open a[href="/emergency"]').count()) === 1);
-check("phone: nothing in the header opens, and the bar is the one way round", (await small.locator("header details:visible, header summary:visible, header nav:visible").count()) === 0 && (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "Search");
+check("phone: the search, Home, Baz Manzer, Articles and More are on show, in a bar at the foot", (await small.locator("nav.tabbar a:visible").allInnerTexts()).map((t) => t.trim()).join("|") === "Search|Home|Baz Manzer|Articles|More");
+await small.goto(`${origin}/`, { waitUntil: "networkidle" });
+const first = await small.evaluate(() => {
+  const within = (el) => Boolean(el) && el.getBoundingClientRect().top >= 0 && el.getBoundingClientRect().bottom <= innerHeight;
+  return { bar: document.querySelectorAll("nav.tabbar").length, tall: document.documentElement.scrollHeight - innerHeight, room: getComputedStyle(document.body).paddingBottom, search: within(document.querySelector("#home-search")), home: within(document.querySelector('main a.btn[href="/home"]')), foot: within(document.querySelector("main .landing-foot")), focus: document.activeElement?.id ?? "" };
+});
+check("phone: the landing page is one screen, with no bar at its foot: the search, the Home button and the quiet line are all on it", first.bar === 0 && first.tall <= 0 && first.room === "0px" && first.search && first.home && first.foot, JSON.stringify(first));
+check("phone: the landing page does not take the keyboard, which would cover it", first.focus !== "home-search");
+const reach = await small.locator('main a.btn[href="/home"], main .landing-foot nav a, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
+check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 7 && reach.every((height) => height >= 44), reach.join(","));
+await small.locator('main a.btn[href="/home"]').tap();
+await small.waitForURL(/\/home$/);
+check("phone: the Home button leads to Home, where the bar is, and says that is where you are", (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "Home" && (await small.locator("footer.site-footer").isVisible()));
+check("phone: on Home the police's number is one tap away", (await small.locator('main a[href="tel:999"]').count()) === 1);
+const strip = await small.locator("main ul.top-list").evaluate((list) => ({ sideways: list.scrollWidth > list.clientWidth + 100, first: Math.round(list.querySelector("li").getBoundingClientRect().width), page: document.documentElement.scrollWidth - innerWidth }));
+check("phone: the top businesses go by sideways, one card and the edge of the next in view, and the page stays as wide as the screen", strip.sideways && strip.first < 360 && strip.first > 250 && strip.page <= 0, JSON.stringify(strip));
+const tiles = await small.locator("main a.tile, main a.start-tile, main ul.dial a, main nav[aria-label='On this page'] a").evaluateAll((links) => links.map((a) => Math.round(a.getBoundingClientRect().height)));
+check("phone: every tile, number and jump on Home is at least 44 pixels tall", tiles.length >= 60 && tiles.every((height) => height >= 44), `${tiles.length} targets, the smallest ${Math.min(...tiles)}`);
+check("phone: nothing in the header opens, and the bar is the one way round", (await small.locator("header details:visible, header summary:visible, header nav:visible").count()) === 0);
+await small.goto(`${origin}/directory`, { waitUntil: "domcontentloaded" });
+check("phone: the directory is reached through Home and through More, and More is lit on it", (await small.locator("nav.tabbar a[aria-current]").innerText()).trim() === "More" && (await small.locator('main nav[aria-label="You are here"] a[href="/home"]').count()) === 1);
 await small.locator('nav.tabbar a[href="/more"]').click();
 await small.waitForURL(/\/more$/);
 check("phone: More is a page of every page, and the bar says that is where you are", (await small.locator('main nav[aria-label="Every page"] a:visible').count()) >= 20 && (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "More");
@@ -578,8 +699,8 @@ check("phone: on a page reached from More, More is lit", (await small.locator("n
 const targets = await small.locator("nav.tabbar a, header .nav-pill > a").evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height))));
 check("phone: every control of the header and the bar is at least 44 pixels each way", targets.length >= 8 && targets.every((size) => size >= 44), targets.join(","));
 await small.goto(`${origin}/search?q=pharmacy+in+curepipe`, { waitUntil: "domcontentloaded" });
-const strip = await small.locator("main .chart-fit").first().boundingBox();
-check("phone: results have the island as a small strip, drawn once", strip != null && strip.width < 170 && (await small.locator("main svg.chart, main .chart-fit").count()) <= 2 && (await small.locator("main .chart-fit").count()) === 1, JSON.stringify(strip));
+const island = await small.locator("main .chart-fit").first().boundingBox();
+check("phone: results have the island as a small strip, drawn once", island != null && island.width < 170 && (await small.locator("main svg.chart, main .chart-fit").count()) <= 2 && (await small.locator("main .chart-fit").count()) === 1, JSON.stringify(island));
 await small.goto(`${origin}/learn/vat`, { waitUntil: "domcontentloaded" });
 check("phone: a guide's contents open as a list", (await small.locator("main details summary").first().isVisible()) && (await small.locator("table.table thead").first().evaluate((el) => el.getBoundingClientRect().width <= 2)));
 await small.goto(`${origin}/directory`, { waitUntil: "networkidle" });
@@ -640,7 +761,7 @@ await bare.close();
   const refused = [];
   watched.on("console", (m) => /Content Security Policy|Refused to/i.test(m.text()) && refused.push(m.text().slice(0, 160)));
   const listingPath = "/b/keiffel-tours-grand-baie-n5651200767";
-  for (const path of ["/", "/search?q=pharmacy+in+curepipe", listingPath, "/learn/vat", "/saved", "/shop", "/emergency", "/offline"]) {
+  for (const path of ["/", "/home", "/search?q=pharmacy+in+curepipe", listingPath, "/learn/vat", "/saved", "/shop", "/emergency", "/offline"]) {
     await watched.goto(origin + path, { waitUntil: "load" });
     if (path === "/") {
       await watched.fill("#home-search", "pharm");
