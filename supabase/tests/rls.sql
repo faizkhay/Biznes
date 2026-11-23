@@ -413,6 +413,309 @@ delete from public.orders where name = 'Through Site';
 delete from private.subscribe_tries;
 
 ------------------------------------------------------------------------------------------------
+-- The site's own email (part 14): confirming an address, the addresses not written to, the
+-- settings, a message and its queue. No hash of the site's word is kept at this point.
+reset role;
+insert into public.subscribers (id, email, wants_guide, wants_magazine, confirmed_at) values
+  ('e0000000-0000-4000-8000-00000000000a', 'a@list.mu', true, false, now()),
+  ('e0000000-0000-4000-8000-00000000000b', 'b@list.mu', true, false, null),
+  ('e0000000-0000-4000-8000-00000000000c', 'c@list.mu', true, true, now()),
+  ('e0000000-0000-4000-8000-00000000000d', 'd@list.mu', false, true, now()),
+  ('e0000000-0000-4000-8000-00000000000e', 'e@list.mu', true, false, now());
+insert into public.email_suppressions (email, reason, detail, source) values ('c@list.mu', 'bounce', '550 no such user', 'resend');
+insert into public.email_campaigns (id, kind, audience, subject, blocks, status) values
+  ('f0000000-0000-4000-8000-000000000001', 'guide', 'guide', 'The guide for next month', '[{"type": "heading", "text": "A new edition"}, {"type": "paragraph", "text": "It is out."}, {"type": "button", "label": "Open the guide", "href": "/shop"}, {"type": "line"}]', 'ready'),
+  ('f0000000-0000-4000-8000-000000000002', 'note', 'everyone', 'A note to everyone', '[{"type": "paragraph", "text": "A word from us."}]', 'ready'),
+  ('f0000000-0000-4000-8000-000000000003', 'note', 'everyone', 'A second note', '[{"type": "paragraph", "text": "Another word."}]', 'ready'),
+  ('f0000000-0000-4000-8000-000000000004', 'magazine', 'magazine', 'The magazine', '[{"type": "paragraph", "text": "The first issue."}]', 'ready');
+select token as a_leave, confirm_token as a_confirm from public.subscribers where email = 'a@list.mu' \gset
+select token as b_leave, confirm_token as b_confirm from public.subscribers where email = 'b@list.mu' \gset
+select token as e_leave from public.subscribers where email = 'e@list.mu' \gset
+
+select t.be('anon', '', 'A visitor and the site''s email');
+select t.throws($$ select * from public.email_settings $$, 'cannot read who the email comes from', '42501');
+select t.throws($$ select * from public.email_suppressions $$, 'cannot read the addresses that are not written to', '42501');
+select t.throws($$ select * from public.email_campaigns $$, 'cannot read a message to the list', '42501');
+select t.throws($$ select * from public.email_recipients $$, 'cannot read who a message went to', '42501');
+select t.throws($$ update public.email_settings set write_to = 'everyone' $$, 'cannot change the settings', '42501');
+select t.throws($$ insert into public.email_suppressions (email, reason) values ('x@list.mu', 'asked') $$, 'cannot write an address into the ones not written to', '42501');
+select t.throws($$ delete from public.email_suppressions $$, 'cannot empty them', '42501');
+select t.throws($$ insert into public.email_campaigns (kind, audience) values ('note', 'everyone') $$, 'cannot write a message', '42501');
+select t.throws($$ insert into public.email_recipients (campaign_id, email) values ('f0000000-0000-4000-8000-000000000001', 'x@list.mu') $$, 'cannot put an address in a queue', '42501');
+select t.throws($$ select public.email_campaign_create('note', 'everyone') $$, 'cannot call email_campaign_create', '42501');
+select t.throws($$ select public.email_campaign_save('f0000000-0000-4000-8000-000000000001', 'everyone', 's', 'p', '[]') $$, 'cannot call email_campaign_save', '42501');
+select t.throws($$ select public.email_campaign_step('f0000000-0000-4000-8000-000000000001', 'cancelled') $$, 'cannot call email_campaign_step', '42501');
+select t.throws($$ select public.email_campaign_remove('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_campaign_remove', '42501');
+select t.throws($$ select public.email_queue('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_queue', '42501');
+select t.throws($$ select * from public.email_claim('f0000000-0000-4000-8000-000000000001', 5) $$, 'cannot call email_claim', '42501');
+select t.throws($$ select public.email_mark('f0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000dead', '[]') $$, 'cannot call email_mark', '42501');
+select t.throws($$ select public.email_progress('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_progress', '42501');
+select t.throws($$ select public.email_retry_failed('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_retry_failed', '42501');
+select t.throws($$ select public.email_sent_by_hand('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_sent_by_hand', '42501');
+select t.throws($$ select public.email_ask_confirm() $$, 'cannot call email_ask_confirm', '42501');
+select t.throws($$ select public.email_status() $$, 'cannot call email_status', '42501');
+select t.throws($$ select public.email_audience_counts('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_audience_counts', '42501');
+select t.throws($$ select * from public.email_hand_list('f0000000-0000-4000-8000-000000000001') $$, 'cannot call email_hand_list', '42501');
+select t.throws($$ select public.admin_suppress('a@list.mu', 'no reason') $$, 'cannot call admin_suppress', '42501');
+select t.throws($$ select public.admin_unsuppress('c@list.mu') $$, 'cannot call admin_unsuppress', '42501');
+select t.throws($$ select * from private.email_audience('f0000000-0000-4000-8000-000000000001', true) $$, 'cannot reach the helper that says who a message goes to', '42501');
+select t.throws($$ select private.suppress('a@list.mu', 'asked', '', 'admin') $$, 'nor the one that writes an address into the ones not written to', '42501');
+select t.throws($$ select private.email_progress('f0000000-0000-4000-8000-000000000001') $$, 'nor the one that counts a queue', '42501');
+select t.throws($$ select private.email_finish('f0000000-0000-4000-8000-000000000001') $$, 'nor the one that closes a campaign', '42501');
+select t.throws($$ select private.strictly_from_site() $$, 'cannot ask whether a call would be believed', '42501');
+select t.throws($$ select public.confirmation_for('b@list.mu') $$, 'cannot ask for the link that confirms an address: with no hash kept, nobody can', '42501', 'Only the website');
+select t.throws($$ select public.email_event('resend', 'bounce', 'a@list.mu', 'made up') $$, 'cannot tell the database that an address bounced', '42501', 'Only the website');
+select t.throws(format($$ select public.confirmation_unsent(%L) $$, :'b_confirm'), 'cannot say a message to confirm was not sent', '42501');
+select t.lives($$ select public.subscribe('new@list.mu', true, true) $$, 'joins the list, as before');
+reset role;
+select t.is($$ select (confirmed_at is null)::text || ',' || (confirm_sent_at is null)::text || ',' || (confirm_token <> token)::text from public.subscribers where email = 'new@list.mu' $$, 'true,true,true', 'the address is kept as not confirmed and never asked, with a link to confirm that is not its link to leave');
+select confirm_token as new_confirm, token as new_leave from public.subscribers where email = 'new@list.mu' \gset
+select t.be('anon', '', 'A visitor with a link to confirm');
+select t.is($$ select public.confirm_subscription('00000000-0000-4000-8000-00000000dead')::text $$, 'false', 'a made-up link confirms nothing');
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'new_leave'), 'false', 'nor does the link to leave');
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'new_confirm'), 'true', 'the link from the message confirms the address');
+reset role;
+select t.is($$ select (confirmed_at is not null)::text from public.subscribers where email = 'new@list.mu' $$, 'true', 'and the day is kept');
+select confirmed_at as new_confirmed from public.subscribers where email = 'new@list.mu' \gset
+select t.be('anon', '', 'A visitor, pressing the same link again');
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'new_confirm'), 'true', 'is told the same');
+reset role;
+select t.is(format($$ select (confirmed_at = %L::timestamptz)::text || ',' || (select count(*) from public.subscribers where confirmed_at is null) from public.subscribers where email = 'new@list.mu' $$, :'new_confirmed'), 'true,1', 'and nothing changed: not the day, and no other address was confirmed');
+select t.be('anon', '', 'A visitor leaving in one press, with the token and nothing else');
+select t.is($$ select public.unsubscribe('00000000-0000-4000-8000-00000000dead')::text $$, 'false', 'a made-up token takes nobody off, and the answer says nothing of any other');
+select t.is(format($$ select public.unsubscribe(%L)::text $$, :'new_confirm'), 'false', 'the link to confirm does not leave');
+select t.is(format($$ select public.unsubscribe(%L)::text $$, :'new_leave'), 'true', 'the token alone takes its own address off');
+reset role;
+select t.is($$ select count(*) || ',' || count(*) filter (where email = 'new@list.mu') from public.subscribers $$, '5,0', 'that address and no other');
+
+select t.be('authenticated', :'alice', 'Alice, a regular user, and the site''s email');
+select t.is($$ select (select count(*) from public.email_settings) + (select count(*) from public.email_suppressions) + (select count(*) from public.email_campaigns) + (select count(*) from public.email_recipients) $$, '0', 'reads nothing of it: not the settings, the addresses not written to, a message or a queue');
+select t.lives($$ update public.email_settings set write_to = 'everyone', postal_address = 'Mine' $$, 'may try to change the settings');
+select t.throws($$ insert into public.email_suppressions (email, reason) values ('x@list.mu', 'asked') $$, 'cannot write an address into the ones not written to', '42501');
+select t.throws($$ insert into public.email_campaigns (kind, audience) values ('note', 'everyone') $$, 'cannot write a message', '42501');
+select t.throws($$ update public.email_campaigns set status = 'sent' $$, 'cannot change one', '42501');
+select t.throws($$ insert into public.email_recipients (campaign_id, email) values ('f0000000-0000-4000-8000-000000000001', 'x@list.mu') $$, 'cannot put an address in a queue', '42501');
+select t.throws($$ select public.email_campaign_create('note', 'everyone') $$, 'cannot start a message', '42501', 'Only an admin');
+select t.throws($$ select public.email_campaign_step('f0000000-0000-4000-8000-000000000001', 'cancelled') $$, 'cannot cancel one', '42501', 'Only an admin');
+select t.throws($$ select public.email_queue('f0000000-0000-4000-8000-000000000001') $$, 'cannot send one', '42501', 'Only an admin');
+select t.throws($$ select * from public.email_claim('f0000000-0000-4000-8000-000000000001', 5) $$, 'cannot take a batch, and so cannot read an address or its links', '42501', 'Only an admin');
+select t.throws($$ select public.email_mark('f0000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-00000000dead', '[]') $$, 'cannot say how a batch went', '42501', 'Only an admin');
+select t.throws($$ select public.email_sent_by_hand('f0000000-0000-4000-8000-000000000001') $$, 'cannot mark one as sent by hand', '42501', 'Only an admin');
+select t.throws($$ select * from public.email_hand_list('f0000000-0000-4000-8000-000000000001') $$, 'cannot take the addresses for a message sent by hand', '42501', 'Only an admin');
+select t.throws($$ select public.email_ask_confirm() $$, 'cannot ask the list to confirm', '42501', 'Only an admin');
+select t.throws($$ select public.email_status() $$, 'cannot read the counts', '42501', 'Only an admin');
+select t.throws($$ select public.email_audience_counts('f0000000-0000-4000-8000-000000000001') $$, 'cannot count who a message would go to', '42501', 'Only an admin');
+select t.throws($$ select public.email_retry_failed('f0000000-0000-4000-8000-000000000001') $$, 'cannot queue anything again', '42501', 'Only an admin');
+select t.throws($$ select public.admin_suppress('a@list.mu', 'no reason') $$, 'cannot stop an address being written to', '42501', 'Only an admin');
+select t.throws($$ select public.admin_unsuppress('c@list.mu') $$, 'cannot lift one either', '42501', 'Only an admin');
+select t.throws($$ select public.confirmation_for('b@list.mu') $$, 'cannot ask for the link that confirms an address', '42501');
+reset role;
+select t.is($$ select write_to || ',' || postal_address from public.email_settings $$, 'confirmed_once_connected,', 'the settings are as they were');
+
+select t.be('authenticated', :'admin', 'An admin and the site''s email');
+select t.is($$ select count(*) from public.email_settings $$, '1', 'reads the settings, which a message cannot be sent without');
+select t.lives($$ update public.email_settings set write_to = 'everyone', from_email = 'admin@biznes.mu' $$, 'may try to change them');
+select t.is($$ select write_to || ',' || from_email from public.email_settings $$, 'confirmed_once_connected,', 'and changes nothing: the settings are the superadmin''s');
+select t.is($$ select public.email_status()::text $$, '{"guide": 4, "proof": false, "to_ask": 1, "magazine": 2, "confirmed": 4, "suppressed": 1, "subscribers": 5}', 'reads the counts: the list, the confirmed, each wish, those not written to, and who could still be asked to confirm');
+select public.email_campaign_create('note', 'everyone', '  A draft  ', ' The line after the subject ', '[{"type": "paragraph", "text": "Hello."}]') as draft \gset
+select t.is(format($$ select kind || ',' || audience || ',' || subject || ',' || preheader || ',' || status || ',' || (created_by = auth.uid())::text from public.email_campaigns where id = %L $$, :'draft'), 'note,everyone,A draft,The line after the subject,draft,true', 'starts a message: a draft, trimmed, with who started it');
+select t.throws($$ select public.email_campaign_create('confirm', 'unconfirmed') $$, 'cannot start a message of the kind the site writes itself', '22023');
+select t.throws($$ select public.email_campaign_create('note', 'strangers') $$, 'cannot address one to anyone but the guide''s readers, the magazine''s, or both', '22023');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', 'S', '', '[{"type": "html", "text": "<script>alert(1)</script>"}]') $$, 'cannot put a block of a kind of their own in a message', '23514');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', 'S', '', '[{"type": "button", "label": "Go", "href": "javascript:alert(1)"}]') $$, 'cannot make a button lead to script', '23514');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', 'S', '', '[{"type": "button", "label": "Go", "href": "http://plain.example"}]') $$, 'nor to an address that is not https', '23514');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', 'S', '', '[{"type": "button", "label": "Go", "href": "//elsewhere.example"}]') $$, 'nor to another site by way of a path', '23514');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', 'S', '', '{"type": "paragraph", "text": "not a list"}') $$, 'cannot give a body that is not a list of blocks', '23514');
+select t.throws($$ select public.email_campaign_create('note', 'everyone', E'Two\nlines') $$, 'cannot break a subject over two lines', '23514');
+select t.lives(format($$ select public.email_campaign_save(%L, 'guide', 'A better subject', '', '[{"type": "heading", "text": "Hello"}, {"type": "paragraph", "text": "Two\nlines."}, {"type": "button", "label": "Read it", "href": "https://biznes.mu/shop"}]') $$, :'draft'), 'changes the draft: who it goes to, its subject and its blocks');
+select t.throws(format($$ select public.email_campaign_step(%L, 'sent') $$, :'draft'), 'cannot mark a draft as sent by moving it', 'P0001');
+select t.throws(format($$ select public.email_campaign_step(%L, 'sending') $$, :'draft'), 'nor as being sent', 'P0001');
+select t.lives(format($$ select public.email_campaign_save(%L, 'guide', '', '', '[]') $$, :'draft'), 'may empty a draft');
+select t.throws(format($$ select public.email_campaign_step(%L, 'ready') $$, :'draft'), 'cannot call a message with no subject ready', '23514', 'subject');
+select t.lives(format($$ select public.email_campaign_save(%L, 'guide', 'A subject', '', '[]') $$, :'draft'), 'gives it a subject');
+select t.throws(format($$ select public.email_campaign_step(%L, 'ready') $$, :'draft'), 'cannot call a message with nothing in it ready', '23514', 'Write something');
+select t.lives(format($$ select public.email_campaign_save(%L, 'guide', 'A subject', '', '[{"type": "paragraph", "text": "Hello."}]') $$, :'draft'), 'writes something in it');
+select t.lives(format($$ select public.email_campaign_step(%L, 'ready') $$, :'draft'), 'calls it ready');
+select t.throws(format($$ select public.email_campaign_save(%L, 'guide', 'Changed behind', '', '[]') $$, :'draft'), 'cannot change it while it is ready', 'P0001', 'Only a draft');
+select t.throws($$ update public.email_campaigns set subject = 'Changed by hand' $$, 'cannot change a message except through the functions', '42501');
+select t.throws($$ delete from public.email_campaigns $$, 'cannot delete one by hand', '42501');
+select t.throws(format($$ select public.email_queue(%L) $$, :'draft'), 'cannot send it while the sender''s postal address is empty', 'P0001', 'postal address');
+select t.throws(format($$ select public.email_sent_by_hand(%L) $$, :'draft'), 'nor mark it as sent by hand', 'P0001', 'postal address');
+select t.throws($$ select public.email_ask_confirm() $$, 'nor ask the list to confirm', 'P0001', 'postal address');
+select t.lives(format($$ select public.email_campaign_step(%L, 'draft') $$, :'draft'), 'makes it a draft again');
+select t.lives(format($$ select public.email_campaign_remove(%L) $$, :'draft'), 'takes out a message that was never sent');
+select t.is($$ select string_agg(action, ',' order by id) from public.audit_log where action like 'email.campaign%' and actor = auth.uid() $$, 'email.campaign_created,email.campaign_ready,email.campaign_draft,email.campaign_removed', 'each step is on the record, with who took it');
+
+select t.be('authenticated', :'owner', 'The superadmin and the email settings');
+select t.throws($$ update public.email_settings set from_email = 'not an address' $$, 'cannot set an address to send from that is not one', '23514');
+select t.throws($$ update public.email_settings set from_name = 'Biznes <evil@elsewhere.example>' $$, 'nor a name that carries an address of its own', '23514');
+select t.throws($$ update public.email_settings set write_to = 'whoever' $$, 'nor a rule for who is written to that is not one of the three', '23514');
+select t.lives($$ update public.email_settings set from_name = '  biznes.mu ', from_email = 'Guide@Biznes.mu', reply_to = 'hello@biznes.mu', postal_address = E'Khay Digital Ltd\nMauritius' $$, 'sets who a message comes from, where a reply goes and the postal address');
+select t.is($$ select from_name || '|' || from_email || '|' || write_to || '|' || (updated_by = auth.uid())::text from public.email_settings $$, 'biznes.mu|guide@biznes.mu|confirmed_once_connected|true', 'they are kept trimmed and in lower case, with who set them');
+select t.is($$ select count(*) from public.audit_log where action = 'settings.email' and actor = auth.uid() $$, '1', 'and the change is on the record');
+select t.throws($$ insert into public.email_settings (id) values (false) $$, 'cannot add a second row of settings', '42501');
+select t.throws($$ delete from public.email_settings $$, 'nor delete the one', '42501');
+
+select t.be('authenticated', :'admin', 'An admin sends the guide''s message, with only confirmed addresses written to');
+select t.is($$ select public.email_audience_counts('f0000000-0000-4000-8000-000000000001', false)::text $$, '{"to_send": 2, "suppressed": 1, "unconfirmed": 1}', 'is told who it would go to: two, with one left out as suppressed and one as not confirmed');
+select t.is($$ select public.email_audience_counts('f0000000-0000-4000-8000-000000000001', true)::text $$, '{"to_send": 3, "suppressed": 1, "unconfirmed": 0}', 'and, sent by hand with no sender connected, three: nobody can be asked to confirm, so the unconfirmed one is in');
+select t.is($$ select (public.email_queue('f0000000-0000-4000-8000-000000000001')) ->> 'queued' $$, '2', 'presses Send: two addresses are queued');
+select t.is($$ select string_agg(email || ':' || state || ':' || reason, ',' order by email) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000001' $$, 'a@list.mu:queued:,b@list.mu:skipped:unconfirmed,c@list.mu:skipped:suppressed,e@list.mu:queued:', 'one row for each address that asked for the guide: the unconfirmed and the suppressed are left out, with the reason; the one who asked only for the magazine is not there');
+select t.is($$ select status || ',' || (started_by = auth.uid())::text from public.email_campaigns where id = 'f0000000-0000-4000-8000-000000000001' $$, 'sending,true', 'the campaign is being sent, and says who pressed');
+select t.throws($$ select public.email_queue('f0000000-0000-4000-8000-000000000001') $$, 'cannot press Send twice', 'P0001', 'ready');
+select t.throws($$ insert into public.email_recipients (campaign_id, email) values ('f0000000-0000-4000-8000-000000000001', 'x@list.mu') $$, 'cannot add an address to the queue by hand', '42501');
+select t.throws($$ update public.email_recipients set state = 'queued' $$, 'nor put one back', '42501');
+select t.throws($$ delete from public.email_recipients $$, 'nor empty it', '42501');
+reset role;
+select t.throws($$ insert into public.email_recipients (campaign_id, email) values ('f0000000-0000-4000-8000-000000000001', 'a@list.mu') $$, 'one address is in a campaign once: the database refuses a second row, whoever writes it', '23505');
+select t.be('authenticated', :'admin', 'An admin, a batch at a time');
+select t.is($$ select string_agg(email || ':' || (leave_token is not null)::text, ',') from public.email_claim('f0000000-0000-4000-8000-000000000001', 1) $$, 'a@list.mu:true', 'takes a batch of one: the first address, with its own link to leave');
+select claimed.batch as first_claim from public.email_recipients claimed where claimed.email = 'a@list.mu' and claimed.campaign_id = 'f0000000-0000-4000-8000-000000000001' \gset
+select t.is(format($$ select (public.email_mark('f0000000-0000-4000-8000-000000000001', %L, '[{"id": %s, "ok": true, "ref": "msg-1"}]')) ->> 'sent' $$, :'first_claim', (select id from public.email_recipients where email = 'a@list.mu' and campaign_id = 'f0000000-0000-4000-8000-000000000001')), '1', 'says it went: one is sent');
+select t.is(format($$ select (public.email_mark('f0000000-0000-4000-8000-000000000001', %L, '[{"id": %s, "ok": false, "why": "said twice"}]')) ->> 'sent' $$, :'first_claim', (select id from public.email_recipients where email = 'a@list.mu' and campaign_id = 'f0000000-0000-4000-8000-000000000001')), '1', 'a batch cannot be answered for twice: the row stays sent');
+select t.be('anon', '', 'A visitor on the list, who leaves before their turn');
+select t.is(format($$ select public.unsubscribe(%L)::text $$, :'e_leave'), 'true', 'leaves by one press');
+select t.be('authenticated', :'admin', 'An admin, taking the next batch');
+select t.is($$ select count(*) from public.email_claim('f0000000-0000-4000-8000-000000000001', 5) $$, '0', 'is handed nobody: the one who left is not written to');
+select t.is($$ select string_agg(email || ':' || state || ':' || reason || ':' || provider_id, ',' order by email) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000001' and email in ('a@list.mu', 'e@list.mu') $$, 'a@list.mu:sent::msg-1,e@list.mu:skipped:left:', 'the record keeps the address as it was, and why it was left out');
+select t.is($$ select status || ',' || (finished_at is not null)::text from public.email_campaigns where id = 'f0000000-0000-4000-8000-000000000001' $$, 'sent,true', 'with nobody left waiting the campaign is sent');
+select t.is($$ select (detail ->> 'sent') || ',' || (detail ->> 'skipped') from public.audit_log where action = 'email.campaign_sent' and subject = 'campaign:f0000000-0000-4000-8000-000000000001' $$, '1,3', 'and that is on the record, with the counts');
+select t.throws($$ select * from public.email_claim('f0000000-0000-4000-8000-000000000001', 5) $$, 'cannot take a batch of a campaign that is sent', 'P0001', 'not being sent');
+select t.throws($$ select public.email_campaign_remove('f0000000-0000-4000-8000-000000000001') $$, 'cannot take out a message that was sent: it is the record', 'P0001');
+select t.throws($$ select public.email_campaign_step('f0000000-0000-4000-8000-000000000001', 'draft') $$, 'nor make it a draft again', 'P0001');
+
+select t.be('authenticated', :'owner', 'The superadmin lets every address be written to');
+select t.lives($$ update public.email_settings set write_to = 'everyone' $$, 'changes who is written to');
+select t.be('authenticated', :'admin', 'An admin sends a note to everyone');
+select t.is($$ select (public.email_queue('f0000000-0000-4000-8000-000000000002')) ->> 'queued' $$, '3', 'three are queued: the unconfirmed address among them now, the suppressed one still left out');
+select t.is($$ select string_agg(email, ',' order by email) from public.email_claim('f0000000-0000-4000-8000-000000000002', 50) $$, 'a@list.mu,b@list.mu,d@list.mu', 'takes all three in one batch');
+select batch as second_claim from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000002' and email = 'a@list.mu' \gset
+select t.is($$ select count(*) from public.email_claim('f0000000-0000-4000-8000-000000000002', 50) $$, '0', 'a second ask while the first is out is handed nobody: no address is taken twice');
+select t.is(format($$ select (public.email_mark('f0000000-0000-4000-8000-000000000002', %L, (select jsonb_agg(case email when 'a@list.mu' then jsonb_build_object('id', id, 'ok', true, 'ref', 'msg-2') when 'b@list.mu' then jsonb_build_object('id', id, 'ok', false, 'why', 'The address is not valid.') else jsonb_build_object('id', id, 'ok', false, 'why', 'No answer.', 'unsure', true) end) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000002' and state = 'sending')))::text $$, :'second_claim'), '{"sent": 1, "total": 4, "failed": 2, "queued": 0, "status": "sent", "unsure": 1, "sending": 0, "skipped": 1}', 'says how the batch went: one sent, one refused, one with no plain answer');
+select t.is($$ select public.email_retry_failed('f0000000-0000-4000-8000-000000000002')::text $$, '1', 'queues the refused one again, and only that one: the one that may have gone is left as it is');
+select t.is($$ select status from public.email_campaigns where id = 'f0000000-0000-4000-8000-000000000002' $$, 'sending', 'the campaign is being sent again');
+select t.is($$ select string_agg(email, ',') from public.email_claim('f0000000-0000-4000-8000-000000000002', 50) $$, 'b@list.mu', 'the next batch holds that one address');
+select batch as third_claim from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000002' and email = 'b@list.mu' \gset
+select t.is(format($$ select (public.email_mark('f0000000-0000-4000-8000-000000000002', %L, (select jsonb_agg(jsonb_build_object('id', id, 'ok', true, 'ref', 'msg-3')) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000002' and state = 'sending'))) ->> 'status' $$, :'third_claim'), 'sent', 'and once it is sent the campaign is sent');
+select t.is($$ select count(*) || ',' || count(distinct email) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000002' $$, '4,4', 'through all of it each address has one row');
+
+select t.be('authenticated', :'admin', 'An admin, when an address is suppressed after the message was queued');
+select t.is($$ select (public.email_queue('f0000000-0000-4000-8000-000000000003')) ->> 'queued' $$, '3', 'queues a second note for three');
+select t.lives($$ select public.admin_suppress(' A@List.mu ', 'Asked us by telephone.') $$, 'then writes down that one of them asked not to be written to');
+select t.is($$ select reason || ',' || detail || ',' || source || ',' || (added_by = auth.uid())::text from public.email_suppressions where email = 'a@list.mu' $$, 'asked,Asked us by telephone.,admin,true', 'which is kept with the reason, the words and who wrote it');
+select t.is($$ select count(*) from public.audit_log where action = 'email.suppressed' and actor = auth.uid() $$, '1', 'and is on the record');
+select t.is($$ select count(*) from public.email_claim('f0000000-0000-4000-8000-000000000003', 1) $$, '0', 'the next batch does not hold that address');
+select t.is($$ select state || ':' || reason from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000003' and email = 'a@list.mu' $$, 'skipped:suppressed', 'it is left out as it is taken, with the reason');
+select t.lives($$ select public.email_campaign_step('f0000000-0000-4000-8000-000000000003', 'cancelled') $$, 'cancels the rest');
+select t.is($$ select status || ',' || (select string_agg(email || ':' || state || ':' || reason, ',' order by email) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000003' and email <> 'a@list.mu' and email <> 'c@list.mu') from public.email_campaigns where id = 'f0000000-0000-4000-8000-000000000003' $$, 'cancelled,b@list.mu:skipped:cancelled,d@list.mu:skipped:cancelled', 'nobody still waiting is written to, and the record says why');
+select t.throws($$ select * from public.email_claim('f0000000-0000-4000-8000-000000000003', 5) $$, 'a cancelled campaign hands out no batch', 'P0001');
+select t.throws($$ select public.admin_suppress('not an address', '') $$, 'cannot write down something that is not an address', '22023');
+
+select t.be('authenticated', :'owner', 'The superadmin sets the rule back: confirmed addresses, once a sender is connected');
+select t.lives($$ update public.email_settings set write_to = 'confirmed_once_connected' $$, 'changes who is written to');
+select t.be('authenticated', :'admin', 'An admin sends the magazine''s message by hand, with no sender connected');
+select t.is($$ select string_agg(email || ':' || (leave_token is not null)::text, ',') from public.email_hand_list('f0000000-0000-4000-8000-000000000004') $$, 'd@list.mu:true', 'takes the addresses for it: the one who asked for the magazine and is not suppressed, with its own link to leave');
+select t.is($$ select (public.email_sent_by_hand('f0000000-0000-4000-8000-000000000004')) ->> 'sent' $$, '1', 'marks it as sent by hand');
+select t.is($$ select status || ',' || by_hand || ',' || (select string_agg(email || ':' || state || ':' || reason, ',' order by email) from public.email_recipients where campaign_id = 'f0000000-0000-4000-8000-000000000004') from public.email_campaigns where id = 'f0000000-0000-4000-8000-000000000004' $$, 'sent,true,c@list.mu:skipped:suppressed,d@list.mu:sent:', 'the record holds who it went to, who was left out, and that it went by hand');
+select t.is($$ select count(*) from public.audit_log where action = 'email.campaign_sent_by_hand' and actor = auth.uid() $$, '1', 'and who marked it, and when');
+select t.throws($$ select public.email_sent_by_hand('f0000000-0000-4000-8000-000000000004') $$, 'cannot mark it twice', 'P0001');
+select t.throws($$ select public.email_retry_failed('f0000000-0000-4000-8000-000000000004') $$, 'a message sent by hand is not queued again', 'P0001');
+select t.be('authenticated', :'owner', 'The superadmin asks for confirmed addresses only, by either road');
+select t.lives($$ update public.email_settings set write_to = 'confirmed' $$, 'changes who is written to');
+select t.be('authenticated', :'admin', 'An admin, under that rule');
+select t.is($$ select public.email_audience_counts('f0000000-0000-4000-8000-000000000001', true)::text $$, '{"to_send": 0, "suppressed": 2, "unconfirmed": 1}', 'a message sent by hand leaves the unconfirmed out as well');
+select t.lives($$ select public.email_campaign_create('note', 'guide', 'Nobody to send to', '', '[{"type": "paragraph", "text": "Hello."}]') $$, 'starts a note to the guide''s readers');
+select t.lives($$ select public.email_campaign_step(id, 'ready') from public.email_campaigns where subject = 'Nobody to send to' $$, 'calls it ready');
+select t.throws($$ select public.email_queue(id) from public.email_campaigns where subject = 'Nobody to send to' $$, 'cannot send a message that would reach nobody', 'P0001', 'nobody to write to');
+
+------------------------------------------------------------------------------------------------
+-- What a mail service says afterwards, and the link that confirms: both need the site's word.
+reset role;
+update public.email_settings set write_to = 'confirmed_once_connected';
+insert into private.site_proof (word_hash) values (encode(sha256(convert_to('the-test-word', 'utf8')), 'hex'));
+select confirm_token as d_confirm_before from public.subscribers where email = 'd@list.mu' \gset
+select t.be('anon', '', 'A visitor calling the API with the public key and no word, once the hash is kept');
+select t.throws($$ select public.email_event('resend', 'bounce', 'd@list.mu', 'made up') $$, 'cannot tell the database that an address bounced', '42501', 'Only the website');
+select t.throws($$ select public.confirmation_for('b@list.mu') $$, 'cannot ask for the link that confirms an address', '42501', 'Only the website');
+select t.throws(format($$ select public.confirm_subscription(%L) $$, :'b_confirm'), 'cannot confirm an address, even with its link', '42501');
+select set_config('request.headers', '{"x-biznes-proof": "a-wrong-word"}', true) \gset ignored_
+select t.throws($$ select public.email_event('mailgun', 'complaint', 'd@list.mu', 'made up') $$, 'nor with the wrong word', '42501', 'Only the website');
+select set_config('request.headers', '{"x-biznes-proof": "the-test-word"}', true) \gset ignored_
+select t.be('anon', '', 'The website, which has checked a mail service''s signature and carries the word');
+select t.lives($$ select public.email_event('resend', 'bounce', 'D@list.mu', '550 5.1.1 The email account that you tried to reach does not exist.') $$, 'reports a hard bounce');
+select t.throws($$ select public.email_event('resend', 'opened', 'd@list.mu', '') $$, 'cannot report anything but a bounce or a complaint', '22023');
+select t.throws($$ select public.email_event('someone', 'bounce', 'd@list.mu', '') $$, 'nor in the name of a service the site does not use', '22023');
+select t.throws($$ select * from public.email_suppressions $$, 'still cannot read the addresses that are not written to', '42501');
+reset role;
+select t.is($$ select reason || ',' || source || ',' || (added_by is null)::text from public.email_suppressions where email = 'd@list.mu' $$, 'bounce,resend,true', 'the address is not written to from now on: the reason and the service are kept');
+select t.is(format($$ select (confirmed_at is null)::text || ',' || (confirm_token <> %L)::text from public.subscribers where email = 'd@list.mu' $$, :'d_confirm_before'), 'true,true', 'its old confirmation no longer counts, and its old link confirms nothing');
+select t.be('anon', '', 'The website again');
+select t.lives($$ select public.email_event('mailgun', 'complaint', 'd@list.mu', 'Marked as spam.') $$, 'reports a complaint from the same address');
+select t.lives($$ select public.email_event('resend', 'bounce', 'd@list.mu', 'Bounced again.') $$, 'and then a bounce');
+reset role;
+select t.is($$ select reason || ',' || source from public.email_suppressions where email = 'd@list.mu' $$, 'complaint,mailgun', 'a complaint is never written over by a lesser reason');
+select t.be('anon', '', 'The website, when a suppressed address joins the list again');
+select t.lives($$ select public.subscribe('c@list.mu', true, true) $$, 'the address that bounced joins again');
+select t.lives($$ select public.subscribe('d@list.mu', true, true) $$, 'and so does the one that complained');
+reset role;
+select t.is($$ select count(*) from public.email_suppressions where email in ('c@list.mu', 'd@list.mu') $$, '2', 'joining again takes neither out of the addresses not written to');
+select t.be('anon', '', 'The website, asking for the links to confirm');
+select t.is($$ select (public.confirmation_for('d@list.mu') is null)::text $$, 'true', 'is given none for the address that complained: it is not written to, even to confirm');
+select t.is($$ select (public.confirmation_for('a@list.mu') is null)::text $$, 'true', 'nor for the one an admin wrote down');
+select t.is($$ select (public.confirmation_for('nobody@list.mu') is null)::text $$, 'true', 'nor for an address that is not on the list');
+select t.is($$ select jsonb_typeof(public.confirmation_for('b@list.mu') -> 'confirm') $$, 'string', 'is given the link for an address that joined and has not confirmed');
+select t.is($$ select (public.confirmation_for('b@list.mu') is null)::text $$, 'true', 'and not a second time the same day: the form cannot fill a stranger''s inbox');
+select t.lives(format($$ select public.confirmation_unsent(%L) $$, :'b_confirm'), 'says the message could not be sent');
+select t.is($$ select (public.confirmation_for('b@list.mu') ->> 'confirm' is not null)::text $$, 'true', 'and may then ask again at once');
+reset role;
+-- c@list.mu was suppressed by a row written straight in, above, so its link was never made again.
+select confirm_token as c_confirm_old from public.subscribers where email = 'c@list.mu' \gset
+select private.suppress('c@list.mu', 'bounce', '550 no such user', 'resend');
+select t.be('anon', '', 'The website, and a fresh confirmation after a bounce');
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'c_confirm_old'), 'false', 'the link from before the bounce confirms nothing');
+select public.confirmation_for('c@list.mu') ->> 'confirm' as c_confirm_new \gset
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'c_confirm_new'), 'true', 'the link from a message sent since does');
+reset role;
+select t.is($$ select (select count(*) from public.email_suppressions where email = 'c@list.mu') || ',' || (confirmed_at is not null)::text from public.subscribers where email = 'c@list.mu' $$, '0,true', 'and only that takes the address out of the ones not written to');
+select confirm_token as a_confirm_now from public.subscribers where email = 'a@list.mu' \gset
+select t.be('anon', '', 'The website, and an address an admin wrote down');
+select t.is(format($$ select public.confirm_subscription(%L)::text $$, :'a_confirm_now'), 'true', 'may be confirmed by its own link');
+reset role;
+select t.is($$ select count(*) from public.email_suppressions where email = 'a@list.mu' and reason = 'asked' $$, '1', 'and is still not written to: what a person asked by hand, only an admin lifts');
+
+select t.be('authenticated', :'admin', 'An admin lifts one by hand');
+select t.lives($$ select public.admin_unsuppress('A@list.mu') $$, 'lifts the one they wrote down');
+select t.throws($$ select public.admin_unsuppress('a@list.mu') $$, 'cannot lift what is not there', 'P0002');
+select t.is($$ select count(*) from public.audit_log where action = 'email.unsuppressed' and actor = auth.uid() $$, '1', 'and that is on the record');
+
+------------------------------------------------------------------------------------------------
+-- Asking the addresses that joined before to confirm, once.
+reset role;
+select set_config('request.headers', '', true) \gset ignored_
+update public.subscribers set confirmed_at = null, confirm_sent_at = null where email in ('a@list.mu', 'b@list.mu');
+select t.be('authenticated', :'admin', 'An admin asks those who joined before to confirm');
+select public.email_ask_confirm() as asking \gset
+select t.is(format($$ select kind || ',' || audience || ',' || status || ',' || (select string_agg(email || ':' || state, ',' order by email) from public.email_recipients where campaign_id = %L) from public.email_campaigns where id = %L $$, :'asking', :'asking'), 'confirm,unconfirmed,sending,a@list.mu:queued,b@list.mu:queued', 'a campaign of its own kind is queued for the two that are not confirmed, never asked and not suppressed: not the one that complained');
+select t.throws($$ select public.email_ask_confirm() $$, 'pressing again asks nobody twice', 'P0001', 'nobody to ask');
+select t.throws(format($$ select public.email_campaign_save(%L, 'everyone', 'Words of my own', '', '[{"type": "paragraph", "text": "Buy this."}]') $$, :'asking'), 'cannot put words of their own in the message that asks: the site writes it', 'P0001');
+reset role;
+update public.subscribers set confirmed_at = now() where email = 'a@list.mu';
+select t.be('authenticated', :'admin', 'An admin, taking the batch');
+select t.is(format($$ select string_agg(email || ':' || (confirm_token is not null)::text, ',') from public.email_claim(%L, 10) $$, :'asking'), 'b@list.mu:true', 'is handed the one still unconfirmed, with its link to confirm: the one who confirmed meanwhile is left out');
+select t.is(format($$ select (public.email_mark(%L, (select batch from public.email_recipients where campaign_id = %L and state = 'sending'), (select jsonb_agg(jsonb_build_object('id', id, 'ok', false, 'why', 'The domain is not verified.')) from public.email_recipients where campaign_id = %L and state = 'sending'))) ->> 'status' $$, :'asking', :'asking', :'asking'), 'sent', 'says the mail service refused it');
+reset role;
+select t.is($$ select (confirm_sent_at is null)::text from public.subscribers where email = 'b@list.mu' $$, 'true', 'an address whose message was plainly refused counts as never asked, and may be asked another time');
+select t.is($$ select count(*) from public.audit_log where action = 'email.confirm_asked' $$, '1', 'the asking is on the record');
+
+-- What these claims wrote is taken out again, as nobody, so the counts further down stand as they did.
+select set_config('request.jwt.claim.sub', '', true) \gset ignored_
+delete from public.email_campaigns;
+delete from public.email_suppressions;
+delete from public.subscribers;
+delete from private.site_proof;
+update public.email_settings set from_name = '', from_email = '', reply_to = '', postal_address = '', write_to = 'confirmed_once_connected';
+
+------------------------------------------------------------------------------------------------
 select t.be('authenticated', :'alice', 'Alice and the menu of her bakery, which is on Go');
 select t.lives($$ insert into public.menu_sections (business_id, title, position) values ('b0000000-0000-4000-8000-0000000000a1', ' Breads ', 1) $$, 'adds a section to the menu');
 select t.lives($$ insert into public.menu_items (section_id, name, description, price_mur, position) select id, 'Pain maison', 'Baked each morning.', 25, 1 from public.menu_sections where title = 'Breads' $$, 'adds an item to it, with its price');

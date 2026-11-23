@@ -7,8 +7,9 @@
 # superadmin and checks what each can and cannot do. The scratch database is dropped at the end.
 #
 # Then, on a second scratch database, it applies parts 1 to 10, writes rows as a project in use
-# might hold them (supabase/tests/upgrade-before.sql), applies part 11 and what follows, and checks
-# what became of the rows (supabase/tests/upgrade-after.sql).
+# might hold them (supabase/tests/upgrade-before.sql), applies part 11 and what follows (part 14,
+# the site's own email, among them), and checks what became of the rows
+# (supabase/tests/upgrade-after.sql).
 #
 # By default it uses the Postgres on this machine as the `postgres` user (through `su` when run as
 # root, as on the build machine; start the server first: `pg_ctlcluster 16 main start`). To use
