@@ -317,6 +317,30 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </section>
           )}
 
+          {/* For a dish asked for in a town: the places of its kind there that do not say what they serve. Not answers, and said so. */}
+          {a.also && (
+            <section aria-labelledby="r-also" className="mt-8">
+              <h2 id="r-also" className="label-1 text-ink-faint">
+                May also fit
+              </h2>
+              <p className="body-3 mt-2 max-w-prose text-ink-subtle">{a.also.line} The open map says what a place serves for only some of them.</p>
+              <ul className="rows mt-3">
+                {a.also.listings.map((l) => (
+                  <li key={l.id}>
+                    <ListingRow listing={l} />
+                  </li>
+                ))}
+              </ul>
+              <ul className="narrow">
+                <li>
+                  <Link prefetch={false} href={a.also.all.href} className="body-3">
+                    {a.also.all.label} <span className="data-2 text-ink-faint">{count(a.also.all.n)}</span>
+                  </Link>
+                </li>
+              </ul>
+            </section>
+          )}
+
           {/* A place for an advertisement, marked as one. Nothing at all until there is one for the day. */}
           {!kind && a.listings.length > 0 && <AdSlot place="results" className="mt-8" />}
 

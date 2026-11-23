@@ -16,6 +16,10 @@ export const ASKED = [
   "bank port louis", "hotel flic en flac", "school curepipe", "dentist quatre bornes", "supermarket vacoas", "boulangerie mahebourg", "taxi port louis",
   "garage in goodlands", "doctor in rose belle", "hardware triolet", "snack flacq", "bar grand baie", "atm ebene", "pharmacy near me", "where to eat in mahebourg",
   "kot manze", "restaurant indien", "food delivery", "pizza grand baie", "chinese restaurant port louis", "hotel in belle mare", "villa pereybere",
+  // Asked the way people talk.
+  "burger place in beau bassin", "where can i get a burger in beau bassin", "burger restaurants beau bassin", "pizza place in curepipe", "good pizza place port louis",
+  "nice restaurant in grand baie", "halal restaurant port louis", "late night pharmacy curepipe", "barber shop port louis", "coffee shop in ebene", "sushi place grand baie",
+  "restaurant with sea view grand baie", "kids clothes shop bagatelle", "un bon restaurant a grand baie", "endroit pour manger a curepipe", "kot gagn burger beau bassin", "place taxi margeot",
   // Dishes.
   "pizza", "dholl puri", "roti", "burger", "mine", "briani", "biryani", "sushi", "gato", "ice cream", "coffee", "cocktail",
   // Names: one word, two, three, with a number, with accents typed and not typed.

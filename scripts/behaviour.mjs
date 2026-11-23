@@ -492,6 +492,19 @@ const SEARCHES = [
   ["who made biznes.mu", { answer: /\/about/ }],
   ["list my business", { answer: /Biznes Free.*\/pricing/s }],
   ["nonexistent company xyz", { answer: "", read: /holds some of its words/ }],
+  // Asked the way people talk: a word that only says "a business", words added when asking aloud, and words no listing holds.
+  ["Burger place in beau bassin", { read: /Places to eat in Beau Bassin-Rose Hill, matching “burger”/, first: /McDonald|Ricardo/, not: /holds some of its words|Place Taxi/ }],
+  ["where can i get a burger in beau bassin", { read: /Places to eat in Beau Bassin-Rose Hill, matching “burger”/, not: /holds some of its words/ }],
+  ["burger restaurants beau bassin", { read: /Places to eat in Beau Bassin-Rose Hill, matching “burger”/, first: /McDonald|Ricardo/ }],
+  ["pizza place in curepipe", { read: /Places to eat in Curepipe, matching “pizza”/, first: /Pizza Hut|Domino/ }],
+  ["nice restaurant in grand baie", { read: /Restaurants in Grand Baie\. No listing mentions “nice”, so that was left out/, listings: true, not: /holds some of its words/ }],
+  ["halal restaurant port louis", { read: /Restaurants in Port Louis\. No listing mentions “halal”/, listings: true }],
+  ["late night pharmacy curepipe", { read: /Pharmacies in Curepipe\. No listing mentions “late night”/, listings: true }],
+  ["barber shop port louis", { read: /Read as: Hairdressers and barbers in Port Louis\.$/, listings: true }],
+  ["un bon restaurant a grand baie", { read: /Restaurants in Grand Baie/, not: /holds some of its words/ }],
+  ["endroit pour manger a curepipe", { read: /Read as: Restaurants in Curepipe\./, listings: true }],
+  // A name that holds one of those words is still found by it.
+  ["Place Taxi Margeot", { first: /Place Taxi Margeot/ }],
 ];
 let read = 0;
 for (const [q, want] of SEARCHES) {
@@ -512,6 +525,16 @@ for (const [q, want] of SEARCHES) {
   else check(`search: “${q}”`, false, `status: ${status.slice(0, 110)} | answer: ${answer.slice(0, 90)} | first: ${firstListing} | lead: ${firstLead}`);
 }
 check(`searches: ${SEARCHES.length} a Mauritian would type are read and answered as they should be`, read === SEARCHES.length, `${read} of ${SEARCHES.length}`);
+
+// 8bb1. A dish in a town: the places that say so, then the places of that kind that say nothing of what they serve, as what they are.
+await page.goto(`${origin}/search?q=${encodeURIComponent("burger place in beau bassin")}`, { waitUntil: "domcontentloaded" });
+const fitStatus = await page.locator('main p[role="status"]').first().innerText();
+const fitAnswers = await page.locator("main #r-listings ~ ul article[data-listing]").count();
+const fitAlso = await page.locator("main #r-also ~ ul.rows article[data-listing]").count();
+const fitWords = (await page.locator("main section[aria-labelledby=r-also]").count()) ? await page.locator("main section[aria-labelledby=r-also]").innerText() : "";
+check("a dish in a town: the count is of the places that say so, and the others of that kind are listed apart as what they are", new RegExp(`^${fitAnswers} results?\\.`).test(fitStatus) && fitAnswers >= 1 && fitAlso >= 1 && fitAlso <= 6 && /May also fit/i.test(fitWords) && /nothing on record about what they serve/.test(fitWords) && /Snacks and takeaways in Beau Bassin-Rose Hill/.test(fitWords), `${fitStatus.slice(0, 60)} | ${fitAnswers} + ${fitAlso}`);
+const fitRelated = await page.locator("main nav[aria-labelledby=r-related] a").allInnerTexts();
+check("a dish in a town: the same dish in the nearest towns is offered, with real counts", fitRelated.length >= 2 && fitRelated.some((t) => /^Burger in /.test(t.trim())) && fitRelated.some((t) => /^Burger\s+\d+/.test(t.trim())), fitRelated.join(" | "));
 
 // 8bb2. What the site's own engine (src/lib/engine.ts) does that the library before it did not.
 const found = async (q) => {
@@ -558,6 +581,7 @@ await page.goto(`${origin}/data`, { waitUntil: "networkidle" });
 const dataWords = await page.locator("main").innerText();
 check("the site states the order it keeps", /a listing with a telephone number on record is shown before one without/.test(dataWords) && /First, the pages of this site that answer/.test(dataWords) && /Then businesses and services/.test(dataWords));
 check("the site says how its own engine weighs a listing, and what it does with a typing mistake", /A name that is exactly what was typed comes before a longer name/.test(dataWords) && /two letters that changed places/.test(dataWords) && /A close spelling always counts for less than the word spelt right/.test(dataWords));
+check("the site says how a question asked aloud is read, and what the second list is", /answered as far as it was understood/.test(dataWords) && /May also fit/.test(dataWords) && /never passed off as an answer/.test(dataWords));
 
 // 8bd. Baz Manzer: everything for eating, by kind of place, kind of food and town.
 await page.goto(`${origin}/baz-manzer`, { waitUntil: "networkidle" });

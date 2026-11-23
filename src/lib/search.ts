@@ -90,6 +90,12 @@ export type Answer = {
   summary?: string;
   /** Searches near this one, built from the index: the same kind in nearby and larger towns, the kind across the island. */
   related: Way[];
+  /**
+   * For a dish asked for in a town: the other places of the dish's own kind there whose record
+   * says nothing about what they serve. They are shown after the places that answer, as what
+   * they are, and never counted among the results.
+   */
+  also?: { line: string; listings: Listing[]; n: number; all: Way };
   official: Official[];
   sites: Site[];
   counts: Record<Kind, number>;
@@ -117,9 +123,17 @@ const PADDING = new Set([
   ...["in", "at", "near", "me", "the", "a", "an", "of", "for", "and", "best", "top", "good", "cheap", "open", "now", "nearby", "around", "mauritius", "maurice", "moris", "ile"],
   // What a person adds when asking aloud, in English, French and Kreol.
   ...["where", "to", "find", "i", "need", "want", "looking", "some", "any", "there", "my", "number", "phone", "telephone", "contact"],
-  ...["un", "une", "le", "la", "les", "des", "du", "dans", "pour", "avec", "et", "ou", "je", "mon", "ma", "pres", "proche", "trouver", "cherche", "numero"],
+  ...["get", "buy", "please", "with", "that", "has", "have", "from", "sells", "selling", "serves", "serving", "today", "tonight", "gagn", "gagne"],
+  ...["un", "une", "le", "la", "les", "des", "du", "dans", "pour", "avec", "et", "ou", "je", "mon", "ma", "pres", "proche", "trouver", "cherche", "numero", "de", "au", "ouvert", "ouverte"],
   ...["kot", "kote", "dan", "nan", "pou", "ek", "mo", "bizin", "rod", "enn", "sa", "nimero"],
 ]);
+/**
+ * Words that only say "a business" once its kind is known: "burger place" is "burger", "pizza
+ * spot" is "pizza". They are left out only when the question finds nothing with them, and only
+ * beside a kind of business or a dish, so a name that holds one ("Place Taxi Margeot") is still
+ * found by it.
+ */
+const GENERIC = new Set(["place", "spot", "joint", "outlet", "shop", "store", "somewhere", "anywhere", "endroit", "boutique", "magasin", "plas", "landrwa", "laboutik"]);
 /** Words that ask and do not say what about. They are not held against a page that answers. */
 const ASKS = new Set(["how", "what", "when", "why", "which", "who", "can", "do", "does", "is", "are", "should", "you", "much", "many", "long", "comment", "quand", "combien", "quel", "quelle", "que", "quoi", "kan", "kouma", "ki", "kifer", "komie"]);
 
@@ -129,6 +143,8 @@ const ASKS = new Set(["how", "what", "when", "why", "which", "who", "can", "do",
  * are not here; each category carries its own French and Kreol words (crawler/taxonomy.mjs).
  */
 const SAID_PHRASES: [string, string][] = [
+  ["pour manger", "to eat"],
+  ["a manger", "to eat"],
   ["start a business", "register a business"],
   ["open a business", "register a business"],
   ["ouvrir une entreprise", "register a business"],
@@ -466,6 +482,9 @@ function earliest<T>(list: ByWord<T>, tokens: string[], wanted?: (phrase: Phrase
   return undefined;
 }
 
+/** Words that ask in a question about how, and stand in names too. */
+const NAMED_WITH = new Set(["long", "much", "many", "you"]);
+
 /** A dish named in a question, and the category its word sits in. */
 type Dish = { word: string; home: Category };
 const DISH_STEMS = new Set([...DISHES].map((word) => stems(word).join(" ")));
@@ -531,7 +550,10 @@ function reading(e: Built, text: string, all: string[]): Reading {
     const narrower = firstListed(e.hints, tokens.map(stem));
     if (narrower) hint = { category: narrower.phrase.of, word: tokens.slice(narrower.at, narrower.at + narrower.phrase.tokens.length).join(" ") };
   }
-  return { text, place, category, dish, hint, rest: tokens.filter((word) => !PADDING.has(word)).join(" "), words };
+  // With a town, a kind of business or a dish read, the question is about who and where: the words that only ask ("is", "can") say nothing more.
+  // Not the ones a name may hold: "Long Beach" is a hotel.
+  const about = Boolean(place || category || dish);
+  return { text, place, category, dish, hint, rest: tokens.filter((word) => !PADDING.has(word) && !(about && ASKS.has(word) && !NAMED_WITH.has(word))).join(" "), words };
 }
 
 /**
@@ -637,6 +659,8 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
   // dish is looked for in every place to eat, or in the kind of place named beside it.
   let ranked: { l: Listing; score: number }[] = [];
   let ignored: string | undefined;
+  /** The words beside the town and the kind that the listings shown do hold. */
+  let held = rest;
   const fits = (l: Listing) => (dish && !category ? e.eat.has(l.cat) : !category || l.cat === category.id) && (!place || l.placeSlug === place.slug || l.areaSlug === place.slug);
   // The listings of one kind, in one town, and for eating: the index's own lists, with any an owner listed outside it.
   const extras = overlay?.extras ?? [];
@@ -686,24 +710,64 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
       const named = byName();
       if (named.counts.listing > 0) return named;
     }
-    if (dish) {
-      // By what a listing says of itself, never by its category's words: every takeaway would "mention" pizza.
-      const wanted = [...stems(dish.word), ...stems(rest)];
-      for (const l of fitting()) {
+    // The words left over, and the same without those that only say "a business": "burger place"
+    // is "burger". The fuller question is always tried first, so a name that holds such a word
+    // is found by it.
+    const lean = rest
+      .split(" ")
+      .filter((word) => word && !GENERIC.has(stem(word)))
+      .join(" ");
+    // By what a listing says of itself, never by its category's words: every takeaway would "mention" pizza.
+    const serving = (among: Listing[], beside: string) => {
+      const wanted = [...stems(dish!.word), ...stems(beside)];
+      const out: { l: Listing; score: number }[] = [];
+      for (const l of among) {
         const own = ownWords(l);
         if (!wanted.every((word) => own.includes(word))) continue;
         const name = stems(l.name);
-        ranked.push({ l, score: (wanted.every((word) => name.includes(word)) ? 3 : stems(l.kind ?? "").includes(wanted[0]) ? 2 : 1) * (1 + l.full / 12) });
+        out.push({ l, score: (wanted.every((word) => name.includes(word)) ? 3 : stems(l.kind ?? "").includes(wanted[0]) ? 2 : 1) * (1 + l.full / 12) });
       }
-      if (!ranked.length) {
+      return out;
+    };
+    // Every place to eat in the town, whatever kind of place the question named.
+    const anywhere = () => (place ? inPlace(place.slug) : forEating()).filter((l) => e.eat.has(l.cat));
+    /** The places that mention the dish, when none of them holds the words beside it. */
+    let dishAlone: { l: Listing; score: number }[] = [];
+    if (dish) {
+      const tries: [Listing[], string, boolean][] = [[fitting(), rest, false]];
+      if (lean !== rest) tries.push([fitting(), lean, false]);
+      // "Burger restaurant", and the places with burgers are snacks: the dish matters more than the word for the place.
+      if (category) tries.push([anywhere(), rest, true], ...(lean !== rest ? ([[anywhere(), lean, true]] as [Listing[], string, boolean][]) : []));
+      for (const [among, beside, wider] of tries) {
+        ranked = serving(among, beside);
+        if (!ranked.length) continue;
+        if (wider) category = undefined;
+        held = beside;
+        break;
+      }
+      if (!ranked.length && lean) {
+        dishAlone = serving(fitting(), "");
+        if (!dishAlone.length && category) {
+          dishAlone = serving(anywhere(), "");
+          if (dishAlone.length) category = undefined;
+        }
+      }
+      if (!ranked.length && !dishAlone.length) {
         // No place to eat mentions the dish. It is read as the category its word sits in, and the page says the word was left out.
         ignored = dish.word;
         category ??= dish.home;
         dish = undefined;
       }
     }
-    if (!ranked.length) {
-      if (rest) matching(rest, false);
+    if (!ranked.length && !dishAlone.length) {
+      if (rest) {
+        matching(rest, false);
+        if (!ranked.length && lean !== rest) {
+          if (lean) matching(lean, false);
+          else every(ignored ? undefined : own);
+          if (ranked.length) held = lean;
+        }
+      }
       // Every word was a kind of business or a town: the fullest first, after the one whose name is the question.
       else every(ignored ? undefined : own);
     }
@@ -713,13 +777,28 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
       // over are tried as close spellings within the kind or the town, before anything looser.
       const named = byName();
       if (named.counts.listing > 0 && !named.spelling && !named.loose) return named;
-      if (rest) matching(rest, true);
+      if (lean && !dishAlone.length) {
+        matching(lean, true);
+        if (ranked.length) held = lean;
+      }
       if (!ranked.length) {
-        if (named.counts.listing > 0 || !rest) return named;
-        // Not a name either. Answer the part that was understood, and say which words were left out.
-        every();
+        // A close spelling of every word of the question is nearer to it than a part of it.
+        if (named.counts.listing > 0 && !named.loose) return named;
+        // A town alone is not much of a reading: what holds some of the words says more than
+        // everything in the town. Nor is a kind alone with a word beside it, which is as likely a
+        // name still being typed ("Villas Ca") or one the index does not hold.
+        // Where plain words find nothing at all, even that reading is the better answer.
+        const firm = Boolean((category || dish) && (place || dishAlone.length));
+        if (!lean || (named.counts.listing > 0 && !firm)) return named;
+        // Not a name either. A kind of business in a town was understood, or a dish that places
+        // do mention, so the question is answered as far as it was understood, and the page says
+        // which words were left out: "nice burger place in Beau Bassin" is the places with
+        // burgers in Beau Bassin, before anything that only holds some of the words.
+        if (dishAlone.length) ranked = dishAlone;
+        else every();
         if (!ranked.length) return named;
-        ignored = [ignored, rest].filter(Boolean).join(" ");
+        ignored = [ignored, lean].filter(Boolean).join(" ");
+        held = "";
       }
     }
   } else {
@@ -905,6 +984,23 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     } else {
       for (const t of towns.sort((a, b) => b.n - a.n).slice(0, 5)) ask(`${category.label} in ${t.town.name}`, t.n);
     }
+  } else if (who && dish && place && !kind) {
+    // The same dish in the towns nearest, and across the island: the map says what a place serves for few of them, so the next town often has more.
+    const wanted = stems(dish.word);
+    const inTown = new Map<string, number>();
+    let everywhere = 0;
+    for (const l of forEating()) {
+      const own = ownWords(l);
+      if (!wanted.every((word) => own.includes(word))) continue;
+      everywhere++;
+      if (l.placeSlug) inTown.set(l.placeSlug, (inTown.get(l.placeSlug) ?? 0) + 1);
+    }
+    const here = (place.kind === "area" && place.within ? data.placeBySlug.get(place.within) : undefined) ?? place;
+    const named = dish.word.charAt(0).toUpperCase() + dish.word.slice(1);
+    const towns = [...inTown].map(([slug, n]) => ({ town: data.placeBySlug.get(slug), n })).filter((t): t is { town: Place; n: number } => t.town != null && t.town.slug !== here.slug);
+    const near = here.lon == null ? [] : towns.filter((t) => t.town.lon != null && apart(here, t.town) <= 10).sort((a, b) => b.n - a.n || apart(here, a.town) - apart(here, b.town)).slice(0, 4);
+    for (const t of near) ask(`${named} in ${t.town.name}`, t.n);
+    if (everywhere > ranked.length) ask(named, everywhere);
   } else if (who && place && !dish && !kind) {
     const kinds = new Map<string, number>();
     for (const l of inPlace(place.slug)) kinds.set(l.cat, (kinds.get(l.cat) ?? 0) + 1);
@@ -914,7 +1010,27 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     }
   }
 
-  const kept = ignored ? "" : rest;
+  // A dish asked for in a town finds only the places whose record says so, and the open map says
+  // what a place serves for few of them. The other places of the dish's own kind in the town that
+  // say nothing of what they serve are offered after those that answer, as what they are.
+  let also: Answer["also"];
+  if (who && dish && place && !kind && page === 1 && !narrow?.phone && !narrow?.web && !narrow?.town) {
+    const shown = new Set(ranked.map((r) => r.l));
+    const home = dish.home;
+    const there = inCategory(home.id).filter((l) => l.placeSlug === place.slug || l.areaSlug === place.slug);
+    const quiet = there.filter((l) => !shown.has(l) && !l.kind && !l.about).sort((a, b) => b.full - a.full || a.name.localeCompare(b.name));
+    if (quiet.length) {
+      const n = quiet.length;
+      also = {
+        line: `${count(n)} other ${(n === 1 ? home.one : home.label).toLowerCase()} in ${place.name} ${n === 1 ? "has" : "have"} nothing on record about what ${n === 1 ? "it serves" : "they serve"}.`,
+        listings: quiet.slice(0, 6),
+        n,
+        all: { href: `/directory/${home.id}/${place.slug}`, label: `${home.label} in ${place.name}`, n: there.length },
+      };
+    }
+  }
+
+  const kept = ignored ? "" : held;
   const matched = [dish?.word, kept].filter(Boolean).join(" ");
   const readAs = !who
     ? undefined
@@ -954,6 +1070,7 @@ export function search(query: string, { kind, page = 1, plain = false, narrow, o
     mentions: kind ? [] : soft.slice(0, who || named ? 2 : 3),
     summary,
     related,
+    also,
     official: cut(official, 4, "official"),
     sites: cut(sites, 4, "site"),
     counts,

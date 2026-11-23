@@ -111,6 +111,12 @@ export default function DataPage() {
               <strong>Words half typed, and typing mistakes.</strong> A word still being typed finds the longer words that begin with it, and they count for less than the word written out. When nothing matches as written, the engine looks for close spellings: a letter missing, a letter too many, a wrong letter, or two letters that changed places. One such slip is allowed in a word of four letters or more, and two between words of eight letters or more. A close spelling always counts for less than the word spelt right, and the page says when close spellings are shown. A town or a kind of business typed wrongly, such as &ldquo;pharmcy&rdquo; or &ldquo;restorant&rdquo;, is read as the word meant when one word is plainly the nearest.
             </p>
             <p>
+              <strong>A question asked the way people talk.</strong> &ldquo;Burger place in Beau Bassin&rdquo; is read as a dish and a town: the places to eat in Beau Bassin-Rose Hill whose record mentions a burger. A word that only says &ldquo;a business&rdquo; (place, spot, shop) and the words people add when asking aloud are set aside. When a kind of business in a town is understood and another word of the question is held by none of those listings, the question is answered as far as it was understood and the page says which words were left out. It does not fall back to anything that merely holds some of the words.
+            </p>
+            <p>
+              <strong>What the map does not say.</strong> The open map says what a place serves for only some of them, so a dish asked for in a town finds only the places whose record says so. Under those, the page lists the other places of that kind in the town that have nothing on record about what they serve, under the words &ldquo;May also fit&rdquo;. They are not counted among the results and are never passed off as an answer. The same dish in the nearest towns is offered beside them.
+            </p>
+            <p>
               <strong>Health.</strong> In the health categories ({health.join(", ")}), a listing with a telephone number on record is shown before one without, in a search and on the category&rsquo;s own page. Someone unwell needs a number to call. Among those with a number, and among those without, the order is as everywhere else.
             </p>
             <p>
