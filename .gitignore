@@ -20,6 +20,11 @@ review/screens/*
 !review/screens/tool-vat-*.jpg
 !review/screens/baz-manzer-*.jpg
 
+# The icon sheet is made again by `npm run icons:sheet`. Its two pictures are kept as the record of
+# the set; a large view or a slice written beside them is a working file.
+review/icons/*
+!review/icons/sheet-*.jpg
+
 # Helpers for one session's checks.
 scripts/_*
 

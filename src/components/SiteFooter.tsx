@@ -12,6 +12,9 @@ import { Mark, Wordmark } from "./Logo";
  * white; whose product the site is; how to reach the people behind it; the way onto the list for
  * the pocket guide and the magazine; every page in four columns (Find, Read, For business,
  * About), named as the menu names them; the credit the map's data asks for wherever it is shown; and the page's last line.
+ *
+ * The landing page is one screen and does not show it: that page has one quiet line in its place
+ * ("Home and the landing page" in globals.css).
  */
 export default function SiteFooter() {
   const { meta } = index();

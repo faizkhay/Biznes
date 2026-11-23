@@ -3062,6 +3062,246 @@
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
   }
+
+  /* Home and the landing page.
+
+     The landing page (src/app/page.tsx) is one screen: the day's picture, the site's line, the
+     search and one button. So it has no sheet under it, no footer card and, on a phone, no room
+     kept for a bar at its foot; in the footer's place is one quiet line. All of that follows from
+     the page's own class, so no layout and no other page knows of it. */
+  main:has(> .landing) {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  main:has(> .landing)::before {
+    content: none;
+  }
+  body:has(.landing) {
+    padding-bottom: 0;
+  }
+  body:has(.landing) .site-footer {
+    display: none;
+  }
+  /* It fills the screen and never shrinks under what it holds: on a screen too short for it the
+     page grows by the difference, and nothing lies over anything else. The soft light behind the
+     words is taller than a small phone's words are, so it is cut at the page's own edge and adds
+     nothing to scroll. */
+  .landing {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    overflow: clip;
+  }
+  /* The words and the search fill what the screen has left, and stand a little above its middle. */
+  .landing .hero-open {
+    min-height: auto;
+    padding-block: 1.5rem 4rem;
+  }
+  .landing .hero-open > * + * {
+    margin-top: 1.5rem;
+  }
+  .landing .hero-open > .landing-search {
+    width: 100%;
+    max-width: 42rem;
+    margin-top: 2rem;
+  }
+  /* On a short screen (a small phone, a phone on its side) the same things stand closer together. */
+  @media (max-height: 40rem) {
+    .landing .hero-open {
+      padding-block: 0 0.5rem;
+    }
+    .landing .hero-open > * + *,
+    .landing .hero-open > .landing-search {
+      margin-top: 1rem;
+    }
+  }
+  /* The line at the landing page's foot: whose product this is, and three pages. It stands on
+     the picture where the picture is fullest, so it has a ground of its own, white at 82% as the
+     greeting has: on the darkest picture there could be, its words are still 5.8:1 or better. */
+  .landing-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0 1.25rem;
+    width: fit-content;
+    max-width: calc(100% - 1rem);
+    margin: 0 auto calc(0.75rem + env(safe-area-inset-bottom));
+    padding: 0.125rem 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--palette-white) 82%, transparent);
+    backdrop-filter: blur(8px);
+    color: var(--color-ink-subtle);
+    text-align: center;
+  }
+  .landing-foot ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .landing-foot nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    text-decoration-color: transparent;
+  }
+  .landing-foot nav a:hover {
+    text-decoration-color: currentColor;
+  }
+  @media (pointer: coarse) {
+    .landing-foot {
+      padding-block: 0.5rem 0;
+    }
+    .landing-foot nav a {
+      min-height: 2.75rem;
+    }
+  }
+
+  /* The Home page (src/app/home/page.tsx): everything, set out with icons. Every icon on it
+     stands beside its words in a square, and both come in two sizes, set here and nowhere else:
+     the larger for a way in, the smaller for a kind within it and for a card's own heading. */
+  .home {
+    --home-icon: 1.375rem;
+    --home-icon-box: 3rem;
+    --home-icon-sm: 1.125rem;
+    --home-icon-box-sm: 2.25rem;
+  }
+  .home .tile-icon {
+    width: var(--home-icon-box);
+    height: var(--home-icon-box);
+  }
+  .home .tile-icon svg {
+    width: var(--home-icon);
+    height: var(--home-icon);
+  }
+  .home :is(.tile-quiet, .start-tile, .card) .tile-icon {
+    width: var(--home-icon-box-sm);
+    height: var(--home-icon-box-sm);
+    border-radius: var(--radius-md);
+  }
+  .home :is(.tile-quiet, .start-tile, .card) .tile-icon svg {
+    width: var(--home-icon-sm);
+    height: var(--home-icon-sm);
+  }
+  /* On a phone a tile stays a row, its icon beside its words and a little smaller, so two stand
+     abreast without making the page long. */
+  @media (max-width: 40rem) {
+    .home {
+      --home-icon: 1.25rem;
+      --home-icon-box: 2.5rem;
+    }
+    .home .tile {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.625rem;
+    }
+    .home .tile .tile-icon {
+      border-radius: var(--radius-md);
+    }
+    /* The pages of the last part are a list there, one to a line, each line whole. */
+    .home .start {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .home .start-tile {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+  /* Pressed, a tile gives a little, as a button does. */
+  .home :is(.tile, .start-tile) {
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .home :is(.tile, .start-tile):active {
+    transform: scale(0.985);
+  }
+  /* A kind within a group (a kind of food, a kind of business): a smaller tile, its icon in ink
+     on white, so the groups above it stay the louder of the two. */
+  .tile-quiet {
+    gap: 0.625rem;
+    padding: 0.5rem;
+  }
+  .tile-quiet .tile-icon {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-line);
+  }
+  /* Inside Baz Manzer's white card a tile stands on sand, as the kinds of place do on its own page. */
+  .home .baz-head .tile {
+    background: var(--color-panel);
+    border-color: transparent;
+  }
+  /* Under the pointer the sand stays, so the count on it keeps its contrast, and an edge of ink comes up. */
+  .home .baz-head .tile:hover {
+    background: var(--color-panel);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--palette-ink) 26%, transparent);
+  }
+  /* The top businesses: two cards abreast on a wide screen. On a phone they go by sideways, one
+     card and the edge of the next in view, so the rest of the page stays within reach. */
+  .top-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .top-list .listing {
+    height: 100%;
+  }
+  @media (min-width: 48rem) {
+    .top-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 47.999rem) {
+    .top-list {
+      grid-auto-flow: column;
+      grid-auto-columns: min(86%, 22rem);
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scroll-padding-inline: var(--gutter);
+      margin-inline: calc(-1 * var(--gutter));
+      padding: 0.25rem var(--gutter) 1rem;
+      scrollbar-width: none;
+    }
+    .top-list::-webkit-scrollbar {
+      display: none;
+    }
+    .top-list > li {
+      scroll-snap-align: start;
+    }
+  }
+  /* The numbers to call: a name and its numbers a line, each number a link that dials. */
+  .dial {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-line);
+  }
+  .dial > li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    min-height: 3.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  /* A number to call is a full-size target, whatever is pointing at it. */
+  .dial .act {
+    min-height: 2.75rem;
+  }
 }
 
 /* Reduced motion: nothing travels. State changes still happen, at once. */

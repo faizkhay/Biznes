@@ -1,4 +1,4 @@
-import { BAZ, PLANS, PUBLICATIONS, SHELVES, site } from "@/data/site";
+import { BAZ, HOME, PLANS, PUBLICATIONS, SHELVES, site } from "@/data/site";
 import { emergency } from "@/lib/emergency";
 import { count, day } from "@/lib/format";
 import { holidays, longDay } from "@/lib/holidays";
@@ -33,6 +33,7 @@ export function GET() {
     "",
     "## How the site is organised",
     "",
+    `- [${HOME.label}](${siteUrl}${HOME.href}): the site on one page: ${HOME.parts.map((part) => part.label.toLowerCase()).join(", ")}. Its top businesses are the verified ones on a paid plan, marked, and then the listings with the most on record, a different few each day.`,
     `- [Search](${siteUrl}/search): one question over everything. A page of results gives the site's own pages that answer first, then businesses, then parts of articles that only mention the words, then pages elsewhere. /search?q=pharmacy+in+curepipe`,
     `- [The directory](${siteUrl}/directory): every category of business and service, in these groups: ${groups.map((g) => `${g.label} (${count(g.n)})`).join(", ")}. A category's address is /directory/<category>, and /directory/<category>/<town> narrows it to a town.`,
     `- [Towns and villages](${siteUrl}/places): listings by place, district by district. A town's address is /places/<town>.`,

@@ -15,7 +15,8 @@ import { siteUrl } from "@/lib/site-url";
 import { todayInMauritius } from "@/lib/theme";
 import { Crumbs } from "./Bits";
 import Chart from "./Chart";
-import { Arrow, Clock, Fork, Globe, GroupIcon, Info, Phone, Pin, Route } from "./Icons";
+import { CategoryIcon } from "./Glyphs";
+import { Arrow, Clock, Fork, Globe, Info, Phone, Pin, Route } from "./Icons";
 import JsonLd from "./JsonLd";
 import MapSwitch from "./MapSwitch";
 import { ListingRow } from "./Rows";
@@ -370,7 +371,7 @@ export default function BusinessPage({
             )}
             <div className="biz-body">
               <span className="biz-icon" aria-hidden>
-                <GroupIcon group={category?.group} />
+                <CategoryIcon id={category?.id} group={category?.group} />
               </span>
               <h1 className="heading-1 mt-4">{name}</h1>
               {/* The vivid mark is for a verified business on a paid plan, and for nothing else. */}
