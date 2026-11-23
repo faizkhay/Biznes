@@ -1266,7 +1266,7 @@ this list.
 | House style | `npm run copy` | 0 failures, 261 files |
 | Tokens | `npm run tokens` | 0 failures, 192 files |
 | Contrast | `npm run contrast` | Every pair passes |
-| Words on the picture | `npm run hero` | The landing page's headline, its greeting and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 5.58:1 |
+| Words on the picture | `npm run hero` | The landing page's headline, its greeting and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 5.60:1 |
 | Design record | `npm run design` | 0 errors |
 | Behaviour | `npm run behaviour` | 203 of 203, against a production server with accounts off. The menu is among them: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
@@ -1318,7 +1318,7 @@ from the first screen, and an article's contents.
 Changed in Round 7, when the first screen became two pages: the landing page (its one heading,
 the search, the one button and nothing under them; one screen at a desk and on a phone; a header
 of the name, the cart and the account; no bar at its foot; the quiet line in the footer's place;
-focus at a desk and the "/" key) and the Home page (its five parts in order; the eight top
+focus at a desk and the "/" key; still one screen on a phone of 320 by 568) and the Home page (its five parts in order; the eight top
 businesses against the index itself and against the day's turn; that every full listing has its
 turn in a round; the line that says how they are chosen; Baz Manzer's tiles; the thirteen groups
 and the ten regions, each leading to a part of a page that is there; the numbers to call; the next

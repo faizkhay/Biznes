@@ -12,8 +12,8 @@ import { themeNow } from "@/lib/theme";
 
 export const metadata = pageMeta({ title: `${site.name} · ${site.line}`, description: site.summary, path: "/", whole: true });
 
-/** The few pages the landing page names at its foot: who makes the site, what it keeps, and the page of every page. */
-const FOOT = [...ABOUT.filter((page) => page.href === "/about" || page.href === "/privacy").map((page) => ({ href: page.href, label: page.label })), { href: MORE_PAGE.href, label: MORE_PAGE.all }];
+/** The few pages the landing page names at its foot: who makes the site, what it keeps, and the page of every page, by the name the phone's bar gives it. */
+const FOOT = [...ABOUT.filter((page) => page.href === "/about" || page.href === "/privacy").map((page) => ({ href: page.href, label: page.label })), { href: MORE_PAGE.href, label: MORE_PAGE.label }];
 
 /**
  * The landing page: the front door of a search engine. The day's picture, the site's one line,
@@ -63,12 +63,12 @@ export default async function Landing() {
             {theme.greeting}. {count(meta.listings.all)} businesses and services<span className="hidden sm:inline">, {count(meta.towns)} towns and villages</span>
           </span>
         </Link>
-        <h1 className="display-1 mx-auto mt-6 max-w-4xl">{site.line}</h1>
-        <div className="mt-8 w-full max-w-2xl">
+        <h1 className="display-1 mx-auto max-w-4xl">{site.line}</h1>
+        <div className="landing-search">
           <SearchBox size="lg" deskFocus hotkey id="home-search" />
         </div>
-        <p className="mt-6">
-          <Link href={HOME.href} className="btn btn-ink button-md landing-home">
+        <p>
+          <Link href={HOME.href} className="btn btn-ink button-md">
             <PageIcon href={HOME.href} />
             {HOME.label}
           </Link>

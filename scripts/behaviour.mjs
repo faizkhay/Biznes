@@ -78,7 +78,7 @@ const foot = await page.evaluate(() => {
   const box = line.getBoundingClientRect();
   return { words: line.innerText.replace(/\s+/g, " "), links: [...line.querySelectorAll("nav a")].map((a) => a.getAttribute("href")).join(","), onScreen: box.top > innerHeight / 2 && box.bottom <= innerHeight, card: getComputedStyle(document.querySelector("footer.site-footer")).display };
 });
-check("landing: in the footer's place, one quiet line: whose product it is, in the owner's words, and three pages", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(foot.words) && foot.links === "/about,/privacy,/more" && foot.onScreen && foot.card === "none", JSON.stringify(foot));
+check("landing: in the footer's place, one quiet line: whose product it is, in the owner's words, and three pages", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(foot.words) && foot.links === "/about,/privacy,/more" && /About biznes\.mu Privacy More$/.test(foot.words.trim()) && foot.onScreen && foot.card === "none", JSON.stringify(foot));
 check("landing: the skip link is still the first thing the keyboard meets", (await page.evaluate(() => document.querySelector("body a")?.getAttribute("href"))) === "#main" && (await page.locator("a.skip-link").count()) === 1);
 await page.evaluate(() => document.activeElement?.blur());
 await page.keyboard.press("/");
@@ -680,6 +680,18 @@ check("phone: the landing page is one screen, with no bar at its foot: the searc
 check("phone: the landing page does not take the keyboard, which would cover it", first.focus !== "home-search");
 const reach = await small.locator('main a.btn[href="/home"], main .landing-foot nav a, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
 check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 7 && reach.every((height) => height >= 44), reach.join(","));
+{
+  // The smallest phone still in use, 320 by 568: the same page, closer together, and still one screen.
+  const little = await steady(await browser.newContext({ viewport: { width: 320, height: 568 }, isMobile: true, hasTouch: true }));
+  const tiny = await little.newPage();
+  await tiny.goto(`${origin}/`, { waitUntil: "networkidle" });
+  const fits = await tiny.evaluate(() => {
+    const boxes = ["main .pill-note", "main h1", "main .search", 'main a.btn[href="/home"]', "main .landing-foot"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+    return { tall: document.documentElement.scrollHeight - document.documentElement.clientHeight, whole: boxes.every((box) => box.left >= 0 && box.right <= innerWidth && box.bottom <= innerHeight), apart: boxes.every((box, i) => i === 0 || box.top >= boxes[i - 1].bottom), clear: boxes[0].top >= document.querySelector("header .nav-pill").getBoundingClientRect().bottom };
+  });
+  check("phone: on the smallest phone the landing page is still one screen, with nothing cut off and nothing lying over anything else", fits.tall <= 0 && fits.whole && fits.apart && fits.clear, JSON.stringify(fits));
+  await little.close();
+}
 await small.locator('main a.btn[href="/home"]').tap();
 await small.waitForURL(/\/home$/);
 check("phone: the Home button leads to Home, where the bar is, and says that is where you are", (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "Home" && (await small.locator("footer.site-footer").isVisible()));

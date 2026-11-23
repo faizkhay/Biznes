@@ -3010,7 +3010,6 @@
   main:has(> .landing) {
     display: flex;
     flex-direction: column;
-    margin-top: 0;
     padding-bottom: 0;
   }
   main:has(> .landing)::before {
@@ -3022,19 +3021,38 @@
   body:has(.landing) .site-footer {
     display: none;
   }
+  /* It fills the screen and never shrinks under what it holds: on a screen too short for it the
+     page grows by the difference, and nothing lies over anything else. The soft light behind the
+     words is taller than a small phone's words are, so it is cut at the page's own edge and adds
+     nothing to scroll. */
   .landing {
-    flex: 1;
+    flex: 1 0 auto;
     display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    overflow: clip;
   }
   /* The words and the search fill what the screen has left, and stand a little above its middle. */
   .landing .hero-open {
-    min-height: 0;
+    min-height: auto;
     padding-block: 1.5rem 4rem;
   }
+  .landing .hero-open > * + * {
+    margin-top: 1.5rem;
+  }
+  .landing .hero-open > .landing-search {
+    width: 100%;
+    max-width: 42rem;
+    margin-top: 2rem;
+  }
+  /* On a short screen (a small phone, a phone on its side) the same things stand closer together. */
   @media (max-height: 40rem) {
     .landing .hero-open {
-      padding-block: 0.5rem 1.5rem;
+      padding-block: 0 0.5rem;
+    }
+    .landing .hero-open > * + *,
+    .landing .hero-open > .landing-search {
+      margin-top: 1rem;
     }
   }
   /* The line at the landing page's foot: whose product this is, and three pages. It stands on

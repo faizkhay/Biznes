@@ -351,7 +351,7 @@ the headline and the line at the page's foot each stand on a ground of their own
 with a blur: over the darkest picture there could be that ground is no darker than `#d1d1d1`,
 on which slate measures 5.82:1 and ink more. `scripts/hero-contrast.mjs` reads the pixels behind
 all three on each of the ten pictures, at a desk and on a phone, and fails under 3:1 for the
-headline or 4.5:1 for the other two. On 23 November 2026 the lowest of the sixty was 5.58:1 (the
+headline or 4.5:1 for the other two. On 23 November 2026 the lowest of the sixty was 5.60:1 (the
 headline on the sunset, at a desk), and the lowest for the foot line 6.30:1. It needs a running
 server.
 
@@ -445,9 +445,12 @@ nothing lies under it. In order: a pill with the greeting and what the index hol
 one line as the headline, in `display-1`; the search box, up to 42rem wide, with its saffron
 button; and one button, "Home", in ink with its icon. They stand a little above the middle of the
 screen. At the foot is one quiet line in the footer's place (`.landing-foot`): whose product the
-site is, in the owner's words, and three pages (About, Privacy, every page). The menu there is
+site is, in the owner's words, and three pages (About, Privacy, More). The menu there is
 only the name, the cart and the account; there is no tab bar and no footer card. The page's own
 class does all of it (`main:has(> .landing)`, `body:has(.landing)`), so no layout knows of it.
+On a screen under 40rem tall the same things stand closer together, and it is still one screen
+on a phone of 320 by 568; on a screen shorter than that (a phone on its side) the page grows and
+nothing lies over anything else.
 
 **The Home page** (`/home`, `src/app/home/page.tsx`) is the sheet with five parts on it, in the
 owner's order, each under a plain `heading-2` with a line about it and a way to see all of it:
