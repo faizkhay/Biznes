@@ -8,7 +8,7 @@
 // scripts/district-icons.mjs. A thing with no drawing of its own takes the nearest that is true
 // of it (a kind of business takes its group's), so a caller never has to ask whether one exists.
 //
-// Every icon has one solid point (DESIGN.md, "Icons"). It is the icon's own colour unless the icon
+// Every icon has one solid point (DESIGN.md, "The icons"). It is the icon's own colour unless the icon
 // is given `lit`, or something around it sets `--glyph-point`: then the point is the signal colour
 // inside a ring of the icon's colour. Use it where the icon is ink on a light ground, never on an
 // ink tile, where the icon is saffron already.
