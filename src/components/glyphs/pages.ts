@@ -9,8 +9,8 @@ export const LENS: Drawing = [ring(10.5, 10.5, 6.5) + "M15.5 15.5l5 5", 10.5, 10
 export const PAGES: Record<string, Drawing> = {
   "/": LENS,
   "/search": LENS,
-  // Home: a signpost, because a house already means the home and building group.
-  "/home": ["M12 5.5V7M6.5 7H16l3 2.25-3 2.25H6.5V7ZM12 11.5V13M17.5 13H8l-3 2.25 3 2.25h9.5V13ZM12 17.5v4M9 21.5h6", 12, 3.75, 1.75],
+  // Home: a house with its door, and a light on under the roof. The home and building group keeps the plainer house.
+  "/home": ["M3.5 11 12 4l8.5 7M5.5 9.5V20h13V9.5M9.75 20v-4.5h4.5V20", 12, 11, 1.75],
   // The directory: the kinds of business as tiles, and the one you came for.
   "/directory": [box(3.5, 3.5, 7, 7, 1.5) + box(13.5, 3.5, 7, 7, 1.5) + box(3.5, 13.5, 7, 7, 1.5), 17, 17, 2.5],
   // Places: a pin; the point is the place.

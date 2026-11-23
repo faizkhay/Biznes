@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ActionForm, Field, Select, Submit, TextArea } from "@/components/account/Form";
 import AccountsSoon from "@/components/account/Soon";
 import { PageHead } from "@/components/Bits";
-import { GroupIcon } from "@/components/Icons";
+import { CategoryIcon } from "@/components/Glyphs";
 import { ACTIONS, PLANS } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { owned } from "@/lib/accounts/owned";
@@ -101,7 +101,7 @@ export default async function NewBusinessPage({ searchParams }: { searchParams: 
                         <li key={l.id}>
                           <div className="row listing items-center">
                             <span className="listing-icon listing-icon-quiet" aria-hidden>
-                              <GroupIcon group={categoryById.get(l.cat)?.group} />
+                              <CategoryIcon id={l.cat} group={categoryById.get(l.cat)?.group} />
                             </span>
                             <div className="min-w-0">
                               <p className="title-2">{l.name}</p>

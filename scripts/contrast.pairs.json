@@ -32,5 +32,6 @@
   {"text": "rgba(255,255,255,0.78)", "on": "#0a1639", "where": "white at 78% on ink: secondary words in the footer"},
   {"text": "#f8c618", "on": "#0a1639", "where": "saffron against ink: an icon's lit point inside its ring, where the icon is drawn in ink on a light ground"},
   {"text": "#f8c618", "on": "#404965", "where": "saffron against slate: an icon's lit point inside its ring, where the icon is drawn in slate"},
-  {"text": "#f8c618", "on": "#0d36a7", "where": "saffron against royal: an icon's lit point inside its ring, where the icon is drawn in royal"}
+  {"text": "#f8c618", "on": "#0d36a7", "where": "saffron against royal: an icon's lit point inside its ring, where the icon is drawn in royal"},
+  {"text": "#404965", "on": "#d1d1d1", "where": "slate on white at 82% over black, the darkest a picture could be: the line at the landing page's foot, at its worst"}
 ]

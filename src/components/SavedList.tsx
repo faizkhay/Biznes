@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { shortUrl, telHref } from "@/lib/format";
 import { clearSaved, saveAll, useReady, useSaved } from "@/lib/saved";
-import { Bookmark, Globe, GroupIcon, Phone } from "./Icons";
+import { GroupGlyph } from "./Glyphs";
+import { Bookmark, Globe, Phone } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
 
 const ROWS_KEY = "biznes:saved-rows";
@@ -118,7 +119,7 @@ export default function SavedList({ shared }: { shared?: string[] }) {
           <li key={r.id}>
             <article className="row listing" data-listing={r.id}>
               <span className="listing-icon" aria-hidden>
-                <GroupIcon group={r.group} />
+                <GroupGlyph id={r.group} />
               </span>
               <div className="min-w-0">
                 <h2 className="title-1">

@@ -10,10 +10,12 @@ owner's words. The listings come from open data and each says where. The article
 written from official pages and each lists them. The design, the search and the crawler were made
 for this site.
 
-The first screen is a postcard: a painted picture of the island behind the page, a sheet of warm
-paper laid on it, and one question in the middle, "Find it in Mauritius." The picture follows the
-calendar by itself: a public holiday's look on its day, otherwise the season's, otherwise the
-lagoon. Everything a visitor reads at length is on the paper.
+The landing page is a postcard: a painted picture of the island, the site's one line, the search
+box in the middle and one button, "Home". Home is the page a Mauritian keeps open: the top
+businesses, Baz Manzer, the categories, the regions and what is useful, on a sheet of warm paper
+laid on the picture. The picture follows the calendar by itself: a public holiday's look on its
+day, otherwise the season's, otherwise the lagoon. Everything a visitor reads at length is on the
+paper.
 
 The site is built with KOS, Khay Digital's method and standards (`faizkhay/Khay-Original-Skill`).
 Four documents describe this build, and `AGENTS.md` holds the rules for changing it:
@@ -522,8 +524,9 @@ customers, notes and ledger are theirs alone: an admin cannot read them.
 - **Advertisements.** An owner of a live business drafts one: a headline of sixty characters, a
   line of 120, where it leads (their page here, or their own website), a picture, a place, and the
   months it should run, which are months to come and never the one that has begun. The places are
-  six on the site (the first screen, search results, a listing's page, food and drink, the guides,
-  the directory), three on the pocket guide's sponsors' pages, and the magazine. The guide's three
+  six on the site (the Home page, which the list of places still names "The first screen", search
+  results, a listing's page, food and drink, the guides, the directory), three on the pocket
+  guide's sponsors' pages, and the magazine. The guide's three
   are priced from `content/pdf/sponsorship.json`; the rest say "Price on request", because the
   owner has set no price for them. An admin approves or declines with a reason, and marks an
   approved one paid. Only an approved, paid advertisement of a live business is given to the
@@ -788,11 +791,14 @@ Everything the owner will change is data. No fact is written into a component.
 |---|---|
 | The site's name, line, description and contact details | `site` in `src/data/site.ts` |
 | The header's four links, what "More" opens, every page's name and the line under it | `NAV`, `MORE`, `MENU`, `YOURS` and `ABOUT` in `src/data/site.ts` |
-| The footer's pages | `NAV` and `MORE` in `src/data/site.ts` |
-| The five tabs at the foot of a phone's screen | `TABS` in `src/components/TabBar.tsx` |
-| The first screen's searches to try | `EXAMPLES` in `src/data/site.ts` |
+| The footer's pages | `MENU`, `ABOUT` and `YOURS` in `src/data/site.ts` |
+| The five tabs at the foot of a phone's screen | `ON_BAR` in `src/components/TabBar.tsx`, between the search and "More" |
+| The Home page's name, its line, its five parts and the pages its last part leads to | `HOME` in `src/data/site.ts` |
+| How many top businesses the Home page shows, and what makes a listing a full one | `TOP_SHOWN` and `isFull` in `src/lib/top.ts`; then `/data` says the same |
+| The size of the icons on the Home page | `--home-icon` and `--home-icon-box` on `.home` in `src/app/globals.css` |
+| The searches the search page offers before anything is asked | `EXAMPLES` in `src/data/site.ts` |
 | A plan's name, price or lines | `PLANS` in `src/data/site.ts` (see "The plans") |
-| The four promises on the first screen | `PROMISES` in `src/data/site.ts` |
+| The four promises on the page about the site | `PROMISES` in `src/data/site.ts` |
 | The shelves of the guides page | `SHELVES` in `src/data/site.ts` |
 | A picture, a season, a holiday's greeting, the everyday greeting | `src/data/themes.ts` and `public/themes` (see "The pictures") |
 | The public holidays | `content/holidays.json` |
@@ -833,17 +839,46 @@ owner has not given.
 
 ### The menu and the shelves
 
-The header has four plain links (`NAV`: Directory, Baz Manzer, Articles, Tools) and one word that
-opens a list, "More" (`MORE`: the eight pages most wanted after those). On a phone and a tablet a
-bar at the foot of the screen carries the search, the first three of the four, and "More", which
-there is a page of every page (`/more`). Nothing else opens, at any width.
+The site's name in the header leads to the landing page (`/`), where the search is. Beside it the
+header has four plain links (`NAV`: Home, Directory, Baz Manzer, Articles) and one word that opens
+a list, "More" (`MORE`: the tools, then the eight pages most wanted after those). On a phone and
+a tablet a bar at the foot of the screen carries the search, Home, Baz Manzer, Articles, and
+"More", which there is a page of every page (`/more`). On a phone the directory is reached through
+Home, whose categories and regions are its two ways in, and through "More". Nothing else opens, at
+any width.
+
+The landing page is the one page with less: its header is only the name, the cart and the
+account, it has no bar at its foot, and in the footer's place it has one quiet line. Its one
+button, "Home", is the way on. It is done by the page's own class (`.landing`, under "Home and the
+landing page" in `globals.css`) and by one line each in `HeaderBar.tsx` and `TabBar.tsx`.
 
 Every page that has a name is in one of three lists, each entry a name and a line about it: `MENU`
 (Find, Read, For business), `YOURS` (the shortlist, the cart, the account) and `ABOUT`. The page of
 every page and the footer's columns are drawn from them, and the header's "More" takes its names
 from them, so a page is called one thing wherever it is listed. To add a page, add an entry to its
-group; add its address to `MORE` only if it earns a place among the eight. An address in a link's
-`also` belongs to the same way in: the towns light Directory.
+group; add its address to `MORE` only if it earns a place there. An address in a link's `also`
+belongs to the same way in: the towns light Directory.
+
+The first step of every page's path ("Home / Directory / Pharmacies") is the Home page, by the
+name `HOME` gives it. `trail` in `src/lib/nav.ts` sees to it for the path a reader sees (`Crumbs`)
+and for the one written out for machines (`breadcrumbs`), so a page that still begins its own
+path at `/` is led to Home without being changed.
+
+### The top businesses
+
+`topBusinesses` in `src/lib/top.ts` chooses the eight the Home page shows, and `/data` says how,
+under "The top businesses on the Home page". Change that page first if the rule ever changes.
+
+1. **A verified business on a paid plan** comes first and is marked, as in a search (`owned()`).
+   With accounts off there are none. If more are live than fit, they take turns by the day.
+2. **The fullest listings in the open index** fill the rest: those with a telephone number, a
+   website, opening hours and an address on record (`isFull`), 56 when this was written.
+
+The day's turn is `turnOf` in `src/lib/turn.ts`. The date in Mauritius is the seed: the count of
+days since 1970 says which round it is and which day of the round, each round puts the whole list
+in an order of its own, and each day shows the next eight. So every full listing has its turn once
+in a round (seven days, for 56), and the page is the same for everyone on a given day. Nobody
+chooses them, and the page never says that one business is better than another.
 
 A shelf is a row of `SHELVES`: an id, a label and a line. An article joins a shelf by its `shelf`
 field; one with none is on the business shelf. The order of articles on the site is `GUIDE_ORDER`
@@ -914,7 +949,7 @@ everyone on that day.
 - **A superadmin can overrule the calendar** from the admin pages: one picture, fixed, or a round
   of chosen pictures, their own uploads among them (`themeNow()`; see "Accounts").
 - **To add a picture**, put its two files in `public/themes`, name it in `PICTURES`, and add it to
-  a season's `also` or to `EVERYDAY_PICTURES`. `npm run hero` then measures the first screen's
+  a season's `also` or to `EVERYDAY_PICTURES`. `npm run hero` then measures the landing page's
   words against it, and it must pass before the picture is used.
 - **To change a picture**, replace its two files in `public/themes` (the full one, and the `-sm`
   one for a phone) and bring the `.json` record beside each up to date. Then raise `VERSION` in
@@ -1114,7 +1149,7 @@ The articles, the plans and the money:
    Until a payment is connected, an order from the cart is answered by a person; how that person
    takes the money and sends the file is for the owner to say.
 7. **Who the first superadmin is.** The rule proposed is the first account registered.
-8. **"Bonzour".** The everyday greeting on the first screen is Kreol for hello. Keep it, or choose
+8. **"Bonzour".** The everyday greeting on the landing page and on Home is Kreol for hello. Keep it, or choose
    another (`GREETING`).
 9. **The four pictures** are generated illustrations. Keep them, or send your own.
 
@@ -1176,7 +1211,8 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 
 | Address | What it does | Made |
 |---|---|---|
-| `/` | The first screen: the greeting, the question, the search. Then ways in to what Mauritians ask most (food, emergency numbers, public holidays, the directory, the towns, the articles), Baz Manzer, the directory's groups, the towns beside the island, the guides, the tools, where it all comes from | Ahead of time, and again at most once an hour |
+| `/` | The landing page, one screen: the day's picture, the greeting, the site's line, the search box, and one button, "Home". At its foot, one line: whose product the site is, and three pages. The installed app opens here | Ahead of time, and again at most once an hour |
+| `/home` | Home, in five parts: the top businesses (the verified ones on a paid plan, marked, then the day's eight of the fullest listings); Baz Manzer, by kind of place and kind of food; the directory's thirteen groups and the dozen kinds most listed; the ten regions with their largest towns, beside the island; and what is useful: the numbers to call, the next public holidays, articles, tools, the Pocket Guide, the glossary, official pages, and the way to list a business | Ahead of time, and again at most once an hour |
 | `/search?q=` | Results, in four parts in a fixed order: our own pages that answer, businesses (cards that can be narrowed with `phone=1`, `web=1`, `town=`), parts of articles that mention the words, and pages elsewhere folded under "References elsewhere". `kind=` shows one kind alone | On each request |
 | `/b/[slug]` | One listing: its own card, what is known, where each part came from, the same kind nearby. A listing's id alone leads to its full address | The first time it is asked for, then kept |
 | `/directory` | Every category, group by group | Ahead of time |
@@ -1198,7 +1234,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/about` | Who makes the site | Ahead of time |
 | `/saved` | The visitor's shortlist, read from their browser. `/saved?ids=` shows a list someone sent | On each request |
 | `/add` | The request form. `?listing=`, `?claim=`, `?plan=`, `?product=` and `?sponsor=` open it on a listing, a claim, a plan, the guide or a place in it; `?message=` begins the request with words the cart wrote | On each request |
-| `/data` | Where the data comes from, how results are ordered, what is never taken, the index to download | Ahead of time |
+| `/data` | Where the data comes from, how results are ordered, how the Home page's top businesses are chosen, what is never taken, the index to download | Ahead of time |
 | `/data/[file]` | The seven files of the index, as downloads | Ahead of time |
 | `/bot` | How the crawler behaves, and how to keep it out | Ahead of time |
 | `/privacy` | What the site keeps and does not keep | Ahead of time |
@@ -1230,7 +1266,7 @@ this list.
 | House style | `npm run copy` | 0 failures, 261 files |
 | Tokens | `npm run tokens` | 0 failures, 192 files |
 | Contrast | `npm run contrast` | Every pair passes |
-| Words on the picture | `npm run hero` | The first screen's headline and the line under it, measured against all ten pictures at a desk and on a phone: the lowest is 5.36:1 |
+| Words on the picture | `npm run hero` | The landing page's headline, its greeting and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 5.60:1 |
 | Design record | `npm run design` | 0 errors |
 | Behaviour | `npm run behaviour` | 203 of 203, against a production server with accounts off. The menu is among them: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
@@ -1278,6 +1314,18 @@ saved page and a shared list; the three plans and their prices; the pocket guide
 sponsors and that it is not handed out while it is sold; and, on a phone, fourteen pages no wider
 than the screen itself, the tab bar on the first screen, the menu, the emergency numbers one tap
 from the first screen, and an article's contents.
+
+Changed in Round 7, when the first screen became two pages: the landing page (its one heading,
+the search, the one button and nothing under them; one screen at a desk and on a phone; a header
+of the name, the cart and the account; no bar at its foot; the quiet line in the footer's place;
+focus at a desk and the "/" key; still one screen on a phone of 320 by 568) and the Home page (its five parts in order; the eight top
+businesses against the index itself and against the day's turn; that every full listing has its
+turn in a round; the line that says how they are chosen; Baz Manzer's tiles; the thirteen groups
+and the ten regions, each leading to a part of a page that is there; the numbers to call; the next
+public holiday; an icon beside every way in, at a size set in one place; its own card, and its
+places in the sitemap and in `llms.txt`). The menu's checks now hold Home as the first link, the
+tools at the head of "More", and the first step of every page's path. The island no longer lights
+what is typed, so that check is gone.
 
 Added in Round 5: the four parts of a page of results and their order; the line of counts; "People
 also ask" and that each question is an article's own heading; related searches; forty-nine

@@ -3,6 +3,7 @@
 // does not hold is left out.
 import { site } from "@/data/site";
 import type { Listing } from "./index";
+import { trail } from "./nav";
 import { siteUrl } from "./site-url";
 
 /**
@@ -74,12 +75,12 @@ const TYPES: Record<string, string> = {
 export const schemaType = (category?: string, fallback = "LocalBusiness") => (category && TYPES[category]) || fallback;
 export const servesFood = (category?: string) => ["restaurants", "fast-food", "cafes", "bars", "bakeries"].includes(category ?? "");
 
-/** The path to a page, as a BreadcrumbList. The last step is the page itself. */
+/** The path to a page, as a BreadcrumbList. It begins at the Home page (`trail`), and the last step is the page itself. */
 export function breadcrumbs(path: { href?: string; label: string }[], here: string) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: path.map((step, i) => ({ "@type": "ListItem", position: i + 1, name: step.label, item: `${siteUrl}${step.href ?? here}` })),
+    itemListElement: trail(path).map((step, i) => ({ "@type": "ListItem", position: i + 1, name: step.label, item: `${siteUrl}${step.href ?? here}` })),
   };
 }
 

@@ -3,7 +3,8 @@ import { day, directionsHref, shortUrl, telHref } from "@/lib/format";
 import { chartPoints } from "@/lib/chart";
 import { index, whereOf, type Listing, type Official, type Site } from "@/lib/index";
 import type { Lead } from "@/lib/search";
-import { Book, Calc, Globe, GroupIcon, Landmark, Out, Phone, Route, Sun } from "./Icons";
+import { CategoryIcon } from "./Glyphs";
+import { Book, Calc, Globe, Landmark, Out, Phone, Route, Sun } from "./Icons";
 import { SaveButton, ShareButton } from "./Save";
 import { VerifiedMark } from "./Verified";
 
@@ -35,7 +36,7 @@ export function ListingRow({
   return (
     <article className={marked ? "row listing listing-paid" : "row listing"} data-listing={l.id} data-point={chartPoints().at.get(l.id)}>
       <span className="listing-icon" aria-hidden>
-        <GroupIcon group={category?.group} />
+        <CategoryIcon id={category?.id} group={category?.group} />
       </span>
       <div className="min-w-0">
         <h3 className="title-1">
