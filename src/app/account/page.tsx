@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Empty, Notice, PartHead, WayIn } from "@/components/account/Bits";
 import { ActionForm, Field, Submit } from "@/components/account/Form";
-import { Calendar, Cart, Cog, Mail, Megaphone, People, Shield, Tag } from "@/components/account/Icons";
+import { Calendar, Cart, Cog, Mail, Megaphone, Pencil, People, Shield, Tag } from "@/components/account/Icons";
 import AccountsSoon from "@/components/account/Soon";
 import SubscribeForm from "@/components/account/SubscribeForm";
 import { Crumbs } from "@/components/Bits";
@@ -111,6 +111,9 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
                 </li>
                 <li>
                   <WayIn href="/admin/subscribers" icon={<Mail />} title="Subscribers" line="Who is sent the guide and the magazine." />
+                </li>
+                <li>
+                  <WayIn href="/admin/email" icon={<Pencil />} title="Email" line="Write to the list, and send it." />
                 </li>
                 <li>
                   <WayIn href="/admin/leads" icon={<Store />} title="No website" line="Listings with no website, to call." />

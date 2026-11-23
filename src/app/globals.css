@@ -3168,6 +3168,68 @@
       grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
     }
   }
+  /* A message to the list, drawn on the admin's page as a mail program will draw it. The marks
+     inside carry their own styles, as they do when sent; this is only the frame they sit in, and
+     what a mail program does by itself that this page's own base styles would undo. */
+  .mail-frame {
+    max-width: 42rem;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    background: var(--color-paper);
+    text-wrap: wrap;
+  }
+  .mail-frame table {
+    border-collapse: separate;
+    border-spacing: 0;
+    font-variant-numeric: normal;
+  }
+  .mail-frame td {
+    overflow-wrap: anywhere;
+  }
+  /* A message's plain-text twin, shown as it was typed, in the site's own face. */
+  .mail-text {
+    max-width: 42rem;
+    margin: 0;
+    padding: 1.25rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    font-family: inherit;
+    color: var(--color-ink);
+  }
+  /* How far a message has got: ink on sand, as wide as its place. */
+  .progress {
+    display: block;
+    width: 100%;
+    max-width: 32rem;
+    height: 0.75rem;
+    appearance: none;
+    border: 0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    background: var(--color-panel);
+    color: var(--color-ink);
+  }
+  .progress::-webkit-progress-bar {
+    background: var(--color-panel);
+  }
+  .progress::-webkit-progress-value {
+    background: var(--color-ink);
+  }
+  .progress::-moz-progress-bar {
+    background: var(--color-ink);
+  }
+  /* One part of a message in the form that writes it: a quiet panel with what it is at its head. */
+  .mail-part {
+    padding: 1rem 1.25rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
 
   /* Home and the landing page.
 

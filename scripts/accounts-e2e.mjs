@@ -21,10 +21,19 @@
 // site must be built and served with it, and this script given it, as `accounts-stack.sh env` prints.
 // It looks through .next for that word, so run it from the root of the build it is checking.
 //
+// For the site's own email it needs the other variables `accounts-stack.sh env` prints, on the
+// site and here alike: EMAIL_PROVIDER=local and EMAIL_TEST_URL, an address on this machine where
+// this script listens for the batches the site sends (no message leaves the machine); EMAIL_BATCH,
+// two addresses to a batch; and the two secrets the webhooks are signed with. It does not listen
+// from the start: until it does the site has no sender, and the checks see it that way first.
+// The site should be built with NEXT_PUBLIC_SITE_URL set to its own address, as a real one is.
+//
 // Needs: playwright and @axe-core/playwright (devDependencies), psql.
 import AxeBuilder from "@axe-core/playwright";
 import { execFileSync } from "node:child_process";
+import { createHmac, randomBytes } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import http from "node:http";
 import { join } from "node:path";
 import { deflateSync } from "node:zlib";
 import { chromium } from "playwright";
@@ -1145,14 +1154,14 @@ let adId = "";
 
   await go(admin, `${origin}/admin/subscribers`);
   const text = await admin.locator("main").innerText();
-  check("admin subscribers: the counts, the list, and a plain word that the site sends nothing", /^\s*2\s*$/m.test(await admin.locator("main .stat .stat-figure").first().innerText()) && text.includes(CAROL.email) && text.includes("reader@example.mu") && /This site sends no email/.test(text), await admin.locator("main .stat").first().innerText());
+  check("admin subscribers: the counts, the list with each address as not confirmed, and a plain word that the site sends nothing yet", /^\s*2\s*$/m.test(await admin.locator("main .stat .stat-figure").first().innerText()) && (await admin.locator("main .stat").count()) === 5 && /^\s*0\s*$/m.test(await admin.locator("main .stat .stat-figure").nth(1).innerText()) && text.includes(CAROL.email) && text.includes("reader@example.mu") && /this site sends no email yet/.test(text) && (await admin.locator("main table").first().locator("td .tag", { hasText: "Not confirmed" }).count()) === 2, await admin.locator("main .stat").first().innerText());
   await audit(admin, "admin-subscribers");
   const file = await admin.request.get(`${origin}/admin/subscribers/export?want=guide`);
   const body = await file.text();
   const token = sql(`select token from public.subscribers where email = '${CAROL.email}'`);
-  check("admin subscribers: the list as a file, each row with its own link to leave", file.status() === 200 && /text\/csv/.test(file.headers()["content-type"] ?? "") && /attachment; filename="subscribers-guide-/.test(file.headers()["content-disposition"] ?? "") && body.includes('"Email address","Pocket guide","Magazine","Joined","Link to leave the list"') && body.includes(`"${CAROL.email}","yes","yes",`) && body.includes(`/unsubscribe?token=${token}"`) && body.trim().split("\n").length === 3, body.slice(0, 300));
+  check("admin subscribers: the list as a file, each row with its own link to leave", file.status() === 200 && /text\/csv/.test(file.headers()["content-type"] ?? "") && /attachment; filename="subscribers-guide-/.test(file.headers()["content-disposition"] ?? "") && body.includes('"Email address","Pocket guide","Magazine","Joined","Confirmed","Not written to","Link to leave the list"') && body.includes(`"${CAROL.email}","yes","yes",`) && body.includes(`/unsubscribe?token=${token}"`) && body.trim().split("\n").length === 3, body.slice(0, 300));
   const cells = body.trim().split("\n").flatMap((line) => line.replace(/^\uFEFF/, "").match(/("([^"]|"")*"|[^,]*)(,|$)/g) ?? []).map((c) => c.replace(/,$/, "")).filter((c) => c !== "");
-  check("admin subscribers: every cell of the file is in quotation marks, so a cell stays one cell whatever a spreadsheet splits on", cells.length === 15 && cells.every((c) => /^"([^"]|"")*"$/.test(c)), cells.slice(0, 6).join(" "));
+  check("admin subscribers: every cell of the file is in quotation marks, so a cell stays one cell whatever a spreadsheet splits on", cells.length === 21 && cells.every((c) => /^"([^"]|"")*"$/.test(c)), cells.slice(0, 6).join(" "));
   check("admin subscribers: the file is not there for anyone else", (await visitor.page.request.get(`${origin}/admin/subscribers/export`)).status() === 404 && (await carol.page.request.get(`${origin}/admin/subscribers/export`)).status() === 404 && (await go(carol.page, `${origin}/admin/subscribers`))?.status() === 404);
 
   await go(visitor.page, `${origin}/unsubscribe?token=${token}`);
@@ -1255,6 +1264,404 @@ let adId = "";
 }
 
 // ---------------------------------------------------------------------------------------------
+// 6j. The site's own email: the list confirmed, a message written and looked at, sent by hand
+//     with no sender and then in batches with one, left in one press, and what a mail service
+//     says afterwards.
+{
+  const admin = owner.page;
+  const LIST = Object.fromEntries(["ann", "ben", "cat", "dev", "fay", "gus"].map((who) => [who, `${who}@list.test`]));
+  const EVE = "eve@list.test";
+  const TEST_URL = process.env.EMAIL_TEST_URL ?? "";
+  const tok = (email, column = "token") => sql(`select ${column} from public.subscribers where email = '${email}'`);
+  const campaignOf = (page) => new URL(page.url()).pathname.split("/").pop();
+  /** A link from a message, on the site under check: the same path, whatever address the site was built to name itself by. */
+  const here = (link) => {
+    try {
+      return `${origin}${new URL(link).pathname}${new URL(link).search}`;
+    } catch {
+      return origin;
+    }
+  };
+  /** Wait until a campaign stands a way, as the database has it. */
+  const stands = async (id, status, most = 60) => {
+    for (let i = 0; i < most && sql(`select status from public.email_campaigns where id = '${id}'`) !== status; i++) await sleep(250);
+    return sql(`select status from public.email_campaigns where id = '${id}'`) === status;
+  };
+  const tally = (id) => sql(`select string_agg(state || '=' || n, ',' order by state) from (select state, count(*) n from public.email_recipients where campaign_id = '${id}' group by state) t`);
+
+  // What the site hands to its sender, kept here. It does not listen yet: the site has no sender.
+  const outbox = { batches: [], letters: [], refuse: "", delay: 0 };
+  const listener = http.createServer(async (request, response) => {
+    if (request.method !== "POST") return response.writeHead(200, { "Content-Type": "application/json" }).end('{"ok":true}');
+    let body = "";
+    for await (const chunk of request) body += chunk;
+    const batch = JSON.parse(body);
+    if (outbox.delay) await sleep(outbox.delay);
+    outbox.batches.push(batch);
+    if (outbox.refuse) {
+      const why = outbox.refuse;
+      outbox.refuse = "";
+      return response.writeHead(400, { "Content-Type": "application/json" }).end(JSON.stringify({ message: why }));
+    }
+    outbox.letters.push(...batch.letters.map((letter) => ({ ...letter, from: batch.from, replyTo: batch.replyTo })));
+    response.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify({ results: batch.letters.map((letter) => ({ ref: letter.ref, ok: true, id: `kept-${letter.ref}` })) }));
+  });
+  const lettersTo = (email, subject) => outbox.letters.filter((l) => l.to === email && (!subject || l.subject === subject));
+
+  // ---- With no sender.
+  check("email: the checks were given the address the site's local sender posts to", /^http:\/\/127\.0\.0\.1:\d+\//.test(TEST_URL), TEST_URL || "EMAIL_TEST_URL is not set");
+  await go(admin, `${origin}/admin/email`);
+  let text = await admin.locator("main").innerText();
+  check("email: with no sender the page says so plainly, says what happens meanwhile, and names each variable to set", /Nothing leaves the site/.test(text) && /so the site sends no email/.test(text) && ["EMAIL_PROVIDER=resend", "RESEND_API_KEY", "RESEND_WEBHOOK_SECRET", "EMAIL_PROVIDER=mailgun", "MAILGUN_API_KEY", "MAILGUN_DOMAIN", "MAILGUN_REGION", "MAILGUN_WEBHOOK_SIGNING_KEY"].every((name) => text.includes(name)) && /mark it as sent by hand/.test(text), text.slice(0, 300));
+  check("email: and that no message may be sent until the postal address and who it is from are set", /No message may be sent yet: the sender's postal address, the name a message comes from, the address a message comes from are not set/.test(text));
+  check("email: the tab is among the admin's tabs", (await admin.locator('nav[aria-label="Admin"] a[href="/admin/email"][aria-current="page"]').count()) === 1);
+  await audit(admin, "admin-email-no-sender");
+  const strangers = [await go(carol.page, `${origin}/admin/email`), await go(visitor.page, `${origin}/admin/email`)];
+  check("email: the page is not there for a user, and leads a visitor to sign in", strangers[0]?.status() === 404 && new URL(visitor.page.url()).pathname === "/account/sign-in", `${strangers[0]?.status()} ${visitor.page.url()}`);
+
+  // Six join through the database's own function with the site's word, as the form does; one through the form itself.
+  for (const [who, email] of Object.entries(LIST)) await call("subscribe", { address: email, guide: true, magazine: who !== "ben" }, PROOF);
+  await go(carol.page, `${origin}/account`);
+  const join = part(carol.page, "list");
+  await join.getByRole("button", { name: "Join the list" }).click();
+  await join.locator('[role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  check("join: with no sender joining works as before, and the address is kept as not confirmed", /You are on the list\. We will send/.test(await join.innerText()) && sql(`select count(*) || '|' || count(confirmed_at) || '|' || count(confirm_sent_at) from public.subscribers`) === "7|0|0", await join.innerText());
+
+  // The settings are the superadmin's. Until they are set a message is written and looked at, and goes nowhere.
+  await go(admin, `${origin}/admin/email`);
+  await part(admin, "begin").getByRole("button", { name: /Start the Pocket Guide/ }).click();
+  await admin.waitForURL(/\/admin\/email\/[0-9a-f-]{36}$/, { timeout: 20000 }).catch(() => {});
+  const guide = campaignOf(admin);
+  const built = JSON.parse(readFileSync("content/pdf/built.json", "utf8")).edition;
+  const coming = monthAfter(built) > month ? monthAfter(built) : month;
+  const guideRow = () => sql(`select kind || '|' || audience || '|' || edition || '|' || status || '|' || subject from public.email_campaigns where id = '${guide}'`);
+  check("guide: one press starts the Pocket Guide's message for the coming edition, as a draft", guideRow() === `guide|guide|${coming}|draft|biznes.mu Pocket Guide: the ${monthName(coming)} edition`, guideRow());
+  const write = part(admin, "write");
+  check("guide: the month, the guide's name and its address on the site are filled in, with whether it is free or sold", (await write.locator('[name="subject"]').inputValue()).includes(monthName(coming)) && (await write.locator('[name="b0.text"]').inputValue()) === `biznes.mu Pocket Guide: ${monthName(coming)}` && (await write.locator('[name="b3.href"]').inputValue()) === "/shop" && /Open the Pocket Guide/.test(await write.locator('[name="b3.label"]').inputValue()) && /This edition is Rs 150\.|free to download/.test(await write.locator('[name="b2.text"]').inputValue()) && /What the site knows of the/.test(await write.locator("[data-guide-facts]").innerText()), await write.locator('[name="b2.text"]').inputValue());
+  check("guide: no price and no date is in it that the guide's own files do not hold", sql(`select blocks::text from public.email_campaigns where id = '${guide}'`).match(/Rs [\d,]+/g)?.every((p) => p === "Rs 150") !== false && !/\b20\d\d-\d\d-\d\d\b/.test(sql(`select blocks::text from public.email_campaigns where id = '${guide}'`)));
+  await audit(admin, "email-draft");
+
+  // Writing it: a part changed, one added, moved and taken out, and a button that leads nowhere it may.
+  await write.locator('[name="b1.text"]').fill("Here is the new edition.\nSixty places, region by region.");
+  await write.getByRole("button", { name: "A paragraph", exact: true }).click();
+  await admin.waitForSelector('main [name="b4.text"]', { timeout: 15000 }).catch(() => {});
+  check("write: a part is added at the end, and what was typed is saved with it", sql(`select jsonb_array_length(blocks) || '|' || (blocks -> 1 ->> 'text') || '|' || (blocks -> 4 ->> 'type') from public.email_campaigns where id = '${guide}'`) === "5|Here is the new edition.\nSixty places, region by region.|paragraph", sql(`select blocks::text from public.email_campaigns where id = '${guide}'`).slice(0, 200));
+  await part(admin, "write").locator('[name="b4.text"]').fill("See you on the road.");
+  await part(admin, "write").getByRole("button", { name: /^Move up\s*: part 5$/ }).click();
+  await admin.waitForFunction(() => document.querySelector('main [name="b3.text"]')?.value === "See you on the road.", null, { timeout: 15000 }).catch(() => {});
+  check("write: a part moves up, with what was typed in it", sql(`select (blocks -> 3 ->> 'text') || '|' || (blocks -> 4 ->> 'type') from public.email_campaigns where id = '${guide}'`) === "See you on the road.|button");
+  await part(admin, "write").locator('[name="b4.href"]').fill("javascript:alert(1)");
+  await part(admin, "write").getByRole("button", { name: "Save the draft" }).click();
+  await admin.waitForSelector('main [name="b4.href"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("write: a button may lead to a page of this site or a full https address and nowhere else; what was typed is kept and nothing is saved", (await admin.locator('main [name="b4.href"][aria-invalid="true"]').count()) === 1 && (await admin.locator('main [name="b4.href"]').inputValue()) === "javascript:alert(1)" && sql(`select blocks -> 4 ->> 'href' from public.email_campaigns where id = '${guide}'`) === "/shop");
+  await audit(admin, "email-draft-errors");
+  await part(admin, "write").locator('[name="b4.href"]').fill("/shop");
+  await part(admin, "write").locator('[name="subject"]').fill(`The ${monthName(coming)} Pocket Guide`);
+  await part(admin, "write").locator('[name="subject"]').press("Enter");
+  await admin.waitForFunction((want) => document.querySelector("main [data-subject]")?.textContent === want, `The ${monthName(coming)} Pocket Guide`, { timeout: 15000 }).catch(() => {});
+  check("write: pressing Enter in a field saves the draft, and moves or takes out nothing", sql(`select subject || '|' || jsonb_array_length(blocks) from public.email_campaigns where id = '${guide}'`) === `The ${monthName(coming)} Pocket Guide|5`, sql(`select subject || '|' || jsonb_array_length(blocks) from public.email_campaigns where id = '${guide}'`));
+  await part(admin, "write").getByRole("button", { name: /^Take out\s*: part 4$/ }).click();
+  await admin.waitForFunction(() => !document.querySelector('main [name="b4.type"]'), null, { timeout: 15000 }).catch(() => {});
+  check("write: a part is taken out", sql(`select jsonb_array_length(blocks) || '|' || (blocks -> 3 ->> 'type') from public.email_campaigns where id = '${guide}'`) === "4|button");
+
+  // Looking at it: drawn on the page, in no frame, with its plain-text twin.
+  const look = part(admin, "look");
+  const drawn = look.locator(".mail-frame").first();
+  check("look: the message is drawn on the page as it will look, and not in a frame", (await admin.locator("iframe").count()) === 0 && (await drawn.locator('[role="heading"]').first().innerText()) === `biznes.mu Pocket Guide: ${monthName(coming)}` && (await drawn.locator("a", { hasText: "Open the Pocket Guide" }).getAttribute("href")) === `${origin}/shop` && /Sixty places, region by region\./.test(await drawn.innerText()));
+  check("look: the button is the site's saffron with ink words, on a white card on the cream sheet", await drawn.locator("a", { hasText: "Open the Pocket Guide" }).evaluate((a) => getComputedStyle(a).backgroundColor === "rgb(248, 198, 24)" && getComputedStyle(a).color === "rgb(10, 22, 57)" && getComputedStyle(a.closest(".em-card")).backgroundColor === "rgb(255, 255, 255)" && getComputedStyle(a.closest(".em-sheet")).backgroundColor === "rgb(253, 249, 236)"));
+  const twin = await look.locator("[data-plain-text]").innerText();
+  check("look: its plain-text twin holds the same parts", twin.includes(`biznes.mu Pocket Guide: ${monthName(coming)}`) && twin.includes("Here is the new edition.\nSixty places, region by region.") && twin.includes(`Open the Pocket Guide: ${origin}/shop`), twin.slice(0, 300));
+  check("look: it ends with who sent it and why, and, sent by hand, with how to leave by replying", /Sent by biznes\.mu, which is run by Khay Digital Ltd\. You have this message because you asked to be sent the biznes\.mu Pocket Guide\./.test(twin) && /reply to this one and say so/.test(twin) && /postal address is printed here once it is set/.test(twin), twin.slice(-400));
+
+  // Ready, and then no further: nothing is sent, by any road, while the postal address is empty.
+  await part(admin, "ready").getByRole("button", { name: "It is ready" }).click();
+  await admin.waitForSelector('main [data-status="ready"]', { timeout: 15000 }).catch(() => {});
+  let send = part(admin, "send");
+  text = await send.innerText();
+  check("hand: with no sender Send is not offered; the page says why, and how to connect one", sql(`select status from public.email_campaigns where id = '${guide}'`) === "ready" && (await send.getByRole("button", { name: "Send", exact: true }).count()) === 0 && /so the site sends no email/.test(text) && /set EMAIL_PROVIDER/.test(text) && /goes out by hand/.test(text));
+  check("hand: and nothing is offered to take away while the sender's postal address is not set", /It cannot be sent yet: the sender's postal address/.test(text) && (await send.locator('a[href*="/export"]').count()) === 0 && (await send.getByRole("button", { name: "Mark as sent by hand" }).count()) === 0);
+  const early = await call("email_sent_by_hand", { campaign: guide });
+  const asOwner = async (name, args) => fetch(`${API}/rest/v1/rpc/${name}`, { method: "POST", headers: { apikey: KEY, Authorization: `Bearer ${await tokenOf(admin)}`, "Content-Type": "application/json" }, body: JSON.stringify(args) });
+  const refused = await asOwner("email_sent_by_hand", { campaign: guide });
+  check("hand: the database refuses it too, to a visitor because they are one and to an admin because the address is empty", early.status >= 400 && refused.status === 400 && /postal address/.test((await refused.json()).message) && sql(`select status from public.email_campaigns where id = '${guide}'`) === "ready", `${early.status} ${refused.status}`);
+
+  await go(admin, `${origin}/admin/email`);
+  const settings = part(admin, "settings");
+  await settings.locator('[name="from_name"]').fill("biznes.mu");
+  await settings.locator('[name="from_email"]').fill("not an address");
+  await settings.getByRole("button", { name: "Save these" }).click();
+  await admin.waitForSelector('main [name="from_email"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("settings: an address to send from that is not one is said on its field", (await admin.locator('main [name="from_email"][aria-invalid="true"]').count()) === 1 && sql(`select from_name || '|' || from_email from public.email_settings`) === "|");
+  await settings.locator('[name="from_email"]').fill("Guide@Biznes.test");
+  await settings.locator('[name="reply_to"]').fill("hello@biznes.test");
+  await settings.locator('[name="postal_address"]').fill("Khay Digital Ltd\nRoyal Road, Curepipe\nMauritius");
+  await settings.getByRole("button", { name: "Save these" }).click();
+  await settings.locator('form [role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  check("settings: the superadmin sets who a message is from, where replies go and the postal address, and it is on the record", sql(`select from_name || '|' || from_email || '|' || reply_to || '|' || postal_address || '|' || write_to from public.email_settings`) === "biznes.mu|guide@biznes.test|hello@biznes.test|Khay Digital Ltd\nRoyal Road, Curepipe\nMauritius|confirmed_once_connected" && sql(`select count(*) from public.audit_log a join public.profiles p on p.id = a.actor where a.action = 'settings.email' and p.email = '${OWNER.email}'`) === "1", sql(`select from_name || '|' || from_email from public.email_settings`));
+  check("email: the list of messages holds the draft that became ready", /Ready/.test(await admin.locator(`article[data-campaign="${guide}"]`).innerText()) && (await admin.locator(`article[data-campaign="${guide}"] a[href="/admin/email/${guide}"]`).count()) === 1);
+  await audit(admin, "admin-email-settings");
+
+  // Sent by hand: the addresses as a file, the message to copy, and the record written afterwards.
+  await go(admin, `${origin}/admin/email/${guide}`);
+  send = part(admin, "send");
+  check("hand: the page says who it would go to: all seven, since nobody can have confirmed yet", /would go to\s+7\s+addresses/.test((await send.locator("[data-audience]").innerText()).replace(/\s+/g, " ")), await send.locator("[data-audience]").innerText());
+  await audit(admin, "email-ready-by-hand");
+  const file = await admin.request.get(`${origin}/admin/email/${guide}/export?as=csv`);
+  const rowsOf = (await file.text()).trim().split("\n");
+  check("hand: the recipients as a file, each with their own link to leave", file.status() === 200 && /text\/csv/.test(file.headers()["content-type"] ?? "") && rowsOf[0].replace(/^﻿/, "") === '"Email address","Link to leave the list"' && rowsOf.length === 8 && Object.values(LIST).every((email) => rowsOf.includes(`"${email}","${origin}/unsubscribe?token=${tok(email)}"`)), rowsOf.slice(0, 3).join(" "));
+  const asHtml = await (await admin.request.get(`${origin}/admin/email/${guide}/export?as=html`)).text();
+  const asText = await (await admin.request.get(`${origin}/admin/email/${guide}/export?as=txt`)).text();
+  check("hand: the message's HTML and text, whole, with the postal address and no reader's own link", asHtml.startsWith("<!doctype html>") && asHtml.includes('width="600"') && asHtml.includes("Khay Digital Ltd<br>Royal Road, Curepipe<br>Mauritius") && asHtml.includes('href="mailto:hello@biznes.test"') && !asHtml.includes("/unsubscribe") && asText.includes("write to hello@biznes.test") && asText.trimEnd().endsWith("Khay Digital Ltd\nRoyal Road, Curepipe\nMauritius") && (await send.locator("textarea").nth(0).inputValue()) === asHtml && (await send.locator("textarea").nth(1).inputValue()) === asText && (await send.locator('input[readonly][type="text"]').inputValue()) === `The ${monthName(coming)} Pocket Guide`, asHtml.slice(0, 120));
+  check("hand: the files are not there for anyone else", (await carol.page.request.get(`${origin}/admin/email/${guide}/export?as=csv`)).status() === 404 && (await visitor.page.request.get(`${origin}/admin/email/${guide}/export?as=html`)).status() === 404 && (await go(carol.page, `${origin}/admin/email/${guide}`))?.status() === 404);
+  await send.getByRole("button", { name: "Mark as sent by hand" }).click();
+  await admin.waitForSelector('main [name="sure"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  check("hand: marking it asks to be told it has gone", (await admin.locator('main [name="sure"][aria-invalid="true"]').count()) === 1 && sql(`select status from public.email_campaigns where id = '${guide}'`) === "ready");
+  await send.locator('[name="sure"]').check();
+  await send.getByRole("button", { name: "Mark as sent by hand" }).click();
+  await admin.waitForSelector('main [data-status="sent"]', { timeout: 15000 }).catch(() => {});
+  check("hand: marked as sent by hand, the record holds who it went to, who marked it and when", sql(`select status || '|' || by_hand || '|' || (started_by = (select id from public.profiles where email = '${OWNER.email}')) || '|' || (finished_at is not null) from public.email_campaigns where id = '${guide}'`) === "sent|true|true|true" && tally(guide) === "sent=7" && sql(`select count(*) from public.audit_log where action = 'email.campaign_sent_by_hand'`) === "1" && /Sent, by hand/.test(await admin.locator("main [data-status]").innerText()) && (await part(admin, "record").locator("tbody tr").count()) === 7, tally(guide));
+  await audit(admin, "email-sent-by-hand");
+
+  // ---- With a sender: the local one starts to answer, and the site finds it.
+  await new Promise((done) => listener.listen(Number(new URL(TEST_URL).port), "127.0.0.1", done));
+  await go(admin, `${origin}/admin/email`);
+  text = await admin.locator("main").innerText();
+  check("sender: once something answers at its address the local sender is connected, and the page says so and says who can be asked to confirm", /A local sender is connected/.test(text) && /The site sends its own email/.test(text) && /7 addresses have never been asked to confirm/.test(text) && !/EMAIL_PROVIDER=resend/.test(text), text.slice(0, 300));
+  await audit(admin, "admin-email");
+
+  // Joining now sends a link to confirm: once, to a page that waits to be pressed.
+  await go(carol.page, `${origin}/account`);
+  const joining = part(carol.page, "list");
+  await joining.locator('[name="email"]').fill(EVE);
+  await joining.getByRole("button", { name: "Join the list" }).click();
+  await joining.locator('[role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  const asked = lettersTo(EVE);
+  const confirmLink = /href="([^"]+\/subscribe\/confirm\?token=[0-9a-f-]{36})"/.exec(asked[0]?.html ?? "")?.[1];
+  check("join: with a sender, joining sends one message that asks to confirm, to that address, from who the settings say", /Nearly there/.test(await joining.innerText()) && asked.length === 1 && asked[0].subject === "Confirm your address for biznes.mu" && asked[0].from === "biznes.mu <guide@biznes.test>" && asked[0].replyTo === "hello@biznes.test" && Boolean(confirmLink) && confirmLink.endsWith(tok(EVE, "confirm_token")) && asked[0].text.includes(confirmLink) && sql(`select (confirmed_at is null)::text || '|' || (confirm_sent_at is not null)::text from public.subscribers where email = '${EVE}'`) === "true|true", await joining.innerText());
+  check("join: the message carries its reader's own link to leave, the two headers for leaving in one press, and the postal address", asked[0]?.headers["List-Unsubscribe"] === `<${new URL(confirmLink ?? origin).origin}/api/email/leave?token=${tok(EVE)}>` && asked[0]?.headers["List-Unsubscribe-Post"] === "List-Unsubscribe=One-Click" && asked[0]?.html.includes(`/unsubscribe?token=${tok(EVE)}`) && asked[0]?.text.trimEnd().endsWith("Khay Digital Ltd\nRoyal Road, Curepipe\nMauritius"), JSON.stringify(asked[0]?.headers));
+  await joining.locator('[name="email"]').fill(EVE);
+  await joining.getByRole("button", { name: "Join the list" }).click();
+  await sleep(2000);
+  check("join: asking again the same day sends no second message, and the answer is the same", lettersTo(EVE).length === 1 && outbox.letters.length === 1 && /Nearly there/.test(await joining.innerText()), `${outbox.letters.length} letters`);
+  const direct = await call("confirmation_for", { address: EVE });
+  check("join: nobody calling the database with the public key is handed a link to confirm", direct.status === 401 || direct.status === 403, direct.status);
+  // A mail program that opens every link before its reader does: it asks for the page and presses nothing.
+  const scanned = await fetch(here(confirmLink), { redirect: "follow" });
+  check("confirm: a link that is only opened shows a page with one button, and confirms nothing", scanned.ok && /Confirm my address/.test(await scanned.text()) && sql(`select count(confirmed_at) from public.subscribers`) === "0");
+  await go(visitor.page, here(confirmLink));
+  await audit(visitor.page, "subscribe-confirm");
+  await press(visitor.page, "Confirm my address");
+  await visitor.page.waitForSelector('main [role="status"]', { timeout: 15000 }).catch(() => {});
+  check("confirm: pressing the button confirms that address and no other", /Your address is confirmed/.test(await said(visitor.page)) && sql(`select string_agg(email, ',') from public.subscribers where confirmed_at is not null`) === EVE, await said(visitor.page));
+  await go(visitor.page, `${origin}/subscribe/confirm?token=${tok(EVE)}`);
+  await press(visitor.page, "Confirm my address");
+  await visitor.page.waitForSelector('main [role="alert"]', { timeout: 15000 }).catch(() => {});
+  check("confirm: the link to leave confirms nothing, and a link that is not whole offers nothing to press", /confirms nothing now/.test(await said(visitor.page)) && (await go(visitor.page, `${origin}/subscribe/confirm?token=half`), (await visitor.page.locator("main button").count()) === 0 && /not whole/.test(await visitor.page.locator("main").innerText())));
+
+  // Those who joined before are asked, once: a campaign of its own, sent like any other.
+  await go(admin, `${origin}/admin/email`);
+  await part(admin, "stand").getByRole("button", { name: "Ask them to confirm" }).click();
+  await admin.waitForURL(/\/admin\/email\/[0-9a-f-]{36}\?go=1/, { timeout: 20000 }).catch(() => {});
+  const asking = campaignOf(admin);
+  check("ask: pressing it queues the seven that were never asked, and the page sends them by itself, two to a batch", (await stands(asking, "sent")) && tally(asking) === "sent=7" && sql(`select kind || '|' || audience from public.email_campaigns where id = '${asking}'`) === "confirm|unconfirmed" && outbox.batches.filter((b) => b.letters[0].subject === "Confirm your address for biznes.mu" && b.letters.length <= 2).length === 5, `${tally(asking)} in ${outbox.batches.length} batches`);
+  check("ask: each is sent its own link to confirm, and nobody's but its own", Object.values(LIST).every((email) => lettersTo(email, "Confirm your address for biznes.mu").length === 1 && lettersTo(email)[0].html.includes(`/subscribe/confirm?token=${tok(email, "confirm_token")}`) && !lettersTo(email)[0].html.includes(tok(EVE, "confirm_token"))) && lettersTo(EVE).length === 1);
+  await admin.waitForSelector('main [data-status="sent"]', { timeout: 15000 }).catch(() => {});
+  check("ask: the message is the site's own words, shown on its page, and cannot be written over", /The site writes this message itself/.test(await part(admin, "look").innerText()) && /Confirm my address/.test(await part(admin, "look").locator(".mail-frame").first().innerText()) && (await admin.locator('section[aria-labelledby="write"]').count()) === 0);
+  await audit(admin, "email-asked-to-confirm");
+  await go(admin, `${origin}/admin/email`);
+  check("ask: nobody is left to ask, so it is not offered a second time, and the database refuses it too", (await admin.locator("main").getByRole("button", { name: "Ask them to confirm" }).count()) === 0 && (await asOwner("email_ask_confirm", {})).status === 400 && sql(`select count(*) from public.email_campaigns where kind = 'confirm'`) === "1");
+  // Ann confirms by pressing her link; the others' links are pressed for them here, with the site's word, as the page would.
+  await go(visitor.page, here(/href="([^"]+\/subscribe\/confirm[^"]+)"/.exec(lettersTo(LIST.ann)[0].html)[1]));
+  await press(visitor.page, "Confirm my address");
+  await visitor.page.waitForSelector('main [role="status"]', { timeout: 15000 }).catch(() => {});
+  for (const who of ["ben", "cat", "dev", "fay", "gus"]) await call("confirm_subscription", { link_token: tok(LIST[who], "confirm_token") }, PROOF);
+  check("confirm: six of the seven who were asked confirm; the one who does not stays as she is", sql(`select count(confirmed_at) || '|' || string_agg(email, ',') filter (where confirmed_at is null) from public.subscribers`) === `7|${CAROL.email}`, sql(`select count(confirmed_at) from public.subscribers`));
+
+  // What a mail service says afterwards. Nothing is believed unsigned.
+  const svix = (body, secret = process.env.RESEND_WEBHOOK_SECRET ?? "", at = Math.floor(Date.now() / 1000)) => {
+    const id = `msg_${randomBytes(8).toString("hex")}`;
+    return { "Content-Type": "application/json", "svix-id": id, "svix-timestamp": String(at), "svix-signature": `v1,${createHmac("sha256", Buffer.from(secret.replace(/^whsec_/, ""), "base64")).update(`${id}.${at}.${body}`).digest("base64")}` };
+  };
+  const bounce = JSON.stringify({ type: "email.bounced", created_at: new Date().toISOString(), data: { email_id: "56761188-7520-42d8-8898-ff6fc54ce618", to: [LIST.dev], subject: "A subject", bounce: { type: "Permanent", subType: "General", message: "550 5.1.1 The email account that you tried to reach does not exist." } } });
+  const hook = (path, body, headers = { "Content-Type": "application/json" }) => fetch(`${origin}/api/email/hook/${path}`, { method: "POST", headers, body });
+  const unsigned = await hook("resend", bounce);
+  const forged = await hook("resend", bounce, svix(bounce, "whsec_c29tZW9uZSBlbHNlJ3Mgc2VjcmV0"));
+  const stale = await hook("resend", bounce, svix(bounce, undefined, Math.floor(Date.now() / 1000) - 3600));
+  const altered = await hook("resend", bounce.replace(LIST.dev, LIST.ann), svix(bounce));
+  check("webhook: a bounce that is unsigned, signed with another secret, an hour old, or changed after it was signed, is refused and suppresses nobody", [unsigned, forged, stale, altered].every((r) => r.status === 401) && sql(`select count(*) from public.email_suppressions`) === "0", [unsigned, forged, stale, altered].map((r) => r.status).join(" "));
+  const signed = await hook("resend", bounce, svix(bounce));
+  check("webhook: signed by Resend's rule, a hard bounce keeps the address from being written to, with what was said, and takes its confirmation back", signed.status === 200 && sql(`select reason || '|' || source || '|' || detail from public.email_suppressions where email = '${LIST.dev}'`) === "bounce|resend|General 550 5.1.1 The email account that you tried to reach does not exist." && sql(`select (confirmed_at is null)::text from public.subscribers where email = '${LIST.dev}'`) === "true", `${signed.status} ${await signed.text()}`);
+  const soft = JSON.stringify({ type: "email.bounced", data: { to: [LIST.ann], bounce: { type: "Transient", subType: "MailboxFull", message: "Mailbox full" } } });
+  const softSaid = await hook("resend", soft, svix(soft));
+  check("webhook: a soft bounce, signed, is answered and suppresses nobody", softSaid.status === 200 && sql(`select count(*) from public.email_suppressions`) === "1");
+  const mailgunKey = process.env.MAILGUN_WEBHOOK_SIGNING_KEY ?? "";
+  const mailgunBody = (key, event) => {
+    const timestamp = String(Math.floor(Date.now() / 1000));
+    const token = randomBytes(25).toString("hex");
+    return JSON.stringify({ signature: { timestamp, token, signature: createHmac("sha256", key).update(timestamp + token).digest("hex") }, "event-data": event });
+  };
+  const complaint = { event: "complained", recipient: LIST.gus, timestamp: Date.now() / 1000 };
+  const mgForged = await hook("mailgun", mailgunBody("not-the-signing-key", complaint));
+  const mgBare = await hook("mailgun", JSON.stringify({ "event-data": complaint }));
+  const mgSigned = await hook("mailgun", mailgunBody(mailgunKey, complaint));
+  check("webhook: Mailgun's the same: unsigned or signed with another key it is refused for good; signed, a complaint keeps the address from being written to", mgForged.status === 406 && mgBare.status === 406 && mgSigned.status === 200 && sql(`select string_agg(email || ':' || reason || ':' || source, ',' order by email) from public.email_suppressions`) === `${LIST.dev}:bounce:resend,${LIST.gus}:complaint:mailgun`, `${mgForged.status} ${mgBare.status} ${mgSigned.status}`);
+  const direct2 = await call("email_event", { provider: "resend", kind: "bounce", address: LIST.ann, detail: "made up" });
+  check("webhook: nobody calling the database with the public key can report a bounce of their own making", (direct2.status === 401 || direct2.status === 403) && sql(`select count(*) from public.email_suppressions`) === "2", direct2.status);
+  const sentSoFar = outbox.letters.length;
+  await go(carol.page, `${origin}/account`);
+  await part(carol.page, "list").locator('[name="email"]').fill(LIST.gus);
+  await part(carol.page, "list").getByRole("button", { name: "Join the list" }).click();
+  await part(carol.page, "list").locator('[role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  await sleep(1000);
+  check("suppressed: joining again through the form does not take an address out of the ones not written to, sends it nothing, and is answered like any other", sql(`select count(*) from public.email_suppressions where email = '${LIST.gus}'`) === "1" && outbox.letters.length === sentSoFar && /Nearly there/.test(await part(carol.page, "list").innerText()), `${outbox.letters.length - sentSoFar} sent`);
+
+  // A note to everyone, sent by the site itself: only the confirmed, never the suppressed, in batches.
+  await go(admin, `${origin}/admin/email`);
+  await part(admin, "begin").getByRole("button", { name: "Start a message" }).click();
+  await admin.waitForURL(/\/admin\/email\/[0-9a-f-]{36}$/, { timeout: 20000 }).catch(() => {});
+  const note = campaignOf(admin);
+  check("note: a message begun empty is a draft to everyone, with nothing in it and nothing to look at yet", sql(`select kind || '|' || audience || '|' || status || '|' || jsonb_array_length(blocks) from public.email_campaigns where id = '${note}'`) === "note|everyone|draft|0" && /nothing to look at yet/.test(await part(admin, "look").innerText()));
+  await part(admin, "ready").getByRole("button", { name: "It is ready" }).click();
+  await admin.waitForSelector('section[aria-labelledby="ready"] [role="alert"]', { timeout: 15000 }).catch(() => {});
+  check("note: a message with no subject cannot be called ready", /Give the message a subject first/.test(await part(admin, "ready").innerText()) && sql(`select status from public.email_campaigns where id = '${note}'`) === "draft", await part(admin, "ready").innerText());
+  const SUBJECT = "A word from biznes.mu";
+  await part(admin, "write").locator('[name="subject"]').fill(SUBJECT);
+  await part(admin, "write").locator('[name="preheader"]').fill("The list is open.");
+  for (const kind of ["A heading", "A paragraph", "A button"]) {
+    const before = await admin.locator("main [data-part]").count();
+    await part(admin, "write").getByRole("button", { name: kind, exact: true }).click();
+    await admin.waitForFunction((n) => document.querySelectorAll("main [data-part]").length === n + 1, before, { timeout: 15000 }).catch(() => {});
+  }
+  await part(admin, "ready").getByRole("button", { name: "It is ready" }).click();
+  await admin.waitForFunction(() => /is not finished/.test(document.querySelector('section[aria-labelledby="ready"] [role="alert"]')?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("note: nor one with a part not filled in: the page says which", /Part 1 of the message is not finished/.test(await part(admin, "ready").innerText()) && sql(`select status from public.email_campaigns where id = '${note}'`) === "draft", await part(admin, "ready").innerText());
+  await fill(admin, { "b0.text": "The list is open", "b1.text": "Thank you for joining <b>us</b> & welcome.", "b2.label": "See the directory", "b2.href": "https://biznes.example/directory?from=email&x=1" });
+  await part(admin, "write").getByRole("button", { name: "Save the draft" }).click();
+  await admin.waitForFunction(() => /The list is open/.test(document.querySelector(".mail-frame")?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("note: saving says so, and keeps what was typed in its fields", /Saved\./.test(await part(admin, "write").locator('[role="status"]').innerText().catch(() => "")) && (await admin.locator('main [name="b2.href"]').inputValue()) === "https://biznes.example/directory?from=email&x=1" && (await admin.locator('main [name="subject"]').inputValue()) === SUBJECT);
+  check("note: what is typed is words, never markup, on the page and in the message", (await admin.locator(".mail-frame b").count()) === 0 && /Thank you for joining <b>us<\/b> & welcome\./.test(await admin.locator(".mail-frame").first().innerText()) && (await admin.locator(".mail-frame").first().locator("a", { hasText: "See the directory" }).getAttribute("href")) === "https://biznes.example/directory?from=email&x=1");
+  await part(admin, "ready").getByRole("button", { name: "It is ready" }).click();
+  await admin.waitForSelector('main [data-status="ready"]', { timeout: 15000 }).catch(() => {});
+  send = part(admin, "send");
+  check("send: with a sender, Send is offered, and the page says who it would go to and who is left out: five, with two kept from being written to and one not confirmed", (await send.getByRole("button", { name: "Send", exact: true }).count()) === 1 && (await send.locator("[data-by-hand]").count()) === 0 && /would go to 5 addresses, with 2 kept from being written to and 1 not confirmed left out/.test((await send.locator("[data-audience]").innerText()).replace(/\s+/g, " ")), await send.locator("[data-audience]").innerText());
+  check("look: with a sender the foot carries the reader's own link to leave", /To stop these messages, leave the list/.test(await part(admin, "look").locator(".mail-frame").first().innerText()) && /\/unsubscribe\?token=/.test(await part(admin, "look").locator("[data-plain-text]").innerText()));
+  await audit(admin, "email-ready");
+  const before = outbox.letters.length;
+  await send.getByRole("button", { name: "Send me a test message" }).click();
+  await send.locator('form [role="status"]').waitFor({ timeout: 15000 }).catch(() => {});
+  check("test: a test message goes to the admin's own address and to nobody else, and writes nothing in the record", outbox.letters.length === before + 1 && outbox.letters.at(-1).to === OWNER.email && outbox.letters.at(-1).subject === `[Test] ${SUBJECT}` && outbox.letters.at(-1).html.includes("Thank you for joining &lt;b&gt;us&lt;/b&gt; &amp; welcome.") && sql(`select count(*) from public.email_recipients where campaign_id = '${note}'`) === "0", outbox.letters.at(-1)?.subject);
+
+  // Send, and stop: the first batch is slow enough to press Stop while it is on its way.
+  outbox.delay = 2500;
+  await send.getByRole("button", { name: "Send", exact: true }).click();
+  await admin.getByRole("button", { name: "Stop", exact: true }).click({ timeout: 20000 }).catch(() => {});
+  outbox.delay = 0;
+  await admin.waitForFunction(() => /Sending has stopped/.test(document.querySelector("main")?.textContent ?? "") && [...document.querySelectorAll("main button")].some((b) => b.textContent === "Carry on sending"), null, { timeout: 20000 }).catch(() => {});
+  check("send: pressing Send writes one row for each address, and the page sends the first batch of two", sql(`select status from public.email_campaigns where id = '${note}'`) === "sending" && tally(note) === "queued=3,sent=2,skipped=3" && sql(`select string_agg(email || ':' || reason, ',' order by email) from public.email_recipients where campaign_id = '${note}' and state = 'skipped'`) === `${CAROL.email}:unconfirmed,${LIST.dev}:suppressed,${LIST.gus}:suppressed`, tally(note));
+  check("send: stopped, the batch on its way finished and no other began; the page shows how far it got", outbox.batches.filter((b) => b.letters[0].subject === SUBJECT).length === 1 && /2 sent, 3 waiting, 0 failed, 3 left out, of 8/.test(await part(admin, "send").innerText()) && (await admin.locator("#send-progress").getAttribute("value")) === "5", await part(admin, "send").innerText());
+  await audit(admin, "email-sending");
+  // The next batch is refused by the sender, whole: the run stops by itself and says what it said.
+  outbox.refuse = "The check's own mail service is closed for a moment.";
+  await admin.getByRole("button", { name: "Carry on sending" }).click();
+  await admin.waitForSelector('section[aria-labelledby="send"] [role="alert"]', { timeout: 20000 }).catch(() => {});
+  check("send: a batch the sender refuses fails those two, says what the sender said, and stops the run", tally(note) === "failed=2,queued=1,sent=2,skipped=3" && /The check's own mail service is closed for a moment\./.test(await part(admin, "send").innerText()) && sql(`select bool_and(not unsure and reason like 'The local sender said: The check%')::text from public.email_recipients where campaign_id = '${note}' and state = 'failed'`) === "true", `${tally(note)} | ${await part(admin, "send").locator('[role="alert"]').innerText().catch(() => "")}`);
+  // Carried on: the last address goes, and the campaign is sent, with two that failed.
+  await admin.getByRole("button", { name: "Carry on sending" }).click();
+  check("send: carried on, it takes up where it stopped and finishes", (await stands(note, "sent")) && tally(note) === "failed=2,sent=3,skipped=3", tally(note));
+  await admin.waitForSelector('main [data-status="sent"]', { timeout: 15000 }).catch(() => {});
+  await audit(admin, "email-sent-with-failures");
+  await part(admin, "after").getByRole("button", { name: "Queue the refused again" }).click();
+  await admin.waitForSelector('main [data-status="sending"]', { timeout: 15000 }).catch(() => {});
+  await admin.getByRole("button", { name: "Carry on sending" }).click();
+  check("send: the two the sender refused are queued again by the admin's own press, and go", (await stands(note, "sent")) && tally(note) === "sent=5,skipped=3" && sql(`select count(*) from public.audit_log where action in ('email.campaign_started', 'email.campaign_sent', 'email.campaign_retry') and subject = 'campaign:${note}'`) === "4", tally(note));
+  const went = outbox.letters.filter((l) => l.subject === SUBJECT);
+  check("send: each of the five has the message once, and nobody else has it: not the unconfirmed address, not the two that bounced or complained", went.length === 5 && new Set(went.map((l) => l.to)).size === 5 && [LIST.ann, LIST.ben, LIST.cat, LIST.fay, EVE].every((email) => went.some((l) => l.to === email)) && sql(`select count(*) || '|' || count(distinct email) from public.email_recipients where campaign_id = '${note}'`) === "8|8", went.map((l) => l.to).join(","));
+  const fays = went.find((l) => l.to === LIST.fay);
+  check("send: each copy is its reader's own: their link to leave in the foot and in the header, the line after the subject, and both bodies", fays.html.includes(`${new URL(fays.headers["List-Unsubscribe"].slice(1, -1)).origin}/unsubscribe?token=${tok(LIST.fay)}`) && fays.headers["List-Unsubscribe"].endsWith(`/api/email/leave?token=${tok(LIST.fay)}>`) && !went.some((l) => l.to !== LIST.fay && l.html.includes(tok(LIST.fay))) && fays.html.includes("The list is open.") && fays.text.includes("See the directory: https://biznes.example/directory?from=email&x=1") && fays.html.includes('href="https://biznes.example/directory?from=email&amp;x=1"'));
+  await admin.waitForSelector('main [data-status="sent"]', { timeout: 15000 }).catch(() => {});
+  await go(admin, `${origin}/admin/email/${note}?show=skipped`);
+  const record = await part(admin, "record").innerText();
+  check("record: who it went to and who was left out, with the reason in words", (await part(admin, "record").locator("tbody tr").count()) === 3 && /Not confirmed/.test(record) && /Not written to: it bounced, complained or asked us/.test(record) && record.includes(LIST.dev) && !record.includes(LIST.ann), record.slice(0, 300));
+  await audit(admin, "email-record");
+  const recordFile = await (await admin.request.get(`${origin}/admin/email/${note}/export?as=record`)).text();
+  check("record: and as a file, every address once", recordFile.trim().split("\n").length === 9 && recordFile.includes(`"${LIST.fay}","Sent","",`) && recordFile.includes(`"${LIST.gus}","Left out","Not written to: it bounced, complained or asked us",`));
+
+  // Leaving in one press, as a mail program does it: a POST to the address in the header, with no cookie.
+  const leaveUrl = here(fays.headers["List-Unsubscribe"].slice(1, -1));
+  const peeked = await fetch(leaveUrl, { redirect: "manual" });
+  check("leave: a plain visit to the address in the header takes nobody off; it leads to the page with its one button", peeked.status === 303 && (peeked.headers.get("location") ?? "").endsWith(`/unsubscribe?token=${tok(LIST.fay)}`) && sql(`select count(*) from public.subscribers where email = '${LIST.fay}'`) === "1", `${peeked.status} ${peeked.headers.get("location")}`);
+  const madeUp = await fetch(`${origin}/api/email/leave?token=00000000-0000-4000-8000-00000000dead`, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "List-Unsubscribe=One-Click" });
+  const pressed = await fetch(leaveUrl, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "List-Unsubscribe=One-Click" });
+  const [madeUpSaid, pressedSaid] = [await madeUp.text(), await pressed.text()];
+  check("leave: one press takes that address off, with the token alone, and a made-up token is answered in the very same words", pressed.status === 200 && madeUp.status === 200 && madeUpSaid === pressedSaid && sql(`select count(*) from public.subscribers where email = '${LIST.fay}'`) === "0" && sql(`select count(*) from public.subscribers`) === "7" && (await fetch(`${origin}/api/email/leave?token=half`, { method: "POST" })).status === 400, `${pressed.status} ${madeUp.status} ${pressedSaid}`);
+  check("leave: the record of what was sent keeps the address as it was", sql(`select state || '|' || (subscriber_id is null) from public.email_recipients where campaign_id = '${note}' and email = '${LIST.fay}'`) === "sent|true");
+
+  // The next message: begun and queued over the API as the superadmin, and sent with script off, a batch a press.
+  const second = (await (await asOwner("email_campaign_create", { kind: "note", audience: "everyone", subject: "A second word", preheader: "", blocks: [{ type: "paragraph", text: "Hello again." }] })).json());
+  await asOwner("email_campaign_step", { campaign: second, new_status: "ready" });
+  check("next: the next message would go to four: the one who left is not on the list, and the others not written to are still left out", JSON.stringify(await (await asOwner("email_audience_counts", { campaign: second, by_hand: false })).json()) === '{"to_send":4,"suppressed":2,"unconfirmed":1}');
+  await asOwner("email_queue", { campaign: second });
+  const plain = await browser.newContext({ serviceWorkers: process.env.SW === "block" ? "block" : "allow", javaScriptEnabled: false, storageState: await owner.context.storageState() });
+  const bare = await plain.newPage();
+  await bare.goto(`${origin}/admin/email/${second}`, { waitUntil: "load" });
+  check("no script: the page that sends offers one button, and nothing has gone yet", (await bare.locator("main button", { hasText: "Send the first batch" }).count()) === 1 && tally(second) === "queued=4,skipped=3");
+  await Promise.all([bare.waitForLoadState("load"), bare.locator("main button", { hasText: "Send the first batch" }).click()]);
+  check("no script: one press sends one batch, and the page says how far it has got", tally(second) === "queued=2,sent=2,skipped=3" && /2 sent, 2 waiting/.test(await bare.locator("main").innerText()), tally(second));
+  await Promise.all([bare.waitForLoadState("load"), bare.locator("main button", { hasText: "Carry on sending" }).click()]);
+  check("no script: the next press sends the next, and the campaign is sent", sql(`select status from public.email_campaigns where id = '${second}'`) === "sent" && tally(second) === "sent=4,skipped=3", tally(second));
+  const again = outbox.letters.filter((l) => l.subject === "A second word");
+  check("next: the address that left in one press is not written to, nor the one that bounced, the one that complained, nor the unconfirmed one", again.length === 4 && [LIST.fay, LIST.dev, LIST.gus, CAROL.email].every((email) => !again.some((l) => l.to === email)) && new Set(again.map((l) => l.to)).size === 4, again.map((l) => l.to).join(","));
+  // With script off the draft is written the same way: a part added, filled and saved by plain forms.
+  const third = (await (await asOwner("email_campaign_create", { kind: "magazine", audience: "magazine" })).json());
+  await bare.goto(`${origin}/admin/email/${third}`, { waitUntil: "load" });
+  await bare.fill('main [name="subject"]', "The first issue");
+  await Promise.all([bare.waitForLoadState("load"), bare.locator("main button", { hasText: "A paragraph" }).click()]);
+  await bare.fill('main [name="b0.text"]', "It is here.");
+  await Promise.all([bare.waitForLoadState("load"), bare.locator("main button", { hasText: "Save the draft" }).click()]);
+  check("no script: a message is written with script off: a part added, filled in and saved", sql(`select subject || '|' || (blocks -> 0 ->> 'text') || '|' || jsonb_array_length(blocks) from public.email_campaigns where id = '${third}'`) === "The first issue|It is here.|1" && /It is here\./.test(await bare.locator(".mail-frame").first().innerText()), sql(`select subject || '|' || blocks::text from public.email_campaigns where id = '${third}'`));
+  await plain.close();
+  await go(admin, `${origin}/admin/email/${third}`);
+  await part(admin, "ready").getByRole("button", { name: "Take this message out" }).click();
+  await admin.waitForURL(/\/admin\/email\?said=removed/, { timeout: 15000 }).catch(() => {});
+  check("email: a draft never sent is taken out, and a message that was sent cannot be", sql(`select count(*) from public.email_campaigns where id = '${third}'`) === "0" && (await asOwner("email_campaign_remove", { campaign: note })).status === 400 && /The message is taken out/.test(await said(admin)));
+  text = await admin.locator("main").innerText();
+  check("email: the page lists every message with where it stands", /Sent, by hand/.test(text) && /Asking the list to confirm/.test(text) && text.includes(SUBJECT) && text.includes("A second word") && /^\s*4\s*$/m.test(await admin.locator("main .stat .stat-figure").nth(3).innerText()), await admin.locator("main .stat").nth(3).innerText());
+  await audit(admin, "admin-email-messages");
+
+  // The list's own page: the counts, the filters, and the addresses not written to.
+  await go(admin, `${origin}/admin/subscribers`);
+  const figures = (await admin.locator("main .stat .stat-figure").allInnerTexts()).map((f) => f.trim()).join(",");
+  check("list: the counts are the list, the confirmed, each wish, and the addresses not written to", figures === "7,4,7,6,2", figures);
+  await go(admin, `${origin}/admin/subscribers?state=unconfirmed`);
+  const unconfirmed = await admin.locator("main table").first().locator("tbody tr").allInnerTexts();
+  check("list: narrowed to the unconfirmed, it shows the one never confirmed and the two whose confirmation a bounce and a complaint took back, each marked", unconfirmed.length === 3 && unconfirmed.some((r) => r.includes(CAROL.email) && /Not confirmed/.test(r) && /Asked on/.test(r)) && unconfirmed.some((r) => r.includes(LIST.dev) && /Not written to/.test(r)), unconfirmed.join(" | ").slice(0, 300));
+  await go(admin, `${origin}/admin/subscribers?want=magazine&state=confirmed&q=list.test`);
+  check("list: the two filters and the search work together", (await admin.locator("main table").first().locator("tbody tr").count()) === 3 && (await admin.locator('nav[aria-label="Narrow the list"] a[aria-current="true"]').count()) === 2);
+  const stop = part(admin, "suppressed");
+  await fill(admin, { address: "not an address" });
+  await stop.getByRole("button", { name: "Stop writing to this address" }).click();
+  await admin.waitForSelector('main [name="address"][aria-invalid="true"]', { timeout: 15000 }).catch(() => {});
+  await fill(admin, { address: "Someone@Elsewhere.test", why: "Asked by telephone." });
+  await stop.getByRole("button", { name: "Stop writing to this address" }).click();
+  await admin.waitForFunction(() => /someone@elsewhere\.test/.test(document.querySelector('section[aria-labelledby="suppressed"] table')?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("list: an admin writes down an address that asked not to be written to, with how it asked, and it is on the record", sql(`select reason || '|' || detail || '|' || source from public.email_suppressions where email = 'someone@elsewhere.test'`) === "asked|Asked by telephone.|admin" && sql(`select count(*) from public.audit_log where action = 'email.suppressed'`) === "3" && /Reported by Resend/.test(await stop.innerText()) && /Reported by Mailgun/.test(await stop.innerText()), sql(`select count(*) from public.audit_log where action = 'email.suppressed'`));
+  await audit(admin, "admin-subscribers-list");
+  await stop.locator("tr", { hasText: "someone@elsewhere.test" }).getByRole("button", { name: /Lift/ }).click();
+  await admin.waitForFunction(() => !/someone@elsewhere\.test/.test(document.querySelector('section[aria-labelledby="suppressed"]')?.textContent ?? ""), null, { timeout: 15000 }).catch(() => {});
+  check("list: and lifts it by hand, which is on the record too", sql(`select count(*) from public.email_suppressions`) === "2" && sql(`select count(*) from public.audit_log where action = 'email.unsuppressed'`) === "1");
+  const listFile = await (await admin.request.get(`${origin}/admin/subscribers/export`)).text();
+  check("list: the file says of each address whether it is confirmed and whether it is written to", listFile.includes(`"${LIST.dev}","yes","yes","${new Date().toISOString().slice(0, 10)}","","It bounced",`) && listFile.includes(`"${LIST.gus}","yes","yes",`) && /"ann@list\.test","yes","yes","[\d-]{10}","[\d-]{10}","",/.test(listFile), listFile.slice(0, 300));
+
+  // With the sender gone again the site says so, and a campaign that was being sent waits.
+  await new Promise((done) => listener.close(done));
+  listener.closeAllConnections?.();
+  await go(admin, `${origin}/admin/email`);
+  check("sender: when nothing answers at the local sender's address any more, the site is back to sending nothing, and says so", /Nothing leaves the site/.test(await admin.locator("main").innerText()));
+  // The addresses this part put on the list are taken off, so what follows finds the list as it was.
+  sql(`delete from public.email_campaigns; delete from public.email_suppressions; delete from public.subscribers;`);
+}
+
+// ---------------------------------------------------------------------------------------------
 // 7. The owner changes details; the admin verifies, suspends; the superadmin's own pages.
 {
   const { page } = alice;
@@ -1270,7 +1677,7 @@ let adId = "";
   const { page } = owner;
   await go(page, `${origin}/account`);
   const ways = await page.locator('main a[href^="/admin"]').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-  check("account: the superadmin is shown every way in, by name", ["/admin", "/admin/ads", "/admin/orders", "/admin/subscribers", "/admin/leads", "/admin/people", "/admin/settings"].every((href) => ways.includes(href)) && /Running the site/.test(await page.locator("main").innerText()), ways.join(" "));
+  check("account: the superadmin is shown every way in, by name", ["/admin", "/admin/ads", "/admin/orders", "/admin/subscribers", "/admin/email", "/admin/leads", "/admin/people", "/admin/settings"].every((href) => ways.includes(href)) && /Running the site/.test(await page.locator("main").innerText()), ways.join(" "));
   await audit(page, "account-superadmin-ways");
   await go(page, `${origin}/admin/people`);
   check("superadmin: everyone is listed with their role", (await page.locator("main article").count()) === 3);
@@ -1356,7 +1763,7 @@ let adId = "";
   check("admin: a promoted person reaches /admin, with its counts as tiles", admin?.status() === 200 && (await page.locator("main .stat").count()) === 4);
   await go(page, `${origin}/account`);
   const ways = await page.locator('main a[href^="/admin"]').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
-  check("account: an admin is shown the admin's ways in, and not the superadmin's", ways.includes("/admin/ads") && ways.includes("/admin/orders") && !ways.includes("/admin/people") && !ways.includes("/admin/settings"), ways.join(" "));
+  check("account: an admin is shown the admin's ways in, and not the superadmin's", ways.includes("/admin/ads") && ways.includes("/admin/orders") && ways.includes("/admin/email") && !ways.includes("/admin/people") && !ways.includes("/admin/settings"), ways.join(" "));
   const people = await go(page, `${origin}/admin/people`);
   check("admin: but not the superadmin's pages", people?.status() === 404 && (await page.goto(`${origin}/admin/settings`))?.status() === 404);
   sql(`update public.catalogue set price_mur = 2 where id = 'plan:grow'`);
