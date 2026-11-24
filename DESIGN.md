@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: "biznes.mu, the postcard"
+name: "biznes.mu, the postcard under glass"
 description: "The postcard: a painted picture of the island behind the page, a sheet of warm paper laid on it, one question in the middle. Ink for words, a royal blue for what answers, and saffron for the one lit point and the one filled action."
 # On Google Labs' DESIGN.md format (npx @google/design.md lint DESIGN.md), from the KOS template.
 # Each colour is recorded as the comments in src/app/globals.css record it: 'sampled' (the brand's
@@ -17,22 +17,29 @@ colors:
   on-primary: "#0a1639"     # ink, the words on saffron
   white: "#ffffff"          # chosen: a card, a field, the menu. What stands on the paper
   cream: "#fdf9ec"          # derived, saffron 8% on white: the sheet of paper the page is written on
-  sand: "#f5efe0"           # derived from cream, deeper: a tile, a chip, a quiet panel
-  limewash: "#f7f7f8"       # S1 sampled: the brand's white. Now only the band of a shape that waits
   ink: "#0a1639"            # S1 sampled: the brand's dark. Words: 17.69:1 on white, 16.80:1 on cream, 15.42:1 on sand
   swell: "#14224f"          # derived from ink, lighter: the ink button under the pointer
   slate: "#404965"          # derived, ink 78% toward white: secondary words; 8.90:1 on white, 8.45:1 on cream, 7.76:1 on sand
   mist: "#545c74"           # derived, ink at 70% on white: captions, counts. Deepened on 24 November 2026 for glass; 6.64:1 on white, 6.30:1 on cream, 5.79:1 on sand
   ember: "#ff8f4a"          # derived, saffron toward coral: the far end of the verified mark; carries ink at 7.81:1
-  saffron-wash: "#fef6d9"   # derived, saffron 16% on white: a chosen thing; carries ink at 16.34:1
   royal: "#0d36a7"          # S2 sampled: what answers. 9.98:1 on white, 9.48:1 on cream
   shallows: "#dcefeb"       # derived: the lagoon picture's water at 27% on white. The sea on the island's map; carries ink at 14.82:1
   lagoon-deep: "#7bbcb3"    # S5 sampled from the lagoon picture's water: the map's coastline. A line, never words
-  lagoon: "#aebadf"         # S2 sampled: a pale blue. At 45% on white (#dbe0f1) it is the tile of an answer from the articles; royal on that is 7.58:1
   haze: "#b6c0db"           # derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink
-  coral-deep: "#b02323"     # derived from coral (S1), darker: an error's words. Deepened on 24 November 2026 for glass; 6.75:1 on white, 6.40:1 on cream
-  line: "color-mix(in srgb, #0a1639 10%, transparent)"         # derived: ink at 10%, the hairline
-  line-strong: "color-mix(in srgb, #0a1639 50%, transparent)"  # derived: ink at 50%, a field's edge; 3.40:1 on white
+  pearl: "#e4e0d6"          # derived, cream toward ink: secondary words on glass; 6.13:1 on the sheet at its lightest
+  ash: "#cdc9c0"            # derived, cream further toward ink: captions and counts on glass; 4.89:1 on the sheet at its lightest
+  sky: "#bfd0ff"            # derived from lagoon, lighter: what answers, on glass; 5.26:1 on the sheet at its lightest
+  blush: "#ffb9b3"          # derived from coral (S1) toward white: an error's words on glass; 4.94:1 on the sheet at its lightest
+  night: "#131d42"          # derived from ink, a step lighter: what opens over the page, solid
+  glass-sheet: "#4c5059"    # the sheet at its lightest: ink at 28% over the soft picture at four tenths of white. As drawn it is darker
+  glass-pane: "#3c4252"     # a card on the sheet at its lightest: ink at 24% over it
+  glass-chip: "#343b4e"     # a chip on the sheet at its lightest: ink at 36% over it
+  glass-amber: "#3c3d3a"    # amber glass on the sheet at its lightest: a chosen thing, an answer's ground
+  glass-search: "#6a6d73"   # the landing page's search bar at its lightest: ink at 18% over the picture at half its light
+  dusk: "#3b4561"           # the fade at the landing page's foot where its words stand, at its lightest: ink at 80% on white
+  glass-lagoon: "#51576b"   # the tile of an answer from the articles: lagoon (S2 sampled, #aebadf) at 18% over a pane at its lightest
+  line: "color-mix(in srgb, #fdf9ec 14%, transparent)"         # derived: cream at 14%, the hairline on glass
+  line-strong: "color-mix(in srgb, #fdf9ec 55%, transparent)"  # derived: cream at 55%, a field's edge; 3.3:1 on the sheet at its lightest
 typography:                 # named as the text styles in src/app/globals.css; fontSize is the clamp() maximum, the full clamp() is in Typography
   # One face. label-1 is capitals by text-transform. data-1 and data-2 are the same face with figures that line up.
   display-1: { fontFamily: "Bricolage Grotesque, Manrope, ui-sans-serif, system-ui, sans-serif", fontSize: 4.5rem, fontWeight: 700, lineHeight: 1, letterSpacing: "-0.03em" }
@@ -53,109 +60,116 @@ typography:                 # named as the text styles in src/app/globals.css; f
 rounded: { sm: 8px, md: 12px, lg: 16px, xl: 24px, 2xl: 32px, full: 9999px }   # --radius-sm to --radius-2xl and --radius-full
 spacing: { gutter: 3rem, edge: 1.25rem, shell: 76rem, measure: 64ch, nav: 56px, hero: 44rem, section: 4rem }   # the page rhythm, each at its maximum
 components:                 # only: backgroundColor textColor typography rounded padding size height width. States are sibling keys.
-  sheet: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-2}", rounded: "{rounded.2xl}" }
-  sheet-subtle: { backgroundColor: "{colors.cream}", textColor: "{colors.slate}", typography: "{typography.body-3}" }
-  sheet-faint: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
-  hero-heading: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.display-1}" }
-  page-heading: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.heading-1}" }
-  section-heading: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.heading-2}" }
-  lede: { backgroundColor: "{colors.cream}", textColor: "{colors.slate}", typography: "{typography.body-1}" }
-  link: { backgroundColor: "{colors.cream}", textColor: "{colors.royal}", typography: "{typography.body-2}" }
+  sheet: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.body-2}", rounded: "{rounded.2xl}" }
+  sheet-subtle: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", typography: "{typography.body-3}" }
+  sheet-faint: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.ash}", typography: "{typography.caption-1}" }
+  hero-heading: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.display-1}" }
+  page-heading: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.heading-1}" }
+  section-heading: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.heading-2}" }
+  lede: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", typography: "{typography.body-1}" }
+  link: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.sky}", typography: "{typography.body-2}" }
   button-primary: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}", typography: "{typography.button-md}", rounded: "{rounded.full}", padding: "0 1.25rem", height: 2.75rem }
   button-primary-hover: { backgroundColor: "{colors.primary-dark}", textColor: "{colors.on-primary}" }
-  button-ink: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.button-md}", rounded: "{rounded.full}", padding: "0 1.25rem", height: 2.75rem }
-  button-ink-hover: { backgroundColor: "{colors.swell}", textColor: "{colors.white}" }
-  button-quiet: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.button-md}", rounded: "{rounded.full}", padding: "0 1.25rem", height: 2.75rem }
-  button-quiet-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
+  button-ink: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.button-md}", rounded: "{rounded.full}", padding: "0 1.25rem", height: 2.75rem }
+  button-ink-hover: { backgroundColor: "{colors.pearl}", textColor: "{colors.ink}" }
+  button-quiet: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.button-md}", rounded: "{rounded.full}", padding: "0 1.25rem", height: 2.75rem }
+  button-quiet-hover: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
   skip-link: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.button-sm}", rounded: "{rounded.full}", padding: "0.75rem 1rem" }
-  icon-button: { backgroundColor: "{colors.cream}", textColor: "{colors.slate}", size: 2.75rem }
-  icon-button-square: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", rounded: "{rounded.lg}", size: 2.75rem }
+  icon-button: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", size: 2.75rem }
+  icon-button-square: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", rounded: "{rounded.lg}", size: 2.75rem }
   badge: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}", rounded: "{rounded.full}", height: 1.125rem }
-  nav-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 56px }
-  nav-link: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.title-2}", rounded: "{rounded.full}", height: 2.75rem }
-  nav-link-open: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  menu-panel: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.5rem, width: 36rem }
-  menu-item: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.md}", padding: "0.625rem 0.75rem" }
-  menu-item-line: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
-  menu-item-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  menu-item-current: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}" }
-  tab-bar: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", rounded: "{rounded.xl}", height: 3.25rem }
-  tab-bar-current: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}", rounded: "{rounded.lg}" }
-  search-box: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 4rem }
-  search-box-placeholder: { backgroundColor: "{colors.white}", textColor: "{colors.mist}" }
-  search-box-header: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 2.75rem }
-  search-box-header-placeholder: { backgroundColor: "{colors.sand}", textColor: "{colors.mist}" }
-  suggestions: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.5rem }
-  suggestion: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.md}", padding: "0.5rem 0.75rem", height: 2.75rem }
-  suggestion-chosen: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  suggestion-note: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
-  suggestion-icon: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}", rounded: "{rounded.sm}", size: 2rem }
-  pill-note: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.full}", height: 2rem }
-  try-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.5rem }
-  landing-foot: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.caption-1}", rounded: "{rounded.xl}", padding: "0.125rem 1.25rem" }
-  landing-foot-link: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", height: 2.25rem }
-  field: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.md}", padding: "0.6875rem 1rem", height: 3rem }
-  field-placeholder: { backgroundColor: "{colors.white}", textColor: "{colors.mist}" }
+  nav-pill: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", rounded: "{rounded.full}", height: 56px }
+  nav-link: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", typography: "{typography.title-2}", rounded: "{rounded.full}", height: 2.75rem }
+  nav-link-open: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
+  menu-panel: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", rounded: "{rounded.xl}", padding: 0.5rem, width: 36rem }
+  menu-item: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", typography: "{typography.title-2}", rounded: "{rounded.md}", padding: "0.625rem 0.75rem" }
+  menu-item-line: { backgroundColor: "{colors.night}", textColor: "{colors.ash}", typography: "{typography.caption-1}" }
+  menu-item-hover: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
+  menu-item-current: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.cream}" }
+  tab-bar: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", rounded: "{rounded.xl}", height: 3.25rem }
+  tab-bar-current: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.cream}", rounded: "{rounded.lg}" }
+  search-box: { backgroundColor: "{colors.glass-search}", textColor: "{colors.white}", rounded: "{rounded.full}", height: 4rem }
+  search-box-placeholder: { backgroundColor: "{colors.glass-search}", textColor: "{colors.cream}" }
+  search-box-header: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", rounded: "{rounded.full}", height: 2.75rem }
+  search-box-header-placeholder: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.ash}" }
+  suggestions: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", rounded: "{rounded.xl}", padding: 0.5rem }
+  suggestion: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.md}", padding: "0.5rem 0.75rem", height: 2.75rem }
+  suggestion-chosen: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
+  suggestion-note: { backgroundColor: "{colors.night}", textColor: "{colors.ash}", typography: "{typography.data-2}" }
+  suggestion-icon: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.pearl}", rounded: "{rounded.sm}", size: 2rem }
+  pill-note: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", typography: "{typography.caption-1}", rounded: "{rounded.full}", height: 2rem }
+  try-pill: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.5rem }
+  landing-foot: { backgroundColor: "{colors.dusk}", textColor: "{colors.pearl}", typography: "{typography.caption-1}", rounded: "{rounded.xl}", padding: "0.125rem 1.25rem" }
+  landing-foot-link: { backgroundColor: "{colors.dusk}", textColor: "{colors.cream}", typography: "{typography.caption-1}", height: 2.25rem }
+  field: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", rounded: "{rounded.md}", padding: "0.6875rem 1rem", height: 3rem }
+  field-placeholder: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.ash}" }
   field-edge: { backgroundColor: "{colors.line-strong}", height: 1px }
-  field-error: { backgroundColor: "{colors.cream}", textColor: "{colors.coral-deep}", typography: "{typography.caption-1}" }
-  chip: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", padding: "0 1.125rem", height: 2.75rem }
-  chip-selected: { backgroundColor: "{colors.ink}", textColor: "{colors.white}" }
-  filter: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", padding: "0 0.875rem", height: 2.5rem }
-  filter-count: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
-  filter-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  filter-on: { backgroundColor: "{colors.ink}", textColor: "{colors.white}" }
-  filter-menu: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.lg}", padding: 0.375rem }
-  tab: { backgroundColor: "{colors.cream}", textColor: "{colors.slate}", typography: "{typography.title-2}", rounded: "{rounded.full}", padding: "0 1rem", height: 2.5rem }
-  tab-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  tab-current: { backgroundColor: "{colors.ink}", textColor: "{colors.white}" }
-  tag: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}", typography: "{typography.label-1}", rounded: "{rounded.full}", height: 1.5rem }
-  tag-lit: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}" }
-  biznes-card: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: "1.125rem 1.125rem 1.125rem 1.25rem" }
-  biznes-card-title: { backgroundColor: "{colors.white}", textColor: "{colors.royal}", typography: "{typography.title-1}" }
-  biznes-card-line: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.body-3}" }
+  field-error: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.blush}", typography: "{typography.caption-1}" }
+  chip: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.full}", padding: "0 1.125rem", height: 2.75rem }
+  chip-selected: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}" }
+  filter: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.full}", padding: "0 0.875rem", height: 2.5rem }
+  filter-count: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.ash}", typography: "{typography.data-2}" }
+  filter-hover: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
+  filter-on: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}" }
+  filter-menu: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.lg}", padding: 0.375rem }
+  tab: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.pearl}", typography: "{typography.title-2}", rounded: "{rounded.full}", padding: "0 1rem", height: 2.5rem }
+  tab-hover: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
+  tab-current: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}" }
+  tag: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.pearl}", typography: "{typography.label-1}", rounded: "{rounded.full}", height: 1.5rem }
+  tag-lit: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.cream}" }
+  biznes-card: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", rounded: "{rounded.xl}", padding: "1.125rem 1.125rem 1.125rem 1.25rem" }
+  biznes-card-title: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.sky}", typography: "{typography.title-1}" }
+  biznes-card-line: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.pearl}", typography: "{typography.body-3}" }
   biznes-card-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.lg}", size: 3rem }
   biznes-card-icon-paid: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
-  biznes-card-icon-article: { backgroundColor: "{colors.lagoon}", textColor: "{colors.royal}" }
-  biznes-card-icon-quiet: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}" }
-  biznes-card-act: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", typography: "{typography.data-2}", rounded: "{rounded.full}", height: 2.25rem }
-  business-head: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.heading-1}", rounded: "{rounded.2xl}" }
+  biznes-card-icon-article: { backgroundColor: "{colors.glass-lagoon}", textColor: "{colors.sky}" }
+  biznes-card-icon-quiet: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.pearl}" }
+  biznes-card-act: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", typography: "{typography.data-2}", rounded: "{rounded.full}", height: 2.25rem }
+  business-head: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.heading-1}", rounded: "{rounded.2xl}" }
   business-head-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", size: 4.5rem }
   verified-mark: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 1.5rem }
   verified-mark-far-end: { backgroundColor: "{colors.ember}", textColor: "{colors.ink}" }
   verified-mark-large: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 2rem }
-  answer-card: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-1}", rounded: "{rounded.xl}", padding: 1.5rem }
-  card: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 1.5rem }
-  card-heading: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.heading-3}" }
-  card-wash: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}" }
-  card-wash-title: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.royal}", typography: "{typography.title-1}" }
-  card-wash-note: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.slate}", typography: "{typography.caption-1}" }
-  card-panel: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
+  answer-card: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.body-1}", rounded: "{rounded.xl}", padding: 1.5rem }
+  card: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", rounded: "{rounded.xl}", padding: 1.5rem }
+  card-heading: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.heading-3}" }
+  card-wash: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.cream}" }
+  card-wash-title: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.sky}", typography: "{typography.title-1}" }
+  card-wash-note: { backgroundColor: "{colors.glass-amber}", textColor: "{colors.pearl}", typography: "{typography.caption-1}" }
+  card-panel: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}" }
   card-ink: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", rounded: "{rounded.xl}", padding: 1.5rem }
   tile-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.lg}", size: 3rem }
   tile-icon-hover: { backgroundColor: "{colors.primary}", textColor: "{colors.on-primary}" }
-  glyph: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", size: 1.5rem }
+  glyph: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", size: 1.5rem }
   glyph-point-lit: { backgroundColor: "{colors.primary}", textColor: "{colors.ink}", rounded: "{rounded.full}" }
-  tile-icon-quiet: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.md}", size: 2.25rem }
-  index-item: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-3}" }
-  index-count: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
-  fact-name: { backgroundColor: "{colors.cream}", textColor: "{colors.mist}", typography: "{typography.body-3}" }
-  fact-value: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.data-1}" }
-  note: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.lg}", padding: "1rem 1.25rem" }
-  note-subtle: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}" }
-  table-head: { backgroundColor: "{colors.sand}", textColor: "{colors.mist}", typography: "{typography.label-1}", padding: "0.8125rem 1rem" }
-  table-cell: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.body-3}", padding: "0.8125rem 1rem" }
-  citation: { backgroundColor: "{colors.sand}", textColor: "{colors.royal}", rounded: "{rounded.full}" }
-  citation-hover: { backgroundColor: "{colors.royal}", textColor: "{colors.white}" }
-  toast: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.75rem }
-  wait: { backgroundColor: "{colors.limewash}", rounded: "{rounded.sm}" }
+  tile-icon-quiet: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", rounded: "{rounded.md}", size: 2.25rem }
+  index-item: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.body-3}" }
+  index-count: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.ash}", typography: "{typography.data-2}" }
+  fact-name: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.ash}", typography: "{typography.body-3}" }
+  fact-value: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.data-1}" }
+  note: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.lg}", padding: "1rem 1.25rem" }
+  note-subtle: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.pearl}" }
+  table-head: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.ash}", typography: "{typography.label-1}", padding: "0.8125rem 1rem" }
+  table-cell: { backgroundColor: "{colors.glass-sheet}", textColor: "{colors.cream}", typography: "{typography.body-3}", padding: "0.8125rem 1rem" }
+  citation: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.sky}", rounded: "{rounded.full}" }
+  citation-hover: { backgroundColor: "{colors.sky}", textColor: "{colors.ink}" }
+  toast: { backgroundColor: "{colors.night}", textColor: "{colors.cream}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.75rem }
+  wait: { backgroundColor: "{colors.glass-chip}", rounded: "{rounded.sm}" }
   divider: { backgroundColor: "{colors.line}", height: 1px }
   island: { backgroundColor: "{colors.shallows}", textColor: "{colors.ink}", typography: "{typography.label-1}", rounded: "{rounded.xl}" }
+  island-caption: { backgroundColor: "{colors.shallows}", textColor: "{colors.slate}", typography: "{typography.caption-1}" }
+  map-credit: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
+  landing-headline: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.display-1}" }
+  landing-greeting: { backgroundColor: "{colors.cream}", textColor: "{colors.ink}", typography: "{typography.caption-1}" }
+  landing-button: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.title-2}", rounded: "{rounded.full}" }
+  landing-button-hover: { backgroundColor: "{colors.swell}", textColor: "{colors.white}" }
+  landing-focus: { backgroundColor: "{colors.cream}", textColor: "{colors.royal}" }
   island-coast: { backgroundColor: "{colors.lagoon-deep}", height: 1.25px }
   island-lit: { backgroundColor: "{colors.primary}", size: 4.2px }
-  baz-kind: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.75rem 1rem" }
-  baz-kind-count: { backgroundColor: "{colors.sand}", textColor: "{colors.mist}", typography: "{typography.data-2}" }
+  baz-kind: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.cream}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.75rem 1rem" }
+  baz-kind-count: { backgroundColor: "{colors.glass-chip}", textColor: "{colors.ash}", typography: "{typography.data-2}" }
   baz-icon-tile: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.md}", size: 2.5rem }
-  baz-food: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.625rem 0.75rem" }
+  baz-food: { backgroundColor: "{colors.glass-pane}", textColor: "{colors.cream}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.625rem 0.75rem" }
   baz-mark: { backgroundColor: "{colors.ink}", rounded: "{rounded.sm}", size: 2rem }
   footer: { backgroundColor: "{colors.ink}", textColor: "{colors.white}", typography: "{typography.body-3}", rounded: "{rounded.2xl}" }
   footer-caption: { backgroundColor: "{colors.ink}", textColor: "{colors.haze}", typography: "{typography.caption-1}" }
@@ -174,11 +188,12 @@ why. Where the two disagree, the code is right and this is the bug.
 **Creative North Star: "The postcard"**
 
 biznes.mu is a search engine for business in Mauritius: a directory, guides and the official
-registers behind one box. The page is a painted picture of the island with a sheet laid on it:
-since 24 November 2026 a sheet of frosted glass the colour of warm paper, with the day's picture
-showing through it out of focus (see "Glass"). The landing page is the picture alone, with the site's one line and the search in the
-middle of it. The picture changes with the season and the public holiday. The paper, the ink and
-the saffron point do not.
+registers behind one box. The page is a painted picture of the island under glass. The landing
+page is the picture in daylight, with the site's one line in ink on it and one bar of smoked glass
+in the middle of it: the search. Every other page is a sheet of smoked glass laid on the picture,
+with the picture showing through it at dusk and light words on it (see "Glass"). The picture
+changes with the season and the public holiday. The ink, the cream of the words and the saffron
+point do not.
 
 The owner's brief of 20 November 2026 set it: "i dont want too corporate, still want an easy
 feeling for people coming to us, we can have a background image that i can change with time, main
@@ -236,30 +251,38 @@ sand are derived from the brand's saffron.
 
 ### Palette
 
-Nineteen values in `:root`. Six are sampled from the two mock-ups (S1, S2); one is sampled from
-the lagoon picture (S5); one is chosen; eleven are derived.
+Twenty-four values in `:root`. Six are sampled from the two mock-ups (S1, S2); one is sampled from
+the lagoon picture (S5); one is chosen; sixteen are derived. Since 24 November 2026 the page is
+smoked glass with light words on it (see "Glass"): the five values at the foot of the table were
+derived for that. The paper's own values are still in the code, for the three places that are
+paper yet: the landing page, the island's map and the street map, and the emails.
 
 | Token | Value | From | Used for |
 |---|---|---|---|
-| `--palette-white` | `#ffffff` | chosen | A card, a field, the menu: what stands on the paper. The land on the island's map |
-| `--palette-cream` | `#fdf9ec` | derived, saffron 8% on white | The sheet of paper the page is written on; the veil over the picture's sky |
-| `--palette-sand` | `#f5efe0` | derived from cream, deeper | A tile, a chip, a quiet panel, a note, the compact search box |
-| `--palette-limewash` | `#f7f7f8` | sampled (S1): the brand's white | The moving band of a shape that waits. It no longer carries words |
-| `--palette-ink` | `#0a1639` | sampled (S1): the brand's dark | Words; the ink button; a chosen filter, tab or chip; the icon tiles; the footer card; the points of the map |
-| `--palette-swell` | `#14224f` | derived from ink, lighter | The ink button under the pointer |
-| `--palette-slate` | `#404965` | derived, ink 78% toward white | Secondary words |
-| `--palette-mist` | `#545c74` | derived, ink at 70% on white (deepened for glass, 24 November 2026) | Captions, counts, a placeholder, a small heading over a list |
-| `--palette-saffron` | `#f8c618` | sampled (S1): the brand's action | A fill, never words: the point in the b, the search button and the one filled action, an icon on an ink tile, a saved bookmark, a count, a lit point on the map |
+| `--palette-ink` | `#0a1639` | sampled (S1): the brand's dark | The tint of every pane of glass; the page's own ground under it; the icon tiles; the footer; words on cream and on saffron; the landing page's words; the points of the map |
+| `--palette-cream` | `#fdf9ec` | derived, saffron 8% on white | Words on glass; the light button; a chosen filter, tab or chip; the veil over the landing page's sky |
+| `--palette-pearl` | `#e4e0d6` | derived, cream toward ink | Secondary words on glass |
+| `--palette-ash` | `#cdc9c0` | derived, cream further toward ink | Captions, counts, a placeholder, a small heading over a list, on glass |
+| `--palette-sky` | `#bfd0ff` | derived from lagoon, lighter | What answers, on glass: a result's title, a link in prose, a source's number |
+| `--palette-blush` | `#ffb9b3` | derived from coral toward white | An error's words, mark and edge, on glass |
+| `--palette-night` | `#131d42` | derived from ink, a step lighter | What opens over the page, solid: a group of the menu, the suggestions, the list of towns, the toast |
+| `--palette-saffron` | `#f8c618` | sampled (S1): the brand's action | The point in the b, the search button and the one filled action, an icon on an ink tile, a saved bookmark, the focus ring |
 | `--palette-saffron-deep` | `#e3b30d` | derived from saffron, darker | The filled action under the pointer; the glow of a paid card |
 | `--palette-ember` | `#ff8f4a` | derived, saffron toward coral | The far end of the verified mark and of a paid card's ring |
-| `--palette-saffron-wash` | `#fef6d9` | derived, saffron 16% on white | A chosen thing: the current tab on a phone, the current page in the menu, a lit tag, the head of a paid card |
-| `--palette-royal` | `#0d36a7` | sampled (S2) | What answers: a result's title, a link in prose, a source's number, focus, the caret |
+| `--palette-white` | `#ffffff` | chosen | Words on the footer's ink and in the landing page's search bar; the land on the island's map; a control on the street map |
+| `--palette-haze` | `#b6c0db` | derived from limewash toward ink | Captions on the footer's ink |
+| `--palette-lagoon` | `#aebadf` | sampled (S2) | At 18% over a pane, the tile of an answer from the articles |
 | `--palette-shallows` | `#dcefeb` | derived: the lagoon picture's water at 27% on white | The sea on the island's map |
 | `--palette-lagoon-deep` | `#7bbcb3` | sampled (S5) from the lagoon picture's water | The map's coastline and its soft edge |
-| `--palette-lagoon` | `#aebadf` | sampled (S2) | At 45% on white, the tile of an answer from the articles |
-| `--palette-haze` | `#b6c0db` | derived from limewash toward ink | Captions on the footer's ink |
-| `--palette-coral` | `#f14949` | sampled (S1): the brand's red | Nothing at present (Known Gaps). Ember is derived toward it and coral-deep from it |
-| `--palette-coral-deep` | `#b02323` | derived from coral, darker (deepened for glass, 24 November 2026) | An error's words, mark and edge |
+| `--palette-coral` | `#f14949` | sampled (S1): the brand's red | The awning over Baz Manzer, and its app's colour |
+| `--palette-slate` | `#404965` | derived, ink 78% toward white | Secondary words on paper: the landing page, the island's caption |
+| `--palette-mist` | `#545c74` | derived, ink at 70% on white | Captions on paper: the street map's credit |
+| `--palette-royal` | `#0d36a7` | sampled (S2) | What answers and focus, on paper: the landing page |
+| `--palette-sand` | `#f5efe0` | derived from cream, deeper | A control under the pointer on the street map |
+| `--palette-swell` | `#14224f` | derived from ink, lighter | No longer used by a rule; the ink button's hover is mixed from its own roles |
+| `--palette-saffron-wash` | `#fef6d9` | derived, saffron 16% on white | No longer used by a rule: a chosen thing is amber glass |
+| `--palette-limewash` | `#f7f7f8` | sampled (S1): the brand's white | No longer used by a rule |
+| `--palette-coral-deep` | `#b02323` | derived from coral, darker | No longer used by a rule: an error on glass is blush. The emails keep their own red |
 
 ### Roles
 
@@ -268,22 +291,28 @@ Components use roles, never palette values. Tailwind's own colours are switched 
 
 | Role | Value | Meaning |
 |---|---|---|
-| `paper` | white | A surface that stands on the sheet |
-| `sheet` | cream | The page's ground |
-| `panel` | sand | A quiet surface; a control under the pointer |
-| `ink` | ink | Words |
-| `ink-subtle` | slate | Secondary words |
-| `ink-faint` | mist | Tertiary words |
-| `on-ink` | white | Words on ink |
-| `link` | royal | What answers |
+| `paper` | ink at 24% (`--glass-pane`) | A pane that stands on the sheet: a card, a field |
+| `sheet` | ink at 28% (`--glass-sheet`) | The page's ground: the sheet of glass |
+| `panel` | ink at 36% (`--glass-chip`) | A quiet surface, darker again; a control under the pointer |
+| `float` | night | What opens over the page: solid, so it is read |
+| `ink` | cream | Words; and the ground of the light button and of a chosen thing |
+| `ink-subtle` | pearl | Secondary words |
+| `ink-faint` | ash | Tertiary words |
+| `on-ink` | ink | Words on cream |
+| `link` | sky | What answers |
 | `signal` | saffron | The lit point; the one filled action |
 | `signal-hover` | saffron-deep | The filled action under the pointer |
-| `signal-wash` | saffron-wash | A chosen thing |
+| `signal-wash` | saffron at 16% in ink at 78% | A chosen thing: amber glass, darker than the sheet |
 | `on-signal` | ink | Words on saffron |
-| `alert` | coral-deep | An error |
-| `line` | ink at 10% | The hairline |
-| `line-strong` | ink at 50% | An edge a field needs to be seen by |
-| `focus` | royal | The focus ring |
+| `alert` | blush | An error |
+| `line` | cream at 14% | The hairline |
+| `line-strong` | cream at 55% | An edge a field needs to be seen by |
+| `focus` | saffron | The focus ring |
+
+The names are the paper's, and say what a thing is for, not what colour it is: `ink` is the colour
+of words, which on glass is cream. Three places put the paper's own values back for themselves:
+the landing page (`.landing`, and the menu while it is shown), the island's map and the street map
+(`.chart`, `.street`).
 
 The footer redefines four roles for its own ground: `ink` is white, `ink-subtle` is white at 78%,
 `ink-faint` is haze, and `line` is white at 14%. It does not yet redefine `focus` (Contrast, Gaps).
@@ -304,73 +333,85 @@ anything else.
 ### Contrast
 
 Measured with `npm run contrast` (WCAG 2.x, alpha composited over the real ground, floored to two
-decimals). The file of pairs holds 44 and all pass AA for body text. Those in everyday use are
-listed here. The nine that hold the words against glass at its darkest are under "Glass", and the
-pairs for an icon's lit point under "The icons".
+decimals). The file holds 52 pairs and all pass AA for body text. A pane of glass has no one
+colour, so each is measured **at its lightest**: the colour it would be were the whole picture
+behind it white ("Glass" says why that is a bound and not a guess).
 
-| Text or mark | On | Ratio | Where |
+| Words or mark | On | Ratio | Where |
 |---|---|---|---|
-| ink | white | 17.69:1 | Words on a card, in a field, in the menu |
-| ink | cream | 16.80:1 | Every heading and paragraph on the sheet |
-| ink | sand | 15.42:1 | A small action on a card, a chip, a note |
-| slate | white | 8.90:1 | Secondary words on a card |
-| slate | cream | 8.45:1 | Secondary words on the sheet |
-| slate | sand | 7.76:1 | Secondary words in a note |
-| mist | white | 6.64:1 | A caption, a count, a placeholder |
-| mist | cream | 6.30:1 | A caption, a count in an index, a small heading over a list |
-| mist | sand | 5.79:1 | A table's column heads, the compact search box's placeholder |
-| royal | white | 9.98:1 | A title that is a link, on a card |
-| royal | cream | 9.48:1 | A link on the sheet |
-| royal | sand | 8.70:1 | A source's number |
+| cream | the sheet at its lightest, `#4c5059` | 7.67:1 | Every heading and paragraph |
+| pearl | the sheet | 6.13:1 | Secondary words; the menu's links on its pill |
+| ash | the sheet | 4.89:1 | A caption, a count, a small heading over a list |
+| sky | the sheet | 5.26:1 | A result's title, a link |
+| blush | the sheet | 4.94:1 | An error's words |
+| saffron | the sheet | 5.03:1 | An icon's lit point, the point under the current page |
+| cream | a pane, `#3c4252` | 9.52:1 | Words on a card, in a field |
+| pearl | a pane | 7.61:1 | Secondary words on a card |
+| ash | a pane | 6.07:1 | A caption, a count, a field's placeholder |
+| sky | a pane | 6.53:1 | A title that is a link, on a card |
+| blush | a pane | 6.13:1 | An error's words under a field |
+| cream | a chip, `#343b4e` | 10.59:1 | A small action in a row, a chip, a note, the search box's words |
+| pearl | a chip | 8.46:1 | Secondary words in a note |
+| ash | a chip | 6.75:1 | A table's column heads, the search box's placeholder |
+| cream | amber glass, `#3c3d3a` | 10.38:1 | An answer from the guides, a chosen tab on a phone |
+| pearl | amber glass | 8.29:1 | An answer's note |
+| ash | amber glass | 6.61:1 | The line under the current page in the menu |
+| sky | amber glass | 7.12:1 | An answer's title |
+| cream | the head of a paid card, `#494536` | 9.11:1 | A verified business's name |
+| ash | the head of a paid card | 5.81:1 | Its caption |
+| sky | the article tile, `#51576b` | 4.67:1 | The icon of an answer from the articles |
+| cream | night | 15.55:1 | A list that opens over the page, the toast |
+| pearl | night | 12.42:1 | A suggestion's kind |
+| ash | night | 9.91:1 | The line under a page's name in More |
+| sky | night | 10.67:1 | The last line of More |
+| white | a dark card on the sheet, `#16203f` | 16.00:1 | A plan, the three numbers to call |
+| white | the landing page's search bar, `#6a6d73` | 5.18:1 | The question typed |
+| cream | the landing page's search bar | 4.92:1 | Its placeholder |
+| pearl | the fade at the landing page's foot, `#3b4561` | 7.20:1 | Whose product this is |
+| cream | the fade at the landing page's foot | 9.02:1 | Its three links |
+| ink | cream | 16.80:1 | The light button, a chosen filter or tab; the landing page's words on its veil |
+| ink at 72% | cream | 6.95:1 | The count on a chosen filter |
 | ink | saffron | 11.02:1 | The search button, the one filled action |
 | ink | saffron-deep | 9.03:1 | The filled action under the pointer |
-| ink | saffron-wash | 16.34:1 | The current tab on a phone, the current page in the menu |
-| slate | saffron-wash | 8.22:1 | What a business is and where, at the head of a paid card |
-| royal | saffron-wash | 9.22:1 | The name at the head of a paid card |
-| white | ink | 17.69:1 | The ink button, a chosen filter, the footer, a dark card |
-| haze | ink | 9.73:1 | Captions in the footer |
-| saffron | ink | 11.02:1 | A tile's icon, a mark on a dark card |
-| white | swell | 15.31:1 | The ink button under the pointer |
-| coral-deep | white | 6.75:1 | An error's words under a field |
-| coral-deep | cream | 6.40:1 | An error's words on the sheet |
-| white | royal | 9.98:1 | A source's number under the pointer |
-
-Measured for this record with the same script on 20 November 2026. These pairs are in the build
-and not yet in `scripts/contrast.pairs.json`:
-
-| Text or mark | On | Ratio | Where |
-|---|---|---|---|
 | ink | ember | 7.81:1 | The far end of the verified mark |
-| ink | shallows | 14.82:1 | A town's name over the map's sea |
-| slate | shallows | 7.45:1 | The map's own words |
-| mist | shallows | 4.51:1 | The note that names Rodrigues, on the map |
-| ink at 62% | white | 5.01:1 | The gathered dots on the map's land, without script (a graphic) |
-| royal | lagoon at 45% on white | 7.58:1 | The icon on the tile of an answer from the articles |
-| mist | saffron-wash | 4.98:1 | The line under the current page in the menu |
-| coral-deep | sand | 5.03:1 | An error's mark in a note |
+| ink | sky | 11.52:1 | A source's number under the pointer |
+| saffron | ink | 11.02:1 | A tile's icon, a number on a dark card, the focus ring |
+| white | ink | 17.69:1 | The footer, the skip link, the landing page's Home button |
+| haze | ink | 9.73:1 | Captions in the footer |
 | white at 78% | ink | 11.00:1 | Secondary words in the footer |
-| line-strong | white | 3.40:1 | A field's edge (a mark) |
-| line-strong | cream | 3.36:1 | A chip's edge on the sheet (a mark) |
+| sky | ink | 11.52:1 | A link in the footer |
+| white | the footer's own card, `#1b2647` | 14.84:1 | The form for the guide and the magazine |
+| white at 78% | the footer's own card | 9.54:1 | The words beside its form |
+| ink | white | 17.69:1 | The island's land, a control on the street map |
+| ink | shallows | 14.82:1 | A town's name on the island's sea |
+| slate | shallows | 7.45:1 | The island's own caption |
+| mist | white | 6.64:1 | The tiles' credit on the street map |
+| saffron | slate | 5.54:1 | An icon's lit point in its ring, on the island's paper |
+| slate | white | 8.90:1 | Secondary words on the card of an email |
+| mist | cream | 6.30:1 | The foot of an email |
+| royal | cream | 9.48:1 | A link at the foot of an email |
+| white | swell | 15.31:1 | An email's card and button, where a mail program shows it dark |
 
 **Words on the picture.** A picture is not one colour, so no pair can vouch for words set on it.
-Only the landing page sets any there. Two things keep its headline readable: a veil of cream over
-the picture's sky on every page, and a soft light of cream behind the words. The greeting above
-the headline and the line at the page's foot each stand on a ground of their own, white at 82%
-with a blur: over the darkest picture there could be that ground is no darker than `#d1d1d1`,
-on which slate measures 5.82:1 and ink more. `scripts/hero-contrast.mjs` reads the pixels behind
-all three on each of the ten pictures, at a desk and on a phone, and fails under 3:1 for the
-headline or 4.5:1 for the other two. On 23 November 2026 the lowest of the sixty was 5.60:1 (the
-headline on the sunset, at a desk), and the lowest for the foot line 6.30:1. It needs a running
-server.
+Only the landing page sets any there: its headline and its greeting, in ink. Two things keep them
+readable: a veil of cream over the picture's sky, and a soft light of cream behind the words (set
+above the search bar, so that the picture is seen through the bar's glass). The line at the
+page's foot stands on a fade to dusk. `scripts/hero-contrast.mjs` reads the pixels behind all
+three on each of the ten pictures, at a desk and on a phone, and fails under 3:1 for the headline
+or 4.5:1 for the other two. On 24 November 2026 the lowest of the sixty was 4.58:1. It needs a
+running server. A picture a superadmin uploads is not measured by it (Known Gaps); the glass over
+a picture is, by its rule.
+
+**As drawn.** `npm run glass` reads the panes themselves with each of the ten pictures behind
+them, at a desk and on a phone: on 24 November 2026 the faintest words kept 5.15:1 on the sheet,
+5.25:1 in the landing page's search bar, 7.31:1 on the foot line and 8.06:1 on the menu's pill.
 
 **Gaps (recorded, not rules).**
 
-- **The focus ring on ink.** The ring is royal on every ground. On the footer card and on a dark
-  card it sits on ink, where royal measures 1.77:1. A focus ring needs 3:1. It passes on white
-  (9.98:1), cream (9.48:1), sand (8.70:1) and saffron (6.22:1).
 - **The map's coast** is lagoon-deep at 55%, about 1.5:1 on the white land. The map is a picture of
   what the lists beside it say in words, and it carries a sentence that says what it shows.
-- **The comment in `globals.css`** gives ink on ember as 8.3:1. It measures 7.81:1.
+- **The island and the street map are light paper inside dark glass.** They are drawings with
+  their own colours, and were left so; nothing dims them to the page.
 
 ## Typography
 
@@ -489,9 +530,10 @@ ground of their own.
 
 ## Elevation & Depth
 
-Depth is said by a hairline, by a step of the ground (cream, white, sand), by three soft
-shadows tinted with the brand's ink, and by glass: the picture, the soft picture under the sheet,
-the sheet, a pane on it, and the bars that pass over all of them.
+Depth is said by glass: the picture, the soft picture under the sheet, the sheet, a pane on it, a
+chip on that, each a little darker, and the bars that pass over all of them. A hairline of cream
+and a bright rim mark an edge. The three shadows are ink, and on glass they are felt more than
+seen.
 
 ### Shadow Vocabulary
 
@@ -508,65 +550,64 @@ the sheet, a pane on it, and the bars that pass over all of them.
 
 ### Glass
 
-The owner asked for it on 24 November 2026: "Integrate a glassmorphism ui please". The picture was
-already the page's ground, so the sheet and what stands on it became panes it shows through.
+The owner asked for it on 24 November 2026: "Integrate a glassmorphism ui please". A first try
+made the paper a pale frosted sheet. The owner then sent a picture of what was meant, a dark
+translucent card on a sunset photograph with light words, "This is the ui style i want", and
+then: "The frosted glass needs to be translucent, only search bar on main page to be of glass, no
+box around it". This is that.
 
-- **The soft picture** (`.frost`): the day's picture again, out of focus, fixed under the sheet
-  and as wide as it, so the picture stays sharp in the margin round the sheet and on the landing
-  page, which has no sheet. It is a small copy made soft beforehand (`npm run frost` writes
-  `<name>-frost.jpg` beside each picture, about one kilobyte each) and drawn large: no filter runs
-  while the page scrolls. A picture a superadmin uploaded has no such copy, and is blurred on the
-  page by 40px instead.
-- **The wash** (`--glass-wash`, white at 55%): over the soft picture. It bounds how dark the
-  ground can be, whatever the picture.
-- **The sheet** (`--glass-sheet`, cream at 70%), with a lit upper edge.
-- **A pane** (`--glass-pane`, white at 62%): a card, a listing, an answer, a filter, a quiet
-  button. It blurs nothing itself: it lies on ground that is already soft. `--pane` is what a card
-  is painted with, and a part on ink (a dark card, the footer, the toast) sets it back to white.
-- **A bar** (`--glass-bar`, white at 78%, with `--glass-blur`: an 18px blur and 1.6 of
-  saturation): the menu's pill, the phone's bar, and a card that floats over the page
-  (`.glass-float`, the offer to install). These pass over anything, so they blur what is behind
-  them. The strip behind the pill (`--glass-strip`, cream at 72%) blurs by 14px and fades to
-  nothing.
-- **The box** (`--glass-box`, white at 86%, the same blur): the search box.
-- **What opens over the page stays solid**: a group of the menu, the suggestions, the list of
-  towns. A list is read, and a list inside a pane that already blurs cannot blur again.
-- The greeting pill and the landing page's foot line are white at 82% with an 8px blur, as before.
+- **Smoked, and thin.** A pane is a thin tint of ink, 24% to 36%. What keeps the words readable is
+  not the tint but that glass dims what is behind it: the picture comes through at four tenths of
+  its light, richer in colour, so its shapes and colours are plainly seen and no part of it can be
+  bright behind light words.
+- **The soft picture** (`.frost`): the day's picture again under the sheet, out of focus, fixed,
+  and as wide as the sheet, so the picture stays sharp and in daylight in the margin round it. It
+  is a small copy made beforehand (`npm run frost` writes `<name>-frost.jpg` beside each picture,
+  under a kilobyte each: blurred, saturation at 1.6, every channel at four tenths) and drawn
+  large, so no filter runs while the page scrolls. A picture a superadmin uploaded has no such
+  copy and is blurred, enriched and dimmed on the page by the same amounts.
+- **The sheet** (`--glass-sheet`, ink at 28%), with a bright rim (`--glass-edge`) and a lit upper
+  edge (`--glass-shine`).
+- **A pane** (`--glass-pane`, ink at 24%): a card, a listing, an answer, a filter, a field, a
+  quiet button. **A chip** (`--glass-chip`, ink at 36%): a small action, a note, a tile, the
+  search box, a thing under the pointer. Neither blurs anything: it lies on ground that is already
+  soft, and only ever darkens it.
+- **A bar** (`--glass-bar`, ink at 28%, with `--glass-blur`: a 24px blur, then saturation at 1.6
+  and light at four tenths): the menu's pill, the phone's bar, a card that floats over the page
+  (`.glass-float`). These pass over anything, so they blur and dim what is behind them.
+- **Amber glass** (`signal-wash`): a chosen thing and an answer's ground. Saffron at 16% in ink at
+  78%: darker than the sheet, and warm.
+- **What is chosen or pressed is light.** The main button of a card, a chosen filter, a chosen tab:
+  cream, with ink words. Saffron stays the one lit action: the search button.
+- **What opens over the page is solid** (`float`, night): a group of the menu, the suggestions, the
+  list of towns, the toast. A list is read.
+- **The icon tiles stay ink**, with saffron icons: the darkest thing on a pane.
+- **The landing page is the picture in daylight.** Its words are ink on the picture, the menu is
+  the name and two buttons with no pill round them, and the one pane is the search bar: ink at
+  18% over the picture blurred by 16px, at 1.7 of its colour and half its light, with a rim of
+  white at 40%. Nothing has a box.
 
-**The rule the values come from.** Each is set so that the faintest words on it pass at 4.5:1 were
-the picture behind it black. That is why two colours were deepened: mist from `#626a80` to
-`#545c74` and deep coral from `#c12a2a` to `#b02323`. With them the sheet may let 13.5% of the
-soft picture through; with the old mist it could let 6% through, which the eye does not see as
-glass.
-
-| Words | On, at its darkest | Ratio |
-|---|---|---|
-| ink | the sheet, `#dbd8cf` | 12.41:1 |
-| slate | the sheet | 6.24:1 |
-| mist | the sheet | 4.66:1 |
-| royal | the sheet | 7.00:1 |
-| deep coral | the sheet | 4.73:1 |
-| ink | a bar, `#c7c7c7` | 10.46:1 |
-| slate | a bar | 5.26:1 |
-| ink | the search box, `#dbdbdb` | 12.78:1 |
-| mist | the search box | 4.79:1 |
-
-**As drawn** (`npm run glass`, 24 November 2026): with each of the ten pictures behind, at a desk
-and on a phone, the faintest words keep 5.21:1 on the sheet, 5.98:1 in the search box and 8.20:1
-on the menu's pill.
+**The rule the values come from.** Glass dims by a fixed amount, so the brightest ground a pane
+can have is known whatever the picture is: white behind the sheet comes through as `#666666`, and
+the sheet over it is `#4c5059`. The faintest words on each pane pass at 4.5:1 on that. It is a
+bound: a real picture is never white all over, and `npm run glass` reads what is drawn.
 
 **For someone who asks for less.** With `prefers-reduced-transparency: reduce` or
-`prefers-contrast: more`, every pane is solid again and nothing blurs: the page as it was before
-it was glass. Where a browser cannot blur what is behind a thing, the bars and the box are solid.
+`prefers-contrast: more`, every pane is solid and nothing blurs: the same dark page, in flat
+colours. Where a browser cannot blur what is behind a thing, the bars are solid. In print the
+page is paper again: black words on white.
 
 ### Named Rules
 
-**The Darkest Picture Rule.** A pane's transparency is set against black, not against today's
+**The Brightest Picture Rule.** A pane is measured against white behind it, not against today's
 picture. If a value changes, its pair in `scripts/contrast.pairs.json` changes with it, and
 `npm run glass` is run.
 
-**The One Blur Rule.** Only what passes over the page blurs it: the bars, the box, the strip behind
-the pill. What lies on the sheet is a tint on ground that is already soft.
+**The One Blur Rule.** Only what passes over the page blurs it: the bars, the landing page's search
+bar, the strip behind the pill. What lies on the sheet is a tint on ground that is already soft.
+
+**The Only Darker Rule.** A pane on the sheet is a tint of ink, never of white: a lighter pane would
+take the faint words on it under 4.5:1.
 
 **The Coloured Glow Rule.** A shadow is ink unless it means something: saffron for a paid place,
 royal for the answer. No other shadow has a colour.
@@ -600,12 +641,35 @@ square icon button.
 
 Each is a class in `globals.css` or a file in `src/components`. States are part of the component.
 
+**How to read the colours in this section.** Most of it was written when the page was paper. On
+24 November 2026 the page became glass and the roles turned over with it (Colors, "Roles"), so a
+component kept its role and changed its colour. Where a line below still names a paper colour,
+read it by its role:
+
+| Written | On glass |
+|---|---|
+| white (a card, a field, a pill) | a pane: ink at 24% |
+| cream (the sheet) | the sheet of glass: ink at 28% |
+| sand (a chip, a thing under the pointer) | a chip: ink at 36% |
+| ink, as words | cream |
+| slate, mist | pearl, ash |
+| royal (what answers) | sky |
+| filled with ink, an ink button | filled with cream, with ink words |
+| the saffron wash | amber glass |
+| a royal edge or ring (focus) | a saffron edge or ring |
+
+Three things are as written: an icon tile is ink with a saffron icon; the footer is ink; and the
+landing page keeps the paper's colours, with the one bar of glass. The first lines of the menu,
+the tab bar and the search box below are written anew.
+
 ### The pill menu
 
 `HeaderBar.tsx`, `.site-header`, `.nav-pill`, `.nav-main`, `.nav-link`, `.menu-group`,
 `.menu-panel`, `.menu-item`.
 
-- White at 90% with a blur, a hairline edge and `--shadow-md`. It stays at the top of the screen.
+- A bar of glass (ink at 28%; what is behind it blurred by 24px and dimmed to four tenths), with a
+  bright rim and `--shadow-md`. It stays at the top of the screen. On the landing page it has no
+  pill at all: the name and the two buttons stand on the picture, in ink.
 - From 64rem it holds the name, which leads to the landing page, where the search is; four plain
   links, each one press from its page (Home, Directory, Baz Manzer, Articles; `NAV` in
   `src/data/site.ts`); "More", the one word that opens a list; the compact search box; the cart
@@ -636,7 +700,7 @@ Manzer, Articles, More. The directory is reached through Home, whose categories 
 its two ways in, and through "More", which is lit on it. The landing page has no bar. Each tab is
 an icon over a word, 52px tall. Where you are is ink on the saffron
 wash, and marked for a screen reader as the header's links are. "More" is a page (`/more`), not a
-list that opens over the one you are on. White at 92% with a blur, 24px corners, `--shadow-lg`,
+list that opens over the one you are on. A bar of glass as the menu is, 24px corners, `--shadow-lg`,
 0.5rem from the screen's sides and above the safe area.
 
 ### The page of every page
@@ -657,8 +721,10 @@ businesses, turned round, one press apart.
 
 `SearchBox.tsx`, `.search`, `.suggest`. A plain form that asks `/search`.
 
-- **Large** (the landing page, the search page): a white pill 64px tall with `--shadow-md` and the
-  saffron "Search" button inside its right end. Under 30rem the button is the glass alone.
+- **Large** (the landing page, the search page): a pill 64px tall with `--shadow-md` and the
+  saffron "Search" button inside its right end. On the search page it is a chip on the sheet. On
+  the landing page it is the one pane of glass there: ink at 18% over the picture, which shows
+  through it blurred and at half its light, with a rim of white at 40%; its words are white. Under 30rem the button is the glass alone.
 - **Compact** (the menu): 44px, on sand, no shadow. Enter asks; the button is kept for a screen
   reader and shows when it has focus.
 - Rest; hover (the edge darkens); focus (a royal edge, a soft royal ring, `--shadow-lg`, the glass
@@ -1216,8 +1282,14 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
 
 ## Known Gaps
 
-- **The focus ring cannot be seen well enough on ink**: 1.77:1 on the footer card and on a dark
-  card. The `focus` role needs a value for a dark ground.
+- **The components' descriptions still name the paper's colours.** A key at the head of Components
+  translates them; the lines themselves have not all been rewritten for glass.
+- **No real phone has been timed scrolling the glass.** The sheet's blur is made beforehand so that
+  none runs while a page scrolls, but that is reasoning and not a measurement. Only Chromium has
+  drawn it.
+
+- **The focus ring is saffron everywhere but the landing page**, where it is royal on the picture's
+  light. Saffron on ink is 11.02:1; on the sheet at its lightest, 5.03:1.
 - **The verified mark and the paid card are drawn, and no listing wears them.** Joining them to
   the index and to the order of results is being built with the accounts. Until then the order is
   by answer and fullness alone.

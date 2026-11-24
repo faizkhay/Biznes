@@ -89,7 +89,7 @@ try {
 check("manifest: the section's own is served as a manifest, under the section", served.status === 200 && /application\/manifest\+json/.test(served.headers.get("content-type") ?? ""), `${served.status} ${served.headers.get("content-type")}`);
 check("manifest: its own id, name and short name", manifest.id === ROOT && manifest.name === "Baz Manzer" && manifest.short_name === "Baz Manzer", JSON.stringify([manifest.id, manifest.name, manifest.short_name]));
 check("manifest: it opens on the section's first page, alone, and never leaves the section", manifest.start_url === ROOT && manifest.scope === ROOT && manifest.display === "standalone" && manifest.start_url.startsWith(manifest.scope), JSON.stringify([manifest.start_url, manifest.scope, manifest.display]));
-check("manifest: its own colours, a language and a description", manifest.theme_color === "#f14949" && manifest.background_color === "#fdf9ec" && manifest.lang === "en" && /Mauritius/.test(manifest.description ?? ""), JSON.stringify([manifest.theme_color, manifest.background_color]));
+check("manifest: its own colours, a language and a description", manifest.theme_color === "#f14949" && manifest.background_color === "#0a1639" && manifest.lang === "en" && /Mauritius/.test(manifest.description ?? ""), JSON.stringify([manifest.theme_color, manifest.background_color]));
 const siteManifest = await (await get("/manifest.webmanifest")).json();
 check("manifest: the site's own is still served, and the two are two apps", siteManifest.id === "/" && siteManifest.scope === "/" && siteManifest.name === "biznes.mu" && siteManifest.id !== manifest.id, JSON.stringify([siteManifest.id, siteManifest.name]));
 check("manifest: the site's own shortcuts name Home, keep the emergency numbers among the first four, and leave Baz Manzer to its own app", siteManifest.shortcuts.some((shortcut) => shortcut.url === "/home") && siteManifest.shortcuts.slice(0, 4).some((shortcut) => shortcut.url === "/emergency") && !siteManifest.shortcuts.some((shortcut) => shortcut.url.startsWith(ROOT)), siteManifest.shortcuts.map((shortcut) => shortcut.url).join(" "));
@@ -131,7 +131,7 @@ for (const path of OUTSIDE) {
   const named = tags(page, /<link rel="manifest"[^>]*>/g).map((tag) => attr(tag, "href"));
   const touch = tags(page, /<link rel="apple-touch-icon"[^>]*>/g).map((tag) => attr(tag, "href").split("?")[0]);
   const facts = { named, title: metaOf(page, "apple-mobile-web-app-title"), theme: metaOf(page, "theme-color"), touch };
-  check(`head, outside the section, ${path}: the site's manifest and no other, its name, touch icon and theme colour`, named.length === 1 && named[0] === "/manifest.webmanifest" && facts.title === "biznes.mu" && facts.theme === "#fdf9ec" && touch.length === 1 && touch[0] === "/apple-icon.png", JSON.stringify(facts));
+  check(`head, outside the section, ${path}: the site's manifest and no other, its name, touch icon and theme colour`, named.length === 1 && named[0] === "/manifest.webmanifest" && facts.title === "biznes.mu" && facts.theme === "#0a1639" && touch.length === 1 && touch[0] === "/apple-icon.png", JSON.stringify(facts));
 }
 {
   const [own, site] = [await png(`${ROOT}/apple-icon.png`), await png("/apple-icon.png")];

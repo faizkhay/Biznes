@@ -4,7 +4,7 @@ import { site } from "@/data/site";
 // What a phone or a computer needs to keep biznes.mu as an app: its name, its colours, its icons
 // and the pages it can open straight from the icon. Next serves this as /manifest.webmanifest and
 // links it from every page. The icons are drawn from the site's mark by scripts/icons.mjs.
-const PAPER = "#fdf9ec"; // --palette-cream, the same value as the theme colour in layout.tsx
+const PAPER = "#0a1639"; // --palette-ink, the page's own ground under its glass: the same value as the theme colour in layout.tsx
 
 const icon = (name: string, size: number, purpose: "any" | "maskable") => ({ src: `/icons/${name}-${size}.png`, sizes: `${size}x${size}`, type: "image/png", purpose });
 

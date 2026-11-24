@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = { themeColor: "#fdf9ec", colorScheme: "light", viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#0a1639", colorScheme: "dark", viewportFit: "cover" };
 
 // The picture behind the page follows the calendar, so every page is made again at most once an
 // hour and takes the day's look with it.

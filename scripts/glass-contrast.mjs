@@ -1,13 +1,14 @@
-// Measures the smallest words against the glass they stand on, with each picture behind it:
+// Measures the faintest words against the glass they stand on, with each picture behind it:
 // `node scripts/glass-contrast.mjs [origin]` (npm run glass).
 //
-// The sheet, the search box and the menu's pill are glass (DESIGN.md, "Glass"): the day's picture
-// shows through them. Their values are set so that the words on them would pass were the picture
-// black (scripts/contrast.pairs.json holds those pairs). This reads what is drawn: for every
-// picture in public/themes, at a desk and on a phone, it empties each pane, reads the darkest
-// point of its ground, and holds the faintest words that stand there against it. The sheet is
-// read on a page of its own, the box and the pill on the first screen, where the picture is
-// sharp behind them. It fails if any is under 4.5:1.
+// The sheet, the first screen's search bar and the menu's pill are smoked glass (DESIGN.md,
+// "Glass"): the day's picture shows through them, dimmed. The first screen's foot line stands on
+// a fade to dusk. Their values are set so
+// that the light words on them would pass were the picture white (scripts/contrast.pairs.json
+// holds those pairs). This reads what is drawn: for every picture in public/themes, at a desk and
+// on a phone, it empties each pane, reads the lightest point of its ground, and holds the
+// faintest words that stand there against it. The sheet and the pill are read on a page of their
+// own, the search bar and the foot line on the first screen, where the picture is sharp behind them. It fails if any is under 4.5:1.
 import { readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -29,9 +30,10 @@ const hex = (value) => [1, 3, 5].map((i) => parseInt(value.trim().slice(i, i + 2
 
 // A pane, the page it is read on, what is emptied out of it, and the faintest words that stand on it.
 const PANES = [
-  { name: "sheet", path: "/more", box: "main", empty: "main > *, .site-header, .site-footer, .tabbar", words: "--palette-mist", inset: 40 },
-  { name: "search box", path: "/", box: "main .search", empty: "main .search > *", words: "--palette-mist", inset: 4, round: true },
-  { name: "menu's pill", path: "/", box: ".nav-pill", empty: ".nav-pill > *", words: "--palette-slate", inset: 4, round: true },
+  { name: "sheet", path: "/more", box: "main", empty: "main > *, .site-header, .site-footer, .tabbar", words: "--palette-ash", inset: 40 },
+  { name: "search bar", path: "/", box: "main .search", empty: "main .search > *", words: "--palette-cream", inset: 4, round: true },
+  { name: "foot line", path: "/", box: "main .landing-foot", empty: "main .landing-foot > *", words: "--palette-pearl", under: true },
+  { name: "menu's pill", path: "/more", box: ".nav-pill", empty: ".nav-pill > *, main > *", words: "--palette-pearl", inset: 4, round: true },
 ];
 
 const browser = await chromium.launch({ executablePath: browserPath() });
@@ -60,16 +62,23 @@ for (const [size, width, height] of [["desk", 1440, 900], ["phone", 390, 844]]) 
       await page.waitForTimeout(350);
       const box = await page.locator(pane.box).first().boundingBox();
       // A pill's ends are round: the picture itself shows in its corners, so those are left out of the reading.
+      // The foot line's ground fades in over its upper edge: its words stand under that, and that is what is read.
+      if (pane.under) {
+        const fade = await page.locator(pane.box).first().evaluate((node) => parseFloat(getComputedStyle(node).paddingTop));
+        box.y += fade;
+        box.height -= fade;
+        pane.inset = 0;
+      }
       const side = pane.round ? Math.ceil(box.height / 2) : pane.inset;
       const clip = { x: Math.max(0, box.x) + side, y: Math.max(0, box.y) + pane.inset, width: Math.min(width, box.x + box.width) - Math.max(0, box.x) - 2 * side, height: Math.min(height, box.y + box.height) - Math.max(0, box.y) - 2 * pane.inset };
       const { data, info } = await sharp(await page.screenshot({ clip })).raw().toBuffer({ resolveWithObject: true });
-      let dark = [255, 255, 255];
+      let light = [0, 0, 0];
       for (let i = 0; i < data.length; i += info.channels) {
         const point = [data[i], data[i + 1], data[i + 2]];
-        if (lum(point) < lum(dark)) dark = point;
+        if (lum(point) > lum(light)) light = point;
       }
-      const found = ratio(words, dark);
-      if (found < lowest) (lowest = found), (where = `${picture}, ground rgb(${dark.join(", ")})`);
+      const found = ratio(words, light);
+      if (found < lowest) (lowest = found), (where = `${picture}, ground rgb(${light.join(", ")})`);
     }
     const ok = Math.floor(lowest * 100) / 100 >= 4.5;
     if (!ok) failed++;

@@ -127,46 +127,72 @@ transition.
 
 ## Rounds
 
-### Round 8, 24 November 2026: the paper becomes glass
+### Round 8, 24 November 2026: the page becomes glass
 
-**The owner's note, in their own words.** "Integrate a glassmorphism ui please"
+**The owner's notes, in their own words.**
+
+"Integrate a glassmorphism ui please"
+
+Then, with a picture of a dark translucent card on a sunset photograph, its words light, its
+options soft dark pills and its one button white: "Tjis is the ui style i want."
+
+Then, while that was being built: "The frosted glass needs to be translucent, only search bar on
+main oage to br of glass, no box around it."
+
+**What happened, in order.**
+
+- **A first try was pale.** The paper became a frosted sheet the colour of cream, letting an
+  eighth of the picture through, with dark words as before. It went live. It was careful and it
+  was not what was meant: the owner's picture showed dark glass, light words and a scene plainly
+  seen through it. A direction that is not it is replaced, not polished.
+- **A second try put a box on the landing page.** The owner's picture is a card, so the landing
+  page's words and search went into one. The owner's third note came before it was shown, and
+  took the box away.
 
 **What was decided, and why.**
 
-- **The picture was already there, so the page became the glass over it.** Glass needs something
-  behind it worth seeing, and the site has had a painted picture behind every page since Round 4.
-  The sheet is now frosted glass the colour of warm paper, the cards on it are panes, and the
-  menu, the phone's bar and the search box are glass that blurs what passes under them. The
-  picture stays sharp on the landing page and in the margin round the sheet.
+- **Smoked glass, thin.** Every page but the landing page is a sheet of dark glass on the day's
+  picture, with cream words. The tint is thin, ink at 24% to 36%, because the owner's word was
+  translucent. What keeps the words readable is that glass dims what is behind it: the picture
+  comes through at four tenths of its light and richer in colour, so its shapes are seen and
+  nothing behind light words can be bright.
+- **Readable against white, not against today's picture.** Because glass dims by a fixed amount,
+  the brightest a pane can be is known whatever the picture is. The faintest words on each pane
+  pass at 4.5:1 on that, which also covers a picture the superadmin uploads later. Five light
+  colours were derived for words on glass: pearl, ash, sky for what answers, blush for an error,
+  and night for what must be solid.
 - **The blur is made beforehand.** Blurring a picture the size of the screen on every frame is
-  work a small phone does badly, and most people here come by phone. So each picture has a small
-  soft copy, a kilobyte or so, made once and drawn large under the sheet. Nothing is filtered
-  while the page scrolls. Only what passes over the page blurs it live: the bars, the box and the
-  strip behind the menu.
-- **Readable against black, not against today's picture.** The usual failure of glass is grey
-  words on a ground nobody measured. Here each pane's transparency is set so that its faintest
-  words pass at 4.5:1 were the picture behind it black, which also covers a picture the
-  superadmin uploads later. A white wash over the soft picture makes that so.
-- **Two colours were deepened to earn it.** With the old grey for captions the sheet could let 6%
-  of the picture through, which the eye does not see as glass. Mist went from `#626a80` to
-  `#545c74` and the red of an error from `#c12a2a` to `#b02323`; both are easier to read than
-  before on every ground, and the sheet now lets 13.5% through.
-- **What is read stays solid.** A list that opens over the page (a group of the menu, the
-  suggestions, the towns) is white. The first try made them glass, and the page showed through
-  the words. A field is white. A button on a dark card is white, not grey glass.
+  work a small phone does badly, and most people here come by phone. Each picture has a small soft
+  copy, under a kilobyte, made once and drawn large under the sheet. Only what passes over the
+  page blurs it live: the menu, the phone's bar, the landing page's search bar.
+- **The landing page is the picture, in daylight.** The owner asked for no box. Its words are ink
+  on the picture, as they were in Round 7; the menu there is the name and two buttons with no pill
+  round them; the line at its foot stands on a fade to dusk and not in a box. The one pane is the
+  search bar, and the picture is seen through it.
+- **The roles turned over, and the components did not change.** A component names a role, never a
+  colour, so `ink` could become cream, `paper` a pane and `link` sky in one place, and nearly
+  every surface followed. What had to be done by hand was what named a colour directly: the icon
+  tiles, which stay ink; a hundred hairlines, now drawn from the words' colour; the toast.
+- **What is read stays solid; what is chosen is light.** A list that opens over the page is night,
+  not glass. The main button of a card and a chosen filter or tab are cream with ink words, as the
+  one white button is in the owner's picture. Saffron stays the search button's alone.
+- **The maps stay paper.** The island and the street map are drawings with their own colours, and
+  sit in the glass as light windows.
 - **For someone who asks for less.** With less transparency or more contrast asked of the device,
-  every pane is solid again and nothing blurs. So too where a browser cannot blur.
+  every pane is solid and nothing blurs. In print the page is paper.
 
-**Checked.** As drawn, with each of the ten pictures behind, at a desk and on a phone, the
-faintest words keep 5.21:1 on the sheet, 5.98:1 in the search box and 8.20:1 on the menu's pill
-(`npm run glass`, new). The landing page's words on the picture keep 5.60:1 (`npm run hero`). 255
-behaviour checks, 231 for Baz Manzer and 72 for the tax tools pass, and axe-core is clean on 56
-kinds of public page at both sizes.
+**Checked.** As drawn, with each of the ten pictures behind, at a desk and on a phone, the faintest
+words keep 5.15:1 on the sheet, 5.25:1 in the landing page's search bar, 7.31:1 on its foot line
+and 8.06:1 on the menu's pill (`npm run glass`). The landing page's words on the picture keep
+4.58:1 or better (`npm run hero`). 52 pairs of colours pass, each pane at its lightest. 255
+behaviour checks, 231 for Baz Manzer and 72 for the tax tools pass; axe-core is clean on 56 kinds
+of public page and 70 kinds of account page at both sizes.
 
-**Not done, and said.** No real phone has been timed scrolling it: the design avoids the costly
-blur, but that is reasoning, not a measurement. Only Chromium has drawn it. axe-core cannot judge
-words over a picture, which is why the glass has a check of its own. The Pocket Guide's PDF keeps
-the old grey: it is print, and was not asked about.
+**Not done, and said.** No real phone has been timed scrolling it, and only Chromium has drawn it.
+The components' notes in `DESIGN.md` still name the paper's colours, with a key that translates
+them. The island and the street map were not dimmed to the page. The Pocket Guide's PDF and the
+emails keep their paper: they were not asked about. axe-core cannot judge words over a picture,
+which is why the glass has checks of its own.
 
 ### Round 7, 23 November 2026: a door, a hall, and three things of our own
 

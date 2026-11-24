@@ -2,7 +2,7 @@
   "file": "chamarel-sm-frost.jpg",
   "kind": "derived",
   "from": "chamarel-sm.jpg",
-  "how": "scripts/frost.mjs: made 128 pixels on its longer side and blurred, to stand out of focus behind the page's glass",
+  "how": "scripts/frost.mjs: made 128 pixels on its longer side, blurred, made richer and dimmed to four tenths, to stand out of focus behind the page's glass",
   "by": "Khay Digital, for biznes.mu",
   "licence": "As chamarel-sm.jpg: see chamarel-sm.jpg.json."
 }
