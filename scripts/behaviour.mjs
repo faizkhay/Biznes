@@ -24,6 +24,36 @@ const origin = process.argv[2] ?? "http://localhost:3100";
 const HOOK_PORT = Number(process.env.HOOK_PORT) || 3199;
 const ALT_PORT = Number(process.env.ALT_PORT) || 3101;
 const alt = `http://localhost:${ALT_PORT}`;
+// The pictures the site has and what may fall over the landing page, by name (src/data/themes.ts).
+const THEMES = readFileSync(new URL("../src/data/themes.ts", import.meta.url), "utf8");
+const PICTURE_IDS = [...THEMES.matchAll(/^\s+([a-z]+): picture\("/gm)].map((m) => m[1]);
+const FALL_NAMES = Object.fromEntries([...THEMES.match(/export const FALLS = \{([\s\S]*?)\} as const;/)[1].matchAll(/^\s*([a-z]+): \{ name: "([^"]+)"/gm)].map((m) => [m[1], m[2]]));
+/** The picture behind the page as the browser has it, the one it was told to fetch ahead for this screen, and what falls. */
+const looks = (on) =>
+  on.evaluate(() => ({
+    behind: getComputedStyle(document.querySelector(".backdrop")).backgroundImage.replace(/^url\("?[a-z]+:\/\/[^/]+|"?\)$/g, ""),
+    // React may write a preload twice, once where it was asked for and once lifted into the head: each address is counted once.
+    ahead: [...new Set([...document.querySelectorAll('link[rel="preload"][as="image"]')].filter((link) => matchMedia(link.media).matches).map((link) => link.getAttribute("href")))],
+    state: document.querySelector(".landing")?.getAttribute("data-leaves") ?? null,
+    layer: getComputedStyle(document.querySelector(".leaves")).display,
+    falling: [...document.querySelectorAll(".leaf")].filter((leaf) => getComputedStyle(leaf).display !== "none").length,
+    moving: document.getAnimations().filter((a) => a.effect?.target?.closest?.(".leaves")).map((a) => a.playState),
+    fall: document.querySelector(".leaves").getAttribute("data-fall"),
+    hidden: document.querySelector(".leaves").getAttribute("aria-hidden"),
+    under: getComputedStyle(document.querySelector(".leaves")).zIndex,
+    touch: getComputedStyle(document.querySelector(".leaves")).pointerEvents,
+    control: (() => {
+      const button = document.querySelector(".leaves-toggle");
+      return { shown: Boolean(button) && getComputedStyle(button).display !== "none", label: button?.getAttribute("aria-label") ?? "", tall: Math.round(button?.getBoundingClientRect().height ?? 0) };
+    })(),
+    kept: (() => {
+      try {
+        return localStorage.getItem("biznes:leaves");
+      } catch {
+        return undefined;
+      }
+    })(),
+  }));
 let failed = 0;
 let passed = 0;
 const check = (name, ok, detail = "") => {
@@ -57,7 +87,7 @@ const text = (selector) => page.locator(selector).first().innerText();
 // 1. The landing page: the picture, the site's line, the search and one button, on one screen.
 await page.goto(origin, { waitUntil: "networkidle" });
 check("landing: one h1, and it is the site's own line", (await page.locator("h1").count()) === 1 && (await text("main h1")).trim() === "The search engine for business in Mauritius");
-check("landing: the day's picture is behind the page", /^(lagoon|flamboyant|cane|lights|market|teafields|chamarel|harbour|village|sunset)$/.test((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
+check("landing: the day's picture is behind the page, one of the eighteen", PICTURE_IDS.length === 18 && PICTURE_IDS.includes((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
 check("landing: at a desk the search box has the keyboard from the start", (await page.evaluate(() => document.activeElement?.id)) === "home-search");
 const landing = await page.evaluate(() => ({
   buttons: [...document.querySelectorAll("main a.btn")].map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","),
@@ -83,6 +113,37 @@ check("landing: the skip link is still the first thing the keyboard meets", (awa
 await page.evaluate(() => document.activeElement?.blur());
 await page.keyboard.press("/");
 check("landing: the / key goes to its search box", (await page.evaluate(() => document.activeElement?.id)) === "home-search");
+{
+  // The picture's two shapes, and what falls over it.
+  const desk = await looks(page);
+  check("landing: at a desk the picture is the wide one, and it is the one fetched ahead", !desk.behind.endsWith("-tall.jpg") && desk.ahead.length === 1 && desk.ahead[0] === desk.behind, JSON.stringify([desk.behind, desk.ahead]));
+  const name = FALL_NAMES[desk.fall];
+  check("landing: something of the season falls over the picture: fourteen pieces, moving, under the words, out of the pointer's way and hidden from assistive technology", Boolean(name) && desk.state === "on" && desk.layer === "block" && desk.falling === 14 && desk.moving.length === 28 && desk.moving.every((state) => state === "running") && desk.hidden === "true" && desk.under === "-1" && desk.touch === "none", JSON.stringify(desk));
+  check("landing: its control is in the foot line and says what it does", desk.control.shown && desk.control.label === `Pause the falling ${name}` && (await page.locator("main .landing-foot .leaves-toggle").count()) === 1, JSON.stringify(desk.control));
+  await page.locator(".leaves-toggle").click();
+  const held = await looks(page);
+  check("landing: the control holds every piece where it is, and then says it will let them go", held.state === "paused" && held.moving.length === 28 && held.moving.every((state) => state === "paused") && held.control.label === `Let the ${name} fall again` && held.kept === "paused", JSON.stringify(held));
+  await page.reload({ waitUntil: "networkidle" });
+  const after = await looks(page);
+  check("landing: a visitor who held them still finds them still on coming back", after.state === "paused" && after.moving.every((state) => state === "paused") && after.control.label === `Let the ${name} fall again`, JSON.stringify(after));
+  await page.locator(".leaves-toggle").click();
+  const again = await looks(page);
+  check("landing: and lets them fall again, and nothing is kept of the choice", again.state === "on" && again.moving.every((state) => state === "running") && again.kept === null, JSON.stringify(again));
+  const calm = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" }));
+  const quiet = await calm.newPage();
+  await quiet.goto(origin, { waitUntil: "networkidle" });
+  const none = await looks(quiet);
+  check("landing: for a visitor who asks for less motion nothing falls and there is no control: the page is the picture alone", none.state === null && none.layer === "none" && !none.control.shown && none.moving.length === 0, JSON.stringify(none));
+  await calm.close();
+  for (const [what, width, height, tall] of [["a phone on its side", 844, 390, false], ["a tablet held upright", 820, 1180, true]]) {
+    const other = await steady(await browser.newContext({ viewport: { width, height } }));
+    const view = await other.newPage();
+    await view.goto(origin, { waitUntil: "networkidle" });
+    const seen = await looks(view);
+    check(`landing: ${what} has the ${tall ? "tall" : "wide"} picture`, seen.behind.endsWith("-tall.jpg") === tall && seen.ahead.length === 1 && seen.ahead[0] === seen.behind, JSON.stringify([seen.behind, seen.ahead]));
+    await other.close();
+  }
+}
 const pts = await (await page.request.get(`${origin}/points.json`)).json();
 check("points.json: pairs of whole numbers", Array.isArray(pts) && pts.length > 10000 && pts.length % 2 === 0 && pts.every(Number.isInteger), `${pts.length}`);
 
@@ -187,6 +248,8 @@ check("reads: taxis are not car hire", /Read as: Taxis\./.test(await reads("taxi
 check("a misspelling is answered and said to be one", /close spellings/.test(await reads("pharmcy curepipe")) && (await page.locator("main article").count()) > 5);
 await reads("pharmacy in curepipe");
 check("results: the chart is drawn in on the answers, with a key", (await page.locator("aside .chart .chart-key").count()) === 1 && (await page.locator("main article[data-point]").count()) > 5);
+// The key is listened for by script, which a page asked for only as far as its markup may not have run yet.
+await page.waitForLoadState("networkidle");
 await page.keyboard.press("/");
 check("the / key goes to the search box", (await page.evaluate(() => document.activeElement?.id)) === "search");
 check("nothing found says so, and offers the directory", /Nothing found/.test(await reads("zzqqxx")) && (await page.locator('main a[href="/directory"]').count()) > 0);
@@ -317,6 +380,7 @@ check("no script: the chart is drawn, with its dots", (await still.locator(".cha
 check("no script: the Home page is whole: its five parts, the eight businesses, every tile and the numbers to call", (await still.locator("main h2").count()) === 5 && (await still.locator("main article[data-listing]").count()) === 8 && (await still.locator("main a.tile, main a.start-tile").count()) >= 54 && (await still.locator('main a[href="tel:999"]').count()) === 1);
 await still.goto(origin, { waitUntil: "domcontentloaded" });
 check("no script: the landing page still has its search and its one button", (await still.locator("main #home-search").count()) === 1 && (await still.locator('main a.btn[href="/home"]').count()) === 1);
+check("no script: nothing falls and no control for it is shown", (await still.locator(".leaves").evaluate((layer) => getComputedStyle(layer).display)) === "none" && !(await still.locator(".leaves-toggle").isVisible()));
 await still.fill("#home-search", "dentist");
 await still.press("#home-search", "Enter");
 await still.waitForURL(/\/search\?q=dentist/, { timeout: 8000 }).catch(() => {});
@@ -739,8 +803,13 @@ const first = await small.evaluate(() => {
 });
 check("phone: the landing page is one screen, with no bar at its foot: the search, the Home button and the quiet line are all on it", first.bar === 0 && first.tall <= 0 && first.room === "0px" && first.search && first.home && first.foot, JSON.stringify(first));
 check("phone: the landing page does not take the keyboard, which would cover it", first.focus !== "home-search");
-const reach = await small.locator('main a.btn[href="/home"], main .landing-foot nav a, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
-check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 7 && reach.every((height) => height >= 44), reach.join(","));
+const reach = await small.locator('main a.btn[href="/home"], main .landing-foot nav a, main .landing-foot button, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
+check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 8 && reach.every((height) => height >= 44), reach.join(","));
+{
+  const held = await looks(small);
+  check("phone: the picture is the tall one, painted for an upright screen, and it is the one fetched ahead", held.behind.endsWith("-tall.jpg") && held.ahead.length === 1 && held.ahead[0] === held.behind, JSON.stringify([held.behind, held.ahead]));
+  check("phone: fewer pieces fall, eight, and the control for them is in the foot line", held.state === "on" && held.falling === 8 && held.control.shown && held.control.tall >= 44, JSON.stringify(held));
+}
 {
   // The smallest phone still in use, 320 by 568: the same page, closer together, and still one screen.
   const little = await steady(await browser.newContext({ viewport: { width: 320, height: 568 }, isMobile: true, hasTouch: true }));
@@ -751,6 +820,8 @@ check("phone: everything on the landing page that can be pressed is at least 44 
     return { tall: document.documentElement.scrollHeight - document.documentElement.clientHeight, whole: boxes.every((box) => box.left >= 0 && box.right <= innerWidth && box.bottom <= innerHeight), apart: boxes.every((box, i) => i === 0 || box.top >= boxes[i - 1].bottom), clear: boxes[0].top >= document.querySelector("header .nav-pill").getBoundingClientRect().bottom };
   });
   check("phone: on the smallest phone the landing page is still one screen, with nothing cut off and nothing lying over anything else", fits.tall <= 0 && fits.whole && fits.apart && fits.clear, JSON.stringify(fits));
+  const bare = await looks(tiny);
+  check("phone: on the smallest phone the foot line has no room for the control, so nothing falls", bare.layer === "none" && !bare.control.shown && bare.behind.endsWith("-tall.jpg"), JSON.stringify(bare));
   await little.close();
 }
 await small.locator('main a.btn[href="/home"]').tap();

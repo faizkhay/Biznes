@@ -1,11 +1,15 @@
 // Measures the words of the landing page against each picture behind them: `node scripts/hero-contrast.mjs [origin]`.
 //
 // A picture is not one colour, so the contrast script cannot vouch for words set on it. This takes
-// each picture in public/themes in turn and reads the pixels behind three things, at a desk and on
-// a phone: the headline, which stands on the picture itself; and the greeting above it and the
-// line at the page's foot, which each stand on a ground of their own that the picture shows
-// through. It reports the lowest WCAG ratio found for each. A picture named in src/data/themes.ts
-// whose file has not arrived is said to be missing.
+// each picture in public/themes in turn and reads the pixels behind three things, at a desk (the
+// wide picture) and on a phone (the tall one): the headline, which stands on the picture itself;
+// and the greeting above it and the line at the page's foot, which each stand on a ground of their
+// own that the picture shows through. It reports the lowest WCAG ratio found for each. A picture
+// named in src/data/themes.ts whose file has not arrived is said to be missing.
+//
+// Then what falls over the page (src/components/Leaves.tsx). A petal passes behind the words, so
+// each of its two colours is laid over the whole picture, as if a petal were behind every letter
+// at once, and the same three things are read again. Nothing that falls can do worse than that.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -15,8 +19,9 @@ import { browserPath, steady } from "./pages.mjs";
 const origin = process.argv[2] ?? "http://localhost:3100";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const PICTURES = readdirSync(`${root}public/themes`).filter((name) => /^[a-z]+\.jpg$/.test(name)).map((name) => name.slice(0, -4)).sort();
-const named = [...readFileSync(`${root}src/data/themes.ts`, "utf8").matchAll(/src: "\/themes\/([a-z]+)\.jpg"/g)].map((m) => m[1]);
-for (const id of named) if (!existsSync(`${root}public/themes/${id}.jpg`)) console.log(`miss  ${id}: named in src/data/themes.ts, and its file is not in public/themes yet, so it was not measured`);
+const named = [...readFileSync(`${root}src/data/themes.ts`, "utf8").matchAll(/^\s+([a-z]+): picture\("/gm)].map((m) => m[1]);
+// A picture named before its files arrive is left out of the day's turn (src/lib/pictures.ts): said here, and not a failure.
+for (const id of named) for (const file of [`${id}.jpg`, `${id}-tall.jpg`]) if (!existsSync(`${root}public/themes/${file}`)) console.log(`miss  ${id}: named in src/data/themes.ts, and ${file} is not in public/themes yet, so it was not measured`);
 const lum = ([r, g, b]) => {
   const f = (v) => ((v /= 255) <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
   return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
@@ -27,6 +32,8 @@ const ratio = (a, b) => {
 };
 const rgb = (css) => css.match(/\d+/g).slice(0, 3).map(Number);
 
+// What may fall: the names in FALLS in src/data/themes.ts.
+const FALLS = [...readFileSync(`${root}src/data/themes.ts`, "utf8").match(/export const FALLS = \{([\s\S]*?)\} as const;/)[1].matchAll(/^\s*([a-z]+): \{/gm)].map((m) => m[1]);
 const browser = await chromium.launch({ executablePath: browserPath() });
 let worst = Infinity;
 // What stands on the picture, and what it must reach. The headline is large, so 3:1; the rest is
@@ -37,6 +44,30 @@ const WORDS = [
   { name: "greeting", selector: "main .pill-note", floor: 4.5, parts: "span" },
   { name: "foot", selector: "main .landing-foot", floor: 4.5, parts: "p, nav a" },
 ];
+/** Reads the three things on the page as it stands and says the lowest ratio found for each. `what` names what is behind them. */
+async function read(page, size, what) {
+  for (const { name, selector, floor, parts } of WORDS) {
+    const el = page.locator(selector).first();
+    // Each run of words, with its own colour and where it stands.
+    // A part that is not shown at this width (the towns in the greeting, on a phone) has no place to read.
+    const runs = (await el.evaluate((node, inside) => (inside ? [...node.querySelectorAll(inside)] : [node]).map((part) => ({ colour: getComputedStyle(part).color, box: part.getBoundingClientRect().toJSON() })), parts)).filter(({ box }) => box.width >= 1 && box.height >= 1);
+    await el.evaluate((node, inside) => {
+      if (!inside) return void (node.style.visibility = "hidden");
+      // At once: a link's colour otherwise fades out over a moment, and would be read half gone.
+      for (const part of node.querySelectorAll("*")) part.style.cssText += ";transition:none!important;color:transparent!important;text-decoration-color:transparent!important;-webkit-text-fill-color:transparent!important";
+    }, parts);
+    await page.waitForTimeout(250);
+    let low = Infinity;
+    for (const { colour, box } of runs) {
+      const shot = await page.screenshot({ clip: { x: Math.floor(box.x), y: Math.floor(box.y), width: Math.ceil(box.width), height: Math.ceil(box.height) } });
+      const { data, info } = await sharp(shot).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+      for (let i = 0; i < data.length; i += info.channels) low = Math.min(low, ratio(rgb(colour), [data[i], data[i + 1], data[i + 2]]));
+    }
+    worst = Math.min(worst, low);
+    console.log(`${low >= floor ? "pass" : "FAIL"}  ${size.padEnd(5)} ${what.padEnd(20)} ${name.padEnd(8)} lowest ${(Math.floor(low * 100) / 100).toFixed(2)}:1 (needs ${floor})`);
+    if (low < floor) process.exitCode = 1;
+  }
+}
 for (const [size, width, height] of [["desk", 1440, 900], ["phone", 390, 844]]) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
   await steady(page.context());
@@ -46,30 +77,20 @@ for (const [size, width, height] of [["desk", 1440, 900], ["phone", 390, 844]]) 
     await page.evaluate((p) => {
       const root = document.documentElement;
       root.style.setProperty("--theme-image", `url(/themes/${p}.jpg)`);
-      root.style.setProperty("--theme-image-sm", `url(/themes/${p}-sm.jpg)`);
+      root.style.setProperty("--theme-image-tall", `url(/themes/${p}-tall.jpg)`);
     }, picture);
-    await page.evaluate((p) => Promise.all([`/themes/${p}.jpg`, `/themes/${p}-sm.jpg`].map((src) => new Promise((done) => Object.assign(new Image(), { onload: done, onerror: done, src })))), picture);
+    await page.evaluate((p) => Promise.all([`/themes/${p}.jpg`, `/themes/${p}-tall.jpg`].map((src) => new Promise((done) => Object.assign(new Image(), { onload: done, onerror: done, src })))), picture);
     await page.waitForTimeout(500);
-    for (const { name, selector, floor, parts } of WORDS) {
-      const el = page.locator(selector).first();
-      // Each run of words, with its own colour and where it stands.
-      // A part that is not shown at this width (the towns in the greeting, on a phone) has no place to read.
-      const runs = (await el.evaluate((node, inside) => (inside ? [...node.querySelectorAll(inside)] : [node]).map((part) => ({ colour: getComputedStyle(part).color, box: part.getBoundingClientRect().toJSON() })), parts)).filter(({ box }) => box.width >= 1 && box.height >= 1);
-      await el.evaluate((node, inside) => {
-        if (!inside) return void (node.style.visibility = "hidden");
-        // At once: a link's colour otherwise fades out over a moment, and would be read half gone.
-        for (const part of node.querySelectorAll("*")) part.style.cssText += ";transition:none!important;color:transparent!important;text-decoration-color:transparent!important;-webkit-text-fill-color:transparent!important";
-      }, parts);
+    await read(page, size, picture);
+  }
+  // What falls: each fall's two colours in turn, laid over everything, under the words.
+  for (const fall of FALLS) {
+    for (const tone of ["--leaf", "--leaf-line"]) {
+      await page.goto(origin, { waitUntil: "networkidle" });
+      await page.addStyleTag({ content: `.leaves { display: block !important; background: var(${tone}); } .leaf { display: none !important; }` });
+      await page.evaluate((id) => document.querySelector(".leaves").setAttribute("data-fall", id), fall);
       await page.waitForTimeout(250);
-      let low = Infinity;
-      for (const { colour, box } of runs) {
-        const shot = await page.screenshot({ clip: { x: Math.floor(box.x), y: Math.floor(box.y), width: Math.ceil(box.width), height: Math.ceil(box.height) } });
-        const { data, info } = await sharp(shot).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-        for (let i = 0; i < data.length; i += info.channels) low = Math.min(low, ratio(rgb(colour), [data[i], data[i + 1], data[i + 2]]));
-      }
-      worst = Math.min(worst, low);
-      console.log(`${low >= floor ? "pass" : "FAIL"}  ${size.padEnd(5)} ${picture.padEnd(10)} ${name.padEnd(8)} lowest ${(Math.floor(low * 100) / 100).toFixed(2)}:1 (needs ${floor})`);
-      if (low < floor) process.exitCode = 1;
+      await read(page, size, `${fall}, its ${tone === "--leaf" ? "body" : "line"}`);
     }
   }
   await page.close();

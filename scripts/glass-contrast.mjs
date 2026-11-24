@@ -48,11 +48,11 @@ for (const [size, width, height] of [["desk", 1440, 900], ["phone", 390, 844]]) 
     let where = "";
     for (const picture of PICTURES) {
       await page.goto(`${origin}${pane.path}`, { waitUntil: "networkidle" });
-      const files = [`/themes/${picture}.jpg`, `/themes/${picture}-sm.jpg`];
-      await page.evaluate(([large, small]) => {
+      const files = [`/themes/${picture}.jpg`, `/themes/${picture}-tall.jpg`];
+      await page.evaluate(([wide, tall]) => {
         const style = document.documentElement.style;
-        style.setProperty("--theme-image", `url(${large})`);
-        style.setProperty("--theme-image-sm", `url(${small})`);
+        style.setProperty("--theme-image", `url(${wide})`);
+        style.setProperty("--theme-image-tall", `url(${tall})`);
       }, files);
       await page.evaluate((list) => Promise.all(list.map((src) => new Promise((done) => Object.assign(new Image(), { onload: done, onerror: done, src })))), files);
       const words = hex(await page.evaluate((name) => getComputedStyle(document.documentElement).getPropertyValue(name), pane.words));

@@ -1,5 +1,5 @@
 import { holidays } from "./holidays";
-import { DEFAULT_PICTURE, EVERYDAY_PICTURES, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type PictureId } from "@/data/themes";
+import { DEFAULT_PICTURE, EVERYDAY_FALL, EVERYDAY_PICTURES, GREETING, HOLIDAY_LOOKS, PICTURES, SEASONS, type FallId, type PictureId } from "@/data/themes";
 import { picturesOnHand } from "./pictures";
 import { accountsOn } from "@/lib/accounts/config";
 import { chosenLook } from "@/lib/accounts/owned";
@@ -8,8 +8,11 @@ export type Theme = {
   id: string;
   /** The picture the calendar gives, by its id among the site's own. A picture chosen by hand leaves this as it is. */
   picture: PictureId;
+  /** The wide file, for a desk, and the tall one, for a phone held upright. */
   src: string;
-  small: string;
+  tall: string;
+  /** What falls over the landing page: the season's, whatever the picture. */
+  fall: FallId;
   greeting: string;
   holiday?: string;
   /** The id of the picture showing, when the superadmin has chosen one by hand: one of the site's own, or one that was uploaded. */
@@ -30,9 +33,9 @@ const daysBetween = (from: string, to: string) => Math.round((Date.parse(to) - D
  * changes every day and is the same for everyone on a given day.
  */
 export function themeFor(day = todayInMauritius()): Theme {
-  const of = (id: string, picture: PictureId, greeting: string, holiday?: string): Theme => ({ id, picture, src: PICTURES[picture].src, small: PICTURES[picture].small, greeting, holiday });
   const md = day.slice(5);
   const season = SEASONS.find((s) => (s.from <= s.to ? md >= s.from && md <= s.to : md >= s.from || md <= s.to));
+  const of = (id: string, picture: PictureId, greeting: string, holiday?: string): Theme => ({ id, picture, src: PICTURES[picture].src, tall: PICTURES[picture].tall, fall: season?.fall ?? EVERYDAY_FALL, greeting, holiday });
   const turn = picturesOnHand(season ? [season.picture, ...season.also] : EVERYDAY_PICTURES);
   const base = turn.length ? turn[Math.floor(Date.parse(day) / 864e5) % turn.length] : DEFAULT_PICTURE;
   for (const h of readHolidays()) {
@@ -54,7 +57,7 @@ export const isPicture = (id: unknown): id is PictureId => typeof id === "string
  *
  * The picture is chosen one of three ways: by the calendar, as it always was; one picture, fixed;
  * or a round of chosen pictures, a new one each day in their order. A chosen picture is one the
- * site is built with or one that was uploaded: an uploaded one has a single size, used on a phone
+ * site is built with or one that was uploaded: an uploaded one has a single file, used on a phone
  * and on a desk alike. The greeting is the calendar's unless one has been written. With accounts
  * off, or with nothing chosen, this is the calendar's look and nothing is fetched.
  */
@@ -69,7 +72,7 @@ export async function themeNow(): Promise<Theme> {
   const uploaded = look.uploaded.find((u) => u.id === chosen);
   return {
     ...theme,
-    ...(isPicture(chosen) ? { picture: chosen, src: PICTURES[chosen].src, small: PICTURES[chosen].small, chosen } : uploaded ? { src: uploaded.src, small: uploaded.src, chosen: uploaded.id } : {}),
+    ...(isPicture(chosen) ? { picture: chosen, src: PICTURES[chosen].src, tall: PICTURES[chosen].tall, chosen } : uploaded ? { src: uploaded.src, tall: uploaded.src, chosen: uploaded.id } : {}),
     ...(look.greeting ? { greeting: look.greeting } : {}),
   };
 }

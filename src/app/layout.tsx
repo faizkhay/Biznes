@@ -52,11 +52,11 @@ export const revalidate = 3600;
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const theme = await themeNow();
   return (
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-tall": `url(${theme.tall})` } as React.CSSProperties}>
       <body>
-        {/* The day's picture is fetched at once and at the size the screen needs: the small one on a phone. React lifts these two into the head. */}
-        <link rel="preload" as="image" href={theme.small} media="(max-width: 40rem)" fetchPriority="high" />
-        <link rel="preload" as="image" href={theme.src} media="(min-width: 40.01rem)" fetchPriority="high" />
+        {/* The day's picture is fetched at once and in the shape the screen needs: the tall one on a phone and on any screen held upright, the wide one otherwise (the same test as .backdrop in globals.css). React lifts these two into the head. */}
+        <link rel="preload" as="image" href={theme.tall} media="(max-width: 40rem), (orientation: portrait)" fetchPriority="high" />
+        <link rel="preload" as="image" href={theme.src} media="(min-width: 40.01rem) and (orientation: landscape)" fetchPriority="high" />
         <div className="backdrop" aria-hidden />
         <a href="#main" className="skip-link button-sm">
           Skip to the page

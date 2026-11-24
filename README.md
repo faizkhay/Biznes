@@ -14,8 +14,9 @@ The landing page is a postcard: a painted picture of the island, the site's one 
 box in the middle and one button, "Home". Home is the page a Mauritian keeps open: the top
 businesses, Baz Manzer, the categories, the regions and what is useful, on a sheet of warm paper
 laid on the picture. The picture follows the calendar by itself: a public holiday's look on its
-day, otherwise the season's, otherwise the lagoon. Everything a visitor reads at length is on the
-paper.
+day, otherwise one of the season's, painted wide for a desk and tall for a phone. On the landing
+page a few petals or leaves of the season fall over it. Everything a visitor reads at length is
+on the paper.
 
 The site is built with KOS, Khay Digital's method and standards (`faizkhay/Khay-Original-Skill`).
 Four documents describe this build, and `AGENTS.md` holds the rules for changing it:
@@ -1354,29 +1355,48 @@ with accounts off, it hands the cart, in words, to the request form. Nothing is 
 
 ### The pictures and the calendar
 
-`src/data/themes.ts` names the ten pictures, the seasons and each holiday's look. The site picks
-the day's by itself (`src/lib/theme.ts`), by the date in Mauritius: a holiday's look on its day,
-and on any other day one of the season's pictures, a different one each day and the same for
-everyone on that day.
+`src/data/themes.ts` names the eighteen pictures, the five seasons, what falls in each and each
+holiday's look. The site picks the day's by itself (`src/lib/theme.ts`), by the date in
+Mauritius: a holiday's look on its day, and on any other day one of the season's pictures, a
+different one each day and the same for everyone on that day.
 
-| Picture | Shown |
-|---|---|
-| `flamboyant`, `sunset`, `market`, `harbour`, `lagoon` | In turn through the summer, 15 November to 15 February |
-| `cane`, `teafields`, `village`, `chamarel` | In turn through the harvest, 15 June to 30 September |
-| `lagoon`, `chamarel`, `harbour`, `village`, `market`, `teafields`, `sunset` | In turn through the rest of the year |
-| `lights` | Divali and the two days before it; Christmas and the three days before it |
+| Season | Pictures, in turn | What falls over the landing page |
+|---|---|---|
+| Summer, 15 November to 15 February | `flamboyant`, `litchi`, `picnic`, `sunset`, `market`, `harbour`, `lagoon` | Flamboyant petals |
+| The rains, 16 February to 30 April | `rain`, `lilies`, `teafields`, `chamarel`, `streetfood`, `lagoon` | Green leaves |
+| Cane in flower, 1 May to 14 June | `cane`, `kites`, `village`, `teafields`, `harbour` | Wisps of cane flower |
+| The harvest, 15 June to 30 September | `harvest`, `kites`, `chamarel`, `village`, `teafields`, `cane` | Dry leaves |
+| Spring, 1 October to 14 November | `lilies`, `market`, `streetfood`, `harbour`, `sunset`, `lagoon` | Bougainvillea petals |
+| A holiday's own | `lights`: Divali and the two days before it; Christmas and the three days before it. `lanterns`: the Spring Festival and the day before it | The season's |
 
+- **Every picture is painted twice.** `lagoon.jpg` is wide, for a desk and a phone on its side.
+  `lagoon-tall.jpg` is the same scene painted again for an upright screen, with the scene in its
+  lower half: it is not the wide one cut down. A phone, and any screen held upright, gets the
+  tall one, and the browser is told ahead to fetch only the one its screen needs.
+- **Something of the season falls over the landing page**: a few petals or leaves, slowly,
+  behind the words (`src/components/Leaves.tsx`). A small button at the end of the foot line
+  holds them still and lets them go again, and remembers which. Nothing falls for a visitor who
+  has asked their device for less motion, nor without script, nor on a phone under 340 pixels
+  wide. To change what falls in a season, change its `fall` in `SEASONS`; the drawings are
+  `src/components/glyphs/falls.ts` and their colours are `--palette-flame` and the nine after it
+  in `src/app/globals.css`.
+- **The seasons are our reading of the island's year**, not taken from a source. Correct the
+  dates, the pictures or what falls in `SEASONS` (see "To confirm with the owner before launch").
 - **A superadmin can overrule the calendar** from the admin pages: one picture, fixed, or a round
-  of chosen pictures, their own uploads among them (`themeNow()`; see "Accounts").
-- **To add a picture**, put its two files in `public/themes`, name it in `PICTURES`, and add it to
-  a season's `also` or to `EVERYDAY_PICTURES`. `npm run hero` then measures the landing page's
-  words against it, and it must pass before the picture is used.
-- **To change a picture**, replace its two files in `public/themes` (the full one, and the `-sm`
-  one for a phone) and bring the `.json` record beside each up to date. Then raise `VERSION` in
-  `public/sw.js`, or name the new files differently and point `PICTURES` at them.
-- **Every picture has a record** that says what it is, what made it and when. The ten here are
-  illustrations generated for the site on 20 November 2026. They are never captioned as
-  photographs.
+  of chosen pictures, their own uploads among them (`themeNow()`; see "Accounts"). A picture of
+  their own is one file, shown as it is on a desk and a phone alike.
+- **To add a picture**, have it painted twice, wide and tall, then
+  `npm run picture -- <name> <the wide file> <the tall file>`: it writes the two files into
+  `public/themes` at the sizes the site uses (2400 and 960 across) with a record beside each.
+  Name it in `PICTURES` and add it to a season's `also`. `npm run hero` and `npm run glass` then
+  measure the landing page's words and the glass against it, and it must pass both before it is
+  used.
+- **To change a picture**, do the same under a new name and point `PICTURES` at it, or keep the
+  name and raise `VERSION` in `public/sw.js`, which keeps a picture under its name. Give `-` for
+  a painting that is not changing.
+- **Every picture has a record** that says what it is, what made it and when. The eighteen here
+  are illustrations generated for the site: ten wide ones on 20 November 2026, eight more and a
+  tall one of every picture on 24 November. They are never captioned as photographs.
 - **To give a holiday a look**, add a line to `HOLIDAY_LOOKS`: a pattern for its official name, a
   greeting, and if wanted a picture and how many days before it the look begins. A holiday with no
   line keeps the everyday greeting, so a day of remembrance is not wished happy.
@@ -1526,7 +1546,7 @@ only, named at its head. To change the mark:
 | Public holidays | The General Notices and communiqués of the Prime Minister's Office, listed in `content/holidays.json` | As published | 20 November 2026 |
 | The pocket guide's places | 110 pages, listed in `content/pdf/places.json` and at the back of the guide | Written for this site from sources read one by one | 20 November 2026 |
 | The plans and their prices, the pocket guide's price | The owner, in conversation | The owner's words | 20 November 2026 |
-| The four pictures | Generated as illustrations for this site (Higgsfield, model gpt_image_2_6) | A record beside each file; no third-party rights | 20 November 2026 |
+| The eighteen pictures, each wide and tall | Generated as illustrations for this site (Higgsfield, model gpt_image_2_6) | A record beside each file; no third-party rights | 20 and 24 November 2026 |
 | Market figures in `REVENUE.md` | `content/market.json`, each with its page | Read on 20 November 2026 | |
 | Colours | The mock-ups the owner approved on 17 and 20 November 2026, and the lagoon picture | Sampled or derived; see `DESIGN.md` | |
 | Typeface | Manrope | SIL OFL 1.1; the file and its licence are in `src/fonts` | |
@@ -1571,7 +1591,10 @@ The articles, the plans and the money:
 7. **Who the first superadmin is.** The rule proposed is the first account registered.
 8. **"Bonzour".** The everyday greeting on the landing page and on Home is Kreol for hello. Keep it, or choose
    another (`GREETING`).
-9. **The four pictures** are generated illustrations. Keep them, or send your own.
+9. **The eighteen pictures** are generated illustrations. Keep them, or send your own.
+   **The five seasons** (when each begins, which pictures it has, and what falls over the landing
+   page in it) are our reading of the island's year, not taken from a source. Correct them in
+   `SEASONS` in `src/data/themes.ts`.
 
 What the researchers ask to be checked again:
 
@@ -1631,7 +1654,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 
 | Address | What it does | Made |
 |---|---|---|
-| `/` | The landing page, one screen: the day's picture, the greeting, the site's line, the search box, and one button, "Home". At its foot, one line: whose product the site is, and three pages. The installed app opens here | Ahead of time, and again at most once an hour |
+| `/` | The landing page, one screen: the day's picture (the wide one at a desk, the tall one on a phone), the greeting, the site's line, the search box, and one button, "Home". A few petals or leaves of the season fall over the picture, behind the words, for a visitor whose device allows motion. At its foot, one line: whose product the site is, three pages, and the button that holds what falls still. The installed app opens here | Ahead of time, and again at most once an hour |
 | `/home` | Home, in five parts: the top businesses (the verified ones on a paid plan, marked, then the day's eight of the fullest listings); Baz Manzer, by kind of place and kind of food; the directory's thirteen groups and the dozen kinds most listed; the ten regions with their largest towns, beside the island; and what is useful: the numbers to call, the next public holidays, articles, tools, the Pocket Guide, the glossary, official pages, and the way to list a business | Ahead of time, and again at most once an hour |
 | `/search?q=` | Results, in four parts in a fixed order: our own pages that answer, businesses (cards that can be narrowed with `phone=1`, `web=1`, `town=`), parts of articles that mention the words, and pages elsewhere folded under "References elsewhere". `kind=` shows one kind alone | On each request |
 | `/b/[slug]` | One listing: its own card, what is known, where each part came from, the same kind nearby. A listing's id alone leads to its full address | The first time it is asked for, then kept |
@@ -1685,26 +1708,26 @@ The old site's addresses lead on for good: `/businesses` and `/businesses/...` t
 
 ## Verification
 
-The state of the checks on 20 November 2026, at the end of the round. Nothing is claimed beyond
+The state of the checks on 24 November 2026, at the end of the round. Nothing is claimed beyond
 this list.
 
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 332 files |
-| Tokens | `npm run tokens` | 0 failures, 263 files |
+| House style | `npm run copy` | 0 failures, 335 files |
+| Tokens | `npm run tokens` | 0 failures, 266 files |
 | Contrast | `npm run contrast` | Every pair passes |
-| Words on the picture | `npm run hero` | The landing page's headline and greeting, in ink on the picture, and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 4.15:1, the headline's, which needs 3 |
-| Words on glass | `npm run glass` | Ink on the menu's pill, the phone's bar, the search bar and the landing page's foot line, read as drawn against all ten pictures at a desk and on a phone: the lowest is 6.94:1. The glass is also held against black in `npm run contrast` |
+| Words on the picture | `npm run hero` | The landing page's headline and greeting, in ink on the picture, and the line at its foot, measured against all eighteen pictures, the wide one at a desk and the tall one on a phone; then against each of the ten colours that fall over the page, laid over the whole picture as if a petal were behind every letter. 168 readings: the lowest is 5.86:1, the headline's with a green leaf behind it, which needs 3 |
+| Words on glass | `npm run glass` | Ink on the menu's pill, the phone's bar, the search bar and the landing page's foot line, read as drawn against all eighteen pictures at a desk and on a phone: the lowest is 6.94:1. The glass is also held against black in `npm run contrast` |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 255 of 255, against a production server with accounts off. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
+| Behaviour | `npm run behaviour` | 268 of 268, against a production server with accounts off. The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |
 | The search engine alone | `npm run search:test` | 65 of 65, in plain Node with no server (see "The engine") |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
-| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone, and with the header's list open. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone, and with the header's list open. Those are read under reduced motion, so the landing page is read again with motion allowed, at both sizes, with what falls over it falling and then held: clean. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
 | Being found | `npm run seo` | 0 failures on 56 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
 | What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
-| Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen |
+| Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen. They are taken under reduced motion, so the landing page is captured once more at each size with what falls over it (`landing-leaves-desktop`, `landing-leaves-mobile`) |
 | The accounts' rules in the database | `npm run test:rls` | 674 claims on a new database and 22 more on one that already holds rows, all pass, on a local Postgres |
 | The site's own email, with no database and no mail service | `node scripts/email-unit.mjs` | 68 of 68 |
 | The accounts in a browser | `node scripts/accounts-e2e.mjs` | 344 of 344, against Supabase's own database, sign-in, API and storage services run on this machine (`scripts/accounts-stack.sh`), with the public pages and the site's word in place, and axe-core clean on 70 kinds of account page at both sizes. On the hosted project only reading has been tried (see Accounts) |

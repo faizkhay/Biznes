@@ -20,6 +20,7 @@
     "leads": "node scripts/leads.mjs",
     "pdf": "node scripts/pdf.mjs",
     "hero": "node scripts/hero-contrast.mjs",
+    "picture": "node scripts/picture.mjs",
     "seo": "node scripts/seo.mjs",
     "weights": "node scripts/weights.mjs",
     "test:rls": "bash scripts/test-rls.sh",

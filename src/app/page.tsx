@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { PageIcon } from "@/components/Glyphs";
 import JsonLd from "@/components/JsonLd";
+import Leaves from "@/components/Leaves";
+import LeavesToggle from "@/components/LeavesToggle";
 import SearchBox from "@/components/SearchBox";
 import { ABOUT, HOME, MORE_PAGE, site } from "@/data/site";
+import { FALLS } from "@/data/themes";
 import { count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
@@ -20,7 +23,8 @@ const FOOT = [...ABOUT.filter((page) => page.href === "/about" || page.href === 
  * the search box, and one button, "Home", which leads to everything else (src/app/home). It is
  * one screen at a desk and on a phone: nothing lies under it. The header here holds only the
  * name, the cart and the account, the phone's bar is not shown, and in the footer's place there
- * is one quiet line (see "Home and the landing page" in globals.css).
+ * is one quiet line (see "Home and the landing page" in globals.css). Over the picture, behind the
+ * words, a few petals or leaves of the season fall, for a visitor whose device allows motion.
  */
 export default async function Landing() {
   const { meta } = index();
@@ -55,6 +59,9 @@ export default async function Landing() {
           },
         ]}
       />
+
+      {/* What falls over the picture through the season, behind the words. It is not shown until the control in the foot line says a visitor may have motion. */}
+      <Leaves fall={theme.fall} />
 
       {/* The one screen: the greeting, the site's line, the search, and the way on. */}
       <section className="hero-open shell">
@@ -95,6 +102,7 @@ export default async function Landing() {
             ))}
           </ul>
         </nav>
+        <LeavesToggle name={FALLS[theme.fall].name} />
       </div>
     </div>
   );

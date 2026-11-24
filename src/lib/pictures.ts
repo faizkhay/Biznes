@@ -4,7 +4,7 @@ import { PICTURES, type PictureId } from "@/data/themes";
 
 const seen = new Map<PictureId, boolean>();
 const onDisk = (id: PictureId) => {
-  if (!seen.has(id)) seen.set(id, existsSync(join(process.cwd(), "public", PICTURES[id].src)) && existsSync(join(process.cwd(), "public", PICTURES[id].small)));
+  if (!seen.has(id)) seen.set(id, existsSync(join(process.cwd(), "public", PICTURES[id].src)) && existsSync(join(process.cwd(), "public", PICTURES[id].tall)));
   return seen.get(id)!;
 };
 

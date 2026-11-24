@@ -98,7 +98,11 @@ it draws in on the answers. On a listing's page it marks where the business is.
 
 Small things only, and none a visitor needs: a tile's icon tips and turns saffron under the
 pointer, a main button's arrow turns in its circle, a card lifts by a pixel, the b in the footer
-stands tilted on the card's edge. Nothing moves by itself.
+stands tilted on the card's edge.
+
+One thing moves by itself, and only on the landing page: a few petals or leaves of the season
+fall over the picture, behind the words (Round 9). They carry nothing. A button in the foot line
+holds them still, and they are left out for anyone who asks for less motion.
 
 ## Reduced motion and no script
 
@@ -107,7 +111,8 @@ they are links and plain disclosures, the island is drawn in SVG with its points
 dots, a shortlist someone sent is a list of links, and the VAT sums are in a table. Saving and
 sharing need script, and their buttons are not shown until it has loaded. Under reduced motion
 nothing travels: the points are lit at once and every change of state happens without a
-transition.
+transition. Nothing falls over the landing page, without script or under reduced motion: there
+it is the picture alone, which is the same page.
 
 ## Signature details
 
@@ -126,6 +131,78 @@ transition.
   emergency number carries the number of its source.
 
 ## Rounds
+
+### Round 9, 24 November 2026: the year in pictures
+
+**The owner's note, in their own words.**
+
+"generate more background pictures to match mauritius vibes thru the year and add them please
+have some fallling leaves over the hero please, based on seasons. also generate version of the
+image that looks good on mobile (that is, all images will have 2 versions, 1 for desktop 1 for
+mobile)"
+
+**What the note found wrong.** A phone was never given a picture of its own. Its file was the wide
+picture made smaller, so an upright screen showed a strip cut from the middle of it: half a tree,
+no beach. And ten pictures in two seasons left most of the year to the same seven.
+
+**What was made.**
+
+- **Eight more scenes**, for the parts of the year that had none: litchi season and a picnic on
+  the beach for the summer; the island after rain and a lily pond for the rains; kites over the
+  lagoon for the windy months; the cane harvest by an old mill; street food at dusk; and a street
+  of lanterns for the Spring Festival. Eighteen in all.
+- **Every picture painted twice.** Each of the eighteen now has a wide painting for a desk and a
+  tall one for a phone: the same scene composed again for an upright screen, the place in its
+  lower half and open sky above for the words. A phone, and any screen held upright, gets the
+  tall one. The browser is told ahead to fetch only the one its screen needs.
+- **Five seasons, which cover the year.** Summer from 15 November; the rains from 16 February;
+  cane in flower from 1 May; the harvest from 15 June; spring from 1 October. Each has its own
+  picture and four or five that take turns with it, a different one each day.
+- **Something falls.** On the landing page a few pieces of the season come down over the
+  picture, slowly: flamboyant petals in summer, green leaves in the rains, wisps of cane flower
+  in May, dry leaves through the harvest, bougainvillea petals in spring. Fourteen at a desk and
+  eight on a phone. They pass behind the words, pale as they cross the soft light there, and are
+  seen through the search bar's glass out of focus. Their colours are taken from the pictures
+  themselves: the red of the flamboyant picture's flowers, the green of the rain picture's
+  leaves.
+
+**How it holds to the standards.**
+
+- **It can be held still.** It is the first thing on the site that moves by itself, so it has a
+  control: a small button at the end of the foot line, "Pause the falling petals". The choice is
+  remembered.
+- **It is not there for everyone.** Script switches it on, and only for a visitor who has not
+  asked their device for less motion. Without script, and for that visitor, the landing page is
+  the picture alone, which is the page as it was.
+- **The words were measured against it.** A petal passes behind the headline. So each colour
+  that falls was laid over the whole picture, as if a petal were behind every letter at once,
+  and the words were read again.
+- **Two of the new pictures failed at first, and so did a leaf.** At a desk the ends of the
+  headline stood beyond the soft light: on the lantern street it kept 2.51:1 and on the litchi
+  picture 2.84:1, where 3 is needed, and a green leaf behind it 2.73:1. The light was made
+  wider (64rem to 76rem) and holds its strength further out. Nothing else on the page changed.
+
+**Checked.** `npm run hero`: 168 readings, the eighteen pictures at a desk and on a phone and the
+ten colours that fall, lowest 5.86:1, the headline with a green leaf behind it. `npm run glass`: ink on the four panes over the eighteen
+pictures, lowest 6.94:1. `npm run behaviour`: 268 of 268, with new checks that a desk has
+the wide picture and a phone the tall one, that fourteen pieces fall and eight on a phone, that
+the control holds them and remembers, and that nothing falls under reduced motion, without script
+or on the smallest phone.
+
+**Spent.** Twenty-six pictures were generated, eight wide and eighteen tall, at two credits
+each: 52 credits. None was made twice.
+
+**Not done, and said.**
+
+- **The seasons are a reading of the island's year, not taken from a source.** When each begins,
+  which pictures it has and what falls in it were chosen for this build. They are the owner's to
+  correct, in one file.
+- **A tall picture is its scene painted again**, so its details are not the wide one's: a boat
+  is elsewhere, a tree is another tree.
+- **Nothing falls on a phone narrower than 340 pixels**: the foot line there has no room for the
+  control, and nothing moves that cannot be stopped.
+- **A picture a superadmin uploads has one shape**, as before, and is shown on both.
+- No real phone or Safari has drawn any of it; only Chromium has.
 
 ### Round 8, 24 November 2026: glass, and how much of it
 

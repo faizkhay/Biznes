@@ -43,5 +43,24 @@ for (const [vp, size] of VIEWPORTS) {
   }
   await context.close();
 }
+// The landing page once more, with motion allowed. What falls over it and the control that holds
+// it still are not on the page under reduced motion, so the sweep above never meets them. Here it
+// is read twice at each size: with the pieces falling, and held.
+for (const [vp, size] of VIEWPORTS) {
+  if (only && !only.includes("landing")) continue;
+  const context = await steady(await browser.newContext({ viewport: size }));
+  const page = await context.newPage();
+  await page.goto(origin, { waitUntil: "networkidle", timeout: 120000 });
+  await page.waitForSelector(".landing[data-leaves]", { timeout: 10000 });
+  for (const state of ["falling", "held"]) {
+    if (state === "held") await page.locator(".leaves-toggle").click();
+    const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+    const bad = violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+    serious += bad.length;
+    console.log(`${vp.padEnd(8)} ${`leaves ${state}`.padEnd(13)} ${violations.length ? violations.map((v) => `${v.id}(${v.impact}, ${v.nodes.length})`).join(" ") : "clean"}`);
+    for (const v of bad) for (const n of v.nodes.slice(0, 3)) console.log(`    ${v.id}: ${n.target.join(" ")}  ${n.failureSummary?.split("\n")[1]?.trim() ?? ""}`);
+  }
+  await context.close();
+}
 await browser.close();
 process.exit(serious ? 1 : 0);

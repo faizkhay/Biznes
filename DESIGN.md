@@ -32,6 +32,16 @@ colors:
   haze: "#b6c0db"           # derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink
   coral-deep: "#c12a2a"     # derived from coral (S1), darker: an error's words; 5.78:1 on white, 5.48:1 on cream
   glass-floor: "#8a8a8a"     # frosted glass at its darkest: white at 54% over black, the darkest a picture could be; carries ink at 5.16:1
+  flame: "#ed4120"          # S5 sampled from the flamboyant picture's flowers: a falling flamboyant petal. A drawing, never words
+  flame-light: "#f35a32"    # S5 sampled from the same flowers, in the light: the petal's line
+  frond: "#446926"          # S5 sampled from the rain picture's leaves: a falling green leaf
+  frond-light: "#5a7e36"    # S5 sampled from the same leaves, in the light: the leaf's vein
+  plume: "#f1c8b1"          # S5 sampled from the cane picture's flowers: a falling wisp of cane flower
+  plume-light: "#fadcbb"    # S5 sampled from the same flowers, in the light: the wisp's down
+  straw: "#c68644"          # S5 sampled from the harvest picture's cut cane: a falling dry leaf
+  straw-deep: "#af7136"     # S5 sampled from the same cane, in shade: the dry leaf's vein
+  bract: "#d32e62"          # S5 sampled from the street food picture's bougainvillea: a falling petal of it
+  bract-light: "#e03e73"    # S5 sampled from the same flowers, in the light: the petal's vein
   line: "color-mix(in srgb, #0a1639 10%, transparent)"         # derived: ink at 10%, the hairline
   line-strong: "color-mix(in srgb, #0a1639 50%, transparent)"  # derived: ink at 50%, a field's edge; 3.40:1 on white
 typography:                 # named as the text styles in src/app/globals.css; fontSize is the clamp() maximum, the full clamp() is in Typography
@@ -95,6 +105,18 @@ components:                 # only: backgroundColor textColor typography rounded
   try-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.5rem }
   landing-foot: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.xl}", padding: "0.125rem 1.25rem" }
   frosted-glass: { backgroundColor: "{colors.glass-floor}", textColor: "{colors.ink}" }
+  # What falls over the landing page: one drawing a season, a body and the line drawn on it. Decoration: no words stand on either.
+  fall-flamboyant: { backgroundColor: "{colors.flame}", size: 1.5rem }
+  fall-flamboyant-line: { backgroundColor: "{colors.flame-light}", height: 1px }
+  fall-green: { backgroundColor: "{colors.frond}", size: 1.5rem }
+  fall-green-line: { backgroundColor: "{colors.frond-light}", height: 1px }
+  fall-plume: { backgroundColor: "{colors.plume}", size: 1.5rem }
+  fall-plume-line: { backgroundColor: "{colors.plume-light}", height: 1px }
+  fall-dry: { backgroundColor: "{colors.straw}", size: 1.5rem }
+  fall-dry-line: { backgroundColor: "{colors.straw-deep}", height: 1px }
+  fall-bougainvillea: { backgroundColor: "{colors.bract}", size: 1.5rem }
+  fall-bougainvillea-line: { backgroundColor: "{colors.bract-light}", height: 1px }
+  leaves-toggle: { backgroundColor: "{colors.glass-floor}", textColor: "{colors.ink}", rounded: "{rounded.full}", size: 2.25rem }
   landing-foot-link: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", height: 2.25rem }
   field: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.md}", padding: "0.6875rem 1rem", height: 3rem }
   field-placeholder: { backgroundColor: "{colors.white}", textColor: "{colors.mist}" }
@@ -209,7 +231,7 @@ state. The landing page alone is allowed the display size and the full picture.
 
 **Refusals**
 
-- No picture is captioned as a photograph. All four are generated illustrations and say so.
+- No picture is captioned as a photograph. All eighteen are generated illustrations and say so.
 - Nothing but a verified business wears saffron running to ember.
 - No dark page. Dark is for the footer and for a card that is meant to be noticed.
 - No second face, and no monospaced face for figures.
@@ -222,12 +244,13 @@ state. The landing page alone is allowed the display size and the full picture.
 | S2 | The mock-up the owner chose on 20 November 2026, "2 · Centred" of three. A generated picture, kept in the design skill's working files (`.impeccable/mocks/comp-2-centred.png`), which are not committed | sampled 20 November 2026 | Royal `#0d36a7`, lagoon `#aebadf` |
 | S3 | The owner, 20 November 2026, in conversation, with three reference images (a golf club's site, an invoicing site, a design tool's site) | in conversation; the images are not in the repository | The manner: paper over a picture, a floating pill menu, dark tiles, a dark footer with the emblem on its edge, the search in the middle, a picture that follows the calendar, a vivid mark for a paid business |
 | S4 | Manrope, by the Manrope Project Authors, SIL Open Font Licence 1.1 | the file and its licence in `src/fonts` | The one face, and the outlines of the name's letters |
-| S5 | The ten pictures, generated as illustrations for the site (Higgsfield, model gpt_image_2_6, 20 November 2026) | the record beside each file in `public/themes` | The picture behind the page. The lagoon picture's water gave `#7bbcb3` |
+| S5 | The eighteen pictures, each painted wide and tall, generated as illustrations for the site (Higgsfield, model gpt_image_2_6; ten wide on 20 November 2026, eight more and all eighteen tall on 24 November) | the record beside each file in `public/themes` | The picture behind the page. The lagoon picture's water gave `#7bbcb3`; five pictures gave the colours of what falls |
 | S6 | OpenStreetMap, the Mauritius extract | the date in `data/index/meta.json` | The coast, the districts and every point on the island's map |
 | S7 | The Prime Minister's Office's notices of public holidays, as listed in `content/holidays.json` | 20 November 2026 | The days on which a holiday's look is shown |
 | S8 | Bricolage Grotesque, by the Bricolage Grotesque Project Authors, SIL Open Font Licence 1.1 | the latin file from `@fontsource-variable/bricolage-grotesque` 5.3.0 and its licence, in `src/fonts` | The face of the titles |
 | S9 | The owner, 20 November 2026, on Round 5: "paid listings should have a more beautiful biznes page", "improve our footer, logo is hiden", "we should have different background images", "special category for food biznesses" | in conversation | The paid page, the footer, the ten pictures, Baz Manzer |
 | S10 | OpenFreeMap's own site (its terms, read 20 November 2026) | `STREET_MAP` in `src/data/site.ts` | The street map's style and the credit it must carry |
+| S11 | The owner, 24 November 2026, on Round 9: "generate more background pictures to match mauritius vibes thru the year", "have some fallling leaves over the hero please, based on seasons", "all images will have 2 versions, 1 for desktop 1 for mobile" | in conversation | Eight more pictures, a tall painting of every picture, the five seasons, what falls |
 
 What the brand lacked was a face and a light ground. Both are recorded as chosen or derived: Manrope
 comes from the list KOS keeps for a brand with no face of its own, white is chosen, and cream and
@@ -237,8 +260,9 @@ sand are derived from the brand's saffron.
 
 ### Palette
 
-Nineteen values in `:root`. Six are sampled from the two mock-ups (S1, S2); one is sampled from
-the lagoon picture (S5); one is chosen; eleven are derived.
+Twenty-nine values in `:root`. Six are sampled from the two mock-ups (S1, S2); eleven are sampled
+from the pictures (S5), one for the map and ten for what falls over the landing page; one is
+chosen; eleven are derived.
 
 | Token | Value | From | Used for |
 |---|---|---|---|
@@ -261,6 +285,11 @@ the lagoon picture (S5); one is chosen; eleven are derived.
 | `--palette-haze` | `#b6c0db` | derived from limewash toward ink | Captions on the footer's ink |
 | `--palette-coral` | `#f14949` | sampled (S1): the brand's red | Nothing at present (Known Gaps). Ember is derived toward it and coral-deep from it |
 | `--palette-coral-deep` | `#c12a2a` | derived from coral, darker | An error's words, mark and edge |
+| `--palette-flame`, `--palette-flame-light` | `#ed4120`, `#f35a32` | sampled (S5) from the flamboyant picture's flowers, and where the light is on them | A falling flamboyant petal and its line. A drawing, never words |
+| `--palette-frond`, `--palette-frond-light` | `#446926`, `#5a7e36` | sampled (S5) from the rain picture's leaves | A falling green leaf and its vein |
+| `--palette-plume`, `--palette-plume-light` | `#f1c8b1`, `#fadcbb` | sampled (S5) from the cane picture's flowers | A falling wisp of cane flower and its down |
+| `--palette-straw`, `--palette-straw-deep` | `#c68644`, `#af7136` | sampled (S5) from the harvest picture's cut cane, and where it is in shade | A falling dry leaf and its vein |
+| `--palette-bract`, `--palette-bract-light` | `#d32e62`, `#e03e73` | sampled (S5) from the street food picture's bougainvillea | A falling bougainvillea petal and its vein |
 
 ### Roles
 
@@ -356,18 +385,20 @@ and not yet in `scripts/contrast.pairs.json`:
 **Words on the picture.** A picture is not one colour, so no pair can vouch for words set on it.
 Only the landing page sets any there: its headline and the greeting above it, in ink. Two things
 keep them readable: a veil of cream over the picture's sky on every page, and a soft light of
-cream behind the words. The light stands above the search bar, so that the picture is seen
-through the bar's glass. `scripts/hero-contrast.mjs` reads the pixels behind the headline, the
-greeting and the line at the page's foot on each of the ten pictures, at a desk and on a phone,
-and fails under 3:1 for the headline or 4.5:1 for the other two. On 24 November 2026 the lowest of
-the sixty was 4.15:1 (the headline on the sunset, at a desk). It needs a running server.
+cream behind the words, 76rem by 26rem at its widest. The light stands above the search bar, so
+that the picture is seen through the bar's glass. `scripts/hero-contrast.mjs` reads the pixels
+behind the headline, the greeting and the line at the page's foot on each of the eighteen
+pictures, at a desk (the wide picture) and on a phone (the tall one), and fails under 3:1 for
+the headline or 4.5:1 for the other two. Then it lays each colour of what falls over the whole
+picture, as if a petal were behind every letter at once, and reads the three again. On
+24 November 2026 the lowest of the 168 readings was 5.86:1 (the headline with a green leaf behind it, at a desk), and the lowest on a picture alone 6.27:1 (the headline on the litchi picture, at a desk). It needs a running server.
 
 **Words on glass.** Frosted glass is white at 54% over whatever is behind it ("Frosted glass").
 Over the darkest picture there could be it is no darker than `#8a8a8a`, on which ink measures
 5.16:1: so every word on glass is ink, and none is slate or mist. `npm run glass` reads the glass
-as drawn against each of the ten pictures, at a desk and on a phone: on 24 November 2026 ink kept
-14.95:1 on the menu's pill, 9.52:1 on the search bar, 6.94:1 on the foot line and 15.35:1 on the
-phone's bar.
+as drawn against each of the eighteen pictures, at a desk and on a phone: on 24 November 2026 ink
+kept 14.86:1 on the menu's pill, 10.14:1 on the search bar, 6.94:1 on the foot line and 15.35:1
+on the phone's bar.
 
 **Gaps (recorded, not rules).**
 
@@ -762,7 +793,8 @@ opens with it.
   The greeting pill carries a saffron point with a halo, and stands on the picture on the landing
   page and at the head of the Home page; the searches to try are on the search page.
 - **The landing page's foot line** (`.landing-foot`): the same ground with 24px corners, `caption-1`
-  in slate, its three links in ink at 500, each 36px tall and 44px under a finger.
+  in ink, its three links in ink at 500, each 36px tall and 44px under a finger. At its end, the
+  control for what falls: a round button, a pause or a play, 36px and 44px tall under a finger.
 - **The request form** (`RequestForm.tsx`): errors on their own fields, focus to the first, a
   success that says what happens next, and a failure that gives the telephone and the email. It
   opens with a plan's or a pocket guide's name when it is reached from one.
@@ -903,19 +935,35 @@ another site's is sand.
 
 `src/data/themes.ts`, `src/lib/theme.ts`, `public/themes`.
 
-| Picture | Its name | Shown |
+Eighteen pictures, in five seasons that cover the year. The first of a season's row is its own;
+the others take turns with it.
+
+| Season | Its pictures | What falls |
 |---|---|---|
-| `flamboyant`, `sunset`, `market`, `harbour`, `lagoon` | Flamboyants in bloom, Sunset, Market day, The harbour, Lagoon morning | In turn through the summer: 15 November to 15 February |
-| `cane`, `teafields`, `village`, `chamarel` | Cane in flower, Tea fields, A village, Chamarel | In turn through the harvest: 15 June to 30 September |
-| `lagoon`, `chamarel`, `harbour`, `village`, `market`, `teafields`, `sunset` | | In turn through the rest of the year. `lagoon` is also the link preview card and the pocket guide's cover, whatever the day |
-| `lights` | Festival of lights | Divali and the two days before it; Christmas and the three days before it |
+| Summer, 15 November to 15 February | `flamboyant` Flamboyants in bloom, `litchi` Litchi season, `picnic` A picnic on the beach, `sunset` Sunset, `market` Market day, `harbour` The harbour, `lagoon` Lagoon morning | Flamboyant petals |
+| The rains, 16 February to 30 April | `rain` After the rain, `lilies` The lily pond, `teafields` Tea fields, `chamarel` Chamarel, `streetfood` Street food at dusk, `lagoon` | Green leaves |
+| Cane in flower, 1 May to 14 June | `cane` Cane in flower, `kites` Kites on the lagoon, `village` A village, `teafields`, `harbour` | Wisps of cane flower |
+| The harvest, 15 June to 30 September | `harvest` The cane harvest, `kites`, `chamarel`, `village`, `teafields`, `cane` | Dry leaves |
+| Spring, 1 October to 14 November | `lilies`, `market`, `streetfood`, `harbour`, `sunset`, `lagoon` | Bougainvillea petals |
+| A holiday's own | `lights` Festival of lights: Divali and the two days before it, Christmas and the three days before it. `lanterns` Lanterns: the Spring Festival and the day before it | The season's |
+
+`lagoon` is also the link preview card and the pocket guide's cover, whatever the day.
 
 - **What they are.** Generated illustrations, made for the site with Higgsfield (model
-  gpt_image_2_6) on 20 November 2026. Each file has a record beside it (`lagoon.jpg.json` and so
-  on) that says so: an imagined Mauritian scene, not a photograph of a real place, never captioned
-  as one.
-- **Two sizes each.** The full picture, and a small one (`-sm`) for a screen under 40rem and for
-  the strip on a business's card.
+  gpt_image_2_6): ten wide ones on 20 November 2026, eight more and a tall one of all eighteen on
+  24 November. Each file has a record beside it (`lagoon.jpg.json` and so on) that says so: an
+  imagined Mauritian scene, not a photograph of a real place, never captioned as one.
+- **Two shapes each, and each is its own painting.** The wide one (`lagoon.jpg`, 2400 across) is
+  for a desk and a phone on its side. The tall one (`lagoon-tall.jpg`, 960 across) is the same
+  scene painted again for an upright screen, with the scene in its lower half and sky above: it
+  is not cut out of the wide one, which would leave a phone a strip of the middle. The tall one
+  is used under 40rem and on any screen held upright (`.backdrop` in `globals.css`), and the
+  page asks the browser ahead for the one its screen needs and not the other. Both stand on
+  their foot, where the scene is. `npm run picture` makes the two files and their records from
+  the two paintings.
+- **The seasons are a reading of the island's year made for this build**, not taken from a
+  source: when the flamboyants flower, when the cane flowers and is cut. They are the owner's to
+  correct, in `SEASONS`.
 - **How the day's look is chosen** (`themeFor`), by today's date in Mauritius:
   1. The season gives the day's picture: one of the season's set, a different one each day by the
      count of days, and the same for everyone on that day. A superadmin may fix one picture or set
@@ -923,19 +971,47 @@ another site's is sand.
   2. On a public holiday the greeting is the holiday's ("Happy Divali", "Eid Mubarak"), and the
      picture is the holiday's own if it has one. A holiday with no line of its own is greeted by
      its official name.
-  3. A holiday may begin early: Divali two days before, Christmas three, Independence Day one.
+  3. A holiday may begin early: Divali two days before, Christmas three, Independence Day and the
+     Spring Festival one.
   4. On any other day the greeting is "Bonzour".
 - **Dates come only from `content/holidays.json`**, written from the official notices (S7). It
   holds 2026 and 2027. Never write a date into the code.
 - **Every page is made again at most once an hour**, so it takes the day's look within the hour.
-- **To change a picture**, replace its two files in `public/themes` and bring its record up to
-  date, or name a new file in `src/data/themes.ts`. To give a holiday a look, add a line to
-  `HOLIDAY_LOOKS`.
+- **To add or change a picture**, run `npm run picture` with its two paintings and name it in
+  `src/data/themes.ts`. It must pass `npm run hero` and `npm run glass` before it is used. To
+  give a holiday a look, add a line to `HOLIDAY_LOOKS`.
 - **The link preview card** (`public/og.jpg`) is the name, the line and the index's counts on the
   lagoon picture at 1200 by 630, captured from the site itself by `npm run og`, with its own
   record beside it.
 - **On the page** the picture is decoration: it is hidden from assistive technology and no words
   depend on it.
+
+### What falls
+
+`src/components/Leaves.tsx`, `src/components/LeavesToggle.tsx`, `src/components/glyphs/falls.ts`,
+`.leaves` in `globals.css`.
+
+On the landing page, and only there, a few petals or leaves of the season fall over the picture:
+fourteen at a desk, eight on a phone, none on a phone narrower than 21.25rem. It is the one thing
+on the site that moves by itself.
+
+- **What.** One drawing a season, on the icons' 24px grid: a body and a few lines on it. Its two
+  colours are sampled from a picture of its season (Palette). Each piece is 1.125rem to 1.875rem.
+- **Where.** A layer between the picture and everything else. It lies under the soft light
+  behind the words, so a piece pales as it passes the headline; under the glass, so it is seen
+  through the search bar and the foot line out of focus; and out of the pointer's way.
+- **How.** A piece takes 19 to 29 seconds to fall the height of the screen, drifts 3 to 10
+  hundredths of the screen's width with the wind, swings 0.75rem to either side and turns over a
+  little as it goes, then begins again. Each has its own place, pace and turn, written down in
+  the component and not drawn by lot. Only transforms move.
+- **Its control.** A small round button at the end of the foot line, on its glass: "Pause the
+  falling petals", then "Let the petals fall again". It holds every piece where it is. The
+  choice is kept in the visitor's own browser. It is 36px at a desk and 44px tall under a finger.
+- **Who sees it.** Nothing is shown until script marks the page, and script marks it only for a
+  visitor who has not asked for less motion. Without script, and for that visitor, there is no
+  piece and no control: the page is the picture alone.
+- **The words stay readable.** `npm run hero` lays each of a fall's two colours over the whole
+  picture, as if a piece were behind every letter at once, and reads the words again.
 
 ### Named Rules
 
@@ -1080,9 +1156,11 @@ by itself.
 | A main button's arrow | The pointer | Moves two pixels and turns | 200ms |
 | The toast | A link copied | Rises half a rem and fades in; goes after 2.4 seconds | 240ms |
 | The wait | A list being fetched | A band crosses the shape | 1.2 seconds, while it waits |
+| What falls | The landing page, opened by a visitor whose device allows motion | Fourteen petals or leaves of the season (eight on a phone) fall, drift, swing and turn over | 19 to 29 seconds a fall, for as long as the page is open or until it is paused |
 
 The sheet slides over the picture because the picture is fixed, not because anything is animated.
-There are no entrance animations and no scroll effects.
+There are no entrance animations and no scroll effects. What falls on the landing page is the
+only thing that moves by itself, and it can be held still ("What falls").
 
 ### Reduced motion and no script
 
@@ -1092,6 +1170,7 @@ There are no entrance animations and no scroll effects.
 | Lifts, tips and turns | Happen at once | The same, they are CSS |
 | The toast | Appears at once | Not shown: sharing needs script |
 | The wait | Still | Not shown |
+| What falls | Not shown, nor its control: the page is the picture alone | Not shown, nor its control |
 
 ## Scene & 3D
 
@@ -1102,7 +1181,9 @@ None. There is no WebGL in this build. The island is SVG with a 2D canvas over i
 | Width | What changes |
 |---|---|
 | Under 30rem | The large search box's button is the glass alone; a biznes card loses its icon tile; facts stack |
-| Under 40rem | The small picture is used; tiles stand two abreast as cards; the Home page's regions and its last part's pages are one to a line; an index is one column; tables become blocks; a line of ways to narrow scrolls sideways; "List your business" leaves the pill |
+| Under 21.25rem | Nothing falls on the landing page, and its control is not shown: the foot line has no room for it |
+| Under 40rem, and on any screen held upright | The tall picture is used |
+| Under 40rem | Eight pieces fall on the landing page, not fourteen; tiles stand two abreast as cards; the Home page's regions and its last part's pages are one to a line; an index is one column; tables become blocks; a line of ways to narrow scrolls sideways; "List your business" leaves the pill |
 | Under 48rem | The Home page's top businesses go by sideways |
 | Under 48rem | The menu's search box becomes a button |
 | Under 64rem | The tab bar appears; the menu's groups go behind one button; the page keeps room at its foot |
@@ -1130,7 +1211,9 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Do** set a count, a number or a date in `data-1` or `data-2`, the same face with figures that
   line up (the One Face Rule).
 - **Do** say where a thing came from, beside it.
-- **Do** give every picture its record (the Provenance Rule).
+- **Do** give every picture its record (the Provenance Rule), and paint it twice: wide and tall.
+- **Do** sample the colours of anything that falls from a picture of its season, and let
+  `npm run hero` read the words over them.
 - **Do** take a holiday's date from `content/holidays.json`.
 - **Do** take a picture-icon from `src/components/Glyphs.tsx` by what it stands for (a category's
   id, a district's slug, a page's address), and light its point only on a light ground.
@@ -1141,6 +1224,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** use saffron running to ember, a coloured ring or a saffron glow for anything but a
   verified business (the Verified Rule, the Coloured Glow Rule).
 - **Don't** caption a picture as a photograph, or as a real place.
+- **Don't** cut a phone's picture out of the wide one, or let anything move by itself that cannot
+  be held still and is not left out for a visitor who asks for less motion.
 - **Don't** set words on the picture outside the landing page, or anything under its one button.
 - **Don't** add a second face, or a monospaced face for figures.
 - **Don't** set a sentence in capitals (the Capitals Rule).
@@ -1176,7 +1261,8 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
   a `.tile-icon`. Its size is `--home-icon` on `.home`: change it there and nowhere else.
 - A paid listing takes `.listing-paid` and the `VerifiedMark`, with `priority` when it pays to come
   first. Use them for nothing else.
-- A new picture needs both sizes, its record, and a line in `src/data/themes.ts`.
+- A new picture needs both paintings, the wide and the tall (`npm run picture` makes its files and
+  their records), a line in `src/data/themes.ts`, and a pass from `npm run hero` and `npm run glass`.
 - An icon for a thing the site lists is `CategoryIcon`, `GroupGlyph`, `DistrictIcon`, `FoodIcon` or
   `PageIcon` (`src/components/Glyphs.tsx`). Each takes any id and never fails. A new drawing goes
   in `src/components/glyphs/`, then `npm run icons:sheet`.
@@ -1205,8 +1291,13 @@ control is filled with `ink`; a chosen page is on `signal-wash`; an edge is `lin
 - **The site as an app is being built.** The manifest, the icons, the service worker and the
   offline page are in the repository; the card that offers to install was being put on the page.
   None of it is recorded here as checked.
-- **A picture a superadmin uploads is not measured.** `npm run hero` measures the ten the site is
-  built with; an uploaded one is shown as it is.
+- **A picture a superadmin uploads is not measured, and has one shape.** `npm run hero` measures
+  the eighteen the site is built with; an uploaded one is one file, shown as it is on a desk and
+  on a phone alike.
+- **The seasons are a reading, not a source.** When each season begins, which pictures it has and
+  what falls in it were chosen for this build. They are the owner's to correct.
+- **A tall picture is not its wide one cut down.** It is the same scene painted again, so its
+  details differ: a boat here, a tree there. That is meant.
 - **The paid business page has no real business in it.** It is designed and checked in its
   preview (`/preview/business`, under `npm run dev` only), with made-up content.
 - **The link preview card** on disk reads "13 guides". Its page now counts the articles the site

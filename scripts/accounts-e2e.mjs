@@ -1710,7 +1710,7 @@ let adId = "";
   const mode = (label) => page.locator('section[aria-labelledby="choose"] label.chip', { hasText: label }).first().click();
   await go(page, `${origin}/admin/settings`);
   const calendar = await backdrop();
-  // The pictures the site is built with: ten when this was written, and more may be added.
+  // The pictures the site is built with: eighteen now, and more may be added.
   const builtIn = await part(page, "pictures").locator("img.thumb").count();
   check("look: the page says what is showing today and how it is chosen", /Showing today/i.test(await page.locator("main").innerText()) && /By the calendar/.test(await page.locator("main .stat").nth(1).innerText()) && (await part(page, "pictures").locator("img.thumb").count()) === builtIn && builtIn >= 10);
   await mode("One picture");
@@ -1747,7 +1747,7 @@ let adId = "";
   check("look: a round of pictures gives today's, the same for everyone", sql(`select mode || '|' || array_to_string(pictures, ',') from public.site_settings`) === `rotation|lagoon,${own}` && (turn === 0 ? now.picture === "lagoon" && now.image.includes("/themes/lagoon") : now.image.includes("/storage/v1/object/public/media/site/")), `${turn} ${now.picture} ${now.image}`);
   await audit(page, "admin-settings-round");
   await part(page, "pictures").getByRole("button", { name: /Remove/ }).click();
-  await page.waitForFunction(() => document.querySelectorAll('section[aria-labelledby="pictures"] img.thumb').length === 4, null, { timeout: 15000 }).catch(() => {});
+  await page.waitForFunction((left) => document.querySelectorAll('section[aria-labelledby="pictures"] img.thumb').length === left, builtIn, { timeout: 15000 }).catch(() => {});
   now = await backdrop();
   check("look: a picture taken out leaves the round, which falls back to the calendar, and its file is gone", sql(`select mode || '|' || cardinality(pictures) || '|' || (select count(*) from public.site_pictures) || '|' || (select count(*) from storage.objects where name like 'site/%') from public.site_settings`) === "calendar|0|0|0" && now.picture === calendar.picture && now.image === calendar.image, sql(`select mode || '|' || cardinality(pictures) from public.site_settings`));
   await go(page, `${origin}/admin/settings`);

@@ -42,7 +42,7 @@ const EXAMPLE: Owned = {
 
 const SHOWCASE: Showcase = {
   cover: PICTURES.lagoon.src,
-  photos: [PICTURES.flamboyant.src, PICTURES.cane.src, PICTURES.lights.src, PICTURES.lagoon.small, PICTURES.cane.small],
+  photos: [PICTURES.flamboyant.src, PICTURES.cane.src, PICTURES.lights.src, PICTURES.lagoon.src, PICTURES.cane.src],
   tagline: "An example of the one line a business writes about itself.",
   hours: ["Monday to Friday: 10:00 to 21:00", "Saturday: 10:00 to 23:00", "Sunday: closed"],
   menu: [

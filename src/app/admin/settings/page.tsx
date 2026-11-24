@@ -82,12 +82,12 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           </section>
 
           <section aria-labelledby="pictures" className="scroll-mt-24 lg:col-span-6">
-            <PartHead id="pictures" title="The pictures" line="The four the site is built with, and any you have added. A picture of your own is shown as it is, at one size, on a phone and on a desk." />
+            <PartHead id="pictures" title="The pictures" line={`The ${builtIn.length} the site is built with, and any you have added. Each of the site's own is painted twice, wide for a desk and tall for a phone; a picture of your own is one file, shown as it is on both.`} />
             {said === "picture" && <Notice className="mt-6">The picture is added. Choose it on the left to use it.</Notice>}
             <ul className="mt-6 grid grid-cols-2 gap-3">
               {builtIn.map((p) => (
                 <li key={p.value} className="grid content-start gap-2">
-                  <img src={PICTURES[p.value as keyof typeof PICTURES].small} alt="" className="thumb" loading="lazy" decoding="async" />
+                  <img src={PICTURES[p.value as keyof typeof PICTURES].tall} alt="" className="thumb thumb-foot" loading="lazy" decoding="async" />
                   <p className="body-3">
                     {p.label} <span className="tag caption-1 ml-1">Built in</span>
                   </p>

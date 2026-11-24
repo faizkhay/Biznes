@@ -265,7 +265,7 @@ holds the system.
 | Official pages listed on `/emergency` | 20 November 2026 | Every emergency number and helpline |
 | The Prime Minister's Office's notices of public holidays, listed in `content/holidays.json` | 20 November 2026 | The public holidays of 2026 and 2027 |
 | Official pages listed at the back of the pocket guide (`content/pdf/places.json`) | 20 November 2026 | Every place and fact in the pocket guide |
-| The four pictures, with a record beside each in `public/themes` | made 20 November 2026 | The picture behind the page. Generated illustrations, not evidence of any place |
+| The eighteen pictures, each painted wide and tall, with a record beside each file in `public/themes` | made 20 and 24 November 2026 | The picture behind the page. Generated illustrations, not evidence of any place |
 
 Absent, and not fabricated: reviews, photographs, opening hours the map does not hold, any measure
 of how many people use the site, any testimonial, any business on a paid plan, any price for the

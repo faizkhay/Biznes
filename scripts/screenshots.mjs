@@ -86,5 +86,20 @@ for (const [vname, vp] of VIEWPORTS) {
   }
   await page.close();
 }
+// The landing page once more, with motion allowed: the captures above are taken under reduced
+// motion, where nothing falls over it. This one shows what falls, caught as it is.
+for (const [vname, vp] of VIEWPORTS) {
+  if (only && !only.includes("landing")) continue;
+  const page = await browser.newPage({ viewport: vp, deviceScaleFactor: 1 });
+  await steady(page.context());
+  await page.goto(origin, { waitUntil: "networkidle", timeout: 120000 });
+  await page.waitForSelector(".landing[data-leaves]", { timeout: 10000 });
+  await page.waitForTimeout(1500);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+  await page.screenshot({ path: join(out, `landing-leaves-${vname}.png`) });
+  if (overflow > 0) failures++;
+  console.log(`${vname.padEnd(8)} ${"landing-leaves".padEnd(13)} ${String(vp.height).padStart(6)}px overflow=${overflow}px`);
+  await page.close();
+}
 await browser.close();
 process.exit(failures ? 1 : 0);

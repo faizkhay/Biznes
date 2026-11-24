@@ -13,6 +13,7 @@ review/screens/*
 !review/screens/home-*.jpg
 !review/screens/landing-desktop.jpg
 !review/screens/landing-mobile.jpg
+!review/screens/landing-leaves-*.jpg
 !review/screens/search-desktop.jpg
 !review/screens/search-mobile.jpg
 !review/screens/listing-*.jpg

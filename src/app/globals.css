@@ -31,6 +31,18 @@
   --palette-haze: #b6c0db; /* derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink */
   --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Never words on white or cream */
   --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.78:1 on white, 5.48:1 on cream */
+  /* What falls over the landing page (DESIGN.md, "What falls"). Each pair is sampled from a picture
+     of its season, a body and its vein or its light. They colour a drawing, never words. */
+  --palette-flame: #ed4120; /* sampled from the flamboyant picture's flowers: a flamboyant petal */
+  --palette-flame-light: #f35a32; /* sampled from the same flowers, where the light is on them */
+  --palette-frond: #446926; /* sampled from the rain picture's leaves: a green leaf */
+  --palette-frond-light: #5a7e36; /* sampled from the same leaves, where the light is on them */
+  --palette-plume: #f1c8b1; /* sampled from the cane picture's flowers: a wisp of cane flower */
+  --palette-plume-light: #fadcbb; /* sampled from the same flowers, where the light is on them */
+  --palette-straw: #c68644; /* sampled from the harvest picture's cut cane: a dry leaf */
+  --palette-straw-deep: #af7136; /* sampled from the same cane, in shade: the dry leaf's vein */
+  --palette-bract: #d32e62; /* sampled from the street food picture's bougainvillea: a petal of it */
+  --palette-bract-light: #e03e73; /* sampled from the same flowers, where the light is on them */
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --nav-h: 56px;
@@ -330,7 +342,9 @@
   }
 
   /* The picture behind the page. It is fixed, so the sheet slides over it. A veil of the paper's
-     own colour lies over its sky, so words set on it keep their contrast whatever the picture. */
+     own colour lies over its sky, so words set on it keep their contrast whatever the picture.
+     Every picture is painted twice: wide, for a desk and a phone on its side; and tall, for a
+     phone and for any screen held upright. Both stand on their foot, where the scene is. */
   .backdrop {
     position: fixed;
     z-index: -2;
@@ -340,9 +354,9 @@
     background-size: cover;
     background-position: center bottom;
   }
-  @media (max-width: 40rem) {
+  @media (max-width: 40rem), (orientation: portrait) {
     .backdrop {
-      background-image: var(--theme-image-sm);
+      background-image: var(--theme-image-tall);
     }
   }
   .backdrop::after {
@@ -1034,10 +1048,10 @@
     z-index: -1;
     left: 50%;
     top: 37%;
-    width: min(64rem, 150vw);
-    height: 24rem;
+    width: min(76rem, 160vw);
+    height: 26rem;
     transform: translate(-50%, -50%);
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-cream) 92%, transparent), color-mix(in srgb, var(--palette-cream) 80%, transparent) 45%, color-mix(in srgb, var(--palette-cream) 40%, transparent) 75%, transparent);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-cream) 92%, transparent), color-mix(in srgb, var(--palette-cream) 86%, transparent) 45%, color-mix(in srgb, var(--palette-cream) 62%, transparent) 78%, transparent);
     pointer-events: none;
   }
   /* A small line above the question: what the index holds, as a count. */
@@ -3155,6 +3169,10 @@
   .thumb-wide {
     aspect-ratio: 16 / 7;
   }
+  /* A tall picture shown small: its foot, where the scene is. */
+  .thumb-foot {
+    object-position: center bottom;
+  }
   /* An advertisement, wherever one is shown: its picture, its two lines, and the word that says it
      is paid for. A quiet card: it never wears the verified mark's colours. */
   .ad {
@@ -3368,6 +3386,148 @@
     }
   }
 
+  /* What falls over the landing page (src/components/Leaves.tsx): a few petals or leaves of the
+     season, slowly, between the picture and the words. They stand under the soft light behind
+     the words, so they pale as they pass the headline, and under the glass, so they are seen
+     through the search bar out of focus. Nothing a visitor needs is in them.
+
+     They are not shown at all until script says so on the page (data-leaves), which it does
+     only for a visitor who has not asked for less motion: without script, and for that visitor,
+     the page is the picture alone. The control in the foot line holds them where they are and
+     lets them go again (data-leaves="paused"), and remembers which. Only transforms move, so
+     nothing is laid out again. */
+  .leaves {
+    display: none;
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    contain: strict;
+  }
+  .landing[data-leaves] .leaves {
+    display: block;
+  }
+  .leaves[data-fall="flamboyant"] {
+    --leaf: var(--palette-flame);
+    --leaf-line: var(--palette-flame-light);
+  }
+  .leaves[data-fall="green"] {
+    --leaf: var(--palette-frond);
+    --leaf-line: var(--palette-frond-light);
+  }
+  .leaves[data-fall="plume"] {
+    --leaf: var(--palette-plume);
+    --leaf-line: var(--palette-plume-light);
+  }
+  .leaves[data-fall="dry"] {
+    --leaf: var(--palette-straw);
+    --leaf-line: var(--palette-straw-deep);
+  }
+  .leaves[data-fall="bougainvillea"] {
+    --leaf: var(--palette-bract);
+    --leaf-line: var(--palette-bract-light);
+  }
+  /* One piece: it falls the height of the screen and a little more, drifting with the wind, and
+     begins again. Its place, size, pace and turn are its own (the --x and the rest, set on it). */
+  .leaf {
+    position: absolute;
+    top: -3rem;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    animation: leaf-fall var(--time) linear var(--wait) infinite;
+    will-change: transform;
+  }
+  .leaf svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: leaf-sway var(--sway) ease-in-out var(--wait) infinite alternate;
+  }
+  .leaf-body {
+    fill: var(--leaf);
+  }
+  .leaf-line {
+    fill: none;
+    stroke: var(--leaf-line);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .landing[data-leaves="paused"] .leaf,
+  .landing[data-leaves="paused"] .leaf svg {
+    animation-play-state: paused;
+  }
+  /* A phone has less sky: fewer fall. */
+  @media (max-width: 40rem) {
+    .leaf:nth-child(n + 9) {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .leaves,
+    .leaves-toggle {
+      display: none !important;
+    }
+  }
+  @keyframes leaf-fall {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(var(--drift), calc(100vh + 6rem), 0);
+    }
+  }
+  /* The flutter: it swings from side to side and turns over a little as it goes. */
+  @keyframes leaf-sway {
+    from {
+      transform: translateX(-0.75rem) rotate(var(--from)) rotateX(0deg);
+    }
+    to {
+      transform: translateX(0.75rem) rotate(var(--to)) rotateX(58deg);
+    }
+  }
+  /* The control that holds them: a small round button at the end of the foot line, on its glass,
+     close to the last of the line's links. */
+  .leaves-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+    margin-left: -0.5rem;
+    border: 0;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .leaves-toggle:hover {
+    background: color-mix(in srgb, var(--palette-white) 46%, transparent);
+  }
+  .leaves-toggle:active {
+    transform: scale(0.94);
+  }
+  .leaves-toggle svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  @media (pointer: coarse) {
+    .leaves-toggle {
+      height: 2.75rem;
+    }
+  }
+  /* On the narrowest phones the foot line has no room for the control, so nothing falls there. */
+  @media (max-width: 21.24rem) {
+    .leaves,
+    .leaves-toggle {
+      display: none !important;
+    }
+  }
+
   /* The Home page (src/app/home/page.tsx): everything, set out with icons. Every icon on it
      stands beside its words in a square, and both come in two sizes, set here and nowhere else:
      the larger for a way in, the smaller for a kind within it and for a card's own heading. */
@@ -3523,6 +3683,8 @@
   footer,
   .chart canvas,
   .backdrop,
+  .leaves,
+  .leaves-toggle,
   .tabbar {
     display: none !important;
   }

@@ -22,6 +22,17 @@ export const Glass = (p: P) => (
     <path d="m15.5 15.5 5 5" />
   </svg>
 );
+// Hold what is moving, and let it go again: the control for what falls over the landing page.
+export const Pause = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M8.5 5.5v13M15.5 5.5v13" />
+  </svg>
+);
+export const Play = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M8 5.5v13l10.5-6.5Z" />
+  </svg>
+);
 export const Arrow = (p: P) => (
   <svg {...base} {...p}>
     <path d="M4 12h15M13 6l6 6-6 6" />
