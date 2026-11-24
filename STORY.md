@@ -127,6 +127,47 @@ transition.
 
 ## Rounds
 
+### Round 8, 24 November 2026: the paper becomes glass
+
+**The owner's note, in their own words.** "Integrate a glassmorphism ui please"
+
+**What was decided, and why.**
+
+- **The picture was already there, so the page became the glass over it.** Glass needs something
+  behind it worth seeing, and the site has had a painted picture behind every page since Round 4.
+  The sheet is now frosted glass the colour of warm paper, the cards on it are panes, and the
+  menu, the phone's bar and the search box are glass that blurs what passes under them. The
+  picture stays sharp on the landing page and in the margin round the sheet.
+- **The blur is made beforehand.** Blurring a picture the size of the screen on every frame is
+  work a small phone does badly, and most people here come by phone. So each picture has a small
+  soft copy, a kilobyte or so, made once and drawn large under the sheet. Nothing is filtered
+  while the page scrolls. Only what passes over the page blurs it live: the bars, the box and the
+  strip behind the menu.
+- **Readable against black, not against today's picture.** The usual failure of glass is grey
+  words on a ground nobody measured. Here each pane's transparency is set so that its faintest
+  words pass at 4.5:1 were the picture behind it black, which also covers a picture the
+  superadmin uploads later. A white wash over the soft picture makes that so.
+- **Two colours were deepened to earn it.** With the old grey for captions the sheet could let 6%
+  of the picture through, which the eye does not see as glass. Mist went from `#626a80` to
+  `#545c74` and the red of an error from `#c12a2a` to `#b02323`; both are easier to read than
+  before on every ground, and the sheet now lets 13.5% through.
+- **What is read stays solid.** A list that opens over the page (a group of the menu, the
+  suggestions, the towns) is white. The first try made them glass, and the page showed through
+  the words. A field is white. A button on a dark card is white, not grey glass.
+- **For someone who asks for less.** With less transparency or more contrast asked of the device,
+  every pane is solid again and nothing blurs. So too where a browser cannot blur.
+
+**Checked.** As drawn, with each of the ten pictures behind, at a desk and on a phone, the
+faintest words keep 5.21:1 on the sheet, 5.98:1 in the search box and 8.20:1 on the menu's pill
+(`npm run glass`, new). The landing page's words on the picture keep 5.60:1 (`npm run hero`). 255
+behaviour checks, 231 for Baz Manzer and 72 for the tax tools pass, and axe-core is clean on 56
+kinds of public page at both sizes.
+
+**Not done, and said.** No real phone has been timed scrolling it: the design avoids the costly
+blur, but that is reasoning, not a measurement. Only Chromium has drawn it. axe-core cannot judge
+words over a picture, which is why the glass has a check of its own. The Pocket Guide's PDF keeps
+the old grey: it is print, and was not asked about.
+
 ### Round 7, 23 November 2026: a door, a hall, and three things of our own
 
 **The owner's note, in their own words.**

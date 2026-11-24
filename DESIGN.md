@@ -22,7 +22,7 @@ colors:
   ink: "#0a1639"            # S1 sampled: the brand's dark. Words: 17.69:1 on white, 16.80:1 on cream, 15.42:1 on sand
   swell: "#14224f"          # derived from ink, lighter: the ink button under the pointer
   slate: "#404965"          # derived, ink 78% toward white: secondary words; 8.90:1 on white, 8.45:1 on cream, 7.76:1 on sand
-  mist: "#626a80"           # derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.70:1 on sand
+  mist: "#545c74"           # derived, ink at 70% on white: captions, counts. Deepened on 24 November 2026 for glass; 6.64:1 on white, 6.30:1 on cream, 5.79:1 on sand
   ember: "#ff8f4a"          # derived, saffron toward coral: the far end of the verified mark; carries ink at 7.81:1
   saffron-wash: "#fef6d9"   # derived, saffron 16% on white: a chosen thing; carries ink at 16.34:1
   royal: "#0d36a7"          # S2 sampled: what answers. 9.98:1 on white, 9.48:1 on cream
@@ -30,7 +30,7 @@ colors:
   lagoon-deep: "#7bbcb3"    # S5 sampled from the lagoon picture's water: the map's coastline. A line, never words
   lagoon: "#aebadf"         # S2 sampled: a pale blue. At 45% on white (#dbe0f1) it is the tile of an answer from the articles; royal on that is 7.58:1
   haze: "#b6c0db"           # derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink
-  coral-deep: "#c12a2a"     # derived from coral (S1), darker: an error's words; 5.78:1 on white, 5.48:1 on cream
+  coral-deep: "#b02323"     # derived from coral (S1), darker: an error's words. Deepened on 24 November 2026 for glass; 6.75:1 on white, 6.40:1 on cream
   line: "color-mix(in srgb, #0a1639 10%, transparent)"         # derived: ink at 10%, the hairline
   line-strong: "color-mix(in srgb, #0a1639 50%, transparent)"  # derived: ink at 50%, a field's edge; 3.40:1 on white
 typography:                 # named as the text styles in src/app/globals.css; fontSize is the clamp() maximum, the full clamp() is in Typography
@@ -174,8 +174,9 @@ why. Where the two disagree, the code is right and this is the bug.
 **Creative North Star: "The postcard"**
 
 biznes.mu is a search engine for business in Mauritius: a directory, guides and the official
-registers behind one box. The page is a painted picture of the island with a sheet of warm paper
-laid on it. The landing page is the picture alone, with the site's one line and the search in the
+registers behind one box. The page is a painted picture of the island with a sheet laid on it:
+since 24 November 2026 a sheet of frosted glass the colour of warm paper, with the day's picture
+showing through it out of focus (see "Glass"). The landing page is the picture alone, with the site's one line and the search in the
 middle of it. The picture changes with the season and the public holiday. The paper, the ink and
 the saffron point do not.
 
@@ -247,7 +248,7 @@ the lagoon picture (S5); one is chosen; eleven are derived.
 | `--palette-ink` | `#0a1639` | sampled (S1): the brand's dark | Words; the ink button; a chosen filter, tab or chip; the icon tiles; the footer card; the points of the map |
 | `--palette-swell` | `#14224f` | derived from ink, lighter | The ink button under the pointer |
 | `--palette-slate` | `#404965` | derived, ink 78% toward white | Secondary words |
-| `--palette-mist` | `#626a80` | derived, ink 65% toward white | Captions, counts, a placeholder, a small heading over a list |
+| `--palette-mist` | `#545c74` | derived, ink at 70% on white (deepened for glass, 24 November 2026) | Captions, counts, a placeholder, a small heading over a list |
 | `--palette-saffron` | `#f8c618` | sampled (S1): the brand's action | A fill, never words: the point in the b, the search button and the one filled action, an icon on an ink tile, a saved bookmark, a count, a lit point on the map |
 | `--palette-saffron-deep` | `#e3b30d` | derived from saffron, darker | The filled action under the pointer; the glow of a paid card |
 | `--palette-ember` | `#ff8f4a` | derived, saffron toward coral | The far end of the verified mark and of a paid card's ring |
@@ -258,7 +259,7 @@ the lagoon picture (S5); one is chosen; eleven are derived.
 | `--palette-lagoon` | `#aebadf` | sampled (S2) | At 45% on white, the tile of an answer from the articles |
 | `--palette-haze` | `#b6c0db` | derived from limewash toward ink | Captions on the footer's ink |
 | `--palette-coral` | `#f14949` | sampled (S1): the brand's red | Nothing at present (Known Gaps). Ember is derived toward it and coral-deep from it |
-| `--palette-coral-deep` | `#c12a2a` | derived from coral, darker | An error's words, mark and edge |
+| `--palette-coral-deep` | `#b02323` | derived from coral, darker (deepened for glass, 24 November 2026) | An error's words, mark and edge |
 
 ### Roles
 
@@ -303,9 +304,9 @@ anything else.
 ### Contrast
 
 Measured with `npm run contrast` (WCAG 2.x, alpha composited over the real ground, floored to two
-decimals). The file of pairs holds 25 and all pass AA for body text. Twenty-four are in use and are
-listed here; the twenty-fifth, haze on night at 10.84:1, belonged to the dark island and measures
-a ground the site no longer has.
+decimals). The file of pairs holds 44 and all pass AA for body text. Those in everyday use are
+listed here. The nine that hold the words against glass at its darkest are under "Glass", and the
+pairs for an icon's lit point under "The icons".
 
 | Text or mark | On | Ratio | Where |
 |---|---|---|---|
@@ -315,9 +316,9 @@ a ground the site no longer has.
 | slate | white | 8.90:1 | Secondary words on a card |
 | slate | cream | 8.45:1 | Secondary words on the sheet |
 | slate | sand | 7.76:1 | Secondary words in a note |
-| mist | white | 5.39:1 | A caption, a count, a placeholder |
-| mist | cream | 5.12:1 | A caption, a count in an index, a small heading over a list |
-| mist | sand | 4.70:1 | A table's column heads, the compact search box's placeholder |
+| mist | white | 6.64:1 | A caption, a count, a placeholder |
+| mist | cream | 6.30:1 | A caption, a count in an index, a small heading over a list |
+| mist | sand | 5.79:1 | A table's column heads, the compact search box's placeholder |
 | royal | white | 9.98:1 | A title that is a link, on a card |
 | royal | cream | 9.48:1 | A link on the sheet |
 | royal | sand | 8.70:1 | A source's number |
@@ -330,8 +331,8 @@ a ground the site no longer has.
 | haze | ink | 9.73:1 | Captions in the footer |
 | saffron | ink | 11.02:1 | A tile's icon, a mark on a dark card |
 | white | swell | 15.31:1 | The ink button under the pointer |
-| coral-deep | white | 5.78:1 | An error's words under a field |
-| coral-deep | cream | 5.48:1 | An error's words on the sheet |
+| coral-deep | white | 6.75:1 | An error's words under a field |
+| coral-deep | cream | 6.40:1 | An error's words on the sheet |
 | white | royal | 9.98:1 | A source's number under the pointer |
 
 Measured for this record with the same script on 20 November 2026. These pairs are in the build
@@ -488,9 +489,9 @@ ground of their own.
 
 ## Elevation & Depth
 
-Depth is said by a hairline, by a step of the ground (cream, white, sand) and by three soft
-shadows tinted with the brand's ink. The page has one real layer of depth: the sheet over the
-picture.
+Depth is said by a hairline, by a step of the ground (cream, white, sand), by three soft
+shadows tinted with the brand's ink, and by glass: the picture, the soft picture under the sheet,
+the sheet, a pane on it, and the bars that pass over all of them.
 
 ### Shadow Vocabulary
 
@@ -505,11 +506,67 @@ picture.
 - **The mark's glow** (`0 2px 10px -2px` ember at 70%): the verified mark.
 - **The answer's glow** (`0 12px 32px -10px` royal at 26%): the answer to a question.
 
-The menu and the tab bar are white at 90% and 92% with a 16px blur behind them, so the picture and
-the sheet pass under them softly. The greeting pill, the searches to try and the landing page's
-foot line are white at 82% with an 8px blur.
+### Glass
+
+The owner asked for it on 24 November 2026: "Integrate a glassmorphism ui please". The picture was
+already the page's ground, so the sheet and what stands on it became panes it shows through.
+
+- **The soft picture** (`.frost`): the day's picture again, out of focus, fixed under the sheet
+  and as wide as it, so the picture stays sharp in the margin round the sheet and on the landing
+  page, which has no sheet. It is a small copy made soft beforehand (`npm run frost` writes
+  `<name>-frost.jpg` beside each picture, about one kilobyte each) and drawn large: no filter runs
+  while the page scrolls. A picture a superadmin uploaded has no such copy, and is blurred on the
+  page by 40px instead.
+- **The wash** (`--glass-wash`, white at 55%): over the soft picture. It bounds how dark the
+  ground can be, whatever the picture.
+- **The sheet** (`--glass-sheet`, cream at 70%), with a lit upper edge.
+- **A pane** (`--glass-pane`, white at 62%): a card, a listing, an answer, a filter, a quiet
+  button. It blurs nothing itself: it lies on ground that is already soft. `--pane` is what a card
+  is painted with, and a part on ink (a dark card, the footer, the toast) sets it back to white.
+- **A bar** (`--glass-bar`, white at 78%, with `--glass-blur`: an 18px blur and 1.6 of
+  saturation): the menu's pill, the phone's bar, and a card that floats over the page
+  (`.glass-float`, the offer to install). These pass over anything, so they blur what is behind
+  them. The strip behind the pill (`--glass-strip`, cream at 72%) blurs by 14px and fades to
+  nothing.
+- **The box** (`--glass-box`, white at 86%, the same blur): the search box.
+- **What opens over the page stays solid**: a group of the menu, the suggestions, the list of
+  towns. A list is read, and a list inside a pane that already blurs cannot blur again.
+- The greeting pill and the landing page's foot line are white at 82% with an 8px blur, as before.
+
+**The rule the values come from.** Each is set so that the faintest words on it pass at 4.5:1 were
+the picture behind it black. That is why two colours were deepened: mist from `#626a80` to
+`#545c74` and deep coral from `#c12a2a` to `#b02323`. With them the sheet may let 13.5% of the
+soft picture through; with the old mist it could let 6% through, which the eye does not see as
+glass.
+
+| Words | On, at its darkest | Ratio |
+|---|---|---|
+| ink | the sheet, `#dbd8cf` | 12.41:1 |
+| slate | the sheet | 6.24:1 |
+| mist | the sheet | 4.66:1 |
+| royal | the sheet | 7.00:1 |
+| deep coral | the sheet | 4.73:1 |
+| ink | a bar, `#c7c7c7` | 10.46:1 |
+| slate | a bar | 5.26:1 |
+| ink | the search box, `#dbdbdb` | 12.78:1 |
+| mist | the search box | 4.79:1 |
+
+**As drawn** (`npm run glass`, 24 November 2026): with each of the ten pictures behind, at a desk
+and on a phone, the faintest words keep 5.21:1 on the sheet, 5.98:1 in the search box and 8.20:1
+on the menu's pill.
+
+**For someone who asks for less.** With `prefers-reduced-transparency: reduce` or
+`prefers-contrast: more`, every pane is solid again and nothing blurs: the page as it was before
+it was glass. Where a browser cannot blur what is behind a thing, the bars and the box are solid.
 
 ### Named Rules
+
+**The Darkest Picture Rule.** A pane's transparency is set against black, not against today's
+picture. If a value changes, its pair in `scripts/contrast.pairs.json` changes with it, and
+`npm run glass` is run.
+
+**The One Blur Rule.** Only what passes over the page blurs it: the bars, the box, the strip behind
+the pill. What lies on the sheet is a tint on ground that is already soft.
 
 **The Coloured Glow Rule.** A shadow is ink unless it means something: saffron for a paid place,
 royal for the answer. No other shadow has a colour.
@@ -703,7 +760,7 @@ opens with it.
   its icon beside its words. **`.tile-quiet`** is a kind within a group (a kind of food, a kind
   of business): smaller, its icon in ink on a white square with a hairline, so the groups stay the
   louder of the two. Inside Baz Manzer's card a tile stands on sand, and under the pointer keeps
-  it and gains an edge of ink, so its count keeps 4.70:1.
+  it and gains an edge of ink, so its count keeps 5.79:1.
 
 ### Reading
 

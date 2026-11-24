@@ -25,6 +25,8 @@
     "test:rls": "bash scripts/test-rls.sh",
     "behaviour:tax": "node scripts/behaviour-tax.mjs",
     "behaviour:baz": "node scripts/behaviour-baz.mjs",
+    "frost": "node scripts/frost.mjs",
+    "glass": "node scripts/glass-contrast.mjs",
     "icons:sheet": "node scripts/icon-sheet.mjs",
     "icons:districts": "node scripts/district-icons.mjs",
     "search:test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/search-test.mjs",

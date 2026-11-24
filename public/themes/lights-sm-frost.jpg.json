@@ -1,0 +1,8 @@
+{
+  "file": "lights-sm-frost.jpg",
+  "kind": "derived",
+  "from": "lights-sm.jpg",
+  "how": "scripts/frost.mjs: made 128 pixels on its longer side and blurred, to stand out of focus behind the page's glass",
+  "by": "Khay Digital, for biznes.mu",
+  "licence": "As lights-sm.jpg: see lights-sm.jpg.json."
+}

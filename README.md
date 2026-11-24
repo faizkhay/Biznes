@@ -1369,11 +1369,18 @@ everyone on that day.
 - **A superadmin can overrule the calendar** from the admin pages: one picture, fixed, or a round
   of chosen pictures, their own uploads among them (`themeNow()`; see "Accounts").
 - **To add a picture**, put its two files in `public/themes`, name it in `PICTURES`, and add it to
-  a season's `also` or to `EVERYDAY_PICTURES`. `npm run hero` then measures the landing page's
-  words against it, and it must pass before the picture is used.
+  a season's `also` or to `EVERYDAY_PICTURES`. Run `npm run frost`, which makes the small soft
+  copy of each picture that the page's glass lies on (`<name>-frost.jpg`, with its own record).
+  `npm run hero` then measures the landing page's words against the picture and `npm run glass`
+  the words on the glass over it, and both must pass before the picture is used.
 - **To change a picture**, replace its two files in `public/themes` (the full one, and the `-sm`
-  one for a phone) and bring the `.json` record beside each up to date. Then raise `VERSION` in
-  `public/sw.js`, or name the new files differently and point `PICTURES` at them.
+  one for a phone), bring the `.json` record beside each up to date, and run `npm run frost`
+  again. Then raise `VERSION` in `public/sw.js`, or name the new files differently and point
+  `PICTURES` at them.
+- **The page is glass over the picture** (DESIGN.md, "Glass"): the sheet, the cards, the menu, the
+  phone's bar and the search box let it show through, out of focus. A picture a superadmin
+  uploads has no soft copy, so the page blurs it itself; the glass is set to stay readable
+  whatever the picture is.
 - **Every picture has a record** that says what it is, what made it and when. The ten here are
   illustrations generated for the site on 20 November 2026. They are never captioned as
   photographs.
@@ -1693,8 +1700,9 @@ this list.
 | Types | `npm run typecheck` | Clean |
 | House style | `npm run copy` | 0 failures, 332 files |
 | Tokens | `npm run tokens` | 0 failures, 263 files |
-| Contrast | `npm run contrast` | Every pair passes |
+| Contrast | `npm run contrast` | Every pair passes, 44 of them: nine hold the words against glass at its darkest |
 | Words on the picture | `npm run hero` | The landing page's headline, its greeting and the line at its foot, measured against all ten pictures at a desk and on a phone, sixty readings: the lowest is 5.60:1 |
+| Words on glass | `npm run glass` | The faintest words on the sheet, in the search box and on the menu's pill, read as drawn against all ten pictures at a desk and on a phone: the lowest is 5.21:1. The values are also held against black in `npm run contrast` |
 | Design record | `npm run design` | 0 errors |
 | Behaviour | `npm run behaviour` | 255 of 255, against a production server with accounts off. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |

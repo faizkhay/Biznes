@@ -174,7 +174,7 @@ export default function Pwa() {
       role="region"
       aria-label={`Install ${APPS[app].name}`}
       data-app={app}
-      className="card fixed inset-x-2 z-50 flex items-center gap-2 p-4 shadow-[var(--shadow-lg)] [--lift:5rem] lg:left-auto lg:right-4 lg:w-full lg:max-w-sm lg:[--lift:1rem] print:hidden"
+      className="card glass-float fixed inset-x-2 z-50 flex items-center gap-2 p-4 shadow-[var(--shadow-lg)] [--lift:5rem] lg:left-auto lg:right-4 lg:w-full lg:max-w-sm lg:[--lift:1rem] print:hidden"
       style={{ bottom: "calc(var(--lift) + env(safe-area-inset-bottom))" }}
     >
       {app === "baz" && <span className="baz-mark flex-none" aria-hidden />}

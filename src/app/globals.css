@@ -19,7 +19,7 @@
   --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.69:1 on white, 16.8:1 on cream, 15.42:1 on sand */
   --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer */
   --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.9:1 on white, 8.45:1 on cream, 7.76:1 on sand */
-  --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.7:1 on sand */
+  --palette-mist: #545c74; /* derived, ink at 70% on white: captions, counts. Deepened on 24 November 2026 so that it holds on glass at its darkest; 6.64:1 on white, 6.3:1 on cream, 5.79:1 on sand */
   --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.02:1 */
   --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.03:1 */
   --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 7.81:1 */
@@ -30,7 +30,7 @@
   --palette-lagoon: #aebadf; /* sampled from the same mock-up: the pale blue of the glow behind the question */
   --palette-haze: #b6c0db; /* derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink */
   --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Never words on white or cream */
-  --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.78:1 on white, 5.48:1 on cream */
+  --palette-coral-deep: #b02323; /* derived from coral, darker: an error's words. Deepened on 24 November 2026 so that it holds on glass at its darkest; 6.75:1 on white, 6.4:1 on cream */
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --nav-h: 56px;
@@ -41,6 +41,47 @@
   --shadow-sm: 0 1px 2px rgb(10 22 57 / 0.05), 0 2px 8px rgb(10 22 57 / 0.04);
   --shadow-md: 0 1px 2px rgb(10 22 57 / 0.04), 0 10px 30px -6px rgb(10 22 57 / 0.1);
   --shadow-lg: 0 2px 4px rgb(10 22 57 / 0.04), 0 24px 56px -12px rgb(10 22 57 / 0.18);
+
+  /* Glass (DESIGN.md, "Glass"). The sheet and what stands on it are panes the day's picture shows
+     through, out of focus. Each value is set so that the smallest words on it still pass at
+     4.5:1 were the picture behind it black: a white wash lies over the soft picture, the sheet
+     over that, a pane over the sheet. A list that opens over the page stays solid. The measured
+     pairs are in scripts/contrast.pairs.json, and `npm run glass` reads the panes as drawn. */
+  --glass-wash: color-mix(in srgb, var(--palette-white) 55%, transparent); /* over the soft picture: bounds how dark the ground can be */
+  --glass-sheet: color-mix(in srgb, var(--palette-cream) 70%, transparent); /* the sheet: at its darkest #dbd8cf, mist on it 4.66:1 */
+  --glass-pane: color-mix(in srgb, var(--palette-white) 62%, transparent); /* a card on the sheet: never darker than the sheet */
+  --glass-bar: color-mix(in srgb, var(--palette-white) 78%, transparent); /* the menu and the phone's bar, over anything: at its darkest #c7c7c7, slate on it 5.26:1 */
+  --glass-box: color-mix(in srgb, var(--palette-white) 86%, transparent); /* the search box, over anything: at its darkest #dbdbdb, mist on it 4.79:1 */
+  --glass-blur: blur(18px) saturate(1.6); /* what a bar or a box does to the page behind it */
+  --glass-strip: color-mix(in srgb, var(--palette-cream) 72%, transparent); /* behind the menu's pill: the page fades and blurs out under it */
+  --glass-strip-blur: blur(14px);
+  --glass-shine: inset 0 1px 0 rgb(255 255 255 / 0.75); /* the lit upper edge of a pane */
+  /* What a card is painted with: glass on the sheet, solid where a part says so (on ink, over a picture). */
+  --pane: var(--glass-pane);
+  /* Where the sheet's upper edge lies when a page opens: under the menu's pill and its margin. */
+  --sheet-at: calc(var(--nav-h) + 2px + 0.75rem);
+}
+
+/* For anyone who asks for less transparency or more contrast, and where a browser cannot blur
+   what is behind a thing, every pane is solid again, as the page was before it was glass. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :root {
+    --glass-wash: var(--palette-cream);
+    --glass-sheet: var(--palette-cream);
+    --glass-pane: var(--palette-white);
+    --glass-bar: var(--palette-white);
+    --glass-box: var(--palette-white);
+    --glass-blur: none;
+    --glass-strip: var(--palette-cream);
+    --glass-strip-blur: none;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-bar: var(--palette-white);
+    --glass-box: var(--palette-white);
+    --glass-strip: var(--palette-cream);
+  }
 }
 
 /* The roles. Tailwind's own colours are off, so only a role paints. */
@@ -126,8 +167,9 @@
     position: absolute;
     z-index: -1;
     inset: var(--sheet-top, 0) var(--edge) 0;
-    background: var(--color-sheet);
+    background: var(--glass-sheet);
     border-radius: var(--radius-2xl);
+    box-shadow: var(--glass-shine), 0 0 0 1px color-mix(in srgb, var(--palette-white) 55%, transparent);
   }
   main:has(> .hero-open) {
     --sheet-top: var(--hero-h);
@@ -328,7 +370,66 @@
     background: linear-gradient(to bottom, color-mix(in srgb, var(--palette-cream) 78%, transparent), color-mix(in srgb, var(--palette-cream) 52%, transparent) 38%, transparent 68%);
   }
 
-  /* The menu: a white pill that floats over the picture and the sheet. */
+  /* The picture again, out of focus, under the sheet: what the glass lies on. It is fixed and as
+     wide as the sheet, so the picture stays sharp in the margin round it. It is a small copy
+     made soft beforehand (scripts/frost.mjs) and drawn large, so no filter runs while the page
+     scrolls. A white wash lies over it: however dark a picture is, the ground under the sheet
+     is never darker than the words on the sheet can bear. The first screen has no sheet, and
+     keeps its picture sharp. */
+  .frost {
+    position: fixed;
+    z-index: -1;
+    inset: var(--sheet-at) var(--edge) auto;
+    height: 100lvh;
+    overflow: hidden;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    pointer-events: none;
+  }
+  .frost::before {
+    content: "";
+    position: absolute;
+    inset: -3rem;
+    background-image: var(--theme-frost);
+    background-size: cover;
+    background-position: center bottom;
+  }
+  @media (max-width: 40rem) {
+    .frost::before {
+      background-image: var(--theme-frost-sm);
+    }
+  }
+  /* A picture with no soft copy (one a superadmin uploaded) is blurred here instead. */
+  html:not([data-frost]) .frost::before {
+    background-image: var(--theme-image);
+    filter: blur(40px);
+  }
+  .frost::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--glass-wash);
+  }
+  body:has(.landing) .frost,
+  body:has(.landing) .site-header::before {
+    display: none;
+  }
+  /* A pane that floats over the page, not on the sheet: it blurs what is behind it, as the menu does. */
+  .glass-float {
+    --pane: var(--glass-bar);
+    backdrop-filter: var(--glass-blur);
+  }
+  /* On ink a pane is solid again: a quiet button on a dark card, the footer's own. */
+  .card-ink,
+  .site-footer,
+  .toast {
+    --pane: var(--palette-white);
+  }
+  /* The lit upper edge of a pane. Of no weight in the cascade: a rule that sets a shadow of its own keeps it. */
+  :where(.card, .listing, .answer, .known, .dishes, .tally, .cart-item, .start-tile, .stat) {
+    box-shadow: var(--glass-shine);
+  }
+
+  /* The menu: a pill of glass that floats over the picture and the sheet. */
   .site-header {
     position: sticky;
     top: 0.75rem;
@@ -346,7 +447,8 @@
     min-height: var(--nav-h);
     margin-inline: auto;
     padding: 0.375rem 0.375rem 0.375rem 1.25rem;
-    background: var(--palette-white);
+    background: var(--glass-bar);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-md);
@@ -357,7 +459,9 @@
     position: absolute;
     z-index: -1;
     inset: -0.75rem 0 -0.5rem;
-    background: linear-gradient(to bottom, var(--palette-cream) 45%, transparent);
+    background: linear-gradient(to bottom, var(--glass-strip) 45%, transparent);
+    backdrop-filter: var(--glass-strip-blur);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
     pointer-events: none;
   }
   /* While a group of the menu is open, a clear sheet over the page takes the tap that closes it,
@@ -540,7 +644,7 @@
     background: var(--palette-swell);
   }
   .btn-quiet {
-    background: var(--color-paper);
+    background: var(--pane);
     color: var(--color-ink);
     border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
   }
@@ -703,7 +807,7 @@
     padding: 0 0.875rem;
     border: 1px solid color-mix(in srgb, var(--palette-ink) 16%, transparent);
     border-radius: var(--radius-full);
-    background: var(--color-paper);
+    background: var(--pane);
     color: var(--color-ink);
     text-decoration: none;
     white-space: nowrap;
@@ -784,7 +888,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    background: var(--color-paper);
+    background: var(--glass-box);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-md);
@@ -1125,7 +1230,7 @@
     position: relative;
     display: block;
     padding: 1.5rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
@@ -1353,7 +1458,8 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     padding: 0.25rem;
-    background: var(--palette-white);
+    background: var(--glass-bar);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
@@ -1447,7 +1553,7 @@
     gap: 0 1rem;
     align-items: start;
     padding: 1.125rem 1.125rem 1.125rem 1.25rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
@@ -1470,7 +1576,7 @@
   .answer {
     position: relative;
     padding: 1.5rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid color-mix(in srgb, var(--palette-royal) 22%, transparent);
     border-radius: var(--radius-xl);
     box-shadow: 0 1px 2px rgb(10 22 57 / 0.04), 0 12px 32px -10px color-mix(in srgb, var(--palette-royal) 26%, transparent);
@@ -1566,7 +1672,7 @@
   /* A business's own page opens with its card: a strip of the day's picture, its kind's icon
      standing on the strip's edge, its name, and what can be done. */
   .biz-head {
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-2xl);
     overflow: hidden;
@@ -1643,7 +1749,7 @@
   }
   .known {
     padding: 1.125rem 1.25rem 1.25rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
   }
@@ -1788,7 +1894,7 @@
     display: grid;
     gap: 1.5rem 2.5rem;
     padding: 1.5rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
   }
@@ -1970,7 +2076,7 @@
     padding: 0 0.875rem;
     border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
     border-radius: var(--radius-full);
-    background: var(--color-paper);
+    background: var(--pane);
     text-decoration: none;
     white-space: nowrap;
     transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
@@ -2413,7 +2519,7 @@
     gap: 0.625rem;
     padding: 0.875rem 1.125rem;
     border-radius: var(--radius-lg);
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     font-weight: 500;
   }
@@ -2578,7 +2684,7 @@
   .baz-head {
     position: relative;
     overflow: hidden;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-sm);
@@ -2804,7 +2910,7 @@
     padding: 0.625rem 0.75rem;
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
-    background: var(--color-paper);
+    background: var(--pane);
     color: var(--color-ink);
     text-decoration: none;
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
@@ -2880,7 +2986,7 @@
     align-items: center;
     gap: 0.75rem 1rem;
     padding: 1.125rem 1rem 1.125rem 1.25rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
   }
@@ -2928,7 +3034,7 @@
     gap: 0.75rem;
     height: 100%;
     padding: 0.875rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     text-decoration: none;
@@ -3107,7 +3213,7 @@
     gap: 0.25rem;
     height: 100%;
     padding: 1.125rem 1.25rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     text-decoration: none;
@@ -3146,7 +3252,7 @@
     gap: 0.875rem 1.125rem;
     align-items: center;
     padding: 0.875rem;
-    background: var(--color-paper);
+    background: var(--pane);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
@@ -3489,8 +3595,15 @@
   footer,
   .chart canvas,
   .backdrop,
+  .frost,
   .tabbar {
     display: none !important;
+  }
+  /* On paper nothing is glass. */
+  :root {
+    --glass-sheet: #fff;
+    --glass-pane: #fff;
+    --glass-box: #fff;
   }
   html,
   body {
