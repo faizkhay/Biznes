@@ -25,7 +25,6 @@
     "test:rls": "bash scripts/test-rls.sh",
     "behaviour:tax": "node scripts/behaviour-tax.mjs",
     "behaviour:baz": "node scripts/behaviour-baz.mjs",
-    "frost": "node scripts/frost.mjs",
     "glass": "node scripts/glass-contrast.mjs",
     "icons:sheet": "node scripts/icon-sheet.mjs",
     "icons:districts": "node scripts/district-icons.mjs",

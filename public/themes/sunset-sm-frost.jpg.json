@@ -1,8 +1,0 @@
-{
-  "file": "sunset-sm-frost.jpg",
-  "kind": "derived",
-  "from": "sunset-sm.jpg",
-  "how": "scripts/frost.mjs: made 128 pixels on its longer side, blurred, made richer and dimmed to four tenths, to stand out of focus behind the page's glass",
-  "by": "Khay Digital, for biznes.mu",
-  "licence": "As sunset-sm.jpg: see sunset-sm.jpg.json."
-}

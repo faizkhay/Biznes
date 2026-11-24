@@ -19,7 +19,7 @@
   --palette-ink: #0a1639; /* sampled: the brand's dark. Words: 17.69:1 on white, 16.8:1 on cream, 15.42:1 on sand */
   --palette-swell: #14224f; /* derived from ink, lighter: the ink button under the pointer */
   --palette-slate: #404965; /* derived, ink 78% toward white: secondary words; 8.9:1 on white, 8.45:1 on cream, 7.76:1 on sand */
-  --palette-mist: #545c74; /* derived, ink at 70% on white: captions, counts. Deepened on 24 November 2026 so that it holds on glass at its darkest; 6.64:1 on white, 6.3:1 on cream, 5.79:1 on sand */
+  --palette-mist: #626a80; /* derived, ink 65% toward white: captions, counts; 5.39:1 on white, 5.12:1 on cream, 4.7:1 on sand */
   --palette-saffron: #f8c618; /* sampled: the brand's action. A fill, never words: ink on it is 11.02:1 */
   --palette-saffron-deep: #e3b30d; /* derived from saffron, darker: the action under the pointer; ink on it 9.03:1 */
   --palette-ember: #ff8f4a; /* derived, saffron toward coral: the far end of the verified mark's glow; ink on it is 7.81:1 */
@@ -30,14 +30,7 @@
   --palette-lagoon: #aebadf; /* sampled from the same mock-up: the pale blue of the glow behind the question */
   --palette-haze: #b6c0db; /* derived from limewash toward ink: captions on the footer's ink; 9.73:1 on ink */
   --palette-coral: #f14949; /* sampled: the brand's red. A mark, a glow. Never words on white or cream */
-  --palette-coral-deep: #b02323; /* derived from coral, darker: an error's words. Deepened on 24 November 2026 so that it holds on glass at its darkest; 6.75:1 on white, 6.4:1 on cream */
-
-  /* Words on dark glass (DESIGN.md, "Glass"), each held at 4.5:1 or better on the sheet at its lightest. */
-  --palette-pearl: #e4e0d6; /* derived, cream toward ink: secondary words on glass; 6.13:1 on the sheet at its lightest */
-  --palette-ash: #cdc9c0; /* derived, cream further toward ink: captions and counts on glass; 4.89:1 on the sheet at its lightest */
-  --palette-sky: #bfd0ff; /* derived from lagoon, lighter: what answers, on glass; 5.26:1 on the sheet at its lightest */
-  --palette-blush: #ffb9b3; /* derived from coral toward white: an error's words on glass; 4.94:1 on the sheet at its lightest */
-  --palette-night: #131d42; /* derived from ink, a step lighter: what opens over the page, solid */
+  --palette-coral-deep: #c12a2a; /* derived from coral, darker: an error's words; 5.78:1 on white, 5.48:1 on cream */
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --nav-h: 56px;
@@ -49,68 +42,50 @@
   --shadow-md: 0 1px 2px rgb(10 22 57 / 0.04), 0 10px 30px -6px rgb(10 22 57 / 0.1);
   --shadow-lg: 0 2px 4px rgb(10 22 57 / 0.04), 0 24px 56px -12px rgb(10 22 57 / 0.18);
 
-  /* Glass (DESIGN.md, "Glass"): smoked glass over the day's picture, with light words on it.
-     The owner's word for it was translucent, so the tint is light and the picture does the
-     work: it stands under the sheet again out of focus, richer, and at four tenths of its light
-     (scripts/frost.mjs), so the brightest it can be there is #666666. Each pane is a thin tint of
-     ink over that, set so that the faintest words on it pass at 4.5:1 were the whole picture
-     white. A pane on the sheet only ever darkens it. A bar that passes over the page dims and
-     blurs what is behind it by the same rule. The pairs are in scripts/contrast.pairs.json, and
-     `npm run glass` reads the panes as drawn. */
-  --glass-dim: saturate(1.6) brightness(0.4); /* what glass does to the light behind it, after the blur */
-  --glass-sheet: color-mix(in srgb, var(--palette-ink) 28%, transparent); /* the sheet: at its lightest #4c5059, ash on it 4.89:1 */
-  --glass-pane: color-mix(in srgb, var(--palette-ink) 24%, transparent); /* a card on the sheet: darker than the sheet */
-  --glass-chip: color-mix(in srgb, var(--palette-ink) 36%, transparent); /* a chip, a tile, a thing under the pointer: darker again */
-  --glass-bar: color-mix(in srgb, var(--palette-ink) 28%, transparent); /* the menu and the phone's bar, over anything: at its lightest #4c5059 */
-  --glass-blur: blur(24px) var(--glass-dim); /* what a bar does to the page behind it */
-  --glass-edge: color-mix(in srgb, var(--palette-white) 26%, transparent); /* the bright rim of a pane */
-  --glass-shine: inset 0 1px 0 rgb(255 255 255 / 0.18); /* the lit upper edge of a pane */
-  --glass-strip: color-mix(in srgb, var(--palette-ink) 30%, transparent); /* behind the menu's pill: the page dims and blurs out under it */
-  --glass-strip-blur: blur(14px);
-  /* Where the sheet's upper edge lies when a page opens: under the menu's pill and its margin. */
-  --sheet-at: calc(var(--nav-h) + 2px + 0.75rem);
+  /* Frosted glass (DESIGN.md, "Frosted glass"): white, translucent, and only on the menu's pill,
+     the phone's bar, the search bar and the landing page's foot line. The page itself is paper.
+     It is white at 54% over whatever is behind it, blurred. Were the picture behind it black the
+     glass would be #8a8a8a, and ink on that is 5.16:1: so every word on glass is ink, and passes
+     whatever the picture is. `npm run glass` reads it as drawn. */
+  --glass: color-mix(in srgb, var(--palette-white) 54%, transparent);
+  --glass-blur: blur(20px) saturate(1.8);
+  --glass-edge: color-mix(in srgb, var(--palette-white) 72%, transparent); /* the bright rim of a pane */
+  --glass-shine: inset 0 1px 0 rgb(255 255 255 / 0.65); /* its lit upper edge */
 }
 
 /* For anyone who asks for less transparency or more contrast, and where a browser cannot blur
-   what is behind a thing, every pane is solid: the same dark page, with nothing showing through. */
+   what is behind a thing, the glass is plain white. */
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   :root {
-    --glass-sheet: #1b2548;
-    --glass-pane: var(--palette-night);
-    --glass-chip: var(--palette-ink);
-    --glass-bar: var(--palette-night);
+    --glass: var(--palette-white);
     --glass-blur: none;
-    --glass-strip: #1b2548;
-    --glass-strip-blur: none;
   }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root {
-    --glass-bar: var(--palette-night);
-    --glass-strip: #1b2548;
+    --glass: var(--palette-white);
   }
 }
 
 /* The roles. Tailwind's own colours are off, so only a role paints. */
 @theme {
   --color-*: initial;
-  --color-paper: var(--glass-pane);
-  --color-sheet: var(--glass-sheet);
-  --color-panel: var(--glass-chip);
-  --color-float: var(--palette-night); /* what opens over the page: a list, a group of the menu. Solid, so it is read */
-  --color-ink: var(--palette-cream);
-  --color-ink-subtle: var(--palette-pearl);
-  --color-ink-faint: var(--palette-ash);
-  --color-on-ink: var(--palette-ink);
-  --color-link: var(--palette-sky);
+  --color-paper: var(--palette-white);
+  --color-sheet: var(--palette-cream);
+  --color-panel: var(--palette-sand);
+  --color-ink: var(--palette-ink);
+  --color-ink-subtle: var(--palette-slate);
+  --color-ink-faint: var(--palette-mist);
+  --color-on-ink: var(--palette-white);
+  --color-link: var(--palette-royal);
   --color-signal: var(--palette-saffron);
   --color-signal-hover: var(--palette-saffron-deep);
-  --color-signal-wash: color-mix(in srgb, var(--palette-saffron) 16%, color-mix(in srgb, var(--palette-ink) 78%, transparent)); /* a chosen thing, an answer's ground: amber glass, darker than the sheet */
+  --color-signal-wash: var(--palette-saffron-wash);
   --color-on-signal: var(--palette-ink);
-  --color-alert: var(--palette-blush);
-  --color-line: color-mix(in srgb, var(--palette-cream) 14%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-cream) 55%, transparent); /* a field's edge: 3.3:1 on the sheet at its lightest */
-  --color-focus: var(--palette-saffron);
+  --color-alert: var(--palette-coral-deep);
+  --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-ink) 50%, transparent); /* a field's edge: 3.4:1 on white */
+  --color-focus: var(--palette-royal);
 
   /* Two faces, both SIL OFL 1.1 and served from this site. Manrope, from the list KOS keeps for a
      brand with no face of its own, carries the name, every sentence and every control; figures
@@ -135,11 +110,11 @@
 
 @layer base {
   html {
-    background: var(--palette-ink);
+    background: var(--palette-cream);
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--nav-h) + 4.5rem);
-    color-scheme: dark;
+    color-scheme: light;
   }
   @media (min-width: 64rem) {
     html {
@@ -156,8 +131,8 @@
     flex-direction: column;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    caret-color: var(--palette-saffron);
-    accent-color: var(--palette-saffron);
+    caret-color: var(--palette-royal);
+    accent-color: var(--palette-royal);
   }
   /* The sheet: the paper the page is written on, laid over the picture with the picture showing
      round it. It is drawn behind the page's own blocks, so a block needs to know nothing of it.
@@ -175,9 +150,8 @@
     position: absolute;
     z-index: -1;
     inset: var(--sheet-top, 0) var(--edge) 0;
-    background: var(--glass-sheet);
+    background: var(--color-sheet);
     border-radius: var(--radius-2xl);
-    box-shadow: var(--glass-shine), 0 0 0 1px var(--glass-edge);
   }
   main:has(> .hero-open) {
     --sheet-top: var(--hero-h);
@@ -197,7 +171,7 @@
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.22em;
-    text-decoration-color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+    text-decoration-color: color-mix(in srgb, var(--palette-ink) 30%, transparent);
     transition: text-decoration-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
   a:hover {
@@ -361,7 +335,7 @@
     position: fixed;
     z-index: -2;
     inset: 0;
-    background-color: var(--palette-ink);
+    background-color: var(--palette-cream);
     background-image: var(--theme-image);
     background-size: cover;
     background-position: center bottom;
@@ -371,55 +345,15 @@
       background-image: var(--theme-image-sm);
     }
   }
-
-  /* The picture again, out of focus, under the sheet: what the glass lies on. It is fixed and as
-     wide as the sheet, so the picture stays sharp in the margin round it. It is a small copy
-     made soft beforehand (scripts/frost.mjs) and drawn large, so no filter runs while the page
-     scrolls. A white wash lies over it: however dark a picture is, the ground under the sheet
-     is never darker than the words on the sheet can bear. The first screen has no sheet, and
-     keeps its picture sharp. */
-  .frost {
-    position: fixed;
-    z-index: -1;
-    inset: var(--sheet-at) var(--edge) auto;
-    height: 100lvh;
-    overflow: hidden;
-    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-    pointer-events: none;
-  }
-  .frost::before {
+  .backdrop::after {
     content: "";
     position: absolute;
-    inset: -3rem;
-    background-image: var(--theme-frost);
-    background-size: cover;
-    background-position: center bottom;
-  }
-  @media (max-width: 40rem) {
-    .frost::before {
-      background-image: var(--theme-frost-sm);
-    }
-  }
-  /* A picture with no soft copy (one a superadmin uploaded) is blurred here instead. */
-  html:not([data-frost]) .frost::before {
-    background-image: var(--theme-image);
-    filter: blur(40px) var(--glass-dim);
-  }
-  body:has(.landing) .frost,
-  body:has(.landing) .site-header::before {
-    display: none;
-  }
-  /* A pane that floats over the page, not on the sheet: it blurs what is behind it, as the menu does. */
-  .glass-float {
-    background: var(--glass-bar);
-    backdrop-filter: var(--glass-blur);
-  }
-  /* The lit upper edge of a pane. Of no weight in the cascade: a rule that sets a shadow of its own keeps it. */
-  :where(.card, .listing, .answer, .known, .dishes, .tally, .cart-item, .start-tile, .stat) {
-    box-shadow: var(--glass-shine);
+    inset: 0;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--palette-cream) 78%, transparent), color-mix(in srgb, var(--palette-cream) 52%, transparent) 38%, transparent 68%);
   }
 
-  /* The menu: a pill of glass that floats over the picture and the sheet. */
+  /* The menu: a pill of frosted glass that floats over the picture and the sheet. The page passes
+     under it and is seen through it, out of focus. Its words are ink, as every word on glass is. */
   .site-header {
     position: sticky;
     top: 0.75rem;
@@ -437,22 +371,11 @@
     min-height: var(--nav-h);
     margin-inline: auto;
     padding: 0.375rem 0.375rem 0.375rem 1.25rem;
-    background: var(--glass-bar);
+    background: var(--glass);
     backdrop-filter: var(--glass-blur);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border: 1px solid var(--glass-edge);
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow-md);
-  }
-  /* Behind the pill, the page fades to paper, so nothing reads through the strip above it. */
-  .site-header::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: -0.75rem 0 -0.5rem;
-    background: linear-gradient(to bottom, var(--glass-strip) 45%, transparent);
-    backdrop-filter: var(--glass-strip-blur);
-    mask-image: linear-gradient(to bottom, #000 60%, transparent);
-    pointer-events: none;
+    box-shadow: var(--glass-shine), var(--shadow-md);
   }
   /* While a group of the menu is open, a clear sheet over the page takes the tap that closes it,
      so that tap does not also open whatever lay beneath. */
@@ -502,7 +425,7 @@
     min-height: 2.75rem;
     padding: 0 0.75rem;
     border-radius: var(--radius-full);
-    color: var(--color-ink-subtle);
+    color: var(--color-ink);
     text-decoration: none;
     white-space: nowrap;
     font-weight: 500;
@@ -571,7 +494,7 @@
     margin: 0;
     padding: 0.5rem;
     list-style: none;
-    background: var(--color-float);
+    background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
@@ -631,16 +554,16 @@
     color: var(--color-on-ink);
   }
   .btn-ink:hover {
-    background: color-mix(in srgb, var(--color-ink) 86%, var(--color-on-ink));
+    background: var(--palette-swell);
   }
   .btn-quiet {
     background: var(--color-paper);
     color: var(--color-ink);
-    border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
   }
   .btn-quiet:hover {
     background: var(--color-panel);
-    border-color: color-mix(in srgb, var(--color-ink) 32%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
   }
   .btn-sm {
     min-height: 2.5rem;
@@ -696,11 +619,15 @@
     background: var(--color-panel);
     color: var(--color-ink);
   }
+  /* On the menu's glass the square buttons are glass too: lighter than the pill, never darker. */
+  .nav-pill .icon-btn-sq {
+    background: color-mix(in srgb, var(--palette-white) 46%, transparent);
+  }
   .icon-btn-sq:hover {
-    background: var(--glass-chip);
+    background: color-mix(in srgb, var(--palette-ink) 10%, var(--palette-white));
   }
   .icon-btn-edge {
-    border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
     background: var(--color-paper);
   }
   /* How many are saved, on the header's bookmark. */
@@ -741,7 +668,7 @@
   .field:focus-visible {
     outline: none;
     border-color: var(--color-focus);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-focus) 22%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 14%, transparent);
   }
   .field[aria-invalid="true"] {
     border-color: var(--color-alert);
@@ -757,7 +684,7 @@
   select.field {
     appearance: none;
     padding-right: 2.5rem;
-    background-image: linear-gradient(45deg, transparent 50%, var(--color-ink-subtle) 50%), linear-gradient(135deg, var(--color-ink-subtle) 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, var(--palette-slate) 50%), linear-gradient(135deg, var(--palette-slate) 50%, transparent 50%);
     background-position: calc(100% - 1.125rem) 52%, calc(100% - 0.8125rem) 52%;
     background-size: 0.3125rem 0.3125rem;
     background-repeat: no-repeat;
@@ -769,7 +696,7 @@
     align-items: center;
     min-height: 2.75rem;
     padding: 0 1.125rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 50%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 50%, transparent);
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
@@ -795,7 +722,7 @@
     gap: 0.375rem;
     min-height: 2.5rem;
     padding: 0 0.875rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 16%, transparent);
     border-radius: var(--radius-full);
     background: var(--color-paper);
     color: var(--color-ink);
@@ -806,7 +733,7 @@
   }
   .filter:hover {
     background: var(--color-panel);
-    border-color: color-mix(in srgb, var(--color-ink) 32%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
   }
   .filter svg {
     width: 1rem;
@@ -825,7 +752,7 @@
   }
   .filter[aria-current="true"] .n,
   .menu[open] > .filter .n {
-    color: color-mix(in srgb, var(--color-on-ink) 72%, transparent);
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
   }
   .filters {
     display: flex;
@@ -850,7 +777,7 @@
     margin: 0;
     padding: 0.375rem;
     list-style: none;
-    background: var(--color-float);
+    background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
@@ -873,23 +800,25 @@
     font-weight: 600;
   }
 
-  /* The search box: the one control every page has. A white pill that lifts off the page. */
+  /* The search box: the one control every page has. A pill of frosted glass that lifts off the
+     page: on the landing page the picture is seen through it. */
   .search {
     position: relative;
     display: flex;
     align-items: center;
-    background: var(--color-panel);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 22%, transparent);
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge);
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--glass-shine), var(--shadow-md);
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   .search:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 26%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
   }
   .search:focus-within {
-    border-color: color-mix(in srgb, var(--color-focus) 70%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-focus) 20%, transparent), var(--shadow-lg);
+    border-color: color-mix(in srgb, var(--palette-royal) 60%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 12%, transparent), var(--shadow-lg);
   }
   .search input {
     flex: 1;
@@ -966,14 +895,15 @@
     min-height: 2.75rem;
     box-shadow: none;
     background: var(--color-panel);
+    backdrop-filter: none;
     border-color: transparent;
   }
   .search-md:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
   }
   .search-md:focus-within {
     background: var(--color-paper);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-focus) 20%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-royal) 12%, transparent);
   }
   .search-md .search-glass {
     width: 2.75rem;
@@ -1020,7 +950,7 @@
     top: calc(100% + 0.5rem);
     left: 0;
     right: 0;
-    background: var(--color-float);
+    background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
@@ -1095,6 +1025,21 @@
     isolation: isolate;
     overflow-x: clip;
   }
+  /* A soft light behind the words, in the paper's colour: whatever the picture holds there (a
+     mountain, a tree), the words keep their contrast. It stands above the search bar, so the
+     picture is seen through the bar's glass. Measured by scripts/hero-contrast.mjs. */
+  .hero-open::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 37%;
+    width: min(64rem, 150vw);
+    height: 24rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-cream) 92%, transparent), color-mix(in srgb, var(--palette-cream) 80%, transparent) 45%, color-mix(in srgb, var(--palette-cream) 40%, transparent) 75%, transparent);
+    pointer-events: none;
+  }
   /* A small line above the question: what the index holds, as a count. */
   .pill-note {
     display: inline-flex;
@@ -1102,9 +1047,10 @@
     gap: 0.5rem;
     min-height: 2rem;
     padding: 0 0.875rem 0 0.75rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-full);
-    background: var(--color-panel);
+    background: color-mix(in srgb, var(--palette-white) 82%, transparent);
+    backdrop-filter: blur(8px);
     color: var(--color-ink);
     font-weight: 500;
     text-decoration: none;
@@ -1118,7 +1064,7 @@
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-saffron) 28%, transparent);
   }
   a.pill-note:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 26%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
     color: var(--color-ink);
   }
 
@@ -1129,10 +1075,10 @@
     gap: 0.5rem;
     min-height: 2.5rem;
     padding: 0 0.875rem 0 0.75rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 8%, transparent);
     border-radius: var(--radius-full);
-    background: var(--glass-bar);
-    backdrop-filter: var(--glass-blur);
+    background: color-mix(in srgb, var(--palette-white) 82%, transparent);
+    backdrop-filter: blur(8px);
     color: var(--color-ink);
     font-weight: 500;
     text-decoration: none;
@@ -1146,7 +1092,7 @@
   }
   .try:hover {
     background: var(--color-paper);
-    border-color: color-mix(in srgb, var(--color-ink) 28%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 28%, transparent);
     color: var(--color-ink);
   }
 
@@ -1171,7 +1117,7 @@
     height: 3rem;
     flex: none;
     border-radius: var(--radius-lg);
-    background: var(--palette-ink);
+    background: var(--color-ink);
     color: var(--color-signal);
     transition: background-color 160ms var(--ease-out), transform 200ms var(--ease-out);
   }
@@ -1210,7 +1156,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
   }
   .card:has(.row-title):hover {
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
     box-shadow: var(--shadow-md);
   }
   .card-wash {
@@ -1223,9 +1169,9 @@
   }
   /* A dark card: the island's own ground. For the footer, a plan, a thing to notice. */
   .card-ink {
-    background: color-mix(in srgb, var(--palette-ink) 82%, transparent);
-    border-color: var(--glass-edge);
-    color: var(--palette-white);
+    background: var(--color-ink);
+    border-color: transparent;
+    color: var(--color-on-ink);
   }
   /* On ink the focus ring is saffron: the royal ring would be lost there (1.77:1). */
   .card-ink,
@@ -1247,7 +1193,7 @@
     height: 1.75rem;
     margin-right: -0.625rem;
     border-radius: 50%;
-    background: var(--palette-ink);
+    background: var(--color-ink);
     color: var(--color-signal);
     transition: transform 200ms var(--ease-out);
   }
@@ -1277,7 +1223,6 @@
     --color-ink-subtle: color-mix(in srgb, var(--palette-white) 78%, transparent);
     --color-ink-faint: var(--palette-haze);
     --color-line: color-mix(in srgb, var(--palette-white) 14%, transparent);
-    --color-link: var(--palette-sky);
   }
   .site-footer .footer-mark {
     position: absolute;
@@ -1353,12 +1298,17 @@
     display: grid;
     gap: 1rem;
     padding: 1.25rem 1.5rem;
-    border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
-    background: color-mix(in srgb, var(--palette-white) 7%, transparent);
+    background: var(--palette-cream);
+    color: var(--palette-ink);
+    --color-ink: var(--palette-ink);
+    --color-ink-subtle: var(--palette-slate);
+    --color-ink-faint: var(--palette-mist);
+    --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+    --color-focus: var(--palette-royal);
   }
   .footer-join p {
-    color: var(--color-ink-subtle);
+    color: var(--palette-slate);
   }
   .footer-join:has(> .footer-join-form:empty) {
     display: none;
@@ -1428,11 +1378,11 @@
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     padding: 0.25rem;
-    background: var(--glass-bar);
+    background: var(--glass);
     backdrop-filter: var(--glass-blur);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border: 1px solid var(--glass-edge);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--glass-shine), var(--shadow-lg);
   }
   .tabbar a {
     position: relative;
@@ -1443,7 +1393,7 @@
     gap: 0.125rem;
     min-height: 3.25rem;
     border-radius: var(--radius-lg);
-    color: var(--color-ink-subtle);
+    color: var(--color-ink);
     text-decoration: none;
     font-size: 0.75rem;
     font-weight: 600;
@@ -1529,7 +1479,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);
   }
   .listing:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 20%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 20%, transparent);
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
   }
@@ -1539,7 +1489,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: var(--radius-lg);
-    background: var(--palette-ink);
+    background: var(--color-ink);
     color: var(--color-signal);
   }
   /* The answer to a question, in the site's own words: the first thing under the search box. */
@@ -1547,9 +1497,9 @@
     position: relative;
     padding: 1.5rem;
     background: var(--color-paper);
-    border: 1px solid color-mix(in srgb, var(--color-link) 34%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-royal) 22%, transparent);
     border-radius: var(--radius-xl);
-    box-shadow: 0 1px 2px rgb(10 22 57 / 0.04), 0 12px 32px -10px color-mix(in srgb, var(--color-link) 22%, transparent);
+    box-shadow: 0 1px 2px rgb(10 22 57 / 0.04), 0 12px 32px -10px color-mix(in srgb, var(--palette-royal) 26%, transparent);
   }
   .answer .row-title::after {
     border-radius: var(--radius-xl);
@@ -1571,7 +1521,7 @@
 
   /* A guide's tile is blue, an official page's and a website's are quiet. */
   .listing-icon-guide {
-    background: color-mix(in srgb, var(--palette-lagoon) 18%, transparent);
+    background: color-mix(in srgb, var(--palette-lagoon) 45%, var(--palette-white));
     color: var(--color-link);
   }
   .listing-icon-quiet {
@@ -1584,7 +1534,7 @@
   .biz-paid {
     border: 2px solid transparent;
     background:
-      linear-gradient(to bottom, color-mix(in srgb, var(--palette-saffron) 22%, #18213f), #18213f 5.5rem) padding-box,
+      linear-gradient(to bottom, var(--palette-saffron-wash), var(--palette-white) 5.5rem) padding-box,
       linear-gradient(110deg, var(--palette-saffron), var(--palette-ember)) border-box;
     box-shadow: 0 1px 2px rgb(10 22 57 / 0.05), 0 10px 32px -8px color-mix(in srgb, var(--palette-saffron-deep) 55%, transparent);
   }
@@ -1625,7 +1575,7 @@
   }
   .verified-more {
     padding-left: 0.4375rem;
-    border-left: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--palette-ink) 35%, transparent);
     font-weight: 700;
   }
   .verified-lg {
@@ -1884,7 +1834,7 @@
     align-items: baseline;
     gap: 0.25rem 1.25rem;
     padding: 0.6875rem 0;
-    border-bottom: 1px dashed color-mix(in srgb, var(--color-ink) 18%, transparent);
+    border-bottom: 1px dashed color-mix(in srgb, var(--palette-ink) 18%, transparent);
   }
   .dish:last-child {
     border-bottom: 0;
@@ -1920,7 +1870,7 @@
     margin-top: -2.25rem;
     border: 4px solid var(--color-paper);
     border-radius: 1.375rem;
-    background: var(--palette-ink);
+    background: var(--color-ink);
     color: var(--color-signal);
   }
   .biz-icon svg {
@@ -1975,11 +1925,11 @@
   }
   .act-quiet {
     background: transparent;
-    border: 1px dashed color-mix(in srgb, var(--color-ink) 28%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--palette-ink) 28%, transparent);
     color: var(--color-ink-subtle);
   }
   .act:hover {
-    background: var(--glass-chip);
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
   }
   .act svg {
     width: 0.9375rem;
@@ -2044,7 +1994,7 @@
     gap: 0.375rem;
     min-height: 2.5rem;
     padding: 0 0.875rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 14%, transparent);
     border-radius: var(--radius-full);
     background: var(--color-paper);
     text-decoration: none;
@@ -2053,7 +2003,7 @@
   }
   .narrow a:hover {
     background: var(--color-panel);
-    border-color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 30%, transparent);
   }
   @media (max-width: 40rem) {
     .narrow {
@@ -2104,7 +2054,7 @@
     color: var(--color-ink-faint);
   }
   .tab[aria-current="page"] .n {
-    color: color-mix(in srgb, var(--color-on-ink) 72%, transparent);
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
   }
 
   /* What kind of thing a row is: a small word in a pill. */
@@ -2177,7 +2127,7 @@
   .crumbs li + li::before {
     content: "/";
     margin: 0 0.5rem;
-    color: color-mix(in srgb, var(--color-ink) 26%, transparent);
+    color: color-mix(in srgb, var(--palette-ink) 26%, transparent);
   }
   .crumbs a {
     text-decoration: none;
@@ -2194,19 +2144,6 @@
   /* The island. One drawing, used everywhere; see components/Chart.tsx. A light map in the page's
      own colours: a pale lagoon for the sea, the paper for the land, every listing a point of ink at
      its own place, and saffron ringed in ink for the ones that answer. */
-  /* The island and the street map are drawings on light paper of their own, whatever the page
-     round them is: inside them the paper's roles are put back. */
-  .chart,
-  .street {
-    --color-ink: var(--palette-ink);
-    --color-ink-subtle: var(--palette-slate);
-    --color-ink-faint: var(--palette-mist);
-    --color-link: var(--palette-royal);
-    --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
-    --color-paper: var(--palette-white);
-    --color-panel: var(--palette-sand);
-    --color-focus: var(--palette-royal);
-  }
   .chart {
     position: relative;
     width: 100%;
@@ -2565,7 +2502,7 @@
     position: relative;
     width: 100%;
     height: min(34rem, 72dvh);
-    border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 12%, transparent);
     border-radius: var(--radius-xl);
     overflow: hidden;
     background: var(--palette-shallows);
@@ -2587,7 +2524,7 @@
   }
   .street-zoom .icon-btn {
     background: var(--color-paper);
-    border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 14%, transparent);
     box-shadow: var(--shadow-sm);
   }
   .street-zoom .icon-btn:hover {
@@ -2653,7 +2590,7 @@
     color: var(--color-on-ink);
   }
   .narrow a[aria-current="true"] .n {
-    color: color-mix(in srgb, var(--color-on-ink) 72%, transparent);
+    color: color-mix(in srgb, var(--palette-white) 72%, transparent);
   }
 
   /* Baz Manzer, the section. It stands by itself and installs as an app of its own, so beside
@@ -2736,7 +2673,7 @@
     color: var(--color-ink-faint);
   }
   .baz-type:hover {
-    background: var(--glass-chip);
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
   }
   /* The small ink tile an icon of the section stands on: a kind of place, a kind of food, a district. */
   .baz-type-icon {
@@ -2746,7 +2683,7 @@
     height: 2.5rem;
     flex: none;
     border-radius: var(--radius-md);
-    background: var(--palette-ink);
+    background: var(--color-ink);
     color: var(--color-signal);
     transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
@@ -2899,7 +2836,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   .baz-food:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
     box-shadow: var(--shadow-sm);
   }
 
@@ -2912,7 +2849,7 @@
   /* "Find a town": the page's own search box, over the list it makes smaller. */
   .town-finder .search-md {
     background: var(--color-paper);
-    border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 16%, transparent);
   }
   .town-finder .search-md .search-go {
     position: static;
@@ -3024,7 +2961,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   .start-tile:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
     box-shadow: var(--shadow-md);
   }
   .start-tile .tile-icon {
@@ -3088,14 +3025,6 @@
     .logo svg {
       height: 1.25rem;
     }
-    .tabbar::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: -1rem -0.5rem calc(-0.5rem - env(safe-area-inset-bottom));
-      background: linear-gradient(to top, color-mix(in srgb, var(--palette-ink) 80%, transparent) 55%, transparent);
-      pointer-events: none;
-    }
   }
 
   /* A word that comes and goes at the foot of the screen: "Link copied". */
@@ -3111,9 +3040,8 @@
     min-height: 2.75rem;
     padding: 0 1.125rem;
     border-radius: var(--radius-full);
-    background: var(--palette-night);
-    color: var(--palette-cream);
-    border: 1px solid var(--glass-edge);
+    background: var(--color-ink);
+    color: var(--color-on-ink);
     box-shadow: var(--shadow-lg);
     white-space: nowrap;
     animation: toast 240ms var(--ease-out);
@@ -3132,7 +3060,7 @@
 
   /* A shape that holds a place while something is fetched. */
   .wait {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--palette-cream) 8%, transparent) 0%, color-mix(in srgb, var(--palette-cream) 18%, transparent) 50%, color-mix(in srgb, var(--palette-cream) 8%, transparent) 100%);
+    background: linear-gradient(90deg, var(--palette-limewash) 0%, color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white)) 50%, var(--palette-limewash) 100%);
     background-size: 200% 100%;
     border-radius: var(--radius-sm);
     animation: wait 1.2s linear infinite;
@@ -3175,7 +3103,7 @@
     min-height: 2.25rem;
     margin-right: 0.75rem;
     padding: 0 1rem;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--palette-ink) 16%, transparent);
     border-radius: var(--radius-full);
     background: var(--color-panel);
     color: var(--color-ink);
@@ -3186,8 +3114,8 @@
     transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
   }
   .field[type="file"]:hover::file-selector-button {
-    background: var(--glass-chip);
-    border-color: color-mix(in srgb, var(--color-ink) 32%, transparent);
+    background: color-mix(in srgb, var(--palette-ink) 9%, var(--palette-white));
+    border-color: color-mix(in srgb, var(--palette-ink) 32%, transparent);
   }
   /* A number that sums something up, at the head of a page of one's own: bookings to answer, the
      month's takings. A card with the figure large, and what it counts above it. */
@@ -3204,7 +3132,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   a.stat:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
     box-shadow: var(--shadow-md);
   }
   .stat-figure {
@@ -3242,7 +3170,7 @@
     transition: border-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
   .ad:hover {
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+    border-color: color-mix(in srgb, var(--palette-ink) 22%, transparent);
     box-shadow: var(--shadow-md);
   }
   .ad-picture {
@@ -3266,7 +3194,7 @@
     overflow: hidden;
     border: 1px solid var(--color-line);
     border-radius: var(--radius-xl);
-    background: var(--palette-white);
+    background: var(--color-paper);
     text-wrap: wrap;
   }
   .mail-frame table {
@@ -3366,106 +3294,49 @@
     margin-top: 2rem;
   }
   /* On a short screen (a small phone, a phone on its side) the same things stand closer together. */
-  @media (max-height: 44rem) {
+  @media (max-height: 40rem) {
     .landing .hero-open {
-      padding-block: 0 0.25rem;
-    }
-    .landing-foot {
-      --fade: 1.125rem;
+      padding-block: 0 0.5rem;
     }
     .landing .hero-open > * + *,
     .landing .hero-open > .landing-search {
       margin-top: 1rem;
     }
   }
-  /* The first screen is the picture in daylight (the owner, 24 November 2026: "only search bar
-     on main page to be of glass, no box around it"). Its words are ink on the picture's own
-     light, as on paper: a veil of the paper's colour lies over the sky and a soft light behind
-     the words, so they keep their contrast whatever the picture holds there (measured by
-     scripts/hero-contrast.mjs). The menu there is the name and two buttons with no pill round
-     them. The one pane is the search bar. */
-  .landing,
-  body:has(.landing) .site-header {
-    --color-ink: var(--palette-ink);
-    --color-ink-subtle: var(--palette-slate);
-    --color-ink-faint: var(--palette-mist);
-    --color-on-ink: var(--palette-white);
-    --color-link: var(--palette-royal);
-    --color-line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
-    --color-focus: var(--palette-royal);
-    color: var(--palette-ink);
-  }
-  body:has(.landing) .backdrop::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, color-mix(in srgb, var(--palette-cream) 78%, transparent), color-mix(in srgb, var(--palette-cream) 52%, transparent) 38%, transparent 68%);
-  }
-  .landing .hero-open::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    top: 37%;
-    width: min(64rem, 150vw);
-    height: 24rem;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--palette-cream) 92%, transparent), color-mix(in srgb, var(--palette-cream) 80%, transparent) 45%, color-mix(in srgb, var(--palette-cream) 40%, transparent) 75%, transparent);
-    pointer-events: none;
-  }
-  body:has(.landing) .nav-pill {
-    background: none;
-    border-color: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
-  body:has(.landing) .nav-pill .icon-btn-sq {
-    background: transparent;
-  }
-  body:has(.landing) .nav-pill .icon-btn-sq:hover {
-    background: color-mix(in srgb, var(--palette-ink) 8%, transparent);
-  }
+  /* The landing page (the owner, 24 November 2026: "only search bar can he frosted glass thing, no
+     need for a box"): the greeting is words on the picture with no pill round them, and on the
+     search bar's glass the placeholder and the lens are ink, as every word on glass is. */
   .landing .pill-note {
     padding-inline: 0;
     border-color: transparent;
     background: none;
+    backdrop-filter: none;
   }
-  /* The search bar: translucent smoked glass. It halves the light of the picture behind it and
-     blurs it, under a thin tint, so the picture is plainly seen through it and white words on it
-     still pass were the picture white (at its lightest #6a6d73: white 5.18:1, cream 4.92:1). */
-  .landing .search {
-    --color-ink: var(--palette-white);
-    --color-ink-subtle: var(--palette-cream);
-    --color-ink-faint: var(--palette-cream);
-    --color-line: color-mix(in srgb, var(--palette-white) 22%, transparent);
-    --color-focus: var(--palette-saffron);
-    background: color-mix(in srgb, var(--palette-ink) 18%, transparent);
-    backdrop-filter: blur(16px) saturate(1.7) brightness(0.5);
-    border: 1px solid color-mix(in srgb, var(--palette-white) 40%, transparent);
-    box-shadow: var(--glass-shine), var(--shadow-lg);
-    color: var(--palette-white);
+  .landing .search input::placeholder {
+    color: var(--color-ink);
   }
-  .landing .search:hover {
-    border-color: color-mix(in srgb, var(--palette-white) 62%, transparent);
+  .landing .search .search-glass {
+    color: var(--color-ink);
   }
-  /* The line at the landing page's foot: whose product this is, and three pages. It has no box:
-     the picture fades to dusk at its lower edge, and the line stands on that in light words
-     (the fade is done above them, so there is ink at 80% or more behind every line of them: pearl
-     7.2:1 were the picture white). */
+  /* The line at the landing page's foot: whose product this is, and three pages. It stands on
+     the picture where the picture is fullest, so it has a ground of its own: frosted glass, as
+     the menu's pill is, with ink words. */
   .landing-foot {
-    --color-ink: var(--palette-cream);
-    --color-ink-subtle: var(--palette-pearl);
-    --color-link: var(--palette-cream);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 0 1.25rem;
-    --fade: 2.5rem;
-    margin: 0;
-    padding: var(--fade) 1.25rem calc(0.625rem + env(safe-area-inset-bottom));
-    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--palette-ink) 80%, transparent) var(--fade), color-mix(in srgb, var(--palette-ink) 88%, transparent));
-    color: var(--color-ink-subtle);
+    width: fit-content;
+    max-width: calc(100% - 1rem);
+    margin: 0 auto calc(0.75rem + env(safe-area-inset-bottom));
+    padding: 0.125rem 1.25rem;
+    border: 1px solid var(--glass-edge);
+    border-radius: var(--radius-xl);
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shine);
+    color: var(--color-ink);
     text-align: center;
   }
   .landing-foot ul {
@@ -3490,8 +3361,7 @@
   }
   @media (pointer: coarse) {
     .landing-foot {
-      --fade: 1.5rem;
-      padding-bottom: calc(0.125rem + env(safe-area-inset-bottom));
+      padding-block: 0.5rem 0;
     }
     .landing-foot nav a {
       min-height: 2.75rem;
@@ -3576,7 +3446,7 @@
   /* Under the pointer the sand stays, so the count on it keeps its contrast, and an edge of ink comes up. */
   .home .baz-head .tile:hover {
     background: var(--color-panel);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-ink) 26%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--palette-ink) 26%, transparent);
   }
   /* The top businesses: two cards abreast on a wide screen. On a phone they go by sideways, one
      card and the edge of the next in view, so the rest of the page stays within reach. */
@@ -3653,21 +3523,8 @@
   footer,
   .chart canvas,
   .backdrop,
-  .frost,
   .tabbar {
     display: none !important;
-  }
-  /* On paper nothing is glass, and the words are ink again. */
-  :root {
-    --glass-sheet: #fff;
-    --glass-pane: #fff;
-    --glass-chip: #fff;
-    --color-ink: #000;
-    --color-ink-subtle: #222;
-    --color-ink-faint: #444;
-    --color-link: #000;
-    --color-line: #bbb;
-    --color-line-strong: #666;
   }
   html,
   body {

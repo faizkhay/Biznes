@@ -15,7 +15,7 @@ const ROOT = BAZ.href;
  * at the top of a phone, which so becomes the top of the awning; `paper` is the sheet
  * (--palette-cream), behind the icon while the app opens.
  */
-export const BAZ_COLOURS = { theme: "#f14949", paper: "#0a1639" } as const;
+export const BAZ_COLOURS = { theme: "#f14949", paper: "#fdf9ec" } as const;
 
 /** True on every page of the section: its first page and everything beneath it. */
 export const inBaz = (pathname: string) => pathname === ROOT || pathname.startsWith(`${ROOT}/`);

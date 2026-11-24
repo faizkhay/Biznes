@@ -16,13 +16,6 @@ export type Theme = {
   chosen?: string;
 };
 
-/**
- * The soft copy of one of the site's own pictures, which stands out of focus behind the page's
- * glass (scripts/frost.mjs makes it, beside the picture). A picture a superadmin uploaded has
- * none, and the page blurs that picture itself.
- */
-export const softCopy = (src: string): string | undefined => (/^\/themes\/[a-z]+(-sm)?\.jpg$/.test(src) ? src.replace(/\.jpg$/, "-frost.jpg") : undefined);
-
 /** The public holidays of every year on the notices, as one list. */
 const readHolidays = () => Object.values(holidays()?.years ?? {}).flat();
 

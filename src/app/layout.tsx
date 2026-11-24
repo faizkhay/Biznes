@@ -4,7 +4,7 @@ import HeaderBar from "@/components/HeaderBar";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
-import { softCopy, themeNow } from "@/lib/theme";
+import { themeNow } from "@/lib/theme";
 import Pwa from "@/components/Pwa";
 import TabBar from "@/components/TabBar";
 import "./globals.css";
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-export const viewport: Viewport = { themeColor: "#0a1639", colorScheme: "dark", viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#fdf9ec", colorScheme: "light", viewportFit: "cover" };
 
 // The picture behind the page follows the calendar, so every page is made again at most once an
 // hour and takes the day's look with it.
@@ -51,18 +51,13 @@ export const revalidate = 3600;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const theme = await themeNow();
-  // The picture again, out of focus, for the glass to lie on: its own small copy where there is one.
-  const frost = softCopy(theme.src);
-  const frostSmall = softCopy(theme.small);
-  const look = { "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})`, ...(frost && frostSmall ? { "--theme-frost": `url(${frost})`, "--theme-frost-sm": `url(${frostSmall})` } : {}) } as React.CSSProperties;
   return (
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} data-frost={frost && frostSmall ? "made" : undefined} style={look}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-sm": `url(${theme.small})` } as React.CSSProperties}>
       <body>
         {/* The day's picture is fetched at once and at the size the screen needs: the small one on a phone. React lifts these two into the head. */}
         <link rel="preload" as="image" href={theme.small} media="(max-width: 40rem)" fetchPriority="high" />
         <link rel="preload" as="image" href={theme.src} media="(min-width: 40.01rem)" fetchPriority="high" />
         <div className="backdrop" aria-hidden />
-        <div className="frost" aria-hidden />
         <a href="#main" className="skip-link button-sm">
           Skip to the page
         </a>

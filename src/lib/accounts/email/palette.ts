@@ -10,7 +10,7 @@ export const TOKENS = {
   ink: "#0a1639", // --palette-ink: words; the sheet in a dark mail program
   swell: "#14224f", // --palette-swell: the card in a dark mail program
   slate: "#404965", // --palette-slate: secondary words
-  mist: "#545c74", // --palette-mist: the foot of the message
+  mist: "#626a80", // --palette-mist: the foot of the message
   haze: "#b6c0db", // --palette-haze: the foot of the message on ink
   saffron: "#f8c618", // --palette-saffron: the button, with ink words
   royal: "#0d36a7", // --palette-royal: a link
