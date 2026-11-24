@@ -23,6 +23,7 @@ export default function SearchBox({
   autoFocus = false,
   deskFocus = false,
   hotkey = false,
+  hint,
   id,
 }: {
   size?: "md" | "lg";
@@ -34,6 +35,8 @@ export default function SearchBox({
   deskFocus?: boolean;
   /** Answer to the "/" key, as search boxes do. */
   hotkey?: boolean;
+  /** What the box says while it is empty, where "Search" alone would say too little. */
+  hint?: string;
   id?: string;
 }) {
   const router = useRouter();
@@ -106,6 +109,13 @@ export default function SearchBox({
       method="get"
       role="search"
       className={`search search-${size}`}
+      onSubmit={(e) => {
+        // With script the question is asked without leaving the page behind, so what is found can rise into place. Without it the form asks, as a form does.
+        e.preventDefault();
+        setOpen(false);
+        const q = value.trim();
+        router.push(q ? `/search?q=${encodeURIComponent(q).replace(/%20/g, "+")}` : "/search");
+      }}
       onBlur={(e) => {
         // Focus has left the box altogether: the list goes with it.
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
@@ -141,7 +151,7 @@ export default function SearchBox({
             go(items[active]);
           }
         }}
-        placeholder={size === "lg" ? "What are you looking for?" : "Search"}
+        placeholder={hint ?? (size === "lg" ? "What are you looking for?" : "Search")}
         aria-label="Search businesses, articles and numbers"
         autoComplete="off"
         autoCorrect="off"

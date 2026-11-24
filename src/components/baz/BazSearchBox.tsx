@@ -80,6 +80,13 @@ export default function BazSearchBox({ size = "md", initial = "", autoFocus = fa
       method="get"
       role="search"
       className={`search search-${size}`}
+      onSubmit={(e) => {
+        // With script the question is asked without leaving the page behind (as the site's own box does). Without it the form asks.
+        e.preventDefault();
+        setOpen(false);
+        const q = value.trim();
+        router.push(q ? `${baz.search()}?q=${encodeURIComponent(q).replace(/%20/g, "+")}` : baz.search());
+      }}
       onBlur={(e) => {
         // Focus has left the box altogether: the list goes with it.
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);

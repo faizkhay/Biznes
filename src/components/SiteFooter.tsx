@@ -1,6 +1,5 @@
 import Link from "next/link";
-import SubscribeForm from "@/components/account/SubscribeForm";
-import { ABOUT, ACTIONS, CREDITS, MENU, MENU_LABELS, PUBLICATIONS, STREET_MAP, YOURS, site } from "@/data/site";
+import { ABOUT, ACTIONS, CREDITS, MENU, MENU_LABELS, STREET_MAP, YOURS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
 import { day } from "@/lib/format";
 import { index } from "@/lib/index";
@@ -9,9 +8,10 @@ import { Mark, Wordmark } from "./Logo";
 
 /**
  * The footer: a dark card on the picture, with the b standing on its top edge. The name, large and
- * white; whose product the site is; how to reach the people behind it; the way onto the list for
- * the pocket guide and the magazine; every page in four columns (Find, Read, For business,
- * About), named as the menu names them; the credit the map's data asks for wherever it is shown; and the page's last line.
+ * white; whose product the site is; how to reach the people behind it; every page in four
+ * columns (Find, Read, For business, About), named as the menu names them; the credit the map's
+ * data asks for wherever it is shown; and the page's last line. The list for the pocket guide and
+ * the magazine is a section of its own above it (JoinSection).
  *
  * The landing page is one screen and does not show it: that page has one quiet line in its place
  * ("Home and the landing page" in globals.css).
@@ -83,16 +83,6 @@ export default function SiteFooter() {
             ))}
           </nav>
 
-          {/* The list for the pocket guide and the magazine. The form is the accounts' own, on a light card so it reads as it does on the sheet; with nothing to show, the card is not drawn. */}
-          <div className="footer-join mt-10">
-            <div>
-              <h2 className="title-1">The {PUBLICATIONS.guide.short} and the {PUBLICATIONS.magazine.short}, by email</h2>
-              <p className="body-3 mt-1">Be sent each edition of the guide when it comes out, and the magazine when it begins.</p>
-            </div>
-            <div className="footer-join-form">
-              <SubscribeForm compact />
-            </div>
-          </div>
           <p className="body-3 mt-8 max-w-prose text-ink-subtle">
             No website yet? {builder.name}, who make {site.name},{" "}
             <a href={builder.url} rel="noopener">

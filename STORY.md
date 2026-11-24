@@ -69,7 +69,7 @@ There are no chapters. Each kind of page does one job.
 
 | Page | Its job | How the postcard shows there |
 |---|---|---|
-| The first screen | Take the question | The day's picture, full, with the greeting, the question and the search in the middle. The sheet of paper begins under it: the directory's groups, the towns beside the island, the guides, the tools, and where it all comes from |
+| The landing page | Take the question, and say what the site is | The day's picture, full, with the greeting, the site's line, the search in the middle and one button, "Home". Under that screen, one short section on a sheet: what the site is, three counts, and eight keys to the pages most people want (Round 10) |
 | Results (`/search`) | Answer: listings when the question is about who and where; when it is about how, the answer itself first, in the site's own words, with the guide it is from | On the sheet. Each listing is a card. Filters above the list, the island beside it with the answers lit. Pages on other sites are folded away as references |
 | A listing (`/b/...`) | Say what is known about one business, and where each part came from | The business's own card opens the page, with a strip of the day's picture across its top. The island marks where it is |
 | A category, a town | Walk the directory: narrow a kind of business to a town, or a town to a kind | Cards, filters, the island with that list lit |
@@ -80,13 +80,20 @@ There are no chapters. Each kind of page does one job.
 | Saved (`/saved`) | The visitor's shortlist, or one they were sent | Cards, with a way to share the list |
 
 The picture shows round the sheet on every page, and the footer is a dark card that sits on it.
+Between the two, on most pages, is a white card of its own: the list for the monthly Pocket Guide
+and the magazine, with this month's edition standing beside its words (Round 10).
+
+**The way round** (Round 10) is a search engine's: at the head of every page the name, the search
+box in the middle, and one word, "Menu", which opens a grid of the pages most often wanted. On a
+phone the grid is the bar at the foot of the screen, and the search box is in the header there
+too.
 
 ## The centrepiece
 
-The first screen (`src/app/page.tsx`): a small pill with the greeting and what the index holds,
-"Find it in Mauritius.", the owner's line under it, the search box as a wide white pill with its
-saffron button, and four searches to try. Behind them is the day's picture; a veil of the paper's
-own colour lies over its sky so the words keep their contrast.
+The first screen (`src/app/page.tsx`): the greeting and what the index holds, the site's one
+line, the search box as a wide pane of glass with its saffron button, and one button, "Home".
+Behind them is the day's picture; a veil of the paper's own colour lies over its sky so the words
+keep their contrast. The same box is the middle of the header on every other page.
 
 The second is the island (`src/components/Chart.tsx`): one drawing, one projection, used
 everywhere, so a point is always in the same place. A pale lagoon for the sea, white land, a point
@@ -100,9 +107,14 @@ Small things only, and none a visitor needs: a tile's icon tips and turns saffro
 pointer, a main button's arrow turns in its circle, a card lifts by a pixel, the b in the footer
 stands tilted on the card's edge.
 
+Every press is answered (Round 10): what can be pressed gives a little under the finger, the
+menu's grid drops from its button, a line runs across the top of the screen while a page is on
+its way, and the page rises into place when it is here. The landing page's keys go down like
+keys.
+
 One thing moves by itself, and only on the landing page: a few petals or leaves of the season
-fall over the picture, behind the words (Round 9). They carry nothing. A button in the foot line
-holds them still, and they are left out for anyone who asks for less motion.
+fall over the picture, behind the words (Round 9). They carry nothing. A button at the foot of
+the first screen holds them still, and they are left out for anyone who asks for less motion.
 
 ## Reduced motion and no script
 
@@ -112,7 +124,9 @@ dots, a shortlist someone sent is a list of links, and the VAT sums are in a tab
 sharing need script, and their buttons are not shown until it has loaded. Under reduced motion
 nothing travels: the points are lit at once and every change of state happens without a
 transition. Nothing falls over the landing page, without script or under reduced motion: there
-it is the picture alone, which is the same page.
+it is the picture alone, which is the same page. A page reached by a link is simply there: it
+does not rise, and no line runs for it. Without script a search is still a form that asks, and
+"Menu" still opens, because it is a plain disclosure.
 
 ## Signature details
 
@@ -131,6 +145,108 @@ it is the picture alone, which is the same page.
   emergency number carries the number of its source.
 
 ## Rounds
+
+### Round 10, 24 November 2026: one box, one grid, and every press answered
+
+**The owner's notes, in their own words.**
+
+With a picture of the example card on the pricing page: "this, replace the demo listing by khay
+digital."
+
+"overall, i want smooth animations with each interactions,"
+
+"overall website, needs to be simplified, made intituive, all-user friendly, take inspiration
+from google's own navigation or other search engines, but apply it to our biznes.mu context. we
+are the leading search engine, the know it all platform for business related things in mauritius,
+everything comes thru us. and has to go thru us."
+
+"footer newsletter/subcrption box should be a proper section on its own, a creative box, like add
+a mockup image of the moonthly release"
+
+"for main landng page, add a short section below, creative but minimalist to inform peope what
+this website is sbout and quick navigations keys"
+
+**The plan, told before it was built.** Five things, in this order: the example card; the list's
+own section; the landing page's section; the way round; the motion. The way round is the one
+that changes every page, so it was kept to the header and nothing else: no page's own content
+moved.
+
+**What was made.**
+
+- **The example on the pricing page is Khay Digital.** "Your business, what you do, your town" is
+  gone. The card that shows how a verified business looks now carries the site's own maker: its
+  name, the kind its listing is filed under, its telephone number and its website, all from the
+  site's own facts, and a line that says it is an example.
+- **The way round is a search engine's.** The header was a name, four links, a list that opened,
+  a small search box, three buttons and "List your business". It is now four things: the name;
+  the search box, in the middle and as wide as the pill allows; "Menu"; and what is the
+  visitor's own (the shortlist, the cart, the account). "Menu" opens a grid of the twelve pages
+  most often wanted, each a tile with the icon drawn for it in Round 7, the four old links at its
+  head; under them, "List your business" and the page of every page. Everything goes through the
+  box, and the box is on every page.
+- **On a phone the search box is in the header too.** It was not: a phone had to go back to the
+  landing page to search. The name is drawn as its first letter there, to leave the box its
+  room, and what the box offers opens under the whole pill. The bar at the foot is as it was.
+- **A search no longer loads a new page.** The box asked as a plain form, which threw the page
+  away. With script it now asks in place: the keyboard stays in the box and what is found rises
+  under it. Without script it is still the form.
+- **The list is a section of its own.** The box in the footer is gone. Between the page and the
+  footer is a white card: this month's Pocket Guide, its real cover with two of its own pages
+  fanned behind it on a saffron disc (the lit point of the b, large), and beside it what the
+  list is, the form, and the way to the edition. The mock-up is not drawn for the purpose: it is
+  the three pictures the guide's own build writes, so it is always this month's.
+- **The landing page has a second part.** Under the first screen, on a sheet: "What is
+  biznes.mu?", answered in the site's own sentence; what it holds, as three counts from the
+  index; and eight keys, each a page, that go down when pressed as a key does. The line that
+  was the page's foot is the section's last line. At the foot of the first screen a small line
+  of glass asks the question and leads down, and holds the control for what falls.
+- **Every press is answered.** A page reached by a link rises into place, its parts one after
+  the other. A line runs across the top of the screen from the press until the page is here.
+  The menu's grid drops from its button and its tiles follow. What the search box offers drops
+  from the box. A folded part unfolds. Tiles, tabs, chips and the bar's tabs give under the
+  finger. The count on the cart lands with a small bounce.
+
+**How it holds to the standards.**
+
+- **Nothing invented.** "The leading search engine" and "the know it all platform" are how the
+  owner sees the site, and they steered the work. They are not on the page: the page says what
+  the site is and what it holds, in counts the index gives.
+- **Complete without the motion and without script.** The page a visitor lands on does not move.
+  Under reduced motion every movement happens at once. Each movement is transform and opacity
+  only, and fills backwards only, so once it is over nothing of it is left on the page.
+- **One label per intent.** "Menu" on a desk; "More" stays the phone's last tab, which leads to
+  the page of every page. The search box says what it finds.
+- **Glass is still four things.** The line at the foot of the first screen is the same pane it
+  was, with fewer words on it.
+
+**Checked.** `npm run behaviour`: 291 of 291, with new checks for the header (the name, the
+box in the middle, "Menu", no row of links), the grid, its keyboard and its clear sheet, a
+question asked without a new page load, the phone's header, the landing page's section, counts
+and keys, and the motion. `npm run a11y`: clean on every kind of page at both sizes, and again
+with the leaves falling and held and with the menu's grid open. `npm run hero`: 168 readings,
+lowest 5.81:1. `npm run glass`: lowest 7.31:1. The accounts in a browser: 344 of 344, with the
+list's section and its form on the public pages.
+
+**Two things the checks found.** The clear sheet that lies over the page while the menu is open
+was not taking the pointer: the header lets the pointer through everywhere but its pill, and the
+sheet is inside the header. It now asks for the pointer itself, and the page behind is set aside
+for the keyboard and a screen reader too. And the list's section was drawn or not by the
+page's address, which made the page for when there is no connection, drawn once and shown at
+any address, disagree with itself: its first drawing in the browser is now whatever the server
+drew.
+
+**The example card, and the listing itself.** The card shows Khay Digital with the verified mark
+and "Priority listing", because that is what the card is there to show. Khay Digital's own
+listing on the site is free and not marked verified. The card says it is an example. Whether the
+listing itself becomes verified and paid is the owner's to say: it changes the order of results.
+
+**Not done, and said.**
+
+- **Baz Manzer's own header was left as it was.** It is a section and an app of its own, with
+  its own ways in.
+- **The pages themselves were not shortened.** The simplifying is the way round. If a page is
+  still too much (Home is long), that is a round of its own.
+- No real phone or Safari has drawn any of it; only Chromium has.
 
 ### Round 9, 24 November 2026: the year in pictures
 

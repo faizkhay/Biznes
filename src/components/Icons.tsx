@@ -22,6 +22,12 @@ export const Glass = (p: P) => (
     <path d="m15.5 15.5 5 5" />
   </svg>
 );
+// Everything, as a grid of nine: the header's menu.
+export const Grid = (p: P) => (
+  <svg {...base} {...p} fill="currentColor" stroke="none">
+    {[5, 12, 19].flatMap((y) => [5, 12, 19].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.75" />))}
+  </svg>
+);
 // Hold what is moving, and let it go again: the control for what falls over the landing page.
 export const Pause = (p: P) => (
   <svg {...base} {...p}>

@@ -91,7 +91,7 @@ export function SavedLink() {
   return (
     <Link href="/saved" prefetch={false} className="icon-btn icon-btn-sq nav-saved" aria-label={`Saved, ${n}`} title="Saved">
       <Bookmark />
-      <span className="badge" aria-hidden>
+      <span key={n} className="badge" aria-hidden>
         {n > 99 ? "99" : n}
       </span>
     </Link>

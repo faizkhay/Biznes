@@ -327,7 +327,9 @@ check("header, wide: the first page and the search page carry their own large bo
 await page.goto(`${origin}/directory`, { waitUntil: "domcontentloaded" });
 await live(page);
 check("outside the section the header is the site's own", (await page.locator('header .nav-pill a.logo[href="/"]').count()) === 1 && (await page.locator("header .baz-mark").count()) === 0 && (await page.locator('header nav a[href="/baz-manzer"]').count()) === 1);
-await page.locator('header nav a[href="/baz-manzer"]').click();
+// The site's own header has no row of links: Baz Manzer is a tile in its menu's grid.
+await page.locator("header summary", { hasText: "Menu" }).click();
+await page.locator('header nav a.menu-item[href="/baz-manzer"]').click();
 await page.waitForURL(new RegExp(`${ROOT}$`));
 await page.waitForSelector("header .baz-mark");
 check("a step from the site into the section changes the header, and the manifest the page names", (await page.locator('header .nav-pill a.logo[href="/baz-manzer"]').count()) === 1 && (await page.locator('link[rel="manifest"]').evaluateAll((all) => all.map((link) => link.getAttribute("href")))).join() === MANIFEST && (await page.locator('meta[name="theme-color"]').getAttribute("content")) === "#f14949");

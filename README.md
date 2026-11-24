@@ -15,8 +15,10 @@ box in the middle and one button, "Home". Home is the page a Mauritian keeps ope
 businesses, Baz Manzer, the categories, the regions and what is useful, on a sheet of warm paper
 laid on the picture. The picture follows the calendar by itself: a public holiday's look on its
 day, otherwise one of the season's, painted wide for a desk and tall for a phone. On the landing
-page a few petals or leaves of the season fall over it. Everything a visitor reads at length is
-on the paper.
+page a few petals or leaves of the season fall over it, and under its first screen one short
+section says what the site is and gives eight keys to its main pages. Everything a visitor
+reads at length is on the paper. The way round is a search engine's: the search box is the
+middle of the header on every page, and one word, "Menu", opens a grid of everything else.
 
 The site is built with KOS, Khay Digital's method and standards (`faizkhay/Khay-Original-Skill`).
 Four documents describe this build, and `AGENTS.md` holds the rules for changing it:
@@ -1083,7 +1085,9 @@ Everything the owner will change is data. No fact is written into a component.
 | To change | Edit |
 |---|---|
 | The site's name, line, description and contact details | `site` in `src/data/site.ts` |
-| The header's four links, what "More" opens, every page's name and the line under it | `NAV`, `MORE`, `MENU`, `YOURS` and `ABOUT` in `src/data/site.ts` |
+| What the header's "Menu" opens, the word on its button, what the search box says while empty, every page's name and the line under it | `MORE`, `MORE_PAGE`, `MENU`, `YOURS` and `ABOUT` in `src/data/site.ts` |
+| The landing page's section: its question, and the pages its eight keys lead to | `LANDING` in `src/data/site.ts`; its sentence is `site.description`, its counts are the index's |
+| The example card on the pricing page | `site.builder` and `site.contact` in `src/data/site.ts`: Khay Digital's own name, kind, number and website |
 | The footer's pages | `MENU`, `ABOUT` and `YOURS` in `src/data/site.ts` |
 | The five tabs at the foot of a phone's screen | `ON_BAR` in `src/components/TabBar.tsx`, between the search and "More" |
 | The Home page's name, its line, its five parts and the pages its last part leads to | `HOME` in `src/data/site.ts` |
@@ -1132,25 +1136,36 @@ owner has not given.
 
 ### The menu and the shelves
 
-The site's name in the header leads to the landing page (`/`), where the search is. Beside it the
-header has four plain links (`NAV`: Home, Directory, Baz Manzer, Articles) and one word that opens
-a list, "More" (`MORE`: the tools, then the eight pages most wanted after those). On a phone and
-a tablet a bar at the foot of the screen carries the search, Home, Baz Manzer, Articles, and
-"More", which there is a page of every page (`/more`). On a phone the directory is reached through
-Home, whose categories and regions are its two ways in, and through "More". Nothing else opens, at
-any width.
+The way round is a search engine's (the owner, 24 November 2026: "take inspiration from google's
+own navigation"). The header holds four things: the site's name, which leads to the landing page
+(`/`); the search box, in the middle and as wide as the header allows, on every page and on a
+phone too; one word, "Menu", which opens a grid of the twelve pages most often wanted (`MORE`:
+Home, Directory, Places and Baz Manzer at its head), each a tile with its own icon, and under
+them "List your business" and the page of every page; and what is the visitor's own (the
+shortlist, the cart, the account). There is no row of links, and nothing else opens.
+
+On a phone and a tablet "Menu" is not shown: a bar at the foot of the screen carries the search,
+Home, Baz Manzer, Articles, and "More", which there is a page of every page (`/more`). The
+header there holds the search box too, with the name drawn as its first letter to leave it room.
+
+A question typed in any search box is asked without loading a new page when script is on, so
+what is found can rise into place under the box (`onSubmit` in `SearchBox.tsx`); without script
+the box is a plain form and asks as one. The results page and the landing page each have their
+own large box, so the header leaves its own out there.
 
 The landing page is the one page with less: its header is only the name, the cart and the
-account, it has no bar at its foot, and in the footer's place it has one quiet line. Its one
-button, "Home", is the way on. It is done by the page's own class (`.landing`, under "Home and the
-landing page" in `globals.css`) and by one line each in `HeaderBar.tsx` and `TabBar.tsx`.
+account, and it has no bar at its foot and no footer card. Its first screen is the picture, the
+site's line, the search and one button, "Home". Under it is one short section (`LANDING` in
+`src/data/site.ts`): what the site is, in `site.description`; three counts from the index; eight
+keys to the pages most people want (`LANDING.quick`, each a page of `MENU`); and the line that
+says whose product the site is. It is done by the page's own class (`.landing`, under "Home and
+the landing page" in `globals.css`) and by one line each in `HeaderBar.tsx` and `TabBar.tsx`.
 
 Every page that has a name is in one of three lists, each entry a name and a line about it: `MENU`
 (Find, Read, For business), `YOURS` (the shortlist, the cart, the account) and `ABOUT`. The page of
-every page and the footer's columns are drawn from them, and the header's "More" takes its names
-from them, so a page is called one thing wherever it is listed. To add a page, add an entry to its
-group; add its address to `MORE` only if it earns a place there. An address in a link's `also`
-belongs to the same way in: the towns light Directory.
+every page and the footer's columns are drawn from them, and the header's grid and the landing
+page's keys take their names from them, so a page is called one thing wherever it is listed. To
+add a page, add an entry to its group; add its address to `MORE` only if it earns a tile there.
 
 The first step of every page's path ("Home / Directory / Pharmacies") is the Home page, by the
 name `HOME` gives it. `trail` in `src/lib/nav.ts` sees to it for the path a reader sees (`Crumbs`)
@@ -1438,6 +1453,15 @@ named on the confirm list.
 
 ### The pocket guide
 
+The list for the guide and the magazine is a section of its own, between the page and the footer
+(`src/components/JoinSection.tsx`): a white card with this month's edition standing beside its
+words. The mock-up is the edition itself: its cover and two of its own pages, the three pictures
+`npm run pdf` writes to `public/shop`, fanned out in CSS. So it is always this month's, and
+nothing in it was drawn for the purpose. With accounts on the card holds the form to join the
+list; with accounts off it leads to the guide's page. It is left out on the landing page, on the
+guide's own page and on a visitor's own pages (`src/components/JoinGate.tsx`), and before any
+edition has been made it is not drawn at all.
+
 | File | Holds |
 |---|---|
 | `content/pdf/places.json` | The places, each with its region, what it is, what to know before going and its sources; the days out; the sources; what could not be confirmed. 60 places and 110 sources at present |
@@ -1584,6 +1608,11 @@ The articles, the plans and the money:
    The wording of each line on `/pricing` is Khay Digital's (`PLANS`), for example "free for good"
    and "A verified mark, once we have checked the business is real". The owner should read each
    one. What the check behind "verified" is has not been written down.
+   **Khay Digital's own listing.** The pricing page's example card shows Khay Digital with the
+   verified mark and "Priority listing", and says it is an example. The listing itself
+   (`/biz/khay-digital-27f7715f`) is on Biznes Free and is not marked verified. Say whether it
+   should be verified and on a paid plan: that puts it first among equal answers, so it is the
+   owner's to decide.
 6. **How the pocket guide is paid for and sent.** There is one guide, at Rs 150 an edition (the
    owner first spoke of many guides and a bundle, then chose one big guide on 20 November 2026).
    Until a payment is connected, an order from the cart is answered by a person; how that person
@@ -1650,11 +1679,18 @@ map drawn only by what is listed on it: a pale lagoon, white land, a point of in
 listing, and saffron for the ones that answer. `DESIGN.md` has every token and its contrast;
 `STORY.md` says why.
 
+Every press is answered (`DESIGN.md`, "Motion"): a page reached by a link rises into place, a
+line runs across the top of the screen while it is on its way, the menu's grid drops from its
+button, and whatever can be pressed gives a little under the finger. It is all in one place,
+"Motion" at the end of `src/app/globals.css`, with `src/components/Motion.tsx` and
+`src/app/template.tsx` for the two things that need script. The page a visitor lands on does not
+move, nothing moves under reduced motion, and no page waits on any of it.
+
 ## Pages
 
 | Address | What it does | Made |
 |---|---|---|
-| `/` | The landing page, one screen: the day's picture (the wide one at a desk, the tall one on a phone), the greeting, the site's line, the search box, and one button, "Home". A few petals or leaves of the season fall over the picture, behind the words, for a visitor whose device allows motion. At its foot, one line: whose product the site is, three pages, and the button that holds what falls still. The installed app opens here | Ahead of time, and again at most once an hour |
+| `/` | The landing page. Its first screen: the day's picture (the wide one at a desk, the tall one on a phone), the greeting, the site's line, the search box, and one button, "Home". A few petals or leaves of the season fall over the picture, behind the words, for a visitor whose device allows motion; a small line at the foot of the screen leads down and holds the button that stops them. Under it, one short section: "What is biznes.mu?" in the site's own sentence, three counts from the index, eight keys to the pages most people want, and whose product the site is. The installed app opens here | Ahead of time, and again at most once an hour |
 | `/home` | Home, in five parts: the top businesses (the verified ones on a paid plan, marked, then the day's eight of the fullest listings); Baz Manzer, by kind of place and kind of food; the directory's thirteen groups and the dozen kinds most listed; the ten regions with their largest towns, beside the island; and what is useful: the numbers to call, the next public holidays, articles, tools, the Pocket Guide, the glossary, official pages, and the way to list a business | Ahead of time, and again at most once an hour |
 | `/search?q=` | Results, in four parts in a fixed order: our own pages that answer, businesses (cards that can be narrowed with `phone=1`, `web=1`, `town=`), parts of articles that mention the words, and pages elsewhere folded under "References elsewhere". `kind=` shows one kind alone | On each request |
 | `/b/[slug]` | One listing: its own card, what is known, where each part came from, the same kind nearby. A listing's id alone leads to its full address | The first time it is asked for, then kept |
@@ -1670,7 +1706,7 @@ listing, and saffron for the ones that answer. `DESIGN.md` has every token and i
 | `/tools/income-tax`, `/tools/business-tax` | The personal income tax calculator and the business tax estimator, each from its guide's facts. `?profit=` on the first carries a sole trader's profit over from the second | Ahead of time |
 | `/official` | The official pages the guides point to | Ahead of time |
 | `/emergency` | The emergency numbers, each a link that dials, each with its source | Ahead of time |
-| `/pricing` | The three plans, and what paying changes | Ahead of time |
+| `/pricing` | The three plans, what paying changes, and how a verified business's card looks, shown on Khay Digital's own details as an example | Ahead of time |
 | `/shop` | The biznes.mu Pocket Guide: the cover, what is inside, the price, when it is free, the places a business can take in it, and the magazine to come. `/shop/[slug]/download` hands the edition out only while it is free | Ahead of time |
 | `/baz-manzer` | The front of Baz Manzer: its own search, a town to choose for what is near, the kinds of place, the kinds of food, the towns, then every place to eat with the filters (`phone=1`, `web=1`, `page=`), the island and the articles on food. The old addresses (`type=`, `food=`, `town=`) lead to the ones below | On each request |
 | `/baz-manzer/kind/[kind]`, `/baz-manzer/kind/[kind]/[town]` | A kind of place (restaurants, snacks and takeaways, cafés, bakeries, bars), and that kind in one town. The second is not put forward to search engines: the directory's own page for it is | On each request |
@@ -1714,17 +1750,17 @@ this list.
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 335 files |
-| Tokens | `npm run tokens` | 0 failures, 266 files |
+| House style | `npm run copy` | 0 failures, 339 files |
+| Tokens | `npm run tokens` | 0 failures, 270 files |
 | Contrast | `npm run contrast` | Every pair passes |
-| Words on the picture | `npm run hero` | The landing page's headline and greeting, in ink on the picture, and the line at its foot, measured against all eighteen pictures, the wide one at a desk and the tall one on a phone; then against each of the ten colours that fall over the page, laid over the whole picture as if a petal were behind every letter. 168 readings: the lowest is 5.86:1, the headline's with a green leaf behind it, which needs 3 |
-| Words on glass | `npm run glass` | Ink on the menu's pill, the phone's bar, the search bar and the landing page's foot line, read as drawn against all eighteen pictures at a desk and on a phone: the lowest is 6.94:1. The glass is also held against black in `npm run contrast` |
+| Words on the picture | `npm run hero` | The landing page's headline and greeting, in ink on the picture, and the line at its foot, measured against all eighteen pictures, the wide one at a desk and the tall one on a phone; then against each of the ten colours that fall over the page, laid over the whole picture as if a petal were behind every letter. 168 readings: the lowest is 5.81:1, the headline's with a green leaf behind it, which needs 3 |
+| Words on glass | `npm run glass` | Ink on the menu's pill, the phone's bar, the search bar and the landing page's foot line, read as drawn against all eighteen pictures at a desk and on a phone: the lowest is 7.31:1, on the line at the foot of the landing page's first screen. The glass is also held against black in `npm run contrast` |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 268 of 268, against a production server with accounts off. The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
+| Behaviour | `npm run behaviour` | 291 of 291, against a production server with accounts off. This round's are among them: the header as a search engine's (the name, the search box in the middle, "Menu", and no row of links); the grid of twelve tiles, its keyboard and its scrim; a question asked from the header without a new page load; the phone's header with the search box and the name's first letter; the landing page's first screen, its section, its three counts and its eight keys; and the motion (nothing moves on the page a visitor lands on, a page reached by a link rises, a line runs while it is on its way, and under reduced motion each happens at once). The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |
 | The search engine alone | `npm run search:test` | 65 of 65, in plain Node with no server (see "The engine") |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
-| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone, and with the header's list open. Those are read under reduced motion, so the landing page is read again with motion allowed, at both sizes, with what falls over it falling and then held: clean. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone. Those are read under reduced motion and with the menu shut, so two more passes follow: the landing page with motion allowed, at both sizes, with what falls over it falling and then held; and the header with its menu's grid open, at 1440 and at 1024 pixels wide. Clean. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
 | Being found | `npm run seo` | 0 failures on 56 kinds of page: a title, a description, a canonical address, the card's tags and one h1 on each; every block of structured data parses; every card draws. 14 warnings, each a question heading in an article whose part opens with a list or a table and not a sentence that answers it |
 | What a page weighs | `npm run weights` | Measured, not judged: see "What a page weighs" below |
 | Captures | `npm run screenshots` | Every kind of page at both sizes, with no page wider than its screen. They are taken under reduced motion, so the landing page is captured once more at each size with what falls over it (`landing-leaves-desktop`, `landing-leaves-mobile`) |

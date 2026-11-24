@@ -47,7 +47,7 @@ for (const [vp, size] of VIEWPORTS) {
 // it still are not on the page under reduced motion, so the sweep above never meets them. Here it
 // is read twice at each size: with the pieces falling, and held.
 for (const [vp, size] of VIEWPORTS) {
-  if (only && !only.includes("landing")) continue;
+  if (only && !only.includes("leaves")) continue;
   const context = await steady(await browser.newContext({ viewport: size }));
   const page = await context.newPage();
   await page.goto(origin, { waitUntil: "networkidle", timeout: 120000 });
@@ -60,6 +60,22 @@ for (const [vp, size] of VIEWPORTS) {
     console.log(`${vp.padEnd(8)} ${`leaves ${state}`.padEnd(13)} ${violations.length ? violations.map((v) => `${v.id}(${v.impact}, ${v.nodes.length})`).join(" ") : "clean"}`);
     for (const v of bad) for (const n of v.nodes.slice(0, 3)) console.log(`    ${v.id}: ${n.target.join(" ")}  ${n.failureSummary?.split("\n")[1]?.trim() ?? ""}`);
   }
+  await context.close();
+}
+// The header's menu, open. Its grid is on the page only once "Menu" is pressed, so the sweep above
+// never meets it either. Read at a wide desk and at the narrowest width that still shows it.
+for (const [vp, size, path] of [["desktop", { width: 1440, height: 900 }, "/directory"], ["laptop", { width: 1024, height: 768 }, "/emergency"]]) {
+  if (only && !only.includes("menu")) continue;
+  const context = await steady(await browser.newContext({ viewport: size, reducedMotion: "reduce" }));
+  const page = await context.newPage();
+  await page.goto(origin + path, { waitUntil: "networkidle", timeout: 120000 });
+  await page.locator("header summary").click();
+  await page.waitForTimeout(500);
+  const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+  const bad = violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+  serious += bad.length;
+  console.log(`${vp.padEnd(8)} ${"menu open".padEnd(13)} ${violations.length ? violations.map((v) => `${v.id}(${v.impact}, ${v.nodes.length})`).join(" ") : "clean"}`);
+  for (const v of bad) for (const n of v.nodes.slice(0, 3)) console.log(`    ${v.id}: ${n.target.join(" ")}  ${n.failureSummary?.split("\n")[1]?.trim() ?? ""}`);
   await context.close();
 }
 await browser.close();

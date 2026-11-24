@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { AddToCart } from "@/components/Cart";
-import { GroupGlyph } from "@/components/Glyphs";
-import { Arrow, Tick } from "@/components/Icons";
+import { CategoryIcon } from "@/components/Glyphs";
+import { Arrow, Globe, Phone, Tick } from "@/components/Icons";
 import { VerifiedMark } from "@/components/Verified";
 import { PLANS, site } from "@/data/site";
 import { accountsOn } from "@/lib/accounts/config";
-import { count } from "@/lib/format";
+import { count, shortUrl } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
 
@@ -19,7 +19,9 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function PricingPage() {
-  const { meta } = index();
+  const { meta, categoryById } = index();
+  const { builder } = site;
+  const category = categoryById.get(builder.category);
   return (
     <>
       <PageHead here="/pricing" title="List your business" path={[{ label: "List your business" }]} lede={`${count(meta.listings.all)} businesses and services are already here, found on the open map. Yours can be too, free. Two paid plans do more when you want them to.`} />
@@ -76,16 +78,25 @@ export default function PricingPage() {
             </h2>
             <p className="body-2 mt-4 text-ink-subtle">On Biznes Go and Biznes Grow, once we have checked the business is real, its card is ringed in saffron and carries the mark. The words "Priority listing" are always there, so nobody mistakes a paid place for a better answer.</p>
           </div>
-          <div className="row listing listing-paid" aria-label="An example of a verified listing's card">
+          {/* The example is the site's own maker, with its own details (src/data/site.ts), drawn as a verified business's card is. */}
+          <div className="row listing listing-paid" aria-label={`An example of a verified listing's card: ${builder.name}`}>
             <span className="listing-icon" aria-hidden>
-              <GroupGlyph id="eat" />
+              <CategoryIcon id={category?.id} group={category?.group} />
             </span>
             <div className="min-w-0">
               <p className="title-1 text-link">
-                Your business <VerifiedMark priority />
+                {builder.name} <VerifiedMark priority />
               </p>
-              <p className="body-3 mt-0.5 text-ink-subtle">What you do · Your town</p>
-              <p className="caption-1 mt-2 text-ink-faint">An example, not a listing.</p>
+              {category && <p className="body-3 mt-0.5 text-ink-subtle">{category.one}</p>}
+              <p className="mt-3 flex flex-wrap gap-2">
+                <a href={site.contact.phoneHref} className="act data-2">
+                  <Phone /> <span>{site.contact.phone}</span>
+                </a>
+                <a href={builder.url} rel="noopener" className="act data-2">
+                  <Globe /> <span>{shortUrl(builder.url).split("/")[0]}</span>
+                </a>
+              </p>
+              <p className="caption-1 mt-3 text-ink-faint">An example: {builder.name}, who make {site.name}, as a verified business&rsquo;s card looks.</p>
             </div>
           </div>
         </section>

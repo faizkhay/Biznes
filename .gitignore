@@ -16,10 +16,12 @@ review/screens/*
 !review/screens/landing-leaves-*.jpg
 !review/screens/search-desktop.jpg
 !review/screens/search-mobile.jpg
-!review/screens/listing-*.jpg
+!review/screens/listing-desktop.jpg
+!review/screens/listing-mobile.jpg
 !review/screens/category-desktop.jpg
 !review/screens/category-mobile.jpg
-!review/screens/guide-*.jpg
+!review/screens/guide-desktop.jpg
+!review/screens/guide-mobile.jpg
 !review/screens/tool-vat-*.jpg
 !review/screens/baz-manzer-*.jpg
 

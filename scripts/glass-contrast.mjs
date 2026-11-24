@@ -32,7 +32,7 @@ const hex = (value) => [1, 3, 5].map((i) => parseInt(value.trim().slice(i, i + 2
 const PANES = [
   { name: "menu's pill", path: "/", box: ".nav-pill", empty: ".nav-pill > *", words: "--palette-ink", inset: 4, round: true },
   { name: "search bar", path: "/", box: "main .search", empty: "main .search > *", words: "--palette-ink", inset: 4, round: true },
-  { name: "foot line", path: "/", box: "main .landing-foot", empty: "main .landing-foot > *", words: "--palette-ink", inset: 14 },
+  { name: "foot line", path: "/", box: "main .landing-foot", empty: "main .landing-foot > *", words: "--palette-ink", inset: 4, round: true },
   { name: "phone's bar", path: "/more", box: ".tabbar", empty: ".tabbar > *", words: "--palette-ink", inset: 14, phone: true },
 ];
 

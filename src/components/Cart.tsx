@@ -17,7 +17,7 @@ export function CartLink() {
     <Link href="/cart" prefetch={false} className="icon-btn icon-btn-sq" aria-label={n ? `Cart, ${n}` : "Cart"} title="Cart">
       <CartIcon />
       {n > 0 && (
-        <span className="badge" aria-hidden>
+        <span key={n} className="badge" aria-hidden>
           {n > 99 ? "99" : n}
         </span>
       )}

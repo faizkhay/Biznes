@@ -42,7 +42,7 @@ let worst = Infinity;
 const WORDS = [
   { name: "headline", selector: "main h1", floor: 3 },
   { name: "greeting", selector: "main .pill-note", floor: 4.5, parts: "span" },
-  { name: "foot", selector: "main .landing-foot", floor: 4.5, parts: "p, nav a" },
+  { name: "foot", selector: "main .landing-foot", floor: 4.5, parts: "a" },
 ];
 /** Reads the three things on the page as it stands and says the lowest ratio found for each. `what` names what is behind them. */
 async function read(page, size, what) {

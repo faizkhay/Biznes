@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import localFont from "next/font/local";
+import JoinGate from "@/components/JoinGate";
+import JoinSection from "@/components/JoinSection";
 import HeaderBar from "@/components/HeaderBar";
+import { Progress } from "@/components/Motion";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
@@ -51,8 +55,10 @@ export const revalidate = 3600;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const theme = await themeNow();
+  // data-scroll-behavior: a link to a part of a page travels there smoothly (globals.css), and Next
+  // is told so, so that it goes to the top of a new page at once and does not travel there.
   return (
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-tall": `url(${theme.tall})` } as React.CSSProperties}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`} data-scroll-behavior="smooth" data-theme={theme.id} data-picture={theme.picture} style={{ "--theme-image": `url(${theme.src})`, "--theme-image-tall": `url(${theme.tall})` } as React.CSSProperties}>
       <body>
         {/* The day's picture is fetched at once and in the shape the screen needs: the tall one on a phone and on any screen held upright, the wide one otherwise (the same test as .backdrop in globals.css). React lifts these two into the head. */}
         <link rel="preload" as="image" href={theme.tall} media="(max-width: 40rem), (orientation: portrait)" fetchPriority="high" />
@@ -61,10 +67,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <a href="#main" className="skip-link button-sm">
           Skip to the page
         </a>
+        {/* The line that runs while a page is on its way. It reads the address's question, so it has a boundary of its own and holds nothing else back. */}
+        <Suspense fallback={null}>
+          <Progress />
+        </Suspense>
         <HeaderBar />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
+        {/* The list for the monthly guide and the magazine: a section of its own, between the page and the footer. */}
+        <JoinGate>
+          <JoinSection />
+        </JoinGate>
         <SiteFooter />
         <TabBar />
         <Pwa />

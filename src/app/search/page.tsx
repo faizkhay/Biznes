@@ -7,6 +7,7 @@ import { Chevron, Glass, Phone, Pin } from "@/components/Icons";
 import IslandBeside from "@/components/IslandBeside";
 import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
+import { Arrival } from "@/components/Motion";
 import SearchBox from "@/components/SearchBox";
 import { EXAMPLES } from "@/data/site";
 import { dialHref } from "@/lib/emergency";
@@ -208,6 +209,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
     </>
   );
 
+  const asked = `${q}|${kind ?? ""}|${page}|${JSON.stringify(narrow)}`;
   return (
     <div className="shell pt-8 pb-16 lg:pt-10">
       <h1 className="sr-only">Search results for {q}</h1>
@@ -215,6 +217,9 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <div className="grid gap-x-12 chart:grid-cols-12 chart:grid-rows-[auto_1fr]">
         <div className="chart:col-span-7">
           <SearchBox size="lg" id="search" initial={q} hotkey />
+          {/* What was asked, as one word: when it changes, what is found for it rises into place (src/components/Motion.tsx). The box itself stays as it is, with the keyboard in it. */}
+          <Arrival of={asked} />
+          <div key={asked} className="arrives">
 
           <div className="mt-4 flex min-h-11 items-start justify-between gap-4">
             <p className="body-3 pt-2 text-ink-subtle" role="status">
@@ -379,12 +384,13 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             </nav>
           )}
 
+          </div>
         </div>
 
         {/* On a phone the island comes after the list: a name and a number come first. */}
         {charted && <IslandBeside lit={a.points} says={says} onChart={onChart} className="mt-8 chart:col-span-5 chart:col-start-8 chart:row-span-2 chart:row-start-1 chart:mt-0" />}
 
-        <div className="chart:col-span-7 chart:col-start-1">
+        <div key={asked} className="arrives chart:col-span-7 chart:col-start-1">
           {mentions}
 
           {/* In the first view pages elsewhere are folded away as references, so the site's own

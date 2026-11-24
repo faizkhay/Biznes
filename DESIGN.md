@@ -85,9 +85,14 @@ components:                 # only: backgroundColor textColor typography rounded
   nav-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.full}", height: 56px }
   nav-link: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.full}", height: 2.75rem }
   nav-link-open: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
-  menu-panel: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.5rem, width: 36rem }
-  menu-item: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.md}", padding: "0.625rem 0.75rem" }
-  menu-item-line: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
+  menu-panel: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", padding: 0.75rem, width: 23.5rem }
+  menu-item: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.lg}", padding: "0.875rem 0.25rem 0.75rem" }
+  menu-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.lg}", size: 2.75rem }
+  key: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.title-2}", rounded: "{rounded.lg}", padding: "0.875rem 0.375rem", height: 6.5rem }
+  key-icon: { backgroundColor: "{colors.ink}", textColor: "{colors.primary}", rounded: "{rounded.md}", size: 2.5rem }
+  join: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.2xl}", padding: "4rem 0 5.5rem" }
+  join-disc: { backgroundColor: "{colors.primary}", rounded: "{rounded.full}" }
+  progress: { backgroundColor: "{colors.royal}", height: 3px }
   menu-item-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
   menu-item-current: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}" }
   tab-bar: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", height: 3.25rem }
@@ -103,7 +108,7 @@ components:                 # only: backgroundColor textColor typography rounded
   suggestion-icon: { backgroundColor: "{colors.sand}", textColor: "{colors.slate}", rounded: "{rounded.sm}", size: 2rem }
   pill-note: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.full}", height: 2rem }
   try-pill: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-3}", rounded: "{rounded.full}", height: 2.5rem }
-  landing-foot: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.xl}", padding: "0.125rem 1.25rem" }
+  landing-foot: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.caption-1}", rounded: "{rounded.full}", padding: "0.125rem 0.75rem 0.125rem 1.25rem" }
   frosted-glass: { backgroundColor: "{colors.glass-floor}", textColor: "{colors.ink}" }
   # What falls over the landing page: one drawing a season, a body and the line drawn on it. Decoration: no words stand on either.
   fall-flamboyant: { backgroundColor: "{colors.flame}", size: 1.5rem }
@@ -251,6 +256,7 @@ state. The landing page alone is allowed the display size and the full picture.
 | S9 | The owner, 20 November 2026, on Round 5: "paid listings should have a more beautiful biznes page", "improve our footer, logo is hiden", "we should have different background images", "special category for food biznesses" | in conversation | The paid page, the footer, the ten pictures, Baz Manzer |
 | S10 | OpenFreeMap's own site (its terms, read 20 November 2026) | `STREET_MAP` in `src/data/site.ts` | The street map's style and the credit it must carry |
 | S11 | The owner, 24 November 2026, on Round 9: "generate more background pictures to match mauritius vibes thru the year", "have some fallling leaves over the hero please, based on seasons", "all images will have 2 versions, 1 for desktop 1 for mobile" | in conversation | Eight more pictures, a tall painting of every picture, the five seasons, what falls |
+| S12 | The owner, 24 November 2026, on Round 10: "replace the demo listing by khay digital", "smooth animations with each interactions", "simplified, made intituive, all-user friendly, take inspiration from google's own navigation", "footer newsletter/subcrption box should be a proper section on its own, a creative box, like add a mockup image of the moonthly release", "for main landng page, add a short section below, creative but minimalist to inform peope what this website is sbout and quick navigations keys" | in conversation | The header as a search engine's, the menu's grid, the list's own section, the landing page's section and its keys, the motion |
 
 What the brand lacked was a face and a light ground. Both are recorded as chosen or derived: Manrope
 comes from the list KOS keeps for a brand with no face of its own, white is chosen, and cream and
@@ -391,14 +397,14 @@ behind the headline, the greeting and the line at the page's foot on each of the
 pictures, at a desk (the wide picture) and on a phone (the tall one), and fails under 3:1 for
 the headline or 4.5:1 for the other two. Then it lays each colour of what falls over the whole
 picture, as if a petal were behind every letter at once, and reads the three again. On
-24 November 2026 the lowest of the 168 readings was 5.86:1 (the headline with a green leaf behind it, at a desk), and the lowest on a picture alone 6.27:1 (the headline on the litchi picture, at a desk). It needs a running server.
+24 November 2026 the lowest of the 168 readings was 5.81:1 (the headline with a green leaf behind it, at a desk), and the lowest on a picture alone 6.22:1 (the headline on the litchi picture, at a desk). It needs a running server.
 
 **Words on glass.** Frosted glass is white at 54% over whatever is behind it ("Frosted glass").
 Over the darkest picture there could be it is no darker than `#8a8a8a`, on which ink measures
 5.16:1: so every word on glass is ink, and none is slate or mist. `npm run glass` reads the glass
 as drawn against each of the eighteen pictures, at a desk and on a phone: on 24 November 2026 ink
-kept 14.86:1 on the menu's pill, 10.14:1 on the search bar, 6.94:1 on the foot line and 15.35:1
-on the phone's bar.
+kept 14.86:1 on the menu's pill, 10.14:1 on the search bar, 7.31:1 on the line at the foot of the
+landing page's first screen and 15.35:1 on the phone's bar.
 
 **Gaps (recorded, not rules).**
 
@@ -485,17 +491,23 @@ heading over a list. No sentence is set in capitals.
 - A grid's child may always shrink to its column, so a wide table scrolls inside its own frame and
   the page is never wider than the screen.
 
-**The landing page** (`/`, `src/app/page.tsx`) is one screen, at a desk and on a phone, and
-nothing lies under it. In order: a pill with the greeting and what the index holds; the site's
-one line as the headline, in `display-1`; the search box, up to 42rem wide, with its saffron
-button; and one button, "Home", in ink with its icon. They stand a little above the middle of the
-screen. At the foot is one quiet line in the footer's place (`.landing-foot`): whose product the
-site is, in the owner's words, and three pages (About, Privacy, More). The menu there is
-only the name, the cart and the account; there is no tab bar and no footer card. The page's own
-class does all of it (`main:has(> .landing)`, `body:has(.landing)`), so no layout knows of it.
-On a screen under 40rem tall the same things stand closer together, and it is still one screen
-on a phone of 320 by 568; on a screen shorter than that (a phone on its side) the page grows and
-nothing lies over anything else.
+**The landing page** (`/`, `src/app/page.tsx`) opens on one screen, at a desk and on a phone
+(`.landing-first`). In order: the greeting and what the index holds; the site's one line as the
+headline, in `display-1`; the search box, up to 42rem wide, with its saffron button; and one
+button, "Home", in ink with its icon. They stand a little above the middle of the screen. At
+the foot of that screen is a small line of glass (`.landing-foot`): "What is biznes.mu?", which
+leads down, and the control for what falls. The menu there is only the name, the cart and the
+account; there is no tab bar and no footer card. On a screen under 40rem tall the same things
+stand closer together, and it is still one screen on a phone of 320 by 568; on a screen shorter
+than that (a phone on its side) the first screen grows and nothing lies over anything else.
+
+Under the first screen is one short section on a sheet of its own (`.landing-about`, no taller
+than a screen at a desk): "What is biznes.mu?" in `heading-1`, answered in the site's own
+sentence in `body-1`; what the index holds, as three counts under an ink rule, each a link to
+where it can be seen; "Go straight to", eight keys (`.keys`, four abreast at every width), each
+a page with its icon on an ink tile; and, last, whose product the site is, in the owner's
+words, and three pages. The page's own class does all of it (`main:has(> .landing)`,
+`body:has(.landing)`), so no layout knows of it.
 
 **The Home page** (`/home`, `src/app/home/page.tsx`) is the sheet with five parts on it, in the
 owner's order, each under a plain `heading-2` with a line about it and a way to see all of it:
@@ -614,28 +626,35 @@ Each is a class in `globals.css` or a file in `src/components`. States are part 
 
 - Frosted glass ("Frosted glass"), with `--shadow-md`. It stays at the top of the screen, and the
   page is seen through it. Its links are ink.
-- From 64rem it holds the name, which leads to the landing page, where the search is; four plain
-  links, each one press from its page (Home, Directory, Baz Manzer, Articles; `NAV` in
-  `src/data/site.ts`); "More", the one word that opens a list; the compact search box; the cart
-  and the account as soft square buttons; and "List your business" as an ink button. The bookmark with its count joins them once something has been saved (from
-  80rem, where there is room; below that the shortlist is in "More").
-- Where you are is said three ways, never by colour alone: the word is ink and heavier, it carries
-  a saffron point, and it is marked for a screen reader (`aria-current`: "page" on the page
-  itself, "true" on a page beneath it). The towns light Directory, being the directory turned
-  round; a page that is reached from "More" lights "More".
-- "More" is a plain disclosure, so it opens with no script. With script it closes on Escape, which
-  hands the keyboard back to the word; when the keyboard walks out of it; on a press elsewhere; and
-  when a page is chosen. Open, its word sits on sand and its arrow turns.
-- It opens a white panel 36rem wide, centred under the word, with 24px corners and `--shadow-lg`:
-  nine pages in two columns (`MORE`, the tools at their head), each a name and a line about it,
-  and a last line that leads to the page of every page. Under the pointer an item is on sand; the current page is on the
-  saffron wash.
-- Under 64rem the links and "More" leave the pill: the tab bar carries them. Under 48rem the
-  search box leaves too, and under 40rem "List your business". On a phone the pill is the name,
-  the cart and the account, and nothing in it opens.
+- It is a search engine's header (S12), and holds four things. The name, which leads to the
+  landing page. The search box (`.nav-search`), in the middle and as wide as the pill allows, up
+  to 38rem: on sand, white with a royal halo when the keyboard is in it, and saying "Search
+  businesses, articles and numbers" while it is empty. "Menu", from 64rem: a grid of nine points
+  and the word. And what is the visitor's own: the cart and the account as soft square buttons,
+  and the bookmark with its count once something has been saved. There is no row of links.
+- "Menu" is a plain disclosure, so it opens with no script. With script it closes on Escape,
+  which hands the keyboard back to the word; when the keyboard walks out of it; on a press
+  elsewhere; and when a page is chosen. Open, its word sits on sand and its points turn.
+- While it is open a clear sheet lies over the page (`.menu-scrim`) and takes the press that
+  closes it, so that press does not also open what lay beneath; the page is set aside for the
+  keyboard and a screen reader too (`inert` on `<main>`). The pill stands above the sheet, so
+  the search box, the cart and the account can still be pressed.
+- It opens a white panel 23.5rem wide under its own right edge, with 24px corners and
+  `--shadow-lg`: twelve pages in three columns (`MORE`, the four ways in at their head), each a
+  tile of its icon on a 44px ink square and its name in `caption-1`, with its line as the
+  tile's title. Under the pointer a tile is on sand and its icon tips; the tile of the page you
+  are on is on the saffron wash and is marked for a screen reader (`aria-current`: "page" on the
+  page itself, "true" on a page beneath it). Under the tiles, past a hairline: "List your
+  business" as a small ink button, and "Every page, in one list" in royal.
+- Under 64rem "Menu" leaves the pill: the tab bar is the way round there. The search box stays,
+  at every width. Under 40rem the name is drawn as its first letter alone (the b, 28px tall, in
+  a 44px link), to leave the box its room; the box's words are 16px, so a phone does not draw
+  nearer when it is touched; and what the box offers opens under the whole pill.
 - The landing page and the search page carry their own large search box, so there the pill
-  leaves it out. On the landing page the pill is only the name, the cart and the account, at
-  every width: its one button, "Home", is the way on.
+  leaves its own out and shows the name whole. On the landing page the pill is only the name,
+  the cart and the account, at every width: its one button, "Home", is the way on.
+- A question is asked without a new page load when script is on, so that what is found can rise
+  into place under the box. Without script the box is a form and asks as one.
 
 ### The tab bar
 
@@ -792,9 +811,15 @@ opens with it.
   On the landing page the greeting has no pill: it is words on the picture.
   The greeting pill carries a saffron point with a halo, and stands on the picture on the landing
   page and at the head of the Home page; the searches to try are on the search page.
-- **The landing page's foot line** (`.landing-foot`): the same ground with 24px corners, `caption-1`
-  in ink, its three links in ink at 500, each 36px tall and 44px under a finger. At its end, the
+- **The line at the foot of the landing page's first screen** (`.landing-foot`): a pill of the
+  same glass. "What is biznes.mu?" in `caption-1`, ink at 500, with an arrow that dips under the
+  pointer, 36px tall and 44px under a finger: it leads down to the section. Beside it, the
   control for what falls: a round button, a pause or a play, 36px and 44px tall under a finger.
+- **A key** (`.key`): a white square of at least 104px with 16px corners, its icon on a 40px ink
+  tile and its name in `title-2`. It stands on a lower edge 4px deep (ink at 12%). Under the
+  pointer it rises a pixel and its icon tips; pressed, it goes down 3px onto its edge.
+- **The landing page's last line** (`.landing-credit`): on the sheet, over a hairline: whose
+  product the site is, in `caption-1` and slate, and three links in ink at 500.
 - **The request form** (`RequestForm.tsx`): errors on their own fields, focus to the first, a
   success that says what happens next, and a failure that gives the telephone and the email. It
   opens with a plan's or a pocket guide's name when it is reached from one.
@@ -918,9 +943,25 @@ sheet, above it in the stack so that its mark is never half hidden. The b stands
 edge, in the middle: ink, with a white point, on a 72px saffron tile tilted six degrees. Inside:
 the name large in white with its point in saffron (`.footer-name`), the line, and whose product it
 is, in the owner's words; the ways to reach us (`.footer-reach`); every page in four columns
-(`.footer-cols`: Find, Read, For business, About, drawn from the menu's own lists); a light card to join the list for the
-guide and the magazine (`.footer-join`, shown only when the form is); the map's credit as its
+(`.footer-cols`: Find, Read, For business, About, drawn from the menu's own lists); the map's credit as its
 licence asks; and, last, "A Digital Experience by Khay Digital". Secondary words are white at 78%.
+
+### The list's own section
+
+`JoinSection.tsx`, `JoinGate.tsx`, `.join`. Between the sheet and the footer, on every page but
+the landing page, the guide's own page and a visitor's own pages (S12).
+
+- A white card with 32px corners, as wide as the sheet. The footer's b stands on its lower
+  edge, so it keeps 5.5rem of room there.
+- On the left, this month's Pocket Guide (`.join-pages`): its cover, 10rem to 16rem wide and
+  turned two degrees, with two of its own pages fanned out behind it, on a saffron disc that is
+  the lit point of the b made large. The three pictures are the edition's own
+  (`public/shop`), so nothing is mocked up. Under the pointer the pages fan wider and the cover
+  straightens, in 500ms.
+- On the right: the edition's month on a lit tag; the heading in `heading-2`; what will be
+  sent, and that the magazine has no issue yet; the form to join, when accounts are on; and
+  "See this month's edition", quiet beside the form's filled button, ink when there is no form.
+- Under 56rem the edition stands above the words.
 
 ### Named Rules
 
@@ -992,7 +1033,7 @@ the others take turns with it.
 `.leaves` in `globals.css`.
 
 On the landing page, and only there, a few petals or leaves of the season fall over the picture:
-fourteen at a desk, eight on a phone, none on a phone narrower than 21.25rem. It is the one thing
+fourteen at a desk, eight on a phone. It is the one thing
 on the site that moves by itself.
 
 - **What.** One drawing a season, on the icons' 24px grid: a body and a few lines on it. Its two
@@ -1004,7 +1045,7 @@ on the site that moves by itself.
   hundredths of the screen's width with the wind, swings 0.75rem to either side and turns over a
   little as it goes, then begins again. Each has its own place, pace and turn, written down in
   the component and not drawn by lot. Only transforms move.
-- **Its control.** A small round button at the end of the foot line, on its glass: "Pause the
+- **Its control.** A small round button in the line at the foot of the first screen, on its glass: "Pause the
   falling petals", then "Let the petals fall again". It holds every piece where it is. The
   choice is kept in the visitor's own browser. It is 36px at a desk and 44px tall under a finger.
 - **Who sees it.** Nothing is shown until script marks the page, and script marks it only for a
@@ -1137,35 +1178,57 @@ is used.
 
 ## Motion
 
-**Principle:** motion says that something changed. Content is visible by default and nothing moves
-by itself.
+**Principle:** every press is answered, and nothing a visitor needs waits on it (S12: "smooth
+animations with each interactions"). Content is visible by default; the page a visitor lands on
+does not move; only transforms and opacity move, so nothing is laid out again; and a movement
+fills backwards only, so once it is over nothing of it is left on the page. One thing moves by
+itself, what falls on the landing page, and it can be held still.
+
+It is all in one place: "Motion" at the end of `src/app/globals.css`, with
+`src/components/Motion.tsx` and `src/app/template.tsx` for the two things that need script.
 
 | Token | Value | Use |
 |---|---|---|
-| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Every transition |
-| State | 160ms | Colour, edge and ground under the pointer or the keyboard |
+| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Every transition and every arrival |
+| State | 160ms | Colour, edge and ground under the pointer or the keyboard; a press going down and coming back |
 | Lift | 200ms | A shadow, a card's lift, an arrow's turn |
-| Press | 120ms | A button pressed |
+| Open | 180ms to 260ms | A list dropping from what opened it; a folded part unfolding |
+| Arrive | 360ms, 420ms on the landing page | A page rising into place |
 
 ### Choreography
 
 | Moment | Trigger | What moves | Duration |
 |---|---|---|---|
+| A page arrives | A link followed, or a question asked of the results page | Its parts rise 12px and fade in, one after the other, 50ms apart | 360ms |
+| The landing page arrives | The name pressed | Its words rise and fade in, 40ms apart; its two panes of glass rise and do not fade, since a fading pane cannot see the picture behind it | 420ms |
+| A page is on its way | A link to another page pressed, or a search sent | A royal line 3px tall runs across the top of the screen, and runs out when the page is here. A page that comes within 140ms never shows it | Up to 9 seconds, then 200ms |
+| The menu opens | "Menu" | The grid drops 6px from its button and fades in; its tiles rise after it, 18ms apart | 220ms, then 320ms |
+| The search box offers | Two letters typed | The list drops from the box | 180ms |
+| A folded part opens | Its summary | What was folded fades in and settles 4px | 260ms |
+| A press | The finger or the pointer, down | A tile, a tab, a chip, a filter or a link in the menu shrinks to 97%; a tab of the phone's bar to 94%; a key goes down 3px onto its edge | 160ms |
+| Where you are, on the phone's bar | The page | The current tab's icon stands a pixel higher and 8% larger | 240ms |
+| A count changes | Something put in the cart or on the shortlist | The number lands from 40% with a small bounce | 320ms |
 | A card lifts | The pointer | Edge, shadow, one pixel up | 160ms to 200ms |
 | A tile's icon | The pointer | Turns saffron, tips four degrees, grows 4% | 200ms |
+| The edition fans out | The pointer over the list's section | Its two pages spread, its cover straightens | 500ms |
 | A main button's arrow | The pointer | Moves two pixels and turns | 200ms |
+| A link to a part of a page | The link | The page travels there | The browser's own smooth scroll |
 | The toast | A link copied | Rises half a rem and fades in; goes after 2.4 seconds | 240ms |
 | The wait | A list being fetched | A band crosses the shape | 1.2 seconds, while it waits |
 | What falls | The landing page, opened by a visitor whose device allows motion | Fourteen petals or leaves of the season (eight on a phone) fall, drift, swing and turn over | 19 to 29 seconds a fall, for as long as the page is open or until it is paused |
 
 The sheet slides over the picture because the picture is fixed, not because anything is animated.
-There are no entrance animations and no scroll effects. What falls on the landing page is the
-only thing that moves by itself, and it can be held still ("What falls").
+There are no scroll effects: nothing waits to be scrolled to before it shows. What falls on the
+landing page is the only thing that moves by itself, and it can be held still ("What falls").
 
 ### Reduced motion and no script
 
 | Movement | `prefers-reduced-motion: reduce` | Without script |
 |---|---|---|
+| A page arriving | It is simply there | It is simply there: every page is a new page load |
+| The line while a page is on its way | Appears and goes at once | Not shown: the browser's own sign does the work |
+| The menu, the box's list, a folded part | Open at once | The menu and a folded part open at once; the box offers nothing and asks as a form |
+| A press, a count, a link to a part of a page | Happen at once | The same, they are CSS; a count needs script |
 | The island's points | Lit at once, as they now are for everyone: the island no longer follows what is typed | Drawn in SVG, lit where a page has answers |
 | Lifts, tips and turns | Happen at once | The same, they are CSS |
 | The toast | Appears at once | Not shown: sharing needs script |
@@ -1181,12 +1244,13 @@ None. There is no WebGL in this build. The island is SVG with a 2D canvas over i
 | Width | What changes |
 |---|---|
 | Under 30rem | The large search box's button is the glass alone; a biznes card loses its icon tile; facts stack |
-| Under 21.25rem | Nothing falls on the landing page, and its control is not shown: the foot line has no room for it |
 | Under 40rem, and on any screen held upright | The tall picture is used |
 | Under 40rem | Eight pieces fall on the landing page, not fourteen; tiles stand two abreast as cards; the Home page's regions and its last part's pages are one to a line; an index is one column; tables become blocks; a line of ways to narrow scrolls sideways; "List your business" leaves the pill |
 | Under 48rem | The Home page's top businesses go by sideways |
-| Under 48rem | The menu's search box becomes a button |
-| Under 64rem | The tab bar appears; the menu's groups go behind one button; the page keeps room at its foot |
+| Under 40rem | In the header the name is its first letter alone beside the search box; what the box offers opens under the whole pill |
+| Under 64rem | The tab bar appears and "Menu" leaves the header; the page keeps room at its foot |
+| Under 64rem | The landing page's section is one column: what the site is, then its keys |
+| Under 56rem | In the list's section the edition stands above the words |
 | From 68rem | The island sits beside a list; below it, a small island sits above the list |
 
 **Touch targets.** 44px for buttons, icon buttons, a group of the menu, a chip and a row of an open
@@ -1226,7 +1290,11 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** caption a picture as a photograph, or as a real place.
 - **Don't** cut a phone's picture out of the wide one, or let anything move by itself that cannot
   be held still and is not left out for a visitor who asks for less motion.
-- **Don't** set words on the picture outside the landing page, or anything under its one button.
+- **Don't** set words on the picture outside the landing page's first screen, or anything on that
+  screen under its one button but the line that leads down.
+- **Don't** put a row of links back in the header. The search box and "Menu" are the way round.
+- **Don't** make a page wait on a movement, or leave anything of a movement on the page once it
+  is over.
 - **Don't** add a second face, or a monospaced face for figures.
 - **Don't** set a sentence in capitals (the Capitals Rule).
 - **Don't** make a dark page. Ink is for the footer and for a card to notice.

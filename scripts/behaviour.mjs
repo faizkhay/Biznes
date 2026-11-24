@@ -89,26 +89,57 @@ await page.goto(origin, { waitUntil: "networkidle" });
 check("landing: one h1, and it is the site's own line", (await page.locator("h1").count()) === 1 && (await text("main h1")).trim() === "The search engine for business in Mauritius");
 check("landing: the day's picture is behind the page, one of the eighteen", PICTURE_IDS.length === 18 && PICTURE_IDS.includes((await page.getAttribute("html", "data-picture")) ?? "") && /url\(/.test(await page.evaluate(() => getComputedStyle(document.querySelector(".backdrop")).backgroundImage)));
 check("landing: at a desk the search box has the keyboard from the start", (await page.evaluate(() => document.activeElement?.id)) === "home-search");
-const landing = await page.evaluate(() => ({
-  buttons: [...document.querySelectorAll("main a.btn")].map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","),
-  under: document.querySelectorAll("main h2, main h3, main article, main .tile, main .start-tile, main .card, main .chart").length,
-  sheet: getComputedStyle(document.querySelector("main"), "::before").content,
-  tall: document.documentElement.scrollHeight - innerHeight,
-  search: document.querySelectorAll('main form[role="search"] input[name="q"], main form input[name="q"]').length,
-}));
-check("landing: the search, one button that says Home, and nothing under them: no tiles, no bands, no lists, no sheet", landing.buttons === "Home|/home" && landing.under === 0 && landing.search === 1 && landing.sheet === "none", JSON.stringify(landing));
-check("landing: it is one screen at a desk", landing.tall <= 0, `${landing.tall}px over`);
+const landing = await page.evaluate(() => {
+  const first = document.querySelector("main .landing-first").getBoundingClientRect();
+  const about = document.querySelector("main #about").getBoundingClientRect();
+  return {
+    buttons: [...document.querySelectorAll("main .landing-first a.btn")].map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","),
+    onFirst: document.querySelectorAll("main .landing-first h2, main .landing-first h3, main .landing-first article, main .landing-first .tile, main .landing-first .card, main .landing-first .chart").length,
+    sheet: getComputedStyle(document.querySelector("main"), "::before").content,
+    fills: Math.round(first.bottom) - innerHeight,
+    below: Math.round(about.top) - innerHeight,
+    search: document.querySelectorAll('main form[role="search"] input[name="q"], main form input[name="q"]').length,
+    parts: [...document.querySelectorAll("main > .landing > *")].filter((el) => el.tagName !== "SCRIPT" && getComputedStyle(el).position !== "fixed").map((el) => el.className.split(" ")[0]).join(","),
+  };
+});
+check("landing: the first screen is the search and one button that says Home, with no tiles, no bands and no lists on it", landing.buttons === "Home|/home" && landing.onFirst === 0 && landing.search === 1 && landing.sheet === "none", JSON.stringify(landing));
+check("landing: the first screen fills the screen at a desk, and one short section lies under it", landing.fills === 0 && landing.below >= 0 && landing.parts === "landing-first,landing-about", JSON.stringify(landing));
+{
+  // The section under the first screen: what the site is, what it holds, and the keys.
+  const about = await page.evaluate(() => {
+    const part = document.querySelector("main #about");
+    return {
+      title: part.querySelector("h2")?.textContent.trim(),
+      says: part.querySelector("h2 + p")?.textContent.trim() ?? "",
+      holds: [...part.querySelectorAll(".landing-holds a")].map((a) => `${a.getAttribute("href")}|${a.textContent.replace(/\s+/g, " ").trim()}`),
+      keys: [...part.querySelectorAll(".keys a.key")].map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","),
+      icons: part.querySelectorAll(".keys a.key svg").length,
+      named: part.querySelector("nav[aria-labelledby]")?.getAttribute("aria-labelledby") === "keys-title" && Boolean(part.querySelector("#keys-title")),
+      tall: Math.round(part.getBoundingClientRect().height),
+    };
+  });
+  check("landing: under the first screen, what the site is, in its own sentence", about.title === "What is biznes.mu?" && /^biznes\.mu is a search engine for business in Mauritius: a directory of businesses and services/.test(about.says), JSON.stringify(about));
+  check("landing: what it holds, as three counts from the index, each leading to where it can be seen", about.holds.length === 3 && /^\/directory\|[\d,]+ ?businesses and services$/.test(about.holds[0]) && /^\/places\|\d+ ?towns and villages$/.test(about.holds[1]) && /^\/learn\|\d+ ?articles, each fact with its source$/.test(about.holds[2]), JSON.stringify(about.holds));
+  check("landing: eight keys lead straight to the pages most people want, each named as the menu names it and with its own icon", about.keys === "Home|/home,Directory|/directory,Places|/places,Baz Manzer|/baz-manzer,Articles|/learn,Tools|/tools,Emergency numbers|/emergency,Public holidays|/holidays" && about.icons === 8 && about.named, JSON.stringify(about));
+  check("landing: the section is short: no taller than the screen", about.tall <= 900, `${about.tall}px`);
+  const cue = page.locator("main .landing-foot a.landing-cue");
+  check("landing: at the foot of the first screen a line asks the question and leads down to its answer", (await cue.innerText()).trim() === "What is biznes.mu?" && (await cue.getAttribute("href")) === "#about" && (await cue.evaluate((a) => a.getBoundingClientRect().bottom <= innerHeight)));
+  await cue.click();
+  await page.waitForFunction(() => document.querySelector("#about").getBoundingClientRect().top < innerHeight / 2, null, { timeout: 5000 }).catch(() => {});
+  check("landing: pressing it brings the section up the screen", await page.evaluate(() => location.hash === "#about" && document.querySelector("#about").getBoundingClientRect().top < innerHeight / 2));
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.locator("#home-search").focus();
+}
 const head = await page.evaluate(() => ({
   links: [...document.querySelectorAll("header.site-header a")].filter((a) => a.getBoundingClientRect().width > 0).map((a) => a.getAttribute("href").split("/").slice(0, 2).join("/")).join(","),
   others: document.querySelectorAll("header.site-header nav, header.site-header details, header.site-header input, header.site-header form").length,
 }));
 check("landing: the header is only the name, the cart and the account", head.links === "/,/cart,/account" && head.others === 0, JSON.stringify(head));
 const foot = await page.evaluate(() => {
-  const line = document.querySelector("main .landing-foot");
-  const box = line.getBoundingClientRect();
-  return { words: line.innerText.replace(/\s+/g, " "), links: [...line.querySelectorAll("nav a")].map((a) => a.getAttribute("href")).join(","), onScreen: box.top > innerHeight / 2 && box.bottom <= innerHeight, card: getComputedStyle(document.querySelector("footer.site-footer")).display };
+  const line = document.querySelector("main .landing-credit");
+  return { words: line.innerText.replace(/\s+/g, " "), links: [...line.querySelectorAll("nav a")].map((a) => a.getAttribute("href")).join(","), last: line.closest("#about").lastElementChild.contains(line), card: getComputedStyle(document.querySelector("footer.site-footer")).display };
 });
-check("landing: in the footer's place, one quiet line: whose product it is, in the owner's words, and three pages", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(foot.words) && foot.links === "/about,/privacy,/more" && /About biznes\.mu Privacy More$/.test(foot.words.trim()) && foot.onScreen && foot.card === "none", JSON.stringify(foot));
+check("landing: in the footer's place, one quiet line at the page's end: whose product it is, in the owner's words, and three pages", /biznes\.mu is a product of Khay Digital, developed by Faiz Khayrattee\./.test(foot.words) && foot.links === "/about,/privacy,/more" && /About biznes\.mu Privacy More$/.test(foot.words.trim()) && foot.last && foot.card === "none", JSON.stringify(foot));
 check("landing: the skip link is still the first thing the keyboard meets", (await page.evaluate(() => document.querySelector("body a")?.getAttribute("href"))) === "#main" && (await page.locator("a.skip-link").count()) === 1);
 await page.evaluate(() => document.activeElement?.blur());
 await page.keyboard.press("/");
@@ -408,39 +439,119 @@ check("answers: the site knows who makes it", /product of Khay Digital.*\| \/abo
 check("answers: words that are only partly found are never shown as the answer, and the page says so", (await answerTo("khayzzq digital")) === "" && /holds some of its words/.test(await page.locator('main p[role="status"]').first().innerText()));
 check("answers: a who-and-where question still leads with businesses", (await answerTo("restaurants in grand baie")) === "" && (await page.locator("main article[data-listing]").count()) > 0);
 
-// 8a. The menu: four plain links, each one press from its page, Home the first of them, and one list that opens.
+// 8a. The header, on a search engine's model: the name, the search box in the middle, one word that opens a grid of pages, and what is the visitor's own.
 await page.goto(`${origin}/directory`, { waitUntil: "networkidle" });
 const openLists = () => page.locator("header details[open]").count();
-const ways = await page.locator('header nav[aria-label="Main"] > ul > li > a').evaluateAll((links) => links.map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}|${a.getAttribute("aria-current") ?? ""}`));
-check("menu: the four ways in are plain links, Home the first, and the one you are on says so", ways.join(",") === "Home|/home|,Directory|/directory|page,Baz Manzer|/baz-manzer|,Articles|/learn|", ways.join(","));
+const MENU_TILES = "Home|/home,Directory|/directory,Places|/places,Baz Manzer|/baz-manzer,Articles|/learn,Tools|/tools,Emergency numbers|/emergency,Public holidays|/holidays,Pocket Guide|/shop,Glossary|/learn/glossary,Official pages|/official,Saved|/saved";
+const bar = await page.evaluate(() => {
+  const header = document.querySelector("header.site-header");
+  const pill = header.querySelector(".nav-pill").getBoundingClientRect();
+  const box = header.querySelector("#header-search");
+  const field = box.closest("form").getBoundingClientRect();
+  return {
+    shown: [...header.querySelectorAll(".nav-pill > a, .nav-pill > nav summary, .nav-pill form input")].filter((el) => el.getBoundingClientRect().width > 0).map((el) => (el.tagName === "A" ? el.getAttribute("href") : el.tagName === "INPUT" ? "search" : el.textContent.trim())).join(","),
+    rows: header.querySelectorAll('nav[aria-label="Main"] > ul').length,
+    hint: box.getAttribute("placeholder"),
+    wide: Math.round(field.width),
+    middle: Math.abs((field.left + field.right) / 2 - (pill.left + pill.right) / 2) < pill.width * 0.12,
+  };
+});
+check("menu: the header holds the name, the search box, Menu, the cart and the account, and no row of links", bar.shown === "/,search,Menu,/cart,/account" && bar.rows === 0, JSON.stringify(bar));
+check("menu: the search box is the middle of the header, wide, and says what it finds", bar.middle && bar.wide >= 480 && bar.hint === "Search businesses, articles and numbers", JSON.stringify(bar));
 check("menu: the name leads to the landing page, where the search is, and says so", (await page.locator("header a.logo").getAttribute("href")) === "/" && (await page.locator("header a.logo").getAttribute("aria-label")) === "biznes.mu, search");
 const trailOf = async () => ({ first: await page.locator('main nav[aria-label="You are here"] a').first().evaluate((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`), machine: (await page.locator('script[type="application/ld+json"]').allInnerTexts()).map((body) => JSON.parse(body)).find((item) => item["@type"] === "BreadcrumbList")?.itemListElement?.[0] });
 const trail = await trailOf();
 check("menu: the first step of a page's path is Home, for a reader and for a machine", trail.first === "Home|/home" && trail.machine?.name === "Home" && /\/home$/.test(trail.machine?.item ?? ""), JSON.stringify(trail));
 check("menu: one thing in the header opens, and it is closed until it is asked for", (await page.locator("header details").count()) === 1 && (await openLists()) === 0);
-await page.locator("header summary", { hasText: "More" }).click();
-const moreLines = await page.locator("header details[open] .menu-item:visible").allInnerTexts();
-check("menu: More opens to the pages wanted less often, the tools at their head, each named and with a line about it", moreLines.length === 10 && /^Tools\s+Income tax/.test(moreLines[0]) && /Emergency numbers\s+Who to call/.test(moreLines.join("\n")) && /Every page, in one list/.test(moreLines.at(-1)), moreLines.join(" / ").replace(/\n/g, ": "));
+await page.locator("header summary", { hasText: "Menu" }).click();
+const menuTiles = await page.locator("header details[open] .menu-grid a.menu-item").evaluateAll((links) => links.map((a) => ({ said: `${a.textContent.trim()}|${a.getAttribute("href")}`, icon: a.querySelectorAll("svg").length, here: a.getAttribute("aria-current") ?? "", line: a.getAttribute("title") ?? "" })));
+check("menu: Menu opens a grid of the twelve pages most often wanted, the four ways in at its head, each a tile with its own icon and its name", menuTiles.map((t) => t.said).join(",") === MENU_TILES && menuTiles.every((t) => t.icon === 1 && t.line.length > 10), menuTiles.map((t) => t.said).join(","));
+check("menu: the tile of the page you are on says so, and no other does", menuTiles.filter((t) => t.here).map((t) => `${t.said}|${t.here}`).join(",") === "Directory|/directory|page", JSON.stringify(menuTiles.filter((t) => t.here)));
+const menuFoot = await page.locator("header details[open] .menu-foot a").evaluateAll((links) => links.map((a) => `${a.textContent.trim()}|${a.getAttribute("href")}`).join(","));
+check("menu: under the grid, the way for a business to list itself and the page of every page", menuFoot === "List your business|/pricing,Every page, in one list|/more", menuFoot);
 await page.keyboard.press("Escape");
-check("menu: Escape closes the list and hands the keyboard back to the word that opened it", (await openLists()) === 0 && (await page.evaluate(() => document.activeElement?.tagName === "SUMMARY" && document.activeElement.textContent.trim().startsWith("More"))));
+check("menu: Escape closes the grid and hands the keyboard back to the word that opened it", (await openLists()) === 0 && (await page.evaluate(() => document.activeElement?.tagName === "SUMMARY" && document.activeElement.textContent.trim() === "Menu")));
 await page.keyboard.press("Enter");
 const openedByKey = await openLists();
-for (let i = 0; i < moreLines.length + 1; i++) await page.keyboard.press("Tab");
+for (let i = 0; i < menuTiles.length + 3; i++) await page.keyboard.press("Tab");
 check("menu: it opens from the keyboard, and walking out of it with Tab closes it", openedByKey === 1 && (await openLists()) === 0 && (await page.evaluate(() => !document.activeElement?.closest("details"))));
-await page.locator("header summary", { hasText: "More" }).click();
+{
+  // A press on the page while the grid is open closes the grid and does nothing else.
+  await page.locator("header summary", { hasText: "Menu" }).click();
+  const under = await page.locator("main a[href]:visible").evaluateAll((links) => {
+    const panel = document.querySelector("header .menu-panel").getBoundingClientRect();
+    const link = links.find((a) => { const box = a.getBoundingClientRect(); return box.top > 120 && box.bottom < innerHeight && (box.right < panel.left || box.top > panel.bottom); });
+    const box = link.getBoundingClientRect();
+    return { x: box.left + box.width / 2, y: box.top + box.height / 2 };
+  });
+  await page.mouse.click(under.x, under.y);
+  await page.waitForTimeout(400);
+  check("menu: a press on the page while the grid is open closes the grid, and does not also open what lay beneath", (await openLists()) === 0 && new URL(page.url()).pathname === "/directory");
+  await page.locator("header summary", { hasText: "Menu" }).click();
+  await page.locator("#header-search").click();
+  check("menu: what is in the header can still be pressed while the grid is open", (await page.evaluate(() => document.activeElement?.id)) === "header-search");
+  await page.keyboard.press("Escape");
+}
+await page.locator("header summary", { hasText: "Menu" }).click();
 await page.locator("header details[open] .menu-item", { hasText: "Emergency numbers" }).click();
 await page.waitForURL(/\/emergency/);
-check("menu: choosing a page goes there, closes the list and lights More", (await openLists()) === 0 && /999/.test(await page.locator("main").innerText()) && (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
+check("menu: choosing a tile goes there and closes the grid", (await openLists()) === 0 && /999/.test(await page.locator("main").innerText()) && (await page.locator('header a.menu-item[href="/emergency"]').getAttribute("aria-current")) === "page");
 await page.goto(`${origin}/places`, { waitUntil: "networkidle" });
-check("menu: the towns are the directory turned round: Directory is lit there, and one press goes between the two", (await page.locator('header nav a[href="/directory"]').getAttribute("aria-current")) === "true" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[aria-current="page"]').innerText()).trim() === "By town" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[href="/directory"]').count()) === 1);
+check("menu: the towns are the directory turned round: one press goes between the two", (await page.locator('header a.menu-item[href="/places"]').getAttribute("aria-current")) === "page" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[aria-current="page"]').innerText()).trim() === "By town" && (await page.locator('main nav[aria-label="Ways to browse the directory"] a[href="/directory"]').count()) === 1);
 await page.goto(`${origin}/tools/vat`, { waitUntil: "networkidle" });
-check("menu: the tools are reached from More, and light it", (await page.locator("header summary[data-current]").count()) === 1 && (await page.locator("header nav > ul > li > a[aria-current]").count()) === 0);
+check("menu: a page beneath a tile lights it as the place you are in", (await page.locator('header a.menu-item[href="/tools"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
+{
+  // The search box in the header is the way to anything: a question is asked without leaving the page behind, and what is found rises into place.
+  await page.evaluate(() => (window.__sameDocument = true));
+  await page.fill("#header-search", "dentist");
+  await page.press("#header-search", "Enter");
+  await page.waitForURL(/\/search\?q=dentist$/, { timeout: 8000 }).catch(() => {});
+  await page.waitForLoadState("networkidle");
+  const asked = await page.evaluate(() => ({ kept: window.__sameDocument === true, arrived: document.getElementById("main").hasAttribute("data-arrived"), box: document.querySelector("#search")?.value, results: document.querySelectorAll("main article[data-listing]").length, header: document.querySelectorAll("#header-search").length }));
+  check("menu: a question typed in the header is asked without a new page load, and the results page takes it up in its own box", asked.kept && asked.arrived && asked.box === "dentist" && asked.results > 0 && asked.header === 0, JSON.stringify(asked));
+  await page.fill("#search", "bank");
+  await page.press("#search", "Enter");
+  await page.waitForURL(/\/search\?q=bank$/, { timeout: 8000 }).catch(() => {});
+  const moved = await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => done({ rising: document.getAnimations().filter((a) => a.animationName === "arrive").length, focus: document.activeElement?.id, kept: window.__sameDocument === true }))));
+  check("menu: asking again from the results page keeps the keyboard in the box while the new results rise into place", moved.kept && moved.focus === "search" && moved.rising > 0, JSON.stringify(moved));
+}
+{
+  // Motion: a press is answered, and nothing moves that should not.
+  const fresh = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 } }));
+  const view = await fresh.newPage();
+  await view.goto(`${origin}/home`, { waitUntil: "networkidle" });
+  const landed = await view.evaluate(() => ({ mark: document.getElementById("main").hasAttribute("data-arrived"), moving: document.getAnimations().filter((a) => a.animationName === "arrive").length, line: document.querySelector(".progress")?.getAttribute("data-state"), hidden: document.querySelector(".progress")?.getAttribute("aria-hidden") }));
+  check("motion: the page a visitor lands on is simply there: nothing rises, and no line runs", !landed.mark && landed.moving === 0 && landed.line === "idle" && landed.hidden === "true", JSON.stringify(landed));
+  await view.locator("header summary").click();
+  const opening = await view.evaluate(() => new Promise((done) => requestAnimationFrame(() => done(document.getAnimations().map((a) => a.animationName)))));
+  check("motion: the menu's grid drops from its button and its tiles follow", opening.includes("drop") && opening.filter((name) => name === "arrive").length === 12, opening.join(","));
+  const pressed = await view.evaluate(() => {
+    const link = document.querySelector('header a.menu-item[href="/directory"]');
+    link.click();
+    return new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(() => done(document.querySelector(".progress").getAttribute("data-state")))));
+  });
+  await view.waitForURL(/\/directory$/);
+  const reached = await view.evaluate(() => new Promise((done) => requestAnimationFrame(() => done({ mark: document.getElementById("main").hasAttribute("data-arrived"), rising: document.getAnimations().filter((a) => a.animationName === "arrive").length, how: getComputedStyle(document.querySelector("main > *")).animationFillMode }))));
+  check("motion: a press on a link is answered at once by a line across the top of the screen", pressed === "going" || pressed === "done", String(pressed));
+  check("motion: a page reached from another rises into place, and leaves nothing of the movement behind", reached.mark && reached.rising >= 2 && reached.how === "backwards", JSON.stringify(reached));
+  await view.waitForTimeout(1200);
+  check("motion: once the page is here the line is gone and nothing is still moving", (await view.locator(".progress").getAttribute("data-state")) === "idle" && (await view.evaluate(() => document.getAnimations().filter((a) => a.animationName === "arrive" && a.playState === "running").length)) === 0);
+  await fresh.close();
+  const calm = await steady(await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" }));
+  const quiet = await calm.newPage();
+  await quiet.goto(`${origin}/home`, { waitUntil: "networkidle" });
+  await quiet.locator('main a[href="/directory"]').first().click();
+  await quiet.waitForURL(/\/directory/);
+  const still = await quiet.evaluate(() => ({ lasts: parseFloat(getComputedStyle(document.querySelector("main > *")).animationDuration), smooth: getComputedStyle(document.documentElement).scrollBehavior, heading: document.querySelector("main h1")?.getBoundingClientRect().height > 0 }));
+  check("motion: for a visitor who asks for less motion every one of them happens at once, and the page is whole", still.lasts < 0.001 && still.smooth === "auto" && still.heading, JSON.stringify(still));
+  await calm.close();
+}
 // Baz Manzer is a section that stands by itself: a reader's path there begins at its own first page, so its app never leads out of itself, and a machine's still begins at Home.
 await page.goto(`${origin}/baz-manzer/kind/restaurants`, { waitUntil: "networkidle" });
 const bazTrail = await trailOf();
 check("menu: inside Baz Manzer a page's path begins at the section's first page for a reader, and at Home for a machine", bazTrail.first === "Baz Manzer|/baz-manzer" && bazTrail.machine?.name === "Home" && /\/home$/.test(bazTrail.machine?.item ?? ""), JSON.stringify(bazTrail));
 await page.goto(`${origin}/learn/vat`, { waitUntil: "networkidle" });
-check("menu: a page beneath a way in lights it as the place you are in, and only the page itself is called the current page", (await page.locator('header.site-header nav a[href="/learn"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
+check("menu: an article lights Articles as the place you are in, and only the page itself is called the current page", (await page.locator('header.site-header nav a[href="/learn"]').getAttribute("aria-current")) === "true" && (await page.locator('header.site-header [aria-current="page"]').count()) === 0);
 await page.goto(`${origin}/more`, { waitUntil: "networkidle" });
 const moreGroups = await page.locator('main nav[aria-label="Every page"] h2').allInnerTexts();
 const moreLinks = await page.locator('main nav[aria-label="Every page"] a').evaluateAll((links) => links.map((a) => a.getAttribute("href")));
@@ -799,33 +910,58 @@ check("phone: the search, Home, Baz Manzer, Articles and More are on show, in a 
 await small.goto(`${origin}/`, { waitUntil: "networkidle" });
 const first = await small.evaluate(() => {
   const within = (el) => Boolean(el) && el.getBoundingClientRect().top >= 0 && el.getBoundingClientRect().bottom <= innerHeight;
-  return { bar: document.querySelectorAll("nav.tabbar").length, tall: document.documentElement.scrollHeight - innerHeight, room: getComputedStyle(document.body).paddingBottom, search: within(document.querySelector("#home-search")), home: within(document.querySelector('main a.btn[href="/home"]')), foot: within(document.querySelector("main .landing-foot")), focus: document.activeElement?.id ?? "" };
+  return { bar: document.querySelectorAll("nav.tabbar").length, fills: Math.round(document.querySelector("main .landing-first").getBoundingClientRect().bottom) - innerHeight, room: getComputedStyle(document.body).paddingBottom, search: within(document.querySelector("#home-search")), home: within(document.querySelector('main a.btn[href="/home"]')), foot: within(document.querySelector("main .landing-foot")), below: Math.round(document.querySelector("main #about").getBoundingClientRect().top) - innerHeight, focus: document.activeElement?.id ?? "" };
 });
-check("phone: the landing page is one screen, with no bar at its foot: the search, the Home button and the quiet line are all on it", first.bar === 0 && first.tall <= 0 && first.room === "0px" && first.search && first.home && first.foot, JSON.stringify(first));
+check("phone: the landing page's first screen fills the screen, with no bar at its foot: the search, the Home button and the line that leads down are all on it, and the section is under it", first.bar === 0 && first.fills === 0 && first.room === "0px" && first.search && first.home && first.foot && first.below >= 0, JSON.stringify(first));
 check("phone: the landing page does not take the keyboard, which would cover it", first.focus !== "home-search");
-const reach = await small.locator('main a.btn[href="/home"], main .landing-foot nav a, main .landing-foot button, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
-check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 8 && reach.every((height) => height >= 44), reach.join(","));
+const reach = await small.locator('main a.btn[href="/home"], main .landing-foot a, main .landing-foot button, main .keys a, main .landing-credit nav a, header .nav-pill > a').evaluateAll((links) => links.filter((a) => a.getBoundingClientRect().width > 0).map((a) => Math.round(a.getBoundingClientRect().height)));
+check("phone: everything on the landing page that can be pressed is at least 44 pixels tall", reach.length === 17 && reach.every((height) => height >= 44), reach.join(","));
+{
+  const keys = await small.locator("main .keys a.key").evaluateAll((links) => ({ rows: new Set(links.map((a) => Math.round(a.getBoundingClientRect().top))).size, inside: links.every((a) => a.getBoundingClientRect().left >= 0 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1) }));
+  check("phone: the eight keys stand four abreast in two rows, each whole", keys.rows === 2 && keys.inside, JSON.stringify(keys));
+}
 {
   const held = await looks(small);
   check("phone: the picture is the tall one, painted for an upright screen, and it is the one fetched ahead", held.behind.endsWith("-tall.jpg") && held.ahead.length === 1 && held.ahead[0] === held.behind, JSON.stringify([held.behind, held.ahead]));
-  check("phone: fewer pieces fall, eight, and the control for them is in the foot line", held.state === "on" && held.falling === 8 && held.control.shown && held.control.tall >= 44, JSON.stringify(held));
+  check("phone: fewer pieces fall, eight, and the control for them is in the line at the foot of the first screen", held.state === "on" && held.falling === 8 && held.control.shown && held.control.tall >= 44, JSON.stringify(held));
 }
 {
-  // The smallest phone still in use, 320 by 568: the same page, closer together, and still one screen.
+  // The smallest phone still in use, 320 by 568: the same first screen, closer together, and still one screen.
   const little = await steady(await browser.newContext({ viewport: { width: 320, height: 568 }, isMobile: true, hasTouch: true }));
   const tiny = await little.newPage();
   await tiny.goto(`${origin}/`, { waitUntil: "networkidle" });
   const fits = await tiny.evaluate(() => {
     const boxes = ["main .pill-note", "main h1", "main .search", 'main a.btn[href="/home"]', "main .landing-foot"].map((selector) => document.querySelector(selector).getBoundingClientRect());
-    return { tall: document.documentElement.scrollHeight - document.documentElement.clientHeight, whole: boxes.every((box) => box.left >= 0 && box.right <= innerWidth && box.bottom <= innerHeight), apart: boxes.every((box, i) => i === 0 || box.top >= boxes[i - 1].bottom), clear: boxes[0].top >= document.querySelector("header .nav-pill").getBoundingClientRect().bottom };
+    return { over: Math.round(document.querySelector("main .landing-first").getBoundingClientRect().bottom) - innerHeight, wide: document.documentElement.scrollWidth - innerWidth, whole: boxes.every((box) => box.left >= 0 && box.right <= innerWidth && box.bottom <= innerHeight), apart: boxes.every((box, i) => i === 0 || box.top >= boxes[i - 1].bottom), clear: boxes[0].top >= document.querySelector("header .nav-pill").getBoundingClientRect().bottom };
   });
-  check("phone: on the smallest phone the landing page is still one screen, with nothing cut off and nothing lying over anything else", fits.tall <= 0 && fits.whole && fits.apart && fits.clear, JSON.stringify(fits));
+  check("phone: on the smallest phone the first screen is still one screen, with nothing cut off and nothing lying over anything else", fits.over <= 0 && fits.wide <= 0 && fits.whole && fits.apart && fits.clear, JSON.stringify(fits));
   const bare = await looks(tiny);
-  check("phone: on the smallest phone the foot line has no room for the control, so nothing falls", bare.layer === "none" && !bare.control.shown && bare.behind.endsWith("-tall.jpg"), JSON.stringify(bare));
+  check("phone: on the smallest phone too something falls, and its control is on the first screen", bare.state === "on" && bare.falling === 8 && bare.control.shown && bare.control.tall >= 44 && bare.behind.endsWith("-tall.jpg"), JSON.stringify(bare));
   await little.close();
 }
 await small.locator('main a.btn[href="/home"]').tap();
 await small.waitForURL(/\/home$/);
+{
+  await small.waitForLoadState("networkidle");
+  const pill = await small.evaluate(() => {
+    const header = document.querySelector("header.site-header");
+    const shown = (el) => Boolean(el) && el.getBoundingClientRect().width > 0;
+    const field = header.querySelector("#header-search");
+    return { mark: shown(header.querySelector(".logo .logo-mark")), word: shown(header.querySelector(".logo .logo-word")), box: shown(field), size: parseFloat(getComputedStyle(field).fontSize), wide: Math.round(field.closest("form").getBoundingClientRect().width), menu: shown(header.querySelector("summary")), over: document.documentElement.scrollWidth - innerWidth };
+  });
+  check("phone: on every other page the header holds the search box, with the name drawn as its first letter to leave it room", pill.mark && !pill.word && pill.box && pill.wide >= 180 && !pill.menu && pill.over <= 0, JSON.stringify(pill));
+  check("phone: the header's search box is set in sixteen pixels, so the phone does not draw nearer when it is touched", pill.size >= 16, `${pill.size}px`);
+  await small.fill("#header-search", "pharm");
+  await small.waitForSelector("header .suggest", { timeout: 8000 }).catch(() => {});
+  const list = await small.evaluate(() => {
+    const box = document.querySelector("header .suggest")?.getBoundingClientRect();
+    const pill = document.querySelector("header .nav-pill").getBoundingClientRect();
+    return box ? { wide: Math.round(box.width), pill: Math.round(pill.width), under: box.top >= pill.bottom, n: document.querySelectorAll("header .suggest [role=option]").length } : null;
+  });
+  check("phone: what the header's box offers opens under the whole pill, not under the narrow box", Boolean(list) && list.n > 0 && list.under && list.wide >= list.pill - 12, JSON.stringify(list));
+  await small.fill("#header-search", "");
+  await small.locator("main h1").tap();
+}
 check("phone: the Home button leads to Home, where the bar is, and says that is where you are", (await small.locator('nav.tabbar a[aria-current="page"]').innerText()).trim() === "Home" && (await small.locator("footer.site-footer").isVisible()));
 check("phone: on Home the police's number is one tap away", (await small.locator('main a[href="tel:999"]').count()) === 1);
 const strip = await small.locator("main ul.top-list").evaluate((list) => ({ sideways: list.scrollWidth > list.clientWidth + 100, first: Math.round(list.querySelector("li").getBoundingClientRect().width), page: document.documentElement.scrollWidth - innerWidth }));
@@ -853,9 +989,9 @@ const pill = await small.evaluate(() => {
   const logo = bar.querySelector(".logo").getBoundingClientRect();
   const shown = [...bar.querySelectorAll(':scope > a, :scope > details > summary')].filter((el) => el.getBoundingClientRect().width > 0).map((el) => el.getBoundingClientRect());
   const next = shown.filter((box) => box.left > logo.left + 1).sort((a, b) => a.left - b.left)[0];
-  return { fits: bar.scrollWidth <= bar.clientWidth, oneLine: bar.getBoundingClientRect().height <= 64, logoWhole: logo.width > 100 && logo.right <= next.left, cart: Boolean(bar.querySelector('a[href="/cart"]')?.getBoundingClientRect().width), account: Boolean(bar.querySelector('a[href^="/account"]')?.getBoundingClientRect().width), opens: [...bar.querySelectorAll("details, summary")].filter((el) => el.getBoundingClientRect().width > 0).length };
+  return { fits: bar.scrollWidth <= bar.clientWidth, oneLine: bar.getBoundingClientRect().height <= 64, logoWhole: logo.width >= 44 && logo.right <= next.left && Boolean(bar.querySelector("#header-search")?.getBoundingClientRect().width), cart: Boolean(bar.querySelector('a[href="/cart"]')?.getBoundingClientRect().width), account: Boolean(bar.querySelector('a[href^="/account"]')?.getBoundingClientRect().width), opens: [...bar.querySelectorAll("details, summary")].filter((el) => el.getBoundingClientRect().width > 0).length };
 });
-check("phone: the header holds the name whole, the cart and the account on one line, and nothing that opens", pill.fits && pill.oneLine && pill.logoWhole && pill.cart && pill.account && pill.opens === 0, JSON.stringify(pill));
+check("phone: the header holds the name's first letter, the search box, the cart and the account on one line, and nothing that opens", pill.fits && pill.oneLine && pill.logoWhole && pill.cart && pill.account && pill.opens === 0, JSON.stringify(pill));
 check("phone: the footer's b is whole there too, clear of the sheet and of the tab bar", await whole(small));
 await small.goto(`${origin}/b/n14064293374`, { waitUntil: "networkidle" });
 const act = await small.locator("main header.biz-head a.btn-filled").boundingBox();

@@ -34,6 +34,8 @@ export const site = {
     legalName: "Khay Digital Ltd",
     brn: "C22187903",
     url: "https://khay.digital",
+    /** The category its own listing on this site is filed under, by its owner (the hosted accounts, 24 November 2026). */
+    category: "it-telecom",
   },
 
   /**
@@ -138,18 +140,29 @@ export const YOURS = [
 ] as const;
 
 /**
- * What the header's "More" opens: the pages beyond the four ways in that people most often want,
- * most wanted first. Each is a page of MENU or YOURS, and is named as it is there. The tools lead
- * it: they gave their place among the four to Home.
+ * What the header's menu opens: the pages people most often want, as a grid of tiles, most wanted
+ * first. The four ways in lead it; each is a page of MENU or YOURS, and is named as it is there.
  */
-export const MORE = ["/tools", "/places", "/emergency", "/holidays", "/shop", "/learn/glossary", "/official", "/saved", "/add"] as const;
+export const MORE = ["/home", "/directory", "/places", "/baz-manzer", "/learn", "/tools", "/emergency", "/holidays", "/shop", "/learn/glossary", "/official", "/saved"] as const;
 
 /**
- * The list that opens in the header, and the page of every page that the phone's last tab leads
- * to. `search` is the name of the first tab, and of where the site's name leads: the landing
- * page, where the search is.
+ * The grid that opens in the header (`menu` is the word on its button), and the page of every
+ * page that the phone's last tab leads to. `search` is the name of the first tab, and of where
+ * the site's name leads: the landing page, where the search is. `hint` is what the header's
+ * search box says while it is empty.
  */
-export const MORE_PAGE = { href: "/more", label: "More", all: "Every page, in one list", title: "More", lede: "Everything on biznes.mu, in one list.", search: "Search" } as const;
+export const MORE_PAGE = { href: "/more", label: "More", menu: "Menu", all: "Every page, in one list", title: "More", lede: "Everything on biznes.mu, in one list.", search: "Search", hint: "Search businesses, articles and numbers" } as const;
+
+/**
+ * The landing page's section under its first screen: the question it answers, and the pages it
+ * leads straight to, drawn as keys. Each key is a page of MENU, named as it is there.
+ */
+export const LANDING = {
+  cue: "What is biznes.mu?",
+  title: "What is biznes.mu?",
+  keys: "Go straight to",
+  quick: ["/home", "/directory", "/places", "/baz-manzer", "/learn", "/tools", "/emergency", "/holidays"],
+} as const;
 
 /** The directory, both ways round: the same businesses by what they do and by where they are. */
 export const BROWSE = [
