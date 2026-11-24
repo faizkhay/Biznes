@@ -232,6 +232,18 @@ says the database is behind. Neither Resend nor Mailgun has been called. The two
 installed side by side on Chromium only: no real Android phone or iPhone has been tried. A sender
 over plain SMTP is not built.
 
+**24 November: the agency lists itself.** The owner wrote: "Add khay digital in business please,
+because when i searxh indont see, malgre we have a goofld businesss page." Khay Digital is not on
+the open map, so the index never held it, and a search for it gave the About page and no business.
+It was added the way any owner's business is: as the owner's own listing in the accounts'
+database (`/biz/khay-digital-27f7715f`), on the free plan, not marked verified, under the words
+"Listed by its owner". Every detail is from Khay Digital's own website, read on 24 November 2026:
+the name, the telephone number, the website's address and the description, which joins two of the
+site's own sentences so that "web design" finds it. Its website publishes no street and no town,
+so the listing has none; the owner can add them from the dashboard. Its kind, "IT, telecoms and
+media", is the nearest of the seventy and is the owner's to change. The listing lives in the
+hosted database, not in this repository.
+
 ### Round 6, 23 November 2026: one way round
 
 **The owner's note, in their own words.** "Simplify the site's navigation, should be easy to use,
