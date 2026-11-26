@@ -70,7 +70,7 @@ There are no chapters. Each kind of page does one job.
 | Page | Its job | How the postcard shows there |
 |---|---|---|
 | The landing page | Take the question, and say what the site is | The day's picture, full, with the greeting, the site's line, the search in the middle and one button, "Home". Under that screen, one short section on a sheet: what the site is, three counts, and eight keys to the pages most people want (Round 10) |
-| Results (`/search`) | Answer: listings when the question is about who and where; when it is about how, the answer itself first, in the site's own words, with the guide it is from | On the sheet. Each listing is a card. Filters above the list, the island beside it with the answers lit. Pages on other sites are folded away as references |
+| Results (`/search`) | Answer: listings when the question is about who and where; when it is about how, the answer itself first, in the site's own words, with the guide it is from, and over it, where the key is set, a short answer a machine wrote from those same articles (Round 11) | On the sheet. Each listing is a card. Filters above the list, the island beside it with the answers lit. Pages on other sites are folded away as references |
 | A listing (`/b/...`) | Say what is known about one business, and where each part came from | The business's own card opens the page, with a strip of the day's picture across its top. The island marks where it is |
 | A category, a town | Walk the directory: narrow a kind of business to a town, or a town to a kind | Cards, filters, the island with that list lit |
 | The guides (`/learn`), and a guide | Explain one subject, every figure with its source | Shelves of cards; a reading page that ends with what to read next, then its references |
@@ -145,6 +145,71 @@ does not rise, and no line runs for it. Without script a search is still a form 
   emergency number carries the number of its source.
 
 ## Rounds
+
+### Round 11, 26 November 2026: a machine that answers, and only from what we hold
+
+**The owner's note, in their own words.**
+
+"we need an ai to answer straight forward to queries. add integration to gemini, advise on what
+it will cost us, make it cost effective, set up in vercel i will add the env var in vercel for
+gemini api keys"
+
+**The question under the note.** The site's one rule is that nothing on it is invented: every
+figure is on a page that was read, and named. A model that answers from what it knows breaks
+that rule on its first confident mistake. So the model here is not asked what it knows. It is
+handed the parts of our own articles that the site's search found for the question, and told to
+answer from those or not at all.
+
+**What was made.**
+
+- **The AI answer.** Where one of the site's articles answers a question, a short answer stands
+  at the head of the page of results, under the words "AI answer": one or two sentences, the
+  articles it is from, and a line that says a machine wrote it and that it can be wrong. Under
+  it, as before, is the answer in the site's own words, and the article.
+- **It is checked by the site, not by itself.** Every figure in what the model writes must be in
+  the passages it was given, digit for digit, or the whole answer is thrown away. So is one with
+  a link, one too long, and one that names no passage.
+- **It is never asked about who and where.** A list of businesses is its own answer, and no
+  machine chooses among them here. Paying changes nothing in what it says, because it never
+  speaks of a business.
+- **It is cheap by how it is built.** Most searches never reach the model. An answer is kept for
+  a week, so a question costs once. The answer is fetched after the page, so a crawler costs
+  nothing. The model is Google's cheapest that does the work, with its thinking at the least.
+  A usual new answer costs about 0.04 of a US cent; a thousand new questions a day, about 12 US
+  dollars a month.
+- **Nothing says who asked.** The question goes from the server, with no address, cookie or
+  account, and Google is asked not to keep it. The privacy page and the data page say what is
+  sent and what the answer is, and say it only while the answer is switched on.
+- **It is off until the key is there.** With no `GEMINI_API_KEY` on the host there is no card,
+  no call, and no word of it on any page: the site is as it was.
+
+**What the documentation taught.** Google's pages no longer describe the request this was first
+going to be written to. They describe a newer one (the Interactions API), with its own names for
+everything, and a model list in which the cheap model of last year is closed to new keys. The
+client was written to the pages as they stood on the day, and the pages read are named in the
+README.
+
+**Checked.** `npm run behaviour:ai`, new this round: 40 of 40, with a stand-in for Google on
+this machine, so that what is sent could be read word for word. `npm run behaviour`: 293 of
+293. The accounts in a browser: 344 of 344. Accessibility: clean.
+
+**Two things the checks found, neither of them the AI.** A link to a part of a page had been
+made to travel there in Round 10, by a rule that needed no script. With script off, a check
+could not press a button that was still travelling toward it. A link now travels only once
+script has said the page may move, as every other movement does. And the check of the form's
+WhatsApp route leaned on WhatsApp's own site answering, which it stopped doing after a day of
+runs: that site is now stood in for, so the check reads the address this site opens and sends
+nothing to anyone.
+
+**Not done, and said.**
+
+- **Google itself has not been asked.** There was no key. The request is written to Google's
+  documentation and no real answer has been read. The first ones should be read by a person.
+- **English only.** A question in French or Kreol is answered in English, from English articles.
+- **The two limits are in memory**, on each server instance. The spend cap set at Google is the
+  one that holds, and setting it is the owner's.
+- **Paid, not free, is the owner's to choose.** On Google's free tier what is sent may be used
+  to improve its products. The README says to take the key from a project with billing.
 
 ### Round 10, 24 November 2026: one box, one grid, and every press answered
 

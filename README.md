@@ -166,6 +166,8 @@ addresses to their new pages, and serves `/sw.js` so that it is never held in a 
 | `ENQUIRY_WEBHOOK_URL` | Where the form's requests are posted, as JSON |
 | `RESEND_API_KEY`, `ENQUIRY_TO`, `ENQUIRY_FROM` | Or: email them through Resend |
 | `CRAWLER_USER_AGENT`, `CRAWLER_ROBOTS_TOKEN` | The crawler's name, where the crawl is run |
+| `GEMINI_API_KEY` | The key for the AI answer, from Google AI Studio. The server's alone: never `NEXT_PUBLIC_`, never in the repository. Unset: there is no AI answer, and the site is as it was. See "The AI answer" |
+| `GEMINI_MODEL` | Optional: another Gemini model than the one in `src/data/ai.ts`, by its API name |
 
 ### Before the site can be found
 
@@ -1329,6 +1331,126 @@ The search became quicker for two reasons, and only the first is the engine: it 
 documents in less time than the library did, and `search()` no longer walks all 7,179 listings for
 each question, since it keeps them by kind of business and by town.
 
+### The AI answer
+
+Where one of the site's articles answers a question, a short answer stands at the head of the
+page of results, under the words "AI answer" (the owner, 26 November 2026: "we need an ai to
+answer straight forward to queries. add integration to gemini"). A machine writes it: Google's
+Gemini. This is how it is kept true, what it costs, and how to switch it on.
+
+**It answers from the site's own articles and from nothing else.** The model is given the
+question and up to five parts of the articles that the site's own search found for it
+(`passagesFor` in `src/lib/ai/context.ts`), and a brief (`AI_BRIEF` in `src/data/ai.ts`): one or
+two short sentences, only what the passages say, nothing of its own, and no answer at all where
+they hold none. It is not given the web, and it is not asked what it knows. So it can say only
+what an article here already says, with its source behind it.
+
+**The site checks what it wrote** (`supported`, and `written` in `src/lib/ai/answer.ts`). Every
+figure in the answer must be in the passages it was given, digit for digit; an answer with a
+figure from anywhere else is thrown away whole. So is one that carries a link, one that is too
+long, and one that names no passage it was given. What is shown names the articles it is taken
+from, and says a machine wrote it and that it can be wrong.
+
+**It is asked only where it has something to add** (`worthAsking`). Not for a question about who
+and where ("pharmacy in Curepipe", "burger place in Beau Bassin", a business's name): the list is
+the answer, and no machine chooses among businesses here. Not where a number to call or a date
+answers outright. Only where an article answers, or, for words put as a question, at least
+mentions it. Of 175 questions tried on 26 November 2026, every one about who and where, a number
+or a date was left alone.
+
+**The page never waits on it.** The card is drawn waiting, and the answer is fetched after the
+page (`/api/answer?q=`, `src/components/AiAnswer.tsx`). A reader that runs no script, a search
+engine's crawler among them, never causes the model to be asked. Without script the card is not
+shown; where the model has no answer it goes.
+
+#### Switching it on, on Vercel
+
+1. In Google AI Studio, make an API key in a project that has billing set up (see "Paid, not
+   free" below).
+2. In Vercel: the project, Settings, Environment Variables. Add `GEMINI_API_KEY` with the key as
+   its value, for Production (and Preview, if previews should answer too). Mark it Sensitive.
+3. Redeploy, so the new build is given the variable. `/data` and `/privacy` then say what the
+   answer is and what is sent, and a question such as "how do I register a company" has its card.
+4. In AI Studio, on the Spend page, set a monthly spend cap ("Monthly spend cap", "Edit spend
+   cap"). This is the one limit that holds whatever happens here.
+
+Nothing else is needed: no package, no other variable, no setting in Vercel. With the variable
+unset, or taken away, there is no AI answer and nothing is sent to anyone.
+
+To find out why a question has no answer, open `/api/answer?q=the+question`. It says `off` (no
+key), `gate` (not a question the articles answer), `none` (the model found no answer in the
+passages), `unsupported` (it wrote a figure the passages do not hold), `limit` or `cap` (too many
+new questions), or `upstream` with Google's own short code: `401 authentication` is a wrong key,
+`404 model_not_found` a model name Google no longer has, `429 quota_exceeded` a spent quota. The
+same word is in the server's log.
+
+#### What it costs
+
+Google charges by the token, about four characters each. The model is `gemini-3.1-flash-lite`,
+the cheapest stable model that reads and writes text on 26 November 2026: 0.25 US dollars for a
+million tokens read and 1.50 for a million written, thinking included (Google's pricing page,
+`aistudio.google.com/docs/pricing`, read that day).
+
+| | Read | Written | Cost of one new answer |
+|---|---|---|---|
+| A usual question (the average of 163 measured) | about 850 tokens | about 130 | about 0.04 of a US cent |
+| The most it can be | about 2,150 tokens | 400, the cap | 0.11 of a US cent |
+
+| New questions a day | A month, as usual | A month, at the very most |
+|---|---|---|
+| 100 | about 1.20 US dollars | 3.50 |
+| 1,000 | about 12 | 35 |
+| 10,000 | about 120 | 345 |
+
+A new question is one that reaches the model: it passed the rule above and its answer is not
+already kept. Every other search costs nothing. These are estimates from measured lengths, not
+bills: the first month's bill in AI Studio is the real figure.
+
+**How it is kept cheap** (every number is in `src/data/ai.ts`):
+
+- The cheapest model that does the work, thinking at its least, and a reply held to 400 tokens.
+- The model is not asked at all for most searches: a question about who and where, a number, a
+  date, or anything the articles do not cover.
+- An answer, and the finding that there is none, is kept for a week under the question and the
+  passages together (`unstable_cache`). The same question costs once; an article that has been
+  corrected is asked about afresh.
+- The host may keep the endpoint's own reply for a day, so a popular question is not even run.
+- The answer is fetched by script after the page, so crawlers cost nothing.
+- One connection may put twenty new questions to the model in ten minutes, and one server
+  instance three thousand in a day. These two are guards against a loop or a careless script,
+  kept in memory: the monthly spend cap in AI Studio is the limit that holds.
+- No search of the web. Google sells that with the answer ("Grounding with Google Search"): 14 US
+  dollars for a thousand after the first 5,000 a month, over thirty times the usual cost of an
+  answer here. It would also let in what the site has not read.
+
+**Paid, not free.** Google's free tier costs nothing, but its pricing page says of it "Content
+used to improve our products", and its terms that people may read what is sent. On the paid
+tier, a project with billing set up, it says "Content not used to improve our products". A
+visitor's question should not go to the first. The paid tier's first step caps a billing account
+at 250 US dollars a month, which the spend cap above should sit far below.
+
+#### What is sent, and what is not
+
+One request to Google's Interactions API (`src/lib/ai/gemini.ts`, written to its documentation
+of 26 November 2026): the model's name, the brief, the question, the passages, and `store:
+false`, which asks Google not to keep the exchange for later. It goes from the server. Nothing
+that says who asked is in it: not an address, not a cookie, not the browser. `/privacy` says so.
+
+#### Checking it
+
+`npm run behaviour:ai` (`scripts/behaviour-ai.mjs`) needs no key and sends nothing off the
+machine: it stands in for Google on a port of its own and starts a second server that is told a
+made-up key. 40 checks on 26 November 2026: what is sent, word for word; that the same question
+is asked of Google once; which questions are never asked; that an invented figure, a link and an
+unsourced answer are thrown away; what happens when Google refuses; the limit for one
+connection; the card on the page at a desk and on a phone, waiting and answered, clean under
+axe-core; no script; no key.
+
+**Not checked: Google itself.** No real key was at hand, so no real answer has been read. The
+request is written to Google's documentation and checked against a stand-in built from the same
+pages. The first real answers should be read by a person: whether they are right, short, and in
+the site's own manner. If Google answers `upstream`, the code says what to put right.
+
 ### Baz Manzer
 
 `BAZ` in `src/data/site.ts` holds its words: its name and line, its ways round (the bar on a
@@ -1613,6 +1735,12 @@ The articles, the plans and the money:
    (`/biz/khay-digital-27f7715f`) is on Biznes Free and is not marked verified. Say whether it
    should be verified and on a paid plan: that puts it first among equal answers, so it is the
    owner's to decide.
+   **The AI answer.** It is built and off: it comes on when `GEMINI_API_KEY` is set on the host
+   and the site is deployed again. Three things are the owner's: to take the key from a Google
+   project with billing set up, since on the free tier Google may use what is sent to improve its
+   products; to set a monthly spend cap in AI Studio; and to read the first real answers, since
+   none could be read without a key. Whether it should also answer in French and Kreol, and
+   whether it should ever speak of businesses, are open.
 6. **How the pocket guide is paid for and sent.** There is one guide, at Rs 150 an edition (the
    owner first spoke of many guides and a bundle, then chose one big guide on 20 November 2026).
    Until a payment is connected, an order from the cart is answered by a person; how that person
@@ -1744,20 +1872,21 @@ The old site's addresses lead on for good: `/businesses` and `/businesses/...` t
 
 ## Verification
 
-The state of the checks on 24 November 2026, at the end of the round. Nothing is claimed beyond
+The state of the checks on 26 November 2026, at the end of the round. Nothing is claimed beyond
 this list.
 
 | Check | Command | Result |
 |---|---|---|
 | Types | `npm run typecheck` | Clean |
-| House style | `npm run copy` | 0 failures, 339 files |
-| Tokens | `npm run tokens` | 0 failures, 270 files |
+| House style | `npm run copy` | 0 failures, 346 files |
+| Tokens | `npm run tokens` | 0 failures, 277 files |
 | Contrast | `npm run contrast` | Every pair passes |
 | Words on the picture | `npm run hero` | The landing page's headline and greeting, in ink on the picture, and the line at its foot, measured against all eighteen pictures, the wide one at a desk and the tall one on a phone; then against each of the ten colours that fall over the page, laid over the whole picture as if a petal were behind every letter. 168 readings: the lowest is 5.81:1, the headline's with a green leaf behind it, which needs 3 |
 | Words on glass | `npm run glass` | Ink on the menu's pill, the phone's bar, the search bar and the landing page's foot line, read as drawn against all eighteen pictures at a desk and on a phone: the lowest is 7.31:1, on the line at the foot of the landing page's first screen. The glass is also held against black in `npm run contrast` |
 | Design record | `npm run design` | 0 errors |
-| Behaviour | `npm run behaviour` | 291 of 291, against a production server with accounts off. This round's are among them: the header as a search engine's (the name, the search box in the middle, "Menu", and no row of links); the grid of twelve tiles, its keyboard and its scrim; a question asked from the header without a new page load; the phone's header with the search box and the name's first letter; the landing page's first screen, its section, its three counts and its eight keys; and the motion (nothing moves on the page a visitor lands on, a page reached by a link rises, a line runs while it is on its way, and under reduced motion each happens at once). The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
+| Behaviour | `npm run behaviour` | 293 of 293, against a production server with accounts off. This round's are among them: the header as a search engine's (the name, the search box in the middle, "Menu", and no row of links); the grid of twelve tiles, its keyboard and its scrim; a question asked from the header without a new page load; the phone's header with the search box and the name's first letter; the landing page's first screen, its section, its three counts and its eight keys; and the motion (nothing moves on the page a visitor lands on, a page reached by a link rises, a line runs while it is on its way, and under reduced motion each happens at once). The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |
+| The AI answer, with a stand-in for Google | `npm run behaviour:ai` | 40 of 40, against a production server and a second one told a made-up key: what is sent to Google, word for word, and that nothing in it says who asked; the same question asked once; the questions never asked; an invented figure, a link and an unsourced answer thrown away; a refusal by Google; the limit for one connection; the card at a desk and on a phone, waiting and answered, clean under axe-core; no script; no key. No real key was at hand, so Google itself was not asked (see "The AI answer") |
 | The search engine alone | `npm run search:test` | 65 of 65, in plain Node with no server (see "The engine") |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
 | Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone. Those are read under reduced motion and with the menu shut, so two more passes follow: the landing page with motion allowed, at both sizes, with what falls over it falling and then held; and the header with its menu's grid open, at 1440 and at 1024 pixels wide. Clean. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
@@ -1774,7 +1903,7 @@ behaviour check starts the form's own receiver, so the form is tested end to end
 ```
 npm run build
 ENQUIRY_WEBHOOK_URL=http://127.0.0.1:3199/hook npx next start -p 3100 &
-npm run behaviour && npm run a11y && npm run screenshots && npm run hero && npm run seo
+npm run behaviour && npm run behaviour:ai && npm run a11y && npm run screenshots && npm run hero && npm run seo
 ```
 
 Two people can run them on one machine: each check takes the server's address as its argument, and
@@ -1895,6 +2024,11 @@ and the island's drawing is most of a list page's HTML.
 
 - **Nothing can be paid for on the site.** No payment is connected. A plan, the pocket guide or a
   place in it is ordered through the cart, and a person replies with how to pay.
+- **The AI answer has not met Google.** It is written to Google's documentation of 26 November
+  2026 and checked against a stand-in built from the same pages: no real key was at hand, so no
+  real answer has been read. It answers in English only and from the articles only. Its two
+  limits, by connection and by day, are kept in memory on each server instance, so the spend cap
+  set at Google is the one that holds.
 - **No listing is verified or on a paid plan yet**, so the mark and the priority are drawn and not
   yet seen. Claiming a listing waits on the accounts.
 - **Coverage is what the open map holds**: fullest for shops, food, places to stay and public

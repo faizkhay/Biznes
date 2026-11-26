@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { ACTIONS, CREDITS, HOME, site } from "@/data/site";
+import { AI } from "@/data/ai";
 import { accountsOn } from "@/lib/accounts/config";
+import { aiOn } from "@/lib/ai/config";
 import { count, day } from "@/lib/format";
 import { index } from "@/lib/index";
 import { pageMeta } from "@/lib/meta";
@@ -101,6 +103,12 @@ export default function DataPage() {
             <p>
               <strong>What comes first on a page of results.</strong> The order is the same for every question. First, the pages of this site that answer it: an article, one of its facts, a number to call, a public holiday&rsquo;s date, a glossary term, a tool. A page counts as an answer only when the question&rsquo;s words are in its own title, label or heading; a number or a date, only when they are there whole. Then businesses and services. Then the parts of our articles that only mention the words. Pages on other sites, official ones first, are folded away as references. Among our own pages, an article whose own title holds the question&rsquo;s words counts for more than a line from another article that mentions them.
             </p>
+            {/* Said only while the answer is switched on (a key on the host): with it off there is no such thing on the page. */}
+            {aiOn && (
+              <p>
+                <strong>The AI answer.</strong> Where one of our articles answers a question, a short answer may stand at the head of the page, under the words &ldquo;{AI.label}&rdquo;. A machine writes it: Google&rsquo;s Gemini. It is given the question and the parts of our own articles that answer it, and nothing else, and it is told to add nothing of its own and to say nothing where they hold no answer. Before the answer is shown this site checks it: every figure in it must be in those parts of the articles, digit for digit, or the whole answer is thrown away. It names the articles it is taken from. It can still be wrong, so the article is the thing to rely on. It is never asked a question about who and where: no machine chooses among businesses here, and a paid plan changes nothing in what it says. An answer is kept for a week, so the same question is not put to it twice. <Link href="/privacy">What is sent to Google</Link>.
+              </p>
+            )}
             <p>
               <strong>The order of businesses.</strong> Listings that answer a question are ordered by how well they answer it, and then by how full they are: one with a telephone number, a website and its hours is shown before a bare name. A category&rsquo;s page and a town&rsquo;s page list the fullest first.
             </p>

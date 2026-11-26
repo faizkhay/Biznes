@@ -19,6 +19,13 @@ website and the crawler that feeds it.
   and is always marked as a priority listing. In the health categories a listing with a telephone
   number comes before one without. The site says all of it (`/data`, `/pricing`). If the order
   ever changes, those pages change first.
+- The AI answer at the head of a page of results (`src/lib/ai`, `src/data/ai.ts`) is written by
+  Google's Gemini from the site's own articles and from nothing else. It is never asked a question
+  about who and where, never names or ranks a business, and before it is shown every figure in it
+  is checked against the passages it was given. A question is sent with nothing that says who
+  asked. Its key is `GEMINI_API_KEY`, set on the host and never in a file. `/data` and `/privacy`
+  say all of it; if what it reads, what it is asked or what is sent ever changes, those pages
+  change first.
 - The plans, their prices and what each gives are the owner's words (`PLANS` in
   `src/data/site.ts`). Never add a feature or a price to a plan that the owner has not given.
 - The picture behind the page follows the calendar (`src/data/themes.ts`, `src/lib/theme.ts`).

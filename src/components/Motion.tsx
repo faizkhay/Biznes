@@ -63,6 +63,10 @@ export function Progress() {
     if (state === "going") timer.current = setTimeout(() => setState("done"), 12000);
     return () => clearTimeout(timer.current);
   }, [state]);
+  // Script is running: a link to a part of a page may travel there (globals.css, html[data-moves]).
+  useEffect(() => {
+    document.documentElement.setAttribute("data-moves", "");
+  }, []);
   useEffect(() => {
     const click = (event: MouseEvent) => {
       if (leavesFor(event)) setState("going");

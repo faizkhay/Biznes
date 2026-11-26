@@ -389,12 +389,15 @@ check("form: the sixth request in ten minutes is refused", last === 429, `${last
     await page.fill("#business", "Test Shop");
     await page.fill("#message", "Please add it.");
     await page.fill("#name", "A Tester");
+    // WhatsApp's own site is stood in for: the check is of the address this site opens, and should neither lean on that site answering nor send it anything.
+    await context.route(/^https:\/\/(wa\.me|[a-z.]*whatsapp\.com)\//, (route) => route.fulfill({ status: 200, contentType: "text/html", body: "<title>WhatsApp, stood in for</title>" }));
     // It opens with no tie back to this page, so it is the browser, not the page, that reports it.
     const [popup] = await Promise.all([context.waitForEvent("page", { timeout: 8000 }).catch(() => null), page.click('main button[type="submit"]')]);
     await popup?.waitForURL(/whatsapp|wa\.me/, { timeout: 8000 }).catch(() => {});
     const url = popup ? decodeURIComponent(popup.url()) : "";
     check("form, no route: the request is written out for WhatsApp", /whatsapp|wa\.me/.test(url) && /Test[ +]Shop/.test(url), url.slice(0, 120));
     await popup?.close();
+    await context.unroute(/^https:\/\/(wa\.me|[a-z.]*whatsapp\.com)\//);
   } else check("form, no route: a second server started", false);
   try {
     process.kill(-bare.pid);
@@ -411,6 +414,7 @@ check("no script: the chart is drawn, with its dots", (await still.locator(".cha
 check("no script: the Home page is whole: its five parts, the eight businesses, every tile and the numbers to call", (await still.locator("main h2").count()) === 5 && (await still.locator("main article[data-listing]").count()) === 8 && (await still.locator("main a.tile, main a.start-tile").count()) >= 54 && (await still.locator('main a[href="tel:999"]').count()) === 1);
 await still.goto(origin, { waitUntil: "domcontentloaded" });
 check("no script: the landing page still has its search and its one button", (await still.locator("main #home-search").count()) === 1 && (await still.locator('main a.btn[href="/home"]').count()) === 1);
+check("no script: a link to a part of a page arrives there at once: nothing travels without script", (await still.locator("html").evaluate((root) => getComputedStyle(root).scrollBehavior)) === "auto" && !(await still.locator("html").getAttribute("data-moves")));
 check("no script: nothing falls and no control for it is shown", (await still.locator(".leaves").evaluate((layer) => getComputedStyle(layer).display)) === "none" && !(await still.locator(".leaves-toggle").isVisible()));
 await still.fill("#home-search", "dentist");
 await still.press("#home-search", "Enter");
@@ -521,6 +525,7 @@ check("menu: a page beneath a tile lights it as the place you are in", (await pa
   const view = await fresh.newPage();
   await view.goto(`${origin}/home`, { waitUntil: "networkidle" });
   const landed = await view.evaluate(() => ({ mark: document.getElementById("main").hasAttribute("data-arrived"), moving: document.getAnimations().filter((a) => a.animationName === "arrive").length, line: document.querySelector(".progress")?.getAttribute("data-state"), hidden: document.querySelector(".progress")?.getAttribute("aria-hidden") }));
+  check("motion: with script running, a link to a part of a page travels there", (await view.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)) === "smooth");
   check("motion: the page a visitor lands on is simply there: nothing rises, and no line runs", !landed.mark && landed.moving === 0 && landed.line === "idle" && landed.hidden === "true", JSON.stringify(landed));
   await view.locator("header summary").click();
   const opening = await view.evaluate(() => new Promise((done) => requestAnimationFrame(() => done(document.getAnimations().map((a) => a.animationName)))));

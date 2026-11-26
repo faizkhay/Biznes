@@ -7,6 +7,7 @@ import { Chevron, Glass, Phone, Pin } from "@/components/Icons";
 import IslandBeside from "@/components/IslandBeside";
 import { ShareButton } from "@/components/Save";
 import { LeadRow, ListingRow, OfficialRow, SiteRow } from "@/components/Rows";
+import AiAnswer from "@/components/AiAnswer";
 import { Arrival } from "@/components/Motion";
 import SearchBox from "@/components/SearchBox";
 import { EXAMPLES } from "@/data/site";
@@ -15,6 +16,7 @@ import { owned } from "@/lib/accounts/owned";
 import { anchorOf, count } from "@/lib/format";
 import { index } from "@/lib/index";
 import { KINDS, narrowOf, PAGE_SIZE, search, type Kind, type Narrow } from "@/lib/search";
+import { aiLikely } from "@/lib/ai/answer";
 import { pageMeta } from "@/lib/meta";
 
 type Params = { q?: string; kind?: string; page?: string; phone?: string; web?: string; town?: string };
@@ -210,6 +212,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   );
 
   const asked = `${q}|${kind ?? ""}|${page}|${JSON.stringify(narrow)}`;
+  const ai = !kind && page === 1 && !narrowing && aiLikely(q, a);
   return (
     <div className="shell pt-8 pb-16 lg:pt-10">
       <h1 className="sr-only">Search results for {q}</h1>
@@ -251,6 +254,9 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               <span>{a.summary}</span>
             </p>
           )}
+
+          {/* The AI answer: a short answer a machine writes from the articles below, where one of them answers. It heads the site's own pages that answer, which it is made from and names. Only on the first view of a question: not under a tab, a later page or a narrowing. */}
+          {ai && <AiAnswer q={q} />}
 
           {answers}
 

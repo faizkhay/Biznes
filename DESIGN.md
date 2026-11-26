@@ -93,6 +93,9 @@ components:                 # only: backgroundColor textColor typography rounded
   join: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.2xl}", padding: "4rem 0 5.5rem" }
   join-disc: { backgroundColor: "{colors.primary}", rounded: "{rounded.full}" }
   progress: { backgroundColor: "{colors.royal}", height: 3px }
+  ai-answer: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", typography: "{typography.body-1}", rounded: "{rounded.xl}", padding: "1.25rem 1.5rem 1.5rem" }
+  ai-answer-label: { backgroundColor: "{colors.white}", textColor: "{colors.slate}", typography: "{typography.label-1}" }
+  ai-answer-note: { backgroundColor: "{colors.white}", textColor: "{colors.mist}", typography: "{typography.caption-1}" }
   menu-item-hover: { backgroundColor: "{colors.sand}", textColor: "{colors.ink}" }
   menu-item-current: { backgroundColor: "{colors.saffron-wash}", textColor: "{colors.ink}" }
   tab-bar: { backgroundColor: "{colors.white}", textColor: "{colors.ink}", rounded: "{rounded.xl}", height: 3.25rem }
@@ -257,6 +260,7 @@ state. The landing page alone is allowed the display size and the full picture.
 | S10 | OpenFreeMap's own site (its terms, read 20 November 2026) | `STREET_MAP` in `src/data/site.ts` | The street map's style and the credit it must carry |
 | S11 | The owner, 24 November 2026, on Round 9: "generate more background pictures to match mauritius vibes thru the year", "have some fallling leaves over the hero please, based on seasons", "all images will have 2 versions, 1 for desktop 1 for mobile" | in conversation | Eight more pictures, a tall painting of every picture, the five seasons, what falls |
 | S12 | The owner, 24 November 2026, on Round 10: "replace the demo listing by khay digital", "smooth animations with each interactions", "simplified, made intituive, all-user friendly, take inspiration from google's own navigation", "footer newsletter/subcrption box should be a proper section on its own, a creative box, like add a mockup image of the moonthly release", "for main landng page, add a short section below, creative but minimalist to inform peope what this website is sbout and quick navigations keys" | in conversation | The header as a search engine's, the menu's grid, the list's own section, the landing page's section and its keys, the motion |
+| S13 | The owner, 26 November 2026, on Round 11: "we need an ai to answer straight forward to queries. add integration to gemini, advise on what it will cost us, make it cost effective" | in conversation | The AI answer: where it stands, what it may say, and its limits |
 
 What the brand lacked was a face and a light ground. Both are recorded as chosen or derived: Manrope
 comes from the list KOS keeps for a brand with no face of its own, white is chosen, and cream and
@@ -779,6 +783,17 @@ opens with it.
 - **`.card-wash`**: on the saffron wash. Defined, and used by nothing at present (Known Gaps).
 - **`.answer`**: the answer to a question about how, in the site's own words, first under the
   search box: `body-1` on white with a royal edge and a royal glow, then the article it is from.
+- **The AI answer** (`AiAnswer.tsx`, `.ai-answer`): what a machine wrote from the site's own
+  articles (S13), at the head of the pages that answer. It is the answer's own box, white with
+  the royal edge and glow, with a second mark so that it is never taken for the site's own
+  words: "AI answer" in `label-1` and slate, behind the lit point with its halo. The answer is
+  one or two sentences in `body-1`. Under it, "From" and up to three articles as links in royal;
+  then, in `caption-1` and mist, that a machine wrote it from those articles and nothing else,
+  and that it can be wrong. While it is being written the box holds lines that wait (three at a
+  desk, six on a phone) and is as tall as a short answer (10rem, 15rem on a phone), so what is
+  below it moves by a few lines at most when the words come; the words rise into place like
+  anything that arrives. It is drawn only where an answer is likely, is not shown without
+  script, and goes where the model has none. It never stands over a list of businesses.
 - **`.elsewhere`**: the official pages and the websites that also answer, folded under a pill that
   reads "References elsewhere" with their count. It is a plain disclosure, so it opens with no
   script.
@@ -1214,7 +1229,8 @@ It is all in one place: "Motion" at the end of `src/app/globals.css`, with
 | A main button's arrow | The pointer | Moves two pixels and turns | 200ms |
 | A link to a part of a page | The link | The page travels there | The browser's own smooth scroll |
 | The toast | A link copied | Rises half a rem and fades in; goes after 2.4 seconds | 240ms |
-| The wait | A list being fetched | A band crosses the shape | 1.2 seconds, while it waits |
+| The wait | A list being fetched, or the AI answer being written | A band crosses the shape | 1.2 seconds, while it waits |
+| The AI answer arrives | The model's answer comes back | Its words rise 12px and fade in, in the box that was waiting | 360ms |
 | What falls | The landing page, opened by a visitor whose device allows motion | Fourteen petals or leaves of the season (eight on a phone) fall, drift, swing and turn over | 19 to 29 seconds a fall, for as long as the page is open or until it is paused |
 
 The sheet slides over the picture because the picture is fixed, not because anything is animated.
@@ -1228,11 +1244,13 @@ landing page is the only thing that moves by itself, and it can be held still ("
 | A page arriving | It is simply there | It is simply there: every page is a new page load |
 | The line while a page is on its way | Appears and goes at once | Not shown: the browser's own sign does the work |
 | The menu, the box's list, a folded part | Open at once | The menu and a folded part open at once; the box offers nothing and asks as a form |
-| A press, a count, a link to a part of a page | Happen at once | The same, they are CSS; a count needs script |
+| A press, a count | Happen at once | A press is the same, it is CSS; a count needs script |
+| A link to a part of a page | Arrives at once | Arrives at once: script says the page may move (`data-moves`), and only then does a link travel |
 | The island's points | Lit at once, as they now are for everyone: the island no longer follows what is typed | Drawn in SVG, lit where a page has answers |
 | Lifts, tips and turns | Happen at once | The same, they are CSS |
 | The toast | Appears at once | Not shown: sharing needs script |
 | The wait | Still | Not shown |
+| The AI answer | Its words are there at once | Not shown, and the model is not asked |
 | What falls | Not shown, nor its control: the page is the picture alone | Not shown, nor its control |
 
 ## Scene & 3D
@@ -1293,6 +1311,8 @@ at both sizes are made again at the end of the round and recorded in the README.
 - **Don't** set words on the picture outside the landing page's first screen, or anything on that
   screen under its one button but the line that leads down.
 - **Don't** put a row of links back in the header. The search box and "Menu" are the way round.
+- **Don't** show a machine's words as the site's own. The AI answer keeps its label and the
+  line that says it can be wrong, names the articles it is from, and never speaks of a business.
 - **Don't** make a page wait on a movement, or leave anything of a movement on the page once it
   is over.
 - **Don't** add a second face, or a monospaced face for figures.

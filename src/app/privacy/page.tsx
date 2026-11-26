@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/Bits";
 import { site } from "@/data/site";
+import { AI, AI_TERMS } from "@/data/ai";
 import { accountsOn } from "@/lib/accounts/config";
+import { aiOn } from "@/lib/ai/config";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -20,6 +22,19 @@ export default function PrivacyPage() {
         <div className="prose body-2">
           <h2 className="heading-3">If you only look</h2>
           <p>{`${accountsOn ? "The site sets no cookies unless you sign in, and runs no analytics or advertising scripts." : "The site sets no cookies and runs no analytics or advertising scripts."} A search is sent to our server to be answered and is not stored against you. Our hosting provider keeps ordinary server logs, as every website’s does.`}</p>
+          {/* Said only while the AI answer is switched on (a key on the host). */}
+          {aiOn && (
+            <>
+              <h2 className="heading-3 mt-8">If your question gets an AI answer</h2>
+              <p>
+                Where one of our articles answers what you asked, the words of your question are also sent to Google&rsquo;s Gemini service, with parts of those articles, so that it can write the short answer marked &ldquo;{AI.label}&rdquo;. They are sent from our server and not from your browser, with nothing that says who asked: no address, no cookie, no account. We ask Google not to keep them. What Google does with what it is sent is in{" "}
+                <a href={AI_TERMS} rel="noopener">
+                  its own terms
+                </a>
+                . We keep the answer for a week under the question&rsquo;s own words, and not against you, so that the same question need not be sent again. A question about a business or a place is not sent: only one our articles answer. So do not put a name, a number or anything private in a question you would not want sent.
+              </p>
+            </>
+          )}
           <h2 className="heading-3 mt-8">If you save listings</h2>
           <p>
             The <Link href="/saved">saved list</Link> is kept in your own browser, on your own device. It is not sent to us and we cannot see it. If you share it, the link you send holds the listings&rsquo; reference numbers and nothing about you. Clearing your browser&rsquo;s data for this site clears the list.

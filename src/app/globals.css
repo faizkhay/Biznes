@@ -133,8 +133,10 @@
       scroll-padding-top: calc(var(--nav-h) + 1.5rem);
     }
   }
-  /* A link to a part of the page travels there. Under reduced motion it arrives at once (the last rule of this file). */
-  html {
+  /* A link to a part of the page travels there, once script has said the page may move
+     (data-moves, set by src/components/Motion.tsx): without script it arrives at once, as every
+     other movement does. Under reduced motion it arrives at once too (the last rule of this file). */
+  html[data-moves] {
     scroll-behavior: smooth;
   }
   body {
@@ -1670,6 +1672,68 @@
     position: relative;
     z-index: 1;
   }
+  /* The AI answer: what a machine wrote from the site's own articles, at the head of the pages
+     that answer. It is the answer's own box with a second mark on it, so it is never taken for
+     the site's own words: its label, with the lit point, and the line under it that says a
+     machine wrote it. While it is being written the box holds three lines that wait and is as
+     tall as a short answer is, so when the words come what is below it moves by a few lines at
+     most, and not by the whole box. */
+  .ai-answer {
+    position: relative;
+    padding: 1.25rem 1.5rem 1.5rem;
+    background: var(--color-paper);
+    border: 1px solid color-mix(in srgb, var(--palette-royal) 22%, transparent);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 1px 2px rgb(10 22 57 / 0.04), 0 12px 32px -10px color-mix(in srgb, var(--palette-royal) 26%, transparent);
+  }
+  .ai-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    color: var(--color-ink-subtle);
+  }
+  .ai-label::before {
+    content: "";
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--color-signal);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-saffron) 28%, transparent);
+  }
+  .ai-waiting {
+    display: grid;
+    gap: 0.625rem;
+    min-height: 10rem;
+    align-content: start;
+    padding-top: 0.25rem;
+  }
+  /* A phone's lines are short, so the same answer is taller there. */
+  @media (max-width: 40rem) {
+    .ai-waiting {
+      min-height: 15rem;
+    }
+  }
+  .ai-waiting .wait {
+    display: block;
+    height: 1rem;
+  }
+  .ai-waiting .wait:nth-of-type(even) {
+    width: 92%;
+  }
+  .ai-waiting .wait:nth-of-type(3),
+  .ai-waiting .wait:nth-of-type(6) {
+    width: 64%;
+  }
+  @media (min-width: 40.01rem) {
+    .ai-waiting .wait:nth-of-type(n + 4) {
+      display: none;
+    }
+  }
+  .ai-said {
+    animation: arrive 360ms var(--ease-out) backwards;
+  }
+
   /* Pages on other sites that answer: folded away under the site's own answer. */
   .elsewhere > summary {
     display: inline-flex;
@@ -4150,6 +4214,7 @@
   footer,
   .chart canvas,
   .backdrop,
+  .ai-answer,
   .join,
   .leaves,
   .leaves-toggle,
