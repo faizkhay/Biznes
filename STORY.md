@@ -212,15 +212,15 @@ The figure was in the article all the same, among its facts at a glance, while t
 found the part that tells how. So the leading article's facts now always go with its passages.
 A usual new answer is about 0.05 of a US cent with them.
 
+The owner, the same day, on the two things that were theirs to settle: "its paid paid api key,
+montly cap of 20usd". So what is sent is on Google's paid tier, and the spend has a ceiling.
+
 **Not done, and said.**
 
 - **Three real answers have been read, not three hundred.** The owner should go on reading them.
 - **English only.** A question in French or Kreol is answered in English, from English articles.
 - **The two limits are in memory**, on each server instance. The spend cap set at Google is the
   one that holds, and setting it is the owner's.
-- **Paid, not free, is the owner's to choose.** On Google's free tier what is sent may be used
-  to improve its products. The README says to take the key from a project with billing.
-
 ### Round 10, 24 November 2026: one box, one grid, and every press answered
 
 **The owner's notes, in their own words.**

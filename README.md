@@ -1430,6 +1430,11 @@ tier, a project with billing set up, it says "Content not used to improve our pr
 visitor's question should not go to the first. The paid tier's first step caps a billing account
 at 250 US dollars a month, which the spend cap above should sit far below.
 
+The key in use is a paid one, with a monthly cap of 20 US dollars (the owner, 26 November
+2026). At the usual cost that is about 40,000 new answers a month, and some 18,000 were every
+one the dearest it can be. When the cap is reached Google refuses, the card is not shown, and
+the page is the site's own answers, as it is without a key.
+
 #### What is sent, and what is not
 
 One request to Google's Interactions API (`src/lib/ai/gemini.ts`, written to its documentation
@@ -1744,10 +1749,9 @@ The articles, the plans and the money:
    (`/biz/khay-digital-27f7715f`) is on Biznes Free and is not marked verified. Say whether it
    should be verified and on a paid plan: that puts it first among equal answers, so it is the
    owner's to decide.
-   **The AI answer.** It is on: the owner set `GEMINI_API_KEY` on 26 November 2026. Three things
-   are still the owner's: to confirm the key is from a Google project with billing set up, since
-   on the free tier Google may use what is sent to improve its products, and the privacy page
-   sends readers to Google's terms; to set a monthly spend cap in AI Studio; and to go on
+   **The AI answer.** It is on: the owner set `GEMINI_API_KEY` on 26 November 2026, and said of
+   it the same day: "its paid paid api key, montly cap of 20usd". So the key is on Google's paid
+   tier and the spend is capped at 20 US dollars a month. What is still the owner's is to go on
    reading real answers. Whether it should also answer in French and Kreol, and whether it
    should ever speak of businesses, are open.
 6. **How the pocket guide is paid for and sent.** There is one guide, at Rs 150 an edition (the
