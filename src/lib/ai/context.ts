@@ -52,23 +52,41 @@ export function worthAsking(question: string, a: Answer): boolean {
   return QUESTION.test(q) && a.mentions.some((lead) => lead.tag === "Guide");
 }
 
+/** An article's facts at a glance, as one passage: its figures, each with its label. */
+function glance(slug: string): Omit<Passage, "n"> | null {
+  const guide = index().guideBySlug.get(slug);
+  if (!guide?.facts.length) return null;
+  return { title: guide.title, href: `/learn/${slug}#glance`, text: clip(`At a glance. ${guide.facts.map((fact) => `${fact.label}: ${fact.value}.${fact.detail ? ` ${fact.detail}` : ""}`).join(" ")}`, AI.passageChars) };
+}
+
 /**
  * What the model is given to read: the parts of the site's articles that answer the question,
  * best first, then, if there is room, the parts that only mention it. Each is the whole part and
  * not only its opening words, cut to a length. A page is given once.
+ *
+ * The leading article's facts at a glance go with them, second, unless the article was given
+ * whole. A question such as "how long does it take" finds the part of an article that tells how,
+ * while the figure it wants is among that article's facts: the first real answers showed it
+ * (26 November 2026).
  */
 export function passagesFor(a: Answer): Passage[] {
   const seen = new Set<string>();
-  const out: Passage[] = [];
+  const found: Omit<Passage, "n">[] = [];
   for (const lead of [...a.leads, ...a.mentions]) {
-    if (out.length >= AI.passages) break;
+    if (found.length >= AI.passages) break;
     if (lead.tag === "Tool" || lead.tag === "Page" || seen.has(lead.href)) continue;
     seen.add(lead.href);
     const text = clip(textOf(lead), AI.passageChars);
     if (text.length < 20) continue;
-    out.push({ n: out.length + 1, title: lead.title, href: lead.href, text });
+    found.push({ title: lead.title, href: lead.href, text });
   }
-  return out;
+  const first = found.find((passage) => passage.href.startsWith("/learn/") && !passage.href.startsWith("/learn/glossary"));
+  const slug = first?.href.slice("/learn/".length).split("#")[0];
+  const whole = found.some((passage) => passage.href === `/learn/${slug}`);
+  const facts = slug && !whole ? glance(slug) : null;
+  // Second, so that it is read whatever else there is; the last of five gives it its place.
+  if (facts) found.splice(1, 0, facts);
+  return found.slice(0, AI.passages).map((passage, i) => ({ n: i + 1, ...passage }));
 }
 
 /** Every figure in a text, as its digits alone: "Rs 6,000,000" and "6 000 000" are the same figure. */

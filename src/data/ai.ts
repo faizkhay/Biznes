@@ -13,7 +13,7 @@ export const AI = {
    * 1.50 for a million written. GEMINI_MODEL on the host names another without a change here.
    */
   model: "gemini-3.1-flash-lite",
-  /** How many passages of the site's articles it is given at most, and how long each may be, in characters. */
+  /** How many passages of the site's articles it is given at most (the leading article's facts at a glance are one of them), and how long each may be, in characters. */
   passages: 5,
   passageChars: 1400,
   /** The most it may write: in tokens, as the model counts (its answer is about a hundred; the rest is room for the little thinking it does), and in characters, as the page checks. */

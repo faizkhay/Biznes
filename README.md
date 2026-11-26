@@ -1339,8 +1339,9 @@ answer straight forward to queries. add integration to gemini"). A machine write
 Gemini. This is how it is kept true, what it costs, and how to switch it on.
 
 **It answers from the site's own articles and from nothing else.** The model is given the
-question and up to five parts of the articles that the site's own search found for it
-(`passagesFor` in `src/lib/ai/context.ts`), and a brief (`AI_BRIEF` in `src/data/ai.ts`): one or
+question and up to five parts of the articles that the site's own search found for it, the
+leading article's facts at a glance among them (`passagesFor` in `src/lib/ai/context.ts`), and a
+brief (`AI_BRIEF` in `src/data/ai.ts`): one or
 two short sentences, only what the passages say, nothing of its own, and no answer at all where
 they hold none. It is not given the web, and it is not asked what it knows. So it can say only
 what an article here already says, with its source behind it.
@@ -1393,14 +1394,14 @@ million tokens read and 1.50 for a million written, thinking included (Google's 
 
 | | Read | Written | Cost of one new answer |
 |---|---|---|---|
-| A usual question (the average of 163 measured) | about 850 tokens | about 130 | about 0.04 of a US cent |
+| A usual question (the average of 163 measured) | about 1,050 tokens | about 130 | about 0.05 of a US cent |
 | The most it can be | about 2,150 tokens | 400, the cap | 0.11 of a US cent |
 
 | New questions a day | A month, as usual | A month, at the very most |
 |---|---|---|
-| 100 | about 1.20 US dollars | 3.50 |
-| 1,000 | about 12 | 35 |
-| 10,000 | about 120 | 345 |
+| 100 | about 1.40 US dollars | 3.50 |
+| 1,000 | about 14 | 35 |
+| 10,000 | about 140 | 345 |
 
 A new question is one that reaches the model: it passed the rule above and its answer is not
 already kept. Every other search costs nothing. These are estimates from measured lengths, not
@@ -1446,10 +1447,18 @@ unsourced answer are thrown away; what happens when Google refuses; the limit fo
 connection; the card on the page at a desk and on a phone, waiting and answered, clean under
 axe-core; no script; no key.
 
-**Not checked: Google itself.** No real key was at hand, so no real answer has been read. The
-request is written to Google's documentation and checked against a stand-in built from the same
-pages. The first real answers should be read by a person: whether they are right, short, and in
-the site's own manner. If Google answers `upstream`, the code says what to put right.
+**Checked against Google itself** on 26 November 2026, once the owner had set the key and the
+site had been deployed again (a variable reaches only a deployment made after it). Three
+questions were put to the live site and each answer was read against the article it names:
+
+| Question | What came back | Against the article |
+|---|---|---|
+| "how do I register a company" | Incorporate under the Companies Act 2001 by filing the forms with the Corporate and Business Registration Department, at its office or online | As the article's steps say |
+| "what is the vat threshold" | MUR 3 million a year, for taxable supplies | The article's own fact, to the figure |
+| "how long does it take to incorporate a company" | No answer | Right to give none: the figure was not in what it had been handed. It is among the article's facts at a glance, which are now always handed over with the leading article's passages |
+
+So the request is as Google expects it, the key works, and the answers so far say what the
+articles say. Three answers are not many: read more of them as they come.
 
 ### Baz Manzer
 
@@ -1735,12 +1744,12 @@ The articles, the plans and the money:
    (`/biz/khay-digital-27f7715f`) is on Biznes Free and is not marked verified. Say whether it
    should be verified and on a paid plan: that puts it first among equal answers, so it is the
    owner's to decide.
-   **The AI answer.** It is built and off: it comes on when `GEMINI_API_KEY` is set on the host
-   and the site is deployed again. Three things are the owner's: to take the key from a Google
-   project with billing set up, since on the free tier Google may use what is sent to improve its
-   products; to set a monthly spend cap in AI Studio; and to read the first real answers, since
-   none could be read without a key. Whether it should also answer in French and Kreol, and
-   whether it should ever speak of businesses, are open.
+   **The AI answer.** It is on: the owner set `GEMINI_API_KEY` on 26 November 2026. Three things
+   are still the owner's: to confirm the key is from a Google project with billing set up, since
+   on the free tier Google may use what is sent to improve its products, and the privacy page
+   sends readers to Google's terms; to set a monthly spend cap in AI Studio; and to go on
+   reading real answers. Whether it should also answer in French and Kreol, and whether it
+   should ever speak of businesses, are open.
 6. **How the pocket guide is paid for and sent.** There is one guide, at Rs 150 an edition (the
    owner first spoke of many guides and a bundle, then chose one big guide on 20 November 2026).
    Until a payment is connected, an order from the cart is answered by a person; how that person
@@ -1886,7 +1895,7 @@ this list.
 | Design record | `npm run design` | 0 errors |
 | Behaviour | `npm run behaviour` | 293 of 293, against a production server with accounts off. This round's are among them: the header as a search engine's (the name, the search box in the middle, "Menu", and no row of links); the grid of twelve tiles, its keyboard and its scrim; a question asked from the header without a new page load; the phone's header with the search box and the name's first letter; the landing page's first screen, its section, its three counts and its eight keys; and the motion (nothing moves on the page a visitor lands on, a page reached by a link rises, a line runs while it is on its way, and under reduced motion each happens at once). The landing page's picture and what falls over it are among them: the wide picture at a desk and the tall one on a phone and on a screen held upright, each the only one fetched ahead; fourteen pieces falling at a desk and eight on a phone; the control that holds them, lets them go and remembers; and nothing falling under reduced motion, without script or on the smallest phone. Sixty searches a Mauritian would type are among them, eleven asked the way people talk. The menu is among them too: the four links and which one is lit, the one list that opens, Escape and Tab out of it, the page of every page, and the phone's bar with every control at least 44 pixels each way |
 | Baz Manzer as a section and an app of its own | `npm run behaviour:baz` | 231 of 231, against a production server: every address of the section, the old addresses leading to the new, its own header, bar, search and shortlist, its manifest and icons, the offer to install, and its pages opening with the server stopped |
-| The AI answer, with a stand-in for Google | `npm run behaviour:ai` | 40 of 40, against a production server and a second one told a made-up key: what is sent to Google, word for word, and that nothing in it says who asked; the same question asked once; the questions never asked; an invented figure, a link and an unsourced answer thrown away; a refusal by Google; the limit for one connection; the card at a desk and on a phone, waiting and answered, clean under axe-core; no script; no key. No real key was at hand, so Google itself was not asked (see "The AI answer") |
+| The AI answer, with a stand-in for Google | `npm run behaviour:ai` | 40 of 40, against a production server and a second one told a made-up key: what is sent to Google, word for word, and that nothing in it says who asked; the same question asked once; the questions never asked; an invented figure, a link and an unsourced answer thrown away; a refusal by Google; the limit for one connection; the card at a desk and on a phone, waiting and answered, clean under axe-core; no script; no key. Google itself was then asked on the live site, three questions, each read against its article (see "The AI answer") |
 | The search engine alone | `npm run search:test` | 65 of 65, in plain Node with no server (see "The engine") |
 | The two tax tools | `node scripts/behaviour-tax.mjs` | 72 of 72, against a production server: twelve examples worked by hand from the guides' figures, errors in words, the no-script tables, a phone, and axe-core with the tools in use |
 | Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA: clean on all 56 kinds of public page (14 of them Baz Manzer's), at a desk and on a phone. Those are read under reduced motion and with the menu shut, so two more passes follow: the landing page with motion allowed, at both sizes, with what falls over it falling and then held; and the header with its menu's grid open, at 1440 and at 1024 pixels wide. Clean. Also clean, run by hand: the cart with things in it, the street map open, and the paid business page in its preview |
@@ -2024,11 +2033,11 @@ and the island's drawing is most of a list page's HTML.
 
 - **Nothing can be paid for on the site.** No payment is connected. A plan, the pocket guide or a
   place in it is ordered through the cart, and a person replies with how to pay.
-- **The AI answer has not met Google.** It is written to Google's documentation of 26 November
-  2026 and checked against a stand-in built from the same pages: no real key was at hand, so no
-  real answer has been read. It answers in English only and from the articles only. Its two
-  limits, by connection and by day, are kept in memory on each server instance, so the spend cap
-  set at Google is the one that holds.
+- **The AI answer has been read three times.** It answers on the live site, and the first three
+  real answers were read against their articles (see "The AI answer"). That is a start, not a
+  proof. It answers in English only and from the articles only, and it can find only what the
+  site's search finds for a question. Its two limits, by connection and by day, are kept in
+  memory on each server instance, so the spend cap set at Google is the one that holds.
 - **No listing is verified or on a paid plan yet**, so the mark and the priority are drawn and not
   yet seen. Claiming a listing waits on the accounts.
 - **Coverage is what the open map holds**: fullest for shops, food, places to stay and public

@@ -175,7 +175,7 @@ answer from those or not at all.
 - **It is cheap by how it is built.** Most searches never reach the model. An answer is kept for
   a week, so a question costs once. The answer is fetched after the page, so a crawler costs
   nothing. The model is Google's cheapest that does the work, with its thinking at the least.
-  A usual new answer costs about 0.04 of a US cent; a thousand new questions a day, about 12 US
+  A usual new answer costs about 0.05 of a US cent; a thousand new questions a day, about 14 US
   dollars a month.
 - **Nothing says who asked.** The question goes from the server, with no address, cookie or
   account, and Google is asked not to keep it. The privacy page and the data page say what is
@@ -201,10 +201,20 @@ WhatsApp route leaned on WhatsApp's own site answering, which it stopped doing a
 runs: that site is now stood in for, so the check reads the address this site opens and sends
 nothing to anyone.
 
+**Later the same day: the key, and the first real answers.** The owner's note: "i've added
+gemini api key, verify connection". The key was in the host under the right name, and the site
+still said the answer was off: a variable reaches only a deployment made after it, so the same
+build was deployed again. Then three questions were put to the live site. Two were answered, and
+each answer was read against its article: how a company is incorporated, as the article's steps
+say; the VAT threshold, MUR 3 million a year, to the figure. The third, how long incorporation
+takes, got no answer, and rightly, since the figure was not in what the model had been handed.
+The figure was in the article all the same, among its facts at a glance, while the search had
+found the part that tells how. So the leading article's facts now always go with its passages.
+A usual new answer is about 0.05 of a US cent with them.
+
 **Not done, and said.**
 
-- **Google itself has not been asked.** There was no key. The request is written to Google's
-  documentation and no real answer has been read. The first ones should be read by a person.
+- **Three real answers have been read, not three hundred.** The owner should go on reading them.
 - **English only.** A question in French or Kreol is answered in English, from English articles.
 - **The two limits are in memory**, on each server instance. The spend cap set at Google is the
   one that holds, and setting it is the owner's.
